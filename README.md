@@ -19,7 +19,7 @@ Make sure to join the **_Official Speedrunner Mod Discord_** (https://discord.gg
 
 **_<!> Important Note <!>:_** If you are looking into submitting official speedruns on speedrun.com, this is **_not**_ the mod for you, as your run will be immediately rejected, as the features this mods adds completely changes vanilla speedrunning, such as piglin trades, structure loot, and adds new items/armor pieces. This mod is recommended for beginner speedrunners, or if you are just looking to have fun with speedrunning.
 
-**_SPEEDRUNNER MOD FEATURES_**
+# SPEEDRUNNER MOD FEATURES
 
 • Adds 7 new items, "Speedrunner Ingot", "Speedrunner Nugget", "Eye of Inferno", "Eye of Annul", "Igenous Rock", "Speedrunner Bulk", and "Rotten Speedrunner Bulk". Join the discord (https://discord.gg/Qu8utnCwkq) for more information regarding these new items and changes listed below.
 
