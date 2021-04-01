@@ -6,7 +6,7 @@ _This is the official github page, where all of the important information regard
 
 This mod changes the Vanilla aspects of **_Minecraft Speedrunning_** and _completely_ overhauls it! More details below...
 
-**___Mod Information___**
+**_MOD INFORMATION_**
 
 **_Supported Minecraft Versions:_** _1.16.3 and 1.16.5_
 
