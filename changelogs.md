@@ -10,7 +10,7 @@
 
 • Fixed bug where Eye of Infernos and Eye of Annuls don't have a texture.
 
-# _SPEEDRUNNER MOD v.1.6.0 (Released March 28th, 2021)_
+# _SPEEDRUNNER MOD v.1.6.0 (Released March 28th, 2021) CHANGELOG_
 • Rotten flesh no longer generate in Desert Temples, Shipwreck supply chests, or dungeons. Instead, they have been replaced with Rotten Speedrunner Bulk (see below for more details about this item)
 
 • Obsidian is now more common in blacksmith chests.
