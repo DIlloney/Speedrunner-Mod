@@ -1,4 +1,4 @@
-# _Speedrunner Mod_
+# _SPEEDRUNNER MOD_
 A Minecraft mod that makes Minecraft Speedrunning easier.
 
 Hello, everyone! This is my first ever mod, the **_Speedrunner Mod!_**
