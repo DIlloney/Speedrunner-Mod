@@ -1,4 +1,4 @@
-# Speedrunner Mod
+# _Speedrunner Mod_
 A Minecraft mod that makes Minecraft Speedrunning easier.
 
 Hello, everyone! This is my first ever mod, the **_Speedrunner Mod!_**
@@ -6,7 +6,7 @@ _This is the official github page, where all of the important information regard
 
 This mod changes the Vanilla aspects of **_Minecraft Speedrunning_** and _completely_ overhauls it! More details below...
 
-# MOD INFORMATION
+# _MOD INFORMATION_
 
 **_Supported Minecraft Versions:_** _1.16.3 and 1.16.5_
 
@@ -19,7 +19,7 @@ Make sure to join the **_Official Speedrunner Mod Discord_** (https://discord.gg
 
 **_<!> Important Note <!>:_** If you are looking into submitting official speedruns on speedrun.com, this is **_not**_ the mod for you, as your run will be immediately rejected, as the features this mods adds completely changes vanilla speedrunning, such as piglin trades, structure loot, and adds new items/armor pieces. This mod is recommended for beginner speedrunners, or if you are just looking to have fun with speedrunning.
 
-# SPEEDRUNNER MOD FEATURES
+# _SPEEDRUNNER MOD FEATURES_
 
 • Adds 7 new items, "Speedrunner Ingot", "Speedrunner Nugget", "Eye of Inferno", "Eye of Annul", "Igenous Rock", "Speedrunner Bulk", and "Rotten Speedrunner Bulk". Join the discord (https://discord.gg/Qu8utnCwkq) for more information regarding these new items and changes listed below.
 
