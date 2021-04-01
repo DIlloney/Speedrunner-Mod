@@ -1,4 +1,4 @@
-# _SPEEDRUNNER MOD v.1.0.0 (Release March 1st, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.0.0 (Released March 1st, 2021) CHANGELOG_
 
 • Completely Changes Piglin Trades. Ender Pearls are now x5 more common, piglins will now drop 9-34 Cooked Porkchop upon bartering, piglins have a higher chance to 
 drop spectral arrows (7-37), splash fire resistance potions, string (8-14), and obsidian (1-3). 
