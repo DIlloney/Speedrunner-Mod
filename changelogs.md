@@ -1,3 +1,8 @@
+# _SPEEDRUNNER MOD v.1.7.1 (April 2nd, 2021) CHANGELOG_
+• Fixed bug where blackstone, cobblestone, granite, andesite, and diorite pickaxes couldn't mine Speedrunner Ores (they can now!).
+
+• Re-textured Cobblestone Axe.
+
 # _SPEEDRUNNER MOD v.1.7.0 (April 2nd, 2021) CHANGELOG_
 • Adds 9 new food items, "Golden Steak", "Golden Porkchop", "Golden Mutton", "Golden Chicken", "Golden Cod", "Golden Salmon", "Golden Bread", "Golden Potato", and "Golden Beetroot", each of which will give the player Regeneration II when eaten, and fill +1 more hearts than the normal food item would. All of these food items can only be obtained through crafting, it takes 8 gold ingots + the cooked version of the food (ex. steak, baked potato, normal bread) to obtain these items. Golden Steak can give additional status effects, 50% chance to give Resistance for 10 seconds, 25% chance to give Speed for 10 seconds, and a 10% chance to give strength for 10 seconds. Golden Porkchop can also give an additional status effect, a 50% chance to give Resistance for 10 seconds.
 
