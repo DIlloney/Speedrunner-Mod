@@ -1,3 +1,22 @@
+# _SPEEDRUNNER MOD v.1.7.0 (April 2nd, 2021) CHANGELOG_
+• Adds 9 new food items, "Golden Steak", "Golden Porkchop", "Golden Mutton", "Golden Chicken", "Golden Cod", "Golden Salmon", "Golden Bread", "Golden Potato", and "Golden Beetroot", each of which will give the player Regeneration II when eaten, and fill +1 more hearts than the normal food item would. All of these food items can only be obtained through crafting, it takes 8 gold ingots + the cooked version of the food (ex. steak, baked potato, normal bread) to obtain these items. Golden Steak can give additional status effects, 50% chance to give Resistance for 10 seconds, 25% chance to give Speed for 10 seconds, and a 10% chance to give strength for 10 seconds. Golden Porkchop can also give an additional status effect, a 50% chance to give Resistance for 10 seconds.
+
+• Adds a new food item, "Cooked Flesh"! This food item can be obtained by smelting rotten flesh in a furnace/smoker, which will take 1 second, and will fill +1 more hearts than rotten flesh would when eaten. It does not give any status effects when eaten, and will fill 3 hunger bars when eaten. On top of this, zombies now have a 50% drop 1-9 rotten flesh when killed, and a 50% chance of dropping 1-3 Rotten Speedrunner Bulks when killed.
+
+• Adds a new food item, "Raw Piglin Pork"! This food item can be obtained by killing piglin, and looting bastions (raw porkchop will no longer generate in bastions). It will fill the same amount of hearts as Raw Porkchop would, and fills 1 and a half hunger bars when eaten. This food item does not give any status effects when eaten.
+
+• Adds a new food item, "Cooked Piglin Pork"! This food item can be obtained by killing piglin when they are on fire, looting bastions (cooked porkchop will no longer generate in bastions), piglin bartering (cooked porkchop can no longer be obtained through piglin bartering), and putting raw piglin pork inside a furnace/smoker, which will take 1 second to cook. It will fill -1 hearts as Cooked Porkchop would, and fills 4 hunger bars when eaten. This food item does not give any status effects when eaten.
+
+• Adds 5 new toolsets, "Blackstone", "Cobblestone (not stone)", "Granite", "Andesite", and "Diorite"! This new tool items are the exact same as stone tools, just crafted differently. Same durability, same mining speed, and same mining level. On top of this, obtaining Granite, Andesite, or Diorite will now grant the player with the "Stone Age" advancement, and stone tools can no longer be crafted using cobblestone OR mossy cobblestone, instead, you must use normal stone, due to the fact that Cobblestone tools require cobblestone to be crafted. Granite, Andesite, and Diorite can now be used to craft anything that cobblestone would be able to craft (furnaces, dispensers, levers, etc).
+
+• Speedrunner Bulk and Rotten Speedrunner Bulk now restore less hearts, as before they were incredibly overpowered and were not meant to fill that many hearts. On top of this, Rotten Speedrunner Bulk now fills 2 hunger bars instead of 1 and a half.
+
+• Speedrunner Nether Ore can now generate up to Y = 128 (previously Y = 124).
+
+• Sandstone, Smooth Sandstone, and Basalt will now drop 1-2 blocks when mined.
+
+• Flint and Steel will now always generate in ruined portals.
+
 # _SPEEDRUNNER MOD v.1.6.2 (March 29th, 2021) CHANGELOG_
 • Obsidian will now always generate in village blacksmith chests (6-11), ruined portals (4-11), and nether fortress treasure chests (6-11).
 
