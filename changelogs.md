@@ -1,16 +1,16 @@
-# _SPEEDRUNNER MOD v.1.6.2 (Released March 29th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.6.2 (March 29th, 2021) CHANGELOG_
 • Obsidian will now always generate in village blacksmith chests (6-11), ruined portals (4-11), and nether fortress treasure chests (6-11).
 
 • Made Obsidian slightly more common when bartering with piglin (also modified piglin bartering).
 
 • Set Speedrunner Tools enchantability value to 11 (previously 8).
 
-# _SPEEDRUNNER MOD v.1.6.1 (Released March 28th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.6.1 (March 28th, 2021) CHANGELOG_
 • Fixed bug where you can't craft Eye of Infernos and Eye of Annuls.
 
 • Fixed bug where Eye of Infernos and Eye of Annuls don't have a texture.
 
-# _SPEEDRUNNER MOD v.1.6.0 (Released March 28th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.6.0 (March 28th, 2021) CHANGELOG_
 • Rotten flesh no longer generate in Desert Temples, Shipwreck supply chests, or dungeons. Instead, they have been replaced with Rotten Speedrunner Bulk (see below for more details about this item)
 
 • Obsidian is now more common in blacksmith chests.
@@ -25,14 +25,14 @@
 
 • Re-textured Igneous Ore and Igneous Nether Ore.
 
-# _SPEEDRUNNER MOD v.1.5.1 (Released March 25th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.5.1 (March 25th, 2021) CHANGELOG_
 • Speedrunner Blocks can now only be mined with a stone pickaxe or above (including speedrunner pickaxes).
 
 • Speedrunner Ores can now only be mined with a stone pickaxe or above (including speedrunner pickaxes).
 
 • As mentioned in the previous version (v.1.5.0), Igneous Ores and Igneous Nether Ores can only be mined with an iron pickaxe or above (including speedrunner pickaxes).
 
-# _SPEEDRUNNER MOD v.1.5.0 (Released March 25th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.5.0 (March 25th, 2021) CHANGELOG_
 • Piglins will now give 9-37 gravel when bartering.
 
 • Piglins will now once again give soul sand when bartering (9-37).
@@ -75,7 +75,7 @@
 
 • Igneous Ore (and Igneous Nether Ore) can now only be mined with an iron pickaxe and above (including speedrunner pickaxe).
 
-# _SPEEDRUNNER MOD v.1.4.0 (Released March 22nd, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.4.0 (March 22nd, 2021) CHANGELOG_
 • Piglins now have a smaller chance to barter for drinkable fire resistance potions.
 
 • Piglins can now barter gravel once again (7-14 per barter).
@@ -104,7 +104,7 @@
 
 • All Speedrunner tools durability is now set to a maximum of 421 instead of 469.
 
-# _SPEEDRUNNER MOD v.1.3.0 (Released March 11th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.3.0 (March 11th, 2021) CHANGELOG_
 • Tweaked Village chest loot.
 
 • Modified Bastion chest loot.
@@ -115,12 +115,12 @@
 
 • Fixed bug where Speedrunner Ingots don't generate in Taiga village chests.
 
-# _SPEEDRUNNER MOD v.1.2.1 (Released March 10th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.2.1 (March 10th, 2021) CHANGELOG_
 • Crying Obsidian can now be crafted using 8 igneous rocks and 1 ghast tear.
 
 • Fixed bug where blaze rod and fire charge drop rates (from blazes) aren't affected by the looting enchantment.
 
-# _SPEEDRUNNER MOD v.1.2.0 (Released March 10th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.2.0 (March 10th, 2021) CHANGELOG_
 • Piglins will now give drinkable fire resistance potions when bartering.
 
 • Sweet Berries now drop 3-9 instead of 2-3 berries.
@@ -132,7 +132,7 @@
 • Added a new ore, "Igneous Ore"! This ore can generate in veins of 1-5 across the overworld and can generate at Y:64 and below.
 This ore will drop 4-8 Igneous Rocks and a bit of XP. As normal, you can get the actual ore by using the silk touch enchantment, and double the amount you get by using the fortune enchantment.
 
-# _SPEEDRUNNER MOD v.1.1.2 (Released March 9th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.1.2 (March 9th, 2021) CHANGELOG_
 • Tweaked Stronghold chest loot (stronghold chests now have a small chance to have an ender eye, excluding library chests).
 
 • Blazes now have a small chance to drop a firecharge.
@@ -153,14 +153,14 @@ This ore will drop 4-8 Igneous Rocks and a bit of XP. As normal, you can get the
 
 • Respawn anchors can now generate in bastions.
 
-# _SPEEDRUNNER MOD v.1.1.1 (Released March 8th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.1.1 (March 8th, 2021) CHANGELOG_
 • Enderman now have a much higher chance of dropping an ender pearl.
 
 • Dead Bushes can now drop 3-9 sticks per time broken.
 
 • Tweaked Piglin Bartering loot (piglins will now no longer drop gravel when bartering, iron boots from bartering can now have the protection, feather falling, and depth strider enchants).
 
-# _SPEEDRUNNER MOD v.1.1.0 (Released March 5th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.1.0 (March 5th, 2021) CHANGELOG_
 • Fire Charges and String are now more common when bartering with piglin.
 
 • Adds a new item, "Eye of Nether"! This item works like an Eye of Ender, but only works in the nether. This item can be used to find Nether Fortresses and Bastions in the nether, Shifting + Right Click changes what structure you want to find. This item can be crafted using 1 ender pearl and 1 fire charge.
@@ -169,10 +169,10 @@ This ore will drop 4-8 Igneous Rocks and a bit of XP. As normal, you can get the
 
 • Speedrunner Nether Ore now drops 6-9 nuggets instead of 2-6.
 
-# _SPEEDRUNNER MOD v.1.0.3 (Released March 4th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.0.3 (March 4th, 2021) CHANGELOG_
 • All wool colors can now be used to craft string (4 string per piece of wool).
 
-# _SPEEDRUNNER MOD v.1.0.2 (Released March 4th, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.0.2 (March 4th, 2021) CHANGELOG_
 • Blackstone can now drop 1-2 blackstone when mined.
 
 • Tweaked Piglin Bartering.
@@ -189,10 +189,10 @@ This ore will drop 4-8 Igneous Rocks and a bit of XP. As normal, you can get the
 
 • You can now craft Lanterns, Soul Lanterns, and Chains using Speedrunner Nuggets.
  
-# _SPEEDRUNNER MOD v.1.0.1 (Released March 2nd, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.0.1 (March 2nd, 2021) CHANGELOG_
 • Flint now has an extremely higher chance of dropping when breaking gravel.
 
-# _SPEEDRUNNER MOD v.1.0.0 (Released March 1st, 2021) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.0.0 (March 1st, 2021) CHANGELOG_
 
 • Completely Changes Piglin Trades. Ender Pearls are now x5 more common, piglins will now drop 9-34 Cooked Porkchop upon bartering, piglins have a higher chance to 
 drop spectral arrows (7-37), splash fire resistance potions, string (8-14), and obsidian (1-3). 
