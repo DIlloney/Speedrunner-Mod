@@ -17,7 +17,7 @@ just very difficulty to code with).
 
 Make sure to join the **_Official Speedrunner Mod Discord_** (https://discord.gg/Qu8utnCwkq) for more information regarding the mod, leaderboards page, and Dilloney's PBs!
 
-**_<!> Important Note <!>:_** If you are looking into submitting official speedruns on speedrun.com, this is **_not**_ the mod for you, as your run will be immediately rejected, as the features this mods adds completely changes vanilla speedrunning, such as piglin trades, structure loot, and adds new items/armor pieces. This mod is recommended for beginner speedrunners, or if you are just looking to have fun with speedrunning.
+**_<!> Important Note <!>:_** If you are looking into submitting official speedruns on speedrun.com, this is *not* the mod for you, as your run will be immediately rejected, as the features this mods adds completely changes vanilla speedrunning, such as piglin trades, structure loot, and adds new items/armor pieces. This mod is recommended for beginner speedrunners, or if you are just looking to have fun with speedrunning.
 
 # _SPEEDRUNNER MOD FEATURES_
 
