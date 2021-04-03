@@ -1,3 +1,8 @@
+# _SPEEDRUNNER MOD v.1.7.2 (April 3rd, 2021) CHANGELOG_
+• When zombies are on fire, they will now drop Cooked Flesh instead of Rotten Flesh. On top of this, Zombie villagers and Drowned will now follow the new Zombie loot table.
+
+• Granite, Andesite, and Diorite will now drop 1-2 blocks when mined.
+
 # _SPEEDRUNNER MOD v.1.7.1 (April 2nd, 2021) CHANGELOG_
 • Fixed bug where blackstone, cobblestone, granite, andesite, and diorite pickaxes couldn't mine Speedrunner Ores (they can now!).
 
