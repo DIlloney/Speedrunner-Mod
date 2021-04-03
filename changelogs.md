@@ -1,5 +1,5 @@
 # _SPEEDRUNNER MOD v.1.7.2 (April 3rd, 2021) CHANGELOG_
-• When zombies are on fire, they will now drop Cooked Flesh instead of Rotten Flesh. On top of this, Zombie villagers and Drowned will now follow the new Zombie loot table.
+• When zombies are on fire, they will now drop Cooked Flesh instead of Rotten Flesh. On top of this, Zombie villagers, Zombified Piglin, and Drowned will now follow the new Zombie loot table (zombified piglin cannot be lit on fire so they cannot drop Cooked Flesh, only Rotten Flesh and Rotten Speedrunner Bulk).
 
 • Granite, Andesite, and Diorite will now drop 1-2 blocks when mined.
 
