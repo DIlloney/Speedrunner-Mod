@@ -1,7 +1,10 @@
 # _SPEEDRUNNER MOD v.1.7.3 (April 3rd, 2021) CHANGELOG_
 • Fixed bug where obsidian/flint and steel doesn't always generate in ruined portals (they both always do now)!
+
 • Flint no longer generates in ruined portals.
+
 • Speedrunner Bulk now always generate in buried treasures.
+
 • Lowered chance for Zombies, Zombie villagers, and Zombified Piglin to drop Rotten Speedrunner Bulk.
 
 # _SPEEDRUNNER MOD v.1.7.2 (April 3rd, 2021) CHANGELOG_
