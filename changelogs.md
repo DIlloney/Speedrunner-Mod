@@ -1,3 +1,9 @@
+# _SPEEDRUNNER MOD v.1.7.3 (April 3rd, 2021) CHANGELOG_
+• Fixed bug where obsidian/flint and steel doesn't always generate in ruined portals (they both always do now)!
+• Flint no longer generates in ruined portals.
+• Speedrunner Bulk now always generate in buried treasures.
+• Lowered chance for Zombies, Zombie villagers, and Zombified Piglin to drop Rotten Speedrunner Bulk.
+
 # _SPEEDRUNNER MOD v.1.7.2 (April 3rd, 2021) CHANGELOG_
 • When zombies are on fire, they will now drop Cooked Flesh instead of Rotten Flesh. On top of this, Zombie villagers, Zombified Piglin, and Drowned will now follow the new Zombie loot table (zombified piglin cannot be lit on fire so they cannot drop Cooked Flesh, only Rotten Flesh and Rotten Speedrunner Bulk).
 
