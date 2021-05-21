@@ -1,3 +1,78 @@
+# _SPEEDRUNNER MOD v.1.8.0 (May 21st, 2021) CHANGELOG_
+• Structures of all types are now more common! This includes Villages, Bastions, Nether Fortresses, Ruined Portals, Strongholds and more! In addition, Ruined Portals can now generate in the Basalt Deltas biome. Note, your world might take a few extra seconds to generate, and this feature may be a tiny bit buggy, but maybe not, during testing I didn't find anything out of the ordinary, but if you find anything out of the ordinary, please submit an issue.
+
+• Piglin's now spawn more frequently in Crimson Forests and Nether Wastes. They can also now spawn in Warped Forests (not as common).
+
+• Piglins will now have a chance to drop Crimson Planks/Warped Planks when bartering.
+
+• Added an item group for all of the speedrunner mod features.
+
+• The Ender Dragon now has twice as less health (now 50 hearts, previously 100). This will make one-cycling possible with 3 beds.
+
+• Blazes will now only shoot a player if the player is in a 16 block radius (preivously 48 blocks) and also do less melee attack damage.
+
+• Treasure Bastions will now spawn with a Blaze Spawner at the bottom, instead of a Magma Cube spawner.
+
+• Ghasts now have less health (2.5 hearts, previously 5), and will now only spot the player if it is in a 25 block range (previously 100 block range).
+
+• Hoglins now have less health (10 hearts, previously 20), do less attack damage and less knockback.
+
+• Iron Golems now have twice as less health (now 25 hearts, previously 50), do less attack damage and less knockback.
+
+• Enderman now only have 7.5 hearts (previously 20) and also do less attack damage.
+
+• Ender pearls now only deal 1 heart of damage when thrown, instead of 2 and a half.
+
+• Piglin Brutes now have the same amount of health as normal piglin, and now do less damage to players. They will now also spawn with golden swords instead of axes.
+
+• Normal Piglins are also now more weak. They still have 8 hearts, but do less attack damage.
+
+• Wither Skeletons will now only inflict the player with the Wither effect for 3 seconds and now do less attack damage.
+
+• Magma Cubes will now take longer to jump when making an attack.
+
+• Elder Guardians will now only grant the player Mining Fatigue (for 30 seconds) if the player is in a 25 block range and will only happen every 5 minutes.
+
+• Guardians will now only attack the player if they are in an 8 block range, also do less attack damage and have less health.
+
+• Speedrunner Blocks can now be used to power beacons!
+
+• Speedrunner Boots now give a small speed effect when worn.
+
+• Tweaked saturation and hunger values for food items (both speedrunner mod items and vanilla items). Golden Carrots will now give Regeneration II for 10 seconds. Golden Steak, porkchop, and mutton can now be used to feed/heal tamed wolfs.
+
+• Golden Apples will now give Regeneration II for 10 seconds instead of 5. Raw Chicken will no longer give hunger when eaten.
+
+• Added a new food item, "Golden Rabbit"! This works the same as basically any other golden food item, fills 5 hunger bars and gives Regeneration II for 5 seconds when consumed.
+
+• Armor toughness for all Speedrunner Armor is now 0 (previously 1).
+
+• Added a brightness feature where you can change your brightness in-game (look in the "Controls" option), a minimum of 100% brightness and a maximum of 500% brightness.
+
+• Speedrunner Nether Ore is now slightly less common, in addition, Speedrunner Nuggets will now generate less in bastion chests (9-13, previously 9-27).
+
+• Iron Ore and Gold Ore will now drop experience/XP when mined (unless mined with silk touch, obviously).
+
+• When applied with the Fire Resistance effect, you can now see 10 blocks in lava instead of only 3.
+
+• Fixed Rotten Speedrunner Bulk not giving Mining Fatigue III (instead giving Mining Fatigue I).
+
+• Speedrunner Bulk no longer instantly heals the player 2 hearts when consumed.
+
+# _SPEEDRUNNER MOD v.1.7.3 (April 3rd, 2021) CHANGELOG_
+• Fixed bug where obsidian/flint and steel doesn't always generate in ruined portals (they both always do now)!
+
+• Flint no longer generates in ruined portals.
+
+• Speedrunner Bulk now always generate in buried treasures.
+
+• Lowered chance for Zombies, Zombie villagers, and Zombified Piglin to drop Rotten Speedrunner Bulk.
+
+# _SPEEDRUNNER MOD v.1.7.2 (April 3rd, 2021) CHANGELOG_
+• When zombies are on fire, they will now drop Cooked Flesh instead of Rotten Flesh. On top of this, Zombie villagers, Zombified Piglin, and Drowned will now follow the new Zombie loot table (zombified piglin cannot be lit on fire so they cannot drop Cooked Flesh, only Rotten Flesh and Rotten Speedrunner Bulk).
+
+• Granite, Andesite, and Diorite will now drop 1-2 blocks when mined.
+
 # _SPEEDRUNNER MOD v.1.7.3 (April 3rd, 2021) CHANGELOG_
 • Fixed bug where obsidian/flint and steel doesn't always generate in ruined portals (they both always do now)!
 
