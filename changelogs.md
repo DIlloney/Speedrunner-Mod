@@ -39,9 +39,9 @@
 
 • Speedrunner Boots now give a small speed effect when worn.
 
-• Tweaked saturation and hunger values for food items (both speedrunner mod items and vanilla items). Golden Carrots will now give Regeneration II for 10 seconds. Golden Steak, porkchop, and mutton can now be used to feed/heal tamed wolfs.
+• ~~Tweaked saturation and hunger values for food items (both speedrunner mod items and vanilla items). Golden Carrots will now give Regeneration II for 10 seconds. Golden Steak, porkchop, and mutton can now be used to feed/heal tamed wolfs.~~ *(CURRENTLY BROKEN)*
 
-• Golden Apples will now give Regeneration II for 10 seconds instead of 5. Raw Chicken will no longer give hunger when eaten.
+• ~~Golden Apples will now give Regeneration II for 10 seconds instead of 5. Raw Chicken will no longer give hunger when eaten.~~ *(CURRENTLY BROKEN)*
 
 • Added a new food item, "Golden Rabbit"! This works the same as basically any other golden food item, fills 5 hunger bars and gives Regeneration II for 5 seconds when consumed.
 
