@@ -1,3 +1,10 @@
+# _SPEEDRUNNER MOD v.1.8.1 (May 23rd, 2021) CHANGELOG_
+• Logs can now be broken slightly faster.
+
+• Beds of all types can now be instantly broken.
+
+• Golden Swords in ruined portal chests will now only generate with the looting enchantment.
+
 # _SPEEDRUNNER MOD v.1.8.0 (May 21st, 2021) CHANGELOG_
 • Structures of all types are now more common! This includes Villages, Bastions, Nether Fortresses, Ruined Portals, Strongholds and more! In addition, Ruined Portals can now generate in the Basalt Deltas biome. Note, your world might take a few extra seconds to generate, and this feature may be a tiny bit buggy, but maybe not, during testing I didn't find anything out of the ordinary, but if you find anything out of the ordinary, please submit an issue.
 
