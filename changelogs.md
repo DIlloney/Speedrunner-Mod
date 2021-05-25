@@ -1,3 +1,10 @@
+# _SPEEDRUNNER MOD v.1.8.2 (May 25th, 2021) CHANGELOG_
+• Logs can now be broken slightly faster (again).
+
+• Fixed bug where Speedrunner (nether) ore, and igneous (nether) ore doesn't drop XP when mined.
+
+• Added/fixed links for the mod in the Mod Menu mod.
+
 # _SPEEDRUNNER MOD v.1.8.1 (May 23rd, 2021) CHANGELOG_
 • Logs can now be broken slightly faster.
 
