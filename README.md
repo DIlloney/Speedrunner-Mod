@@ -11,6 +11,7 @@ This mod changes the Vanilla aspects of **_Minecraft Speedrunning_** and _comple
 **_Supported Minecraft Versions:_** _1.16.3 and 1.16.5_
 
 **_Supported Mod Loaders:_** Fabric.
+
 **_Requirements:_** _Fabric Mod Loader (https://fabricmc.net/use/) + Fabric API (https://www.curseforge.com/minecraft/mc-mods/fabric-api/files/3248105)_
 
 Make sure to join the **_Official Speedrunner Mod Discord_** (https://discord.gg/Qu8utnCwkq) for more information regarding the mod, leaderboards page, and Dilloney's PBs!
