@@ -21,13 +21,13 @@
 
 • Quartz and Nether Bricks can now be broken faster.
 
-• Primsarine Variants can now be broken faster (technical hardness value = 1.3F)
+• Primsarine Variants can now be broken faster (technical hardness value = 1.3F).
 
-• Hay Bales can now be broken faster (technical hardness value = 0.3F)
+• Hay Bales can now be broken faster (technical hardness value = 0.3F).
 
-• Nether Wart Blocks/Warped Wart Blocks can now be broken faster (technical hardness value = 0.6F)
+• Nether Wart Blocks/Warped Wart Blocks can now be broken faster (technical hardness value = 0.6F).
 
-• Furnaces, Blast Furnaces and Smokers can now be broken faster (technical hardness value = 2.0F)
+• Furnaces, Blast Furnaces and Smokers can now be broken faster (technical hardness value = 2.0F).
 
 • Workstation blocks can now be broken faster.
 
