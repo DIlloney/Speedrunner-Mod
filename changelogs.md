@@ -1,3 +1,28 @@
+# _SPEEDRUNNER MOD v.1.9.0 (June 1st, 2021) CHANGELOG_
+• Certain blocks can now be broken faster. This includes logs, planks, stone, obsidian, and too much more to list (all changes here: https://github.com/Dilloney/Speedrunner-Mod/blob/main/misc/block-hardness-changes-1.9.md).
+
+• Golden carrots will now give Regeneration II when consumed. Golden Apples will now give Regeneration II for 10 seconds when consumed, and Enchanted Golden Apples will now give Regeneration 5 for 30 seconds when consumed and Absorption 5 for 2 minutes. This was meant to be a feature in v.1.8.0, but didn't work. Now, it actually works.
+
+• Tweaked saturation and food values for all vanilla food items (all changes here: https://github.com/Dilloney/Speedrunner-Mod/blob/main/misc/vanilla-food-changes-1.9.md) This was also meant to be a feature in v.1.8.0, but didn't work. Now it works.
+
+• The Ender Dragon now does less damage to entites, and heals very little health when in range of an End Crystal.
+
+• Blaze rods, Blaze Powder and Fire Charges are now fire immune.
+
+• Speedrunner Leggings will now give Dolphin's Grace when worn and when underwater.
+
+• Speedrunner Bulk's now have a 100% chance to give Fire Resistance and Water Breathing when consumed.
+
+• Logs will now have a chance to generate in all types of village chests.
+
+• Obsidian will now generate in ruined portals from counts of 6-11 (previously 4-11). Obsidian will now also generate in all bastions types.
+
+• Golden Swords will now only generate with Sharpness, Unbreaking and Looting enchantments in bastion chests.
+
+• You can now see further when under lava w/ with fire resistance.
+
+• Added new Splashes for the main menu + added a custom background for the main menu (credit to VRplaYK: https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/3039023-vr-speedrun-logo).
+
 # _SPEEDRUNNER MOD v.1.8.2 (May 25th, 2021) CHANGELOG_
 • Logs can now be broken slightly faster (again).
 
