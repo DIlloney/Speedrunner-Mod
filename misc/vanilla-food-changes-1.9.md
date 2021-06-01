@@ -1,5 +1,5 @@
 # VANILLA FOOD CHANGES (v.1.9.0)
-• Aples will now 3 hunger bars and give more saturation.
+• Apples will now 3 hunger bars and give more saturation.
 
 • Baked potatoes will now fill 3 hunger bars and give more saturation.
 
