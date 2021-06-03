@@ -23,7 +23,7 @@
 
 • Primsarine Variants can now be broken faster (technical hardness value = 1.3F).
 
-• Hay Bales can now be broken faster (technical hardness value = 0.3F).
+• Hay Bales can now be broken faster (technical hardness value = 0.2F).
 
 • Nether Wart Blocks/Warped Wart Blocks can now be broken faster (technical hardness value = 0.6F).
 
