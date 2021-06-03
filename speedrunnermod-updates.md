@@ -1,3 +1,30 @@
+# _SPEEDRUNNER MOD v.1.10 (June 3rd, 2021) CHANGELOG_
+• Eyes of Ender will now never break (this includes Eyes of Inferno and Annul). They will also drop quickly when throwing them.
+
+• Eye's of Inferno and Anull will now play the correct sound when throwing them.
+
+• Ruined portals are now slightly more common.
+
+• Strongholds are now more common.
+
+• Piglins will now barter a minimum of 11 pearls and a maximum of 13 pearls per trade (previously 4-11).
+
+• Piglins will now spawn more frequently in nether wastes, and a little less frequently in warped forests.
+
+• Obsidian will now always generate in quantities of 10-14 in blacksmith chests. In addition, flint and steels will now always generate in blacksmiths.
+
+• Hay Bales can now be broken slightly faster.
+
+• The player will now admit dolphin's grace particles when wearing speedrunner leggings (and underwater obviously).
+
+• Tweaked Ruined Portal loot tables (golden carrots will now always generate in ruined portals).
+
+• Tweaked Shipwreck supply and Shipwreck treasure loot tables.
+
+• String can now generate in quantities of 9-27 in bastion chests.
+
+• Added more splash texts to the main menu.
+
 # _SPEEDRUNNER MOD v.1.9.0 (June 1st, 2021) CHANGELOG_
 • Certain blocks can now be broken faster. This includes logs, planks, stone, obsidian, and too much more to list (all changes here: https://github.com/Dilloney/Speedrunner-Mod/blob/main/misc/block-hardness-changes-1.9.md).
 
