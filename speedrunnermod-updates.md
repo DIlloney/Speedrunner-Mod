@@ -1,4 +1,7 @@
-# _SPEEDRUNNER MOD v.1.10 (June 3rd, 2021 = 1.16, June 9th, 2021 = 1.17) CHANGELOG_
+# _SPEEDRUNNER MOD v.1.10.1 (June 10th, 2021) CHANGELOG_
+• Removed noise caves (1.17 only).
+
+# _SPEEDRUNNER MOD v.1.10 (June 3rd, 2021 & June 9th, 2021) CHANGELOG_
 • Added Deepslate versions of some ores. Deepslate ores will generate throughout the overworld just like vanilla deepslate ores do (exclusive to 1.17).
 
 • Iron and Gold Ore no longer drop experience when mined (exclusive to 1.17).
