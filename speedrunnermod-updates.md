@@ -38,9 +38,6 @@
 
 • Added more splash texts to the main menu.
 
-## _SPEEDRUNNER MOD v.1.10 (June ----, 2021) CHANGELOG (EXCLUSIVE FEATURES TO 1.17)_
-•
-
 # _SPEEDRUNNER MOD v.1.9.0 (June 1st, 2021) CHANGELOG_
 • Certain blocks can now be broken faster. This includes logs, planks, stone, obsidian, and too much more to list (all changes here: )
 
