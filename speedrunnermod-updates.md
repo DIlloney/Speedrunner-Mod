@@ -1,7 +1,25 @@
-# _SPEEDRUNNER MOD v.1.10.1 (June 10th, 2021) CHANGELOG_
-• Removed noise caves (1.17 only).
+# _SPEEDRUNNER MOD v.1.11 (June 15th, 2021 CHANGELOG)_
+• Added Speedrunner Bow! This bow basically just does more damage to entities, has more durability and can be crafted by using 3 speedrunner ingots and 3 sticks. This bow also has a custom advancement when obtained. - (1.16 and 1.17).
 
-# _SPEEDRUNNER MOD v.1.10 (June 3rd, 2021 & June 9th, 2021) CHANGELOG_
+• Added Speedrunner Shears! These shears have more durability, and can be crafted by using 2 speedrunner ingots. These shears can do everything normal shears can EXCEPT be used in dispensers. This will hopefully be fixed in the future - (1.16 and 1.17).
+
+• Gold and Iron ores will now drop more ingots when mined with fortune + now only drop 1 ingot if not mined with fortune - (1.16 and 1.17).
+
+• Piglins and Piglin Brutes will now do less damage and now have less health (again, 1.16 and 1.17).
+
+• Removed Cobblestone tools. Stone tools can now be crafted normally by using cobblestone and sticks. Granite, Andesite, Diorite, and Blackstone tools still exist - (1.16 and 1.17).
+
+• Renamed "Isn't It Speedrun Pick" advancement to "Quick Pick" - (1.16 and 1.17).
+
+• Glowstone can now be mined faster with a pickaxe - (exclusing to 1.17).
+
+• Diamonds will now generate tons in Jungles, Mountains, and Mesas (including deepslate diamond ore in 1.17).
+
+• Deepslate ores will now drop 1-2 ingots when mined (more if mined with fortune, exclusive to 1.17).
+
+• Fixed some advancement recipes not working. - (1.16 and 1.17).
+
+# _SPEEDRUNNER MOD v.1.10 (June 3rd, 2021 June 9th, 2021) CHANGELOG_
 • Added Deepslate versions of some ores. Deepslate ores will generate throughout the overworld just like vanilla deepslate ores do (exclusive to 1.17).
 
 • Iron and Gold Ore no longer drop experience when mined (exclusive to 1.17).
@@ -37,6 +55,9 @@
 • String can now generate in quantities of 9-27 in bastion chests.
 
 • Added more splash texts to the main menu.
+
+## _SPEEDRUNNER MOD v.1.10 (June ----, 2021) CHANGELOG (EXCLUSIVE FEATURES TO 1.17)_
+•
 
 # _SPEEDRUNNER MOD v.1.9.0 (June 1st, 2021) CHANGELOG_
 • Certain blocks can now be broken faster. This includes logs, planks, stone, obsidian, and too much more to list (all changes here: )
