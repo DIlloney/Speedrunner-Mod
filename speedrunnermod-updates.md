@@ -1,3 +1,26 @@
+# _SPEEDRUNNER MOD v.1.12 (June 16th, 2021 CHANGELOG)_
+• Piglin Brutes now no longer spawn in bastions! They still have modified attributes, but they do not naturally spawn anymore - (1.16 and 1.17).
+
+• The Ender Dragon will now perch more quickly when entering the end (1.16 and 1.17).
+
+• Enderman will now only agro at the player if the player is looking at the enderman and is in a 12 block range - (1.16 and 1.17).
+
+• Silverfish are now slower and do less attack damage - (1.16 and 1.17).
+
+• Tweaked Eyes of Inferno and Annuls mechanics - (1.16 and 1.17).
+
+• Renamed "Speedrunner Nether Ore" to "Nether Speedrunner Ore" and renamed "Igneous Nether Ore" to "Nether Igneous Ore" - (1.16 and 1.17).
+
+• Tweaked Ore Generation for Nether Speedrunner Ore and Nether Igneous Ore - (1.16 and 1.17).
+
+• Enchanted Golden Apples are now fireproof - (1.16 and 1.17).
+
+• (Only for 1.16) Fixed bug where Speedrunner Bow doesn't look correct when pulling.
+
+• (Only for 1.17) Fixed bug where Dead Bushes always drop dead bush. They will now drop 3-9 sticks when broken as normal, and the dead bushes can be obtained by using shears/speedrunner shears.
+
+• (Only for 1.17) Fixed advancement bugs.
+
 # _SPEEDRUNNER MOD v.1.11 (June 15th, 2021 CHANGELOG)_
 • Added Speedrunner Bow! This bow basically just does more damage to entities, has more durability and can be crafted by using 3 speedrunner ingots and 3 sticks. This bow also has a custom advancement when obtained. - (1.16 and 1.17).
 
