@@ -1,3 +1,12 @@
+# _SPEEDRUNNERMOD v.1.12.1 (June 18th, 2021 CHANGELOG)_
+• Endermite now have the same properties as Silverfish (slower movement, less attack damage, 1.16 and 1.17).
+
+• Fixed bug where Piglin sometimes spawn without a weapon in bastions (1.16 and 1.17).
+
+• If a player gets down to 1 heart or below, the player will admit heart particles until regenerated to at least 1 and a half hearts (1.16 and 1.17).
+
+• (Only for 1.17) Wearing Speedrunner Leggings + when underwater will make the player admit glow particles from the glow squid.
+
 # _SPEEDRUNNER MOD v.1.12 (June 16th, 2021 CHANGELOG)_
 • Piglin Brutes now no longer spawn in bastions! They still have modified attributes, but they do not naturally spawn anymore - (1.16 and 1.17).
 
