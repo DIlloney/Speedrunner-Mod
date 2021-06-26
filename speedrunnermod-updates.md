@@ -1,3 +1,56 @@
+# _SPEEDRUNNER MOD v.1.13 (June 26th, 2021 CHANGELOG_
+• Optimized, improved, and fixed world-gen settings and decreased world generate/load time. No more wating an extra 30 seconds for your world to load/generate! (1.16 and 1.17).
+
+• Fixed server crash when trying to run the Speedrunner Mod on 1.16.5 (this was not a bug in 1.17, but now it will work on both versions!).
+
+• Renamed "igneous_nether_ore" and "speedrunner_nether_ore" to "nether_igneous_ore" and "nether_speedrunner_ore" (1.16 and 1.17).
+
+• Igneous Ore and Nether Igneous Ore will now no longer produce light (1.16 and 1.17, this includes deepslate igneous ore in 1.17).
+
+• Tweaked ore generation for Speedrunner Ore, Igneous Ore, and Nether Igneous Ore (1.16 and 1.17).
+
+• Re-textured Igneous Ore and Nether Igneous ore, igneous ore looking more like lapis and nether igneous ore looking more like quartz (1.16 and 1.17).
+
+• Modified Piglin Bartering (up-ed made string quantity to 16-32, and MUCH more, 1.16 and 1.17).
+
+• Entities of all types will now only be set on fire for 8 seconds when in lava (previously 15) and will also only take 1 heart of damage when in lava instead of 2 (1.16 and 1.17).
+
+• Speedrunner Bulk will now once again instantly heal the player by a heart. Golden Apples and Enchanted Golden Apples will now instantly heal the player by 2-3 hearts (1.16 and 1.17).
+
+• Rotten Speedrunner Bulk can no longer give Mining Fatigue or Wither when consumed (1.16 and 1.17).
+
+• Sheep will now drop 6-9 wool upon sheared, and 3-6 wool when killed (1.16 and 1.17).
+
+• Speedrunner Shears will now work in dispeners as intended (1.16 and 1.17).
+
+• Enderman are now slightly more common in nether wastes (1.16 and 1.17).
+
+• Nether Gold Ore will now drop even more gold nuggets when mined (1.16 and 1.17).
+
+• Nether Igneous Ore will now drop 4-6 igneous rocks when mined (1.16 and 1.17). Deepslate Igneous Ore (exclusive to 1.17) will now drop 4-12 igneous rocks.
+
+• Changed Durability for Speedrunner Tools (now 500, previously 421), Speedrunner Armor (double than iron basically) Speedrunner Shears (now 476), and Speedrunner Bow (now 768, 1.16 and 1.17).
+
+• Golden Steak can no longer give Strength or Resistance (1.16 and 1.17).
+
+• Increased piglin spawn rate in Crimson Forests (1.16 and 1.17).
+
+• Increased minimum amount of golden carrots that can generate in ruined portals (14-27, previously 9-27, 1.16 and 1.17).
+
+• Increased minimum amount of speedrunner ingots that can generate in ruined portals (6-12, previously 4-12, 1.16 and 1.17).
+
+• Increased chances of Blazes dropping gold blocks (1.16 and 1.17).
+
+• Increased/tweaked Saturation for Cooked Flesh and other food items. (1.16 and 1.17).
+
+• Netherrack can now be broken SLIGHTLY faster (1.16 and 1.17).
+
+• Reduced the amount of diamonds that can generate in Mesas, Jungles and Mountains (1.16 and 1.17).
+
+• Golden Potatoes and Golden Beetroot will now only give Regeneration 1 for 5 seconds. Golden Bread will now only give Regeneration 1 for 10 seconds + more tweaks (1.16 and 1.17).
+
+• Technical changes: removed "overworld.json" and "nether.json" to decrease world load time. Tweaked how Eye of Ender Entity works. There are now only 128 strongholds in a world instead of 2,048.
+
 # _SPEEDRUNNERMOD v.1.12.1 (June 18th, 2021 CHANGELOG)_
 • Endermite now have the same properties as Silverfish (slower movement, less attack damage, 1.16 and 1.17).
 
@@ -7,7 +60,7 @@
 
 • (Only for 1.17) Wearing Speedrunner Leggings + when underwater will make the player admit glow particles from the glow squid.
 
-# _SPEEDRUNNER MOD v.1.12 (June 16th, 2021 CHANGELOG)_
+# _SPEEDRUNNER MOD v.1.12(June 16th, 2021 CHANGELOG)_
 • Piglin Brutes now no longer spawn in bastions! They still have modified attributes, but they do not naturally spawn anymore - (1.16 and 1.17).
 
 • The Ender Dragon will now perch more quickly when entering the end (1.16 and 1.17).
