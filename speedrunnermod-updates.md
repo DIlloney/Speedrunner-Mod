@@ -41,7 +41,9 @@
 
 • Increased chances of Blazes dropping gold blocks (1.16 and 1.17).
 
-• Increased/tweaked Saturation for Cooked Flesh and other food items. (1.16 and 1.17).
+• Increased/tweaked Saturation for Cooked Flesh and other food items (1.16 and 1.17).
+
+• Apples, Golden Apples, and Enchanted Golden Apples will now only fill 2 hunger bars once again (1.16 and 1.17).
 
 • Netherrack can now be broken SLIGHTLY faster (1.16 and 1.17).
 
