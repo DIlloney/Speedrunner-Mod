@@ -43,15 +43,15 @@
 
 • Increased/tweaked Saturation for Cooked Flesh and other food items (1.16 and 1.17).
 
-• Apples, Golden Apples, and Enchanted Golden Apples will now only fill 2 hunger bars once again (1.16 and 1.17).
-
 • Netherrack can now be broken SLIGHTLY faster (1.16 and 1.17).
 
 • Reduced the amount of diamonds that can generate in Mesas, Jungles and Mountains (1.16 and 1.17).
 
 • Golden Potatoes and Golden Beetroot will now only give Regeneration 1 for 5 seconds. Golden Bread will now only give Regeneration 1 for 10 seconds + more tweaks (1.16 and 1.17).
 
-• Technical changes: removed "overworld.json" and "nether.json" to decrease world load time. Tweaked how Eye of Ender Entity works. There are now only 128 strongholds in a world instead of 2,048.
+• Apples, Golden Apples, and Enchanted Golden Apples will now only fill 2 hunger bars once again (1.16 and 1.17).
+
+• Technical changes: removed "overworld.json" and "nether.json" to decrease world load time. Tweaked how Eye of Ender Entity works. There are now only 128 strongholds in a world instead of 2,048. Removed "MagmaCubeEntityMixin" as it was pointless and did almost nothing, so magma cubes will act normal again.
 
 # _SPEEDRUNNERMOD v.1.12.1 (June 18th, 2021 CHANGELOG)_
 • Endermite now have the same properties as Silverfish (slower movement, less attack damage, 1.16 and 1.17).
