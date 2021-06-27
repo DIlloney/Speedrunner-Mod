@@ -34,7 +34,13 @@ public class ModBlocks {
             .strength(3.0F, 3.0F)
             .sounds(BlockSoundGroup.STONE));
 
-    public static final Block NETHER_SPEEDRUNNER_ORE = new SpeedrunnerNetherOreBlockProperties(FabricBlockSettings.of(Material.STONE)
+    public static final Block DEEPSLATE_SPEEDRUNNER_ORE = new DeepslateSpeedrunnerOreBlockProperties(FabricBlockSettings.of(Material.STONE)
+            .breakByTool(FabricToolTags.PICKAXES, 1)
+            .requiresTool()
+            .strength(4.5F, 4.5F)
+            .sounds(BlockSoundGroup.DEEPSLATE));
+
+    public static final Block SPEEDRUNNER_NETHER_ORE = new SpeedrunnerNetherOreBlockProperties(FabricBlockSettings.of(Material.STONE)
             .breakByTool(FabricToolTags.PICKAXES, 0)
             .requiresTool()
             .strength(3.0F, 3.0F)
@@ -46,7 +52,13 @@ public class ModBlocks {
             .strength(3.0F, 3.0F)
             .sounds(BlockSoundGroup.STONE));
 
-    public static final Block NETHER_IGNEOUS_ORE = new IgneousNetherOreBlockProperties(FabricBlockSettings.of(Material.STONE)
+    public static final Block DEEPSLATE_IGNEOUS_ORE = new DeepslateIgneousOreBlockProperties(FabricBlockSettings.of(Material.STONE)
+            .breakByTool(FabricToolTags.PICKAXES, 2)
+            .requiresTool()
+            .strength(4.5F, 4.5F)
+            .sounds(BlockSoundGroup.DEEPSLATE));
+
+    public static final Block IGNEOUS_NETHER_ORE = new IgneousNetherOreBlockProperties(FabricBlockSettings.of(Material.STONE)
             .breakByTool(FabricToolTags.PICKAXES, 2)
             .requiresTool()
             .strength(3.0F, 3.0F)
@@ -58,13 +70,19 @@ public class ModBlocks {
     public static final BlockItem SPEEDRUNNER_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.SPEEDRUNNER_ORE,
             new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
 
-    public static final BlockItem NETHER_SPEEDRUNNER_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.NETHER_SPEEDRUNNER_ORE,
+    public static final BlockItem DEEPSLATE_SPEEDRUNNER_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE,
+            new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
+
+    public static final BlockItem NETHER_SPEEDRUNNER_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.SPEEDRUNNER_NETHER_ORE,
             new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
 
     public static final BlockItem IGNEOUS_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.IGNEOUS_ORE,
             new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
 
-    public static final BlockItem NETHER_IGNEOUS_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.NETHER_IGNEOUS_ORE,
+    public static final BlockItem DEEPSLATE_IGNEOUS_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.DEEPSLATE_IGNEOUS_ORE,
+            new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
+
+    public static final BlockItem NETHER_IGNEOUS_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.IGNEOUS_NETHER_ORE,
             new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
 
     public static class SpeedrunnerOreBlockProperties extends Block {
@@ -75,6 +93,27 @@ public class ModBlocks {
 
         protected int getExperienceWhenMined(Random random){
             return MathHelper.nextInt(random, 1, 2);
+        }
+
+        public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack){
+            super.onStacksDropped(state, world, pos, stack);
+            if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
+                int i = this.getExperienceWhenMined(world.random);
+                if (i > 0) {
+                    this.dropExperience(world, pos, i);
+                }
+            }
+        }
+    }
+
+    public static class DeepslateSpeedrunnerOreBlockProperties extends Block {
+
+        public DeepslateSpeedrunnerOreBlockProperties(Settings settings) {
+            super(settings);
+        }
+
+        protected int getExperienceWhenMined(Random random){
+            return MathHelper.nextInt(random, 2, 4);
         }
 
         public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack){
@@ -117,6 +156,27 @@ public class ModBlocks {
 
         protected int getExperienceWhenMined(Random random){
             return MathHelper.nextInt(random, 2, 6);
+        }
+
+        public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack){
+            super.onStacksDropped(state, world, pos, stack);
+            if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
+                int i = this.getExperienceWhenMined(world.random);
+                if (i > 0) {
+                    this.dropExperience(world, pos, i);
+                }
+            }
+        }
+    }
+
+    public static class DeepslateIgneousOreBlockProperties extends Block {
+
+        public DeepslateIgneousOreBlockProperties(Settings settings) {
+            super(settings);
+        }
+
+        protected int getExperienceWhenMined(Random random){
+            return MathHelper.nextInt(random, 3, 8);
         }
 
         public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack){
