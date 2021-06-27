@@ -84,20 +84,24 @@ public class ModRegistry {
     public static void registerBlocks() {
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "speedrunner_block"), ModBlocks.SPEEDRUNNER_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "speedrunner_ore"), ModBlocks.SPEEDRUNNER_ORE);
-        Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "nether_speedrunner_ore"), ModBlocks.NETHER_SPEEDRUNNER_ORE);
+        Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "deepslate_speedrunner_ore"), ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE);
+        Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "nether_speedrunner_ore"), ModBlocks.SPEEDRUNNER_NETHER_ORE);
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "igneous_ore"), ModBlocks.IGNEOUS_ORE);
-        Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "nether_igneous_ore"), ModBlocks.NETHER_IGNEOUS_ORE);
+        Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "deepslate_igneous_ore"), ModBlocks.DEEPSLATE_IGNEOUS_ORE);
+        Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "nether_igneous_ore"), ModBlocks.IGNEOUS_NETHER_ORE);
     }
 
     public static void registerBlockItems() {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_block"), ModBlocks.SPEEDRUNNER_BLOCK_ITEM);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_ore"), ModBlocks.SPEEDRUNNER_ORE_BLOCK_ITEM);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "deepslate_speedrunner_ore"), ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE_BLOCK_ITEM);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "nether_speedrunner_ore"), ModBlocks.NETHER_SPEEDRUNNER_ORE_BLOCK_ITEM);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "igneous_ore"), ModBlocks.IGNEOUS_ORE_BLOCK_ITEM);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "deepslate_igneous_ore"), ModBlocks.DEEPSLATE_IGNEOUS_ORE_BLOCK_ITEM);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "nether_igneous_ore"), ModBlocks.NETHER_IGNEOUS_ORE_BLOCK_ITEM);
     }
 
-    public static void registerStructureConfigs() { // credit to @Frqnny for this code :)
+    public static void registerStructureConfigs() {
         ServerWorldEvents.LOAD.register((server, world) -> {
             Map<StructureFeature<?>, StructureConfig> map = new HashMap<>(world.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
 
@@ -130,32 +134,49 @@ public class ModRegistry {
     }
 
     public static void registerConfiguredFeatures() {
-        RegistryKey<ConfiguredFeature<?, ?>> speedrunnerOreOverworld = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN,
+        RegistryKey<ConfiguredFeature<?, ?>> speedrunnerOreOverworld = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
                 new Identifier("speedrunnermod", "speedrunner_ore_configured_feature_worldgen"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, speedrunnerOreOverworld.getValue(), OreGeneration.SPEEDRUNNER_ORE_OVERWORLD);
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, speedrunnerOreOverworld);
 
-        RegistryKey<ConfiguredFeature<?, ?>> igneousOreOverworld = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN,
+        RegistryKey<ConfiguredFeature<?, ?>> deepslateSpeedrunnreOreOverowlrd = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
+                new Identifier("speedrunnermod", "deepslate_speedrunner_ore_configured_feature_worldgen"));
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, deepslateSpeedrunnreOreOverowlrd.getValue(), OreGeneration.DEEPSLATE_SPEEDRUNNER_ORE_OVERWORLD);
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, deepslateSpeedrunnreOreOverowlrd);
+
+        RegistryKey<ConfiguredFeature<?, ?>> igneousOreOverworld = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
                 new Identifier("speedrunnermod", "igneous_ore_configured_feature_worldgen"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, igneousOreOverworld.getValue(), OreGeneration.IGNEOUS_ORE_OVERWORLD);
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, igneousOreOverworld);
 
-        RegistryKey<ConfiguredFeature<?, ?>> igneousNetherOreNether = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN,
+        RegistryKey<ConfiguredFeature<?, ?>> deepslateIgneousOreOverworld = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
+                new Identifier("speedrunnermod", "deepslate_igneous_ore_configured_feature_worldgen"));
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, deepslateIgneousOreOverworld.getValue(), OreGeneration.DEEPSLATE_IGNEOUS_ORE_OVERWORLD);
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, deepslateIgneousOreOverworld);
+
+        RegistryKey<ConfiguredFeature<?, ?>> igneousNetherOreNether = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
                 new Identifier("speedrunnermod", "nether_igneous_ore_configured_feature_worldgen"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, igneousNetherOreNether.getValue(), OreGeneration.NETHER_IGNEOUS_ORE_NETHER);
         BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, igneousNetherOreNether);
 
-        RegistryKey<ConfiguredFeature<?, ?>> speedrunnerNetherOreNether = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN,
+        RegistryKey<ConfiguredFeature<?, ?>> speedrunnerNetherOreNether = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
                 new Identifier("speedrunnermod", "nether_speedrunner_ore_configured_feature_worldgen"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, speedrunnerNetherOreNether.getValue(), OreGeneration.NETHER_SPEEDRUNNER_ORE_NETHER);
         BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, speedrunnerNetherOreNether);
 
-        RegistryKey<ConfiguredFeature<?, ?>> diamondOreMesaJungleMountains = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN,
+        RegistryKey<ConfiguredFeature<?, ?>> diamondOreMesaJungleMountains = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
                 new Identifier("speedrunnermod", "diamond_ore_mesa_jungle_mountains_configured_feature_worldgen"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, diamondOreMesaJungleMountains.getValue(), OreGeneration.DIAMOND_ORE_MESA_JUNGLE_MOUNTAINS);
         BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.MESA), GenerationStep.Feature.UNDERGROUND_ORES, diamondOreMesaJungleMountains);
         BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.JUNGLE), GenerationStep.Feature.UNDERGROUND_ORES, diamondOreMesaJungleMountains);
         BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.EXTREME_HILLS), GenerationStep.Feature.UNDERGROUND_ORES, diamondOreMesaJungleMountains);
+
+        RegistryKey<ConfiguredFeature<?, ?>> deepslateDiamondOreMesaJungleMountains = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
+                new Identifier("speedrunnermod", "deepslate_diamond_ore_mesa_jungle_mountains_configured_feature_worldgen"));
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, deepslateDiamondOreMesaJungleMountains.getValue(), OreGeneration.DEEPSLATE_DIAMOND_ORE_MESA_JUNGLE_MOUNTAINS);
+        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.MESA), GenerationStep.Feature.UNDERGROUND_ORES, deepslateDiamondOreMesaJungleMountains);
+        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.JUNGLE), GenerationStep.Feature.UNDERGROUND_ORES, deepslateDiamondOreMesaJungleMountains);
+        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.EXTREME_HILLS), GenerationStep.Feature.UNDERGROUND_ORES, deepslateDiamondOreMesaJungleMountains);
     }
 
     public static void registerUniqueItems() {
