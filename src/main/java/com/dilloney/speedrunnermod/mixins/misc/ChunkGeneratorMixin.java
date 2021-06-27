@@ -3,6 +3,7 @@ package com.dilloney.speedrunnermod.mixins.misc;
 import com.google.common.collect.Lists;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -16,6 +17,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 @Mixin(ChunkGenerator.class)
@@ -57,10 +59,14 @@ public class ChunkGeneratorMixin {
                     double e = (double)(4 * i + i * m * 6) + (random.nextDouble() - 0.5D) * (double)i * 2.5D;
                     int o = (int)Math.round(Math.cos(d) * e);
                     int p = (int)Math.round(Math.sin(d) * e);
-                    BlockPos blockPos = this.populationSource.locateBiome((o << 4) + 8, 0, (p << 4) + 8, 112, list::contains, random);
+                    BiomeSource var10000 = this.populationSource;
+                    int var10001 = ChunkSectionPos.getOffsetPos(o, 8);
+                    int var10003 = ChunkSectionPos.getOffsetPos(p, 8);
+                    Objects.requireNonNull(list);
+                    BlockPos blockPos = var10000.locateBiome(var10001, 0, var10003, 112, list::contains, random);
                     if (blockPos != null) {
-                        o = blockPos.getX() >> 4;
-                        p = blockPos.getZ() >> 4;
+                        o = ChunkSectionPos.getSectionCoord(blockPos.getX());
+                        p = ChunkSectionPos.getSectionCoord(blockPos.getZ());
                     }
 
                     this.strongholds.add(new ChunkPos(o, p));
