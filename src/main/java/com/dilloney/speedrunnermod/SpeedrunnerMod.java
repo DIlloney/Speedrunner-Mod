@@ -19,7 +19,7 @@ public class SpeedrunnerMod implements ModInitializer {
         ModRegistry.registerStructureConfigs();
         ModRegistry.registerConfiguredFeatures();
         ModRegistry.registerUniqueItems();
-}
+    }
 
     public static final ItemGroup SPEEDRUNNER_MOD_ITEM_GROUP = FabricItemGroupBuilder.create(
         new Identifier("speedrunnermod", "speedrunner_mod_item_group"))
@@ -29,6 +29,7 @@ public class SpeedrunnerMod implements ModInitializer {
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_NUGGET));
                 itemStacks.add(new ItemStack(ModBlocks.SPEEDRUNNER_BLOCK_ITEM));
                 itemStacks.add(new ItemStack(ModBlocks.SPEEDRUNNER_ORE_BLOCK_ITEM));
+                itemStacks.add(new ItemStack(ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE_BLOCK_ITEM));
                 itemStacks.add(new ItemStack(ModBlocks.NETHER_SPEEDRUNNER_ORE_BLOCK_ITEM));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_SWORD));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_SHOVEL));
@@ -45,6 +46,7 @@ public class SpeedrunnerMod implements ModInitializer {
                 itemStacks.add(new ItemStack(ModItems.EYE_OF_ANNUL));
                 itemStacks.add(new ItemStack(ModItems.IGNEOUS_ROCK));
                 itemStacks.add(new ItemStack(ModBlocks.IGNEOUS_ORE_BLOCK_ITEM));
+                itemStacks.add(new ItemStack(ModBlocks.DEEPSLATE_IGNEOUS_ORE_BLOCK_ITEM));
                 itemStacks.add(new ItemStack(ModBlocks.NETHER_IGNEOUS_ORE_BLOCK_ITEM));
                 itemStacks.add(new ItemStack(ModItems.COOKED_PIGLIN_PORK));
                 itemStacks.add(new ItemStack(ModItems.RAW_PIGLIN_PORK));
