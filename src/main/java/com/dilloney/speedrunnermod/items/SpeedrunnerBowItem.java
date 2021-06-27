@@ -32,7 +32,7 @@ public class SpeedrunnerBowItem extends BowItem {
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (user instanceof PlayerEntity) {
             PlayerEntity playerEntity = (PlayerEntity) user;
-            boolean bl = playerEntity.abilities.creativeMode
+            boolean bl = playerEntity.getAbilities().creativeMode
                     || EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0;
             ItemStack itemStack = playerEntity.getArrowType(stack);
             if (!itemStack.isEmpty() || bl) {
@@ -53,7 +53,7 @@ public class SpeedrunnerBowItem extends BowItem {
 
                         persistentProjectileEntity.setCustomName(new LiteralText("Arrow"));
 
-                        persistentProjectileEntity.setProperties(playerEntity, playerEntity.pitch, playerEntity.yaw,
+                        persistentProjectileEntity.setProperties(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(),
                                 0.0F, f * this.getSpeedMultiplier(), 1.0F);
                         if (f == 1.0F) {
                             persistentProjectileEntity.setCritical(true);
@@ -79,7 +79,7 @@ public class SpeedrunnerBowItem extends BowItem {
                         stack.damage(1, (LivingEntity) playerEntity, (Consumer) ((p) -> {
                             ((LivingEntity) p).sendToolBreakStatus(playerEntity.getActiveHand());
                         }));
-                        if (bl2 || playerEntity.abilities.creativeMode && (itemStack.getItem() == Items.SPECTRAL_ARROW
+                        if (bl2 || playerEntity.getAbilities().creativeMode && (itemStack.getItem() == Items.SPECTRAL_ARROW
                                 || itemStack.getItem() == Items.TIPPED_ARROW)) {
                             persistentProjectileEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                         }
@@ -90,10 +90,10 @@ public class SpeedrunnerBowItem extends BowItem {
                     world.playSound((PlayerEntity) null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(),
                             SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F,
                             1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
-                    if (!bl2 && !playerEntity.abilities.creativeMode) {
+                    if (!bl2 && !playerEntity.getAbilities().creativeMode) {
                         itemStack.decrement(1);
                         if (itemStack.isEmpty()) {
-                            playerEntity.inventory.removeOne(itemStack);
+                            playerEntity.getInventory().removeOne(itemStack);
                         }
                     }
 
@@ -117,7 +117,7 @@ public class SpeedrunnerBowItem extends BowItem {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         boolean bl = !user.getArrowType(itemStack).isEmpty();
-        if (!user.abilities.creativeMode && !bl) {
+        if (!user.getAbilities().creativeMode && !bl) {
             return TypedActionResult.fail(itemStack);
         } else {
             user.setCurrentHand(hand);
@@ -147,7 +147,7 @@ public class SpeedrunnerBowItem extends BowItem {
 
     public static float getPullProgress(int useTicks) {
         float f = (float) useTicks / 30;
-        ;
+
         f = (f * f + f * 2.0F) / 3.0F;
         if (f > 1.0F) {
             f = 1.0F;
@@ -156,11 +156,7 @@ public class SpeedrunnerBowItem extends BowItem {
         return f;
     }
 
-    public float getBaseDamage() {
-        return 3.0F;
-    }
+    public float getBaseDamage() { return 3.0F; }
 
-    public float getSpeedMultiplier() {
-        return 3.5F;
-    }
+    public float getSpeedMultiplier() { return 3.5F; }
 }
