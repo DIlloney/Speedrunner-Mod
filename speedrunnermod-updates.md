@@ -51,6 +51,8 @@
 
 • Apples, Golden Apples, and Enchanted Golden Apples will now only fill 2 hunger bars once again (1.16 and 1.17).
 
+• Some structures that are not usually used in speedruns are not as common anymore (1.16 and 1.17).
+
 • Technical changes: removed "overworld.json" and "nether.json" to decrease world load time. Tweaked how Eye of Ender Entity works. There are now only 128 strongholds in a world instead of 2,048. Removed "MagmaCubeEntityMixin" as it was pointless and did almost nothing, so magma cubes will act normal again.
 
 # _SPEEDRUNNERMOD v.1.12.1 (June 18th, 2021 CHANGELOG)_
