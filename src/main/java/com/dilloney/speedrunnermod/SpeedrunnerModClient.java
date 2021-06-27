@@ -10,7 +10,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
@@ -23,7 +23,7 @@ import java.nio.file.Path;
 import java.util.function.DoubleConsumer;
 
 import static java.lang.Float.POSITIVE_INFINITY;
-import static net.minecraft.nbt.Tag.GREEN;
+import static net.minecraft.util.Formatting.GREEN;
 
 @Environment(EnvType.CLIENT)
 public class SpeedrunnerModClient implements ClientModInitializer {
@@ -37,7 +37,7 @@ public class SpeedrunnerModClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(this::onEndTick);
 
         FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW.asItem(), new Identifier("pull"),
-                (itemStack, clientWorld, livingEntity) -> {
+                (itemStack, clientWorld, livingEntity, item) -> {
                     if (livingEntity == null) {
                         return 0.0F;
                     } else {
@@ -47,12 +47,12 @@ public class SpeedrunnerModClient implements ClientModInitializer {
                 });
 
         FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW.asItem(), new Identifier("pulling"),
-                (itemStack, clientWorld, livingEntity) -> {
+                (itemStack, clientWorld, livingEntity, item) -> {
                     return livingEntity != null && livingEntity.isUsingItem()
                             && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
                 });
 
-        System.out.println("Speedrunner Mod loaded successfully! version = 1.13 | mcversion = 1.16.5");
+        System.out.println("Speedrunner Mod loaded successfully! version = 1.13 | mcversion = 1.17");
     }
 
     public static final Gson GSON = new Gson();
@@ -146,6 +146,6 @@ public class SpeedrunnerModClient implements ClientModInitializer {
     }
 
     public static void logException(Exception ex, String message) {
-        System.err.printf("[SpeedrunnerMod Brightness] %s (%s: %s)", message, ex.getClass().getSimpleName(), ex.getLocalizedMessage());
+        System.err.printf("[SpeedrunnerModBrightness] %s (%s: %s)", message, ex.getClass().getSimpleName(), ex.getLocalizedMessage());
     }
 }
