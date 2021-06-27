@@ -44,6 +44,7 @@ public class FoodComponentsMixin {
     @Shadow @Final static FoodComponent SALMON;
     @Shadow @Final static FoodComponent SPIDER_EYE;
     @Shadow @Final static FoodComponent SWEET_BERRIES;
+    @Shadow @Final static FoodComponent GLOW_BERRIES;
     @Shadow @Final static FoodComponent TROPICAL_FISH;
 
     static {
@@ -80,6 +81,7 @@ public class FoodComponentsMixin {
         SALMON = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.5F).build();
         SPIDER_EYE = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 1.0F).build();
         SWEET_BERRIES = (new FoodComponent.Builder()).hunger(4).saturationModifier(1.2F).build();
+        GLOW_BERRIES = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.0F).statusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100, 0, true, false, true), 1.0F).build();
         TROPICAL_FISH = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.4F).build();
 
         System.out.println("[Speedrunner Mod] [main/INFO]: Ignore these errors, everything will work properly.");
