@@ -184,14 +184,14 @@ public class ModItems {
             new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.COMMON).food(new FoodComponent.Builder()
                     .hunger(5)
                     .saturationModifier(0.8F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0F)
                     .build()));
 
     public static final Item GOLDEN_COD = new Item(
             new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.COMMON).food(new FoodComponent.Builder()
                     .hunger(5)
                     .saturationModifier(0.8F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
                     .build()));
 
     public static final Item GOLDEN_SALMON = new Item(
@@ -205,21 +205,21 @@ public class ModItems {
             new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.COMMON).food(new FoodComponent.Builder()
                     .hunger(5)
                     .saturationModifier(0.8F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200), 1.0F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
                     .build()));
 
     public static final Item GOLDEN_POTATO = new Item(
             new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.COMMON).food(new FoodComponent.Builder()
                     .hunger(5)
                     .saturationModifier(0.4F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100), 1.0F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
                     .build()));
 
     public static final Item GOLDEN_BEETROOT = new Item(
             new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.COMMON).food(new FoodComponent.Builder()
                     .hunger(1)
                     .saturationModifier(0.7F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100), 1.0F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
                     .build()));
 
     public static final Item SPEEDRUNNER_HELMET = new ArmorItem(ModArmorMaterials.SPEEDRUNNER, EquipmentSlot.HEAD,
