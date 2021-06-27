@@ -598,7 +598,7 @@ public class AbstractBlockStateMixin {
         if (world.getBlockState(pos).getBlock() == Blocks.END_STONE_BRICKS) {
             info.setReturnValue(1.5F);
         }
-        if (world.getBlockState(pos).getBlock() == Blocks.GRASS_PATH) {
+        if (world.getBlockState(pos).getBlock() == Blocks.DIRT_PATH) {
             info.setReturnValue(0.55F);
         }
         if (world.getBlockState(pos).getBlock() == Blocks.FROSTED_ICE) {
