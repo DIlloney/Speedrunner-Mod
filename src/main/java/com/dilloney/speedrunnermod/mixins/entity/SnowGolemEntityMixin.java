@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(SnowGolemEntity.class)
 public class SnowGolemEntityMixin {
-    @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
-    private Item interactMob(ItemStack stack) {
-        return UniqueItemRegistry.SHEARS.getDefaultItem(stack.getItem());
+    @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+    private boolean interactMob(ItemStack stack, Item isOfItem) {
+        return UniqueItemRegistry.SHEARS.isItemInRegistry(stack.getItem());
     }
 }

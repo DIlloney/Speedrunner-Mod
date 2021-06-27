@@ -24,9 +24,6 @@ public class ItemEntityMixin {
         if (stack.getItem() == Items.FIRE_CHARGE) {
             return true;
         }
-        if (stack.getItem() == Items.ENCHANTED_GOLDEN_APPLE) {
-            return true;
-        }
         return info.getReturnValueZ();
     }
 }

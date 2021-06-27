@@ -39,9 +39,8 @@ public class GhastEntityShootFireballGoalMixin {
                     world.syncWorldEvent((PlayerEntity)null, 1016, this.ghast.getBlockPos(), 0);
                 }
 
-                FireballEntity fireballEntity = new FireballEntity(world, this.ghast, f, g, h);
-                fireballEntity.explosionPower = this.ghast.getFireballStrength();
-                fireballEntity.updatePosition(this.ghast.getX() + vec3d.x * 4.0D, this.ghast.getBodyY(0.5D) + 0.5D, fireballEntity.getZ() + vec3d.z * 4.0D);
+                FireballEntity fireballEntity = new FireballEntity(world, this.ghast, f, g, h, this.ghast.getFireballStrength());
+                fireballEntity.setPosition(this.ghast.getX() + vec3d.x * 4.0D, this.ghast.getBodyY(0.5D) + 0.5D, fireballEntity.getZ() + vec3d.z * 4.0D);
                 world.spawnEntity(fireballEntity);
                 this.ghast.kill();
                 this.cooldown = -40;

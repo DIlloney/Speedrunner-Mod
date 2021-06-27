@@ -34,6 +34,9 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         if (stack.getItem() == Items.GOLDEN_APPLE) {
             playerEntity.setHealth(getHealth() + 2);
         }
+        if (stack.getItem() == ModItems.SPEEDRUNNER_BULK) {
+            playerEntity.setHealth(getHealth() + 2);
+        }
     }
 
     @Inject(method = "updateTurtleHelmet", at = @At("TAIL"))
@@ -46,8 +49,9 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         }
         if (leggingStack.getItem() == ModItems.SPEEDRUNNER_LEGGINGS && this.isSubmergedIn(FluidTags.WATER)) {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 60, 0, true, true, true));
+            this.world.addParticle(ParticleTypes.GLOW, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0.0D, 0.0D, 0.0D);
         }
-        if (playerEntity.getHealth() < 2 && !isSpectator() && !playerEntity.abilities.creativeMode && !playerEntity.isDead() || playerEntity.getHealth() == 2 && !isSpectator() && !playerEntity.abilities.creativeMode && !playerEntity.isDead()) {
+        if (playerEntity.getHealth() < 2 && !isSpectator() && !playerEntity.getAbilities().creativeMode || playerEntity.getHealth() == 2 && !isSpectator() && !playerEntity.getAbilities().creativeMode) {
             this.world.addParticle(ParticleTypes.DAMAGE_INDICATOR, this.getParticleX(0.5D), this.getRandomBodyY() - 0.25D, this.getParticleZ(0.5D), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
         }
     }

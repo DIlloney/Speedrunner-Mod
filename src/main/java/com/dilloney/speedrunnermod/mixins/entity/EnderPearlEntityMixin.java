@@ -24,28 +24,28 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
     @Overwrite
     public void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
-        Entity entity = this.getOwner();
 
         for(int i = 0; i < 32; ++i) {
             this.world.addParticle(ParticleTypes.PORTAL, this.getX(), this.getY() + this.random.nextDouble() * 2.0D, this.getZ(), this.random.nextGaussian(), 0.0D, this.random.nextGaussian());
         }
 
-        if (!this.world.isClient && !this.removed) {
+        if (!this.world.isClient && !this.isRemoved()) {
+            Entity entity = this.getOwner();
             if (entity instanceof ServerPlayerEntity) {
                 ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity;
                 if (serverPlayerEntity.networkHandler.getConnection().isOpen() && serverPlayerEntity.world == this.world && !serverPlayerEntity.isSleeping()) {
                     if (this.random.nextFloat() < 0.05F && this.world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
                         EndermiteEntity endermiteEntity = (EndermiteEntity)EntityType.ENDERMITE.create(this.world);
-                        endermiteEntity.setPlayerSpawned(true);
-                        endermiteEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.yaw, entity.pitch);
+                        endermiteEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), entity.getPitch());
                         this.world.spawnEntity(endermiteEntity);
                     }
 
                     if (entity.hasVehicle()) {
-                        entity.stopRiding();
+                        serverPlayerEntity.requestTeleportAndDismount(this.getX(), this.getY(), this.getZ());
+                    } else {
+                        entity.requestTeleport(this.getX(), this.getY(), this.getZ());
                     }
 
-                    entity.requestTeleport(this.getX(), this.getY(), this.getZ());
                     entity.fallDistance = 0.0F;
                     entity.damage(DamageSource.FALL, 2.0F);
                 }
@@ -53,7 +53,8 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
                 entity.requestTeleport(this.getX(), this.getY(), this.getZ());
                 entity.fallDistance = 0.0F;
             }
-            this.remove();
+
+            this.discard();
         }
 
     }

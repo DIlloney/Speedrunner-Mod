@@ -12,6 +12,6 @@ public class DolphinEntityMixin {
     @Shadow @Final static TargetPredicate CLOSE_PLAYER_PREDICATE;
 
     static {
-        CLOSE_PLAYER_PREDICATE = (new TargetPredicate()).setBaseMaxDistance(20.0D).includeTeammates().includeInvulnerable().includeHidden();
+        CLOSE_PLAYER_PREDICATE = TargetPredicate.createNonAttackable().setBaseMaxDistance(20.0D).ignoreVisibility();
     }
 }

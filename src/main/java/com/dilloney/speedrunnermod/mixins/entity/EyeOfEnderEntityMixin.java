@@ -1,35 +1,29 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
 import com.dilloney.speedrunnermod.items.ModItems;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EyeOfEnderEntity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.*;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(EyeOfEnderEntity.class)
-public abstract class EyeOfEnderEntityMixin extends Entity {
+public abstract class EyeOfEnderEntityMixin extends Entity implements FlyingItemEntity {
 
-    @Shadow private double targetX;
-    @Shadow private double targetY;
-    @Shadow private double targetZ;
+    @Shadow double targetX;
+    @Shadow double targetY;
+    @Shadow double targetZ;
 
-    @Shadow private int lifespan;
+    @Shadow int lifespan;
 
-    @Shadow @Final private static TrackedData<ItemStack> ITEM;
-
-    public EyeOfEnderEntityMixin(EntityType<? extends EyeOfEnderEntity> type, World world) { super(type, world); }
+    public EyeOfEnderEntityMixin(EntityType<? extends EyeOfEnderEntity> type, World world) {
+        super(type, world);
+    }
 
     @Overwrite
     public void tick() {
@@ -38,15 +32,15 @@ public abstract class EyeOfEnderEntityMixin extends Entity {
         double d = this.getX() + vec3d.x;
         double e = this.getY() + vec3d.y;
         double f = this.getZ() + vec3d.z;
-        float g = MathHelper.sqrt(squaredHorizontalLength(vec3d));
-        this.pitch = EyeOfEnderEntityMixin.updateRotation(this.prevPitch, (float)(MathHelper.atan2(vec3d.y, (double)g) * 57.2957763671875D));
-        this.yaw = EyeOfEnderEntityMixin.updateRotation(this.prevYaw, (float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875D));
+        double g = vec3d.horizontalLength();
+        this.setPitch(EyeOfEnderEntityMixin.updateRotation(this.prevPitch, (float)(MathHelper.atan2(vec3d.y, g) * 57.2957763671875D)));
+        this.setYaw(EyeOfEnderEntityMixin.updateRotation(this.prevYaw, (float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875D)));
         if (!this.world.isClient) {
             double h = this.targetX - d;
             double i = this.targetZ - f;
             float j = (float)Math.sqrt(h * h + i * i);
             float k = (float)MathHelper.atan2(i, h);
-            double l = MathHelper.lerp(0.0025D, (double)g, (double)j);
+            double l = MathHelper.lerp(0.0025D, g, (double)j);
             double m = vec3d.y;
             if (j < 1.0F) {
                 l *= 0.8D;
@@ -65,16 +59,16 @@ public abstract class EyeOfEnderEntityMixin extends Entity {
             }
         } else if (this.getStack().getItem() == Items.ENDER_EYE && !this.isTouchingWater() || this.getStack().getItem() == ModItems.EYE_OF_ANNUL && !this.isTouchingWater()) {
             this.world.addParticle(ParticleTypes.PORTAL, d - vec3d.x * 0.25D + this.random.nextDouble() * 0.6D - 0.3D, e - vec3d.y * 0.25D - 0.5D, f - vec3d.z * 0.25D + this.random.nextDouble() * 0.6D - 0.3D, vec3d.x, vec3d.y, vec3d.z);
-        } else if (this.getStack().getItem() == ModItems.EYE_OF_INFERNO && !this.isTouchingWater()) {
+        } else if (this.getStack().getItem() == ModItems.EYE_OF_INFERNO) {
             this.world.addParticle(ParticleTypes.SMOKE, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0.0D, 0.0D, 0.0D);
         }
 
         if (!this.world.isClient) {
-            this.updatePosition(d, e, f);
+            this.setPosition(d, e, f);
             ++this.lifespan;
             if (this.lifespan > 40 && !this.world.isClient) {
                 this.playSound(SoundEvents.ENTITY_ENDER_EYE_DEATH, 1.0F, 1.0F);
-                this.remove();
+                this.discard();
                 this.world.spawnEntity(new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), this.getStack()));
             }
         } else {
@@ -82,24 +76,15 @@ public abstract class EyeOfEnderEntityMixin extends Entity {
         }
     }
 
-    private static float updateRotation(float f, float g) {
-        while(g - f < -180.0F) {
-            f -= 360.0F;
+    private static float updateRotation(float prevRot, float newRot) {
+        while(newRot - prevRot < -180.0F) {
+            prevRot -= 360.0F;
         }
 
-        while(g - f >= 180.0F) {
-            f += 360.0F;
+        while(newRot - prevRot >= 180.0F) {
+            prevRot += 360.0F;
         }
 
-        return MathHelper.lerp(0.2F, f, g);
-    }
-
-    public ItemStack getStack() {
-        ItemStack itemStack = this.getTrackedItem();
-        return itemStack.isEmpty() ? new ItemStack(Items.ENDER_EYE) : itemStack;
-    }
-
-    private ItemStack getTrackedItem() {
-        return (ItemStack)this.getDataTracker().get(ITEM);
+        return MathHelper.lerp(0.2F, prevRot, newRot);
     }
 }

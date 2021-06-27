@@ -35,7 +35,7 @@ public class EnderDragonEntityMixin extends MobEntity implements Monster {
     @Overwrite
     private void tickWithEndCrystals() {
         if (this.connectedCrystal != null) {
-            if (this.connectedCrystal.removed) {
+            if (this.connectedCrystal.isRemoved()) {
                 this.connectedCrystal = null;
             } else if (this.age % 10 == 0 && this.getHealth() < this.getMaxHealth()) {
                 this.setHealth(this.getHealth() + 0.1F);
@@ -70,7 +70,7 @@ public class EnderDragonEntityMixin extends MobEntity implements Monster {
             Entity entity = (Entity)var2.next();
             if (entity instanceof LivingEntity) {
                 entity.damage(DamageSource.mob(this), 3.0F);
-                this.dealDamage(this, entity);
+                this.applyDamageEffects(this, entity);
             }
         }
     }
