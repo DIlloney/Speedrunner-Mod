@@ -25,16 +25,15 @@ public class EyeOfInfernoItem extends Item {
     public EyeOfInfernoItem(Settings settings) { super(settings); }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        ItemStack itemStack = player.getStackInHand(hand);
+    public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack itemStack = playerIn.getStackInHand(handIn);
 
-        player.setCurrentHand(hand);
+        playerIn.setCurrentHand(handIn);
 
-        if(!world.isClient) {
-            ServerWorld serverWorld = (ServerWorld)world;
+        if(!worldIn.isClient) {
+            ServerWorld serverWorld = (ServerWorld)worldIn;
 
-            if(player.isSneaking() && serverWorld.getRegistryKey().equals(World.NETHER)) {
-
+            if(playerIn.isSneaking() && serverWorld.getRegistryKey().equals(World.NETHER)) {
                 if (structureType.equals("Fortress")) {
                     structureType = "Bastion";
                     type = StructureFeature.BASTION_REMNANT;
@@ -44,29 +43,29 @@ public class EyeOfInfernoItem extends Item {
                     type = StructureFeature.FORTRESS;
                 }
 
-                player.sendMessage((new TranslatableText("item.speedrunnermod.eyeofinferno.looking_for", structureType).formatted(Formatting.RED)), true);
+                playerIn.sendMessage((new TranslatableText("item.speedrunnermod.eyeofinferno.looking_for", structureType).formatted(Formatting.RED)), true);
 
                 return TypedActionResult.success(itemStack);
             }
         }
 
-        if(!world.isClient) {
-            ServerWorld serverWorld = (ServerWorld)world;
+        if(!worldIn.isClient) {
+            ServerWorld serverWorld = (ServerWorld)worldIn;
 
             if(serverWorld.getRegistryKey().equals(World.OVERWORLD) || serverWorld.getRegistryKey().equals(World.END)) {
 
-                player.sendMessage((new TranslatableText("item.speedrunnermod.eyeofinferno.wrong_dimension", structureType).formatted(Formatting.RED)), true);
+                playerIn.sendMessage((new TranslatableText("item.speedrunnermod.eyeofinferno.wrong_dimension", structureType).formatted(Formatting.RED)), true);
 
                 return TypedActionResult.consume(itemStack);
             }
         }
 
-        if(!player.isSneaking()) {
-            if(!world.isClient) {
-                ServerWorld serverWorld = (ServerWorld)world;
+        if(!playerIn.isSneaking()) {
+            if(!worldIn.isClient) {
+                ServerWorld serverWorld = (ServerWorld)worldIn;
 
                 serverWorld.getRegistryKey(); {
-                    findStructureAndShoot(world, player, itemStack, type, hand);
+                    findStructureAndShoot(worldIn, playerIn, itemStack, type, handIn);
 
                     return TypedActionResult.success(itemStack);
                 }
@@ -76,26 +75,27 @@ public class EyeOfInfernoItem extends Item {
         return TypedActionResult.consume(itemStack);
     }
 
-    private static void findStructureAndShoot(World world, PlayerEntity player, ItemStack itemstack, StructureFeature<?> type, Hand hand) {
+
+    private static void findStructureAndShoot(World worldIn, PlayerEntity playerIn, ItemStack itemstack, StructureFeature<?> type, Hand handIn) {
 
         BlockPos locpos;
-        locpos = ((ServerWorld)world).getChunkManager().getChunkGenerator().locateStructure((ServerWorld)world, type, player.getBlockPos(),100, false);
+        locpos = ((ServerWorld)worldIn).getChunkManager().getChunkGenerator().locateStructure((ServerWorld)worldIn, type, playerIn.getBlockPos(),100, false);
 
-        ItemStack itemStack = player.getStackInHand(hand);
+        ItemStack itemStack = playerIn.getStackInHand(handIn);
 
-        EyeOfEnderEntity finderentity = new EyeOfEnderEntity(world, player.getX(), player.getBodyY(0.5D), player.getZ());
+        EyeOfEnderEntity finderentity = new EyeOfEnderEntity(worldIn, playerIn.getX(), playerIn.getBodyY(0.5D), playerIn.getZ());
         finderentity.setItem(itemstack);
         finderentity.initTargetPos(locpos);
-        world.spawnEntity(finderentity);
+        worldIn.spawnEntity(finderentity);
 
-        if (player instanceof ServerPlayerEntity) {
-            Criteria.USED_ENDER_EYE.trigger((ServerPlayerEntity)player, locpos);
+        if (playerIn instanceof ServerPlayerEntity) {
+            Criteria.USED_ENDER_EYE.trigger((ServerPlayerEntity)playerIn, locpos);
         }
 
-        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
-        world.syncWorldEvent((PlayerEntity)null, 1003, player.getBlockPos(), 0);
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (worldIn.getRandom().nextFloat() * 0.4F + 0.8F));
+        worldIn.syncWorldEvent((PlayerEntity)null, 1003, playerIn.getBlockPos(), 0);
 
-        if (!player.abilities.creativeMode) {
+        if (!playerIn.getAbilities().creativeMode) {
             itemStack.decrement(1);
         }
     }
