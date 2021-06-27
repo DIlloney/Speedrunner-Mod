@@ -2,12 +2,11 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.dilloney.speedrunnermod.mixins",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_16",
   "mixins": [
     "block.AbstractBlockStateMixin",
     "block.BeehiveBlockMixin",
     "block.BlocksMixin",
-    "block.OreBlockMixin",
     "block.PumpkinBlockMixin",
     "block.TripwireBlockMixin",
     "entity.BlazeEntityMixin",
