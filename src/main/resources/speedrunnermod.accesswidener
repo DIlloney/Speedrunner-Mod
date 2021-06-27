@@ -1,0 +1,6 @@
+accessWidener v1 named
+
+accessible class net/minecraft/entity/passive/DolphinEntity$SwimWithPlayerGoal
+accessible class net/minecraft/entity/mob/GhastEntity$ShootFireballGoal
+accessible class net/minecraft/structure/StrongholdGenerator$PieceData
+accessible class net/minecraft/structure/NetherFortressGenerator$PieceData
