@@ -12,6 +12,6 @@ public class SilverfishEntityMixin {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createSilverfishAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.08D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0.5D);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.15D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0.01D);
     }
 }

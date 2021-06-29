@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(DolphinEntity.SwimWithPlayerGoal.class)
 public class DolphinEntitySwimWithPlayerGoalMixin {
 
-    @Shadow private PlayerEntity closestPlayer;
+    @Shadow PlayerEntity closestPlayer;
 
     @Overwrite
     public void start() {

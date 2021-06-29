@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EyeOfEnderEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
@@ -21,13 +22,13 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(EyeOfEnderEntity.class)
 public abstract class EyeOfEnderEntityMixin extends Entity {
 
-    @Shadow private double targetX;
-    @Shadow private double targetY;
-    @Shadow private double targetZ;
+    @Shadow double targetX;
+    @Shadow double targetY;
+    @Shadow double targetZ;
 
-    @Shadow private int lifespan;
+    @Shadow int lifespan;
 
-    @Shadow @Final private static TrackedData<ItemStack> ITEM;
+    @Shadow @Final static TrackedData<ItemStack> ITEM;
 
     public EyeOfEnderEntityMixin(EntityType<? extends EyeOfEnderEntity> type, World world) { super(type, world); }
 
@@ -39,8 +40,8 @@ public abstract class EyeOfEnderEntityMixin extends Entity {
         double e = this.getY() + vec3d.y;
         double f = this.getZ() + vec3d.z;
         float g = MathHelper.sqrt(squaredHorizontalLength(vec3d));
-        this.pitch = EyeOfEnderEntityMixin.updateRotation(this.prevPitch, (float)(MathHelper.atan2(vec3d.y, (double)g) * 57.2957763671875D));
-        this.yaw = EyeOfEnderEntityMixin.updateRotation(this.prevYaw, (float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875D));
+        this.pitch = updateRotation(this.prevPitch, (float)(MathHelper.atan2(vec3d.y, (double)g) * 57.2957763671875D));
+        this.yaw = updateRotation(this.prevYaw, (float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875D));
         if (!this.world.isClient) {
             double h = this.targetX - d;
             double i = this.targetZ - f;
@@ -73,9 +74,13 @@ public abstract class EyeOfEnderEntityMixin extends Entity {
             this.updatePosition(d, e, f);
             ++this.lifespan;
             if (this.lifespan > 40 && !this.world.isClient) {
-                this.playSound(SoundEvents.ENTITY_ENDER_EYE_DEATH, 1.0F, 1.0F);
                 this.remove();
                 this.world.spawnEntity(new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), this.getStack()));
+                if (this.getStack().getItem() == Items.ENDER_EYE || this.getStack().getItem() == ModItems.EYE_OF_ANNUL) {
+                    this.playSound(SoundEvents.ENTITY_ENDER_EYE_DEATH, 1.0F, 1.0F);
+                } else if (this.getStack().getItem() == ModItems.EYE_OF_INFERNO) {
+                    this.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1.0F, 1.0F);
+                }
             }
         } else {
             this.setPos(d, e, f);
