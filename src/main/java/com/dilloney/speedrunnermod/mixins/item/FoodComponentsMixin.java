@@ -47,41 +47,40 @@ public class FoodComponentsMixin {
     @Shadow @Final static FoodComponent TROPICAL_FISH;
 
     static {
-        APPLE = (new FoodComponent.Builder()).hunger(4).saturationModifier(1.2F).build();
-        BAKED_POTATO = (new FoodComponent.Builder()).hunger(6).saturationModifier(1.0F).build();
-        BEEF = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.8F).meat().build();
-        BEETROOT = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.6F).build();
-        BREAD = (new FoodComponent.Builder()).hunger(5).saturationModifier(1.2F).build();
-        CARROT = (new FoodComponent.Builder()).hunger(4).saturationModifier(1.3F).build();
-        CHICKEN = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.3F).build();
-        COD = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.4F).build();
-        COOKED_BEEF = (new FoodComponent.Builder()).hunger(8).saturationModifier(1.0F).meat().build();
-        COOKED_CHICKEN = (new FoodComponent.Builder()).hunger(6).saturationModifier(1.0F).meat().build();
-        COOKED_COD = (new FoodComponent.Builder()).hunger(5).saturationModifier(1.3F).build();
-        COOKED_MUTTON = (new FoodComponent.Builder()).hunger(6).saturationModifier(1.0F).meat().build();
-        COOKED_PORKCHOP = (new FoodComponent.Builder()).hunger(8).saturationModifier(1.0F).meat().build();
-        COOKED_RABBIT = (new FoodComponent.Builder()).hunger(5).saturationModifier(1.2F).meat().build();
+        APPLE = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.8F).build();
+        BAKED_POTATO = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.9F).build();
+        BEEF = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.7F).meat().build();
+        BEETROOT = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.4F).build();
+        BREAD = (new FoodComponent.Builder()).hunger(5).saturationModifier(1.1F).build();
+        CARROT = (new FoodComponent.Builder()).hunger(3).saturationModifier(1.2F).build();
+        CHICKEN = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.2F).build();
+        COD = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.2F).build();
+        COOKED_BEEF = (new FoodComponent.Builder()).hunger(8).saturationModifier(0.9F).meat().build();
+        COOKED_CHICKEN = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.9F).meat().build();
+        COOKED_COD = (new FoodComponent.Builder()).hunger(5).saturationModifier(1.2F).build();
+        COOKED_MUTTON = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.9F).meat().build();
+        COOKED_PORKCHOP = (new FoodComponent.Builder()).hunger(8).saturationModifier(0.9F).meat().build();
+        COOKED_RABBIT = (new FoodComponent.Builder()).hunger(5).saturationModifier(1.1F).meat().build();
         COOKED_SALMON = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.9F).build();
-        COOKIE = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.4F).build();
-        DRIED_KELP = (new FoodComponent.Builder()).hunger(1).saturationModifier(0.7F).snack().build();
+        COOKIE = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.3F).build();
+        DRIED_KELP = (new FoodComponent.Builder()).hunger(1).saturationModifier(0.6F).snack().build();
         ENCHANTED_GOLDEN_APPLE = (new FoodComponent.Builder()).hunger(4).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 600, 4), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 4), 1.0F).alwaysEdible().build();
         GOLDEN_APPLE = (new FoodComponent.Builder()).hunger(4).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEdible().build();
         GOLDEN_CARROT = (new FoodComponent.Builder()).hunger(6).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F).build();
-        HONEY_BOTTLE = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.6F).build();
+        HONEY_BOTTLE = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.5F).build();
         MELON_SLICE = (new FoodComponent.Builder()).hunger(4).saturationModifier(1.2F).build();
         MUTTON = (new FoodComponent.Builder()).hunger(2).saturationModifier(0.8F).meat().build();
         POISONOUS_POTATO = (new FoodComponent.Builder()).hunger(2).saturationModifier(0.7F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 0.6F).build();
-        PORKCHOP = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.8F).meat().build();
-        POTATO = (new FoodComponent.Builder()).hunger(1).saturationModifier(1.2F).build();
+        PORKCHOP = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.4F).meat().build();
+        POTATO = (new FoodComponent.Builder()).hunger(1).saturationModifier(1.0F).build();
         PUFFERFISH = (new FoodComponent.Builder()).hunger(1).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 1200, 3), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 2), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 300, 0), 1.0F).build();
-        PUMPKIN_PIE = (new FoodComponent.Builder()).hunger(8).saturationModifier(0.8F).build();
-        RABBIT = (new FoodComponent.Builder()).hunger(3).saturationModifier(1.0F).meat().build();
+        PUMPKIN_PIE = (new FoodComponent.Builder()).hunger(8).saturationModifier(0.9F).build();
+        RABBIT = (new FoodComponent.Builder()).hunger(3).saturationModifier(0.9F).meat().build();
         ROTTEN_FLESH = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 200, 0), 0.8F).meat().build();
-        SALMON = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.5F).build();
-        SPIDER_EYE = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 1.0F).build();
+        SALMON = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.4F).build();
+        SPIDER_EYE = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.1F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 1.0F).build();
         SWEET_BERRIES = (new FoodComponent.Builder()).hunger(4).saturationModifier(1.2F).build();
-        TROPICAL_FISH = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.4F).build();
-
+        TROPICAL_FISH = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.2F).build();
         System.out.println("[Speedrunner Mod] [main/INFO]: Ignore these errors, everything will work properly.");
     }
 }
