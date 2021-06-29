@@ -13,7 +13,7 @@ public class BlocksMixin {
     @Overwrite
     private static BedBlock createBedBlock(DyeColor color) {
         return new BedBlock(color, AbstractBlock.Settings.of(Material.WOOL, (blockState) -> {
-            return blockState.get(BedBlock.PART) == BedPart.FOOT ? color.getMaterialColor() : MaterialColor.WEB;
+            return blockState.get(BedBlock.PART) == BedPart.FOOT ? color.getMapColor() : MapColor.WHITE_GRAY;
         }).sounds(BlockSoundGroup.WOOD).breakInstantly().nonOpaque());
     }
 }
