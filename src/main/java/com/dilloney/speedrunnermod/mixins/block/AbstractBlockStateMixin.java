@@ -778,6 +778,9 @@ public class AbstractBlockStateMixin {
         if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_WARPED_HYPHAE) {
             info.setReturnValue(1.3F);
         }
+        if (world.getBlockState(pos).getBlock() == Blocks.WARPED_NYLIUM) {
+            info.setReturnValue(0.37F);
+        }
         if (world.getBlockState(pos).getBlock() == Blocks.WARPED_WART_BLOCK) {
             info.setReturnValue(0.6F);
         }
@@ -792,6 +795,9 @@ public class AbstractBlockStateMixin {
         }
         if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_CRIMSON_HYPHAE) {
             info.setReturnValue(1.3F);
+        }
+        if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_NYLIUM) {
+            info.setReturnValue(0.37F);
         }
         if (world.getBlockState(pos).getBlock() == Blocks.SHROOMLIGHT) {
             info.setReturnValue(0.6F);
