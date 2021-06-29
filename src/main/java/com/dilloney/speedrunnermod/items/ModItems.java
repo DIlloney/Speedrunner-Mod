@@ -48,6 +48,9 @@ public class ModItems {
     public static final ShearsItem SPEEDRUNNER_SHEARS = new ShearsItem(
             new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.TOOLS).rarity(Rarity.COMMON).maxCount(1).maxDamage(476));
 
+    public static final FlintAndSteelItem SPEEDRUNNER_FLINT_AND_STEEL = new FlintAndSteelItem(
+            new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.TOOLS).rarity(Rarity.COMMON).maxCount(1).maxDamage(128));
+
     public static final ToolItem ANDESITE_SWORD = new SwordItem(ModToolMaterials.ANDESITE_EXCLUDING_SHOVEL, 4, -2.4F,
             new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.COMBAT).rarity(Rarity.COMMON));
 
@@ -142,6 +145,14 @@ public class ModItems {
                     .statusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 300), 0.1F)
                     .statusEffect(new StatusEffectInstance(StatusEffects.UNLUCK, 1200), 0.1F)
                     .statusEffect(new StatusEffectInstance(StatusEffects.POISON, 160), 0.1F)
+                    .build()));
+
+    public static final Item SPEEDRUNNER_APPLE = new Item(
+            new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.RARE).food(new FoodComponent.Builder()
+                    .hunger(4)
+                    .saturationModifier(1.2F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 600, 0), 1F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 600, 0), 1F)
                     .build()));
 
     public static final Item COOKED_FLESH = new Item(
