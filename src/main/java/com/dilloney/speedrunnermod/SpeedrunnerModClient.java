@@ -52,7 +52,7 @@ public class SpeedrunnerModClient implements ClientModInitializer {
                             && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
                 });
 
-        System.out.println("Speedrunner Mod loaded successfully! version = 1.13 | mcversion = 1.17");
+        System.out.println("Speedrunner Mod loaded successfully! version = 1.14 | mcversion = 1.17");
     }
 
     public static final Gson GSON = new Gson();
