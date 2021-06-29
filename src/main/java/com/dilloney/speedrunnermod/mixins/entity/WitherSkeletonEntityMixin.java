@@ -23,6 +23,11 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
         this.setPathfindingPenalty(PathNodeType.LAVA, 8.0F);
     }
 
+    @Overwrite
+    public void initGoals() {
+        super.initGoals();
+    }
+
     @Overwrite @Nullable
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityTag) {
         EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData, entityTag);

@@ -33,8 +33,8 @@ public abstract class EyeOfEnderEntityMixin extends Entity implements FlyingItem
         double e = this.getY() + vec3d.y;
         double f = this.getZ() + vec3d.z;
         double g = vec3d.horizontalLength();
-        this.setPitch(EyeOfEnderEntityMixin.updateRotation(this.prevPitch, (float)(MathHelper.atan2(vec3d.y, g) * 57.2957763671875D)));
-        this.setYaw(EyeOfEnderEntityMixin.updateRotation(this.prevYaw, (float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875D)));
+        this.setPitch(updateRotation(this.prevPitch, (float)(MathHelper.atan2(vec3d.y, g) * 57.2957763671875D)));
+        this.setYaw(updateRotation(this.prevYaw, (float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875D)));
         if (!this.world.isClient) {
             double h = this.targetX - d;
             double i = this.targetZ - f;
@@ -67,9 +67,13 @@ public abstract class EyeOfEnderEntityMixin extends Entity implements FlyingItem
             this.setPosition(d, e, f);
             ++this.lifespan;
             if (this.lifespan > 40 && !this.world.isClient) {
-                this.playSound(SoundEvents.ENTITY_ENDER_EYE_DEATH, 1.0F, 1.0F);
                 this.discard();
                 this.world.spawnEntity(new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), this.getStack()));
+                if (this.getStack().getItem() == Items.ENDER_EYE || this.getStack().getItem() == ModItems.EYE_OF_ANNUL) {
+                    this.playSound(SoundEvents.ENTITY_ENDER_EYE_DEATH, 1.0F, 1.0F);
+                } else if (this.getStack().getItem() == ModItems.EYE_OF_INFERNO) {
+                    this.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1.0F, 1.0F);
+                }
             }
         } else {
             this.setPos(d, e, f);
