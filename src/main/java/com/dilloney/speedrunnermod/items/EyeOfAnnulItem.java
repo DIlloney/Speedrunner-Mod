@@ -43,7 +43,7 @@ public class EyeOfAnnulItem extends Item {
                 }
 
                 int structureDistance = MathHelper.floor(getDistance(playerpos.getX(), playerpos.getZ(), blockPos.getX(), blockPos.getZ()));
-                user.sendMessage(new TranslatableText("item.speedrunnermod.eyeofannul.blocks_away", structureType, structureDistance).formatted(Formatting.LIGHT_PURPLE), true);
+                user.sendMessage(new TranslatableText("item.speedrunnermod.eye_of_annul.blocks_away", structureType, structureDistance).formatted(Formatting.LIGHT_PURPLE), true);
 
                 world.playSound((PlayerEntity)null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (RANDOM.nextFloat() * 0.4F + 0.8F));
                 world.syncWorldEvent((PlayerEntity)null, 1003, user.getBlockPos(), 0);

@@ -27,14 +27,10 @@ public class EyeOfInfernoItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-
         player.setCurrentHand(hand);
-
         if(!world.isClient) {
             ServerWorld serverWorld = (ServerWorld)world;
-
             if(player.isSneaking() && serverWorld.getRegistryKey().equals(World.NETHER)) {
-
                 if (structureType.equals("Fortress")) {
                     structureType = "Bastion";
                     type = StructureFeature.BASTION_REMNANT;
@@ -44,19 +40,15 @@ public class EyeOfInfernoItem extends Item {
                     type = StructureFeature.FORTRESS;
                 }
 
-                player.sendMessage((new TranslatableText("item.speedrunnermod.eyeofinferno.looking_for", structureType).formatted(Formatting.RED)), true);
-
+                player.sendMessage((new TranslatableText("item.speedrunnermod.eye_of_inferno.looking_for", structureType).formatted(Formatting.RED)), true);
                 return TypedActionResult.success(itemStack);
             }
         }
 
         if(!world.isClient) {
             ServerWorld serverWorld = (ServerWorld)world;
-
             if(serverWorld.getRegistryKey().equals(World.OVERWORLD) || serverWorld.getRegistryKey().equals(World.END)) {
-
-                player.sendMessage((new TranslatableText("item.speedrunnermod.eyeofinferno.wrong_dimension", structureType).formatted(Formatting.RED)), true);
-
+                player.sendMessage((new TranslatableText("item.speedrunnermod.eye_of_inferno.wrong_dimension").formatted(Formatting.RED)), true);
                 return TypedActionResult.consume(itemStack);
             }
         }
@@ -65,9 +57,9 @@ public class EyeOfInfernoItem extends Item {
             if(!world.isClient) {
                 ServerWorld serverWorld = (ServerWorld)world;
 
-                serverWorld.getRegistryKey(); {
-                    findStructureAndShoot(world, player, itemStack, type, hand);
+                serverWorld.getRegistryKey(); { findStructureAndShoot(world, player, itemStack, type, hand);
 
+                    player.sendMessage((new TranslatableText("item.speedrunnermod.eye_of_inferno.located", structureType).formatted(Formatting.RED)), true);
                     return TypedActionResult.success(itemStack);
                 }
             }
