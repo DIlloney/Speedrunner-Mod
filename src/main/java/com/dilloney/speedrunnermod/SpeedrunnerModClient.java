@@ -10,7 +10,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
@@ -23,7 +23,7 @@ import java.nio.file.Path;
 import java.util.function.DoubleConsumer;
 
 import static java.lang.Float.POSITIVE_INFINITY;
-import static net.minecraft.nbt.Tag.GREEN;
+import static net.minecraft.util.Formatting.GREEN;
 
 @Environment(EnvType.CLIENT)
 public class SpeedrunnerModClient implements ClientModInitializer {
@@ -52,7 +52,7 @@ public class SpeedrunnerModClient implements ClientModInitializer {
                             && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
                 });
 
-        System.out.println("Speedrunner Mod loaded successfully! version = 1.13 | mcversion = 1.16.5");
+        System.out.println("Speedrunner Mod loaded successfully! version = 1.14 | mcversion = 1.16.5");
     }
 
     public static final Gson GSON = new Gson();
