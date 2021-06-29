@@ -74,7 +74,7 @@ public class ModBlocks {
         }
 
         protected int getExperienceWhenMined(Random random){
-            return MathHelper.nextInt(random, 1, 2);
+            return MathHelper.nextInt(random, 64, 128);
         }
 
         public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack){
@@ -95,7 +95,7 @@ public class ModBlocks {
         }
 
         protected int getExperienceWhenMined(Random random){
-            return MathHelper.nextInt(random, 1, 2);
+            return MathHelper.nextInt(random, 32, 64);
         }
 
         public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack){
@@ -119,7 +119,7 @@ public class ModBlocks {
             return MathHelper.nextInt(random, 2, 6);
         }
 
-        public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack){
+        public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
             super.onStacksDropped(state, world, pos, stack);
             if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
                 int i = this.getExperienceWhenMined(world.random);
@@ -140,7 +140,7 @@ public class ModBlocks {
             return MathHelper.nextInt(random, 2, 6);
         }
 
-        public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack){
+        public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
             super.onStacksDropped(state, world, pos, stack);
             if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
                 int i = this.getExperienceWhenMined(world.random);
