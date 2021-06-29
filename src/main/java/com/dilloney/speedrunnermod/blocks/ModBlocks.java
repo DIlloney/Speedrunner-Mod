@@ -92,7 +92,7 @@ public class ModBlocks {
         }
 
         protected int getExperienceWhenMined(Random random){
-            return MathHelper.nextInt(random, 1, 2);
+            return MathHelper.nextInt(random, 64, 128);
         }
 
         public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack){
@@ -113,7 +113,7 @@ public class ModBlocks {
         }
 
         protected int getExperienceWhenMined(Random random){
-            return MathHelper.nextInt(random, 2, 4);
+            return MathHelper.nextInt(random, 72, 192);
         }
 
         public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack){
@@ -134,7 +134,7 @@ public class ModBlocks {
         }
 
         protected int getExperienceWhenMined(Random random){
-            return MathHelper.nextInt(random, 1, 2);
+            return MathHelper.nextInt(random, 32, 64);
         }
 
         public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack){
