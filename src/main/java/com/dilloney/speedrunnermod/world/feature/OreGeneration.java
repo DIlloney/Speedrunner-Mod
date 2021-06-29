@@ -43,17 +43,17 @@ public class OreGeneration {
             new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, ModBlocks.IGNEOUS_NETHER_ORE.getDefaultState(), 5))
             .uniformRange(YOffset.getBottom(), YOffset.fixed(64))
             .spreadHorizontally()
-            .repeat(18);
+            .repeat(15);
 
     public static final ConfiguredFeature<?, ?> DIAMOND_ORE_MESA_JUNGLE_MOUNTAINS = Feature.ORE.configure(
             new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, Blocks.DIAMOND_ORE.getDefaultState(), 8))
             .uniformRange(YOffset.getBottom(), YOffset.fixed(21))
             .spreadHorizontally()
-            .repeat(9);
+            .repeat(5);
 
     public static final ConfiguredFeature<?, ?> DEEPSLATE_DIAMOND_ORE_MESA_JUNGLE_MOUNTAINS = Feature.ORE.configure(
             new OreFeatureConfig(OreFeatureConfig.Rules.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_DIAMOND_ORE.getDefaultState(), 8))
             .uniformRange(YOffset.getBottom(), YOffset.fixed(16))
             .spreadHorizontally()
-            .repeat(7);
+            .repeat(5);
 }
