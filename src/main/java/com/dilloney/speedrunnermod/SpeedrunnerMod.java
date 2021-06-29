@@ -42,6 +42,8 @@ public class SpeedrunnerMod implements ModInitializer {
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_BOOTS));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_BOW));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_SHEARS));
+                itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_FLINT_AND_STEEL));
+                itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_APPLE));
                 itemStacks.add(new ItemStack(ModItems.EYE_OF_INFERNO));
                 itemStacks.add(new ItemStack(ModItems.EYE_OF_ANNUL));
                 itemStacks.add(new ItemStack(ModItems.IGNEOUS_ROCK));
