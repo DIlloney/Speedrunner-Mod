@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "speedrunnermod",
-  "version": "1.14-snapshot1",
+  "version": "1.14",
   "accessWidener": "speedrunnermod.accesswidener",
   "name": "Speedrunner Mod",
   "description": "A Minecraft Mod that makes Minecraft Speedrunning easier.",
