@@ -40,6 +40,7 @@ public class ModRegistry {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_hoe"), ModItems.SPEEDRUNNER_HOE);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_bow"), ModItems.SPEEDRUNNER_BOW);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_shears"), ModItems.SPEEDRUNNER_SHEARS);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_flint_and_steel"), ModItems.SPEEDRUNNER_FLINT_AND_STEEL);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_helmet"), ModItems.SPEEDRUNNER_HELMET);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_chestplate"), ModItems.SPEEDRUNNER_CHESTPLATE);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_leggings"), ModItems.SPEEDRUNNER_LEGGINGS);
@@ -68,6 +69,7 @@ public class ModRegistry {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "cooked_piglin_pork"), ModItems.COOKED_PIGLIN_PORK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_bulk"), ModItems.SPEEDRUNNER_BULK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "rotten_speedrunner_bulk"), ModItems.ROTTEN_SPEEDRUNNER_BULK);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_apple"), ModItems.SPEEDRUNNER_APPLE);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "cooked_flesh"), ModItems.COOKED_FLESH);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_steak"), ModItems.GOLDEN_STEAK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_porkchop"), ModItems.GOLDEN_PORKCHOP);
@@ -106,13 +108,10 @@ public class ModRegistry {
             Map<StructureFeature<?>, StructureConfig> map = new HashMap<>(world.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
 
             map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
-                return new StructureConfig(7, 6, 34222645);
-            });
-            map.computeIfPresent(StructureFeature.IGLOO, (structureFeature, structureConfig) -> {
-                return new StructureConfig(18, 14, 14357618);
+                return new StructureConfig(9, 8, 34222645);
             });
             map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
-                return new StructureConfig(12, 9, 10387312);
+                return new StructureConfig(16, 9, 10387312);
             });
             map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
                 return new StructureConfig(10, 8, 14357617);
@@ -121,10 +120,10 @@ public class ModRegistry {
                 return new StructureConfig(10, 8, 165745295);
             });
             map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
-                return new StructureConfig(10, 9, 30084232);
+                return new StructureConfig(8, 7, 30084232);
             });
             map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
-                return new StructureConfig(10, 8, 30084232);
+                return new StructureConfig(9, 8, 30084232);
             });
 
             ImmutableMap<StructureFeature<?>, StructureConfig> immutableMap = ImmutableMap.copyOf(map);
