@@ -32,11 +32,11 @@ public class OreGeneration {
             new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, ModBlocks.NETHER_IGNEOUS_ORE.getDefaultState(), 5))
             .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(0, 0, 64)))
             .spreadHorizontally()
-            .repeat(18);
+            .repeat(15);
 
     public static final ConfiguredFeature<?, ?> DIAMOND_ORE_MESA_JUNGLE_MOUNTAINS = Feature.ORE.configure(
             new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, Blocks.DIAMOND_ORE.getDefaultState(), 8))
             .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(0, 0, 21)))
             .spreadHorizontally()
-            .repeat(7);
+            .repeat(5);
 }
