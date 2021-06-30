@@ -35,6 +35,10 @@ public abstract class SheepEntityMixin extends AnimalEntity implements Shearable
         super(entityType, world);
     }
 
+    @Shadow abstract void setSheared(boolean sheared);
+
+    @Shadow abstract DyeColor getColor();
+
     @Overwrite
     public void sheared(SoundCategory shearedSoundCategory) {
         this.world.playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
@@ -52,18 +56,5 @@ public abstract class SheepEntityMixin extends AnimalEntity implements Shearable
     @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean interactMob(ItemStack stack, Item isOfItem) {
         return UniqueItemRegistry.SHEARS.isItemInRegistry(stack.getItem());
-    }
-
-    public void setSheared(boolean sheared) {
-        byte b = (Byte)this.dataTracker.get(COLOR);
-        if (sheared) {
-            this.dataTracker.set(COLOR, (byte)(b | 16));
-        } else {
-            this.dataTracker.set(COLOR, (byte)(b & -17));
-        }
-    }
-
-    public DyeColor getColor() {
-        return DyeColor.byId((Byte)this.dataTracker.get(COLOR) & 15);
     }
 }
