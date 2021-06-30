@@ -46,7 +46,7 @@ public class ChunkGeneratorMixin {
 
                 int i = 4;
                 int j = strongholdConfig.getCount();
-                int k = 3;
+                int k = strongholdConfig.getSpread();
                 Random random = new Random();
                 random.setSeed(this.worldSeed);
                 double d = random.nextDouble() * 3.141592653589793D * 2.0D;
