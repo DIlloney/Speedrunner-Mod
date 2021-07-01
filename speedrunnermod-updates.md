@@ -1,3 +1,99 @@
+# _SPEEDRUNNER MOD v.1.14.1 (July 1st, 2021 CHANGELOG)_
+• Fixed critical bug where Speedrunner Flint and Steel doesn't ignite TNT blocks and doesn't ignite creepers upon use.
+
+• Wearing speedrunner boots will now make the player slightly faster when in lava and water.
+
+• Wither Skeletons now spawn slightly more commonly in nether fortresses.
+
+• Slightly increase saturation for Cooked Piglin Pork.
+
+# _SPEEDRUNNER MOD v.1.14 (June 30th, 2021 CHANGELOG)_
+• Nether Fortresses can now spawn with a maximum of 3 blaze spawners, fortresses are also now smaller making it easier to find them. In addition, Nether Fortresses are now slightly more common.
+
+• Strongholds can now spawn with a maximum of 3 portal rooms (also increases likelyhood of portal rooms spawning), strongholds are also now smaller making it easier to find the portal room. In addition, strongholds will now generate at a minimum Y level of 32, and a maximum level of 64, regardless of the biome or location.
+
+• Adds a new item, "Speedrunner Flint and Steel"! This item works exactly like a normal flint and steel, just double the durablity. Ruined Portals and Blacksmith chests will now always contain a speedrunner flint and steel.
+
+• Adds a new food item, "Speedrunner Apple"! This item can only be obtained through crafting by using 1 apple + 8 surrounding speedrunner ingots. When consumed, the apple will give Speed and Haste for 30 seconds, fill 2 hunger bars, and give 1.2 saturation points.
+
+• Stray blazes will now spawn more commonly in nether fortresses (groups of 1-4 per spawn). Wither skeletons, skeletons, magma cubes, and zombified piglin will spawn less commonly and in less sizes. In addition, Piglin can now spawn inside nether fortresses (groups of 2-4 per spawn).
+
+• Modifed Piglin bartering (ender pearls will now only come in quantities of 6-9, made ender pearls slightly less common, iron boots will now only come with the soul sand and depth strider enchantment, and more).
+
+• Tweaked structure placements for Nether Fortresses and Bastions.
+
+• Villages, Ruined Portals and Strongholds are now slightly less common, and Igloos (this also includes ocean ruins, woodland mansions, buried treasure, ocean monuments, pillager outposts, and swamp huts) are no longer under the list of "more common" structures.
+
+• Oak Trees will now generate in deserts!
+
+• Oak Logs can now generate in Desert Temple chests.
+
+• Villages and Pillager Outposts can now spawn in sunflower plains. In addition, plains villages can now spawn in forest biomes.
+
+• Ruined Portals no longer generate buried in desert biomes.
+
+• Glowstone can now be broken faster with a pickaxe (already was a feature on 1.17, this is only for 1.16).
+
+• Ghasts will now immediately die when throwing a fireball (credit to DislikeYourVideo for the idea).
+
+• Dolphin's will now give dolphins grace for 10 seconds instead of 5.
+
+• Blazes fireballs (aka small fireballs) will now do less damage per hit, and only set the entity on fire for 3 seconds instead of 5.
+
+• Tweaked and balanced food saturation and hunger values.
+
+• Tweaked Ore Generation for Nether Igneous ore once again (slightly less common).
+
+• Tweaked mob spawning in all nether biomes (skeletons spawn less commonly in soul sand valleys, along with ghasts, and made piglin and enderman spawn rates higher).
+
+• Ruined Portals will no longer generate in the nether. This feature was removed because ruined portals generated too often for fortress and bastions to generate.
+
+• Magma cubes will now do less damage and take more time to jump toward the player.
+
+• Wither Skeletons will no longer target Piglin's randomly (but piglins will :).
+
+• Crying Obsidian can now be used to build a nether portal.
+
+• Speedrunner Ore and nether ore now drops an extreme amount of experience.
+
+• Increased enchantability for speedrunner tools (previously 11, now 17) and armor (previosuly 11, now 16).
+
+• Lowered the amount of diamonds that can generate in Mesas, Jungles and Mountains (again).
+
+• Mob Spawners will now spawn mobs within 10-20 seconds (previously 10-40).
+
+• Silverfish and Endermite are now slightly faster but do absolutely zero attack damage.
+
+• Players will no longer admit heart particles when getting below or equal to a heart.
+
+• Silverfish will now only spawn other silverfish every 5 seconds (previously every second).
+
+• Eyes Portal Frames now have a slightly higher chance of spawning with eyes of ender.
+
+• Eyes of Inferno will now admit smoke-like particles when thrown (meant to be a feature for a long time now, it's finally here)!
+
+• Tweaked how Eye of Annul functions (again). There is no longer a message when trying to use the eye in the incorrect dimension.
+
+• Tweaked how Eye of Inferno functions (again). There is now a message displayed when throwing an eye of inferno, and when dropping, it will play a different sound rather than the default eye of ender entity death sound.
+
+• Crimson and Warped Nylium can now be broken as fast as netherrack.
+
+• Sheep will now only drop 1-2 pieces of wool when killed, making shears more useful.
+
+• Leaves of all types now have a much higher chance of dropping sticks when broken. Apples also have a higher chance of dropping when breaking oak leaves.
+
+• Speedrunner Leggings will now only apply the Dolphin's grace effect if the player is swimming. In addition, the leggings will drain in durability as the player is swimming.
+
+• Speedrunner Boots will now make the player faster when touching/in lava.
+
+• Wearing speedrunner boots/leggings will now only give the effect for 0 seconds (meaning when you take the armor piece off, the effect will immediately be removed).
+
+• Fixed bug where trying to use an Eye of Annul while sneaking doesn't work (it does now).
+
+• Fixed bug where eyes of inferno and annul don't produce the correct animations.
+
+• Technical Changes: Updated to latest fabric builds. Removed "worldgen" completely and it will not be coming back.
+
 # _SPEEDRUNNER MOD v.1.13 (June 26th, 2021 CHANGELOG_
 • Optimized, improved, and fixed world-gen settings and decreased world generate/load time. No more wating an extra 30 seconds for your world to load/generate! (1.16 and 1.17).
 
@@ -50,8 +146,6 @@
 • Golden Potatoes and Golden Beetroot will now only give Regeneration 1 for 5 seconds. Golden Bread will now only give Regeneration 1 for 10 seconds + more tweaks (1.16 and 1.17).
 
 • Apples, Golden Apples, and Enchanted Golden Apples will now only fill 2 hunger bars once again (1.16 and 1.17).
-
-• Some structures that are not usually used in speedruns are not as common anymore (1.16 and 1.17).
 
 • Technical changes: removed "overworld.json" and "nether.json" to decrease world load time. Tweaked how Eye of Ender Entity works. There are now only 128 strongholds in a world instead of 2,048. Removed "MagmaCubeEntityMixin" as it was pointless and did almost nothing, so magma cubes will act normal again.
 
