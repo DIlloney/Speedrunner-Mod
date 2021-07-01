@@ -1,7 +1,16 @@
-# _SPEEDRUNNER MOD v.1.14 (UNKNOWN DATE, 2021 CHANGELOG)_
+# _SPEEDRUNNER MOD v.1.14.1 (July 1st, 2021 CHANGELOG)_
+• Fixed critical bug where Speedrunner Flint and Steel doesn't ignite TNT blocks and doesn't ignite creepers upon use.
+
+• Wearing speedrunner boots will now make the player slightly faster when in lava and water.
+
+• Wither Skeletons now spawn slightly more commonly in nether fortresses.
+
+• Slightly increase saturation for Cooked Piglin Pork.
+
+# _SPEEDRUNNER MOD v.1.14 (June 30th, 2021 CHANGELOG)_
 • Nether Fortresses can now spawn with a maximum of 3 blaze spawners, fortresses are also now smaller making it easier to find them. In addition, Nether Fortresses are now slightly more common.
 
-• Strongholds can now spawn with a maximum of 3 portal rooms (also increases likelyhood of portal rooms spawning), strongholds are also now smaller making it easier to find the portal room. In addition, strongholds will now generate at a minimum Y level of 32, and a maximum level of 63, regardless of the biome or location.
+• Strongholds can now spawn with a maximum of 3 portal rooms (also increases likelyhood of portal rooms spawning), strongholds are also now smaller making it easier to find the portal room. In addition, strongholds will now generate at a minimum Y level of 32, and a maximum level of 64, regardless of the biome or location.
 
 • Adds a new item, "Speedrunner Flint and Steel"! This item works exactly like a normal flint and steel, just double the durablity. Ruined Portals and Blacksmith chests will now always contain a speedrunner flint and steel.
 
