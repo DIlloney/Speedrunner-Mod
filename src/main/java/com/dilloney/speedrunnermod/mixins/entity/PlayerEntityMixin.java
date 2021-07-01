@@ -43,8 +43,16 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     private void speedrunnerModEffectsTravel(Vec3d movementInput, CallbackInfo callbackInfo) {
         FluidState fluidState = this.world.getFluidState(this.getBlockPos());
         if (this.isInLava() && this.shouldSwimInFluids() && !this.canWalkOnFluid(fluidState.getFluid()) && this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.SPEEDRUNNER_BOOTS) {
-            this.updateVelocity(0.02F, movementInput);
+            this.updateVelocity(0.025F, movementInput);
             if (this.getRandom().nextFloat() < 0.03F) {
+                ItemStack itemStack = this.getEquippedStack(EquipmentSlot.FEET);
+                itemStack.damage(1, this, (livingEntity) -> {
+                    livingEntity.sendEquipmentBreakStatus(EquipmentSlot.FEET);
+                });
+            }
+        } else if (this.isTouchingWater() && this.shouldSwimInFluids() && !this.canWalkOnFluid(fluidState.getFluid()) && this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.SPEEDRUNNER_BOOTS) {
+            this.updateVelocity(0.005F, movementInput);
+            if (this.getRandom().nextFloat() < 0.02F) {
                 ItemStack itemStack = this.getEquippedStack(EquipmentSlot.FEET);
                 itemStack.damage(1, this, (livingEntity) -> {
                     livingEntity.sendEquipmentBreakStatus(EquipmentSlot.FEET);
