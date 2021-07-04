@@ -23,3 +23,4 @@ Make sure to join the **_Official Speedrunner Mod Discord_** (https://discord.gg
 ### _SPEEDRUNNER MOD FEATURES (https://github.com/Dilloney/Speedrunner-Mod/wiki/Speedrunner-Mod-Wiki)_
 
 **_I hope you enjoy using my mod! If you encounter any issues, there is a #user-sm-bugs channel in the discord for you to submit any bugs that you may find._**
+
