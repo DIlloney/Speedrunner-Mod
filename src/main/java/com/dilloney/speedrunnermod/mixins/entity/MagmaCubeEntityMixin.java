@@ -1,6 +1,8 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.world.World;
@@ -16,11 +18,31 @@ public class MagmaCubeEntityMixin extends SlimeEntity {
 
     @Overwrite
     public int getTicksUntilNextJump() {
-        return this.random.nextInt(60) + 120;
+        if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+            return this.random.nextInt(60) + 120;
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+            return this.random.nextInt(30) + 40;
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
+            return this.random.nextInt(20) + 10;
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
+            return this.random.nextInt(10) + 5;
+        } else {
+            return this.random.nextInt(60) + 120;
+        }
     }
 
     @Overwrite
     public float getDamageAmount() {
-        return 2.0F;
+        if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 2.0F;
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 3.0F;
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
+            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 4.0F;
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
+            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 6.0F;
+        } else {
+            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 2.0F;
+        }
     }
 }

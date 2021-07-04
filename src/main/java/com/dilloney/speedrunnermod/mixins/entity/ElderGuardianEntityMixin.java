@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -28,7 +29,17 @@ public class ElderGuardianEntityMixin extends GuardianEntity {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createElderGuardianAttributes() {
-        return GuardianEntity.createGuardianAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D).add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0D);
+        if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+            return GuardianEntity.createGuardianAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D).add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0D);
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+            return GuardianEntity.createGuardianAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D).add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0D);
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
+            return GuardianEntity.createGuardianAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0D).add(EntityAttributes.GENERIC_MAX_HEALTH, 32.0D);
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
+            return GuardianEntity.createGuardianAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D).add(EntityAttributes.GENERIC_MAX_HEALTH, 36.0D);
+        } else {
+            return GuardianEntity.createGuardianAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D).add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0D);
+        }
     }
 
     @Overwrite
@@ -57,7 +68,17 @@ public class ElderGuardianEntityMixin extends GuardianEntity {
                 } while(serverPlayerEntity.hasStatusEffect(statusEffect) && serverPlayerEntity.getStatusEffect(statusEffect).getAmplifier() >= 2 && serverPlayerEntity.getStatusEffect(statusEffect).getDuration() >= 1200);
 
                 serverPlayerEntity.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.ELDER_GUARDIAN_EFFECT, this.isSilent() ? 0.0F : 1.0F));
-                serverPlayerEntity.addStatusEffect(new StatusEffectInstance(statusEffect, 600, 2));
+                if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+                    serverPlayerEntity.addStatusEffect(new StatusEffectInstance(statusEffect, 600, 2));
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+                    serverPlayerEntity.addStatusEffect(new StatusEffectInstance(statusEffect, 800, 2));
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
+                    serverPlayerEntity.addStatusEffect(new StatusEffectInstance(statusEffect, 1200, 2));
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
+                    serverPlayerEntity.addStatusEffect(new StatusEffectInstance(statusEffect, 2400, 2));
+                } else {
+                    serverPlayerEntity.addStatusEffect(new StatusEffectInstance(statusEffect, 600, 2));
+                }
             }
         }
 

@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.SlimeEntity;
@@ -16,6 +17,16 @@ public class SlimeEntityMixin extends MobEntity {
 
     @Overwrite
     public int getTicksUntilNextJump() {
-        return this.random.nextInt(60) + 120;
+        if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+            return this.random.nextInt(60) + 120;
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+            return this.random.nextInt(30) + 40;
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
+            return this.random.nextInt(20) + 10;
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
+            return this.random.nextInt(10) + 5;
+        } else {
+            return this.random.nextInt(60) + 120;
+        }
     }
 }

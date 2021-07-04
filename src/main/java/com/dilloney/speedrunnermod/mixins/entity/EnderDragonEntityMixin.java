@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -29,7 +30,17 @@ public class EnderDragonEntityMixin extends MobEntity implements Monster {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createEnderDragonAttributes() {
-        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D);
+        if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D);
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0D);
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
+            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 200.0D);
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
+            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 225.0D);
+        } else {
+            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D);
+        }
     }
 
     @Overwrite
@@ -38,7 +49,17 @@ public class EnderDragonEntityMixin extends MobEntity implements Monster {
             if (this.connectedCrystal.isRemoved()) {
                 this.connectedCrystal = null;
             } else if (this.age % 10 == 0 && this.getHealth() < this.getMaxHealth()) {
-                this.setHealth(this.getHealth() + 0.1F);
+                if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+                    this.setHealth(this.getHealth() + 0.1F);
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+                    this.setHealth(this.getHealth() + 0.4F);
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
+                    this.setHealth(this.getHealth() + 0.7F);
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
+                    this.setHealth(this.getHealth() + 1.1F);
+                } else {
+                    this.setHealth(this.getHealth() + 0.1F);
+                }
             }
         }
 
@@ -69,7 +90,17 @@ public class EnderDragonEntityMixin extends MobEntity implements Monster {
         while(var2.hasNext()) {
             Entity entity = (Entity)var2.next();
             if (entity instanceof LivingEntity) {
-                entity.damage(DamageSource.mob(this), 3.0F);
+                if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+                    entity.damage(DamageSource.mob(this), 3.0F);
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+                    entity.damage(DamageSource.mob(this), 5.0F);
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
+                    entity.damage(DamageSource.mob(this), 7.0F);
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
+                    entity.damage(DamageSource.mob(this), 10.0F);
+                } else {
+                    entity.damage(DamageSource.mob(this), 3.0F);
+                }
                 this.applyDamageEffects(this, entity);
             }
         }

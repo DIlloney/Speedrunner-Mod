@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -22,6 +23,9 @@ public class ItemEntityMixin {
             return true;
         }
         if (stack.getItem() == Items.FIRE_CHARGE) {
+            return true;
+        }
+        if (stack.getItem() == Items.ENCHANTED_GOLDEN_APPLE) {
             return true;
         }
         return info.getReturnValueZ();

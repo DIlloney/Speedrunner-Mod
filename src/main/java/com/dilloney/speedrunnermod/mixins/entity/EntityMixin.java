@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.sound.SoundEvents;
@@ -13,10 +14,20 @@ public class EntityMixin {
     public void setOnFireFromLava() {
         Entity entity = (Entity)(Object)this;
         if (!entity.isFireImmune()) {
-            entity.setOnFireFor(8);
-            if (entity.damage(DamageSource.LAVA, 2.0F)) {
-                entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.world.random.nextFloat() * 0.4F);
+            if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+                entity.setOnFireFor(8);
+                entity.damage(DamageSource.LAVA, 2.0F);
+            } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+                entity.setOnFireFor(10);
+                entity.damage(DamageSource.LAVA, 3.0F);
+            } else if (SpeedrunnerMod.CONFIG.difficulty == 3 || SpeedrunnerMod.CONFIG.difficulty == 4) {
+                entity.setOnFireFor(12);
+                entity.damage(DamageSource.LAVA, 4.0F);
+            } else {
+                entity.setOnFireFor(8);
+                entity.damage(DamageSource.LAVA, 2.0F);
             }
+            entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.world.random.nextFloat() * 0.4F);
         }
     }
 }

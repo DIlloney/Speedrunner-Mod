@@ -27,13 +27,13 @@ import java.util.Map;
 @Mixin(SheepEntity.class)
 public abstract class SheepEntityMixin extends AnimalEntity implements Shearable {
 
-    @Shadow @Final static TrackedData<Byte> COLOR;
-
-    @Shadow @Final static Map<DyeColor, ItemConvertible> DROPS;
-
     protected SheepEntityMixin(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
+
+    @Shadow @Final static TrackedData<Byte> COLOR;
+
+    @Shadow @Final static Map<DyeColor, ItemConvertible> DROPS;
 
     @Shadow abstract void setSheared(boolean sheared);
 

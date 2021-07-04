@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,7 +43,9 @@ public class GhastEntityShootFireballGoalMixin {
                 FireballEntity fireballEntity = new FireballEntity(world, this.ghast, f, g, h, this.ghast.getFireballStrength());
                 fireballEntity.setPosition(this.ghast.getX() + vec3d.x * 4.0D, this.ghast.getBodyY(0.5D) + 0.5D, fireballEntity.getZ() + vec3d.z * 4.0D);
                 world.spawnEntity(fireballEntity);
-                this.ghast.kill();
+                if (SpeedrunnerMod.CONFIG.killGhastUponFireball) {
+                    this.ghast.kill();
+                }
                 this.cooldown = -40;
             }
         } else if (this.cooldown > 0) {

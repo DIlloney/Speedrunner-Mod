@@ -1,5 +1,7 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
+import com.dilloney.speedrunnermod.SpeedrunnerModClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
@@ -26,7 +28,9 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
         super.onCollision(hitResult);
 
         for(int i = 0; i < 32; ++i) {
-            this.world.addParticle(ParticleTypes.PORTAL, this.getX(), this.getY() + this.random.nextDouble() * 2.0D, this.getZ(), this.random.nextGaussian(), 0.0D, this.random.nextGaussian());
+            if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                this.world.addParticle(ParticleTypes.PORTAL, this.getX(), this.getY() + this.random.nextDouble() * 2.0D, this.getZ(), this.random.nextGaussian(), 0.0D, this.random.nextGaussian());
+            }
         }
 
         if (!this.world.isClient && !this.isRemoved()) {
@@ -47,7 +51,15 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
                     }
 
                     entity.fallDistance = 0.0F;
-                    entity.damage(DamageSource.FALL, 2.0F);
+                    if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+                        entity.damage(DamageSource.FALL, 2.0F);
+                    } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+                        entity.damage(DamageSource.FALL, 3.0F);
+                    } else if (SpeedrunnerMod.CONFIG.difficulty == 3 || SpeedrunnerMod.CONFIG.difficulty == 4) {
+                        entity.damage(DamageSource.FALL, 5.0F);
+                    } else {
+                        entity.damage(DamageSource.FALL, 2.0F);
+                    }
                 }
             } else if (entity != null) {
                 entity.requestTeleport(this.getX(), this.getY(), this.getZ());

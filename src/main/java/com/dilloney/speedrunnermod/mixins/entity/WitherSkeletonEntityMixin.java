@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -31,7 +32,15 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
     @Overwrite @Nullable
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityTag) {
         EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData, entityTag);
-        this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(1.0D);
+        if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+            this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(1.0D);
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+            this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(2.0D);
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
+            this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(3.0D);
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
+            this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(5.0D);
+        }
         this.updateAttackType();
         return entityData2;
     }
@@ -42,7 +51,15 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
             return false;
         } else {
             if (target instanceof LivingEntity) {
-                ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60));
+                if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60));
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
+                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100));
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 3 || SpeedrunnerMod.CONFIG.difficulty == 4) {
+                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 120));
+                } else {
+                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60));
+                }
             }
 
             return true;
