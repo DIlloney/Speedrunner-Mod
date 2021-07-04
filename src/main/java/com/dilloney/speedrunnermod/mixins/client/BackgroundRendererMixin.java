@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.client;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -43,7 +44,7 @@ public class BackgroundRendererMixin {
                 if (entity.isSpectator()) {
                     y = -8.0F;
                     ab = viewDistance * 0.5F;
-                } else if (entity instanceof LivingEntity && ((LivingEntity)entity).hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
+                } else if (entity instanceof LivingEntity && ((LivingEntity)entity).hasStatusEffect(StatusEffects.FIRE_RESISTANCE) && SpeedrunnerMod.CONFIG.modifiedLavaVision) {
                     y = 0.0F;
                     ab = 25.0F;
                 } else {

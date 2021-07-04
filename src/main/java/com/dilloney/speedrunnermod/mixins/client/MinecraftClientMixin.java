@@ -1,6 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.client;
 
-import com.dilloney.speedrunnermod.SpeedrunnerModClient;
+import com.dilloney.speedrunnermod.client.BrightnessFeature;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -16,9 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import static com.dilloney.speedrunnermod.SpeedrunnerModClient.logException;
-import static com.dilloney.speedrunnermod.SpeedrunnerModClient.saveConfig;
-
 @Environment(EnvType.CLIENT)
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {
@@ -33,7 +30,6 @@ public class MinecraftClientMixin {
     @Inject(at = @At("HEAD"), method = "close")
     private void close(CallbackInfo info) {
         options.write();
-        saveConfig();
     }
 
     @Inject(at = @At("HEAD"), method = "openScreen")
@@ -45,11 +41,11 @@ public class MinecraftClientMixin {
                 List<?> options = (List<?>) get(optionGroups.get(0), "me.jellysquid.mods.sodium.client.gui.options.OptionGroup", "options");
                 Object sliderControl = get(options.get(1), "me.jellysquid.mods.sodium.client.gui.options.OptionImpl", "control");
                 Class<?> sliderControlClass = Class.forName("me.jellysquid.mods.sodium.client.gui.options.control.SliderControl");
-                setInt(sliderControl, sliderControlClass, "min", (int) (SpeedrunnerModClient.minBrightness * 100));
-                setInt(sliderControl, sliderControlClass, "max", (int) (SpeedrunnerModClient.maxBrightness * 100));
+                setInt(sliderControl, sliderControlClass, "min", (int) (BrightnessFeature.minBrightness * 100));
+                setInt(sliderControl, sliderControlClass, "max", (int) (BrightnessFeature.maxBrightness * 100));
             }
             catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException ex) {
-                logException(ex, "an exception occurred during the manipulation of the sodium options gui");
+                ex.printStackTrace();
             }
         }
     }

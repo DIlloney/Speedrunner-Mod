@@ -1,6 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.client;
 
-import com.dilloney.speedrunnermod.SpeedrunnerModClient;
+import com.dilloney.speedrunnermod.client.BrightnessFeature;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -36,17 +36,15 @@ public class DoubleOptionMixin {
     @Inject(at = @At("RETURN"), method = "<init>")
     private void init(String key, double min, double max, float step, Function<GameOptions, Double> getter, BiConsumer<GameOptions, Double> setter, BiFunction<GameOptions, DoubleOption, Text> displayStringGetter, Function<MinecraftClient, List<OrderedText>> function, CallbackInfo info) {
         if (key.equals("options.gamma")) {
-            this.min = SpeedrunnerModClient.minBrightness;
-            this.max = SpeedrunnerModClient.maxBrightness;
+            this.min = BrightnessFeature.minBrightness;
+            this.max = BrightnessFeature.maxBrightness;
             this.displayStringGetter = this::displayStringGetter;
         }
     }
 
     private Text displayStringGetter(GameOptions gameOptions, DoubleOption doubleOption) {
         double threshold = 0.025;
-        return new TranslatableText("options.gamma").append(": ").append(
-                abs(gameOptions.gamma) < threshold     ? new TranslatableText("options.gamma.min") :
-                        abs(gameOptions.gamma - 1) < threshold ? new TranslatableText("options.gamma.max") :
-                                new LiteralText(Math.round(gameOptions.gamma * 100) + "%"));
+        return new TranslatableText("options.gamma").append(": ").append(abs(gameOptions.gamma) < threshold     ? new TranslatableText("options.gamma.min") : abs(gameOptions.gamma - 1) < threshold ? new TranslatableText("options.gamma.max") :
+                new LiteralText(Math.round(gameOptions.gamma * 100) + "%"));
     }
 }
