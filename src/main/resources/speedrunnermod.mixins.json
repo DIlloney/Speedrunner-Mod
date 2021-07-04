@@ -6,8 +6,11 @@
   "mixins": [
     "block.AbstractBlockStateMixin",
     "block.BeehiveBlockMixin",
+    "block.BlockMixin",
     "block.BlocksMixin",
+    "block.OreBlockMixin",
     "block.PumpkinBlockMixin",
+    "block.SpawnerBlockMixin",
     "block.TntBlockMixin",
     "block.TripwireBlockMixin",
     "entity.BlazeEntityMixin",
@@ -28,7 +31,6 @@
     "entity.IronGolemEntityMixin",
     "entity.ItemEntityMixin",
     "entity.MagmaCubeEntityMixin",
-    "entity.PiglinBruteEntityMixin",
     "entity.PiglinEntityMixin",
     "entity.PlayerEntityMixin",
     "entity.SheepEntityMixin",
@@ -42,7 +44,9 @@
     "item.ItemPredicateMixin",
     "misc.AreaHelperMixin",
     "misc.EfficiencyEnchantmentMixin",
+    "misc.LootTablesMixin",
     "misc.MobSpawnerLogicMixin",
+    "misc.PiglinBrainMixin",
     "misc.StructuresConfigAccessor",
     "world.ChunkGeneratorMixin",
     "world.DefaultBiomeCreatorMixin",
@@ -59,7 +63,17 @@
     "client.AbstractClientPlayerEntityMixin",
     "client.BackgroundRendererMixin",
     "client.DoubleOptionMixin",
-    "client.MinecraftClientMixin"
+    "client.MinecraftClientMixin",
+    "client.particle.AbstractFireBlockMixin",
+    "client.particle.BucketItemMixin",
+    "client.particle.CryingObsidianBlockMixin",
+    "client.particle.EndPortalBlockMixin",
+    "client.particle.LavaFluidMixin",
+    "client.particle.LivingEntityMixin",
+    "client.particle.NetherPortalBlockMixin",
+    "client.particle.RedstoneOreBlockMixin",
+    "client.particle.WaterFluidMixin",
+    "client.particle.WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
