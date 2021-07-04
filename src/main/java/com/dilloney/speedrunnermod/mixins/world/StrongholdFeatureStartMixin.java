@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.world;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.StrongholdGenerator;
 import net.minecraft.structure.StructureManager;
@@ -48,7 +49,11 @@ public abstract class StrongholdFeatureStartMixin extends MarginedStructureStart
                 structurePiece.fillOpenings(start, this, this.random);
             }
 
-            this.randomUpwardTranslation(this.random, 32, 63);
+            if (SpeedrunnerMod.CONFIG.modifiedStrongholdGeneration) {
+                this.randomUpwardTranslation(this.random, 32, 63);
+            } else {
+                this.randomUpwardTranslation(chunkGenerator.getSeaLevel(), chunkGenerator.getMinimumY(), this.random, 10);
+            }
         } while(this.hasNoChildren() || start.portalRoom == null);
 
     }

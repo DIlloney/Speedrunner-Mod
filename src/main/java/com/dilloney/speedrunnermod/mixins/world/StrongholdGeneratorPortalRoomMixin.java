@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.world;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
@@ -75,7 +76,11 @@ public class StrongholdGeneratorPortalRoomMixin extends StrongholdGenerator.Piec
         boolean[] bls = new boolean[12];
 
         for(int m = 0; m < bls.length; ++m) {
-            bls[m] = random.nextFloat() > 0.75F;
+            if (SpeedrunnerMod.CONFIG.modifiedStrongholdGeneration) {
+                bls[m] = random.nextFloat() > 0.75F;
+            } else {
+                bls[m] = random.nextFloat() > 0.9F;
+            }
             bl &= bls[m];
         }
 
