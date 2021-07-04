@@ -26,6 +26,8 @@ public abstract class MobSpawnerLogicMixin {
 
     @Shadow abstract void sendStatus(World world, BlockPos pos, int i);
 
+    @Shadow abstract boolean isPlayerInRange(World world, BlockPos pos);
+
     int minSpawnDelayMixin = 200;
     int maxSpawnDelayMixin = 400;
 
