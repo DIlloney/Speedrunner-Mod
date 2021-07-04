@@ -1,6 +1,8 @@
 package com.dilloney.speedrunnermod.registry;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import com.dilloney.speedrunnermod.blocks.ModBlocks;
+import com.dilloney.speedrunnermod.config.ModConfigLoader;
 import com.dilloney.speedrunnermod.items.ModItems;
 import com.dilloney.speedrunnermod.mixins.misc.StructuresConfigAccessor;
 import com.dilloney.speedrunnermod.util.UniqueItemRegistry;
@@ -104,32 +106,61 @@ public class ModRegistry {
     }
 
     public static void registerStructureConfigs() {
-        ServerWorldEvents.LOAD.register((server, world) -> {
-            Map<StructureFeature<?>, StructureConfig> map = new HashMap<>(world.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
+        if (SpeedrunnerMod.CONFIG.difficulty == 1 && SpeedrunnerMod.CONFIG.makeStructuresMoreCommon || SpeedrunnerMod.CONFIG.difficulty == 2 && SpeedrunnerMod.CONFIG.makeStructuresMoreCommon || SpeedrunnerMod.CONFIG.difficulty == 3 && SpeedrunnerMod.CONFIG.makeStructuresMoreCommon) {
+            ServerWorldEvents.LOAD.register((server, world) -> {
+                Map<StructureFeature<?>, StructureConfig> map = new HashMap<>(world.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
 
-            map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
-                return new StructureConfig(9, 8, 34222645);
-            });
-            map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
-                return new StructureConfig(16, 9, 10387312);
-            });
-            map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
-                return new StructureConfig(10, 8, 14357617);
-            });
-            map.computeIfPresent(StructureFeature.SHIPWRECK, (structureFeature, structureConfig) -> {
-                return new StructureConfig(10, 8, 165745295);
-            });
-            map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
-                return new StructureConfig(8, 7, 30084232);
-            });
-            map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
-                return new StructureConfig(9, 8, 30084232);
-            });
+                map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(9, 8, 34222645);
+                });
+                map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(16, 9, 10387312);
+                });
+                map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(10, 8, 14357617);
+                });
+                map.computeIfPresent(StructureFeature.SHIPWRECK, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(10, 8, 165745295);
+                });
+                map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(8, 7, 30084232);
+                });
+                map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(9, 8, 30084232);
+                });
 
-            ImmutableMap<StructureFeature<?>, StructureConfig> immutableMap = ImmutableMap.copyOf(map);
+                ImmutableMap<StructureFeature<?>, StructureConfig> immutableMap = ImmutableMap.copyOf(map);
 
-            ((StructuresConfigAccessor) world.getChunkManager().getChunkGenerator().getStructuresConfig()).setStructures(immutableMap);
-        });
+                ((StructuresConfigAccessor) world.getChunkManager().getChunkGenerator().getStructuresConfig()).setStructures(immutableMap);
+            });
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 4 && SpeedrunnerMod.CONFIG.makeStructuresMoreCommon) {
+            ServerWorldEvents.LOAD.register((server, world) -> {
+                Map<StructureFeature<?>, StructureConfig> map = new HashMap<>(world.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
+
+                map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(12, 9, 34222645);
+                });
+                map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(21, 10, 10387312);
+                });
+                map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(12, 9, 14357617);
+                });
+                map.computeIfPresent(StructureFeature.SHIPWRECK, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(12, 9, 165745295);
+                });
+                map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(10, 9, 30084232);
+                });
+                map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(11, 9, 30084232);
+                });
+
+                ImmutableMap<StructureFeature<?>, StructureConfig> immutableMap = ImmutableMap.copyOf(map);
+
+                ((StructuresConfigAccessor) world.getChunkManager().getChunkGenerator().getStructuresConfig()).setStructures(immutableMap);
+            });
+        }
     }
 
     public static void registerConfiguredFeatures() {
@@ -176,6 +207,10 @@ public class ModRegistry {
         BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.MESA), GenerationStep.Feature.UNDERGROUND_ORES, deepslateDiamondOreMesaJungleMountains);
         BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.JUNGLE), GenerationStep.Feature.UNDERGROUND_ORES, deepslateDiamondOreMesaJungleMountains);
         BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.EXTREME_HILLS), GenerationStep.Feature.UNDERGROUND_ORES, deepslateDiamondOreMesaJungleMountains);
+    }
+
+    public static void loadConfig() {
+        ModConfigLoader.load();
     }
 
     public static void registerUniqueItems() {
