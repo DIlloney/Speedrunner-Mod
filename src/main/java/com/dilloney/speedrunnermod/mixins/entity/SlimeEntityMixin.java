@@ -20,11 +20,11 @@ public class SlimeEntityMixin extends MobEntity {
         if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             return this.random.nextInt(60) + 120;
         } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
-            return this.random.nextInt(30) + 40;
+            return this.random.nextInt(40) + 60;
         } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
-            return this.random.nextInt(20) + 10;
+            return this.random.nextInt(30) + 30;
         } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
-            return this.random.nextInt(10) + 5;
+            return this.random.nextInt(20) + 20;
         } else {
             return this.random.nextInt(60) + 120;
         }

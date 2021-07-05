@@ -21,11 +21,11 @@ public class MagmaCubeEntityMixin extends SlimeEntity {
         if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             return this.random.nextInt(60) + 120;
         } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
-            return this.random.nextInt(30) + 40;
+            return this.random.nextInt(40) + 60;
         } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
-            return this.random.nextInt(20) + 10;
+            return this.random.nextInt(30) + 30;
         } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
-            return this.random.nextInt(10) + 5;
+            return this.random.nextInt(20) + 20;
         } else {
             return this.random.nextInt(60) + 120;
         }
@@ -34,13 +34,11 @@ public class MagmaCubeEntityMixin extends SlimeEntity {
     @Overwrite
     public float getDamageAmount() {
         if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 1.5F;
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 2 || SpeedrunnerMod.CONFIG.difficulty == 3) {
             return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 2.0F;
-        } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
-            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 3.0F;
-        } else if (SpeedrunnerMod.CONFIG.difficulty == 3) {
-            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 4.0F;
         } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
-            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 6.0F;
+            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 2.5F;
         } else {
             return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 2.0F;
         }

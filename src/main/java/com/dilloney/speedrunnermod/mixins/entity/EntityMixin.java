@@ -16,18 +16,25 @@ public class EntityMixin {
         if (!entity.isFireImmune()) {
             if (SpeedrunnerMod.CONFIG.difficulty == 1) {
                 entity.setOnFireFor(8);
-                entity.damage(DamageSource.LAVA, 2.0F);
+                if (entity.damage(DamageSource.LAVA, 2.0F)) {
+                    entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.world.random.nextFloat() * 0.4F);
+                }
             } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
                 entity.setOnFireFor(10);
-                entity.damage(DamageSource.LAVA, 3.0F);
+                if (entity.damage(DamageSource.LAVA, 3.0F)) {
+                    entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.world.random.nextFloat() * 0.4F);
+                }
             } else if (SpeedrunnerMod.CONFIG.difficulty == 3 || SpeedrunnerMod.CONFIG.difficulty == 4) {
-                entity.setOnFireFor(12);
-                entity.damage(DamageSource.LAVA, 4.0F);
+                entity.setOnFireFor(10);
+                if (entity.damage(DamageSource.LAVA, 4.0F)) {
+                    entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.world.random.nextFloat() * 0.4F);
+                }
             } else {
                 entity.setOnFireFor(8);
-                entity.damage(DamageSource.LAVA, 2.0F);
+                if (entity.damage(DamageSource.LAVA, 2.0F)) {
+                    entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.world.random.nextFloat() * 0.4F);
+                }
             }
-            entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.world.random.nextFloat() * 0.4F);
         }
     }
 }
