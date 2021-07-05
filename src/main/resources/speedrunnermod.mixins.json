@@ -47,6 +47,7 @@
     "misc.LootTablesMixin",
     "misc.MobSpawnerLogicMixin",
     "misc.PiglinBrainMixin",
+    "misc.StrafePlayerPhaseMixin",
     "misc.StructuresConfigAccessor",
     "world.ChunkGeneratorMixin",
     "world.DefaultBiomeCreatorMixin",
