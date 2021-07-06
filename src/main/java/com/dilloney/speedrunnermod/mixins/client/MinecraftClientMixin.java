@@ -28,12 +28,12 @@ public class MinecraftClientMixin {
     @Shadow private GameOptions options;
 
     @Inject(at = @At("HEAD"), method = "close")
-    private void close(CallbackInfo info) {
+    private void closeMod(CallbackInfo info) {
         options.write();
     }
 
     @Inject(at = @At("HEAD"), method = "openScreen")
-    private void openScreen(Screen screen, CallbackInfo info) {
+    private void openScreenMod(Screen screen, CallbackInfo info) {
         if (screen != null && screen.getClass().getSimpleName().equals("SodiumOptionsGUI")) {
             try {
                 List<?> optionPages = (List<?>) get(screen, "me.jellysquid.mods.sodium.client.gui.SodiumOptionsGUI", "pages");
