@@ -10,8 +10,9 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ItemPredicate.class)
 public class ItemPredicateMixin {
+
     @ModifyVariable(method = "test", at = @At("HEAD"))
-    public ItemStack speedrunnerShearsAsShears(ItemStack stack) {
+    public ItemStack testMod(ItemStack stack) {
         if (stack.getItem() == ModItems.SPEEDRUNNER_SHEARS.getDefaultStack().getItem()) {
             ItemStack itemStack = new ItemStack(Items.SHEARS);
             itemStack.setCount(stack.getCount());
