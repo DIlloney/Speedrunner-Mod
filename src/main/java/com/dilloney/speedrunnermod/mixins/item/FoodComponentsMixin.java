@@ -47,7 +47,7 @@ public class FoodComponentsMixin {
     @Shadow final static FoodComponent TROPICAL_FISH;
 
     static {
-        APPLE = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.8F).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 20 * 5, 0), 1.0F).build();
+        APPLE = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.8F).build();
         BAKED_POTATO = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.9F).build();
         BEEF = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.7F).meat().build();
         BEETROOT = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.4F).build();
