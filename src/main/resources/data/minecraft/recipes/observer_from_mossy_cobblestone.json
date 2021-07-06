@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "RQQ",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:mossy_cobblestone"
+        },
+        "R": {
+            "item": "minecraft:redstone"
+        },
+        "Q": {
+            "item": "minecraft:quartz"
+        }
+    },
+    "result": {
+        "item": "minecraft:observer",
+        "count": 1
+    }
+}
