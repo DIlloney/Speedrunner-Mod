@@ -196,7 +196,7 @@ public final class ModDifficulty {
     private static final String jungle_leaves = "{\"type\":\"minecraft:block\",\"pools\":[{\"rolls\":1,\"bonus_rolls\":0,\"entries\":[{\"type\":\"minecraft:alternatives\",\"children\":[{\"type\":\"minecraft:item\",\"conditions\":[{\"condition\":\"minecraft:alternative\",\"terms\":[{\"condition\":\"minecraft:match_tool\",\"predicate\":{\"items\":[\"minecraft:shears\"]}},{\"condition\":\"minecraft:match_tool\",\"predicate\":{\"enchantments\":[{\"enchantment\":\"minecraft:silk_touch\",\"levels\":{\"min\":1}}]}}]}],\"name\":\"minecraft:jungle_leaves\"},{\"type\":\"minecraft:item\",\"conditions\":[{\"condition\":\"minecraft:survives_explosion\"},{\"condition\":\"minecraft:table_bonus\",\"enchantment\":\"minecraft:fortune\",\"chances\":[0.025,0.027777778,0.03125,0.041666668,0.1]}],\"name\":\"minecraft:jungle_sapling\"}]}]},{\"rolls\":1,\"bonus_rolls\":0,\"entries\":[{\"type\":\"minecraft:item\",\"conditions\":[{\"condition\":\"minecraft:table_bonus\",\"enchantment\":\"minecraft:fortune\",\"chances\":[0.65,0.05555558,0.55,0.075,0.1]}],\"functions\":[{\"function\":\"minecraft:set_count\",\"count\":{\"type\":\"minecraft:uniform\",\"min\":1,\"max\":2},\"add\":false},{\"function\":\"minecraft:explosion_decay\"}],\"name\":\"minecraft:stick\"}],\"conditions\":[{\"condition\":\"minecraft:inverted\",\"term\":{\"condition\":\"minecraft:alternative\",\"terms\":[{\"condition\":\"minecraft:match_tool\",\"predicate\":{\"items\":[\"minecraft:shears\"]}},{\"condition\":\"minecraft:match_tool\",\"predicate\":{\"enchantments\":[{\"enchantment\":\"minecraft:silk_touch\",\"levels\":{\"min\":1}}]}}]}}]}]}";
     private static final String jungle_log_constant = "{\"type\":\"minecraft:block\",\"pools\":[{\"rolls\":1,\"entries\":[{\"type\":\"minecraft:item\",\"name\":\"minecraft:jungle_log\",\"functions\":[{\"function\":\"minecraft:set_count\",\"count\":{\"type\":\"minecraft:uniform\",\"min\":2,\"max\":2}}]}],\"conditions\":[{\"condition\":\"minecraft:survives_explosion\"}]}]}";
     private static final String jungle_log_uniform = "{\"type\":\"minecraft:block\",\"pools\":[{\"rolls\":1,\"entries\":[{\"type\":\"minecraft:item\",\"name\":\"minecraft:jungle_log\",\"functions\":[{\"function\":\"minecraft:set_count\",\"count\":{\"type\":\"minecraft:uniform\",\"min\":1,\"max\":2}}]}],\"conditions\":[{\"condition\":\"minecraft:survives_explosion\"}]}]}";
-    private static final String jungle_wood_constant = "{\"type\":\"minecraft:block\",\"pools\":[{\"rolls\":1,\"entries\":[{\"type\":\"minecraft:item\",\"name\":\"minecraft:jungle_wood\",\"functions\":[{\"function\":\"minecraft:set_count\",\"count\":{\"type\":\"minecraft:uniform\",\"min\":1,\"max\":2}}]}],\"conditions\":[{\"condition\":\"minecraft:survives_explosion\"}]}]}";
+    private static final String jungle_wood_constant = "{\"type\":\"minecraft:block\",\"pools\":[{\"rolls\":1,\"entries\":[{\"type\":\"minecraft:item\",\"name\":\"minecraft:jungle_wood\",\"functions\":[{\"function\":\"minecraft:set_count\",\"count\":{\"type\":\"minecraft:uniform\",\"min\":2,\"max\":2}}]}],\"conditions\":[{\"condition\":\"minecraft:survives_explosion\"}]}]}";
     private static final String jungle_wood_uniform = "{\"type\":\"minecraft:block\",\"pools\":[{\"rolls\":1,\"entries\":[{\"type\":\"minecraft:item\",\"name\":\"minecraft:jungle_wood\",\"functions\":[{\"function\":\"minecraft:set_count\",\"count\":{\"type\":\"minecraft:uniform\",\"min\":1,\"max\":2}}]}],\"conditions\":[{\"condition\":\"minecraft:survives_explosion\"}]}]}";
     private static final String nether_gold_ore = "{\"type\":\"minecraft:block\",\"pools\":[{\"rolls\":1,\"entries\":[{\"type\":\"minecraft:alternatives\",\"children\":[{\"type\":\"minecraft:item\",\"name\":\"minecraft:nether_gold_ore\",\"conditions\":[{\"condition\":\"minecraft:match_tool\",\"predicate\":{\"enchantments\":[{\"enchantment\":\"minecraft:silk_touch\",\"levels\":{\"min\":1}}]}}]},{\"type\":\"minecraft:item\",\"name\":\"minecraft:gold_nugget\",\"functions\":[{\"function\":\"minecraft:set_count\",\"count\":{\"type\":\"minecraft:uniform\",\"min\":18,\"max\":45}},{\"function\":\"minecraft:apply_bonus\",\"enchantment\":\"minecraft:fortune\",\"formula\":\"minecraft:ore_drops\"},{\"function\":\"minecraft:explosion_decay\"}]}]}]}]}";
     private static final String netherrack = "{\"type\":\"minecraft:block\",\"pools\":[{\"rolls\":1,\"entries\":[{\"type\":\"minecraft:item\",\"name\":\"minecraft:netherrack\",\"functions\":[{\"function\":\"minecraft:set_count\",\"count\":{\"type\":\"minecraft:uniform\",\"min\":1,\"max\":3}}]}],\"conditions\":[{\"condition\":\"minecraft:survives_explosion\"}]}]}";
@@ -665,55 +665,49 @@ public final class ModDifficulty {
     }
 
     public static void registerStructureGeneration() {
-        if (SpeedrunnerMod.CONFIG.difficulty == 1 && SpeedrunnerMod.CONFIG.makeStructuresMoreCommon || SpeedrunnerMod.CONFIG.difficulty == 2 && SpeedrunnerMod.CONFIG.makeStructuresMoreCommon || SpeedrunnerMod.CONFIG.difficulty == 3 && SpeedrunnerMod.CONFIG.makeStructuresMoreCommon) {
+        if (SpeedrunnerMod.CONFIG.makeStructuresMoreCommon) {
             ServerWorldEvents.LOAD.register((server, world) -> {
                 Map<StructureFeature<?>, StructureConfig> map = new HashMap<>(world.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
 
-                map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(9, 8, 34222645);
-                });
-                map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(16, 9, 10387312);
-                });
-                map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(10, 8, 14357617);
-                });
-                map.computeIfPresent(StructureFeature.SHIPWRECK, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(10, 8, 165745295);
-                });
-                map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(8, 7, 30084232);
-                });
-                map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(9, 8, 30084232);
-                });
-
-                ImmutableMap<StructureFeature<?>, StructureConfig> immutableMap = ImmutableMap.copyOf(map);
-
-                ((StructuresConfigAccessor) world.getChunkManager().getChunkGenerator().getStructuresConfig()).setStructures(immutableMap);
-            });
-        } else if (SpeedrunnerMod.CONFIG.difficulty == 4 && SpeedrunnerMod.CONFIG.makeStructuresMoreCommon) {
-            ServerWorldEvents.LOAD.register((server, world) -> {
-                Map<StructureFeature<?>, StructureConfig> map = new HashMap<>(world.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
-
-                map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(10, 9, 34222645);
-                });
-                map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(21, 10, 10387312);
-                });
-                map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(10, 9, 14357617);
-                });
-                map.computeIfPresent(StructureFeature.SHIPWRECK, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(10, 9, 165745295);
-                });
-                map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(10, 9, 30084232);
-                });
-                map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(10, 9, 30084232);
-                });
+                if (SpeedrunnerMod.CONFIG.difficulty == 1 || SpeedrunnerMod.CONFIG.difficulty == 2 || SpeedrunnerMod.CONFIG.difficulty == 3) {
+                    map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(9, 8, 34222645);
+                    });
+                    map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(16, 9, 10387312);
+                    });
+                    map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(10, 8, 14357617);
+                    });
+                    map.computeIfPresent(StructureFeature.SHIPWRECK, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(10, 8, 165745295);
+                    });
+                    map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(8, 7, 30084232);
+                    });
+                    map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(9, 8, 30084232);
+                    });
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
+                    map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(10, 9, 34222645);
+                    });
+                    map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(21, 10, 10387312);
+                    });
+                    map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(10, 9, 14357617);
+                    });
+                    map.computeIfPresent(StructureFeature.SHIPWRECK, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(10, 9, 165745295);
+                    });
+                    map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(9, 9, 30084232);
+                    });
+                    map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
+                        return new StructureConfig(10, 9, 30084232);
+                    });
+                }
 
                 ImmutableMap<StructureFeature<?>, StructureConfig> immutableMap = ImmutableMap.copyOf(map);
 
