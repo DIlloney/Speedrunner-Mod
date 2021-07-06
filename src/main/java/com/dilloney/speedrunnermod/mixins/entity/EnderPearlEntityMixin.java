@@ -1,7 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
-import com.dilloney.speedrunnermod.SpeedrunnerModClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;

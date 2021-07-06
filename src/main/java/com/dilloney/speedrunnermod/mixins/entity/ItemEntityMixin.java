@@ -1,6 +1,5 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
-import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

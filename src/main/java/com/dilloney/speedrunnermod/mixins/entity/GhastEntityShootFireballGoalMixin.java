@@ -15,9 +15,9 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(GhastEntity.ShootFireballGoal.class)
 public class GhastEntityShootFireballGoalMixin {
 
-    @Shadow @Final private GhastEntity ghast;
+    @Shadow @Final GhastEntity ghast;
 
-    @Shadow private int cooldown;
+    @Shadow int cooldown;
 
     @Overwrite
     public void tick() {
