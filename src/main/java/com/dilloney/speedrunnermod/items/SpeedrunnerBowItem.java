@@ -156,7 +156,7 @@ public class SpeedrunnerBowItem extends BowItem {
         return f;
     }
 
-    public float getBaseDamage() { return 3.0F; }
+    public float getBaseDamage() { return 2.9F; }
 
     public float getSpeedMultiplier() { return 3.5F; }
 }
