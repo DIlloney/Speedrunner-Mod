@@ -13,7 +13,7 @@ public class StrongholdGeneratorMixin {
 
     static {
         if (SpeedrunnerMod.CONFIG.difficulty == 1 && SpeedrunnerMod.CONFIG.modifiedStrongholdGeneration || SpeedrunnerMod.CONFIG.difficulty == 2 && SpeedrunnerMod.CONFIG.modifiedStrongholdGeneration) {
-            ALL_PIECES = new StrongholdGenerator.PieceData[]{new StrongholdGenerator.PieceData(StrongholdGenerator.Corridor.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.PrisonHall.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.LeftTurn.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.RightTurn.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.SquareRoom.class, 20, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.Stairs.class, 5, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.SpiralStaircase.class, 5, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.FiveWayCrossing.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.ChestCorridor.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.Library.class, 50, 2) {
+            ALL_PIECES = new StrongholdGenerator.PieceData[]{new StrongholdGenerator.PieceData(StrongholdGenerator.Corridor.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.PrisonHall.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.LeftTurn.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.RightTurn.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.SquareRoom.class, 20, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.Stairs.class, 5, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.SpiralStaircase.class, 5, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.FiveWayCrossing.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.ChestCorridor.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.Library.class, 100, 2) {
                 public boolean canGenerate(int chainLength) {
                     return super.canGenerate(chainLength) && chainLength > 4;
                 }
@@ -23,13 +23,13 @@ public class StrongholdGeneratorMixin {
                 }
             }};
         } else if (SpeedrunnerMod.CONFIG.difficulty == 3 && SpeedrunnerMod.CONFIG.modifiedStrongholdGeneration || SpeedrunnerMod.CONFIG.difficulty == 4 && SpeedrunnerMod.CONFIG.modifiedStrongholdGeneration) {
-            ALL_PIECES = new StrongholdGenerator.PieceData[]{new StrongholdGenerator.PieceData(StrongholdGenerator.Corridor.class, 25, 3), new StrongholdGenerator.PieceData(StrongholdGenerator.PrisonHall.class, 5, 3), new StrongholdGenerator.PieceData(StrongholdGenerator.LeftTurn.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.RightTurn.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.SquareRoom.class, 25, 3), new StrongholdGenerator.PieceData(StrongholdGenerator.Stairs.class, 5, 3), new StrongholdGenerator.PieceData(StrongholdGenerator.SpiralStaircase.class, 5, 3), new StrongholdGenerator.PieceData(StrongholdGenerator.FiveWayCrossing.class, 5, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.ChestCorridor.class, 5, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.Library.class, 25, 2) {
+            ALL_PIECES = new StrongholdGenerator.PieceData[]{new StrongholdGenerator.PieceData(StrongholdGenerator.Corridor.class, 25, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.PrisonHall.class, 5, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.LeftTurn.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.RightTurn.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.SquareRoom.class, 25, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.Stairs.class, 5, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.SpiralStaircase.class, 5, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.FiveWayCrossing.class, 5, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.ChestCorridor.class, 5, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.Library.class, 50, 2) {
                 public boolean canGenerate(int chainLength) {
                     return super.canGenerate(chainLength) && chainLength > 4;
                 }
             }, new StrongholdGenerator.PieceData(StrongholdGenerator.PortalRoom.class, 50, 2) {
                 public boolean canGenerate(int chainLength) {
-                    return super.canGenerate(chainLength) && chainLength > 4;
+                    return super.canGenerate(chainLength) && chainLength > 3;
                 }
             }};
         } else {
