@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "speedrunnermod:speedrunner_pickaxe",
+    "speedrunnermod:blackstone_pickaxe",
+    "speedrunnermod:granite_pickaxe",
+    "speedrunnermod:andesite_pickaxe",
+    "speedrunnermod:diorite_pickaxe"
+  ]
+}
