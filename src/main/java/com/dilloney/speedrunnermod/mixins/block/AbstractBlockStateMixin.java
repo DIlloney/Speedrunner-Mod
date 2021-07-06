@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class AbstractBlockStateMixin {
 
     @Inject(at = @At("HEAD"), method = "getHardness", cancellable = true)
-    private void changeHardness(BlockView world, BlockPos pos, CallbackInfoReturnable<Float> info) {
+    private void getHardnessMod(BlockView world, BlockPos pos, CallbackInfoReturnable<Float> info) {
         if (SpeedrunnerMod.CONFIG.modifiedBlockHardnessValues) {
             if (world.getBlockState(pos).getBlock() == Blocks.STONE) {
                 info.setReturnValue(1.3F);

@@ -10,8 +10,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(TripwireBlock.class)
 public class TripwireBlockMixin {
+
     @Redirect(method = "onBreak", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-    private boolean onBreak(ItemStack stack, Item isOfItem) {
+    private boolean onBreakMod(ItemStack stack, Item isOfItem) {
         return UniqueItemRegistry.SHEARS.isItemInRegistry(stack.getItem());
     }
 }
