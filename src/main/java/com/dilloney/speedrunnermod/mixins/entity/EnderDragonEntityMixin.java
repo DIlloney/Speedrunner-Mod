@@ -114,7 +114,13 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
                         this.phaseManager.setPhase(PhaseType.DYING);
                     }
 
-                    if (this.phaseManager.getCurrent().isSittingOrHovering() && SpeedrunnerMod.CONFIG.difficulty == 1 || this.phaseManager.getCurrent().isSittingOrHovering() && SpeedrunnerMod.CONFIG.difficulty == 2) {
+                    if (this.phaseManager.getCurrent().isSittingOrHovering() && SpeedrunnerMod.CONFIG.difficulty == 1) {
+                        this.damageDuringSitting = (int)((float)this.damageDuringSitting + (f - this.getHealth()));
+                        if ((float)this.damageDuringSitting > 0.95F * this.getMaxHealth()) {
+                            this.damageDuringSitting = 0;
+                            this.phaseManager.setPhase(PhaseType.TAKEOFF);
+                        }
+                    } else if (this.phaseManager.getCurrent().isSittingOrHovering() && SpeedrunnerMod.CONFIG.difficulty == 2) {
                         this.damageDuringSitting = (int)((float)this.damageDuringSitting + (f - this.getHealth()));
                         if ((float)this.damageDuringSitting > 0.75F * this.getMaxHealth()) {
                             this.damageDuringSitting = 0;
@@ -122,7 +128,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
                         }
                     } else if (this.phaseManager.getCurrent().isSittingOrHovering() && SpeedrunnerMod.CONFIG.difficulty == 3 || this.phaseManager.getCurrent().isSittingOrHovering() && SpeedrunnerMod.CONFIG.difficulty == 4) {
                         this.damageDuringSitting = (int)((float)this.damageDuringSitting + (f - this.getHealth()));
-                        if ((float)this.damageDuringSitting > 0.25F * this.getMaxHealth()) {
+                        if ((float)this.damageDuringSitting > 0.35F * this.getMaxHealth()) {
                             this.damageDuringSitting = 0;
                             this.phaseManager.setPhase(PhaseType.TAKEOFF);
                         }

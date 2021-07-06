@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import com.dilloney.speedrunnermod.util.UniqueItemRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
@@ -41,14 +42,27 @@ public abstract class SheepEntityMixin extends AnimalEntity implements Shearable
 
     @Overwrite
     public void sheared(SoundCategory shearedSoundCategory) {
-        this.world.playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
-        this.setSheared(true);
-        int i = 6 + this.random.nextInt(4);
+        if (SpeedrunnerMod.CONFIG.modifiedLootTables) {
+            this.world.playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
+            this.setSheared(true);
+            int i = 6 + this.random.nextInt(4);
 
-        for(int j = 0; j < i; ++j) {
-            ItemEntity itemEntity = this.dropItem((ItemConvertible)DROPS.get(this.getColor()), 1);
-            if (itemEntity != null) {
-                itemEntity.setVelocity(itemEntity.getVelocity().add((double)((this.random.nextFloat() - this.random.nextFloat()) * 0.1F), (double)(this.random.nextFloat() * 0.05F), (double)((this.random.nextFloat() - this.random.nextFloat()) * 0.1F)));
+            for(int j = 0; j < i; ++j) {
+                ItemEntity itemEntity = this.dropItem((ItemConvertible)DROPS.get(this.getColor()), 1);
+                if (itemEntity != null) {
+                    itemEntity.setVelocity(itemEntity.getVelocity().add((double)((this.random.nextFloat() - this.random.nextFloat()) * 0.1F), (double)(this.random.nextFloat() * 0.05F), (double)((this.random.nextFloat() - this.random.nextFloat()) * 0.1F)));
+                }
+            }
+        } else {
+            this.world.playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
+            this.setSheared(true);
+            int i = 1 + this.random.nextInt(3);
+
+            for(int j = 0; j < i; ++j) {
+                ItemEntity itemEntity = this.dropItem((ItemConvertible)DROPS.get(this.getColor()), 1);
+                if (itemEntity != null) {
+                    itemEntity.setVelocity(itemEntity.getVelocity().add((double)((this.random.nextFloat() - this.random.nextFloat()) * 0.1F), (double)(this.random.nextFloat() * 0.05F), (double)((this.random.nextFloat() - this.random.nextFloat()) * 0.1F)));
+                }
             }
         }
     }

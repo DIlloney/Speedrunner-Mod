@@ -1,7 +1,5 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
-import com.dilloney.speedrunnermod.SpeedrunnerMod;
-import com.dilloney.speedrunnermod.SpeedrunnerModClient;
 import com.dilloney.speedrunnermod.items.ModItems;
 import net.minecraft.entity.*;
 import net.minecraft.item.Items;
@@ -61,7 +59,7 @@ public abstract class EyeOfEnderEntityMixin extends Entity implements FlyingItem
             }
         } else if (this.getStack().getItem() == Items.ENDER_EYE && !this.isTouchingWater() || this.getStack().getItem() == ModItems.EYE_OF_ANNUL && !this.isTouchingWater()) {
             this.world.addParticle(ParticleTypes.PORTAL, d - vec3d.x * 0.25D + this.random.nextDouble() * 0.6D - 0.3D, e - vec3d.y * 0.25D - 0.5D, f - vec3d.z * 0.25D + this.random.nextDouble() * 0.6D - 0.3D, vec3d.x, vec3d.y, vec3d.z);
-        } else if (this.getStack().getItem() == ModItems.EYE_OF_INFERNO && !this.isTouchingWater() && SpeedrunnerMod.CONFIG.defaultParticles) {
+        } else if (this.getStack().getItem() == ModItems.EYE_OF_INFERNO && !this.isTouchingWater()) {
             this.world.addParticle(ParticleTypes.SMOKE, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0.0D, 0.0D, 0.0D);
         }
 
