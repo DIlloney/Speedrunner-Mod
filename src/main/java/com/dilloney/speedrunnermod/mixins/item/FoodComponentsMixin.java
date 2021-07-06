@@ -4,51 +4,50 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.FoodComponents;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(FoodComponents.class)
 public class FoodComponentsMixin {
 
-    @Shadow @Final static FoodComponent APPLE;
-    @Shadow @Final static FoodComponent BAKED_POTATO;
-    @Shadow @Final static FoodComponent BEEF;
-    @Shadow @Final static FoodComponent BEETROOT;
-    @Shadow @Final static FoodComponent BREAD;
-    @Shadow @Final static FoodComponent CARROT;
-    @Shadow @Final static FoodComponent CHICKEN;
-    @Shadow @Final static FoodComponent COD;
-    @Shadow @Final static FoodComponent COOKED_BEEF;
-    @Shadow @Final static FoodComponent COOKED_CHICKEN;
-    @Shadow @Final static FoodComponent COOKED_COD;
-    @Shadow @Final static FoodComponent COOKED_MUTTON;
-    @Shadow @Final static FoodComponent COOKED_PORKCHOP;
-    @Shadow @Final static FoodComponent COOKED_RABBIT;
-    @Shadow @Final static FoodComponent COOKED_SALMON;
-    @Shadow @Final static FoodComponent COOKIE;
-    @Shadow @Final static FoodComponent DRIED_KELP;
-    @Shadow @Final static FoodComponent ENCHANTED_GOLDEN_APPLE;
-    @Shadow @Final static FoodComponent GOLDEN_APPLE;
-    @Shadow @Final static FoodComponent GOLDEN_CARROT;
-    @Shadow @Final static FoodComponent HONEY_BOTTLE;
-    @Shadow @Final static FoodComponent MELON_SLICE;
-    @Shadow @Final static FoodComponent MUTTON;
-    @Shadow @Final static FoodComponent POISONOUS_POTATO;
-    @Shadow @Final static FoodComponent PORKCHOP;
-    @Shadow @Final static FoodComponent POTATO;
-    @Shadow @Final static FoodComponent PUFFERFISH;
-    @Shadow @Final static FoodComponent PUMPKIN_PIE;
-    @Shadow @Final static FoodComponent RABBIT;
-    @Shadow @Final static FoodComponent ROTTEN_FLESH;
-    @Shadow @Final static FoodComponent SALMON;
-    @Shadow @Final static FoodComponent SPIDER_EYE;
-    @Shadow @Final static FoodComponent SWEET_BERRIES;
-    @Shadow @Final static FoodComponent GLOW_BERRIES;
-    @Shadow @Final static FoodComponent TROPICAL_FISH;
+    @Shadow final static FoodComponent APPLE;
+    @Shadow final static FoodComponent BAKED_POTATO;
+    @Shadow final static FoodComponent BEEF;
+    @Shadow final static FoodComponent BEETROOT;
+    @Shadow final static FoodComponent BREAD;
+    @Shadow final static FoodComponent CARROT;
+    @Shadow final static FoodComponent CHICKEN;
+    @Shadow final static FoodComponent COD;
+    @Shadow final static FoodComponent COOKED_BEEF;
+    @Shadow final static FoodComponent COOKED_CHICKEN;
+    @Shadow final static FoodComponent COOKED_COD;
+    @Shadow final static FoodComponent COOKED_MUTTON;
+    @Shadow final static FoodComponent COOKED_PORKCHOP;
+    @Shadow final static FoodComponent COOKED_RABBIT;
+    @Shadow final static FoodComponent COOKED_SALMON;
+    @Shadow final static FoodComponent COOKIE;
+    @Shadow final static FoodComponent DRIED_KELP;
+    @Shadow final static FoodComponent ENCHANTED_GOLDEN_APPLE;
+    @Shadow final static FoodComponent GOLDEN_APPLE;
+    @Shadow final static FoodComponent GOLDEN_CARROT;
+    @Shadow final static FoodComponent HONEY_BOTTLE;
+    @Shadow final static FoodComponent MELON_SLICE;
+    @Shadow final static FoodComponent MUTTON;
+    @Shadow final static FoodComponent POISONOUS_POTATO;
+    @Shadow final static FoodComponent PORKCHOP;
+    @Shadow final static FoodComponent POTATO;
+    @Shadow final static FoodComponent PUFFERFISH;
+    @Shadow final static FoodComponent PUMPKIN_PIE;
+    @Shadow final static FoodComponent RABBIT;
+    @Shadow final static FoodComponent ROTTEN_FLESH;
+    @Shadow final static FoodComponent SALMON;
+    @Shadow final static FoodComponent SPIDER_EYE;
+    @Shadow final static FoodComponent SWEET_BERRIES;
+    @Shadow final static FoodComponent GLOW_BERRIES;
+    @Shadow final static FoodComponent TROPICAL_FISH;
 
     static {
-        APPLE = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.8F).build();
+        APPLE = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.8F).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 20 * 5, 0), 1.0F).build();
         BAKED_POTATO = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.9F).build();
         BEEF = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.7F).meat().build();
         BEETROOT = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.4F).build();
@@ -83,6 +82,5 @@ public class FoodComponentsMixin {
         SWEET_BERRIES = (new FoodComponent.Builder()).hunger(4).saturationModifier(1.2F).build();
         GLOW_BERRIES = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.0F).statusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100, 0, true, false, true), 1.0F).build();
         TROPICAL_FISH = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.2F).build();
-        System.out.println("[Speedrunner Mod] [main/INFO]: Ignore these errors, everything will work properly.");
     }
 }
