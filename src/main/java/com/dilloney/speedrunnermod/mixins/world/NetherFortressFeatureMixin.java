@@ -12,7 +12,6 @@ import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.NetherFortressFeature;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,7 +19,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(NetherFortressFeature.class)
 public class NetherFortressFeatureMixin {
 
-    @Shadow @Final static Pool<SpawnSettings.SpawnEntry> MONSTER_SPAWNS;
+    @Shadow final static Pool<SpawnSettings.SpawnEntry> MONSTER_SPAWNS;
 
     @Overwrite
     public boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long l, ChunkRandom chunkRandom, ChunkPos chunkPos, Biome biome, ChunkPos chunkPos2, DefaultFeatureConfig defaultFeatureConfig, HeightLimitView heightLimitView) {

@@ -2,15 +2,14 @@ package com.dilloney.speedrunnermod.mixins.world;
 
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.structure.NetherFortressGenerator;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(NetherFortressGenerator.class)
 public class NetherFortressGeneratorMixin {
 
-    @Shadow @Final static NetherFortressGenerator.PieceData[] ALL_BRIDGE_PIECES;
-    @Shadow @Final static NetherFortressGenerator.PieceData[] ALL_CORRIDOR_PIECES;
+    @Shadow final static NetherFortressGenerator.PieceData[] ALL_BRIDGE_PIECES;
+    @Shadow final static NetherFortressGenerator.PieceData[] ALL_CORRIDOR_PIECES;
 
     static {
         if (SpeedrunnerMod.CONFIG.difficulty == 1 && SpeedrunnerMod.CONFIG.modifiedNetherFortressGeneration || SpeedrunnerMod.CONFIG.difficulty == 2 && SpeedrunnerMod.CONFIG.modifiedNetherFortressGeneration) {
@@ -23,6 +22,5 @@ public class NetherFortressGeneratorMixin {
             ALL_BRIDGE_PIECES = new NetherFortressGenerator.PieceData[]{new NetherFortressGenerator.PieceData(NetherFortressGenerator.Bridge.class, 30, 0, true), new NetherFortressGenerator.PieceData(NetherFortressGenerator.BridgeCrossing.class, 10, 4), new NetherFortressGenerator.PieceData(NetherFortressGenerator.BridgeSmallCrossing.class, 10, 4), new NetherFortressGenerator.PieceData(NetherFortressGenerator.BridgeStairs.class, 10, 3), new NetherFortressGenerator.PieceData(NetherFortressGenerator.BridgePlatform.class, 5, 2), new NetherFortressGenerator.PieceData(NetherFortressGenerator.CorridorExit.class, 5, 1)};
             ALL_CORRIDOR_PIECES = new NetherFortressGenerator.PieceData[]{new NetherFortressGenerator.PieceData(NetherFortressGenerator.SmallCorridor.class, 25, 0, true), new NetherFortressGenerator.PieceData(NetherFortressGenerator.CorridorCrossing.class, 15, 5), new NetherFortressGenerator.PieceData(NetherFortressGenerator.CorridorRightTurn.class, 5, 10), new NetherFortressGenerator.PieceData(NetherFortressGenerator.CorridorLeftTurn.class, 5, 10), new NetherFortressGenerator.PieceData(NetherFortressGenerator.CorridorStairs.class, 10, 3, true), new NetherFortressGenerator.PieceData(NetherFortressGenerator.CorridorBalcony.class, 7, 2), new NetherFortressGenerator.PieceData(NetherFortressGenerator.CorridorNetherWartsRoom.class, 5, 2)};
         }
-        System.out.print("[Speedrunner Mod] [main/INFO]: Ignore these error too, everything will work properly.");
     }
 }

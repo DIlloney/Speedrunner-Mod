@@ -2,14 +2,13 @@ package com.dilloney.speedrunnermod.mixins.world;
 
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.structure.StrongholdGenerator;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(StrongholdGenerator.class)
 public class StrongholdGeneratorMixin {
 
-    @Shadow @Final static StrongholdGenerator.PieceData[] ALL_PIECES;
+    @Shadow final static StrongholdGenerator.PieceData[] ALL_PIECES;
 
     static {
         if (SpeedrunnerMod.CONFIG.difficulty == 1 && SpeedrunnerMod.CONFIG.modifiedStrongholdGeneration || SpeedrunnerMod.CONFIG.difficulty == 2 && SpeedrunnerMod.CONFIG.modifiedStrongholdGeneration) {
@@ -43,6 +42,5 @@ public class StrongholdGeneratorMixin {
                 }
             }};
         }
-        System.out.print("[Speedrunner Mod] [main/INFO]: Ignore these error too, everything will work properly.");
     }
 }
