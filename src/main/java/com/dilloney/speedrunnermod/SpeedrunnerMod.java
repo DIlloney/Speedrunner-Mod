@@ -19,7 +19,7 @@ public class SpeedrunnerMod implements ModInitializer {
         ModRegistry.registerItems();
         ModRegistry.registerBlocks();
         ModRegistry.registerBlockItems();
-        ModRegistry.registerStructureConfigs();
+        ModRegistry.registerModDifficulty();
         ModRegistry.registerConfiguredFeatures();
         ModRegistry.registerUniqueItems();
 
