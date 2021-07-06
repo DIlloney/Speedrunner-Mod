@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "block.AbstractBlockStateMixin",
+    "block.AbstractFireBlockMixin",
     "block.BeehiveBlockMixin",
     "block.BlockMixin",
     "block.BlocksMixin",
@@ -67,7 +68,6 @@
     "client.BackgroundRendererMixin",
     "client.DoubleOptionMixin",
     "client.MinecraftClientMixin",
-    "client.particle.AbstractFireBlockMixin",
     "client.particle.BucketItemMixin",
     "client.particle.CryingObsidianBlockMixin",
     "client.particle.EndPortalBlockMixin",
