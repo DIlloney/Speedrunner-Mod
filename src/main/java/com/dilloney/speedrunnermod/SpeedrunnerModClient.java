@@ -36,6 +36,6 @@ public class SpeedrunnerModClient implements ClientModInitializer {
                     return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
         });
 
-        System.out.println("Speedrunner Mod loaded successfully! version = 1.15 | mcversion = 1.17");
+        System.out.println("Speedrunner Mod loaded successfully! version = 1.15 | mcversion = 1.17.1");
     }
 }
