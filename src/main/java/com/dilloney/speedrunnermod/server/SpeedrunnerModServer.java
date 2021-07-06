@@ -10,6 +10,6 @@ public class SpeedrunnerModServer implements DedicatedServerModInitializer {
     @Override
     public void onInitializeServer() {
         System.out.println("Client needs both the Speedrunner Mod and Fabric API to use the mod on the server.");
-        System.out.println("Speedrunner Mod loaded successfully for server! version = 1.15 | mcversion = 1.17");
+        System.out.println("Speedrunner Mod loaded successfully for server! version = 1.15 | mcversion = 1.17.1");
     }
 }
