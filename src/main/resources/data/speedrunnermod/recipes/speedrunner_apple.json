@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sss",
+    "sAs",
+    "sss"
+  ],
+  "key": {
+    "s": {
+      "item": "speedrunnermod:speedrunner_ingot"
+    },
+    "A": {
+      "item": "minecraft:apple"
+    }
+  },
+  "result": {
+    "item": "speedrunnermod:speedrunner_apple",
+    "count": 1
+  }
+}
