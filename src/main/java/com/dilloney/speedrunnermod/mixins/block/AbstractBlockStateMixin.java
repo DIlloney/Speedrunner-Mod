@@ -616,6 +616,46 @@ public class AbstractBlockStateMixin {
                 info.setReturnValue(1.5F);
             } else if (world.getBlockState(pos).getBlock() == Blocks.QUARTZ_BRICKS) {
                 info.setReturnValue(0.7F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DEEPSLATE) {
+                info.setReturnValue(2.3F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.COBBLED_DEEPSLATE) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.COBBLED_DEEPSLATE_STAIRS) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.COBBLED_DEEPSLATE_SLAB) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.COBBLED_DEEPSLATE_WALL) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_DEEPSLATE) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_DEEPSLATE_STAIRS) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_DEEPSLATE_SLAB) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_DEEPSLATE_WALL) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DEEPSLATE_TILES) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DEEPSLATE_TILE_STAIRS) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DEEPSLATE_TILE_SLAB) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DEEPSLATE_TILE_WALL) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DEEPSLATE_BRICKS) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DEEPSLATE_BRICK_STAIRS) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DEEPSLATE_BRICK_SLAB) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DEEPSLATE_BRICK_WALL) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_DEEPSLATE) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRACKED_DEEPSLATE_BRICKS) {
+                info.setReturnValue(2.5F);
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRACKED_DEEPSLATE_TILES) {
+                info.setReturnValue(2.5F);
             }
         }
     }
