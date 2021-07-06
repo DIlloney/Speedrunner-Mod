@@ -669,45 +669,24 @@ public final class ModDifficulty {
             ServerWorldEvents.LOAD.register((server, world) -> {
                 Map<StructureFeature<?>, StructureConfig> map = new HashMap<>(world.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
 
-                if (SpeedrunnerMod.CONFIG.difficulty == 1 || SpeedrunnerMod.CONFIG.difficulty == 2 || SpeedrunnerMod.CONFIG.difficulty == 3) {
-                    map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(9, 8, 34222645);
-                    });
-                    map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(16, 9, 10387312);
-                    });
-                    map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(10, 8, 14357617);
-                    });
-                    map.computeIfPresent(StructureFeature.SHIPWRECK, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(10, 8, 165745295);
-                    });
-                    map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(8, 7, 30084232);
-                    });
-                    map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(9, 8, 30084232);
-                    });
-                } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
-                    map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(10, 9, 34222645);
-                    });
-                    map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(21, 10, 10387312);
-                    });
-                    map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(10, 9, 14357617);
-                    });
-                    map.computeIfPresent(StructureFeature.SHIPWRECK, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(10, 9, 165745295);
-                    });
-                    map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(9, 9, 30084232);
-                    });
-                    map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
-                        return new StructureConfig(10, 9, 30084232);
-                    });
-                }
+                map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(9, 8, 34222645);
+                });
+                map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(16, 9, 10387312);
+                });
+                map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(10, 8, 14357617);
+                });
+                map.computeIfPresent(StructureFeature.SHIPWRECK, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(10, 8, 165745295);
+                });
+                map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(8, 7, 30084232);
+                });
+                map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
+                    return new StructureConfig(9, 8, 30084232);
+                });
 
                 ImmutableMap<StructureFeature<?>, StructureConfig> immutableMap = ImmutableMap.copyOf(map);
 
