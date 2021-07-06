@@ -1,5 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.block;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -21,12 +22,17 @@ public class OreBlockMixin extends Block {
 
     @Inject(method = "onStacksDropped", at = @At("TAIL"))
     private void onStacksDroppedModified(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, CallbackInfo callbackInfo) {
-        if (state.isOf(Blocks.IRON_ORE)) {
+        if (state.isOf(Blocks.IRON_ORE) && SpeedrunnerMod.CONFIG.modifiedLootTables) {
             int i = 1 + world.random.nextInt(2);
             this.dropExperience(world, pos, i);
-        }
-        if (state.isOf(Blocks.GOLD_ORE)) {
+        } else if (state.isOf(Blocks.DEEPSLATE_IRON_ORE) && SpeedrunnerMod.CONFIG.modifiedLootTables) {
+            int i = 1 + world.random.nextInt(3);
+            this.dropExperience(world, pos, i);
+        } else if (state.isOf(Blocks.GOLD_ORE) && SpeedrunnerMod.CONFIG.modifiedLootTables) {
             int i = 1 + world.random.nextInt(5);
+            this.dropExperience(world, pos, i);
+        } else if (state.isOf(Blocks.DEEPSLATE_GOLD_ORE) && SpeedrunnerMod.CONFIG.modifiedLootTables) {
+            int i = 1 + world.random.nextInt(6);
             this.dropExperience(world, pos, i);
         }
     }

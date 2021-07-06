@@ -12,907 +12,609 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractBlock.AbstractBlockState.class)
 public class AbstractBlockStateMixin {
+
     @Inject(at = @At("HEAD"), method = "getHardness", cancellable = true)
     private void changeHardness(BlockView world, BlockPos pos, CallbackInfoReturnable<Float> info) {
         if (SpeedrunnerMod.CONFIG.modifiedBlockHardnessValues) {
             if (world.getBlockState(pos).getBlock() == Blocks.STONE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GRANITE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GRANITE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_GRANITE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_GRANITE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DIORITE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DIORITE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_DIORITE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_DIORITE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ANDESITE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ANDESITE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_ANDESITE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_ANDESITE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GRASS_BLOCK) {
                 info.setReturnValue(0.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DIRT) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DIRT) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.COARSE_DIRT) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.COARSE_DIRT) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PODZOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PODZOL) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.COBBLESTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.COBBLESTONE) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.OAK_PLANKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.OAK_PLANKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_PLANKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_PLANKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_PLANKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_PLANKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_PLANKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_PLANKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_PLANKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_PLANKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_PLANKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_PLANKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SAND) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SAND) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.RED_SAND) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.RED_SAND) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GRAVEL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GRAVEL) {
                 info.setReturnValue(0.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.OAK_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.OAK_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_OAK_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_OAK_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_SPRUCE_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_SPRUCE_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_BIRCH_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_BIRCH_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_JUNGLE_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_JUNGLE_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_ACACIA_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_ACACIA_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_DARK_OAK_LOG) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_DARK_OAK_LOG) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.OAK_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.OAK_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_OAK_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_OAK_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_SPRUCE_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_SPRUCE_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_BIRCH_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_BIRCH_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_JUNGLE_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_JUNGLE_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_ACACIA_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_ACACIA_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_DARK_OAK_WOOD) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_DARK_OAK_WOOD) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.OAK_LEAVES) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.OAK_LEAVES) {
                 info.setReturnValue(0.1F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_LEAVES) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_LEAVES) {
                 info.setReturnValue(0.1F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_LEAVES) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_LEAVES) {
                 info.setReturnValue(0.1F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_LEAVES) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_LEAVES) {
                 info.setReturnValue(0.1F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_LEAVES) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_LEAVES) {
                 info.setReturnValue(0.1F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_LEAVES) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_LEAVES) {
                 info.setReturnValue(0.1F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SANDSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SANDSTONE) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_SANDSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_SANDSTONE) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CUT_SANDSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CUT_SANDSTONE) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.COBWEB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.COBWEB) {
                 info.setReturnValue(2.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WHITE_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WHITE_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ORANGE_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ORANGE_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.MAGENTA_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.MAGENTA_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.LIGHT_BLUE_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.LIGHT_BLUE_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.YELLOW_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.YELLOW_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.LIME_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.LIME_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PINK_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PINK_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GRAY_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GRAY_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.LIGHT_GRAY_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.LIGHT_GRAY_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CYAN_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CYAN_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PURPLE_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PURPLE_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BLUE_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BLUE_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BROWN_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BROWN_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GREEN_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GREEN_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.RED_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.RED_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BLACK_WOOL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BLACK_WOOL) {
                 info.setReturnValue(0.65F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GOLD_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GOLD_BLOCK) {
                 info.setReturnValue(2.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.IRON_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.IRON_BLOCK) {
                 info.setReturnValue(3.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BOOKSHELF) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BOOKSHELF) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_COBBLESTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_COBBLESTONE) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.OBSIDIAN) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.OBSIDIAN) {
                 info.setReturnValue(35.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.OAK_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.OAK_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CHEST) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CHEST) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DIAMOND_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DIAMOND_BLOCK) {
                 info.setReturnValue(4.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRAFTING_TABLE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRAFTING_TABLE) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.FURNACE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.FURNACE) {
                 info.setReturnValue(2.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.OAK_DOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.OAK_DOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.COBBLESTONE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.COBBLESTONE_STAIRS) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.IRON_DOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.IRON_DOOR) {
                 info.setReturnValue(3.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ICE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ICE) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SNOW_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SNOW_BLOCK) {
                 info.setReturnValue(0.1F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CLAY) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CLAY) {
                 info.setReturnValue(0.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JUKEBOX) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JUKEBOX) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.OAK_FENCE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.OAK_FENCE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PUMPKIN) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PUMPKIN) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.NETHERRACK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.NETHERRACK) {
                 info.setReturnValue(0.37F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SOUL_SAND) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SOUL_SAND) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SOUL_SOIL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SOUL_SOIL) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BASALT) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BASALT) {
                 info.setReturnValue(1.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BASALT) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BASALT) {
                 info.setReturnValue(1.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GLOWSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GLOWSTONE) {
                 info.setReturnValue(0.2F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CARVED_PUMPKIN) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CARVED_PUMPKIN) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JACK_O_LANTERN) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JACK_O_LANTERN) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.OAK_TRAPDOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.OAK_TRAPDOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_TRAPDOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_TRAPDOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_TRAPDOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_TRAPDOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_TRAPDOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_TRAPDOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_TRAPDOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_TRAPDOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_TRAPDOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_TRAPDOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STONE_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STONE_BRICKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_STONE_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_STONE_BRICKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRACKED_STONE_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRACKED_STONE_BRICKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_STONE_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_STONE_BRICKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.IRON_BARS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.IRON_BARS) {
                 info.setReturnValue(3.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CHAIN) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CHAIN) {
                 info.setReturnValue(3.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.MELON) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.MELON) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.VINE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.VINE) {
                 info.setReturnValue(0.1F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.OAK_FENCE_GATE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.OAK_FENCE_GATE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STONE_BRICK_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STONE_BRICK_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.MYCELIUM) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.MYCELIUM) {
                 info.setReturnValue(0.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.NETHER_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.NETHER_BRICKS) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.NETHER_BRICK_FENCE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.NETHER_BRICK_FENCE) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.NETHER_BRICK_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.NETHER_BRICK_STAIRS) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ENCHANTING_TABLE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ENCHANTING_TABLE) {
                 info.setReturnValue(3.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CAULDRON) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CAULDRON) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.END_STONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.END_STONE) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SANDSTONE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SANDSTONE_STAIRS) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ENDER_CHEST) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ENDER_CHEST) {
                 info.setReturnValue(15.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.EMERALD_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.EMERALD_BLOCK) {
                 info.setReturnValue(4.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BEACON) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BEACON) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.COBBLESTONE_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.COBBLESTONE_WALL) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_COBBLESTONE_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_COBBLESTONE_WALL) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ANVIL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ANVIL) {
                 info.setReturnValue(3.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CHIPPED_ANVIL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CHIPPED_ANVIL) {
                 info.setReturnValue(3.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DAMAGED_ANVIL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DAMAGED_ANVIL) {
                 info.setReturnValue(3.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.TRAPPED_CHEST) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.TRAPPED_CHEST) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.REDSTONE_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.REDSTONE_BLOCK) {
                 info.setReturnValue(3.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.QUARTZ_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.QUARTZ_BLOCK) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_QUARTZ_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_QUARTZ_BLOCK) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.QUARTZ_PILLAR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.QUARTZ_PILLAR) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.QUARTZ_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.QUARTZ_STAIRS) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DROPPER) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DROPPER) {
                 info.setReturnValue(2.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.IRON_TRAPDOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.IRON_TRAPDOOR) {
                 info.setReturnValue(3.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_BRICKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_PRISMARINE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_PRISMARINE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_BRICK_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_BRICK_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_BRICK_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_BRICK_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_PRISMARINE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_PRISMARINE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SEA_LANTERN) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SEA_LANTERN) {
                 info.setReturnValue(0.2F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.HAY_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.HAY_BLOCK) {
                 info.setReturnValue(0.2F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.COAL_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.COAL_BLOCK) {
                 info.setReturnValue(3.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PACKED_ICE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PACKED_ICE) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.RED_SANDSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.RED_SANDSTONE) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_RED_SANDSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_RED_SANDSTONE) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CUT_RED_SANDSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CUT_RED_SANDSTONE) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.RED_SANDSTONE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.RED_SANDSTONE_STAIRS) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.OAK_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.OAK_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STONE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_STONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_STONE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SANDSTONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SANDSTONE_SLAB) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CUT_SANDSTONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CUT_SANDSTONE_SLAB) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.COBBLESTONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.COBBLESTONE_SLAB) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STONE_BRICK_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STONE_BRICK_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.NETHER_BRICK_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.NETHER_BRICK_SLAB) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.QUARTZ_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.QUARTZ_SLAB) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.RED_SANDSTONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.RED_SANDSTONE_SLAB) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CUT_RED_SANDSTONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CUT_RED_SANDSTONE_SLAB) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_STONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_STONE) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_SANDSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_SANDSTONE) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_QUARTZ) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_QUARTZ) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_RED_SANDSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_RED_SANDSTONE) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_FENCE_GATE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_FENCE_GATE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_FENCE_GATE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_FENCE_GATE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_FENCE_GATE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_FENCE_GATE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_FENCE_GATE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_FENCE_GATE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_FENCE_GATE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_FENCE_GATE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_FENCE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_FENCE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_FENCE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_FENCE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_FENCE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_FENCE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_FENCE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_FENCE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_FENCE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_FENCE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_DOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SPRUCE_DOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_DOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BIRCH_DOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_DOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.JUNGLE_DOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_DOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ACACIA_DOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_DOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DARK_OAK_DOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.END_STONE_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.END_STONE_BRICKS) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DIRT_PATH) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DIRT_PATH) {
                 info.setReturnValue(0.55F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.FROSTED_ICE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.FROSTED_ICE) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.MAGMA_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.MAGMA_BLOCK) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.NETHER_WART_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.NETHER_WART_BLOCK) {
                 info.setReturnValue(0.6F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.RED_NETHER_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.RED_NETHER_BRICKS) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BONE_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BONE_BLOCK) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DRIED_KELP_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DRIED_KELP_BLOCK) {
                 info.setReturnValue(0.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BLUE_ICE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BLUE_ICE) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_GRANITE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_GRANITE_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_RED_SANDSTONE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_RED_SANDSTONE_STAIRS) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_STONE_BRICK_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_STONE_BRICK_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.END_STONE_BRICK_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.END_STONE_BRICK_STAIRS) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STONE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STONE_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_SANDSTONE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_SANDSTONE_STAIRS) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_QUARTZ_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_QUARTZ_STAIRS) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GRANITE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GRANITE_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ANDESITE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ANDESITE_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.RED_NETHER_BRICK_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.RED_NETHER_BRICK_STAIRS) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_ANDESITE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_ANDESITE_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DIORITE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DIORITE_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_GRANITE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_GRANITE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_RED_SANDSTONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_RED_SANDSTONE_SLAB) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_STONE_BRICK_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_STONE_BRICK_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_DIORITE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_DIORITE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_COBBLESTONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_COBBLESTONE_SLAB) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.END_STONE_BRICK_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.END_STONE_BRICK_SLAB) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_SANDSTONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_SANDSTONE_SLAB) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_QUARTZ_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOOTH_QUARTZ_SLAB) {
                 info.setReturnValue(0.8F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GRANITE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GRANITE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ANDESITE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ANDESITE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.RED_NETHER_BRICK_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.RED_NETHER_BRICK_SLAB) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_ANDESITE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_ANDESITE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DIORITE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DIORITE_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.PRISMARINE_WALL) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.RED_SANDSTONE_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.RED_SANDSTONE_WALL) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_STONE_BRICK_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.MOSSY_STONE_BRICK_WALL) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GRANITE_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GRANITE_WALL) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STONE_BRICK_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STONE_BRICK_WALL) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.NETHER_BRICK_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.NETHER_BRICK_WALL) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ANDESITE_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ANDESITE_WALL) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.RED_NETHER_BRICK_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.RED_NETHER_BRICK_WALL) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SANDSTONE_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SANDSTONE_WALL) {
                 info.setReturnValue(0.7F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.END_STONE_BRICK_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.END_STONE_BRICK_WALL) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.DIORITE_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.DIORITE_WALL) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.LOOM) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.LOOM) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BARREL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BARREL) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMOKER) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMOKER) {
                 info.setReturnValue(2.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BLAST_FURNACE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BLAST_FURNACE) {
                 info.setReturnValue(2.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CARTOGRAPHY_TABLE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CARTOGRAPHY_TABLE) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.FLETCHING_TABLE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.FLETCHING_TABLE) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GRINDSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GRINDSTONE) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.LECTERN) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.LECTERN) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SMITHING_TABLE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SMITHING_TABLE) {
                 info.setReturnValue(1.6F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BELL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BELL) {
                 info.setReturnValue(3.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.LANTERN) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.LANTERN) {
                 info.setReturnValue(2.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SOUL_LANTERN) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SOUL_LANTERN) {
                 info.setReturnValue(2.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WARPED_STEM) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WARPED_STEM) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_WARPED_STEM) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_WARPED_STEM) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WARPED_HYPHAE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WARPED_HYPHAE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_WARPED_HYPHAE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_WARPED_HYPHAE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WARPED_NYLIUM) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WARPED_NYLIUM) {
                 info.setReturnValue(0.37F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WARPED_WART_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WARPED_WART_BLOCK) {
                 info.setReturnValue(0.6F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_STEM) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_STEM) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_CRIMSON_STEM) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_CRIMSON_STEM) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_HYPHAE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_HYPHAE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_CRIMSON_HYPHAE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.STRIPPED_CRIMSON_HYPHAE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_NYLIUM) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_NYLIUM) {
                 info.setReturnValue(0.37F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.SHROOMLIGHT) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.SHROOMLIGHT) {
                 info.setReturnValue(0.6F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_PLANKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_PLANKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WARPED_PLANKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WARPED_PLANKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WARPED_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WARPED_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_FENCE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_FENCE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WARPED_FENCE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WARPED_FENCE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_TRAPDOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_TRAPDOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WARPED_TRAPDOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WARPED_TRAPDOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_FENCE_GATE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_FENCE_GATE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WARPED_FENCE_GATE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WARPED_FENCE_GATE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WARPED_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WARPED_STAIRS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_DOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRIMSON_DOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.WARPED_DOOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.WARPED_DOOR) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.NETHERITE_BLOCK) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.NETHERITE_BLOCK) {
                 info.setReturnValue(25.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.ANCIENT_DEBRIS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.ANCIENT_DEBRIS) {
                 info.setReturnValue(15.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRYING_OBSIDIAN) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRYING_OBSIDIAN) {
                 info.setReturnValue(10.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.RESPAWN_ANCHOR) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.RESPAWN_ANCHOR) {
                 info.setReturnValue(35.0F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.LODESTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.LODESTONE) {
                 info.setReturnValue(2.50F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BLACKSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BLACKSTONE) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BLACKSTONE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BLACKSTONE_STAIRS) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BLACKSTONE_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BLACKSTONE_WALL) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.BLACKSTONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.BLACKSTONE_SLAB) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_BRICKS) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_POLISHED_BLACKSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_POLISHED_BLACKSTONE) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_BRICK_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_BRICK_SLAB) {
                 info.setReturnValue(1.3F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_BRICK_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_BRICK_WALL) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.GILDED_BLACKSTONE) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.GILDED_BLACKSTONE) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_STAIRS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_STAIRS) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_SLAB) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_SLAB) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_WALL) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.POLISHED_BLACKSTONE_WALL) {
                 info.setReturnValue(1.4F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_NETHER_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CHISELED_NETHER_BRICKS) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.CRACKED_NETHER_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.CRACKED_NETHER_BRICKS) {
                 info.setReturnValue(1.5F);
-            }
-            if (world.getBlockState(pos).getBlock() == Blocks.QUARTZ_BRICKS) {
+            } else if (world.getBlockState(pos).getBlock() == Blocks.QUARTZ_BRICKS) {
                 info.setReturnValue(0.7F);
             }
         }

@@ -19,7 +19,7 @@ public class SpawnerBlockMixin extends Block {
     @Overwrite
     public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
         super.onStacksDropped(state, world, pos, stack);
-        int i = 30 + world.random.nextInt(45) + world.random.nextInt(45);
+        int i = 50 + world.random.nextInt(75) + world.random.nextInt(80);
         this.dropExperience(world, pos, i);
     }
 }

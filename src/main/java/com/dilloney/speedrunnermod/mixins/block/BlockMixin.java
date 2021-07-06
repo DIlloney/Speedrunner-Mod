@@ -16,7 +16,7 @@ public class BlockMixin {
     @Overwrite
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         if (SpeedrunnerMod.CONFIG.difficulty == 1) {
-            entity.handleFallDamage(fallDistance, 0.6F, DamageSource.FALL);
+            entity.handleFallDamage(fallDistance, 0.5F, DamageSource.FALL);
         } else {
             entity.handleFallDamage(fallDistance, 1.0F, DamageSource.FALL);
         }
