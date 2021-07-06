@@ -20,7 +20,7 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.Random;
 
-public class ModBlocks {
+public final class ModBlocks {
 
     public static final Block SPEEDRUNNER_BLOCK = new Block(FabricBlockSettings.of(Material.STONE)
             .breakByTool(FabricToolTags.PICKAXES, 1)
