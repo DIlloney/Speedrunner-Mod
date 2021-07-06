@@ -10,8 +10,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(EfficiencyEnchantment.class)
 public class EfficiencyEnchantmentMixin {
+
     @Redirect(method = "isAcceptableItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-    private boolean isAcceptableItem(ItemStack stack, Item isOfItem) {
+    private boolean isAcceptableItemMod(ItemStack stack, Item isOfItem) {
         return UniqueItemRegistry.SHEARS.isItemInRegistry(stack.getItem());
     }
 }
