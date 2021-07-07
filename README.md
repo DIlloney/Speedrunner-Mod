@@ -10,4 +10,4 @@ This mod changes the Vanilla aspects of **_Minecraft Speedrunning_** and _comple
 
 _**Curseforge Page:**_ https://www.curseforge.com/minecraft/mc-mods/speedrunner-mod
 
-_**Find out more at the main website!:**_ _https://sites.google.com/view/speedrunnermod/home_
+_**Find out more at the main website!:**_ https://sites.google.com/view/speedrunnermod/home
