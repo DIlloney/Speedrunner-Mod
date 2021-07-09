@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "speedrunnermod:eye_of_inferno"
+    },
+    "title": "Devil's Eye",
+    "description": "Obtain an Eye of Inferno",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "minecraft:story/upgrade_tools",
+  "criteria": {
+    "has_eye_of_inferno": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "speedrunnermod:eye_of_inferno"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_eye_of_inferno"
+    ]
+  ]
+}
