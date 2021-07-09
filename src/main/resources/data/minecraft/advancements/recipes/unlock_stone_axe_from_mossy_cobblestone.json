@@ -1,13 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_speedrunner_block": {
+    "has_mossy_cobblestone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "speedrunnermod:speedrunner_block"
+              "minecraft:mossy_cobblestone"
             ]
           }
         ]
@@ -16,19 +16,19 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:anvil_from_speedrunner_block_and_ingot"
+        "recipe": "minecraft:stone_axe_from_mossy_cobblestone"
       }
     }
   },
   "requirements": [
     [
-      "has_speedrunner_block",
+      "has_mossy_cobblestone",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:anvil_from_speedrunner_block_and_ingot"
+      "minecraft:stone_axe_from_mossy_cobblestone"
     ]
   }
 }
