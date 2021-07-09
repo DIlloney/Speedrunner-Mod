@@ -1,6 +1,6 @@
 package com.dilloney.speedrunnermod.blocks;
 
-import com.dilloney.speedrunnermod.SpeedrunnerMod;
+import com.dilloney.speedrunnermod.registry.ModItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
@@ -65,25 +65,25 @@ public final class ModBlocks {
             .sounds(BlockSoundGroup.NETHER_ORE));
 
     public static final BlockItem SPEEDRUNNER_BLOCK_ITEM = new BlockItem(ModBlocks.SPEEDRUNNER_BLOCK,
-            new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MATERIALS).rarity(Rarity.COMMON));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MATERIALS).rarity(Rarity.COMMON));
 
     public static final BlockItem SPEEDRUNNER_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.SPEEDRUNNER_ORE,
-            new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
 
     public static final BlockItem DEEPSLATE_SPEEDRUNNER_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE,
-            new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
 
     public static final BlockItem NETHER_SPEEDRUNNER_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.SPEEDRUNNER_NETHER_ORE,
-            new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
 
     public static final BlockItem IGNEOUS_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.IGNEOUS_ORE,
-            new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
 
     public static final BlockItem DEEPSLATE_IGNEOUS_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.DEEPSLATE_IGNEOUS_ORE,
-            new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
 
     public static final BlockItem NETHER_IGNEOUS_ORE_BLOCK_ITEM = new BlockItem(ModBlocks.IGNEOUS_NETHER_ORE,
-            new Item.Settings().group(SpeedrunnerMod.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.BUILDING_BLOCKS).rarity(Rarity.COMMON));
 
     public static class SpeedrunnerOreBlockProperties extends Block {
 
