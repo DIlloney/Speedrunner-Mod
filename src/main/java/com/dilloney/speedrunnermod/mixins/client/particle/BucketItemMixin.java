@@ -1,7 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.client.particle;
 
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
-import com.dilloney.speedrunnermod.SpeedrunnerModClient;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
