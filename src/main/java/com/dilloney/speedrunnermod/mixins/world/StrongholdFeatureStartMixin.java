@@ -49,9 +49,12 @@ public abstract class StrongholdFeatureStartMixin extends MarginedStructureStart
                 structurePiece.fillOpenings(start, this, this.random);
             }
 
-            if (SpeedrunnerMod.CONFIG.modifiedStrongholdGeneration) {
+            if (SpeedrunnerMod.CONFIG.modifiedWorldGeneration) {
                 this.randomUpwardTranslation(this.random, 32, 63);
-            } else {
+            } if (SpeedrunnerMod.CONFIG.modifiedWorldGeneration && SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                this.randomUpwardTranslation(this.random, 10, 20);
+            }
+            else {
                 this.randomUpwardTranslation(chunkGenerator.getSeaLevel(), chunkGenerator.getMinimumY(), this.random, 10);
             }
         } while(this.hasNoChildren() || start.portalRoom == null);

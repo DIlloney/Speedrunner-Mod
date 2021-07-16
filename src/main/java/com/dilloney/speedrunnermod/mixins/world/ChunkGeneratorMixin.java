@@ -47,7 +47,7 @@ public class ChunkGeneratorMixin {
                     }
                 }
 
-                if (SpeedrunnerMod.CONFIG.modifiedStrongholdGeneration) {
+                if (SpeedrunnerMod.CONFIG.makeStructuresMoreCommon) {
                     int i = 4;
                     int j = strongholdConfig.getCount();
                     int k = strongholdConfig.getSpread();

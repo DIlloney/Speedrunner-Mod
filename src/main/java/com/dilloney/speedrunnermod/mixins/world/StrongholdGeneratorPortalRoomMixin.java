@@ -76,7 +76,7 @@ public class StrongholdGeneratorPortalRoomMixin extends StrongholdGenerator.Piec
         boolean[] bls = new boolean[12];
 
         for(int m = 0; m < bls.length; ++m) {
-            if (SpeedrunnerMod.CONFIG.modifiedStrongholdGeneration) {
+            if (SpeedrunnerMod.CONFIG.modifiedWorldGeneration) {
                 bls[m] = random.nextFloat() > 0.75F;
             } else {
                 bls[m] = random.nextFloat() > 0.9F;

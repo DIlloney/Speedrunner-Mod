@@ -23,7 +23,7 @@ public class NetherFortressFeatureMixin {
 
     @Overwrite
     public boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long l, ChunkRandom chunkRandom, ChunkPos chunkPos, Biome biome, ChunkPos chunkPos2, DefaultFeatureConfig defaultFeatureConfig, HeightLimitView heightLimitView) {
-        if (SpeedrunnerMod.CONFIG.modifiedNetherFortressGeneration) {
+        if (SpeedrunnerMod.CONFIG.combineFortressAndBastion) {
             return chunkRandom.nextInt(5) >= 2;
         } else {
             return chunkRandom.nextInt(5) < 2;
@@ -31,7 +31,9 @@ public class NetherFortressFeatureMixin {
     }
 
     static {
-        if (SpeedrunnerMod.CONFIG.difficulty == 1 || SpeedrunnerMod.CONFIG.difficulty == 2) {
+        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+            MONSTER_SPAWNS = Pool.of(new SpawnSettings.SpawnEntry(EntityType.BLAZE, 50, 1, 4), new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 50, 1, 4), new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 75, 4, 12), new SpawnSettings.SpawnEntry(EntityType.SKELETON, 50, 4, 8), new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 20, 4, 6));
+        } else if (SpeedrunnerMod.CONFIG.difficulty == 1 || SpeedrunnerMod.CONFIG.difficulty == 2) {
             MONSTER_SPAWNS = Pool.of(new SpawnSettings.SpawnEntry(EntityType.BLAZE, 15, 1, 4), new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 15, 2, 4), new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 3, 1, 2), new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 8, 1, 3), new SpawnSettings.SpawnEntry(EntityType.SKELETON, 1, 1, 3), new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 1, 1, 3));
         } else if (SpeedrunnerMod.CONFIG.difficulty == 3 || SpeedrunnerMod.CONFIG.difficulty == 4) {
             MONSTER_SPAWNS = Pool.of(new SpawnSettings.SpawnEntry(EntityType.BLAZE, 10, 1, 3), new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 5, 1, 2), new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 8, 1, 2), new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 8, 1, 3), new SpawnSettings.SpawnEntry(EntityType.SKELETON, 5, 1, 4), new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 3, 1, 4));
