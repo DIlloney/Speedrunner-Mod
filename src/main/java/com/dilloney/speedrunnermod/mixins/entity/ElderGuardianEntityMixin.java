@@ -68,7 +68,10 @@ public class ElderGuardianEntityMixin extends GuardianEntity {
                 } while(serverPlayerEntity.hasStatusEffect(statusEffect) && serverPlayerEntity.getStatusEffect(statusEffect).getAmplifier() >= 2 && serverPlayerEntity.getStatusEffect(statusEffect).getDuration() >= 1200);
 
                 serverPlayerEntity.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.ELDER_GUARDIAN_EFFECT, this.isSilent() ? 0.0F : 1.0F));
-                if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+                if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                    serverPlayerEntity.addVelocity(0.2F, 1.0F, 0.2F);
+                    serverPlayerEntity.kill();
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
                     serverPlayerEntity.addStatusEffect(new StatusEffectInstance(statusEffect, 600, 2));
                 } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
                     serverPlayerEntity.addStatusEffect(new StatusEffectInstance(statusEffect, 800, 2));
@@ -85,6 +88,5 @@ public class ElderGuardianEntityMixin extends GuardianEntity {
         if (!this.hasPositionTarget()) {
             this.setPositionTarget(this.getBlockPos(), 16);
         }
-
     }
 }

@@ -4,6 +4,8 @@ import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.EndermiteEntity;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
@@ -50,7 +52,13 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
                     }
 
                     entity.fallDistance = 0.0F;
-                    if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+                    if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                        if (!serverPlayerEntity.isCreative()) {
+                            entity.addVelocity(0.0F, 1.5F, 0.0F);
+                            ((ServerPlayerEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60, 0));
+                        }
+                        entity.damage(DamageSource.FALL, 5.0F);
+                    } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
                         entity.damage(DamageSource.FALL, 2.0F);
                     } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
                         entity.damage(DamageSource.FALL, 3.0F);

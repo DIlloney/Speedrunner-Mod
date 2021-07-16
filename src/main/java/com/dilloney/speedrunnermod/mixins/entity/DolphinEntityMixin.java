@@ -21,7 +21,7 @@ public class DolphinEntityMixin {
         } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
             CLOSE_PLAYER_PREDICATE = TargetPredicate.createNonAttackable().setBaseMaxDistance(5.0D).ignoreVisibility();
         } else {
-            CLOSE_PLAYER_PREDICATE = TargetPredicate.createNonAttackable().setBaseMaxDistance(20.0D).ignoreVisibility();
+            CLOSE_PLAYER_PREDICATE = TargetPredicate.createNonAttackable().setBaseMaxDistance(10.0D).ignoreVisibility();
         }
     }
 }

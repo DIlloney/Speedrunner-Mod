@@ -1,13 +1,17 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
+import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import com.dilloney.speedrunnermod.items.ModItems;
 import net.minecraft.entity.*;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -15,26 +19,27 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(EyeOfEnderEntity.class)
 public abstract class EyeOfEnderEntityMixin extends Entity implements FlyingItemEntity {
 
-    @Shadow double targetX;
-    @Shadow double targetY;
-    @Shadow double targetZ;
-
-    @Shadow int lifespan;
-
     public EyeOfEnderEntityMixin(EntityType<? extends EyeOfEnderEntity> type, World world) {
         super(type, world);
     }
+
+    @Shadow double targetX;
+    @Shadow double targetY;
+    @Shadow double targetZ;
+    @Shadow int lifespan;
+    int explosionRadius = 3;
 
     @Overwrite
     public void tick() {
         super.tick();
         Vec3d vec3d = this.getVelocity();
+        Explosion.DestructionType destructionType = this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) ? Explosion.DestructionType.DESTROY : Explosion.DestructionType.NONE;
         double d = this.getX() + vec3d.x;
         double e = this.getY() + vec3d.y;
         double f = this.getZ() + vec3d.z;
         double g = vec3d.horizontalLength();
-        this.setPitch(updateRotation(this.prevPitch, (float)(MathHelper.atan2(vec3d.y, g) * 57.2957763671875D)));
-        this.setYaw(updateRotation(this.prevYaw, (float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875D)));
+        this.setPitch(ProjectileEntity.updateRotation(this.prevPitch, (float)(MathHelper.atan2(vec3d.y, g) * 57.2957763671875D)));
+        this.setYaw(ProjectileEntity.updateRotation(this.prevYaw, (float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875D)));
         if (!this.world.isClient) {
             double h = this.targetX - d;
             double i = this.targetZ - f;
@@ -69,7 +74,9 @@ public abstract class EyeOfEnderEntityMixin extends Entity implements FlyingItem
             if (this.lifespan > 40 && !this.world.isClient) {
                 this.discard();
                 this.world.spawnEntity(new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), this.getStack()));
-                if (this.getStack().getItem() == Items.ENDER_EYE || this.getStack().getItem() == ModItems.EYE_OF_ANNUL) {
+                if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                    this.world.createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius, destructionType);
+                } else if (this.getStack().getItem() == Items.ENDER_EYE || this.getStack().getItem() == ModItems.EYE_OF_ANNUL) {
                     this.playSound(SoundEvents.ENTITY_ENDER_EYE_DEATH, 1.0F, 1.0F);
                 } else if (this.getStack().getItem() == ModItems.EYE_OF_INFERNO) {
                     this.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1.0F, 1.0F);
@@ -78,17 +85,5 @@ public abstract class EyeOfEnderEntityMixin extends Entity implements FlyingItem
         } else {
             this.setPos(d, e, f);
         }
-    }
-
-    private static float updateRotation(float prevRot, float newRot) {
-        while(newRot - prevRot < -180.0F) {
-            prevRot -= 360.0F;
-        }
-
-        while(newRot - prevRot >= 180.0F) {
-            prevRot += 360.0F;
-        }
-
-        return MathHelper.lerp(0.2F, prevRot, newRot);
     }
 }

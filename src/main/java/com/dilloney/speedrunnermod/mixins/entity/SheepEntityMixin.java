@@ -32,9 +32,7 @@ public abstract class SheepEntityMixin extends AnimalEntity implements Shearable
     }
 
     @Shadow @Final static Map<DyeColor, ItemConvertible> DROPS;
-
     @Shadow abstract void setSheared(boolean sheared);
-
     @Shadow abstract DyeColor getColor();
 
     @Overwrite

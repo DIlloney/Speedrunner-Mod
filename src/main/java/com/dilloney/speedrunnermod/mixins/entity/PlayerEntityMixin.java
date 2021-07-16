@@ -43,16 +43,16 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Inject(method = "travel", at = @At("TAIL"))
     private void speedrunnerModEffectsTravel(Vec3d movementInput, CallbackInfo callbackInfo) {
         FluidState fluidState = this.world.getFluidState(this.getBlockPos());
-        if (this.isInLava() && this.shouldSwimInFluids() && !this.canWalkOnFluid(fluidState.getFluid()) && this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.SPEEDRUNNER_BOOTS) {
+        if (this.isInLava() && this.shouldSwimInFluids() && !this.canWalkOnFluid(fluidState.getFluid()) && this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.SPEEDRUNNER_BOOTS || this.isInLava() && this.shouldSwimInFluids() && !this.canWalkOnFluid(fluidState.getFluid()) && this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.GOLDEN_SPEEDRUNNER_BOOTS) {
             this.updateVelocity(0.025F, movementInput);
-            if (this.getRandom().nextFloat() < 0.03F) {
+            if (this.getRandom().nextFloat() < 0.01F) {
                 this.getEquippedStack(EquipmentSlot.FEET).damage(1, this, (livingEntity) -> {
                     livingEntity.sendEquipmentBreakStatus(EquipmentSlot.FEET);
                 });
             }
-        } else if (this.isTouchingWater() && this.shouldSwimInFluids() && !this.canWalkOnFluid(fluidState.getFluid()) && this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.SPEEDRUNNER_BOOTS) {
+        } else if (this.isTouchingWater() && this.shouldSwimInFluids() && !this.canWalkOnFluid(fluidState.getFluid()) && this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.SPEEDRUNNER_BOOTS || this.isTouchingWater() && this.shouldSwimInFluids() && !this.canWalkOnFluid(fluidState.getFluid()) && this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.GOLDEN_SPEEDRUNNER_BOOTS) {
             this.updateVelocity(0.005F, movementInput);
-            if (this.getRandom().nextFloat() < 0.02F) {
+            if (this.getRandom().nextFloat() < 0.01F) {
                 this.getEquippedStack(EquipmentSlot.FEET).damage(1, this, (livingEntity) -> {
                     livingEntity.sendEquipmentBreakStatus(EquipmentSlot.FEET);
                 });
@@ -62,10 +62,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     @Inject(method = "updateTurtleHelmet", at = @At("TAIL"))
     private void speedrunnerModEffects(CallbackInfo callbackInfo) {
-        if (this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.SPEEDRUNNER_BOOTS) {
+        if (this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.SPEEDRUNNER_BOOTS || this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.GOLDEN_SPEEDRUNNER_BOOTS) {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 10, 0, true, false, true));
         }
-        if (this.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.SPEEDRUNNER_LEGGINGS && this.isSubmergedIn(FluidTags.WATER) && this.isSwimming() && SpeedrunnerMod.CONFIG.difficulty == 1) {
+        if (this.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.SPEEDRUNNER_LEGGINGS && this.isSubmergedIn(FluidTags.WATER) && this.isSwimming() && SpeedrunnerMod.CONFIG.difficulty == 1 || this.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS && this.isSubmergedIn(FluidTags.WATER) && this.isSwimming() && SpeedrunnerMod.CONFIG.difficulty == 1) {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 10, 0, true, true, true));
             if (this.getRandom().nextFloat() < 0.04F) {
                 this.getEquippedStack(EquipmentSlot.LEGS).damage(1, this, (livingEntity) -> {

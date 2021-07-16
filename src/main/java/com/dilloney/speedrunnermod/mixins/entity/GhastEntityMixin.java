@@ -13,7 +13,9 @@ public class GhastEntityMixin {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createGhastAttributes() {
-        if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D);
+        } if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 5.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15.0D);
         } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
             return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 7.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 25.0D);
@@ -22,7 +24,7 @@ public class GhastEntityMixin {
         } else if (SpeedrunnerMod.CONFIG.difficulty == 4) {
             return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D);
         } else {
-            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 5.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15.0D);
+            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D);
         }
     }
 }

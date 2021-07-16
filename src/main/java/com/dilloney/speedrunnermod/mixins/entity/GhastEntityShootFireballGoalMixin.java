@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.Shadow;
 public class GhastEntityShootFireballGoalMixin {
 
     @Shadow @Final GhastEntity ghast;
-
     @Shadow int cooldown;
 
     @Overwrite
@@ -46,7 +45,11 @@ public class GhastEntityShootFireballGoalMixin {
                 if (SpeedrunnerMod.CONFIG.killGhastUponFireball) {
                     this.ghast.kill();
                 }
-                this.cooldown = -40;
+                if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                    this.cooldown = -5;
+                } else {
+                    this.cooldown = -40;
+                }
             }
         } else if (this.cooldown > 0) {
             --this.cooldown;

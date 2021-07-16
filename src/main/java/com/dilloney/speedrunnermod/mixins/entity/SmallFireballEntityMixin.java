@@ -27,7 +27,15 @@ public class SmallFireballEntityMixin extends AbstractFireballEntity {
             if (!entity.isFireImmune()) {
                 Entity entity2 = this.getOwner();
                 int i = entity.getFireTicks();
-                if (SpeedrunnerMod.CONFIG.difficulty == 1 || SpeedrunnerMod.CONFIG.difficulty == 2) {
+                if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                    entity.setOnFireFor(6);
+                    boolean bl = entity.damage(DamageSource.fireball(this, entity2), 10.0F);
+                    if (!bl) {
+                        entity.setFireTicks(i);
+                    } else if (entity2 instanceof LivingEntity) {
+                        this.applyDamageEffects((LivingEntity)entity2, entity);
+                    }
+                } else if (SpeedrunnerMod.CONFIG.difficulty == 1 || SpeedrunnerMod.CONFIG.difficulty == 2) {
                     entity.setOnFireFor(3);
                     boolean bl = entity.damage(DamageSource.fireball(this, entity2), 3.0F);
                     if (!bl) {

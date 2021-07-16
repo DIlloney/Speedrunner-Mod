@@ -14,7 +14,12 @@ public class EntityMixin {
     public void setOnFireFromLava() {
         Entity entity = (Entity)(Object)this;
         if (!entity.isFireImmune()) {
-            if (SpeedrunnerMod.CONFIG.difficulty == 1) {
+            if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                entity.setOnFireFor(15);
+                if (entity.damage(DamageSource.LAVA, 4.0F)) {
+                    entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.world.random.nextFloat() * 0.4F);
+                }
+            } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
                 entity.setOnFireFor(8);
                 if (entity.damage(DamageSource.LAVA, 2.0F)) {
                     entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.world.random.nextFloat() * 0.4F);

@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemEntity.class)
 public class ItemEntityMixin {
+
     @Inject(method = "isFireImmune", at = @At("RETURN"))
     public boolean isFireImmune(CallbackInfoReturnable info) {
         ItemEntity item = (ItemEntity) (Object) this;
