@@ -29,11 +29,11 @@ import static java.lang.Math.abs;
 @Mixin(DoubleOption.class)
 public class DoubleOptionMixin {
 
-    @Shadow @Final @Mutable private BiFunction<GameOptions, DoubleOption, Text> displayStringGetter;
+    @Shadow @Final @Mutable BiFunction<GameOptions, DoubleOption, Text> displayStringGetter;
 
-    @Shadow @Mutable private double min, max;
+    @Shadow @Mutable double min, max;
 
-    @Inject(at = @At("RETURN"), method = "<init>")
+    @Inject(method = "<init>", at = @At("RETURN"))
     private void init(String key, double min, double max, float step, Function<GameOptions, Double> getter, BiConsumer<GameOptions, Double> setter, BiFunction<GameOptions, DoubleOption, Text> displayStringGetter, Function<MinecraftClient, List<OrderedText>> function, CallbackInfo info) {
         if (key.equals("options.gamma")) {
             this.min = BrightnessFeature.minBrightness;
@@ -44,7 +44,6 @@ public class DoubleOptionMixin {
 
     private Text displayStringGetter(GameOptions gameOptions, DoubleOption doubleOption) {
         double threshold = 0.025;
-        return new TranslatableText("options.gamma").append(": ").append(abs(gameOptions.gamma) < threshold     ? new TranslatableText("options.gamma.min") : abs(gameOptions.gamma - 1) < threshold ? new TranslatableText("options.gamma.max") :
-                new LiteralText(Math.round(gameOptions.gamma * 100) + "%"));
+        return new TranslatableText("options.gamma").append(": ").append(abs(gameOptions.gamma) < threshold ? new TranslatableText("options.gamma.min") : abs(gameOptions.gamma - 1) < threshold ? new TranslatableText("options.gamma.max") : new LiteralText(Math.round(gameOptions.gamma * 100) + "%"));
     }
 }

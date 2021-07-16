@@ -44,7 +44,7 @@ public class BackgroundRendererMixin {
                 if (entity.isSpectator()) {
                     y = -8.0F;
                     ab = viewDistance * 0.5F;
-                } else if (entity instanceof LivingEntity && ((LivingEntity)entity).hasStatusEffect(StatusEffects.FIRE_RESISTANCE) && SpeedrunnerMod.CONFIG.modifiedLavaVision) {
+                } else if (entity instanceof LivingEntity && ((LivingEntity)entity).hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
                     y = 0.0F;
                     ab = 25.0F;
                 } else {
@@ -71,18 +71,25 @@ public class BackgroundRendererMixin {
                 }
             } else if (thickFog) {
                 y = viewDistance * 0.05F;
-                ab = Math.min(viewDistance, 192.0F) * 0.5F;
+                if (SpeedrunnerMod.CONFIG.disableFog) {
+                    ab = 3072;
+                } else {
+                    ab = Math.min(viewDistance, 192.0F) * 0.5F;
+                }
             } else if (fogType == BackgroundRenderer.FogType.FOG_SKY) {
                 y = 0.0F;
                 ab = viewDistance;
             } else {
                 y = viewDistance * 0.75F;
-                ab = viewDistance;
+                if (SpeedrunnerMod.CONFIG.disableFog) {
+                    ab = 3072;
+                } else {
+                    ab = viewDistance;
+                }
             }
 
             RenderSystem.setShaderFogStart(y);
             RenderSystem.setShaderFogEnd(ab);
         }
-
     }
 }
