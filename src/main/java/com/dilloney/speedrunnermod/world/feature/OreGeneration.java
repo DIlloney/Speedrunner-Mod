@@ -7,7 +7,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 
-public class OreGeneration {
+public final class OreGeneration {
 
     public static final ConfiguredFeature<?, ?> SPEEDRUNNER_ORE_OVERWORLD = Feature.ORE.configure(
             new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, ModBlocks.SPEEDRUNNER_ORE.getDefaultState(), 9))
@@ -22,7 +22,7 @@ public class OreGeneration {
             .repeat(10);
 
     public static final ConfiguredFeature<?, ?> NETHER_SPEEDRUNNER_ORE_NETHER = Feature.ORE.configure(
-            new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, ModBlocks.SPEEDRUNNER_NETHER_ORE.getDefaultState(), 9))
+            new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, ModBlocks.NETHER_SPEEDRUNNER_ORE.getDefaultState(), 9))
             .uniformRange(YOffset.getBottom(), YOffset.fixed(124))
             .spreadHorizontally()
             .repeat(15);
@@ -40,7 +40,7 @@ public class OreGeneration {
             .repeat(15);
 
     public static final ConfiguredFeature<?, ?> NETHER_IGNEOUS_ORE_NETHER = Feature.ORE.configure(
-            new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, ModBlocks.IGNEOUS_NETHER_ORE.getDefaultState(), 5))
+            new OreFeatureConfig(OreFeatureConfig.Rules.NETHERRACK, ModBlocks.NETHER_IGNEOUS_ORE.getDefaultState(), 5))
             .uniformRange(YOffset.getBottom(), YOffset.fixed(64))
             .spreadHorizontally()
             .repeat(15);
