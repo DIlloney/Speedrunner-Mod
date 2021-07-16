@@ -2,11 +2,14 @@ package com.dilloney.speedrunnermod.registry;
 
 import com.dilloney.speedrunnermod.blocks.ModBlocks;
 import com.dilloney.speedrunnermod.items.ModItems;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
+@Environment(EnvType.CLIENT)
 public final class ModItemGroup {
 
     public static final ItemGroup SPEEDRUNNER_MOD_ITEM_GROUP = FabricItemGroupBuilder.create(
@@ -29,9 +32,19 @@ public final class ModItemGroup {
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_LEGGINGS));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_BOOTS));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_BOW));
+                itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_CROSSBOW));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_SHEARS));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_FLINT_AND_STEEL));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_APPLE));
+                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_SWORD));
+                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_SHOVEL));
+                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_PICKAXE));
+                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_AXE));
+                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_HOE));
+                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_HELMET));
+                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE));
+                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS));
+                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_BOOTS));
                 itemStacks.add(new ItemStack(ModItems.EYE_OF_INFERNO));
                 itemStacks.add(new ItemStack(ModItems.EYE_OF_ANNUL));
                 itemStacks.add(new ItemStack(ModItems.IGNEOUS_ROCK));
