@@ -1,5 +1,7 @@
 package com.dilloney.speedrunnermod.client;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
@@ -10,8 +12,10 @@ import org.lwjgl.glfw.GLFW;
 import static java.lang.Float.POSITIVE_INFINITY;
 import static net.minecraft.util.Formatting.GREEN;
 
+@Environment(EnvType.CLIENT)
 public class BrightnessFeature {
 
+    public static MinecraftClient client;
     public static double minBrightness = 1.0;
     public static double maxBrightness = 5.0;
     public static double prevGamma = POSITIVE_INFINITY;
@@ -21,21 +25,21 @@ public class BrightnessFeature {
             "key.speedrunnermod.brighten",
             InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_V,
-            "category.speedrunnermod.title"
+            "speedrunnermod.options"
     );
 
     public static final KeyBinding RAISE_BIND = new KeyBinding(
             "key.speedrunnermod.raise",
             InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_EQUAL,
-            "category.speedrunnermod.title"
+            "speedrunnermod.options"
     );
 
     public static final KeyBinding LOWER_BIND = new KeyBinding(
             "key.speedrunnermod.lower",
             InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_MINUS,
-            "category.speedrunnermod.title"
+            "speedrunnermod.options"
     );
 
     public static void onEndTick(MinecraftClient client) {
