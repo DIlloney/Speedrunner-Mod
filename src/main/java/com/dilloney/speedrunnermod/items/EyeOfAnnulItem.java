@@ -19,11 +19,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.StructureFeature;
 
-public class EyeOfAnnulItem extends Item {
+public class AnnulEyeItem extends Item {
 
     String structureType = "Stronghold";
 
-    public EyeOfAnnulItem(Settings settings) {
+    public AnnulEyeItem(Settings settings) {
         super(settings);
     }
 
