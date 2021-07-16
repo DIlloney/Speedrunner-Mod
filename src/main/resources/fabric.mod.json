@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "speedrunnermod",
-  "version": "1.15",
+  "version": "1.16",
   "accessWidener": "speedrunnermod.accesswidener",
   "name": "Speedrunner Mod",
   "description": "A Mod that makes Minecraft Speedrunning easier.",
@@ -9,7 +9,7 @@
     "Dilloney"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/speedrunner-mod",
+    "homepage": "https://sites.google.com/view/speedrunnermod",
     "issues": "https://github.com/Dilloney/Speedrunner-Mod/issues",
     "sources": "https://github.com/Dilloney/Speedrunner-Mod"
   },
@@ -25,15 +25,25 @@
     ],
     "server": [
       "com.dilloney.speedrunnermod.server.SpeedrunnerModServer"
+    ],
+    "modmenu": [
+      "com.dilloney.speedrunnermod.config.impl.ModMenuImpl"
     ]
   },
   "mixins": [
     "speedrunnermod.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=0.11.6",
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/Qu8utnCwkq"
+      }
+    }
   }
 }
