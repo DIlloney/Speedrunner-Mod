@@ -16,9 +16,10 @@ public class ItemPredicateMixin {
         if (stack.getItem() == ModItems.SPEEDRUNNER_SHEARS.getDefaultStack().getItem()) {
             ItemStack itemStack = new ItemStack(Items.SHEARS);
             itemStack.setCount(stack.getCount());
-            itemStack.setTag(stack.getOrCreateTag());
+            itemStack.setNbt(stack.getOrCreateNbt());
             return itemStack;
         }
+
         return stack;
     }
 }
