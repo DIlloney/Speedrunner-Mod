@@ -17,12 +17,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.StructureFeature;
 
-public class EyeOfInfernoItem extends Item {
+public class InfernoEyeItem extends Item {
 
     String structureType = "Fortress";
     StructureFeature<?> type = StructureFeature.FORTRESS;
 
-    public EyeOfInfernoItem(Settings settings) { super(settings); }
+    public InfernoEyeItem(Settings settings) { super(settings); }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
