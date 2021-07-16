@@ -9,35 +9,26 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
-    ANDESITE_EXCLUDING_SHOVEL(1, 131, 4.0F, 0.0F, 5, () -> {
+    ANDESITE(1, 131, 4.0F, 1.0F, 5, () -> {
         return Ingredient.ofItems(Items.ANDESITE);
     }),
-    ANDESITE_SHOVEL(1, 131, 4.0F, 0.5F, 5, () -> {
+    BLACKSTONE(1, 131, 4.0F, 1.0F, 5, () -> {
         return Ingredient.ofItems(Items.ANDESITE);
     }),
-    BLACKSTONE_EXCLUDING_SHOVEL(1, 131, 4.0F, 0.0F, 5, () -> {
-        return Ingredient.ofItems(Items.BLACKSTONE);
+    DIORITE(1, 131, 4.0F, 1.0F, 5, () -> {
+        return Ingredient.ofItems(Items.ANDESITE);
     }),
-    BLACKSTONE_SHOVEL(1, 131, 4.0F, 0.5F, 5, () -> {
-        return Ingredient.ofItems(Items.BLACKSTONE);
+    GRANITE(1, 131, 4.0F, 1.0F, 5, () -> {
+        return Ingredient.ofItems(Items.ANDESITE);
     }),
-    DIORITE_EXCLUDING_SHOVEL(1, 131, 4.0F, 0.0F, 5, () -> {
-        return Ingredient.ofItems(Items.DIORITE);
-    }),
-    DIORITE_SHOVEL(1, 131, 4.0F, 0.5F, 5, () -> {
-        return Ingredient.ofItems(Items.DIORITE);
-    }),
-    GRANITE_EXCLUDING_SHOVEL(1, 131, 4.0F, 0.0F, 5, () -> {
-        return Ingredient.ofItems(Items.GRANITE);
-    }),
-    GRANITE_SHOVEL(1, 131, 4.0F, 0.5F, 5, () -> {
-        return Ingredient.ofItems(Items.GRANITE);
-    }),
-    SPEEDRUNNER_SHOVEL_AXE_HOE(2, 500, 11.0F, 0.0F, 11, () -> {
+    SPEEDRUNNER_SHOVEL_AXE_HOE(2, 500, 11.0F, 0.0F, 17, () -> {
         return Ingredient.ofItems(ModItems.SPEEDRUNNER_INGOT);
     }),
-    SPEEDRUNNER_SWORD_PICKAXE(2, 500, 11.0F, 0.5F, 11, () -> {
+    SPEEDRUNNER_SWORD_PICKAXE(2, 500, 11.0F, 0.5F, 17, () -> {
         return Ingredient.ofItems(ModItems.SPEEDRUNNER_INGOT);
+    }),
+    GOLDEN_SPEEDRUNNER(1, 128, 13.0F, 0.0F, 25, () -> {
+        return Ingredient.ofItems(Items.GOLD_INGOT, ModItems.SPEEDRUNNER_INGOT);
     });
 
     private final int miningLevel;

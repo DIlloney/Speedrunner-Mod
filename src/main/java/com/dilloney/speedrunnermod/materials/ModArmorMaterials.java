@@ -3,6 +3,7 @@ package com.dilloney.speedrunnermod.materials;
 import com.dilloney.speedrunnermod.items.ModItems;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -11,8 +12,11 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
-    SPEEDRUNNER("speedrunner", 30, new int[]{2, 6, 7, 2}, 11, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    SPEEDRUNNER("speedrunner", 30, new int[]{2, 6, 7, 2}, 16, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(ModItems.SPEEDRUNNER_INGOT);
+    }),
+    GOLDEN_SPEEDRUNNER("golden_speedrunner", 14, new int[]{2, 4, 6, 2}, 27, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
+        return Ingredient.ofItems(Items.GOLD_INGOT, ModItems.SPEEDRUNNER_INGOT);
     });
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
