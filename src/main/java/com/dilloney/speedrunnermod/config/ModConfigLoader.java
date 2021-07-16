@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-public class ModConfigLoader {
+public class ModConfigManager {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final String FILENAME = "speedrunnermod-config.json";
