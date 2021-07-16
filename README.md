@@ -2,7 +2,7 @@
 A Minecraft mod that makes Minecraft Speedrunning easier.
 
 Welcome to the **_Speedrunner Mod!_**
-_This is the official github page, where all of the main code can be found. Changelogs, features list, and more are on the website.._
+_This is the official github page, where all of the main code can be found. Changelogs, features list, and more are on the website._
 
 This mod changes the Vanilla aspects of **_Minecraft Speedrunning_** and _completely_ overhauls it!
 
