@@ -56,7 +56,6 @@
     "entity.ZombifiedPiglinEntityMixin",
     "item.FoodComponentsMixin",
     "item.ItemPredicateMixin",
-    "item.SwordItemMixin",
     "misc.AreaHelperMixin",
     "misc.EfficiencyEnchantmentMixin",
     "misc.MobSpawnerLogicMixin",
