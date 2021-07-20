@@ -1,13 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_andesite": {
+    "has_carrot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:andesite"
+              "minecraft:carrot"
             ]
           }
         ]
@@ -16,19 +16,19 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "speedrunnermod:andesite_axe"
+        "recipe": "speedrunnermod:speedrunner_carrot_on_a_stick"
       }
     }
   },
   "requirements": [
     [
-      "has_andesite",
+      "has_carrot",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "speedrunnermod:andesite_axe"
+      "speedrunnermod:speedrunner_carrot_on_a_stick"
     ]
   }
 }

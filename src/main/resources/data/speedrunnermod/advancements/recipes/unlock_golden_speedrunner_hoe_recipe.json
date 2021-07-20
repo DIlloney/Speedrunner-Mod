@@ -1,13 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_andesite": {
+    "has_speedrunner_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:andesite"
+              "speedrunnermod:speedrunner_ingot"
             ]
           }
         ]
@@ -16,19 +16,19 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "speedrunnermod:andesite_axe"
+        "recipe": "speedrunnermod:golden_speedrunner_hoe"
       }
     }
   },
   "requirements": [
     [
-      "has_andesite",
+      "has_speedrunner_ingot",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "speedrunnermod:andesite_axe"
+      "speedrunnermod:golden_speedrunner_hoe"
     ]
   }
 }

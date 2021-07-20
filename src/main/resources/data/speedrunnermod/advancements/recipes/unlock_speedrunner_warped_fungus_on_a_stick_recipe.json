@@ -1,13 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_andesite": {
+    "has_warped_fungus": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:andesite"
+              "minecraft:warped_fungus"
             ]
           }
         ]
@@ -16,19 +16,19 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "speedrunnermod:andesite_axe"
+        "recipe": "speedrunnermod:speedrunner_warped_fungus_on_a_stick"
       }
     }
   },
   "requirements": [
     [
-      "has_andesite",
+      "has_warped_fungus",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "speedrunnermod:andesite_axe"
+      "speedrunnermod:speedrunner_warped_fungus_on_a_stick"
     ]
   }
 }
