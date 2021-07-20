@@ -1,13 +1,16 @@
 package com.dilloney.speedrunnermod.config;
 
-public class DefaultModConfig {
+import me.shedaniel.autoconfig.annotation.Config;
+
+@Config(name = "speedrunnermod")
+public class ModConfigOptions {
 
     public int difficulty = 1;
 
     public boolean makeStructuresMoreCommon = true;
     public boolean modifiedWorldGeneration = true;
     public boolean combineFortressAndBastion = false;
-    public boolean modifiedBlockHardnessValues = true;
+    public boolean modifiedBlockHardness = true;
     public boolean modifiedLootTables = true;
 
     public boolean disableFog = false;
@@ -16,4 +19,5 @@ public class DefaultModConfig {
 
     public boolean killGhastUponFireball = false;
     public boolean enableChallengeMode = false;
+    public boolean iCarusEnabled = false;
 }
