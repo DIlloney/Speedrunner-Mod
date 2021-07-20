@@ -25,9 +25,6 @@
     ],
     "server": [
       "com.dilloney.speedrunnermod.server.SpeedrunnerModServer"
-    ],
-    "modmenu": [
-      "com.dilloney.speedrunnermod.config.impl.ModMenuImpl"
     ]
   },
   "mixins": [
@@ -38,12 +35,5 @@
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16"
-  },
-  "custom": {
-    "modmenu": {
-      "links": {
-        "modmenu.discord": "https://discord.gg/Qu8utnCwkq"
-      }
-    }
   }
 }
