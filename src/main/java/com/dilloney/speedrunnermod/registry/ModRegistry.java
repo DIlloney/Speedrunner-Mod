@@ -3,7 +3,7 @@ package com.dilloney.speedrunnermod.registry;
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import com.dilloney.speedrunnermod.blocks.ModBlocks;
 import com.dilloney.speedrunnermod.client.BrightnessFeature;
-import com.dilloney.speedrunnermod.config.ModConfigManager;
+import com.dilloney.speedrunnermod.config.ConfigFileManager;
 import com.dilloney.speedrunnermod.items.ModItems;
 import com.dilloney.speedrunnermod.items.SpeedrunnerItem;
 import com.dilloney.speedrunnermod.mixins.misc.StructuresConfigAccessor;
@@ -21,7 +21,9 @@ import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredica
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ShearsDispenserBehavior;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
@@ -58,6 +60,9 @@ public final class ModRegistry {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_crossbow"), ModItems.SPEEDRUNNER_CROSSBOW);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_shears"), ModItems.SPEEDRUNNER_SHEARS);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_flint_and_steel"), ModItems.SPEEDRUNNER_FLINT_AND_STEEL);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_fishing_rod"), ModItems.SPEEDRUNNER_FISHING_ROD);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_carrot_on_a_stick"), ModItems.SPEEDRUNNER_CARROT_ON_A_STICK);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_warped_fungus_on_a_stick"), ModItems.SPEEDRUNNER_WARPED_FUNGUS_ON_A_STICK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "igneous_rock"), ModItems.IGNEOUS_ROCK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "eye_of_inferno"), ModItems.EYE_OF_INFERNO);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "eye_of_annul"), ModItems.EYE_OF_ANNUL);
@@ -190,7 +195,7 @@ public final class ModRegistry {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, speedrunnerNetherOreNether.getValue(), OreGeneration.NETHER_SPEEDRUNNER_ORE_NETHER);
         BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, speedrunnerNetherOreNether);
 
-        if (SpeedrunnerMod.CONFIG.modifiedWorldGeneration) {
+        if (SpeedrunnerMod.CONFIG.difficulty == 1 || SpeedrunnerMod.CONFIG.difficulty == 2) {
             RegistryKey<ConfiguredFeature<?, ?>> diamondOreMesaJungleMountains = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
                     new Identifier("speedrunnermod", "diamond_ore_mesa_jungle_mountains_configured_feature_worldgen"));
             Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, diamondOreMesaJungleMountains.getValue(), OreGeneration.DIAMOND_ORE_MESA_JUNGLE_MOUNTAINS);
@@ -212,16 +217,22 @@ public final class ModRegistry {
     }
 
     public static void loadConfig() {
-        ModConfigManager.load();
+        ConfigFileManager.load();
     }
 
     public static void registerMisc() {
-        UniqueItemRegistry.BOW.addItemToRegistry(ModItems.SPEEDRUNNER_BOW);
         UniqueItemRegistry.BOW.addItemToRegistry(Items.BOW);
-        UniqueItemRegistry.CROSSBOW.addItemToRegistry(ModItems.SPEEDRUNNER_CROSSBOW);
         UniqueItemRegistry.CROSSBOW.addItemToRegistry(Items.CROSSBOW);
-        UniqueItemRegistry.SHEARS.addItemToRegistry(ModItems.SPEEDRUNNER_SHEARS);
         UniqueItemRegistry.SHEARS.addItemToRegistry(Items.SHEARS);
+        UniqueItemRegistry.FISHING_ROD.addItemToRegistry(Items.FISHING_ROD);
+        UniqueItemRegistry.CARROT_ON_A_STICK.addItemToRegistry(Items.CARROT_ON_A_STICK);
+        UniqueItemRegistry.WARPED_FUNGUS_ON_A_STICK.addItemToRegistry(Items.WARPED_FUNGUS_ON_A_STICK);
+        UniqueItemRegistry.BOW.addItemToRegistry(ModItems.SPEEDRUNNER_BOW);
+        UniqueItemRegistry.CROSSBOW.addItemToRegistry(ModItems.SPEEDRUNNER_CROSSBOW);
+        UniqueItemRegistry.SHEARS.addItemToRegistry(ModItems.SPEEDRUNNER_SHEARS);
+        UniqueItemRegistry.FISHING_ROD.addItemToRegistry(ModItems.SPEEDRUNNER_FISHING_ROD);
+        UniqueItemRegistry.CARROT_ON_A_STICK.addItemToRegistry(ModItems.SPEEDRUNNER_CARROT_ON_A_STICK);
+        UniqueItemRegistry.WARPED_FUNGUS_ON_A_STICK.addItemToRegistry(ModItems.SPEEDRUNNER_WARPED_FUNGUS_ON_A_STICK);
         DispenserBlock.registerBehavior(ModItems.SPEEDRUNNER_SHEARS, new ShearsDispenserBehavior());
         PIGLIN_SAFE_ARMOR = TagRegistry.item(id("piglin_safe_armor"));
         PIGLIN_BARTERING_ITEMS = TagRegistry.item(id("piglin_bartering_items"));
@@ -271,6 +282,19 @@ public final class ModRegistry {
 
             FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("firework"), (stack, world, entity, seed) -> {
                 return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.hasProjectile(stack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
+            });
+            FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_FISHING_ROD, new Identifier("cast"), (stack, world, entity, seed) -> {
+                if (entity == null) {
+                    return 0.0F;
+                } else {
+                    boolean bl = entity.getMainHandStack() == stack;
+                    boolean bl2 = entity.getOffHandStack() == stack;
+                    if (entity.getMainHandStack().getItem() instanceof FishingRodItem) {
+                        bl2 = false;
+                    }
+
+                    return (bl || bl2) && entity instanceof PlayerEntity && ((PlayerEntity)entity).fishHook != null ? 1.0F : 0.0F;
+                }
             });
         }
     }
