@@ -12,6 +12,9 @@ public final class UniqueItemRegistry {
     public static final UniqueItemRegistry SHEARS = new UniqueItemRegistry(Items.SHEARS);
     public static final UniqueItemRegistry BOW = new UniqueItemRegistry(Items.BOW);
     public static final UniqueItemRegistry CROSSBOW = new UniqueItemRegistry(Items.CROSSBOW);
+    public static final UniqueItemRegistry FISHING_ROD = new UniqueItemRegistry(Items.FISHING_ROD);
+    public static final UniqueItemRegistry CARROT_ON_A_STICK = new UniqueItemRegistry(Items.CARROT_ON_A_STICK);
+    public static final UniqueItemRegistry WARPED_FUNGUS_ON_A_STICK = new UniqueItemRegistry(Items.WARPED_FUNGUS_ON_A_STICK);
 
     private final Set<Item> itemList;
 
@@ -24,13 +27,6 @@ public final class UniqueItemRegistry {
 
     public void addItemToRegistry(Item item) {
         itemList.add(item);
-    }
-
-    public Item getDefaultItem(Item item) {
-        if (isItemInRegistry(item)) {
-            return defaultItem;
-        }
-        return item;
     }
 
     public boolean isItemInRegistry(Item item) {
