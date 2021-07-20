@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "speedrunnermod:items/golden_speedrunner_pickaxe"
+  }
+}

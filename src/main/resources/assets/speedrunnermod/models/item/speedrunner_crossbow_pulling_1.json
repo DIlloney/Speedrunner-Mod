@@ -1,0 +1,6 @@
+{
+  "parent": "speedrunnermod:item/speedrunner_crossbow",
+  "textures": {
+    "layer0": "speedrunnermod:items/speedrunner_crossbow_pulling_1"
+  }
+}
