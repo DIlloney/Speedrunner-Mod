@@ -49,10 +49,15 @@ public final class ModItems {
 
     public static final Item SPEEDRUNNER_CROSSBOW = new SpeedrunnerItem.SpeedrunnerCrossbow(new Item.Settings());
 
-    public static final Item SPEEDRUNNER_SHEARS = new ShearsItem(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.TOOLS).rarity(Rarity.COMMON).maxCount(1).maxDamage(476));
+    public static final Item SPEEDRUNNER_SHEARS = new SpeedrunnerItem.SpeedrunnerShears(new Item.Settings());
 
     public static final Item SPEEDRUNNER_FLINT_AND_STEEL = new SpeedrunnerItem.SpeedrunnerFlintAndSteel(new Item.Settings());
+
+    public static final Item SPEEDRUNNER_FISHING_ROD = new SpeedrunnerItem.SpeedrunnerFishingRod(new Item.Settings());
+
+    public static final Item SPEEDRUNNER_CARROT_ON_A_STICK = new SpeedrunnerItem.SpeedrunnerCarrotOnAStick(new Item.Settings());
+
+    public static final Item SPEEDRUNNER_WARPED_FUNGUS_ON_A_STICK = new SpeedrunnerItem.SpeedrunnerWarpedFungusOnAStick(new Item.Settings());
 
     public static final Item GOLDEN_SPEEDRUNNER_SWORD = new SwordItem(ModToolMaterials.GOLDEN_SPEEDRUNNER, 4, -2.4F,
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.COMBAT).rarity(Rarity.COMMON));
