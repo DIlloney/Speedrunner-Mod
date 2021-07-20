@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XX",
-    "X#",
-    " #"
+    "  #",
+    " #S",
+    "# S"
   ],
   "key": {
     "#": {
       "item": "minecraft:stick"
     },
-    "X": {
-      "item": "minecraft:andesite"
+    "S": {
+      "item": "speedrunnermod:speedrunner_ingot"
     }
   },
   "result": {
-    "item": "speedrunnermod:andesite_axe"
+    "item": "speedrunnermod:speedrunner_fishing_rod"
   }
 }
