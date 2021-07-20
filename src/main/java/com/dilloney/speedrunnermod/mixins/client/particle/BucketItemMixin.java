@@ -31,7 +31,6 @@ import org.spongepowered.asm.mixin.Shadow;
 public abstract class BucketItemMixin {
 
     @Shadow @Final Fluid fluid;
-
     @Shadow abstract void playEmptyingSound(@Nullable PlayerEntity player, WorldAccess world, BlockPos pos);
 
     @Overwrite

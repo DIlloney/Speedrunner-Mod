@@ -37,11 +37,8 @@ import java.util.Random;
 public abstract class WorldRendererMixin {
 
     @Shadow @Final MinecraftClient client;
-
     @Shadow ClientWorld world;
-
     @Shadow abstract void playSong(@Nullable SoundEvent song, BlockPos songPosition);
-
     @Shadow abstract Particle spawnParticle(ParticleEffect parameters, boolean alwaysSpawn, double x, double y, double z, double velocityX, double velocityY, double velocityZ);
 
     @Overwrite
