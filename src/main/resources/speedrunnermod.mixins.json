@@ -63,6 +63,7 @@
     "misc.EfficiencyEnchantmentMixin",
     "misc.MobSpawnerLogicMixin",
     "misc.PiglinBrainMixin",
+    "misc.ServerWorldMixin",
     "misc.StructuresConfigAccessor",
     "world.ChunkGeneratorMixin",
     "world.DefaultBiomeCreatorMixin",
