@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-public class ModConfigManager {
+public class ConfigFileManager {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final String FILENAME = "speedrunnermod-config.json";
@@ -18,7 +18,7 @@ public class ModConfigManager {
     public static void load() {
         File file = getFile();
         if (!file.exists()) {
-            SpeedrunnerMod.CONFIG = new DefaultModConfig();
+            SpeedrunnerMod.CONFIG = new ModConfigOptions();
         } else {
             read();
         }
@@ -38,17 +38,17 @@ public class ModConfigManager {
         }
     }
 
-    public static void set(DefaultModConfig config) {
+    public static void set(ModConfigOptions config) {
         SpeedrunnerMod.CONFIG = config;
         save();
     }
 
-    public static DefaultModConfig get() {
+    public static ModConfigOptions get() {
         File file = getFile();
         try (FileReader reader = new FileReader(file)) {
-            return GSON.fromJson(reader, DefaultModConfig.class);
+            return GSON.fromJson(reader, ModConfigOptions.class);
         } catch (Exception e) {
-            DefaultModConfig newconfig = new DefaultModConfig();
+            ModConfigOptions newconfig = new ModConfigOptions();
             set(newconfig);
             return newconfig;
         }
