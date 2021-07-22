@@ -3,7 +3,7 @@ package com.dilloney.speedrunnermod.config;
 import me.shedaniel.autoconfig.annotation.Config;
 
 @Config(name = "speedrunnermod")
-public class ModConfigOptions {
+public class ConfigurationOptions {
 
     public int difficulty = 1;
 
@@ -13,11 +13,11 @@ public class ModConfigOptions {
     public boolean modifiedBlockHardness = true;
     public boolean modifiedLootTables = true;
 
-    public boolean disableFog = false;
+    public boolean fog = false;
     public boolean defaultParticles = true;
     public boolean netherBiomeParticles = true;
 
     public boolean killGhastUponFireball = false;
-    public boolean enableChallengeMode = false;
-    public boolean iCarusEnabled = false;
+    public boolean doomMode = false;
+    public boolean iCarusMode = false;
 }
