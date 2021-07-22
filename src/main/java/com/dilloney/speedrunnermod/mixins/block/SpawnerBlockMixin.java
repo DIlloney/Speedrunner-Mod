@@ -28,7 +28,7 @@ public class SpawnerBlockMixin extends Block {
         super.onStacksDropped(state, world, pos, stack);
         int i = 125 + world.random.nextInt(175) + world.random.nextInt(180);
         this.dropExperience(world, pos, i);
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             BlazeEntity blazeEntity = (BlazeEntity)EntityType.BLAZE.create(world);
             blazeEntity.refreshPositionAndAngles(pos, pos.getY() + 0.5F, 0);
             VindicatorEntity vindicatorEntity = (VindicatorEntity)EntityType.VINDICATOR.create(world);
