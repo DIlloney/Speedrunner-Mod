@@ -34,7 +34,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(CallbackInfo info) throws CommandSyntaxException {
-        if (this.statHandler.getStat(Stats.CUSTOM.getOrCreateStat(Stats.PLAY_TIME)) == 0 && SpeedrunnerMod.CONFIG.iCarusEnabled) {
+        if (this.statHandler.getStat(Stats.CUSTOM.getOrCreateStat(Stats.PLAY_TIME)) == 0 && SpeedrunnerMod.CONFIG.iCarusMode) {
             ItemStack wings = this.itemStackFromString("minecraft:elytra{Unbreakable:1b}", 1);
             ItemStack rockets = this.itemStackFromString("minecraft:firework_rocket{Fireworks:{Flight:3b}}", 64);
             this.getInventory().armor.set(2, wings);

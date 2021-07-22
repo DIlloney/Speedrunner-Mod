@@ -52,7 +52,7 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
                     }
 
                     entity.fallDistance = 0.0F;
-                    if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                    if (SpeedrunnerMod.CONFIG.doomMode) {
                         if (!serverPlayerEntity.isCreative()) {
                             entity.addVelocity(0.0F, 1.5F, 0.0F);
                             ((ServerPlayerEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60, 0));

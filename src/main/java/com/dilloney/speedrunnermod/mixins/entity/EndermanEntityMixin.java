@@ -22,7 +22,7 @@ public abstract class EndermanEntityMixin extends HostileEntity implements Anger
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createEndermanAttributes() {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000002192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 72.0D);
         } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0D);

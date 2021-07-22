@@ -62,9 +62,9 @@ public abstract class EyeOfEnderEntityMixin extends Entity implements FlyingItem
             for(int p = 0; p < 4; ++p) {
                 this.world.addParticle(ParticleTypes.BUBBLE, d - vec3d.x * 0.25D, e - vec3d.y * 0.25D, f - vec3d.z * 0.25D, vec3d.x, vec3d.y, vec3d.z);
             }
-        } else if (this.getStack().getItem() == Items.ENDER_EYE && !this.isTouchingWater() || this.getStack().getItem() == ModItems.EYE_OF_ANNUL && !this.isTouchingWater()) {
+        } else if (this.getStack().getItem() == Items.ENDER_EYE && !this.isTouchingWater() || this.getStack().getItem() == ModItems.ANNUL_EYE && !this.isTouchingWater()) {
             this.world.addParticle(ParticleTypes.PORTAL, d - vec3d.x * 0.25D + this.random.nextDouble() * 0.6D - 0.3D, e - vec3d.y * 0.25D - 0.5D, f - vec3d.z * 0.25D + this.random.nextDouble() * 0.6D - 0.3D, vec3d.x, vec3d.y, vec3d.z);
-        } else if (this.getStack().getItem() == ModItems.EYE_OF_INFERNO && !this.isTouchingWater()) {
+        } else if (this.getStack().getItem() == ModItems.INFERNO_EYE && !this.isTouchingWater()) {
             this.world.addParticle(ParticleTypes.SMOKE, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0.0D, 0.0D, 0.0D);
         }
 
@@ -74,11 +74,11 @@ public abstract class EyeOfEnderEntityMixin extends Entity implements FlyingItem
             if (this.lifespan > 40 && !this.world.isClient) {
                 this.discard();
                 this.world.spawnEntity(new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), this.getStack()));
-                if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                if (SpeedrunnerMod.CONFIG.doomMode) {
                     this.world.createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius, destructionType);
-                } else if (this.getStack().getItem() == Items.ENDER_EYE || this.getStack().getItem() == ModItems.EYE_OF_ANNUL) {
+                } else if (this.getStack().getItem() == Items.ENDER_EYE || this.getStack().getItem() == ModItems.ANNUL_EYE) {
                     this.playSound(SoundEvents.ENTITY_ENDER_EYE_DEATH, 1.0F, 1.0F);
-                } else if (this.getStack().getItem() == ModItems.EYE_OF_INFERNO) {
+                } else if (this.getStack().getItem() == ModItems.INFERNO_EYE) {
                     this.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1.0F, 1.0F);
                 }
             }

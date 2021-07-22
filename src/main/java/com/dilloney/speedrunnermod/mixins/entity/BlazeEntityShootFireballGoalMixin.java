@@ -56,7 +56,7 @@ public abstract class BlazeEntityShootFireballGoalMixin extends Goal {
                     } else if (this.fireballsFired <= 4) {
                         this.fireballCooldown = 6;
                     } else {
-                        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                        if (SpeedrunnerMod.CONFIG.doomMode) {
                             this.fireballCooldown = 30;
                         } else {
                             this.fireballCooldown = 100;

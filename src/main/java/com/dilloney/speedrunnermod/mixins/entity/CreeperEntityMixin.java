@@ -33,8 +33,8 @@ public abstract class CreeperEntityMixin extends HostileEntity implements SkinOv
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createCreeperAttributes() {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D);
+        if (SpeedrunnerMod.CONFIG.doomMode) {
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30D);
         } else {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D);
         }
@@ -47,11 +47,11 @@ public abstract class CreeperEntityMixin extends HostileEntity implements SkinOv
         float f = this.shouldRenderOverlay() ? 2.0F : 1.0F;
         if (itemStack.isOf(Items.FLINT_AND_STEEL) || itemStack.isOf(ModItems.SPEEDRUNNER_FLINT_AND_STEEL)) {
             this.world.playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
-            if (!this.world.isClient && SpeedrunnerMod.CONFIG.enableChallengeMode) {
+            if (!this.world.isClient && SpeedrunnerMod.CONFIG.doomMode) {
                 this.discard();
                 this.world.createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius * f, destructionType);
                 this.world.playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ITEM_BREAK, this.getSoundCategory(), 1.5F, this.random.nextFloat() * 0.4F + 0.8F);
-                itemStack.damage(20, player, (playerx) -> {
+                itemStack.damage(1, player, (playerx) -> {
                     playerx.sendToolBreakStatus(hand);
                 });
             } else if (!this.world.isClient) {

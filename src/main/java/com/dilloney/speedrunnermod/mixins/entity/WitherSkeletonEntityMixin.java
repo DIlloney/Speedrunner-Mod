@@ -32,7 +32,7 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
     @Overwrite @Nullable
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityTag) {
         EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData, entityTag);
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(10.0D);
         } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(1.0D);
@@ -53,7 +53,7 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
             return false;
         } else {
             if (target instanceof LivingEntity) {
-                if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                if (SpeedrunnerMod.CONFIG.doomMode) {
                     ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 200));
                     target.addVelocity(0.0F, 0.6F, 0.0F);
                     target.setOnFireFor(3);

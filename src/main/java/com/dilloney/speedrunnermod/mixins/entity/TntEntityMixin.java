@@ -18,7 +18,7 @@ public abstract class TntEntityMixin extends Entity {
 
     @Overwrite
     private void explode() {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             this.world.createExplosion(this, this.getX(), this.getBodyY(0.0625D), this.getZ(), 10.0F, Explosion.DestructionType.BREAK);
         } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             this.world.createExplosion(this, this.getX(), this.getBodyY(0.0625D), this.getZ(), 3.0F, Explosion.DestructionType.BREAK);

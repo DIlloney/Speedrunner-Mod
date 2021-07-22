@@ -1,7 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
-import com.dilloney.speedrunnermod.items.ModItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -27,7 +26,7 @@ public class ZombieEntityMixin extends HostileEntity {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createZombieAttributes() {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 50.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.33000000417232513D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 7.0D).add(EntityAttributes.GENERIC_ARMOR, 4.0D).add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS);
         } else if (SpeedrunnerMod.CONFIG.difficulty == 1 || SpeedrunnerMod.CONFIG.difficulty == 2) {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 25.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D).add(EntityAttributes.GENERIC_ARMOR, 1.0D).add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS);
@@ -38,9 +37,8 @@ public class ZombieEntityMixin extends HostileEntity {
 
     @Inject(method = "initEquipment", at = @At("HEAD"))
     private void initEquipmentMod(LocalDifficulty difficulty, CallbackInfo callbackInfo) {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
-            this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_SWORD));
-            this.equipStack(EquipmentSlot.CHEST, new ItemStack(ModItems.SPEEDRUNNER_CHESTPLATE));
+        if (SpeedrunnerMod.CONFIG.doomMode) {
+            this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
         }
     }
 }

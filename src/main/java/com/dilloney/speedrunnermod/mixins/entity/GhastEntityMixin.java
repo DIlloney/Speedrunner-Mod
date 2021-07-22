@@ -13,7 +13,7 @@ public class GhastEntityMixin {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createGhastAttributes() {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D);
         } if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 5.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15.0D);

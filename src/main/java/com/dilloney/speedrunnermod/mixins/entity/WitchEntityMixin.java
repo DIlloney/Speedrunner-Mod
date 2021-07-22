@@ -13,7 +13,7 @@ public class WitchEntityMixin {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createWitchAttributes() {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 26.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D);
         } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 14.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D);

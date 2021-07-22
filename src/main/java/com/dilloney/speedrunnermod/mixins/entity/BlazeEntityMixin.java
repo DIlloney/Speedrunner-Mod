@@ -21,7 +21,7 @@ public class BlazeEntityMixin extends HostileEntity {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createBlazeAttributes() {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000528332513D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
         } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0D);

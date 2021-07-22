@@ -41,7 +41,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createEnderDragonAttributes() {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 500.0D);
         } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D);
@@ -60,7 +60,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
             if (this.connectedCrystal.isRemoved()) {
                 this.connectedCrystal = null;
             } else if (this.age % 10 == 0 && this.getHealth() < this.getMaxHealth()) {
-                if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                if (SpeedrunnerMod.CONFIG.doomMode) {
                     this.setHealth(this.getHealth() + 1.7F);
                 } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
                     this.setHealth(this.getHealth() + 0.1F);
@@ -106,7 +106,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
         }
 
         if (crystal == this.connectedCrystal) {
-            if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+            if (SpeedrunnerMod.CONFIG.doomMode) {
                 this.setHealth(getHealth() * 2);
             } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
                 this.damagePart(this.head, DamageSource.explosion(playerEntity2), 20.0F);
@@ -129,7 +129,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
         while(var2.hasNext()) {
             Entity entity = (Entity)var2.next();
             if (entity instanceof LivingEntity) {
-                if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                if (SpeedrunnerMod.CONFIG.doomMode) {
                     ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 1200, 0));
                     entity.damage(DamageSource.mob(this), 12.0F);
                 } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {

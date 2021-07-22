@@ -45,7 +45,7 @@ public class GhastEntityShootFireballGoalMixin {
                 if (SpeedrunnerMod.CONFIG.killGhastUponFireball) {
                     this.ghast.kill();
                 }
-                if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                if (SpeedrunnerMod.CONFIG.doomMode) {
                     this.cooldown = -5;
                 } else {
                     this.cooldown = -40;

@@ -31,7 +31,7 @@ public abstract class EndCrystalEntityMixin extends Entity {
             if (!this.isRemoved() && !this.world.isClient) {
                 this.remove(Entity.RemovalReason.KILLED);
                 if (!source.isExplosive()) {
-                    if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                    if (SpeedrunnerMod.CONFIG.doomMode) {
                         this.world.createExplosion((Entity)null, this.getX(), this.getY(), this.getZ(), 12.0F, Explosion.DestructionType.DESTROY);
                     } else {
                         this.world.createExplosion((Entity)null, this.getX(), this.getY(), this.getZ(), 6.0F, Explosion.DestructionType.DESTROY);

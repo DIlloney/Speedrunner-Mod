@@ -14,7 +14,7 @@ public class EntityMixin {
     public void setOnFireFromLava() {
         Entity entity = (Entity)(Object)this;
         if (!entity.isFireImmune()) {
-            if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+            if (SpeedrunnerMod.CONFIG.doomMode) {
                 entity.setOnFireFor(15);
                 if (entity.damage(DamageSource.LAVA, 4.0F)) {
                     entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.world.random.nextFloat() * 0.4F);

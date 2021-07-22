@@ -10,12 +10,10 @@ import net.minecraft.entity.mob.AbstractPiglinEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -29,7 +27,7 @@ public abstract class PiglinEntityMixin extends AbstractPiglinEntity {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createPiglinAttributes() {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 32.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3499999951496356D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D);
         } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3499999940395355D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
@@ -46,7 +44,7 @@ public abstract class PiglinEntityMixin extends AbstractPiglinEntity {
 
     @Inject(method = "initEquipment", at = @At("HEAD"))
     private void initEquipmentMod(LocalDifficulty difficulty, CallbackInfo callbackInfo) {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             if (this.isAdult()) {
                 this.equipStack(EquipmentSlot.HEAD, new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_HELMET));
                 this.equipStack(EquipmentSlot.CHEST, new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE));

@@ -13,7 +13,7 @@ public class ZombifiedPiglinEntityMixin {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createZombifiedPiglinAttributes() {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             return ZombieEntity.createZombieAttributes().add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS, 1.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.33000000427232513D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 7.0D);
         } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
             return ZombieEntity.createZombieAttributes().add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS, 0.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);

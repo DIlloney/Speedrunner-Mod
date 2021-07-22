@@ -1,7 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
-import com.dilloney.speedrunnermod.items.ModItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.BowAttackGoal;
@@ -36,7 +35,7 @@ public abstract class AbstractSkeletonEntityMixin extends HostileEntity {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createAbstractSkeletonAttributes() {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30D);
         } else {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D);
@@ -45,10 +44,8 @@ public abstract class AbstractSkeletonEntityMixin extends HostileEntity {
 
     @Inject(method = "initEquipment", at = @At("HEAD"))
     private void initEquipmentMod(LocalDifficulty difficulty, CallbackInfo callbackInfo) {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
             this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
-            this.equipStack(EquipmentSlot.CHEST, new ItemStack(ModItems.SPEEDRUNNER_CHESTPLATE));
-            this.equipStack(EquipmentSlot.LEGS, new ItemStack(Items.DIAMOND_LEGGINGS));
         }
     }
 
@@ -60,7 +57,7 @@ public abstract class AbstractSkeletonEntityMixin extends HostileEntity {
             ItemStack itemStack = this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, Items.BOW));
             if (itemStack.isOf(Items.BOW)) {
                 int i = 20;
-                if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                if (SpeedrunnerMod.CONFIG.doomMode) {
                     i = 5;
                 } else if (this.world.getDifficulty() != Difficulty.HARD) {
                     i = 40;

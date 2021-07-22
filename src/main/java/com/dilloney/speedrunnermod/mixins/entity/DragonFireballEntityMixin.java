@@ -39,7 +39,7 @@ public abstract class DragonFireballEntityMixin extends ExplosiveProjectileEntit
                 }
 
                 areaEffectCloudEntity.setParticleType(ParticleTypes.DRAGON_BREATH);
-                if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
+                if (SpeedrunnerMod.CONFIG.doomMode) {
                     areaEffectCloudEntity.setRadius(6.0F);
                     areaEffectCloudEntity.setDuration(1200);
                     areaEffectCloudEntity.setRadiusGrowth((8.0F - areaEffectCloudEntity.getRadius()) / (float)areaEffectCloudEntity.getDuration());
