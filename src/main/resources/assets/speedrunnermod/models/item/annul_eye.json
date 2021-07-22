@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "speedrunnermod:items/eye_of_annul"
+    "layer0": "speedrunnermod:items/annul_eye"
   }
 }
