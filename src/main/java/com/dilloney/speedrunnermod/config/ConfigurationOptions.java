@@ -13,7 +13,7 @@ public class ConfigurationOptions {
     public boolean modifiedBlockHardness = true;
     public boolean modifiedLootTables = true;
 
-    public boolean fog = false;
+    public boolean fog = true;
     public boolean defaultParticles = true;
     public boolean netherBiomeParticles = true;
 
