@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "speedrunnermod:items/eye_of_inferno"
+    "layer0": "speedrunnermod:items/inferno_eye"
   }
 }
