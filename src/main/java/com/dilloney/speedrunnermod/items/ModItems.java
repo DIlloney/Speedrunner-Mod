@@ -89,10 +89,10 @@ public final class ModItems {
     public static final Item IGNEOUS_ROCK = new Item(
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MATERIALS).rarity(Rarity.COMMON));
 
-    public static final Item EYE_OF_INFERNO = new InfernoEyeItem(
+    public static final Item INFERNO_EYE = new InfernoEyeItem(
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MISC).fireproof().rarity(Rarity.COMMON));
 
-    public static final Item EYE_OF_ANNUL = new AnnulEyeItem(
+    public static final Item ANNUL_EYE = new AnnulEyeItem(
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MISC).rarity(Rarity.EPIC));
 
     public static final Item COOKED_PIGLIN_PORK = new Item(
