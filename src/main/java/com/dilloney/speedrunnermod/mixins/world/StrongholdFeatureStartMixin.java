@@ -51,7 +51,7 @@ public abstract class StrongholdFeatureStartMixin extends MarginedStructureStart
 
             if (SpeedrunnerMod.CONFIG.modifiedWorldGeneration) {
                 this.randomUpwardTranslation(this.random, 32, 63);
-            } if (SpeedrunnerMod.CONFIG.modifiedWorldGeneration && SpeedrunnerMod.CONFIG.enableChallengeMode) {
+            } if (SpeedrunnerMod.CONFIG.modifiedWorldGeneration && SpeedrunnerMod.CONFIG.doomMode) {
                 this.randomUpwardTranslation(this.random, 10, 20);
             }
             else {

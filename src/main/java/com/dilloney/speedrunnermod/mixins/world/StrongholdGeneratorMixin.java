@@ -11,8 +11,8 @@ public class StrongholdGeneratorMixin {
     @Shadow final static StrongholdGenerator.PieceData[] ALL_PIECES;
 
     static {
-        if (SpeedrunnerMod.CONFIG.enableChallengeMode) {
-            ALL_PIECES = new StrongholdGenerator.PieceData[]{new StrongholdGenerator.PieceData(StrongholdGenerator.Corridor.class, 20, 3), new StrongholdGenerator.PieceData(StrongholdGenerator.PrisonHall.class, 25, 10), new StrongholdGenerator.PieceData(StrongholdGenerator.LeftTurn.class, 20, 4), new StrongholdGenerator.PieceData(StrongholdGenerator.RightTurn.class, 20, 4), new StrongholdGenerator.PieceData(StrongholdGenerator.SquareRoom.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.Stairs.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.SpiralStaircase.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.FiveWayCrossing.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.ChestCorridor.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.Library.class, 100, 6) {
+        if (SpeedrunnerMod.CONFIG.doomMode) {
+            ALL_PIECES = new StrongholdGenerator.PieceData[]{new StrongholdGenerator.PieceData(StrongholdGenerator.Corridor.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.PrisonHall.class, 25, 10), new StrongholdGenerator.PieceData(StrongholdGenerator.LeftTurn.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.RightTurn.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.SquareRoom.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.Stairs.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.SpiralStaircase.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.FiveWayCrossing.class, 20, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.ChestCorridor.class, 20, 10), new StrongholdGenerator.PieceData(StrongholdGenerator.Library.class, 100, 6) {
                 public boolean canGenerate(int chainLength) {
                     return super.canGenerate(chainLength) && chainLength > 4;
                 }

@@ -25,11 +25,8 @@ import java.util.Random;
 public class ChunkGeneratorMixin {
 
     @Shadow @Final BiomeSource populationSource;
-
     @Shadow @Final StructuresConfig structuresConfig;
-
     @Shadow @Final long worldSeed;
-
     @Shadow @Final List<ChunkPos> strongholds;
 
     @Overwrite
