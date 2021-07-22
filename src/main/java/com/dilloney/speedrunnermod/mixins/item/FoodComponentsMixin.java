@@ -17,6 +17,7 @@ public class FoodComponentsMixin {
     @Shadow final static FoodComponent BREAD;
     @Shadow final static FoodComponent CARROT;
     @Shadow final static FoodComponent CHICKEN;
+    @Shadow static final FoodComponent CHORUS_FRUIT;
     @Shadow final static FoodComponent COD;
     @Shadow final static FoodComponent COOKED_BEEF;
     @Shadow final static FoodComponent COOKED_CHICKEN;
@@ -54,6 +55,7 @@ public class FoodComponentsMixin {
         BREAD = (new FoodComponent.Builder()).hunger(5).saturationModifier(1.1F).build();
         CARROT = (new FoodComponent.Builder()).hunger(3).saturationModifier(1.2F).build();
         CHICKEN = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.2F).build();
+        CHORUS_FRUIT = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.5F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1F).alwaysEdible().build();
         COD = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.2F).build();
         COOKED_BEEF = (new FoodComponent.Builder()).hunger(8).saturationModifier(0.9F).meat().build();
         COOKED_CHICKEN = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.9F).meat().build();
