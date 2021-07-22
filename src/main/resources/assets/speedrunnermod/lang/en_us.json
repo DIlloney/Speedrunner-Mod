@@ -3,8 +3,8 @@
   "item.speedrunnermod.speedrunner_ingot": "Speedrunner Ingot",
   "item.speedrunnermod.speedrunner_nugget": "Speedrunner Nugget",
   "item.speedrunnermod.igneous_rock": "Igneous Rock",
-  "item.speedrunnermod.eye_of_inferno": "Eye of Inferno",
-  "item.speedrunnermod.eye_of_annul": "Eye of Annul",
+  "item.speedrunnermod.inferno_eye": "Eye of Inferno",
+  "item.speedrunnermod.annul_eye": "Eye of Annul",
 
   "item.speedrunnermod.speedrunner_sword": "Speedrunner Sword",
   "item.speedrunnermod.speedrunner_shovel": "Speedrunner Shovel",
@@ -86,7 +86,8 @@
   "item.speedrunnermod.eye_of_inferno.located": "Located %s! (may not be perfectly accurate)",
   "item.speedrunnermod.eye_of_inferno.wrong_dimension": "Eye of Inferno only works in the Nether!",
 
-  "options.speedrunnermod": "Speedrunner Mod Config",
+  "speedrunnermod.options": "Speedrunner Mod",
+  "speedrunnermod.options.config": "Speedrunner Mod Config",
   "option.speedrunnermod.mod_difficulty": "Mod Difficulty",
   "option.speedrunnermod.mod_difficulty.hover": "Changes the Mod Difficulty (1 = easy, 2 = medium, 3 = hard, 4 = extreme).",
   "option.speedrunnermod.make_structures_more_common": "Make Structures More Common",
@@ -104,13 +105,21 @@
   "option.speedrunnermod.default_particles": "Default Particles",
   "option.speedrunnermod.default_particles.hover": "Toggles certain particles (ex. underwater particles, smoke particles, etc).",
   "option.speedrunnermod.nether_biome_particles": "Nether Biome Particles",
-  "option.speedrunnermod.disable_fog": "Disable Fog",
-  "option.speedrunnermod.enable_challenge_mode": "Enable Challenge Mode",
-  "option.speedrunnermod.enable_challenge_mode.hover": "§cI wonder what this does...",
-  "option.speedrunnermod.icarus_enabled": "Enable Icarus",
-  "option.speedrunnermod.icarus_enabled.hover": "Grants the player with an elytra and a stack of firework rockets upon creating a new world.",
+  "option.speedrunnermod.fog": "Fog",
+  "option.speedrunnermod.doom_mode": "Doom Mode",
+  "option.speedrunnermod.doom_mode.hover": "§cI wonder what this does...",
+  "option.speedrunnermod.icarus_mode": "Icarus Mode",
+  "option.speedrunnermod.icarus_mode.hover": "Grants the player with an elytra and a stack of firework rockets upon creating a new world.",
   "option.speedrunnermod.brighten": "Toggle Max Brightness",
   "option.speedrunnermod.raise": "Raise Brightness",
   "option.speedrunnermod.lower": "Lower Brightness",
-  "option.speedrunnermod.overlay.set": "Set brightness to"
+  "option.speedrunnermod.overlay.set": "Set brightness to",
+
+  "speedrunnermod.info": "Speedrunner Mod Info",
+  "info.speedrunnermod.wiki": "Wiki Page",
+  "info.speedrunnermod.discord": "Discord",
+  "info.speedrunnermod.curseforge": "Curseforge",
+
+  "text.cloth-config.boolean.value.true": "ON",
+  "text.cloth-config.boolean.value.false": "OFF"
 }
