@@ -71,7 +71,7 @@ public class BackgroundRendererMixin {
                 }
             } else if (thickFog) {
                 y = viewDistance * 0.05F;
-                if (SpeedrunnerMod.CONFIG.disableFog) {
+                if (SpeedrunnerMod.CONFIG.fog) {
                     ab = 3072;
                 } else {
                     ab = Math.min(viewDistance, 192.0F) * 0.5F;
@@ -81,7 +81,7 @@ public class BackgroundRendererMixin {
                 ab = viewDistance;
             } else {
                 y = viewDistance * 0.75F;
-                if (SpeedrunnerMod.CONFIG.disableFog) {
+                if (SpeedrunnerMod.CONFIG.fog) {
                     ab = 3072;
                 } else {
                     ab = viewDistance;

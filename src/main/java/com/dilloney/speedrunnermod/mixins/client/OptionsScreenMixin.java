@@ -1,6 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.client;
 
-import com.dilloney.speedrunnermod.client.ClothConfigScreen;
+import com.dilloney.speedrunnermod.client.ConfigurationScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
@@ -23,8 +23,8 @@ public class OptionsScreenMixin extends Screen {
 
     @Inject(method = "init", at = @At("TAIL"))
     private void initMod(CallbackInfo callbackInfo) {
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, this.height / 6 + 144 - 6, 310, 20, new TranslatableText("options.speedrunnermod"), (button) -> {
-            this.client.setScreen(ClothConfigScreen.getConfigBuilder().build());
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, this.height / 6 + 144 - 6, 310, 20, new TranslatableText("speedrunnermod.options"), (button) -> {
+            this.client.setScreen(ConfigurationScreen.getConfigBuilder().build());
         }));
     }
 }
