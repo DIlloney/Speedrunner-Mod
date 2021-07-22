@@ -41,8 +41,10 @@
     "entity.PigEntityMixin",
     "entity.PiglinEntityMixin",
     "entity.PlayerEntityMixin",
+    "entity.RavagerEntityMixin",
     "entity.ServerPlayerEntityMixin",
     "entity.SheepEntityMixin",
+    "entity.ShulkerBulletEntityMixin",
     "entity.SilverfishEntityCallForHelpGoalMixin",
     "entity.SilverfishEntityMixin",
     "entity.SlimeEntityMixin",
@@ -50,9 +52,9 @@
     "entity.SnowGolemEntityMixin",
     "entity.StriderEntityMixin",
     "entity.TntEntityMixin",
+    "entity.VexEntityMixin",
     "entity.VindicatorEntityMixin",
     "entity.WitchEntityMixin",
-    "entity.WitherEntityMixin",
     "entity.WitherSkeletonEntityMixin",
     "entity.ZoglinEntityMixin",
     "entity.ZombieEntityMixin",
@@ -63,7 +65,6 @@
     "misc.EfficiencyEnchantmentMixin",
     "misc.MobSpawnerLogicMixin",
     "misc.PiglinBrainMixin",
-    "misc.ServerWorldMixin",
     "misc.StructuresConfigAccessor",
     "world.ChunkGeneratorMixin",
     "world.DefaultBiomeCreatorMixin",
@@ -85,6 +86,7 @@
     "client.MinecraftClientMixin",
     "client.OptionsScreenMixin",
     "client.PlayerEntityRendererMixin",
+    "client.WorldRendererMixin",
     "client.particle.BucketItemMixin",
     "client.particle.CryingObsidianBlockMixin",
     "client.particle.EndPortalBlockMixin",
@@ -92,8 +94,7 @@
     "client.particle.LivingEntityMixin",
     "client.particle.NetherPortalBlockMixin",
     "client.particle.RedstoneOreBlockMixin",
-    "client.particle.WaterFluidMixin",
-    "client.particle.WorldRendererMixin"
+    "client.particle.WaterFluidMixin"
   ],
   "injectors": {
     "defaultRequire": 1
