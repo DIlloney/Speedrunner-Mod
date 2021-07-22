@@ -10,8 +10,6 @@ import com.dilloney.speedrunnermod.mixins.misc.StructuresConfigAccessor;
 import com.dilloney.speedrunnermod.util.UniqueItemRegistry;
 import com.dilloney.speedrunnermod.world.feature.OreGeneration;
 import com.google.common.collect.ImmutableMap;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -64,8 +62,8 @@ public final class ModRegistry {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_carrot_on_a_stick"), ModItems.SPEEDRUNNER_CARROT_ON_A_STICK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_warped_fungus_on_a_stick"), ModItems.SPEEDRUNNER_WARPED_FUNGUS_ON_A_STICK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "igneous_rock"), ModItems.IGNEOUS_ROCK);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "eye_of_inferno"), ModItems.EYE_OF_INFERNO);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "eye_of_annul"), ModItems.EYE_OF_ANNUL);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "inferno_eye"), ModItems.INFERNO_EYE);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "annul_eye"), ModItems.ANNUL_EYE);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_speedrunner_sword"), ModItems.GOLDEN_SPEEDRUNNER_SWORD);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_speedrunner_shovel"), ModItems.GOLDEN_SPEEDRUNNER_SHOVEL);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_speedrunner_pickaxe"), ModItems.GOLDEN_SPEEDRUNNER_PICKAXE);
@@ -242,60 +240,56 @@ public final class ModRegistry {
         return new Identifier("speedrunnermod", id);
     }
 
-    @Environment(EnvType.CLIENT)
-    public static class ClientRegistry {
+    public static void registerBrightnessFeatureControls() {
+        KeyBindingHelper.registerKeyBinding(BRIGHTEN_BIND);
+        KeyBindingHelper.registerKeyBinding(RAISE_BIND);
+        KeyBindingHelper.registerKeyBinding(LOWER_BIND);
+        ClientTickEvents.END_CLIENT_TICK.register(BrightnessFeature::onEndTick);
+    }
 
-        public static void registerBrightnessFeatureControls() {
-            KeyBindingHelper.registerKeyBinding(BRIGHTEN_BIND);
-            KeyBindingHelper.registerKeyBinding(RAISE_BIND);
-            KeyBindingHelper.registerKeyBinding(LOWER_BIND);
-            ClientTickEvents.END_CLIENT_TICK.register(BrightnessFeature::onEndTick);
-        }
+    public static void registerFabricModelPredicateProviderRegistries() {
+        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW.asItem(), new Identifier("pull"), (stack, world, entity, seed) -> {
+            if (entity == null) {
+                return 0.0F;
+            } else {
+                return entity.getActiveItem() != stack ? 0.0F : (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / 20.0F;
+            }
+        });
+        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW.asItem(), new Identifier("pulling"), (stack, world, entity, seed) -> {
+            return entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F;
+        });
 
-        public static void registerFabricModelPredicateProviderRegistries() {
-            FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW.asItem(), new Identifier("pull"), (stack, world, entity, seed) -> {
-                if (entity == null) {
-                    return 0.0F;
-                } else {
-                    return entity.getActiveItem() != stack ? 0.0F : (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / 20.0F;
+        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("pull"), (stack, world, entity, seed) -> {
+            if (entity == null) {
+                return 0.0F;
+            } else {
+                return SpeedrunnerItem.SpeedrunnerCrossbow.isCharged(stack) ? 0.0F : (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / (float)SpeedrunnerItem.SpeedrunnerCrossbow.getPullTime(stack);
+            }
+        });
+
+        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("pulling"), (stack, world, entity, seed) -> {
+            return entity != null && entity.isUsingItem() && entity.getActiveItem() == stack && !SpeedrunnerItem.SpeedrunnerCrossbow.isCharged(stack) ? 1.0F : 0.0F;
+        });
+
+        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("charged"), (stack, world, entity, seed) -> {
+            return entity != null && SpeedrunnerItem.SpeedrunnerCrossbow.isCharged(stack) ? 1.0F : 0.0F;
+        });
+
+        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("firework"), (stack, world, entity, seed) -> {
+            return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.hasProjectile(stack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
+        });
+        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_FISHING_ROD, new Identifier("cast"), (stack, world, entity, seed) -> {
+            if (entity == null) {
+                return 0.0F;
+            } else {
+                boolean bl = entity.getMainHandStack() == stack;
+                boolean bl2 = entity.getOffHandStack() == stack;
+                if (entity.getMainHandStack().getItem() instanceof FishingRodItem) {
+                    bl2 = false;
                 }
-            });
-            FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW.asItem(), new Identifier("pulling"), (stack, world, entity, seed) -> {
-                return entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F;
-            });
 
-            FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("pull"), (stack, world, entity, seed) -> {
-                if (entity == null) {
-                    return 0.0F;
-                } else {
-                    return SpeedrunnerItem.SpeedrunnerCrossbow.isCharged(stack) ? 0.0F : (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / (float)SpeedrunnerItem.SpeedrunnerCrossbow.getPullTime(stack);
-                }
-            });
-
-            FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("pulling"), (stack, world, entity, seed) -> {
-                return entity != null && entity.isUsingItem() && entity.getActiveItem() == stack && !SpeedrunnerItem.SpeedrunnerCrossbow.isCharged(stack) ? 1.0F : 0.0F;
-            });
-
-            FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("charged"), (stack, world, entity, seed) -> {
-                return entity != null && SpeedrunnerItem.SpeedrunnerCrossbow.isCharged(stack) ? 1.0F : 0.0F;
-            });
-
-            FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("firework"), (stack, world, entity, seed) -> {
-                return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.hasProjectile(stack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
-            });
-            FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_FISHING_ROD, new Identifier("cast"), (stack, world, entity, seed) -> {
-                if (entity == null) {
-                    return 0.0F;
-                } else {
-                    boolean bl = entity.getMainHandStack() == stack;
-                    boolean bl2 = entity.getOffHandStack() == stack;
-                    if (entity.getMainHandStack().getItem() instanceof FishingRodItem) {
-                        bl2 = false;
-                    }
-
-                    return (bl || bl2) && entity instanceof PlayerEntity && ((PlayerEntity)entity).fishHook != null ? 1.0F : 0.0F;
-                }
-            });
-        }
+                return (bl || bl2) && entity instanceof PlayerEntity && ((PlayerEntity)entity).fishHook != null ? 1.0F : 0.0F;
+            }
+        });
     }
 }
