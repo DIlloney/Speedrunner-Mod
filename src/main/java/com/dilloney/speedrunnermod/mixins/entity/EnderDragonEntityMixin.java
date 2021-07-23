@@ -107,7 +107,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
 
         if (crystal == this.connectedCrystal) {
             if (SpeedrunnerMod.CONFIG.doomMode) {
-                this.setHealth(getHealth() * 2);
+                this.damagePart(this.head, DamageSource.explosion(playerEntity2), 3.0F);
             } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
                 this.damagePart(this.head, DamageSource.explosion(playerEntity2), 20.0F);
             } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {

@@ -2,7 +2,6 @@ package com.dilloney.speedrunnermod.mixins.entity;
 
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.BowAttackGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -13,15 +12,11 @@ import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AbstractSkeletonEntity.class)
 public abstract class AbstractSkeletonEntityMixin extends HostileEntity {
@@ -42,13 +37,6 @@ public abstract class AbstractSkeletonEntityMixin extends HostileEntity {
         }
     }
 
-    @Inject(method = "initEquipment", at = @At("HEAD"))
-    private void initEquipmentMod(LocalDifficulty difficulty, CallbackInfo callbackInfo) {
-        if (SpeedrunnerMod.CONFIG.doomMode) {
-            this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
-        }
-    }
-
     @Overwrite
     public void updateAttackType() {
         if (this.world != null && !this.world.isClient) {
@@ -58,7 +46,7 @@ public abstract class AbstractSkeletonEntityMixin extends HostileEntity {
             if (itemStack.isOf(Items.BOW)) {
                 int i = 20;
                 if (SpeedrunnerMod.CONFIG.doomMode) {
-                    i = 5;
+                    i = 10;
                 } else if (this.world.getDifficulty() != Difficulty.HARD) {
                     i = 40;
                 }

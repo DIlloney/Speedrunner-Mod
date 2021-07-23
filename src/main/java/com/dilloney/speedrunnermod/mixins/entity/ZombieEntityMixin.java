@@ -1,12 +1,16 @@
 package com.dilloney.speedrunnermod.mixins.entity;
 
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.ZombieEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.LocalDifficulty;
@@ -39,6 +43,22 @@ public class ZombieEntityMixin extends HostileEntity {
     private void initEquipmentMod(LocalDifficulty difficulty, CallbackInfo callbackInfo) {
         if (SpeedrunnerMod.CONFIG.doomMode) {
             this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+            this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
+        }
+    }
+
+    @Override
+    public boolean tryAttack(Entity target) {
+        if (!super.tryAttack(target)) {
+            return false;
+        } else {
+            if (target instanceof PlayerEntity) {
+                if (SpeedrunnerMod.CONFIG.doomMode) {
+                    ((PlayerEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0));
+                }
+            }
+
+            return true;
         }
     }
 }

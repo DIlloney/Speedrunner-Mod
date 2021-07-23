@@ -41,7 +41,7 @@ public abstract class EndermanEntityMixin extends HostileEntity implements Anger
     public void tickMovement() {
         if (this.world.isClient) {
             for(int i = 0; i < 2; ++i) {
-                if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                if (SpeedrunnerMod.CONFIG.particles) {
                     this.world.addParticle(ParticleTypes.PORTAL, this.getParticleX(0.5D), this.getRandomBodyY() - 0.25D, this.getParticleZ(0.5D), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
                 }
             }

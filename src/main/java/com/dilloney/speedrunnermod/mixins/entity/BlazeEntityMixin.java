@@ -48,7 +48,7 @@ public class BlazeEntityMixin extends HostileEntity {
             }
 
             for(int i = 0; i < 2; ++i) {
-                if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                if (SpeedrunnerMod.CONFIG.particles) {
                     this.world.addParticle(ParticleTypes.LARGE_SMOKE, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0.0D, 0.0D, 0.0D);
                 }
             }

@@ -54,17 +54,16 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
         } else {
             if (target instanceof LivingEntity) {
                 if (SpeedrunnerMod.CONFIG.doomMode) {
-                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 200));
-                    target.addVelocity(0.0F, 0.6F, 0.0F);
-                    target.setOnFireFor(3);
+                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 200, 0));
+                    target.addVelocity(0.0F, 0.2F, 0.0F);
                 } else if (SpeedrunnerMod.CONFIG.difficulty == 1) {
-                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60));
+                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60, 0));
                 } else if (SpeedrunnerMod.CONFIG.difficulty == 2) {
-                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100));
+                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 0));
                 } else if (SpeedrunnerMod.CONFIG.difficulty == 3 || SpeedrunnerMod.CONFIG.difficulty == 4) {
-                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 120));
+                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 120, 0));
                 } else {
-                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60));
+                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60, 0));
                 }
             }
 

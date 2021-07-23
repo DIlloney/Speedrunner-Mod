@@ -35,12 +35,12 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     public void eatFood(World world, ItemStack stack, CallbackInfoReturnable callbackInfoReturnable) {
         if (stack.getItem() == Items.ENCHANTED_GOLDEN_APPLE) {
             this.setHealth(getHealth() + 6);
-        }
-        if (stack.getItem() == Items.GOLDEN_APPLE) {
+        } else if (stack.getItem() == Items.GOLDEN_APPLE) {
             this.setHealth(getHealth() + 4);
-        }
-        if (stack.getItem() == ModItems.SPEEDRUNNER_BULK) {
+        } else if (stack.getItem() == ModItems.SPEEDRUNNER_BULK) {
             this.setHealth(getHealth() + 4);
+        } else if (stack.getItem() == Items.GOLDEN_CARROT && SpeedrunnerMod.CONFIG.doomMode) {
+            this.removeStatusEffect(StatusEffects.POISON);
         }
     }
 

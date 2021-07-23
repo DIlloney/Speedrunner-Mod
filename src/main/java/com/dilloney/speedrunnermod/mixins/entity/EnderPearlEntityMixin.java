@@ -29,7 +29,7 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
         super.onCollision(hitResult);
 
         for(int i = 0; i < 32; ++i) {
-            if (SpeedrunnerMod.CONFIG.defaultParticles) {
+            if (SpeedrunnerMod.CONFIG.particles) {
                 this.world.addParticle(ParticleTypes.PORTAL, this.getX(), this.getY() + this.random.nextDouble() * 2.0D, this.getZ(), this.random.nextGaussian(), 0.0D, this.random.nextGaussian());
             }
         }
