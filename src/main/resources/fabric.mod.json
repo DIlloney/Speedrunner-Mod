@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "speedrunnermod",
-  "version": "1.16.3-mc117x",
+  "version": "1.16.4-mc117x",
   "accessWidener": "speedrunnermod.accesswidener",
   "name": "Speedrunner Mod",
   "description": "A Mod that makes Minecraft Speedrunning easier.",
@@ -22,9 +22,6 @@
     ],
     "client": [
       "com.dilloney.speedrunnermod.SpeedrunnerModClient"
-    ],
-    "server": [
-      "com.dilloney.speedrunnermod.server.SpeedrunnerModServer"
     ]
   },
   "mixins": [
