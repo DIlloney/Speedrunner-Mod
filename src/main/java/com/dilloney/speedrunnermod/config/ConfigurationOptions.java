@@ -9,15 +9,13 @@ public class ConfigurationOptions {
 
     public boolean makeStructuresMoreCommon = true;
     public boolean modifiedWorldGeneration = true;
-    public boolean combineFortressAndBastion = false;
     public boolean modifiedBlockHardness = true;
     public boolean modifiedLootTables = true;
-
-    public boolean fog = true;
-    public boolean defaultParticles = true;
-    public boolean netherBiomeParticles = true;
 
     public boolean killGhastUponFireball = false;
     public boolean doomMode = false;
     public boolean iCarusMode = false;
+
+    public boolean fog = true;
+    public boolean particles = true;
 }
