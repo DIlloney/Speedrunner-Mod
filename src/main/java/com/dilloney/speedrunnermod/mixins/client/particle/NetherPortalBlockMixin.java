@@ -47,7 +47,7 @@ public class NetherPortalBlockMixin extends Block {
                 j = (double)(random.nextFloat() * 2.0F * (float)k);
             }
 
-            if (SpeedrunnerMod.CONFIG.defaultParticles) {
+            if (SpeedrunnerMod.CONFIG.particles) {
                 world.addParticle(ParticleTypes.PORTAL, d, e, f, g, h, j);
             }
         }

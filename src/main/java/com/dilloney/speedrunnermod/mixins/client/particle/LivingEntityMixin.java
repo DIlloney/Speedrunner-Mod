@@ -25,11 +25,11 @@ public abstract class LivingEntityMixin extends Entity {
     @Overwrite
     public void displaySoulSpeedEffects() {
         Vec3d vec3d = this.getVelocity();
-        if (SpeedrunnerMod.CONFIG.defaultParticles) {
+        if (SpeedrunnerMod.CONFIG.particles) {
             this.world.addParticle(ParticleTypes.SOUL, this.getX() + (this.random.nextDouble() - 0.5D) * (double)this.getWidth(), this.getY() + 0.1D, this.getZ() + (this.random.nextDouble() - 0.5D) * (double)this.getWidth(), vec3d.x * -0.2D, 0.1D, vec3d.z * -0.2D);
         }
         float f = this.random.nextFloat() * 0.4F + this.random.nextFloat() > 0.9F ? 0.6F : 0.0F;
-        if (SpeedrunnerMod.CONFIG.defaultParticles) {
+        if (SpeedrunnerMod.CONFIG.particles) {
             this.playSound(SoundEvents.PARTICLE_SOUL_ESCAPE, f, 0.6F + this.random.nextFloat() * 0.4F);
         }
     }

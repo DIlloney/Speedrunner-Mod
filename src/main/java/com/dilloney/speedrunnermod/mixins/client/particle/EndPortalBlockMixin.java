@@ -23,7 +23,7 @@ public class EndPortalBlockMixin {
         double d = (double)pos.getX() + random.nextDouble();
         double e = (double)pos.getY() + 0.8D;
         double f = (double)pos.getZ() + random.nextDouble();
-        if (SpeedrunnerMod.CONFIG.defaultParticles) {
+        if (SpeedrunnerMod.CONFIG.particles) {
             world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
         }
     }

@@ -52,7 +52,7 @@ public abstract class BucketItemMixin {
                 world.playSound(player, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
 
                 for(int l = 0; l < 8; ++l) {
-                    if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                    if (SpeedrunnerMod.CONFIG.particles) {
                         world.addParticle(ParticleTypes.LARGE_SMOKE, (double)i + Math.random(), (double)j + Math.random(), (double)k + Math.random(), 0.0D, 0.0D, 0.0D);
                     }
                 }

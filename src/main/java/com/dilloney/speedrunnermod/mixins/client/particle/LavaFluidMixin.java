@@ -28,7 +28,7 @@ public class LavaFluidMixin {
                 double d = (double)pos.getX() + random.nextDouble();
                 double e = (double)pos.getY() + 1.0D;
                 double f = (double)pos.getZ() + random.nextDouble();
-                if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                if (SpeedrunnerMod.CONFIG.particles) {
                     world.addParticle(ParticleTypes.LAVA, d, e, f, 0.0D, 0.0D, 0.0D);
                 }
                 world.playSound(d, e, f, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
