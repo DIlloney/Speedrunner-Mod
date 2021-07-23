@@ -8,6 +8,8 @@ accessible class net/minecraft/structure/StrongholdGenerator$Piece
 accessible class net/minecraft/structure/StrongholdGenerator$PieceData
 accessible class net/minecraft/structure/NetherFortressGenerator$PieceData
 
+accessible method net/minecraft/client/option/Option getPercentAdditionLabel (I)Lnet/minecraft/text/Text;
+accessible method net/minecraft/client/option/Option getGenericLabel (Lnet/minecraft/text/Text;)Lnet/minecraft/text/Text;
 accessible method net/minecraft/item/PickaxeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/item/AxeItem <init> (Lnet/minecraft/item/ToolMaterial;FFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/item/HoeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
