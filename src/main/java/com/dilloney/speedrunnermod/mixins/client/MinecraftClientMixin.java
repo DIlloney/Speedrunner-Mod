@@ -21,12 +21,12 @@ public class MinecraftClientMixin {
 
     @Shadow private GameOptions options;
 
-    @Inject(at = @At("HEAD"), method = "close")
+    @Inject(method = "close", at = @At("HEAD"))
     private void closeMod(CallbackInfo info) {
         options.write();
     }
 
-    @Inject(at = @At("HEAD"), method = "setScreen")
+    @Inject(method = "setScreen", at = @At("HEAD"))
     private void setScreenMod(Screen screen, CallbackInfo info) {
         if (screen != null && screen.getClass().getSimpleName().equals("SodiumOptionsGUI")) {
             try {

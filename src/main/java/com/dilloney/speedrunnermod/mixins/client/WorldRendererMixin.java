@@ -41,7 +41,6 @@ public abstract class WorldRendererMixin {
     @Shadow ClientWorld world;
     @Shadow abstract void playSong(@Nullable SoundEvent song, BlockPos songPosition);
     @Shadow abstract Particle spawnParticle(ParticleEffect parameters, boolean alwaysSpawn, double x, double y, double z, double velocityX, double velocityY, double velocityZ);
-    @Shadow static final Identifier END_SKY;
 
     @Overwrite
     public void processWorldEvent(PlayerEntity source, int eventId, BlockPos pos, int data) {
@@ -207,7 +206,7 @@ public abstract class WorldRendererMixin {
                 this.world.playSound(pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (random.nextFloat() - random.nextFloat()) * 0.8F, false);
 
                 for(i = 0; i < 8; ++i) {
-                    if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                    if (SpeedrunnerMod.CONFIG.particles) {
                         this.world.addParticle(ParticleTypes.LARGE_SMOKE, (double)pos.getX() + random.nextDouble(), (double)pos.getY() + 1.2D, (double)pos.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
                     }
                 }
@@ -220,7 +219,7 @@ public abstract class WorldRendererMixin {
                     s = (double)pos.getX() + random.nextDouble() * 0.6D + 0.2D;
                     t = (double)pos.getY() + random.nextDouble() * 0.6D + 0.2D;
                     ab = (double)pos.getZ() + random.nextDouble() * 0.6D + 0.2D;
-                    if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                    if (SpeedrunnerMod.CONFIG.particles) {
                         this.world.addParticle(ParticleTypes.SMOKE, s, t, ab, 0.0D, 0.0D, 0.0D);
                     }
                 }
@@ -233,7 +232,7 @@ public abstract class WorldRendererMixin {
                     s = (double)pos.getX() + (5.0D + random.nextDouble() * 6.0D) / 16.0D;
                     t = (double)pos.getY() + 0.8125D;
                     ab = (double)pos.getZ() + (5.0D + random.nextDouble() * 6.0D) / 16.0D;
-                    if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                    if (SpeedrunnerMod.CONFIG.particles) {
                         this.world.addParticle(ParticleTypes.SMOKE, s, t, ab, 0.0D, 0.0D, 0.0D);
                     }
                 }
@@ -263,7 +262,7 @@ public abstract class WorldRendererMixin {
                     double o = (double)i * g + random.nextGaussian() * 0.01D;
                     double p = (double)j * g + random.nextGaussian() * 0.01D;
                     double q = (double)k * g + random.nextGaussian() * 0.01D;
-                    if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                    if (SpeedrunnerMod.CONFIG.particles) {
                         this.world.addParticle(ParticleTypes.SMOKE, h, m, n, o, p, q);
                     }
                 }
@@ -327,7 +326,7 @@ public abstract class WorldRendererMixin {
                     s = (double)pos.getX() + 0.5D + (random.nextDouble() - 0.5D) * 2.0D;
                     t = (double)pos.getY() + 0.5D + (random.nextDouble() - 0.5D) * 2.0D;
                     ab = (double)pos.getZ() + 0.5D + (random.nextDouble() - 0.5D) * 2.0D;
-                    if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                    if (SpeedrunnerMod.CONFIG.particles) {
                         this.world.addParticle(ParticleTypes.SMOKE, s, t, ab, 0.0D, 0.0D, 0.0D);
                         this.world.addParticle(ParticleTypes.FLAME, s, t, ab, 0.0D, 0.0D, 0.0D);
                     }
@@ -386,14 +385,6 @@ public abstract class WorldRendererMixin {
                 break;
             case 3005:
                 ParticleUtil.spawnParticle(this.world, pos, ParticleTypes.SCRAPE, UniformIntProvider.create(3, 5));
-        }
-    }
-
-    static {
-        if (SpeedrunnerMod.CONFIG.doomMode) {
-            END_SKY = new Identifier("textures/environment/end_sky_doom_mode.png");
-        } else {
-            END_SKY = new Identifier("textures/environment/end_sky.png");
         }
     }
 }
