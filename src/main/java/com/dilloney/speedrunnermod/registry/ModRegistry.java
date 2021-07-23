@@ -2,7 +2,6 @@ package com.dilloney.speedrunnermod.registry;
 
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import com.dilloney.speedrunnermod.blocks.ModBlocks;
-import com.dilloney.speedrunnermod.client.BrightnessFeature;
 import com.dilloney.speedrunnermod.config.ConfigFileManager;
 import com.dilloney.speedrunnermod.items.ModItems;
 import com.dilloney.speedrunnermod.items.SpeedrunnerItem;
@@ -12,8 +11,6 @@ import com.dilloney.speedrunnermod.world.feature.OreGeneration;
 import com.google.common.collect.ImmutableMap;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.fabricmc.fabric.api.tag.TagRegistry;
@@ -36,7 +33,6 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.dilloney.speedrunnermod.client.BrightnessFeature.*;
 import static com.dilloney.speedrunnermod.items.ModItems.PIGLIN_BARTERING_ITEMS;
 import static com.dilloney.speedrunnermod.items.ModItems.PIGLIN_SAFE_ARMOR;
 
@@ -238,13 +234,6 @@ public final class ModRegistry {
 
     public static Identifier id(String id) {
         return new Identifier("speedrunnermod", id);
-    }
-
-    public static void registerBrightnessFeatureControls() {
-        KeyBindingHelper.registerKeyBinding(BRIGHTEN_BIND);
-        KeyBindingHelper.registerKeyBinding(RAISE_BIND);
-        KeyBindingHelper.registerKeyBinding(LOWER_BIND);
-        ClientTickEvents.END_CLIENT_TICK.register(BrightnessFeature::onEndTick);
     }
 
     public static void registerFabricModelPredicateProviderRegistries() {
