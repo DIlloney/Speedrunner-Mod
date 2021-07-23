@@ -50,7 +50,7 @@ public abstract class AbstractFireBlockMixin extends Block {
                     y = (double)pos.getX() + random.nextDouble() * 0.10000000149011612D;
                     z = (double)pos.getY() + random.nextDouble();
                     aa = (double)pos.getZ() + random.nextDouble();
-                    if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                    if (SpeedrunnerMod.CONFIG.particles) {
                         world.addParticle(ParticleTypes.LARGE_SMOKE, y, z, aa, 0.0D, 0.0D, 0.0D);
                     }
                 }
@@ -61,7 +61,7 @@ public abstract class AbstractFireBlockMixin extends Block {
                     y = (double)(pos.getX() + 1) - random.nextDouble() * 0.10000000149011612D;
                     z = (double)pos.getY() + random.nextDouble();
                     aa = (double)pos.getZ() + random.nextDouble();
-                    if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                    if (SpeedrunnerMod.CONFIG.particles) {
                         world.addParticle(ParticleTypes.LARGE_SMOKE, y, z, aa, 0.0D, 0.0D, 0.0D);
                     }
                 }
@@ -72,7 +72,7 @@ public abstract class AbstractFireBlockMixin extends Block {
                     y = (double)pos.getX() + random.nextDouble();
                     z = (double)pos.getY() + random.nextDouble();
                     aa = (double)pos.getZ() + random.nextDouble() * 0.10000000149011612D;
-                    if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                    if (SpeedrunnerMod.CONFIG.particles) {
                         world.addParticle(ParticleTypes.LARGE_SMOKE, y, z, aa, 0.0D, 0.0D, 0.0D);
                     }
                 }
@@ -83,7 +83,7 @@ public abstract class AbstractFireBlockMixin extends Block {
                     y = (double)pos.getX() + random.nextDouble();
                     z = (double)pos.getY() + random.nextDouble();
                     aa = (double)(pos.getZ() + 1) - random.nextDouble() * 0.10000000149011612D;
-                    if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                    if (SpeedrunnerMod.CONFIG.particles) {
                         world.addParticle(ParticleTypes.LARGE_SMOKE, y, z, aa, 0.0D, 0.0D, 0.0D);
                     }
                 }
@@ -94,7 +94,7 @@ public abstract class AbstractFireBlockMixin extends Block {
                     y = (double)pos.getX() + random.nextDouble();
                     z = (double)(pos.getY() + 1) - random.nextDouble() * 0.10000000149011612D;
                     aa = (double)pos.getZ() + random.nextDouble();
-                    if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                    if (SpeedrunnerMod.CONFIG.particles) {
                         world.addParticle(ParticleTypes.LARGE_SMOKE, y, z, aa, 0.0D, 0.0D, 0.0D);
                     }
                 }
@@ -104,7 +104,7 @@ public abstract class AbstractFireBlockMixin extends Block {
                 y = (double)pos.getX() + random.nextDouble();
                 z = (double)pos.getY() + random.nextDouble() * 0.5D + 0.5D;
                 aa = (double)pos.getZ() + random.nextDouble();
-                if (SpeedrunnerMod.CONFIG.defaultParticles) {
+                if (SpeedrunnerMod.CONFIG.particles) {
                     world.addParticle(ParticleTypes.LARGE_SMOKE, y, z, aa, 0.0D, 0.0D, 0.0D);
                 }
             }

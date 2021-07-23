@@ -26,14 +26,14 @@ public class SpawnerBlockMixin extends Block {
     @Overwrite
     public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
         super.onStacksDropped(state, world, pos, stack);
-        int i = 125 + world.random.nextInt(175) + world.random.nextInt(180);
+        int i = 1024;
         this.dropExperience(world, pos, i);
         if (SpeedrunnerMod.CONFIG.doomMode) {
             BlazeEntity blazeEntity = (BlazeEntity)EntityType.BLAZE.create(world);
             blazeEntity.refreshPositionAndAngles(pos, pos.getY() + 0.5F, 0);
             VindicatorEntity vindicatorEntity = (VindicatorEntity)EntityType.VINDICATOR.create(world);
             vindicatorEntity.refreshPositionAndAngles(pos, pos.getY() + 0.5F, 0);
-            vindicatorEntity.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_AXE));
+            vindicatorEntity.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_AXE));
             world.spawnEntity(blazeEntity);
             world.spawnEntity(vindicatorEntity);
             world.setBlockState(pos, Blocks.LAVA.getDefaultState());

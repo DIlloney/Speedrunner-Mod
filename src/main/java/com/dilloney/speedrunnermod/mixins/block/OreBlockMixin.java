@@ -36,6 +36,9 @@ public class OreBlockMixin extends Block {
                 int i = 1 + world.random.nextInt(6);
                 this.dropExperience(world, pos, i);
             }
+        } if (state.isOf(Blocks.NETHER_GOLD_ORE)) {
+            int i = 1 + world.random.nextInt(2);
+            this.dropExperience(world, pos, i);
         }
     }
 }
