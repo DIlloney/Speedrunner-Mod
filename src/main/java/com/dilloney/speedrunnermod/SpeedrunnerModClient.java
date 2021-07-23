@@ -10,9 +10,6 @@ public class SpeedrunnerModClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ModRegistry.ClientRegistry.registerFabricModelPredicateProviderRegistries();
-        ModRegistry.ClientRegistry.registerBrightnessFeatureControls();
-
-        System.out.println("Speedrunner Mod loaded successfully! modVersion = 1.16 | minecraftVersion = 1.17x");
+        ModRegistry.registerFabricModelPredicateProviderRegistries();
     }
 }
