@@ -14,6 +14,7 @@ public final class ModItemGroup {
             .icon(() -> new ItemStack(ModBlocks.SPEEDRUNNER_BLOCK_ITEM))
             .appendItems(itemStacks -> {
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_INGOT));
+                itemStacks.add(new ItemStack(ModItems.RAW_SPEEDRUNNER));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_NUGGET));
                 itemStacks.add(new ItemStack(ModBlocks.SPEEDRUNNER_BLOCK_ITEM));
                 itemStacks.add(new ItemStack(ModBlocks.SPEEDRUNNER_ORE_BLOCK_ITEM));
@@ -45,14 +46,15 @@ public final class ModItemGroup {
                 itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_BOOTS));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_CARROT_ON_A_STICK));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_WARPED_FUNGUS_ON_A_STICK));
-                itemStacks.add(new ItemStack(ModItems.EYE_OF_INFERNO));
-                itemStacks.add(new ItemStack(ModItems.EYE_OF_ANNUL));
+                itemStacks.add(new ItemStack(ModItems.INFERNO_EYE));
+                itemStacks.add(new ItemStack(ModItems.ANNUL_EYE));
                 itemStacks.add(new ItemStack(ModItems.IGNEOUS_ROCK));
                 itemStacks.add(new ItemStack(ModBlocks.IGNEOUS_ORE_BLOCK_ITEM));
                 itemStacks.add(new ItemStack(ModBlocks.DEEPSLATE_IGNEOUS_ORE_BLOCK_ITEM));
                 itemStacks.add(new ItemStack(ModBlocks.NETHER_IGNEOUS_ORE_BLOCK_ITEM));
                 itemStacks.add(new ItemStack(ModItems.COOKED_PIGLIN_PORK));
                 itemStacks.add(new ItemStack(ModItems.RAW_PIGLIN_PORK));
+                itemStacks.add(new ItemStack(ModItems.GOLDEN_PIGLIN_PORK));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_BULK));
                 itemStacks.add(new ItemStack(ModItems.ROTTEN_SPEEDRUNNER_BULK));
                 itemStacks.add(new ItemStack(ModItems.COOKED_FLESH));
