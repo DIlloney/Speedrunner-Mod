@@ -1,1 +1,1 @@
-schedule function speedrunnermod:perchcommand 21s
+schedule function speedrunnermod:perchcommand 30s
