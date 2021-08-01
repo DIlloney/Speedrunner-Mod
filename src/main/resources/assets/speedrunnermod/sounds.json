@@ -1,0 +1,66 @@
+{
+  "giant_ambient": {
+    "category": "hostile",
+    "subtitle": "entity.speedrunnermod.giant_ambient.subtitle",
+    "sounds": [
+      {
+        "name": "speedrunnermod:entity/giant_say1"
+      },
+      {
+        "name": "speedrunnermod:entity/giant_say2"
+      },
+      {
+        "name": "speedrunnermod:entity/giant_say3"
+      }
+    ]
+  },
+  "giant_hurt": {
+    "category": "hostile",
+    "subtitle": "entity.speedrunnermod.giant_hurt.subtitle",
+    "sounds": [
+      {
+        "name": "speedrunnermod:entity/giant_hurt1"
+      },
+      {
+        "name": "speedrunnermod:entity/giant_hurt2"
+      }
+    ]
+  },
+  "giant_death": {
+    "category": "hostile",
+    "subtitle": "entity.speedrunnermod.giant_death.subtitle",
+    "sounds": [
+      {
+        "name": "speedrunnermod:entity/giant_death"
+      }
+    ]
+  },
+  "giant_step": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "speedrunnermod:entity/giant_step1"
+      },
+      {
+        "name": "speedrunnermod:entity/giant_step2"
+      },
+      {
+        "name": "speedrunnermod:entity/giant_step3"
+      },
+      {
+        "name": "speedrunnermod:entity/giant_step4"
+      },
+      {
+        "name": "speedrunnermod:entity/giant_step5"
+      }
+    ]
+  },
+  "doom_mode_end_ambient": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "speedrunnermod:ambient/doom_mode_end_ambient"
+      }
+    ]
+  }
+}
