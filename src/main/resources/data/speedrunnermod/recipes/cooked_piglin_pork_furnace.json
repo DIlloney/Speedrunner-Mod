@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "speedrunnermod:raw_piglin_pork"
-  },
-  "result": "speedrunnermod:cooked_piglin_pork",
-  "experience": 0.35,
-  "cookingtime": 20
-}
