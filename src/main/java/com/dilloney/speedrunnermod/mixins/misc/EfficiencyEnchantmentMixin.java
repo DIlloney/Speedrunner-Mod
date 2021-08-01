@@ -1,6 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.misc;
 
-import com.dilloney.speedrunnermod.util.UniqueItemRegistry;
+import com.dilloney.speedrunnermod.util.ModTags;
 import net.minecraft.enchantment.EfficiencyEnchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,6 +13,6 @@ public class EfficiencyEnchantmentMixin {
 
     @Redirect(method = "isAcceptableItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean isAcceptableItemMod(ItemStack stack, Item isOfItem) {
-        return UniqueItemRegistry.SHEARS.isItemInRegistry(stack.getItem());
+        return stack.isIn(ModTags.SHEARS);
     }
 }

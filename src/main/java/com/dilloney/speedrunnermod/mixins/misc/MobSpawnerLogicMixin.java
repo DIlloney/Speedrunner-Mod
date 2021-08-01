@@ -17,13 +17,9 @@ import java.util.Random;
 public abstract class MobSpawnerLogicMixin {
 
     @Shadow int spawnDelay;
-
     @Shadow Pool<MobSpawnerEntry> spawnPotentials;
-
     @Shadow MobSpawnerEntry spawnEntry;
-
     @Shadow @Final Random random;
-
     @Shadow abstract void sendStatus(World world, BlockPos pos, int i);
 
     int minSpawnDelayMixin = 200;

@@ -1,6 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.misc;
 
-import com.dilloney.speedrunnermod.items.ModItems;
+import com.dilloney.speedrunnermod.util.ModTags;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
@@ -22,14 +22,14 @@ public class PiglinBrainMixin {
 
     @Inject(method = "acceptsForBarter(Lnet/minecraft/item/ItemStack;)Z", at = @At("RETURN"), cancellable = true)
     private static void acceptsForBarterMod(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.isIn(ModItems.PIGLIN_BARTERING_ITEMS)) {
+        if (stack.isIn(ModTags.BARTERING_ITEMS)) {
             cir.setReturnValue(true);
         }
     }
 
     @Inject(method = "wearsGoldArmor(Lnet/minecraft/entity/LivingEntity;)Z", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
     private static void wearsGoldArmorMod(LivingEntity entity, CallbackInfoReturnable<Boolean> cir, Iterable<ItemStack> iterable, Iterator iterator, ItemStack stack, Item item) {
-        if (stack.isIn(ModItems.PIGLIN_SAFE_ARMOR)) {
+        if (stack.isIn(ModTags.PIGLIN_SAFE_ARMOR)) {
             cir.setReturnValue(true);
         }
     }
