@@ -2,45 +2,57 @@ package com.dilloney.speedrunnermod.registry;
 
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import com.dilloney.speedrunnermod.blocks.ModBlocks;
-import com.dilloney.speedrunnermod.config.ConfigFileManager;
+import com.dilloney.speedrunnermod.config.ConfigurationFileManager;
 import com.dilloney.speedrunnermod.items.ModItems;
 import com.dilloney.speedrunnermod.items.SpeedrunnerItem;
-import com.dilloney.speedrunnermod.mixins.misc.StructuresConfigAccessor;
-import com.dilloney.speedrunnermod.util.UniqueItemRegistry;
+import com.dilloney.speedrunnermod.sounds.ModSoundEvents;
+import com.dilloney.speedrunnermod.util.ModLootTables;
+import com.dilloney.speedrunnermod.util.ModTags;
+import com.dilloney.speedrunnermod.util.PersistanceItems;
+import com.dilloney.speedrunnermod.util.Speedrunners;
 import com.dilloney.speedrunnermod.world.feature.OreGeneration;
-import com.google.common.collect.ImmutableMap;
+import com.dilloney.speedrunnermod.world.feature.StructureGeneration;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ShearsDispenserBehavior;
+import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.FishingRodItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.chunk.StructureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.StructureFeature;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.dilloney.speedrunnermod.items.ModItems.PIGLIN_BARTERING_ITEMS;
-import static com.dilloney.speedrunnermod.items.ModItems.PIGLIN_SAFE_ARMOR;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.UUID;
 
 public final class ModRegistry {
+
+    public static void loadConfig() {
+        ConfigurationFileManager.load();
+    }
 
     public static void registerItems() {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_ingot"), ModItems.SPEEDRUNNER_INGOT);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_nugget"), ModItems.SPEEDRUNNER_NUGGET);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "raw_speedrunner"), ModItems.RAW_SPEEDRUNNER);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_sword"), ModItems.SPEEDRUNNER_SWORD);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_shovel"), ModItems.SPEEDRUNNER_SHOVEL);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_pickaxe"), ModItems.SPEEDRUNNER_PICKAXE);
@@ -69,8 +81,9 @@ public final class ModRegistry {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_speedrunner_chestplate"), ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_speedrunner_leggings"), ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_speedrunner_boots"), ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "raw_piglin_pork"), ModItems.RAW_PIGLIN_PORK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "cooked_piglin_pork"), ModItems.COOKED_PIGLIN_PORK);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "raw_piglin_pork"), ModItems.RAW_PIGLIN_PORK);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_piglin_pork"), ModItems.GOLDEN_PIGLIN_PORK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_bulk"), ModItems.SPEEDRUNNER_BULK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "rotten_speedrunner_bulk"), ModItems.ROTTEN_SPEEDRUNNER_BULK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_apple"), ModItems.SPEEDRUNNER_APPLE);
@@ -127,35 +140,12 @@ public final class ModRegistry {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "nether_igneous_ore"), ModBlocks.NETHER_IGNEOUS_ORE_BLOCK_ITEM);
     }
 
-    public static void registerModifiedStructureGeneration() {
-        if (SpeedrunnerMod.CONFIG.makeStructuresMoreCommon) {
-            ServerWorldEvents.LOAD.register((server, world) -> {
-                Map<StructureFeature<?>, StructureConfig> map = new HashMap<>(world.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
-
-                map.computeIfPresent(StructureFeature.RUINED_PORTAL, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(9, 8, 34222645);
-                });
-                map.computeIfPresent(StructureFeature.VILLAGE, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(16, 9, 10387312);
-                });
-                map.computeIfPresent(StructureFeature.DESERT_PYRAMID, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(10, 8, 14357617);
-                });
-                map.computeIfPresent(StructureFeature.SHIPWRECK, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(10, 8, 165745295);
-                });
-                map.computeIfPresent(StructureFeature.FORTRESS, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(8, 7, 30084232);
-                });
-                map.computeIfPresent(StructureFeature.BASTION_REMNANT, (structureFeature, structureConfig) -> {
-                    return new StructureConfig(9, 8, 30084232);
-                });
-
-                ImmutableMap<StructureFeature<?>, StructureConfig> immutableMap = ImmutableMap.copyOf(map);
-
-                ((StructuresConfigAccessor) world.getChunkManager().getChunkGenerator().getStructuresConfig()).setStructures(immutableMap);
-            });
-        }
+    public static void registerSoundEvents() {
+        Registry.register(Registry.SOUND_EVENT, new Identifier("speedrunnermod", "sounds/entity/giant_ambient"), ModSoundEvents.ENTITY_GIANT_AMBIENT);
+        Registry.register(Registry.SOUND_EVENT, new Identifier("speedrunnermod", "sounds/entity/giant_hurt"), ModSoundEvents.ENTITY_GIANT_HURT);
+        Registry.register(Registry.SOUND_EVENT, new Identifier("speedrunnermod", "sounds/entity/giant_death"), ModSoundEvents.ENTITY_GIANT_DEATH);
+        Registry.register(Registry.SOUND_EVENT, new Identifier("speedrunnermod", "sounds/entity/giant_step"), ModSoundEvents.ENTITY_GIANT_STEP);
+        Registry.register(Registry.SOUND_EVENT, new Identifier("speedrunnermod", "sounds/ambient/doom_mode_end_ambient"), ModSoundEvents.DOOM_MODE_END_AMBIENT);
     }
 
     public static void registerConfiguredFeatures() {
@@ -190,53 +180,95 @@ public final class ModRegistry {
         BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, speedrunnerNetherOreNether);
 
         if (SpeedrunnerMod.CONFIG.difficulty == 1 || SpeedrunnerMod.CONFIG.difficulty == 2) {
-            RegistryKey<ConfiguredFeature<?, ?>> diamondOreMesaJungleMountains = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
-                    new Identifier("speedrunnermod", "diamond_ore_mesa_jungle_mountains_configured_feature_worldgen"));
-            Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, diamondOreMesaJungleMountains.getValue(), OreGeneration.DIAMOND_ORE_MESA_JUNGLE_MOUNTAINS);
-            BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.MESA), GenerationStep.Feature.UNDERGROUND_ORES, diamondOreMesaJungleMountains);
-            BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.JUNGLE), GenerationStep.Feature.UNDERGROUND_ORES, diamondOreMesaJungleMountains);
-            BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.EXTREME_HILLS), GenerationStep.Feature.UNDERGROUND_ORES, diamondOreMesaJungleMountains);
+            RegistryKey<ConfiguredFeature<?, ?>> diamondOre = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
+                    new Identifier("speedrunnermod", "diamond_ore_configured_feature_worldgen"));
+            Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, diamondOre.getValue(), OreGeneration.DIAMOND_ORE);
+            BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, diamondOre);
 
-            RegistryKey<ConfiguredFeature<?, ?>> deepslateDiamondOreMesaJungleMountains = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
-                    new Identifier("speedrunnermod", "deepslate_diamond_ore_mesa_jungle_mountains_configured_feature_worldgen"));
-            Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, deepslateDiamondOreMesaJungleMountains.getValue(), OreGeneration.DEEPSLATE_DIAMOND_ORE_MESA_JUNGLE_MOUNTAINS);
-            BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.MESA), GenerationStep.Feature.UNDERGROUND_ORES, deepslateDiamondOreMesaJungleMountains);
-            BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.JUNGLE), GenerationStep.Feature.UNDERGROUND_ORES, deepslateDiamondOreMesaJungleMountains);
-            BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.EXTREME_HILLS), GenerationStep.Feature.UNDERGROUND_ORES, deepslateDiamondOreMesaJungleMountains);
+            RegistryKey<ConfiguredFeature<?, ?>> deepslateDiamondOre = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
+                    new Identifier("speedrunnermod", "deepslate_diamond_ore_configured_feature_worldgen"));
+            Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, deepslateDiamondOre.getValue(), OreGeneration.DEEPSLATE_DIAMOND_ORE);
+            BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, deepslateDiamondOre);
         }
+
+        StructureGeneration.modifiedStructureGeneration();
     }
 
-    public static void registerModDifficulty() {
-        ModDifficulty.registerLootTables();
+    public static void registerManhuntCommands() {
+        ServerTickEvents.END_SERVER_TICK.register((server) -> {
+            ArrayList<PersistanceItems> newList = PersistanceItems.getItems();
+            if (newList != null) {
+                Iterator var2 = newList.iterator();
+
+                while(var2.hasNext()) {
+                    PersistanceItems player = (PersistanceItems)var2.next();
+                    if (server.getPlayerManager().getPlayer(UUID.fromString(player.getPlayerUUID())) != null && server.getPlayerManager().getPlayer(UUID.fromString(player.getPlayerUUID())).isAlive()) {
+                        server.getPlayerManager().getPlayer(UUID.fromString(player.getPlayerUUID())).giveItemStack(player.getStack());
+                    }
+                }
+            }
+
+        });
+        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+            dispatcher.register((LiteralArgumentBuilder)((LiteralArgumentBuilder)CommandManager.literal("compass").requires((source) -> {
+                return source.hasPermissionLevel(4);
+            })).executes((ctx) -> {
+                ItemStack hunterCompass = new ItemStack(Items.COMPASS);
+                NbtCompound tag = hunterCompass.writeNbt(new NbtCompound());
+                tag.putBoolean("huntercompass", true);
+                hunterCompass.setNbt(tag);
+                ((ServerCommandSource)ctx.getSource()).getPlayer().giveItemStack(hunterCompass);
+                return 1;
+            }));
+        });
+        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+            dispatcher.register((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)CommandManager.literal("speedrunner").requires((source) -> {
+                return source.hasPermissionLevel(4);
+            })).then(CommandManager.literal("add").then((RequiredArgumentBuilder)CommandManager.argument("targets", EntityArgumentType.players()).executes((ctx) -> {
+                ((ServerCommandSource)ctx.getSource()).sendFeedback(new LiteralText(EntityArgumentType.getPlayer(ctx, "targets").getEntityName() + " successfully added"), false);
+                Speedrunners.addRunner(EntityArgumentType.getPlayer(ctx, "targets").getUuidAsString());
+                return 1;
+            })))).then(CommandManager.literal("remove").then((RequiredArgumentBuilder)CommandManager.argument("targets", EntityArgumentType.players()).executes((ctx) -> {
+                ((ServerCommandSource)ctx.getSource()).sendFeedback(new LiteralText(EntityArgumentType.getPlayer(ctx, "targets").getEntityName() + " successfully removed"), false);
+                Speedrunners.removeRunner(EntityArgumentType.getPlayer(ctx, "targets").getUuidAsString());
+                return 1;
+            }))).then(CommandManager.literal("list").executes((ctx) -> {
+                ArrayList<String> nameList = Speedrunners.getRunners(((ServerCommandSource)ctx.getSource()).getWorld(), true);
+                Iterator var2 = nameList.iterator();
+
+                while(var2.hasNext()) {
+                    String str = (String)var2.next();
+                    ((ServerCommandSource)ctx.getSource()).sendFeedback(new LiteralText(str), false);
+                }
+
+                return 1;
+            })));
+        });
     }
 
-    public static void loadConfig() {
-        ConfigFileManager.load();
+    public static void registerTags() {
+        ModTags.PIGLIN_SAFE_ARMOR = TagRegistry.item(new Identifier("speedrunnermod", "piglin_safe_armor"));
+        ModTags.BARTERING_ITEMS = TagRegistry.item(new Identifier("speedrunnermod", "bartering_items"));
+        ModTags.GOLDEN_ITEMS = TagRegistry.item(new Identifier("speedrunnermod", "golden_items"));
+        ModTags.BOWS = TagRegistry.item(new Identifier("speedrunnermod", "bows"));
+        ModTags.CROSSBOWS = TagRegistry.item(new Identifier("speedrunnermod", "crossbows"));
+        ModTags.SHEARS = TagRegistry.item(new Identifier("speedrunnermod", "shears"));
+        ModTags.FISHING_RODS = TagRegistry.item(new Identifier("speedrunnermod", "fishing_rods"));
+        ModTags.FLINT_AND_STEELS = TagRegistry.item(new Identifier("speedrunnermod", "flint_and_steels"));
+        ModTags.CARROT_ON_STICKS = TagRegistry.item(new Identifier("speedrunnermod", "carrot_on_sticks"));
+        ModTags.WARPED_FUNGUS_ON_STICKS = TagRegistry.item(new Identifier("speedrunnermod", "warped_fungus_on_sticks"));
+        ModTags.IRON_INGOTS = TagRegistry.item(new Identifier("speedrunnermod", "iron_ingots"));
+        ModTags.IRON_NUGGETS = TagRegistry.item(new Identifier("speedrunnermod", "iron_nuggets"));
+        ModTags.IRON_BLOCKS = TagRegistry.item(new Identifier("speedrunnermod", "iron_blocks"));
+        ModTags.COBBLESTONES = TagRegistry.item(new Identifier("speedrunnermod", "cobblestones"));
     }
 
-    public static void registerMisc() {
-        UniqueItemRegistry.BOW.addItemToRegistry(Items.BOW);
-        UniqueItemRegistry.CROSSBOW.addItemToRegistry(Items.CROSSBOW);
-        UniqueItemRegistry.SHEARS.addItemToRegistry(Items.SHEARS);
-        UniqueItemRegistry.FISHING_ROD.addItemToRegistry(Items.FISHING_ROD);
-        UniqueItemRegistry.CARROT_ON_A_STICK.addItemToRegistry(Items.CARROT_ON_A_STICK);
-        UniqueItemRegistry.WARPED_FUNGUS_ON_A_STICK.addItemToRegistry(Items.WARPED_FUNGUS_ON_A_STICK);
-        UniqueItemRegistry.BOW.addItemToRegistry(ModItems.SPEEDRUNNER_BOW);
-        UniqueItemRegistry.CROSSBOW.addItemToRegistry(ModItems.SPEEDRUNNER_CROSSBOW);
-        UniqueItemRegistry.SHEARS.addItemToRegistry(ModItems.SPEEDRUNNER_SHEARS);
-        UniqueItemRegistry.FISHING_ROD.addItemToRegistry(ModItems.SPEEDRUNNER_FISHING_ROD);
-        UniqueItemRegistry.CARROT_ON_A_STICK.addItemToRegistry(ModItems.SPEEDRUNNER_CARROT_ON_A_STICK);
-        UniqueItemRegistry.WARPED_FUNGUS_ON_A_STICK.addItemToRegistry(ModItems.SPEEDRUNNER_WARPED_FUNGUS_ON_A_STICK);
+    public static void registerMiscellaneous() {
+        ModLootTables.modifiedLootTables();
         DispenserBlock.registerBehavior(ModItems.SPEEDRUNNER_SHEARS, new ShearsDispenserBehavior());
-        PIGLIN_SAFE_ARMOR = TagRegistry.item(id("piglin_safe_armor"));
-        PIGLIN_BARTERING_ITEMS = TagRegistry.item(id("piglin_bartering_items"));
     }
 
-    public static Identifier id(String id) {
-        return new Identifier("speedrunnermod", id);
-    }
-
-    public static void registerFabricModelPredicateProviderRegistries() {
+    public static void registerFabricModelPredicateProviders() {
         FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW.asItem(), new Identifier("pull"), (stack, world, entity, seed) -> {
             if (entity == null) {
                 return 0.0F;
