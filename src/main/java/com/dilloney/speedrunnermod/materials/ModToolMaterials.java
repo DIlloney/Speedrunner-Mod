@@ -28,7 +28,7 @@ public enum ModToolMaterials implements ToolMaterial {
         return Ingredient.ofItems(ModItems.SPEEDRUNNER_INGOT);
     }),
     GOLDEN_SPEEDRUNNER(1, 128, 13.0F, 0.0F, 25, () -> {
-        return Ingredient.ofItems(Items.GOLD_INGOT, ModItems.SPEEDRUNNER_INGOT);
+        return Ingredient.ofItems(ModItems.SPEEDRUNNER_INGOT, Items.GOLD_INGOT);
     });
 
     private final int miningLevel;
