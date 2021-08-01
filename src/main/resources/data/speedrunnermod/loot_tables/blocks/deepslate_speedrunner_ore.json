@@ -51,7 +51,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "speedrunnermod:speedrunner_ingot"
+              "name": "speedrunnermod:raw_speedrunner"
             }
           ]
         }
