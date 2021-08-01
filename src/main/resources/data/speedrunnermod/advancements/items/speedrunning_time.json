@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "speedrunnermod:speedrunner_ingot"
+    },
+    "title": {
+      "translate": "advancements.items.speedrunning_time.title"
+    },
+    "description": {
+      "translate": "advancements.items.speedrunning_time.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "minecraft:story/upgrade_tools",
+  "criteria": {
+    "has_speedrunner_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "speedrunnermod:speedrunner_ingot"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_speedrunner_ingot"
+    ]
+  ]
+}

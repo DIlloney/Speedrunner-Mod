@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "speedrunnermod:annul_eye"
+    },
+    "title": {
+      "translate": "advancements.items.the_end_is_near.title"
+    },
+    "description": {
+      "translate": "advancements.items.the_end_is_near.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "minecraft:story/upgrade_tools",
+  "criteria": {
+    "has_annul_eye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "speedrunnermod:annul_eye"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_annul_eye"
+    ]
+  ]
+}
