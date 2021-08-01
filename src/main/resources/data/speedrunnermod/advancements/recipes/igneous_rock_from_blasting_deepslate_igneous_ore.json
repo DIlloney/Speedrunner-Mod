@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deepslate_igneous_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "speedrunnermod:deepslate_igneous_ore"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "speedrunnermod:igneous_rock_from_blasting_deepslate_igneous_ore"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_deepslate_igneous_ore",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "speedrunnermod:igneous_rock_from_blasting_deepslate_igneous_ore"
+    ]
+  }
+}
