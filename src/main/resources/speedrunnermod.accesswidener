@@ -8,14 +8,11 @@ accessible class net/minecraft/structure/StrongholdGenerator$Piece
 accessible class net/minecraft/structure/StrongholdGenerator$PieceData
 accessible class net/minecraft/structure/NetherFortressGenerator$PieceData
 
-accessible method net/minecraft/client/option/Option getPercentAdditionLabel (I)Lnet/minecraft/text/Text;
-accessible method net/minecraft/client/option/Option getGenericLabel (Lnet/minecraft/text/Text;)Lnet/minecraft/text/Text;
 accessible method net/minecraft/item/PickaxeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/item/AxeItem <init> (Lnet/minecraft/item/ToolMaterial;FFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/item/HoeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/entity/projectile/ProjectileEntity updateRotation (FF)F
 accessible method net/minecraft/entity/mob/BlazeEntity setFireActive (Z)V
-accessible method net/minecraft/entity/projectile/ProjectileEntity <init> (Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V
 accessible method net/minecraft/world/gen/feature/RuinedPortalFeature getFloorHeight (Ljava/util/Random;Lnet/minecraft/world/gen/chunk/ChunkGenerator;Lnet/minecraft/structure/RuinedPortalStructurePiece$VerticalPlacement;ZIILnet/minecraft/util/math/BlockBox;Lnet/minecraft/world/HeightLimitView;)I
 accessible method net/minecraft/world/gen/feature/RuinedPortalFeature isColdAt (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/biome/Biome;)Z
 
