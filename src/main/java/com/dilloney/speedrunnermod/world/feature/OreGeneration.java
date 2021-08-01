@@ -45,13 +45,13 @@ public final class OreGeneration {
             .spreadHorizontally()
             .repeat(15);
 
-    public static final ConfiguredFeature<?, ?> DIAMOND_ORE_MESA_JUNGLE_MOUNTAINS = Feature.ORE.configure(
+    public static final ConfiguredFeature<?, ?> DIAMOND_ORE = Feature.ORE.configure(
             new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, Blocks.DIAMOND_ORE.getDefaultState(), 8))
             .uniformRange(YOffset.getBottom(), YOffset.fixed(21))
             .spreadHorizontally()
             .repeat(5);
 
-    public static final ConfiguredFeature<?, ?> DEEPSLATE_DIAMOND_ORE_MESA_JUNGLE_MOUNTAINS = Feature.ORE.configure(
+    public static final ConfiguredFeature<?, ?> DEEPSLATE_DIAMOND_ORE = Feature.ORE.configure(
             new OreFeatureConfig(OreFeatureConfig.Rules.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_DIAMOND_ORE.getDefaultState(), 8))
             .uniformRange(YOffset.getBottom(), YOffset.fixed(16))
             .spreadHorizontally()
