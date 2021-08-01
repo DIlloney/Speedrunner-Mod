@@ -7,7 +7,6 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
-import net.minecraft.tag.Tag;
 import net.minecraft.util.Rarity;
 
 public final class ModItems {
@@ -16,6 +15,9 @@ public final class ModItems {
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MATERIALS).rarity(Rarity.COMMON));
 
     public static final Item SPEEDRUNNER_NUGGET = new SpeedrunnerItem(
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MATERIALS).rarity(Rarity.COMMON));
+
+    public static final Item RAW_SPEEDRUNNER = new SpeedrunnerItem(
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MATERIALS).rarity(Rarity.COMMON));
 
     public static final Item SPEEDRUNNER_SWORD = new SwordItem(ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, 5, -2.4F,
@@ -105,6 +107,13 @@ public final class ModItems {
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.COMMON).food(new FoodComponent.Builder()
                     .hunger(3)
                     .saturationModifier(0.2F)
+                    .build()));
+
+    public static final Item GOLDEN_PIGLIN_PORK = new Item(
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.COMMON).food(new FoodComponent.Builder()
+                    .hunger(8)
+                    .saturationModifier(0.8F)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1F)
                     .build()));
 
     public static final Item SPEEDRUNNER_BULK = new Item(
@@ -276,7 +285,4 @@ public final class ModItems {
 
     public static final Item BLACKSTONE_HOE = new HoeItem(ModToolMaterials.BLACKSTONE, -1, -2.0F,
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.TOOLS).rarity(Rarity.COMMON));
-
-    public static Tag<Item> PIGLIN_SAFE_ARMOR;
-    public static Tag<Item> PIGLIN_BARTERING_ITEMS;
 }
