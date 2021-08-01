@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "speedrunner_ingot",
+  "ingredient": {
+    "item": "speedrunnermod:deepslate_speedrunner_ore"
+  },
+  "result": "speedrunnermod:speedrunner_ingot",
+  "experience": 2.5,
+  "cookingtime": 20
+}

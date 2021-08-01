@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "s",
+    "/",
+    "/"
+  ],
+  "key": {
+    "s": {
+      "item": "speedrunnermod:speedrunner_ingot"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "speedrunnermod:speedrunner_shovel",
+    "count": 1
+  }
+}
