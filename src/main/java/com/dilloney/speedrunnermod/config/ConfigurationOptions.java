@@ -15,7 +15,10 @@ public class ConfigurationOptions {
     public boolean killGhastUponFireball = false;
     public boolean doomMode = false;
     public boolean iCarusMode = false;
+    public boolean infiniPearlMode = false;
+    public boolean manhuntMode = false;
 
     public boolean fog = true;
     public boolean particles = true;
+    public boolean customMusic = false;
 }
