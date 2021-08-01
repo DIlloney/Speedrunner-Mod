@@ -25,13 +25,13 @@ public final class ModBlocks {
             .breakByTool(FabricToolTags.PICKAXES, 1)
             .requiresTool()
             .strength(3.0F, 3.0F)
-            .sounds(BlockSoundGroup.STONE), UniformIntProvider.create(64, 128));
+            .sounds(BlockSoundGroup.STONE));
 
     public static final Block DEEPSLATE_SPEEDRUNNER_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE)
             .breakByTool(FabricToolTags.PICKAXES, 1)
             .requiresTool()
             .strength(4.5F, 4.5F)
-            .sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(72, 128));
+            .sounds(BlockSoundGroup.DEEPSLATE));
 
     public static final Block NETHER_SPEEDRUNNER_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE)
             .breakByTool(FabricToolTags.PICKAXES, 0)
