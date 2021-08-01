@@ -1,6 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.client;
 
-import com.dilloney.speedrunnermod.util.UniqueItemRegistry;
+import com.dilloney.speedrunnermod.util.ModTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
@@ -16,6 +16,6 @@ public class AbstractClientPlayerEntityMixin {
 
     @Redirect(method = "getSpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean getSpeedMod(ItemStack stack, Item item) {
-        return UniqueItemRegistry.BOW.isItemInRegistry(stack.getItem());
+        return stack.isIn(ModTags.BOWS);
     }
 }
