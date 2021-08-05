@@ -43,10 +43,11 @@ public class ConfigurationScreen {
         speedrunnermodclientoptions.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("option.speedrunnermod.fog"), currentConfig.fog).setDefaultValue(currentConfig.fog).setTooltip(new TranslatableText("option.speedrunnermod.fog.hover")).setSaveConsumer(newValue -> currentConfig.fog = newValue).build());
         speedrunnermodclientoptions.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("option.speedrunnermod.particles"), currentConfig.particles).setDefaultValue(currentConfig.particles).setTooltip(new TranslatableText("option.speedrunnermod.particles.hover")).requireRestart().setSaveConsumer(newValue -> currentConfig.particles = newValue).build());
         speedrunnermodclientoptions.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("option.speedrunnermod.custom_music"), currentConfig.customMusic).setDefaultValue(currentConfig.customMusic).setTooltip(new TranslatableText("option.speedrunnermod.custom_music.hover")).setSaveConsumer(newValue -> currentConfig.customMusic = newValue).build());
-        speedrunnermodinfo.addEntry(entryBuilder.startTextField(new TranslatableText("info.speedrunnermod.mod_version"), "v1.2.0 (August 1st, 2021)").build());
+        speedrunnermodinfo.addEntry(entryBuilder.startTextField(new TranslatableText("info.speedrunnermod.mod_version"), "v1.2.1 (August 5th, 2021)").build());
         speedrunnermodinfo.addEntry(entryBuilder.startTextField(new TranslatableText("info.speedrunnermod.wiki"), "https://sites.google.com/view/speedrunnermod/home").build());
         speedrunnermodinfo.addEntry(entryBuilder.startTextField(new TranslatableText("info.speedrunnermod.discord"), "https://discord.gg/Qu8utnCwkq").build());
         speedrunnermodinfo.addEntry(entryBuilder.startTextField(new TranslatableText("info.speedrunnermod.curseforge"), "https://www.curseforge.com/minecraft/mc-mods/speedrunner-mod").build());
+        speedrunnermodinfo.addEntry(entryBuilder.startTextField(new TranslatableText("info.speedrunnermod.youtube"), "https://www.youtube.com/channel/UCNZVI8pFpzn-eXEZsyDEagg").build());
 
         return builder;
     }
