@@ -18,7 +18,7 @@ public abstract class ShapelessRecipeMixin {
     @Shadow @Final Identifier id;
 
     @Inject(at = @At("HEAD"), method = "matches", cancellable = true)
-    private void cancelCraftingMixin(CraftingInventory craftingInventory, World world, CallbackInfoReturnable<Boolean> info) {
+    private void cancelCraftingWithInfinityPearls(CraftingInventory craftingInventory, World world, CallbackInfoReturnable<Boolean> info) {
         if (id.toString().equals("minecraft:ender_eye") || id.toString().equals("speedrunnermod:inferno_eye") || id.toString().equals("speedrunnermod:annul_eye")) {
             for (int i = 0; i < craftingInventory.size(); i++) {
                 ItemStack itemStack = craftingInventory.getStack(i);

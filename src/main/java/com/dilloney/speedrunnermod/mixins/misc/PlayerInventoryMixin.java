@@ -1,7 +1,7 @@
 package com.dilloney.speedrunnermod.mixins.misc;
 
 import com.dilloney.speedrunnermod.SpeedrunnerMod;
-import com.dilloney.speedrunnermod.util.PersistanceItems;
+import com.dilloney.speedrunnermod.util.manhunt.PersistanceItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -23,14 +23,14 @@ public class PlayerInventoryMixin {
     @Overwrite
     public void dropAll() {
         Iterator var1 = this.combinedInventory.iterator();
-        if (SpeedrunnerMod.CONFIG.manhuntMode) {
+        if (SpeedrunnerMod.OPTIONS.manhuntMode) {
             while(var1.hasNext()) {
                 List<ItemStack> list = (List)var1.next();
 
                 for(int i = 0; i < list.size(); ++i) {
                     ItemStack itemStack = (ItemStack)list.get(i);
                     if (!itemStack.isEmpty()) {
-                        if (itemStack.hasNbt() && itemStack.getNbt().contains("huntercompass") && itemStack.getNbt().getBoolean("huntercompass")) {
+                        if (itemStack.hasTag() && itemStack.getTag().contains("huntercompass") && itemStack.getTag().getBoolean("huntercompass")) {
                             PersistanceItems newItem = new PersistanceItems(this.playerinv.player.getUuidAsString(), itemStack.copy());
                             PersistanceItems.addItems(newItem);
                             this.player.dropItem(itemStack, true, false);
