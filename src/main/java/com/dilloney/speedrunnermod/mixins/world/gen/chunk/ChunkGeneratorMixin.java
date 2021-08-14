@@ -1,6 +1,5 @@
 package com.dilloney.speedrunnermod.mixins.world.gen.chunk;
 
-import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import com.google.common.collect.Lists;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -20,6 +19,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+
+import static com.dilloney.speedrunnermod.SpeedrunnerMod.OPTIONS;
 
 @Mixin(ChunkGenerator.class)
 public class ChunkGeneratorMixin {
@@ -44,9 +45,9 @@ public class ChunkGeneratorMixin {
                     }
                 }
 
-                if (SpeedrunnerMod.CONFIG.makeStructuresMoreCommon) {
-                    int i = 4;
-                    int j = strongholdConfig.getCount();
+                if (OPTIONS.makeStructuresMoreCommon) {
+                    int i = OPTIONS.getStrongholdDistance();
+                    int j = OPTIONS.getStrongholdCount();
                     int k = strongholdConfig.getSpread();
                     Random random = new Random();
                     random.setSeed(this.worldSeed);
@@ -81,7 +82,7 @@ public class ChunkGeneratorMixin {
                     }
                 } else {
                     int i = strongholdConfig.getDistance();
-                    int j = strongholdConfig.getCount();
+                    int j = OPTIONS.getStrongholdDistance();
                     int k = strongholdConfig.getSpread();
                     Random random = new Random();
                     random.setSeed(this.worldSeed);
