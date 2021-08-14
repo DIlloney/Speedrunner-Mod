@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "speedrunnermod",
-  "version": "1.2.0-mc117x",
+  "version": "1.3.0-mc117x",
   "accessWidener": "speedrunnermod.accesswidener",
   "name": "Speedrunner Mod",
   "description": "A Mod that makes Minecraft Speedrunning easier.",
@@ -24,7 +24,7 @@
       "com.dilloney.speedrunnermod.SpeedrunnerModClient"
     ],
     "modmenu": [
-      "com.dilloney.speedrunnermod.config.ModMenuImplementation"
+      "com.dilloney.speedrunnermod.client.ModMenuImplementation"
     ]
   },
   "mixins": [
@@ -38,6 +38,7 @@
   },
   "breaks": {
     "optifabric": "*",
-    "mostructures": "*"
+    "mostructures": "*",
+    "repurposed_structures": "*"
   }
 }
