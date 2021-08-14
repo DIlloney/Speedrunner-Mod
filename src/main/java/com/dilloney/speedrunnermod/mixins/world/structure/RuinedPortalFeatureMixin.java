@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 @Mixin(RuinedPortalFeature.Start.class)
 public class RuinedPortalFeatureMixin extends StructureStart<RuinedPortalFeatureConfig> {
 
-    public RuinedPortalFeatureMixin(StructureFeature<RuinedPortalFeatureConfig> feature, ChunkPos pos, int references, long seed) {
+    protected RuinedPortalFeatureMixin(StructureFeature<RuinedPortalFeatureConfig> feature, ChunkPos pos, int references, long seed) {
         super(feature, pos, references, seed);
     }
 
