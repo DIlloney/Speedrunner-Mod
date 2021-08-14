@@ -1,6 +1,5 @@
 package com.dilloney.speedrunnermod.mixins.world.gen.feature;
 
-import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.StrongholdGenerator;
 import net.minecraft.structure.StructureManager;
@@ -20,12 +19,14 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.List;
 
+import static com.dilloney.speedrunnermod.SpeedrunnerMod.OPTIONS;
+
 @Mixin(StrongholdFeature.Start.class)
 public abstract class StrongholdFeatureStartMixin extends MarginedStructureStart<DefaultFeatureConfig> {
 
     @Shadow @Final long seed;
 
-    public StrongholdFeatureStartMixin(StructureFeature<DefaultFeatureConfig> structureFeature, ChunkPos chunkPos, int i, long l) {
+    protected StrongholdFeatureStartMixin(StructureFeature<DefaultFeatureConfig> structureFeature, ChunkPos chunkPos, int i, long l) {
         super(structureFeature, chunkPos, i, l);
     }
 
@@ -49,13 +50,8 @@ public abstract class StrongholdFeatureStartMixin extends MarginedStructureStart
                 structurePiece.fillOpenings(start, this, this.random);
             }
 
-            if (SpeedrunnerMod.CONFIG.modifiedWorldGeneration) {
-                this.randomUpwardTranslation(this.random, 48, 63);
-            } if (SpeedrunnerMod.CONFIG.modifiedWorldGeneration && SpeedrunnerMod.CONFIG.doomMode) {
-                this.randomUpwardTranslation(this.random, 10, 20);
-            }
-            else {
-                this.randomUpwardTranslation(chunkGenerator.getSeaLevel(), chunkGenerator.getMinimumY(), this.random, 10);
+            if (OPTIONS.modifiedWorldGeneration) {
+                this.randomUpwardTranslation(this.random, 25, 36);
             }
         } while(this.hasNoChildren() || start.portalRoom == null);
 
