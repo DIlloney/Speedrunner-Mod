@@ -1,6 +1,5 @@
 package com.dilloney.speedrunnermod.mixins.block;
 
-import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.BedPart;
 import net.minecraft.sound.BlockSoundGroup;
@@ -8,12 +7,14 @@ import net.minecraft.util.DyeColor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
+import static com.dilloney.speedrunnermod.SpeedrunnerMod.OPTIONS;
+
 @Mixin(Blocks.class)
 public class BlocksMixin {
 
     @Overwrite
     private static BedBlock createBedBlock(DyeColor color) {
-        if (SpeedrunnerMod.CONFIG.modifiedBlockHardness) {
+        if (OPTIONS.modifiedBlockHardness) {
             return new BedBlock(color, AbstractBlock.Settings.of(Material.WOOL, (blockState) -> {
                 return blockState.get(BedBlock.PART) == BedPart.FOOT ? color.getMapColor() : MapColor.WHITE;
             }).sounds(BlockSoundGroup.WOOD).breakInstantly().nonOpaque());
