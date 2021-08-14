@@ -1,20 +1,25 @@
 package com.dilloney.speedrunnermod;
 
-import com.dilloney.speedrunnermod.config.ConfigurationOptions;
-import com.dilloney.speedrunnermod.config.ConfigurationFileManager;
-import com.dilloney.speedrunnermod.registry.ModRegistry;
+import com.dilloney.speedrunnermod.option.OptionsFileHelper;
+import com.dilloney.speedrunnermod.option.ModOptions;
+import com.dilloney.speedrunnermod.option.OptionsFileManager;
+import com.dilloney.speedrunnermod.util.ModRegistry;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class SpeedrunnerMod implements ModInitializer {
 
-    private static final Logger LOGGER = LogManager.getLogger();
-    public static ConfigurationOptions CONFIG = ConfigurationFileManager.get();
+    public static final Logger LOGGER = LogManager.getLogger();
+    public static ModOptions OPTIONS = OptionsFileManager.get();
 
     @Override
     public void onInitialize() {
-        ModRegistry.loadConfig();
+        OptionsFileManager.load();
+        OptionsFileHelper.fix();
+        if (OPTIONS.officialSpeedrunMode) {
+            OptionsFileHelper.fixForOfficialSpeedruns();
+        }
         ModRegistry.registerItems();
         ModRegistry.registerBlocks();
         ModRegistry.registerBlockItems();
@@ -22,10 +27,10 @@ public class SpeedrunnerMod implements ModInitializer {
         ModRegistry.registerConfiguredFeatures();
         ModRegistry.registerTags();
         ModRegistry.registerMiscellaneous();
-        LOGGER.info("Speedrunner Mod loaded successfully! modVersion = 1.17 | minecraftVersion = 1.17x");
-        LOGGER.info("See wiki for more information: https://sites.google.com/view/speedrunnermod");
-        if (CONFIG.manhuntMode) {
-            ModRegistry.registerManhuntCommands();
+        if (OPTIONS.manhuntMode) {
+            ModRegistry.registerManhuntModeCommands();
         }
+        LOGGER.info("Speedrunner Mod loaded successfully! modVersion = v1.3.1 | minecraftVersion = 1.17x");
+        LOGGER.info("See wiki for more information: https://sites.google.com/view/speedrunnermod");
     }
 }
