@@ -1,6 +1,6 @@
 package com.dilloney.speedrunnermod;
 
-import com.dilloney.speedrunnermod.registry.ModRegistry;
+import com.dilloney.speedrunnermod.util.ModRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -15,6 +15,6 @@ public class SpeedrunnerModClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ModRegistry.registerFabricModelPredicateProviders();
+        ModRegistry.registerModels();
     }
 }
