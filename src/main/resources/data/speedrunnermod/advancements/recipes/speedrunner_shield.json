@@ -1,13 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_fire_charge": {
+    "has_speedrunner_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:fire_charge"
+              "speedrunnermod:speedrunner_ingot"
             ]
           }
         ]
@@ -16,19 +16,19 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "speedrunnermod:inferno_eye"
+        "recipe": "speedrunnermod:speedrunner_shield"
       }
     }
   },
   "requirements": [
     [
-      "has_fire_charge",
+      "has_speedrunner_ingot",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "speedrunnermod:inferno_eye"
+      "speedrunnermod:speedrunner_shield"
     ]
   }
 }
