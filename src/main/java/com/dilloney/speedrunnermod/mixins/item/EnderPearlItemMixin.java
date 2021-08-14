@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 @Mixin(EnderPearlItem.class)
 public abstract class EnderPearlItemMixin extends Item {
 
-    public EnderPearlItemMixin(Settings settings) {
+    protected EnderPearlItemMixin(Settings settings) {
         super(settings);
     }
 

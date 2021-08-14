@@ -1,7 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.item;
 
-import com.dilloney.speedrunnermod.SpeedrunnerMod;
-import com.dilloney.speedrunnermod.util.Speedrunners;
+import com.dilloney.speedrunnermod.util.manhunt.Speedrunners;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.CompassItem;
@@ -21,6 +20,8 @@ import java.util.Iterator;
 import java.util.UUID;
 import java.util.function.Predicate;
 
+import static com.dilloney.speedrunnermod.SpeedrunnerMod.OPTIONS;
+
 @Mixin(CompassItem.class)
 public class CompassItemMixin extends Item {
 
@@ -30,9 +31,9 @@ public class CompassItemMixin extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (SpeedrunnerMod.CONFIG.manhuntMode) {
+        if (OPTIONS.manhuntMode) {
             ItemStack stack = user.getStackInHand(hand);
-            NbtCompound nbtCompound = stack.hasNbt() ? stack.getNbt().copy() : new NbtCompound();
+            NbtCompound nbtCompound = stack.hasTag() ? stack.getTag().copy() : new NbtCompound();
             if (!world.isClient && nbtCompound.contains("huntercompass") && nbtCompound.getBoolean("huntercompass")) {
                 PlayerEntity closestPlayer = this.getClosestRunner(user.getX(), user.getY(), user.getZ(), 1.3432324E7D, world, Speedrunners.getRunners(world, false), (Predicate) null);
                 if (closestPlayer != null && closestPlayer.world.getDimension() == user.world.getDimension()) {
@@ -48,7 +49,7 @@ public class CompassItemMixin extends Item {
                 });
             }
 
-            stack.setNbt(nbtCompound);
+            stack.setTag(nbtCompound);
             return TypedActionResult.success(stack, true);
         } else {
             return super.use(world, user, hand);

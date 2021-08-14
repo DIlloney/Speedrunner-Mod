@@ -10,42 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(FoodComponents.class)
 public class FoodComponentsMixin {
 
-    @Shadow final static FoodComponent APPLE;
-    @Shadow final static FoodComponent BAKED_POTATO;
-    @Shadow final static FoodComponent BEEF;
-    @Shadow final static FoodComponent BEETROOT;
-    @Shadow final static FoodComponent BREAD;
-    @Shadow final static FoodComponent CARROT;
-    @Shadow final static FoodComponent CHICKEN;
-    @Shadow static final FoodComponent CHORUS_FRUIT;
-    @Shadow final static FoodComponent COD;
-    @Shadow final static FoodComponent COOKED_BEEF;
-    @Shadow final static FoodComponent COOKED_CHICKEN;
-    @Shadow final static FoodComponent COOKED_COD;
-    @Shadow final static FoodComponent COOKED_MUTTON;
-    @Shadow final static FoodComponent COOKED_PORKCHOP;
-    @Shadow final static FoodComponent COOKED_RABBIT;
-    @Shadow final static FoodComponent COOKED_SALMON;
-    @Shadow final static FoodComponent COOKIE;
-    @Shadow final static FoodComponent DRIED_KELP;
-    @Shadow final static FoodComponent ENCHANTED_GOLDEN_APPLE;
-    @Shadow final static FoodComponent GOLDEN_APPLE;
-    @Shadow final static FoodComponent GOLDEN_CARROT;
-    @Shadow final static FoodComponent HONEY_BOTTLE;
-    @Shadow final static FoodComponent MELON_SLICE;
-    @Shadow final static FoodComponent MUTTON;
-    @Shadow final static FoodComponent POISONOUS_POTATO;
-    @Shadow final static FoodComponent PORKCHOP;
-    @Shadow final static FoodComponent POTATO;
-    @Shadow final static FoodComponent PUFFERFISH;
-    @Shadow final static FoodComponent PUMPKIN_PIE;
-    @Shadow final static FoodComponent RABBIT;
-    @Shadow final static FoodComponent ROTTEN_FLESH;
-    @Shadow final static FoodComponent SALMON;
-    @Shadow final static FoodComponent SPIDER_EYE;
-    @Shadow final static FoodComponent SWEET_BERRIES;
-    @Shadow final static FoodComponent GLOW_BERRIES;
-    @Shadow final static FoodComponent TROPICAL_FISH;
+    @Shadow final static FoodComponent APPLE, BAKED_POTATO, BEEF, BEETROOT, BREAD, CARROT, CHICKEN, CHORUS_FRUIT, COD, COOKED_BEEF, COOKED_CHICKEN, COOKED_COD, COOKED_MUTTON, COOKED_PORKCHOP, COOKED_RABBIT, COOKED_SALMON, COOKIE, DRIED_KELP, ENCHANTED_GOLDEN_APPLE, GOLDEN_APPLE, GOLDEN_CARROT, HONEY_BOTTLE, MELON_SLICE, MUTTON, POISONOUS_POTATO, PORKCHOP, POTATO, PUFFERFISH, PUMPKIN_PIE, RABBIT, ROTTEN_FLESH, SALMON, SPIDER_EYE, SWEET_BERRIES, GLOW_BERRIES, TROPICAL_FISH;
 
     static {
         APPLE = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.8F).build();
