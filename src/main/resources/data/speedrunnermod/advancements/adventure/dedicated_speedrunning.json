@@ -1,0 +1,48 @@
+{
+  "parent": "speedrunnermod:items/the_end_is_near",
+  "display": {
+    "icon": {
+      "item": "speedrunnermod:speedrunner_sword",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.speedrunnermod.dedicated_speedrunning.title"
+    },
+    "description": {
+      "translate": "advancements.speedrunnermod.dedicated_speedrunning.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "killed_wither": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:wither"
+            },
+            "entity": "this"
+          }
+        ],
+        "items": [
+          {
+            "tag": "speedrunnermod:speedrunner_items"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "killed_wither"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  }
+}
