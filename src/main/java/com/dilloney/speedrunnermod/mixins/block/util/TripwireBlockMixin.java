@@ -1,6 +1,6 @@
 package com.dilloney.speedrunnermod.mixins.block.util;
 
-import com.dilloney.speedrunnermod.util.ModTags;
+import com.dilloney.speedrunnermod.tag.ModItemTags;
 import net.minecraft.block.TripwireBlock;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class TripwireBlockMixin {
 
     @Redirect(method = "onBreak", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-    private boolean onBreakMod(ItemStack stack, Item isOfItem) {
-        return stack.isIn(ModTags.SHEARS);
+    private boolean allowSpeedrunnerShearsOnTripwireBlocks(ItemStack stack, Item isOfItem) {
+        return stack.isIn(ModItemTags.SHEARS);
     }
 }
