@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:chest",
+    "minecraft:crafting_table",
+    "minecraft:trapped_chest",
+    "minecraft:loom",
+    "minecraft:barrel",
+    "minecraft:cartography_table",
+    "minecraft:fletching_table",
+    "minecraft:grindstone",
+    "minecraft:lectern"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "values": [
+    "minecraft:furnace",
+    "minecraft:dropper",
+    "minecraft:smoker",
+    "minecraft:blast_furnace",
+    "minecraft:lantern",
+    "minecraft:soul_lantern"
+  ]
+}
