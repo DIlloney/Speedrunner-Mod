@@ -1,20 +1,20 @@
 {
+  "parent": "speedrunnermod:root",
   "display": {
     "icon": {
       "item": "speedrunnermod:speedrunner_ingot"
     },
     "title": {
-      "translate": "advancements.items.speedrunning_time.title"
+      "translate": "advancements.speedrunnermod.speedrunning_time.title"
     },
     "description": {
-      "translate": "advancements.items.speedrunning_time.description"
+      "translate": "advancements.speedrunnermod.speedrunning_time.description"
     },
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "minecraft:story/upgrade_tools",
   "criteria": {
     "has_speedrunner_ingot": {
       "trigger": "minecraft:inventory_changed",

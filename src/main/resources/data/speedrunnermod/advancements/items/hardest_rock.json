@@ -1,20 +1,20 @@
 {
+  "parent": "speedrunnermod:items/speedrunning_time",
   "display": {
     "icon": {
       "item": "speedrunnermod:igneous_rock"
     },
     "title": {
-      "translate": "advancements.items.hardest_rock.title"
+      "translate": "advancements.speedrunnermod.hardest_rock.title"
     },
     "description": {
-      "translate": "advancements.items.hardest_rock.description"
+      "translate": "advancements.speedrunnermod.hardest_rock.description"
     },
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "minecraft:story/upgrade_tools",
   "criteria": {
     "has_igneous_rock": {
       "trigger": "minecraft:inventory_changed",
