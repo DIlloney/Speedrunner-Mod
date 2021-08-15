@@ -23,12 +23,14 @@ public class PlayerInventoryMixin {
     @Overwrite
     public void dropAll() {
         Iterator var1 = this.combinedInventory.iterator();
+        int i;
+        ItemStack itemStack;
         if (SpeedrunnerMod.OPTIONS.manhuntMode) {
             while(var1.hasNext()) {
                 List<ItemStack> list = (List)var1.next();
 
-                for(int i = 0; i < list.size(); ++i) {
-                    ItemStack itemStack = (ItemStack)list.get(i);
+                for(i = 0; i < list.size(); ++i) {
+                    itemStack = (ItemStack)list.get(i);
                     if (!itemStack.isEmpty()) {
                         if (itemStack.hasTag() && itemStack.getTag().contains("huntercompass") && itemStack.getTag().getBoolean("huntercompass")) {
                             PersistanceItems newItem = new PersistanceItems(this.playerinv.player.getUuidAsString(), itemStack.copy());
@@ -43,8 +45,8 @@ public class PlayerInventoryMixin {
             while(var1.hasNext()) {
                 List<ItemStack> list = (List)var1.next();
 
-                for(int i = 0; i < list.size(); ++i) {
-                    ItemStack itemStack = (ItemStack)list.get(i);
+                for(i = 0; i < list.size(); ++i) {
+                    itemStack = (ItemStack)list.get(i);
                     if (!itemStack.isEmpty()) {
                         this.player.dropItem(itemStack, true, false);
                         list.set(i, ItemStack.EMPTY);
