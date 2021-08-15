@@ -22,7 +22,7 @@ public class StrongholdGeneratorMixin {
                     return super.canGenerate(chainLength) && chainLength > 5;
                 }
             }};
-        } else if (OPTIONS.getModDifficulty() == 1 && OPTIONS.modifiedWorldGeneration || OPTIONS.getModDifficulty() == 2 && OPTIONS.modifiedWorldGeneration) {
+        } else if (OPTIONS.getModDifficulty() <= 2 && OPTIONS.modifiedWorldGeneration) {
             ALL_PIECES = new StrongholdGenerator.PieceData[]{new StrongholdGenerator.PieceData(StrongholdGenerator.Corridor.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.PrisonHall.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.LeftTurn.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.RightTurn.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.SquareRoom.class, 20, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.Stairs.class, 5, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.SpiralStaircase.class, 5, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.FiveWayCrossing.class, 3, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.ChestCorridor.class, 10, 2) {
                 public boolean canGenerate(int chainLength) {
                     return super.canGenerate(chainLength) && chainLength > 4;

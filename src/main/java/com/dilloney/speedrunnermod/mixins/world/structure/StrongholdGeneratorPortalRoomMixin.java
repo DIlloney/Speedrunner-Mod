@@ -78,7 +78,7 @@ public class StrongholdGeneratorPortalRoomMixin extends StrongholdGenerator.Piec
 
         for(int m = 0; m < bls.length; ++m) {
             if (OPTIONS.modifiedWorldGeneration) {
-                bls[m] = random.nextFloat() > 0.75F;
+                bls[m] = random.nextFloat() > 0.7F;
             } else {
                 bls[m] = random.nextFloat() > 0.9F;
             }
