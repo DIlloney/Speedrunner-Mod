@@ -13,7 +13,7 @@ import net.minecraft.text.TranslatableText;
 
 @Config(name = "speedrunnermod")
 @Environment(EnvType.CLIENT)
-public class ConfigurationScreen {
+public class ModOptionsScreen {
 
     public static ConfigBuilder getConfigBuilder() {
 
@@ -68,7 +68,7 @@ public class ConfigurationScreen {
         speedrunnermodstructures.addEntry(entryBuilder.startIntField(new TranslatableText("option.speedrunnermod.bastion.separation"), currentOptions.bastionSeparation).setDefaultValue(currentOptions.bastionSeparation).setMin(2).setMax(10).setTooltip(new TranslatableText("option.speedrunnermod.separation.hover")).setTooltip(new TranslatableText("option.speedrunnermod.world.warning")).requireRestart().setSaveConsumer(newValue -> currentOptions.bastionSeparation = newValue).build());
         speedrunnermodstructures.addEntry(entryBuilder.startIntField(new TranslatableText("option.speedrunnermod.end_city.spacing"), currentOptions.endCitySpacing).setDefaultValue(currentOptions.endCitySpacing).setMin(2).setMax(20).setTooltip(new TranslatableText("option.speedrunnermod.spacing.hover")).setTooltip(new TranslatableText("option.speedrunnermod.world.warning")).requireRestart().setSaveConsumer(newValue -> currentOptions.endCitySpacing = newValue).build());
         speedrunnermodstructures.addEntry(entryBuilder.startIntField(new TranslatableText("option.speedrunnermod.end_city.separation"), currentOptions.endCitySeparation).setDefaultValue(currentOptions.endCitySeparation).setMin(2).setMax(11).setTooltip(new TranslatableText("option.speedrunnermod.separation.hover")).setTooltip(new TranslatableText("option.speedrunnermod.world.warning")).requireRestart().setSaveConsumer(newValue -> currentOptions.endCitySeparation = newValue).build());
-        speedrunnermodinfo.addEntry(entryBuilder.startTextField(new TranslatableText("info.speedrunnermod.mod_version"), "v1.3.0 (August 5th, 2021)").build());
+        speedrunnermodinfo.addEntry(entryBuilder.startTextField(new TranslatableText("info.speedrunnermod.mod_version"), "v1.3.1.1 (August 15th, 2021)").build());
         speedrunnermodinfo.addEntry(entryBuilder.startTextField(new TranslatableText("info.speedrunnermod.wiki"), "https://sites.google.com/view/speedrunnermod/home").build());
         speedrunnermodinfo.addEntry(entryBuilder.startTextField(new TranslatableText("info.speedrunnermod.discord"), "https://discord.gg/Qu8utnCwkq").build());
         speedrunnermodinfo.addEntry(entryBuilder.startTextField(new TranslatableText("info.speedrunnermod.curseforge"), "https://www.curseforge.com/minecraft/mc-mods/speedrunner-mod").build());
