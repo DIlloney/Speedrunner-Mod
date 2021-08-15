@@ -54,17 +54,13 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
                     }
 
                     entity.fallDistance = 0.0F;
-                    if (OPTIONS.doomMode) {
-                        if (!ifb) {
-                            if (!serverPlayerEntity.isCreative()) {
+                    if (!ifb) {
+                        if (OPTIONS.doomMode) {
+                            if (!serverPlayerEntity.isCreative() || !serverPlayerEntity.isSpectator()) {
                                 ((ServerPlayerEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60, 0));
                             }
                             entity.damage(DamageSource.FALL, 5.0F);
-                        }
-                    }
-
-                    if (!ifb) {
-                        if (OPTIONS.getModDifficulty() == 1) {
+                        } else if (OPTIONS.getModDifficulty() == 1) {
                             entity.damage(DamageSource.FALL, 2.0F);
                         } else if (OPTIONS.getModDifficulty() == 2) {
                             entity.damage(DamageSource.FALL, 3.0F);

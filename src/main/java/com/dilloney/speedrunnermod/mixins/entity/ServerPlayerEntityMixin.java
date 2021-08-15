@@ -39,26 +39,27 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     @Inject(method = "<init>", at = @At("TAIL"))
     private void icarusAndInfinityPearlMode(CallbackInfo info) throws CommandSyntaxException {
         if (this.statHandler.getStat(Stats.CUSTOM.getOrCreateStat(Stats.PLAY_TIME)) == 0) {
+            ItemStack item;
             if (OPTIONS.iCarusMode) {
-                ItemStack wings = this.itemStackFromString("minecraft:elytra{Unbreakable:1b}", 1);
-                ItemStack rockets = this.itemStackFromString("minecraft:firework_rocket{Fireworks:{Flight:3b}}", 64);
-                this.getInventory().armor.set(2, wings);
-                this.getInventory().main.set(0, rockets);
+                item = this.itemStackFromString("minecraft:elytra{Unbreakable:1b}", 1);
+                ItemStack item2 = this.itemStackFromString("minecraft:firework_rocket{Fireworks:{Flight:3b}}", 64);
+                this.getInventory().armor.set(2, item);
+                this.getInventory().main.set(0, item2);
             }
 
             if (OPTIONS.infiniPearlMode) {
-                ItemStack infiniPearl = new ItemStack(Items.ENDER_PEARL, 1);
-                infiniPearl.addEnchantment(Enchantments.INFINITY, 1);
-                infiniPearl.getOrCreateTag().putInt("HideFlags", 1);
+                item = new ItemStack(Items.ENDER_PEARL, 1);
+                item.addEnchantment(Enchantments.INFINITY, 1);
+                item.getOrCreateTag().putInt("HideFlags", 1);
 
                 LiteralText text = new LiteralText("InfiniPearl™");
                 text.setStyle(text.getStyle().withItalic(false));
-                infiniPearl.setCustomName(text);
+                item.setCustomName(text);
 
                 if (!OPTIONS.iCarusMode) {
-                    this.getInventory().main.set(0, infiniPearl);
+                    this.getInventory().main.set(0, item);
                 } else {
-                    this.getInventory().main.set(1, infiniPearl);
+                    this.getInventory().main.set(1, item);
                 }
             }
         }

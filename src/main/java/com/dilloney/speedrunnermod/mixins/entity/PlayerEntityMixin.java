@@ -77,10 +77,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Inject(method = "updateTurtleHelmet", at = @At("TAIL"))
     private void makeSpeedrunnerBootsAndSpeedrunnerLeggingsGivePotionEffects(CallbackInfo callbackInfo) {
         if (this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.SPEEDRUNNER_BOOTS || this.getEquippedStack(EquipmentSlot.FEET).getItem() == ModItems.GOLDEN_SPEEDRUNNER_BOOTS) {
-            this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 10, 0, true, false, true));
+            this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 20, 0, true, false, true));
         }
         if (this.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.SPEEDRUNNER_LEGGINGS && this.isSubmergedIn(FluidTags.WATER) && this.isSwimming() && OPTIONS.getModDifficulty() == 1 || this.getEquippedStack(EquipmentSlot.LEGS).getItem() == ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS && this.isSubmergedIn(FluidTags.WATER) && this.isSwimming() && OPTIONS.getModDifficulty() == 1) {
-            this.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 10, 0, true, true, true));
+            this.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 20, 0, true, true, true));
             if (this.getRandom().nextFloat() < 0.04F) {
                 this.getEquippedStack(EquipmentSlot.LEGS).damage(1, this, (livingEntity) -> {
                     livingEntity.sendEquipmentBreakStatus(EquipmentSlot.LEGS);
