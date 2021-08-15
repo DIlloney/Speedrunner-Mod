@@ -52,6 +52,8 @@ public abstract class StrongholdFeatureStartMixin extends MarginedStructureStart
 
             if (OPTIONS.modifiedWorldGeneration) {
                 this.randomUpwardTranslation(this.random, 25, 36);
+            } else {
+                this.randomUpwardTranslation(chunkGenerator.getSeaLevel(), chunkGenerator.getMinimumY(), this.random, 10);
             }
         } while(this.hasNoChildren() || start.portalRoom == null);
 
