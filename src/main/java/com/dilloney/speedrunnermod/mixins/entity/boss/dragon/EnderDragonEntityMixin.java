@@ -31,7 +31,7 @@ import static com.dilloney.speedrunnermod.SpeedrunnerMod.OPTIONS;
 @Mixin(EnderDragonEntity.class)
 public abstract class EnderDragonEntityMixin extends MobEntity {
 
-    public EnderDragonEntityMixin(EntityType<? extends EnderDragonEntity> entityType, World world) {
+    protected EnderDragonEntityMixin(EntityType<? extends EnderDragonEntity> entityType, World world) {
         super(EntityType.ENDER_DRAGON, world);
     }
 

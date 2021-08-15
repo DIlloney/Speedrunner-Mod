@@ -3,7 +3,6 @@ package com.dilloney.speedrunnermod.mixins.entity.boss.dragon;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
-import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
 import net.minecraft.entity.mob.GiantEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -17,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static com.dilloney.speedrunnermod.SpeedrunnerMod.OPTIONS;
 import static com.dilloney.speedrunnermod.SpeedrunnerMod.LOGGER;
+import static com.dilloney.speedrunnermod.SpeedrunnerMod.OPTIONS;
 
 @Mixin(EnderDragonFight.class)
 public class EnderDragonFightMixin {
@@ -240,11 +239,8 @@ public class EnderDragonFightMixin {
     @Inject(method = "createDragon", at = @At("TAIL"))
     private void spawnGiantWhenDoomModeIsON(CallbackInfoReturnable callbackInfoReturnable) {
         if (OPTIONS.doomMode) {
-            WitherEntity witherEntity = (WitherEntity)EntityType.WITHER.create(this.world);
             GiantEntity giantEntity = (GiantEntity)EntityType.GIANT.create(this.world);
-            witherEntity.refreshPositionAndAngles(0.0D, 96.0D, 0.0D, this.world.random.nextFloat() * 270.0F, 0.0F);
             giantEntity.refreshPositionAndAngles(0.0D, 192.0D, -0.0D, this.world.random.nextFloat() * 270.0F, 0.0F);
-            this.world.spawnEntity(witherEntity);
             this.world.spawnEntity(giantEntity);
         }
     }
