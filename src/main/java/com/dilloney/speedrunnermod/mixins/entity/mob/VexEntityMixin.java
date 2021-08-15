@@ -11,6 +11,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
+import static com.dilloney.speedrunnermod.SpeedrunnerMod.OPTIONS;
+
 @Mixin(VexEntity.class)
 public class VexEntityMixin extends HostileEntity {
 
@@ -23,23 +25,27 @@ public class VexEntityMixin extends HostileEntity {
 
     @Overwrite
     public static DefaultAttributeContainer.Builder createVexAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 5.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
+        return OPTIONS.doomMode ? HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 7.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D) : HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 14.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D);
     }
 
     @Overwrite
     public void tick() {
-        this.noClip = false;
+        this.noClip = !OPTIONS.doomMode;
         super.tick();
         this.noClip = false;
         this.setNoGravity(true);
         if (this.alive && --this.lifeTicks <= 0) {
             this.lifeTicks = 20;
-            this.damage(DamageSource.STARVE, 100.0F);
+            if (OPTIONS.doomMode) {
+                this.damage(DamageSource.STARVE, 100.0F);
+            } else {
+                this.damage(DamageSource.STARVE, 1.0F);
+            }
         }
     }
 
     @Override
     public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
-        return false;
+        return !OPTIONS.doomMode;
     }
 }

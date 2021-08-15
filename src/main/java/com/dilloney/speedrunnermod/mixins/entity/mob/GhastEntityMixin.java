@@ -16,7 +16,7 @@ public class GhastEntityMixin {
     public static DefaultAttributeContainer.Builder createGhastAttributes() {
         if (OPTIONS.doomMode) {
             return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D);
-        } if (OPTIONS.getModDifficulty() == 1) {
+        } else if (OPTIONS.getModDifficulty() == 1) {
             return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 5.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15.0D);
         } else if (OPTIONS.getModDifficulty() == 2) {
             return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 7.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 25.0D);

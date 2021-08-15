@@ -45,6 +45,6 @@ public class MagmaCubeEntityMixin extends SlimeEntity {
 
     @Overwrite
     public Identifier getLootTableId() {
-        return this.isSmall() ? LootTables.EMPTY : this.getType().getLootTableId();
+        return this.getSize() <= 2 ? this.getType().getLootTableId() : LootTables.EMPTY;
     }
 }
