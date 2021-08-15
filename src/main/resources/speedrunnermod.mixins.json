@@ -14,7 +14,7 @@
     "block.util.PumpkinBlockMixin",
     "block.util.TripwireBlockMixin",
     "block.util.TntBlockMixin",
-    "entity.boss.GiantEntityMixin",
+    "entity.mob.GiantEntityMixin",
     "entity.boss.WitherEntityMixin",
     "entity.boss.dragon.EnderDragonEntityMixin",
     "entity.boss.dragon.EnderDragonFightMixin",
@@ -92,7 +92,8 @@
     "client.render.entity.PlayerEntityRendererMixin",
     "client.render.item.HeldItemRendererMixin",
     "client.render.BackgroundRendererMixin",
-    "client.render.WorldRendererMixin"
+    "client.render.WorldRendererMixin",
+    "client.MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1
