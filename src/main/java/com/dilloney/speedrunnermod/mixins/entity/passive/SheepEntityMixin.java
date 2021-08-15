@@ -4,7 +4,6 @@ import com.dilloney.speedrunnermod.SpeedrunnerMod;
 import com.dilloney.speedrunnermod.tag.ModItemTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.Shearable;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import java.util.Map;
 
 @Mixin(SheepEntity.class)
-public abstract class SheepEntityMixin extends AnimalEntity implements Shearable {
+public abstract class SheepEntityMixin extends AnimalEntity {
 
     protected SheepEntityMixin(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -37,10 +36,11 @@ public abstract class SheepEntityMixin extends AnimalEntity implements Shearable
 
     @Overwrite
     public void sheared(SoundCategory shearedSoundCategory) {
+        int i;
         if (SpeedrunnerMod.OPTIONS.modifiedLootTables) {
             this.world.playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
             this.setSheared(true);
-            int i = 6 + this.random.nextInt(4);
+            i = 6 + this.random.nextInt(4);
 
             for(int j = 0; j < i; ++j) {
                 ItemEntity itemEntity = this.dropItem((ItemConvertible)DROPS.get(this.getColor()), 1);
@@ -51,7 +51,7 @@ public abstract class SheepEntityMixin extends AnimalEntity implements Shearable
         } else {
             this.world.playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
             this.setSheared(true);
-            int i = 1 + this.random.nextInt(3);
+            i = 1 + this.random.nextInt(3);
 
             for(int j = 0; j < i; ++j) {
                 ItemEntity itemEntity = this.dropItem((ItemConvertible)DROPS.get(this.getColor()), 1);
