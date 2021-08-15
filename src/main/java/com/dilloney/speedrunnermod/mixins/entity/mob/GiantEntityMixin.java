@@ -109,8 +109,8 @@ public class GiantEntityMixin extends HostileEntity {
         if (OPTIONS.doomMode) {
             this.onGiantDeath();
             if (!this.isSilent()) {
-                this.world.playSound((PlayerEntity)null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, SoundCategory.AMBIENT, 10.0F, 1.0F);
-                this.playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, 10.0F, 1.0F);
+                this.world.playSound((PlayerEntity)null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, SoundCategory.AMBIENT, 3.0F, 1.0F);
+                this.playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, 3.0F, 1.0F);
             }
         }
     }
