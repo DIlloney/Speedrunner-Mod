@@ -24,7 +24,7 @@ public class FoodComponentsMixin {
         COD = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.2F).build();
         COOKED_BEEF = (new FoodComponent.Builder()).hunger(8).saturationModifier(0.9F).meat().build();
         COOKED_CHICKEN = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.9F).meat().build();
-        COOKED_COD = (new FoodComponent.Builder()).hunger(5).saturationModifier(1.2F).build();
+        COOKED_COD = (new FoodComponent.Builder()).hunger(5).saturationModifier(1.1F).build();
         COOKED_MUTTON = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.9F).meat().build();
         COOKED_PORKCHOP = (new FoodComponent.Builder()).hunger(8).saturationModifier(0.9F).meat().build();
         COOKED_RABBIT = (new FoodComponent.Builder()).hunger(5).saturationModifier(1.1F).meat().build();

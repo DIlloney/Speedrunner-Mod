@@ -27,29 +27,29 @@ public class ItemMixin {
         if (OPTIONS.hardnessTooltips) {
             if (stack.isIn(ModItemTags.ZEROTWO_TO_ZEROONE_HARDNESS)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.02-01.hardness")).formatted(Formatting.LIGHT_PURPLE));
-            } else if (!stack.isOf(Items.SEA_LANTERN) && !stack.isOf(Items.GLOWSTONE) && !stack.isOf(Items.HAY_BLOCK)) {
+            } else if (stack.isOf(Items.SEA_LANTERN) && stack.isOf(Items.GLOWSTONE) && stack.isOf(Items.HAY_BLOCK)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.03-02.hardness")).formatted(Formatting.LIGHT_PURPLE));
-            } else if (!stack.isOf(Items.NETHERRACK) && !stack.isOf(Items.CRIMSON_NYLIUM) && !stack.isOf(Items.WARPED_NYLIUM)) {
+            } else if (stack.isOf(Items.NETHERRACK) && stack.isOf(Items.CRIMSON_NYLIUM) && stack.isOf(Items.WARPED_NYLIUM)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.04-037.hardness")).formatted(Formatting.LIGHT_PURPLE));
             } else if (stack.isIn(ModItemTags.ZEROFIVE_TO_ZEROFOUR_HARDNESS)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.05-04.hardness")).formatted(Formatting.LIGHT_PURPLE));
             } else if (stack.isOf(Items.MAGMA_BLOCK)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.15-04.hardness")).formatted(Formatting.LIGHT_PURPLE));
-            } else if (!stack.isOf(Items.GRASS_BLOCK) && !stack.isOf(Items.GRAVEL) && !stack.isOf(Items.CLAY)) {
+            } else if (stack.isOf(Items.GRASS_BLOCK) && stack.isOf(Items.GRAVEL) && stack.isOf(Items.CLAY)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.06-05.hardness")).formatted(Formatting.LIGHT_PURPLE));
             } else if (stack.isOf(Items.DIRT_PATH)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.065-05.hardness")).formatted(Formatting.LIGHT_PURPLE));
-            } else if (!stack.isOf(Items.NETHER_WART_BLOCK) && !stack.isOf(Items.WARPED_WART_BLOCK) && !stack.isOf(Items.SHROOMLIGHT)) {
+            } else if (stack.isOf(Items.NETHER_WART_BLOCK) && stack.isOf(Items.WARPED_WART_BLOCK) && stack.isOf(Items.SHROOMLIGHT)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.10-06.hardness")).formatted(Formatting.LIGHT_PURPLE));
             } else if (stack.isIn(ModItemTags.ZEROEIGHT_TO_ZEROSEVEN_HARDNESS)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.08-07.hardness")).formatted(Formatting.LIGHT_PURPLE));
             } else if (stack.isIn(ModItemTags.ZEROEIGHT_TO_ZEROSIXFIVE_HARDNESS)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.08-065.hardness")).formatted(Formatting.LIGHT_PURPLE));
-            } else if (!stack.isOf(Items.PUMPKIN) && !stack.isOf(Items.CARVED_PUMPKIN) && !stack.isOf(Items.JACK_O_LANTERN) && !stack.isOf(Items.MELON)) {
+            } else if (stack.isOf(Items.PUMPKIN) && stack.isOf(Items.CARVED_PUMPKIN) && stack.isOf(Items.JACK_O_LANTERN) && stack.isOf(Items.MELON)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.1-08.hardness")).formatted(Formatting.LIGHT_PURPLE));
             } else if (stack.isIn(ModItemTags.TWOZERO_TO_ZEROEIGHT_HARDNESS)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.2-08.hardness")).formatted(Formatting.LIGHT_PURPLE));
-            } else if (!stack.isOf(Items.BASALT) && !stack.isOf(Items.POLISHED_BASALT) && !stack.isOf(Items.SMOOTH_BASALT)) {
+            } else if (stack.isOf(Items.BASALT) && stack.isOf(Items.POLISHED_BASALT) && stack.isOf(Items.SMOOTH_BASALT)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.125-1.hardness")).formatted(Formatting.LIGHT_PURPLE));
             } else if (stack.isIn(ModItemTags.ONEFIVE_TO_ONETHREE_HARDNESS)) {
                 tooltip.add((new TranslatableText("item.speedrunnermod.15-13.hardness")).formatted(Formatting.LIGHT_PURPLE));
