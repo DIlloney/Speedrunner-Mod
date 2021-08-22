@@ -24,4 +24,6 @@ public class ModBlockTags {
     public static Tag<Block> TWO_ZERO_HARDNESS;
     public static Tag<Block> TWO_FIVE_HARDNESS;
     public static Tag<Block> THREE_ZERO_HARDNESS;
+    public static Tag<Block> TEN_HARDNESS;
+    public static Tag<Block> TWENTY_FIVE_HARDNESS;
 }

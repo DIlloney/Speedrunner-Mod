@@ -7,6 +7,8 @@ public class ModItemTags {
 
     public static Tag<Item> SPEEDRUNNER_ITEMS;
     public static Tag<Item> SPEEDRUNNER_MOD_ITEMS;
+    public static Tag<Item> SPEED_EFFECT_ITEMS;
+    public static Tag<Item> DOLPHINS_GRACE_EFFECT_ITEMS;
     public static Tag<Item> PIGLIN_SAFE_ARMOR;
     public static Tag<Item> BARTERING_ITEMS;
     public static Tag<Item> GOLDEN_ITEMS;
