@@ -4,6 +4,7 @@ import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.EyeOfEnderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -13,6 +14,7 @@ import net.minecraft.stat.Stats;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -24,7 +26,7 @@ public class AnnulEyeItem extends Item {
     String structureType = "Stronghold";
 
     public AnnulEyeItem(Settings settings) {
-        super(settings);
+        super(settings.group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MISC).rarity(Rarity.EPIC));
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -60,6 +62,9 @@ public class AnnulEyeItem extends Item {
         return TypedActionResult.consume(itemStack);
     }
 
+    /**
+     * @author kwpugh
+     */
     private static float getDistance(int x1, int z1, int x2, int z2) {
         int i = x2 - x1;
         int j = z2 - z1;

@@ -26,8 +26,8 @@ public enum ModToolMaterials implements ToolMaterial {
     SPEEDRUNNER_SWORD_PICKAXE(2, 500, 11.0F, 0.5F, 17, () -> {
         return Ingredient.ofItems(ModItems.SPEEDRUNNER_INGOT);
     }),
-    GOLDEN_SPEEDRUNNER(1, 128, 13.0F, 0.0F, 25, () -> {
-        return Ingredient.ofItems(ModItems.SPEEDRUNNER_INGOT, Items.GOLD_INGOT);
+    GOLDEN_SPEEDRUNNER(0, 128, 13.0F, 0.0F, 25, () -> {
+        return Ingredient.ofItems(Items.GOLD_INGOT);
     });
 
     private final int miningLevel;

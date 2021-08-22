@@ -54,7 +54,7 @@ public final class ModItemGroup {
                 itemStacks.add(new ItemStack(ModBlocks.DEEPSLATE_IGNEOUS_ORE_BLOCK_ITEM));
                 itemStacks.add(new ItemStack(ModBlocks.NETHER_IGNEOUS_ORE_BLOCK_ITEM));
                 itemStacks.add(new ItemStack(ModItems.COOKED_PIGLIN_PORK));
-                itemStacks.add(new ItemStack(ModItems.RAW_PIGLIN_PORK));
+                itemStacks.add(new ItemStack(ModItems.PIGLIN_PORK));
                 itemStacks.add(new ItemStack(ModItems.GOLDEN_PIGLIN_PORK));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_BULK));
                 itemStacks.add(new ItemStack(ModItems.ROTTEN_SPEEDRUNNER_BULK));

@@ -15,7 +15,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
         return Ingredient.ofItems(ModItems.SPEEDRUNNER_INGOT);
     }),
     GOLDEN_SPEEDRUNNER("golden_speedrunner", 14, new int[]{2, 4, 6, 2}, 27, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
-        return Ingredient.ofItems(ModItems.SPEEDRUNNER_INGOT, Items.GOLD_INGOT);
+        return Ingredient.ofItems(Items.GOLD_INGOT);
     });
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};

@@ -1,11 +1,7 @@
 package com.dilloney.speedrunnermod.item;
 
-import com.dilloney.speedrunnermod.recipe.SpeedrunnerShieldDecorationRecipe;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
-import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.util.Rarity;
 
 public final class ModItems {
@@ -46,23 +42,32 @@ public final class ModItems {
     public static final Item SPEEDRUNNER_BOOTS = new ArmorItem(ModArmorMaterials.SPEEDRUNNER, EquipmentSlot.FEET,
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.COMBAT));
 
-    public static final Item SPEEDRUNNER_BOW = new SpeedrunnerItem.SpeedrunnerBow(new Item.Settings());
+    public static final Item SPEEDRUNNER_BOW = new SpeedrunnerBowItem(new Item.Settings());
 
-    public static final Item SPEEDRUNNER_CROSSBOW = new SpeedrunnerItem.SpeedrunnerCrossbow(new Item.Settings());
+    public static final Item SPEEDRUNNER_CROSSBOW = new SpeedrunnerCrossbowItem(new Item.Settings());
 
-    public static final Item SPEEDRUNNER_SHEARS = new SpeedrunnerItem.SpeedrunnerShears(new Item.Settings());
+    public static final Item SPEEDRUNNER_SHEARS = new SpeedrunnerShearsItem(new Item.Settings());
 
-    public static final Item SPEEDRUNNER_FLINT_AND_STEEL = new SpeedrunnerItem.SpeedrunnerFlintAndSteel(new Item.Settings());
+    public static final Item SPEEDRUNNER_FLINT_AND_STEEL = new SpeedrunnerFlintAndSteelItem(new Item.Settings());
 
-    public static final Item SPEEDRUNNER_FISHING_ROD = new SpeedrunnerItem.SpeedrunnerFishingRod(new Item.Settings());
+    public static final Item SPEEDRUNNER_FISHING_ROD = new SpeedrunnerFishingRodItem(new Item.Settings());
 
-    public static final Item SPEEDRUNNER_CARROT_ON_A_STICK = new SpeedrunnerItem.SpeedrunnerCarrotOnAStick(new Item.Settings());
+    public static final Item SPEEDRUNNER_CARROT_ON_A_STICK = new SpeedrunnerCarrotOnAStickItem(new Item.Settings());
 
-    public static final Item SPEEDRUNNER_WARPED_FUNGUS_ON_A_STICK = new SpeedrunnerItem.SpeedrunnerWarpedFungusOnAStick(new Item.Settings());
+    public static final Item SPEEDRUNNER_WARPED_FUNGUS_ON_A_STICK = new SpeedrunnerWarpedFungusOnAStickItem(new Item.Settings());
 
-    public static final Item SPEEDRUNNER_SHIELD = new SpeedrunnerItem.SpeedrunnerShield(new Item.Settings());
+    public static final Item SPEEDRUNNER_SHIELD = new SpeedrunnerShieldItem(new Item.Settings());
 
-    public static final Item SPEEDRUNNER_MUSIC_DISC = new SpeedrunnerItem.SpeedrunnerMusicDisc(new Item.Settings());
+    public static final Item SPEEDRUNNER_MUSIC_DISC = new SpeedrunnerMusicDiscItem(new Item.Settings());
+
+    public static final Item SPEEDRUNNER_APPLE = new SpeedrunnerItem(
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.RARE).food(ModFoodComponents.SPEEDRUNNER_APPLE));
+
+    public static final Item SPEEDRUNNER_BULK = new SpeedrunnerItem(
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.RARE).food(ModFoodComponents.SPEEDRUNNER_BULK));
+
+    public static final Item ROTTEN_SPEEDRUNNER_BULK = new SpeedrunnerItem(
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.ROTTEN_SPEEDRUNNER_BULK));
 
     public static final Item GOLDEN_SPEEDRUNNER_SWORD = new SwordItem(ModToolMaterials.GOLDEN_SPEEDRUNNER, 4, -2.4F,
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.COMBAT));
@@ -94,142 +99,51 @@ public final class ModItems {
     public static final Item IGNEOUS_ROCK = new Item(
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MATERIALS));
 
-    public static final Item INFERNO_EYE = new InfernoEyeItem(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MISC).fireproof());
-
-    public static final Item ANNUL_EYE = new AnnulEyeItem(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MISC).rarity(Rarity.EPIC));
-
-    public static SpecialRecipeSerializer<SpeedrunnerShieldDecorationRecipe> SPEEDRUNNER_SHIELD_DECORATION_RECIPE = new SpecialRecipeSerializer<>(SpeedrunnerShieldDecorationRecipe::new);
-
     public static final Item COOKED_PIGLIN_PORK = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(8)
-                    .saturationModifier(0.7F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.COOKED_PIGLIN_PORK));
 
-    public static final Item RAW_PIGLIN_PORK = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(3)
-                    .saturationModifier(0.2F)
-                    .build()));
+    public static final Item PIGLIN_PORK = new Item(
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.RAW_PIGLIN_PORK));
 
     public static final Item GOLDEN_PIGLIN_PORK = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(8)
-                    .saturationModifier(0.8F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1F)
-                    .build()));
-
-    public static final Item SPEEDRUNNER_BULK = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.RARE).food(new FoodComponent.Builder()
-                    .hunger(12)
-                    .saturationModifier(1.2F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 600), 1F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 1200), 1F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 1200), 1F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 500, 1), 0.6F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200), 0.5F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200), 0.4F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.LUCK, 1800, 0, false, false, false), 0.25F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 400), 0.2F)
-                    .build()));
-
-    public static final Item ROTTEN_SPEEDRUNNER_BULK = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(4)
-                    .saturationModifier(0.1F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 400), 0.5F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 300), 0.1F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.UNLUCK, 1200), 0.1F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.POISON, 160), 0.1F)
-                    .build()));
-
-    public static final Item SPEEDRUNNER_APPLE = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).rarity(Rarity.RARE).food(new FoodComponent.Builder()
-                    .hunger(4)
-                    .saturationModifier(1.2F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 600, 0), 1F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 600, 0), 1F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_PIGLIN_PORK));
 
     public static final Item COOKED_FLESH = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(6)
-                    .saturationModifier(0.8F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.COOKED_FLESH));
 
     public static final Item GOLDEN_STEAK = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder().meat()
-                    .hunger(8)
-                    .saturationModifier(0.9F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200), 0.25F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_STEAK));
 
     public static final Item GOLDEN_PORKCHOP = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder().meat()
-                    .hunger(8)
-                    .saturationModifier(0.9F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200), 0.25F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_PORKCHOP));
 
     public static final Item GOLDEN_MUTTON = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder().meat()
-                    .hunger(6)
-                    .saturationModifier(1.0F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_MUTTON));
 
     public static final Item GOLDEN_CHICKEN = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(6)
-                    .saturationModifier(0.8F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_CHICKEN));
 
     public static final Item GOLDEN_RABBIT = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(5)
-                    .saturationModifier(0.8F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_RABBIT));
 
     public static final Item GOLDEN_COD = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(5)
-                    .saturationModifier(0.8F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_COD));
 
     public static final Item GOLDEN_SALMON = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(6)
-                    .saturationModifier(0.9F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_SALMON));
 
     public static final Item GOLDEN_BREAD = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(5)
-                    .saturationModifier(0.8F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_BREAD));
 
     public static final Item GOLDEN_POTATO = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(5)
-                    .saturationModifier(0.4F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_POTATO));
 
     public static final Item GOLDEN_BEETROOT = new Item(
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(new FoodComponent.Builder()
-                    .hunger(1)
-                    .saturationModifier(0.7F)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F)
-                    .build()));
+            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_BEETROOT));
+
+    public static final Item INFERNO_EYE = new InfernoEyeItem(new Item.Settings());
+
+    public static final Item ANNUL_EYE = new AnnulEyeItem(new Item.Settings());
 
     public static final Item ANDESITE_SWORD = new SwordItem(ModToolMaterials.ANDESITE, 3, -2.4F,
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.COMBAT));

@@ -4,6 +4,7 @@ import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.EyeOfEnderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -22,7 +23,9 @@ public class InfernoEyeItem extends Item {
     String structureType = "Fortress";
     StructureFeature<?> type = StructureFeature.FORTRESS;
 
-    public InfernoEyeItem(Settings settings) { super(settings); }
+    public InfernoEyeItem(Settings settings) {
+        super(settings.group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MISC).fireproof());
+    }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
@@ -68,9 +71,10 @@ public class InfernoEyeItem extends Item {
         return TypedActionResult.consume(itemStack);
     }
 
-
+    /**
+     * @author kwpugh
+     */
     private static void findStructureAndShoot(World world, PlayerEntity player, ItemStack itemstack, StructureFeature<?> type, Hand hand) {
-
         BlockPos locpos;
         locpos = ((ServerWorld)world).getChunkManager().getChunkGenerator().locateStructure((ServerWorld)world, type, player.getBlockPos(),100, false);
 
