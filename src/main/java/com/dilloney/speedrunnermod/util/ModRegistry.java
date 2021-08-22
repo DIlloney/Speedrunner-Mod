@@ -3,8 +3,9 @@ package com.dilloney.speedrunnermod.util;
 import com.dilloney.speedrunnermod.block.ModBlocks;
 import com.dilloney.speedrunnermod.client.render.SpeedrunnerShieldRenderer;
 import com.dilloney.speedrunnermod.item.ModItems;
-import com.dilloney.speedrunnermod.item.SpeedrunnerItem;
+import com.dilloney.speedrunnermod.item.SpeedrunnerCrossbowItem;
 import com.dilloney.speedrunnermod.loot.ModLootTables;
+import com.dilloney.speedrunnermod.recipe.SpeedrunnerShieldDecorationRecipe;
 import com.dilloney.speedrunnermod.sound.ModSoundEvents;
 import com.dilloney.speedrunnermod.tag.ModBlockTags;
 import com.dilloney.speedrunnermod.tag.ModItemTags;
@@ -23,7 +24,7 @@ import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
-import net.fabricmc.fabric.api.tag.TagRegistry;
+import net.fabricmc.fabric.api.tag.TagFactory;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ShearsDispenserBehavior;
 import net.minecraft.client.texture.SpriteAtlasTexture;
@@ -71,9 +72,10 @@ public final class ModRegistry {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_warped_fungus_on_a_stick"), ModItems.SPEEDRUNNER_WARPED_FUNGUS_ON_A_STICK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_shield"), ModItems.SPEEDRUNNER_SHIELD);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_music_disc"), ModItems.SPEEDRUNNER_MUSIC_DISC);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_apple"), ModItems.SPEEDRUNNER_APPLE);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_bulk"), ModItems.SPEEDRUNNER_BULK);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "rotten_speedrunner_bulk"), ModItems.ROTTEN_SPEEDRUNNER_BULK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "igneous_rock"), ModItems.IGNEOUS_ROCK);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "inferno_eye"), ModItems.INFERNO_EYE);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "annul_eye"), ModItems.ANNUL_EYE);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_speedrunner_sword"), ModItems.GOLDEN_SPEEDRUNNER_SWORD);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_speedrunner_shovel"), ModItems.GOLDEN_SPEEDRUNNER_SHOVEL);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_speedrunner_pickaxe"), ModItems.GOLDEN_SPEEDRUNNER_PICKAXE);
@@ -84,11 +86,8 @@ public final class ModRegistry {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_speedrunner_leggings"), ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_speedrunner_boots"), ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "cooked_piglin_pork"), ModItems.COOKED_PIGLIN_PORK);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "raw_piglin_pork"), ModItems.RAW_PIGLIN_PORK);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "piglin_pork"), ModItems.PIGLIN_PORK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_piglin_pork"), ModItems.GOLDEN_PIGLIN_PORK);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_bulk"), ModItems.SPEEDRUNNER_BULK);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "rotten_speedrunner_bulk"), ModItems.ROTTEN_SPEEDRUNNER_BULK);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_apple"), ModItems.SPEEDRUNNER_APPLE);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "cooked_flesh"), ModItems.COOKED_FLESH);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_steak"), ModItems.GOLDEN_STEAK);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_porkchop"), ModItems.GOLDEN_PORKCHOP);
@@ -100,6 +99,8 @@ public final class ModRegistry {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_bread"), ModItems.GOLDEN_BREAD);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_potato"), ModItems.GOLDEN_POTATO);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "golden_beetroot"), ModItems.GOLDEN_BEETROOT);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "inferno_eye"), ModItems.INFERNO_EYE);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "annul_eye"), ModItems.ANNUL_EYE);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "andesite_sword"), ModItems.ANDESITE_SWORD);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "andesite_shovel"), ModItems.ANDESITE_SHOVEL);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "andesite_pickaxe"), ModItems.ANDESITE_PICKAXE);
@@ -181,7 +182,7 @@ public final class ModRegistry {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, speedrunnerNetherOreNether.getValue(), OreGeneration.NETHER_SPEEDRUNNER_ORE_NETHER);
         BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, speedrunnerNetherOreNether);
 
-        if (OPTIONS.modifiedWorldGeneration && OPTIONS.getModDifficulty() == 1) {
+        if (OPTIONS.modifiedWorldGeneration && OPTIONS.getModDifficulty() == 1 && !OPTIONS.doomMode) {
             RegistryKey<ConfiguredFeature<?, ?>> diamondOre = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
                     new Identifier("speedrunnermod", "diamond_ore_configured_feature_worldgen"));
             Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, diamondOre.getValue(), OreGeneration.DIAMOND_ORE);
@@ -195,6 +196,76 @@ public final class ModRegistry {
 
         if (OPTIONS.makeStructuresMoreCommon) {
             StructureGeneration.registerModifiedStructureGeneration();
+        }
+    }
+
+    public static void registerTags() {
+        ModItemTags.SPEEDRUNNER_ITEMS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "speedrunner_items"));
+        ModItemTags.SPEEDRUNNER_MOD_ITEMS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "speedrunner_mod_items"));
+        ModItemTags.SPEED_EFFECT_ITEMS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "speed_effect_items"));
+        ModItemTags.DOLPHINS_GRACE_EFFECT_ITEMS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "dolphins_grace_effect_items"));
+        ModItemTags.PIGLIN_SAFE_ARMOR = TagFactory.ITEM.create(new Identifier("speedrunnermod", "piglin_safe_armor"));
+        ModItemTags.BARTERING_ITEMS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "bartering_items"));
+        ModItemTags.GOLDEN_ITEMS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "golden_items"));
+        ModItemTags.BOWS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "bows"));
+        ModItemTags.CROSSBOWS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "crossbows"));
+        ModItemTags.SHEARS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "shears"));
+        ModItemTags.FISHING_RODS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "fishing_rods"));
+        ModItemTags.FLINT_AND_STEELS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "flint_and_steels"));
+        ModItemTags.SHIELDS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "shields"));
+        ModItemTags.CARROT_ON_STICKS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "carrot_on_sticks"));
+        ModItemTags.WARPED_FUNGUS_ON_STICKS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "warped_fungus_on_sticks"));
+        ModItemTags.FIREPROOFS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "fireproofs"));
+        ModItemTags.IRON_INGOTS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "iron_ingots"));
+        ModItemTags.IRON_NUGGETS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "iron_nuggets"));
+        ModItemTags.IRON_BLOCKS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "iron_blocks"));
+        ModItemTags.COBBLESTONES = TagFactory.ITEM.create(new Identifier("speedrunnermod", "cobblestones"));
+        ModItemTags.IRON_INGOTS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "iron_ingots"));
+        ModItemTags.IRON_NUGGETS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "iron_nuggets"));
+        ModItemTags.IRON_BLOCKS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "iron_blocks"));
+        ModItemTags.COBBLESTONES = TagFactory.ITEM.create(new Identifier("speedrunnermod", "cobblestones"));
+        ModItemTags.ZEROTWO_TO_ZEROONE_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/02-01_hardness"));
+        ModItemTags.ZEROFIVE_TO_ZEROFOUR_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/05-04_hardness"));
+        ModItemTags.ZEROEIGHT_TO_ZEROSIXFIVE_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/08-065_hardness"));
+        ModItemTags.ZEROEIGHT_TO_ZEROSEVEN_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/08-07_hardness"));
+        ModItemTags.ONEFIVE_TO_ONETHREE_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/15-13_hardness"));
+        ModItemTags.TWOZERO_TO_ZEROEIGHT_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/2-08_hardness"));
+        ModItemTags.TWOZERO_TO_ONETHREE_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/2-13_hardness"));
+        ModItemTags.TWOZERO_TO_ONEFOUR_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/2-14_hardness"));
+        ModItemTags.TWOZERO_TO_ONEFIVE_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/2-15_hardness"));
+        ModItemTags.TWOFIVE_TO_ONEFIVE_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/25-15_hardness"));
+        ModItemTags.THREEZERO_TO_ONEFIVE_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/3-15_hardness"));
+        ModItemTags.THREEFIVE_TO_TWOZERO_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/35-2_hardness"));
+        ModItemTags.THREEFIVE_TO_TWOFIVE_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/35-25_hardness"));
+        ModItemTags.FIVEZERO_TO_THREEZERO_HARDNESS = TagFactory.ITEM.create(new Identifier("speedrunnermod", "tooltips/5-3_hardness"));
+        ModBlockTags.NETHER_PORTAL_BASE_BLOCKS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "nether_portal_base_blocks"));
+        ModBlockTags.ZERO_ONE_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/0-1_hardness"));
+        ModBlockTags.ZERO_TWO_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/0-2_hardness"));
+        ModBlockTags.ZERO_THREESEVEN_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/0-37_hardness"));
+        ModBlockTags.ZERO_FOUR_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/0-4_hardness"));
+        ModBlockTags.ZERO_FIVE_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/0-5_hardness"));
+        ModBlockTags.ZERO_SIX_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/0-6_hardness"));
+        ModBlockTags.ZERO_SIXFIVE_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/0-65_hardness"));
+        ModBlockTags.ZERO_SEVEN_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/0-7_hardness"));
+        ModBlockTags.ZERO_EIGHT_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/0-8_hardness"));
+        ModBlockTags.ONE_ZERO_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/1-0_hardness"));
+        ModBlockTags.ONE_THREE_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/1-3_hardness"));
+        ModBlockTags.ONE_FOUR_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/1-4_hardness"));
+        ModBlockTags.ONE_FIVE_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/1-5_hardness"));
+        ModBlockTags.ONE_SIX_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/1-6_hardness"));
+        ModBlockTags.TWO_ZERO_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/2-0_hardness"));
+        ModBlockTags.TWO_FIVE_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/2-5_hardness"));
+        ModBlockTags.THREE_ZERO_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/3-0_hardness"));
+        ModBlockTags.TEN_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/10_hardness"));
+        ModBlockTags.TWENTY_FIVE_HARDNESS = TagFactory.BLOCK.create(new Identifier("speedrunnermod", "block_hardness/25_hardness"));
+    }
+
+    public static void registerMiscellaneous() {
+        Registry.register(Registry.RECIPE_SERIALIZER, "speedrunnermod:crafting_special_speedrunner_shield_decoration", SpeedrunnerShieldDecorationRecipe.SPEEDRUNNER_SHIELD_DECORATION_RECIPE);
+        DispenserBlock.registerBehavior(ModItems.SPEEDRUNNER_SHEARS, new ShearsDispenserBehavior());
+        DispenserBlock.registerBehavior(ModItems.SPEEDRUNNER_SHIELD, ArmorItem.DISPENSER_BEHAVIOR);
+        if (OPTIONS.modifiedLootTables) {
+            ModLootTables.registerModifiedLootTables();
         }
     }
 
@@ -250,72 +321,6 @@ public final class ModRegistry {
         });
     }
 
-    public static void registerTags() {
-        ModItemTags.SPEEDRUNNER_ITEMS = TagRegistry.item(new Identifier("speedrunnermod", "speedrunner_items"));
-        ModItemTags.SPEEDRUNNER_MOD_ITEMS = TagRegistry.item(new Identifier("speedrunnermod", "speedrunner_mod_items"));
-        ModItemTags.PIGLIN_SAFE_ARMOR = TagRegistry.item(new Identifier("speedrunnermod", "piglin_safe_armor"));
-        ModItemTags.BARTERING_ITEMS = TagRegistry.item(new Identifier("speedrunnermod", "bartering_items"));
-        ModItemTags.GOLDEN_ITEMS = TagRegistry.item(new Identifier("speedrunnermod", "golden_items"));
-        ModItemTags.BOWS = TagRegistry.item(new Identifier("speedrunnermod", "bows"));
-        ModItemTags.CROSSBOWS = TagRegistry.item(new Identifier("speedrunnermod", "crossbows"));
-        ModItemTags.SHEARS = TagRegistry.item(new Identifier("speedrunnermod", "shears"));
-        ModItemTags.FISHING_RODS = TagRegistry.item(new Identifier("speedrunnermod", "fishing_rods"));
-        ModItemTags.FLINT_AND_STEELS = TagRegistry.item(new Identifier("speedrunnermod", "flint_and_steels"));
-        ModItemTags.SHIELDS = TagRegistry.item(new Identifier("speedrunnermod", "shields"));
-        ModItemTags.CARROT_ON_STICKS = TagRegistry.item(new Identifier("speedrunnermod", "carrot_on_sticks"));
-        ModItemTags.WARPED_FUNGUS_ON_STICKS = TagRegistry.item(new Identifier("speedrunnermod", "warped_fungus_on_sticks"));
-        ModItemTags.FIREPROOFS = TagRegistry.item(new Identifier("speedrunnermod", "fireproofs"));
-        ModItemTags.IRON_INGOTS = TagRegistry.item(new Identifier("speedrunnermod", "iron_ingots"));
-        ModItemTags.IRON_NUGGETS = TagRegistry.item(new Identifier("speedrunnermod", "iron_nuggets"));
-        ModItemTags.IRON_BLOCKS = TagRegistry.item(new Identifier("speedrunnermod", "iron_blocks"));
-        ModItemTags.COBBLESTONES = TagRegistry.item(new Identifier("speedrunnermod", "cobblestones"));
-        ModItemTags.IRON_INGOTS = TagRegistry.item(new Identifier("speedrunnermod", "iron_ingots"));
-        ModItemTags.IRON_NUGGETS = TagRegistry.item(new Identifier("speedrunnermod", "iron_nuggets"));
-        ModItemTags.IRON_BLOCKS = TagRegistry.item(new Identifier("speedrunnermod", "iron_blocks"));
-        ModItemTags.COBBLESTONES = TagRegistry.item(new Identifier("speedrunnermod", "cobblestones"));
-        ModItemTags.ZEROTWO_TO_ZEROONE_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/02-01_hardness"));
-        ModItemTags.ZEROFIVE_TO_ZEROFOUR_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/05-04_hardness"));
-        ModItemTags.ZEROEIGHT_TO_ZEROSIXFIVE_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/08-065_hardness"));
-        ModItemTags.ZEROEIGHT_TO_ZEROSEVEN_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/08-07_hardness"));
-        ModItemTags.ONEFIVE_TO_ONETHREE_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/15-13_hardness"));
-        ModItemTags.TWOZERO_TO_ZEROEIGHT_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/2-08_hardness"));
-        ModItemTags.TWOZERO_TO_ONETHREE_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/2-13_hardness"));
-        ModItemTags.TWOZERO_TO_ONEFOUR_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/2-14_hardness"));
-        ModItemTags.TWOZERO_TO_ONEFIVE_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/2-15_hardness"));
-        ModItemTags.TWOFIVE_TO_ONEFIVE_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/25-15_hardness"));
-        ModItemTags.THREEZERO_TO_ONEFIVE_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/3-15_hardness"));
-        ModItemTags.THREEFIVE_TO_TWOZERO_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/35-2_hardness"));
-        ModItemTags.THREEFIVE_TO_TWOFIVE_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/35-25_hardness"));
-        ModItemTags.FIVEZERO_TO_THREEZERO_HARDNESS = TagRegistry.item(new Identifier("speedrunnermod", "tooltips/5-3_hardness"));
-        ModBlockTags.NETHER_PORTAL_BASE_BLOCKS = TagRegistry.block(new Identifier("speedrunnermod", "nether_portal_base_blocks"));
-        ModBlockTags.ZERO_ONE_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/0-1_hardness"));
-        ModBlockTags.ZERO_TWO_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/0-2_hardness"));
-        ModBlockTags.ZERO_THREESEVEN_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/0-37_hardness"));
-        ModBlockTags.ZERO_FOUR_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/0-4_hardness"));
-        ModBlockTags.ZERO_FIVE_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/0-5_hardness"));
-        ModBlockTags.ZERO_SIX_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/0-6_hardness"));
-        ModBlockTags.ZERO_SIXFIVE_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/0-65_hardness"));
-        ModBlockTags.ZERO_SEVEN_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/0-7_hardness"));
-        ModBlockTags.ZERO_EIGHT_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/0-8_hardness"));
-        ModBlockTags.ONE_ZERO_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/1-0_hardness"));
-        ModBlockTags.ONE_THREE_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/1-3_hardness"));
-        ModBlockTags.ONE_FOUR_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/1-4_hardness"));
-        ModBlockTags.ONE_FIVE_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/1-5_hardness"));
-        ModBlockTags.ONE_SIX_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/1-6_hardness"));
-        ModBlockTags.TWO_ZERO_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/2-0_hardness"));
-        ModBlockTags.TWO_FIVE_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/2-5_hardness"));
-        ModBlockTags.THREE_ZERO_HARDNESS = TagRegistry.block(new Identifier("speedrunnermod", "block_hardness/3-0_hardness"));
-    }
-
-    public static void registerMiscellaneous() {
-        Registry.register(Registry.RECIPE_SERIALIZER, "speedrunnermod:crafting_special_speedrunner_shield_decoration", ModItems.SPEEDRUNNER_SHIELD_DECORATION_RECIPE);
-        DispenserBlock.registerBehavior(ModItems.SPEEDRUNNER_SHEARS, new ShearsDispenserBehavior());
-        DispenserBlock.registerBehavior(ModItems.SPEEDRUNNER_SHIELD, ArmorItem.DISPENSER_BEHAVIOR);
-        if (OPTIONS.modifiedLootTables) {
-            ModLootTables.registerModifiedLootTables();
-        }
-    }
-
     @Environment(EnvType.CLIENT)
     public static void registerModels() {
         FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW.asItem(), new Identifier("pull"), (stack, world, entity, seed) -> {
@@ -325,6 +330,7 @@ public final class ModRegistry {
                 return entity.getActiveItem() != stack ? 0.0F : (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / 20.0F;
             }
         });
+
         FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW.asItem(), new Identifier("pulling"), (stack, world, entity, seed) -> {
             return entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F;
         });
@@ -333,21 +339,22 @@ public final class ModRegistry {
             if (entity == null) {
                 return 0.0F;
             } else {
-                return SpeedrunnerItem.SpeedrunnerCrossbow.isCharged(stack) ? 0.0F : (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / (float)SpeedrunnerItem.SpeedrunnerCrossbow.getPullTime(stack);
+                return SpeedrunnerCrossbowItem.isCharged(stack) ? 0.0F : (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / (float)SpeedrunnerCrossbowItem.getPullTime(stack);
             }
         });
 
         FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("pulling"), (stack, world, entity, seed) -> {
-            return entity != null && entity.isUsingItem() && entity.getActiveItem() == stack && !SpeedrunnerItem.SpeedrunnerCrossbow.isCharged(stack) ? 1.0F : 0.0F;
+            return entity != null && entity.isUsingItem() && entity.getActiveItem() == stack && !SpeedrunnerCrossbowItem.isCharged(stack) ? 1.0F : 0.0F;
         });
 
         FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("charged"), (stack, world, entity, seed) -> {
-            return entity != null && SpeedrunnerItem.SpeedrunnerCrossbow.isCharged(stack) ? 1.0F : 0.0F;
+            return entity != null && SpeedrunnerCrossbowItem.isCharged(stack) ? 1.0F : 0.0F;
         });
 
         FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW.asItem(), new Identifier("firework"), (stack, world, entity, seed) -> {
             return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.hasProjectile(stack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
         });
+
         FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_FISHING_ROD, new Identifier("cast"), (stack, world, entity, seed) -> {
             if (entity == null) {
                 return 0.0F;
@@ -361,10 +368,13 @@ public final class ModRegistry {
                 return (bl || bl2) && entity instanceof PlayerEntity && ((PlayerEntity)entity).fishHook != null ? 1.0F : 0.0F;
             }
         });
+
         FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_SHIELD, new Identifier("blocking"), (stack, world, entity, seed) -> {
             return entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F;
         });
+
         BuiltinItemRendererRegistry.INSTANCE.register(ModItems.SPEEDRUNNER_SHIELD, new SpeedrunnerShieldRenderer());
+
         ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlaxTexture, registry) -> {
             if (atlaxTexture.getId() == SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE) {
                 registry.register(new Identifier("speedrunnermod:entity/speedrunner_shield_base"));
