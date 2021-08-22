@@ -4,34 +4,44 @@
   "package": "com.dilloney.speedrunnermod.mixins",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "block.AbstractBlockAbstractBlockStateMixin",
+    "block.AbstractBlockMixin",
     "block.AbstractFireBlockMixin",
+    "block.BeehiveBlockMixin",
     "block.BlockMixin",
     "block.BlocksMixin",
     "block.OreBlockMixin",
+    "block.PumpkinBlockMixin",
     "block.SpawnerBlockMixin",
-    "block.util.BeehiveBlockMixin",
-    "block.util.PumpkinBlockMixin",
-    "block.util.TripwireBlockMixin",
-    "block.util.TntBlockMixin",
+    "block.TntBlockMixin",
+    "block.TripwireBlockMixin",
+
+    "enchantment.EfficiencyEnchantmentMixin",
+
     "entity.mob.GiantEntityMixin",
     "entity.boss.WitherEntityMixin",
+
     "entity.boss.dragon.EnderDragonEntityMixin",
     "entity.boss.dragon.EnderDragonFightMixin",
+
     "entity.mob.AbstractSkeletonEntityMixin",
     "entity.mob.BlazeEntityMixin",
+    "entity.mob.BlazeEntityMixin$ShootFireballGoalMixin",
     "entity.mob.CaveSpiderEntityMixin",
     "entity.mob.CreeperEntityMixin",
     "entity.mob.ElderGuardianEntityMixin",
     "entity.mob.EndermanEntityMixin",
     "entity.mob.EndermiteEntityMixin",
     "entity.mob.GhastEntityMixin",
+    "entity.mob.GhastEntityMixin$ShootFireballGoalMixin",
     "entity.mob.GuardianEntityMixin",
     "entity.mob.HoglinEntityMixin",
     "entity.mob.MagmaCubeEntityMixin",
+    "entity.mob.PiglinBrainMixin",
     "entity.mob.PiglinEntityMixin",
+    "entity.mob.PillagerEntityMixin",
     "entity.mob.RavagerEntityMixin",
     "entity.mob.SilverfishEntityMixin",
+    "entity.mob.SilverfishEntityMixin$CallForHelpGoalMixin",
     "entity.mob.SkeletonEntityMixin",
     "entity.mob.SlimeEntityMixin",
     "entity.mob.SpiderEntityMixin",
@@ -42,57 +52,72 @@
     "entity.mob.ZoglinEntityMixin",
     "entity.mob.ZombieEntityMixin",
     "entity.mob.ZombifiedPiglinEntityMixin",
-    "entity.mob.goal.BlazeEntityShootFireballGoalMixin",
-    "entity.mob.goal.GhastEntityShootFireballGoalMixin",
-    "entity.mob.goal.SilverfishEntityCallForHelpGoalMixin",
+
     "entity.passive.DolphinEntityMixin",
+    "entity.passive.DolphinEntityMixin$SwimWithPlayerGoalMixin",
     "entity.passive.IronGolemEntityMixin",
     "entity.passive.PigEntityMixin",
     "entity.passive.SheepEntityMixin",
     "entity.passive.SnowGolemEntityMixin",
     "entity.passive.StriderEntityMixin",
-    "entity.passive.goal.DolphinEntitySwimWithPlayerGoalMixin",
+    "entity.player.PlayerEntityMixin",
+    "entity.player.PlayerInventoryMixin",
+
+    "entity.projectile.thrown.EnderPearlEntityMixin",
     "entity.projectile.FishingBobberEntityMixin",
     "entity.projectile.SmallFireballEntityMixin",
-    "entity.EnderPearlEntityMixin",
+
     "entity.EntityMixin",
     "entity.EyeOfEnderEntityMixin",
     "entity.LivingEntityMixin",
     "entity.ItemEntityMixin",
-    "entity.PlayerEntityMixin",
-    "entity.ServerPlayerEntityMixin",
     "entity.TntEntityMixin",
+
     "item.CompassItemMixin",
     "item.EnderPearlItemMixin",
     "item.FoodComponentsMixin",
     "item.ItemMixin",
-    "item.ItemPredicateMixin",
-    "misc.AreaHelperMixin",
-    "misc.EfficiencyEnchantmentMixin",
-    "misc.MobSpawnerLogicMixin",
-    "misc.PiglinBrainMixin",
-    "misc.PlayerInventoryMixin",
-    "misc.ShapelessRecipeMixin",
-    "misc.StructuresConfigAccessor",
+
+    "predicate.item.ItemPredicateMixin",
+
+    "recipe.ShapelessRecipeMixin",
+
+    "server.network.ServerPlayerEntityMixin",
+
     "world.biome.DefaultBiomeCreatorMixin",
-    "world.gen.feature.DefaultBiomeFeaturesMixin",
+
+    "world.dimension.AreaHelperMixin",
+
     "world.gen.chunk.ChunkGeneratorMixin",
+
+    "world.gen.feature.DefaultBiomeFeaturesMixin",
     "world.gen.feature.NetherFortressFeatureMixin",
-    "world.gen.feature.StrongholdFeatureStartMixin",
+    "world.gen.feature.StrongholdFeatureMixin",
+
     "world.structure.NetherFortressGeneratorMixin",
     "world.structure.RuinedPortalFeatureMixin",
     "world.structure.StrongholdGeneratorMixin",
-    "world.structure.StrongholdGeneratorPortalRoomMixin"
+    "world.structure.StrongholdGeneratorMixin$PortalRoomMixin",
+
+    "world.MobSpawnerLogicMixin",
+
+    "StructuresConfigAccessor"
   ],
   "client": [
     "client.gui.screen.option.OptionsScreenMixin",
+
     "client.network.AbstractClientPlayerEntityMixin",
+
     "client.option.DoubleOptionMixin",
+
     "client.render.entity.FishingBobberEntityRendererMixin",
     "client.render.entity.PlayerEntityRendererMixin",
+
     "client.render.item.HeldItemRendererMixin",
+
     "client.render.BackgroundRendererMixin",
     "client.render.WorldRendererMixin",
+
     "client.MinecraftClientMixin"
   ],
   "injectors": {
