@@ -41,19 +41,25 @@ public final class ModBlocks {
             .breakByTool(FabricToolTags.PICKAXES, 2)
             .requiresTool()
             .strength(3.0F, 3.0F)
-            .sounds(BlockSoundGroup.STONE));
+            .luminance((state) -> {
+                return 1;
+            }).sounds(BlockSoundGroup.STONE));
 
     public static final Block DEEPSLATE_IGNEOUS_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE)
             .breakByTool(FabricToolTags.PICKAXES, 2)
             .requiresTool()
             .strength(4.5F, 4.5F)
-            .sounds(BlockSoundGroup.DEEPSLATE));
+            .luminance((state) -> {
+                return 1;
+            }).sounds(BlockSoundGroup.DEEPSLATE));
 
     public static final Block NETHER_IGNEOUS_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE)
             .breakByTool(FabricToolTags.PICKAXES, 2)
             .requiresTool()
             .strength(3.0F, 3.0F)
-            .sounds(BlockSoundGroup.NETHER_ORE));
+            .luminance((state) -> {
+                return 1;
+            }).sounds(BlockSoundGroup.NETHER_ORE));
 
     public static final BlockItem SPEEDRUNNER_BLOCK_ITEM = new BlockItem(SPEEDRUNNER_BLOCK,
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MATERIALS));
