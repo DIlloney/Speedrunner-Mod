@@ -4,7 +4,7 @@ public class ModOptions {
 
     public int modDifficulty = 1;
 
-    public boolean officialSpeedrunMode = false;
+    public boolean normalMode = false;
 
     public boolean makeStructuresMoreCommon = true;
     public boolean modifiedWorldGeneration = true;
@@ -24,14 +24,10 @@ public class ModOptions {
 
     public boolean customTextures = true;
 
-    public boolean hardnessTooltips = false;
-
-    public int maximumFortressBlazeSpawners = 3;
+    public boolean advancedModTooltips = false;
 
     public int strongholdCount = 128;
     public int strongholdDistance = 5;
-    public int maximumStrongholdPortalRooms = 3;
-    public int maximumStrongholdLibraries = 2;
 
     public boolean netherRuinedPortals = false;
     public boolean netherPortalsInTheEnd = false;
@@ -42,21 +38,31 @@ public class ModOptions {
     public int villageSeparation = 9;
     public int desertPyramidSpacing = 10;
     public int desertPyramidSeparation = 8;
+    public int iglooSpacing = 32;
+    public int iglooSeparation = 8;
+    public int junglePyramidSpacing = 32;
+    public int junglePyramidSeparation = 8;
+    public int swampHutSpacing = 32;
+    public int swampHutSeparation = 8;
+    public int pillagerOutpostSpacing = 32;
+    public int pillagerOutpostSeparation = 8;
+    public int monumentSpacing = 32;
+    public int monumentSeparation = 5;
     public int shipwreckSpacing = 10;
     public int shipwreckSeparation = 8;
+    public int oceanRuinSpacing = 20;
+    public int oceanRuinSeparation = 8;
     public int fortressSpacing = 8;
     public int fortressSeparation = 7;
     public int bastionSpacing = 9;
     public int bastionSeparation = 8;
     public int endCitySpacing = 7;
     public int endCitySeparation = 6;
+    public int mansionSpacing = 80;
+    public int mansionSeparation = 20;
 
     public int getModDifficulty() {
         return this.modDifficulty;
-    }
-
-    public int getMaximumFortressBlazeSpawners() {
-        return this.maximumFortressBlazeSpawners;
     }
 
     public int getStrongholdCount() {
@@ -65,14 +71,6 @@ public class ModOptions {
 
     public int getStrongholdDistance() {
         return this.strongholdDistance;
-    }
-
-    public int getMaximumStrongholdPortalRooms() {
-        return this.maximumStrongholdPortalRooms;
-    }
-
-    public int getMaximumStrongholdLibraries() {
-        return this.maximumStrongholdLibraries;
     }
 
     public int getRuinedPortalSpacing() {
@@ -99,12 +97,60 @@ public class ModOptions {
         return this.desertPyramidSeparation;
     }
 
+    public int getIglooSpacing() {
+        return iglooSpacing;
+    }
+
+    public int getIglooSeparation() {
+        return iglooSeparation;
+    }
+
+    public int getJunglePyramidSpacing() {
+        return junglePyramidSpacing;
+    }
+
+    public int getJunglePyramidSeparation() {
+        return junglePyramidSeparation;
+    }
+
+    public int getSwampHutSpacing() {
+        return swampHutSpacing;
+    }
+
+    public int getSwampHutSeparation() {
+        return swampHutSeparation;
+    }
+
+    public int getPillagerOutpostSpacing() {
+        return pillagerOutpostSpacing;
+    }
+
+    public int getPillagerOutpostSeparation() {
+        return pillagerOutpostSeparation;
+    }
+
+    public int getMonumentSpacing() {
+        return monumentSpacing;
+    }
+
+    public int getMonumentSeparation() {
+        return monumentSeparation;
+    }
+
     public int getShipwreckSpacing() {
         return this.shipwreckSpacing;
     }
 
     public int getShipwreckSeparation() {
         return this.shipwreckSeparation;
+    }
+
+    public int getOceanRuinSpacing() {
+        return oceanRuinSpacing;
+    }
+
+    public int getOceanRuinSeparation() {
+        return oceanRuinSeparation;
     }
 
     public int getFortressSpacing() {
@@ -131,6 +177,14 @@ public class ModOptions {
         return this.endCitySeparation;
     }
 
+    public int getMansionSpacing() {
+        return mansionSpacing;
+    }
+
+    public int getMansionSeparation() {
+        return mansionSeparation;
+    }
+
     public void setModDifficulty(int modDifficulty) {
         this.modDifficulty = modDifficulty;
     }
@@ -143,28 +197,12 @@ public class ModOptions {
         this.modifiedWorldGeneration = modifiedWorldGeneration;
     }
 
-    public void setModifiedBlockHardness(boolean modifiedBlockHardness) {
-        this.modifiedBlockHardness = modifiedBlockHardness;
-    }
-
-    public void setModifiedLootTables(boolean modifiedLootTables) {
-        this.modifiedLootTables = modifiedLootTables;
-    }
-
-    public void setKillGhastUponFireball(boolean killGhastUponFireball) {
-        this.killGhastUponFireball = killGhastUponFireball;
-    }
-
     public void setRuinedPortalSpacing(int ruinedPortalSpacing) {
         this.ruinedPortalSpacing = ruinedPortalSpacing;
     }
 
     public void setRuinedPortalSeparation(int ruinedPortalSeparation) {
         this.ruinedPortalSeparation = ruinedPortalSeparation;
-    }
-
-    public void setMaximumFortressBlazeSpawners(int maximumFortressBlazeSpawners) {
-        this.maximumFortressBlazeSpawners = maximumFortressBlazeSpawners;
     }
 
     public void setStrongholdCount(int strongholdCount) {
@@ -175,20 +213,8 @@ public class ModOptions {
         this.strongholdDistance = strongholdDistance;
     }
 
-    public void setMaximumStrongholdPortalRooms(int maximumStrongholdPortalRooms) {
-        this.maximumStrongholdPortalRooms = maximumStrongholdPortalRooms;
-    }
-
-    public void setMaximumStrongholdLibraries(int maximumStrongholdLibraries) {
-        this.maximumStrongholdLibraries = maximumStrongholdLibraries;
-    }
-
     public void setNetherRuinedPortals(boolean netherRuinedPortals) {
         this.netherRuinedPortals = netherRuinedPortals;
-    }
-
-    public void setNetherPortalsInTheEnd(boolean netherPortalsInTheEnd) {
-        this.netherPortalsInTheEnd = netherPortalsInTheEnd;
     }
 
     public void setVillageSpacing(int villageSpacing) {
@@ -207,12 +233,60 @@ public class ModOptions {
         this.desertPyramidSeparation = desertPyramidSeparation;
     }
 
+    public void setIglooSpacing(int iglooSpacing) {
+        this.iglooSpacing = iglooSpacing;
+    }
+
+    public void setIglooSeparation(int iglooSeparation) {
+        this.iglooSeparation = iglooSeparation;
+    }
+
+    public void setJunglePyramidSpacing(int junglePyramidSpacing) {
+        this.junglePyramidSpacing = junglePyramidSpacing;
+    }
+
+    public void setJunglePyramidSeparation(int junglePyramidSeparation) {
+        this.junglePyramidSeparation = junglePyramidSeparation;
+    }
+
+    public void setSwampHutSpacing(int swampHuntSpacing) {
+        this.swampHutSpacing = swampHuntSpacing;
+    }
+
+    public void setSwampHutSeparation(int swampHuntSeparation) {
+        this.swampHutSeparation = swampHuntSeparation;
+    }
+
+    public void setPillagerOutpostSpacing(int pillagerOutpostSpacing) {
+        this.pillagerOutpostSpacing = pillagerOutpostSpacing;
+    }
+
+    public void setPillagerOutpostSeparation(int pillagerOutpostSeparation) {
+        this.pillagerOutpostSeparation = pillagerOutpostSeparation;
+    }
+
+    public void setMonumentSpacing(int monumentSpacing) {
+        this.monumentSpacing = monumentSpacing;
+    }
+
+    public void setMonumentSeparation(int monumentSeparation) {
+        this.monumentSeparation = monumentSeparation;
+    }
+
     public void setShipwreckSpacing(int shipwreckSpacing) {
         this.shipwreckSpacing = shipwreckSpacing;
     }
 
     public void setShipwreckSeparation(int shipwreckSeparation) {
         this.shipwreckSeparation = shipwreckSeparation;
+    }
+
+    public void setOceanRuinSpacing(int oceanRuinSpacing) {
+        this.oceanRuinSpacing = oceanRuinSpacing;
+    }
+
+    public void setOceanRuinSeparation(int oceanRuinSeparation) {
+        this.oceanRuinSeparation = oceanRuinSeparation;
     }
 
     public void setFortressSpacing(int fortressSpacing) {
@@ -237,5 +311,13 @@ public class ModOptions {
 
     public void setEndCitySeparation(int endCitySeparation) {
         this.endCitySeparation = endCitySeparation;
+    }
+
+    public void setMansionSpacing(int mansionSpacing) {
+        this.mansionSpacing = mansionSpacing;
+    }
+
+    public void setMansionSeparation(int mansionSeparation) {
+        this.mansionSeparation = mansionSeparation;
     }
 }

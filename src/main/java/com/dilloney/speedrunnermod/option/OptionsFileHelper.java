@@ -1,7 +1,6 @@
 package com.dilloney.speedrunnermod.option;
 
-import com.dilloney.speedrunnermod.SpeedrunnerMod;
-
+import static com.dilloney.speedrunnermod.SpeedrunnerMod.LOGGER;
 import static com.dilloney.speedrunnermod.SpeedrunnerMod.OPTIONS;
 
 public class OptionsFileHelper {
@@ -14,380 +13,341 @@ public class OptionsFileHelper {
     public static void fix() {
         if (OPTIONS.getModDifficulty() < 1 || OPTIONS.getModDifficulty() > 4) {
             OPTIONS.setModDifficulty(1);
-            SpeedrunnerMod.LOGGER.warn("modDifficulty cannot be set below 1 or above 4!");
-            SpeedrunnerMod.LOGGER.info("modDifficulty has been set to " + OPTIONS.getModDifficulty());
+            LOGGER.warn("modDifficulty cannot be set below 1 or above 4!");
+            LOGGER.info("modDifficulty has been set to " + OPTIONS.getModDifficulty());
             saveAndReloadOptions();
         }
 
         if (OPTIONS.getStrongholdCount() < 64 || OPTIONS.getStrongholdCount() > 256) {
             OPTIONS.setStrongholdCount(128);
-            SpeedrunnerMod.LOGGER.warn("strongholdCount cannot be set below 64 or above 256!");
-            SpeedrunnerMod.LOGGER.info("strongholdCount has been set to " + OPTIONS.getStrongholdCount());
+            LOGGER.warn("strongholdCount cannot be set below 64 or above 256!");
+            LOGGER.info("strongholdCount has been set to " + OPTIONS.getStrongholdCount());
             saveAndReloadOptions();
         }
 
         if (OPTIONS.makeStructuresMoreCommon) {
             if (OPTIONS.getStrongholdDistance() < 3 || OPTIONS.getStrongholdDistance() > 36) {
                 OPTIONS.setStrongholdDistance(5);
-                SpeedrunnerMod.LOGGER.warn("strongholdDistance cannot be set below 3 or above 36!");
-                SpeedrunnerMod.LOGGER.info("strongholdDistance has been set to " + OPTIONS.getStrongholdDistance());
+                LOGGER.warn("strongholdDistance cannot be set below 3 or above 36!");
+                LOGGER.info("strongholdDistance has been set to " + OPTIONS.getStrongholdDistance());
                 saveAndReloadOptions();
             }
 
             if (OPTIONS.getRuinedPortalSeparation() > OPTIONS.getRuinedPortalSpacing()) {
                 OPTIONS.setRuinedPortalSeparation(OPTIONS.getRuinedPortalSpacing() - 1);
-                SpeedrunnerMod.LOGGER.warn("Separation values cannot be larger than spacing values!");
-                SpeedrunnerMod.LOGGER.info("ruinedPortalSeparation has been set to " + OPTIONS.getRuinedPortalSeparation());
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("ruinedPortalSeparation has been set to " + OPTIONS.getRuinedPortalSeparation());
                 saveAndReloadOptions();
             }
 
             if (OPTIONS.getVillageSeparation() > OPTIONS.getVillageSpacing()) {
                 OPTIONS.setVillageSeparation(OPTIONS.getVillageSpacing() - 1);
-                SpeedrunnerMod.LOGGER.warn("Separation values cannot be larger than spacing values!");
-                SpeedrunnerMod.LOGGER.info("villageSeparation has been set to " + OPTIONS.getVillageSeparation());
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("villageSeparation has been set to " + OPTIONS.getVillageSeparation());
                 saveAndReloadOptions();
             }
 
             if (OPTIONS.getDesertPyramidSeparation() > OPTIONS.getDesertPyramidSpacing()) {
                 OPTIONS.setDesertPyramidSeparation(OPTIONS.getDesertPyramidSpacing() - 1);
-                SpeedrunnerMod.LOGGER.warn("Separation values cannot be larger than spacing values!");
-                SpeedrunnerMod.LOGGER.info("desertPyramidSeparation has been set to " + OPTIONS.getDesertPyramidSeparation());
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("desertPyramidSeparation has been set to " + OPTIONS.getDesertPyramidSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getIglooSeparation() > OPTIONS.getIglooSpacing()) {
+                OPTIONS.setIglooSeparation(OPTIONS.getIglooSpacing() - 1);
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("iglooSeparation has been set to " + OPTIONS.getIglooSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getJunglePyramidSeparation() > OPTIONS.getJunglePyramidSpacing()) {
+                OPTIONS.setJunglePyramidSeparation(OPTIONS.getJunglePyramidSpacing() - 1);
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("junglePyramidSeparation has been set to " + OPTIONS.getJunglePyramidSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getSwampHutSeparation() > OPTIONS.getSwampHutSpacing()) {
+                OPTIONS.setSwampHutSeparation(OPTIONS.getSwampHutSpacing() - 1);
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("swampHutSeparation has been set to " + OPTIONS.getSwampHutSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getPillagerOutpostSeparation() > OPTIONS.getPillagerOutpostSpacing()) {
+                OPTIONS.setPillagerOutpostSeparation(OPTIONS.getPillagerOutpostSpacing() - 1);
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("pillagerOutpostSeparation has been set to " + OPTIONS.getPillagerOutpostSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getMonumentSeparation() > OPTIONS.getMonumentSpacing()) {
+                OPTIONS.setMonumentSeparation(OPTIONS.getMonumentSpacing() - 1);
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("monumentSeparation has been set to " + OPTIONS.getMonumentSeparation());
                 saveAndReloadOptions();
             }
 
             if (OPTIONS.getShipwreckSeparation() > OPTIONS.getShipwreckSpacing()) {
                 OPTIONS.setShipwreckSeparation(OPTIONS.getShipwreckSpacing() - 1);
-                SpeedrunnerMod.LOGGER.warn("Separation values cannot be larger than spacing values!");
-                SpeedrunnerMod.LOGGER.info("shipwreckSeparation has been set to " + OPTIONS.getShipwreckSeparation());
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("shipwreckSeparation has been set to " + OPTIONS.getShipwreckSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getOceanRuinSeparation() > OPTIONS.getOceanRuinSpacing()) {
+                OPTIONS.setOceanRuinSeparation(OPTIONS.getOceanRuinSpacing() - 1);
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("oceanRuinSeparation has been set to " + OPTIONS.getOceanRuinSeparation());
                 saveAndReloadOptions();
             }
 
             if (OPTIONS.getFortressSeparation() > OPTIONS.getFortressSpacing()) {
                 OPTIONS.setFortressSeparation(OPTIONS.getFortressSpacing() - 1);
-                SpeedrunnerMod.LOGGER.warn("Separation values cannot be larger than spacing values!");
-                SpeedrunnerMod.LOGGER.info("fortressSeparation has been set to " + OPTIONS.getFortressSeparation());
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("fortressSeparation has been set to " + OPTIONS.getFortressSeparation());
                 saveAndReloadOptions();
             }
 
             if (OPTIONS.getBastionSeparation() > OPTIONS.getBastionSpacing()) {
                 OPTIONS.setBastionSeparation(OPTIONS.getBastionSpacing() - 1);
-                SpeedrunnerMod.LOGGER.warn("Separation values cannot be larger than spacing values!");
-                SpeedrunnerMod.LOGGER.info("bastionSeparation has been set to " + OPTIONS.getBastionSeparation());
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("bastionSeparation has been set to " + OPTIONS.getBastionSeparation());
                 saveAndReloadOptions();
             }
 
             if (OPTIONS.getEndCitySeparation() > OPTIONS.getEndCitySpacing()) {
                 OPTIONS.setEndCitySeparation(OPTIONS.getEndCitySpacing() - 1);
-                SpeedrunnerMod.LOGGER.warn("Separation values cannot be larger than spacing values!");
-                SpeedrunnerMod.LOGGER.info("endCitySeparation has been set to " + OPTIONS.getEndCitySeparation());
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("endCitySeparation has been set to " + OPTIONS.getEndCitySeparation());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getRuinedPortalSpacing() < 2 || OPTIONS.getRuinedPortalSpacing() > 40) {
+            if (OPTIONS.getMansionSeparation() > OPTIONS.getMansionSpacing()) {
+                OPTIONS.setMansionSeparation(OPTIONS.getMansionSpacing() - 1);
+                LOGGER.warn("Separation values cannot be larger than spacing values!");
+                LOGGER.info("mansionSeparation has been set to " + OPTIONS.getMansionSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getRuinedPortalSpacing() < 6 || OPTIONS.getRuinedPortalSpacing() > 40) {
                 OPTIONS.setRuinedPortalSpacing(9);
-                SpeedrunnerMod.LOGGER.warn("ruinedPortalSpacing cannot be set below 2 or above 40!");
-                SpeedrunnerMod.LOGGER.info("ruinedPortalSpacing has been set to " + OPTIONS.getRuinedPortalSpacing());
+                LOGGER.warn("ruinedPortalSpacing cannot be set below 6 or above 40!");
+                LOGGER.info("ruinedPortalSpacing has been set to " + OPTIONS.getRuinedPortalSpacing());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getRuinedPortalSeparation() < 2 || OPTIONS.getRuinedPortalSeparation() > 15) {
+            if (OPTIONS.getRuinedPortalSeparation() < 3 || OPTIONS.getRuinedPortalSeparation() > 15) {
                 OPTIONS.setRuinedPortalSeparation(8);
-                SpeedrunnerMod.LOGGER.warn("ruinedPortalSeparation cannot be set below 2 or above 15!");
-                SpeedrunnerMod.LOGGER.info("ruinedPortalSeparation has been set to " + OPTIONS.getRuinedPortalSeparation());
+                LOGGER.warn("ruinedPortalSeparation cannot be set below 3 or above 15!");
+                LOGGER.info("ruinedPortalSeparation has been set to " + OPTIONS.getRuinedPortalSeparation());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getVillageSpacing() < 2 || OPTIONS.getVillageSpacing() > 32) {
+            if (OPTIONS.getVillageSpacing() < 5 || OPTIONS.getVillageSpacing() > 32) {
                 OPTIONS.setVillageSpacing(16);
-                SpeedrunnerMod.LOGGER.warn("villageSpacing cannot be set below 2 or above 32!");
-                SpeedrunnerMod.LOGGER.info("villageSpacing has been set to " + OPTIONS.getVillageSpacing());
+                LOGGER.warn("villageSpacing cannot be set below 5 or above 32!");
+                LOGGER.info("villageSpacing has been set to " + OPTIONS.getVillageSpacing());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getVillageSeparation() < 2 || OPTIONS.getVillageSeparation() > 12) {
+            if (OPTIONS.getVillageSeparation() < 3 || OPTIONS.getVillageSeparation() > 12) {
                 OPTIONS.setVillageSeparation(9);
-                SpeedrunnerMod.LOGGER.warn("villageSeparation cannot be set below 2 or above 12!");
-                SpeedrunnerMod.LOGGER.info("villageSeparation has been set to " + OPTIONS.getVillageSeparation());
+                LOGGER.warn("villageSeparation cannot be set below 3 or above 12!");
+                LOGGER.info("villageSeparation has been set to " + OPTIONS.getVillageSeparation());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getDesertPyramidSpacing() < 2 || OPTIONS.getDesertPyramidSpacing() > 32) {
+            if (OPTIONS.getDesertPyramidSpacing() < 8 || OPTIONS.getDesertPyramidSpacing() > 32) {
                 OPTIONS.setDesertPyramidSpacing(10);
-                SpeedrunnerMod.LOGGER.warn("desertPyramidSpacing cannot be set below 2 or above 32!");
-                SpeedrunnerMod.LOGGER.info("desertPyramidSpacing has been set to " + OPTIONS.getDesertPyramidSpacing());
+                LOGGER.warn("desertPyramidSpacing cannot be set below 8 or above 32!");
+                LOGGER.info("desertPyramidSpacing has been set to " + OPTIONS.getDesertPyramidSpacing());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getDesertPyramidSeparation() < 2 || OPTIONS.getDesertPyramidSeparation() > 10) {
+            if (OPTIONS.getDesertPyramidSeparation() < 3 || OPTIONS.getDesertPyramidSeparation() > 10) {
                 OPTIONS.setDesertPyramidSeparation(8);
-                SpeedrunnerMod.LOGGER.warn("desertPyramidSeparation cannot be set below 2 or above 10!");
-                SpeedrunnerMod.LOGGER.info("desertPyramidSeparation has been set to " + OPTIONS.getDesertPyramidSeparation());
+                LOGGER.warn("desertPyramidSeparation cannot be set below 3 or above 10!");
+                LOGGER.info("desertPyramidSeparation has been set to " + OPTIONS.getDesertPyramidSeparation());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getShipwreckSpacing() < 2 || OPTIONS.getShipwreckSpacing() > 24) {
+            if (OPTIONS.getIglooSpacing() < 2 || OPTIONS.getIglooSpacing() > 32) {
+                OPTIONS.setIglooSpacing(32);
+                LOGGER.warn("iglooSpacing cannot be set below 2 or above 32!");
+                LOGGER.info("iglooSpacing has been set to " + OPTIONS.getIglooSpacing());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getIglooSeparation() < 1 || OPTIONS.getIglooSeparation() > 8) {
+                OPTIONS.setIglooSeparation(8);
+                LOGGER.warn("iglooSeparation cannot be set below 1 or above 8!");
+                LOGGER.info("iglooSeparation has been set to " + OPTIONS.getIglooSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getJunglePyramidSpacing() < 3 || OPTIONS.getJunglePyramidSpacing() > 32) {
+                OPTIONS.setJunglePyramidSpacing(32);
+                LOGGER.warn("junglePyramidSpacing cannot be set below 3 or above 32!");
+                LOGGER.info("junglePyramidSpacing has been set to " + OPTIONS.getJunglePyramidSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getJunglePyramidSeparation() < 1 || OPTIONS.getJunglePyramidSeparation() > 8) {
+                OPTIONS.setJunglePyramidSeparation(8);
+                LOGGER.warn("junglePyramidSeparation cannot be set below 1 or above 8!");
+                LOGGER.info("junglePyramidSeparation has been set to " + OPTIONS.getJunglePyramidSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getSwampHutSpacing() < 2 || OPTIONS.getSwampHutSpacing() > 32) {
+                OPTIONS.setSwampHutSpacing(32);
+                LOGGER.warn("swampHutSpacing cannot be set below 2 or above 32!");
+                LOGGER.info("swampHutSpacing has been set to " + OPTIONS.getSwampHutSpacing());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getSwampHutSeparation() < 1 || OPTIONS.getSwampHutSeparation() > 8) {
+                OPTIONS.setSwampHutSeparation(8);
+                LOGGER.warn("swampHutSeparation cannot be set below 1 or above 8!");
+                LOGGER.info("swampHutSeparation has been set to " + OPTIONS.getSwampHutSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getPillagerOutpostSpacing() < 8 || OPTIONS.getPillagerOutpostSpacing() > 32) {
+                OPTIONS.setPillagerOutpostSpacing(32);
+                LOGGER.warn("pillagerOutpostSpacing cannot be set below 8 or above 32!");
+                LOGGER.info("pillagerOutpostSpacing has been set to " + OPTIONS.getPillagerOutpostSpacing());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getPillagerOutpostSeparation() < 6 || OPTIONS.getPillagerOutpostSeparation() > 8) {
+                OPTIONS.setPillagerOutpostSeparation(8);
+                LOGGER.warn("pillagerOutpostSeparation cannot be set below 6 or above 8!");
+                LOGGER.info("pillagerOutpostSeparation has been set to " + OPTIONS.getPillagerOutpostSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getMonumentSpacing() < 5 || OPTIONS.getMonumentSpacing() > 32) {
+                OPTIONS.setMonumentSpacing(32);
+                LOGGER.warn("monumentSpacing cannot be set below 5 or above 32!");
+                LOGGER.info("monumentSpacing has been set to " + OPTIONS.getMonumentSpacing());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getMonumentSeparation() < 2 || OPTIONS.getMonumentSeparation() > 5) {
+                OPTIONS.setMonumentSeparation(5);
+                LOGGER.warn("monumentSeparation cannot be set below 2 or above 5!");
+                LOGGER.info("monumentSeparation has been set to " + OPTIONS.getMonumentSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getShipwreckSpacing() < 6 || OPTIONS.getShipwreckSpacing() > 24) {
                 OPTIONS.setShipwreckSpacing(10);
-                SpeedrunnerMod.LOGGER.warn("shipwreckSpacing cannot be set below 2 or above 24!");
-                SpeedrunnerMod.LOGGER.info("shipwreckSpacing has been set to " + OPTIONS.getShipwreckSpacing());
+                LOGGER.warn("shipwreckSpacing cannot be set below 6 or above 24!");
+                LOGGER.info("shipwreckSpacing has been set to " + OPTIONS.getShipwreckSpacing());
                 saveAndReloadOptions();
             }
 
             if (OPTIONS.getShipwreckSeparation() < 2 || OPTIONS.getShipwreckSeparation() > 10) {
                 OPTIONS.setShipwreckSeparation(8);
-                SpeedrunnerMod.LOGGER.warn("shipwreckSeparation cannot be set below 2 or above 10!");
-                SpeedrunnerMod.LOGGER.info("shipwreckSeparation has been set to " + OPTIONS.getShipwreckSeparation());
+                LOGGER.warn("shipwreckSeparation cannot be set below 2 or above 10!");
+                LOGGER.info("shipwreckSeparation has been set to " + OPTIONS.getShipwreckSeparation());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getFortressSpacing() < 2 || OPTIONS.getFortressSpacing() > 27) {
+            if (OPTIONS.getOceanRuinSpacing() < 3 || OPTIONS.getOceanRuinSpacing() > 20) {
+                OPTIONS.setOceanRuinSpacing(20);
+                LOGGER.warn("oceanRuinSpacing cannot be set below 3 or above 20!");
+                LOGGER.info("oceanRuinSpacing has been set to " + OPTIONS.getOceanRuinSpacing());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getOceanRuinSeparation() < 2 || OPTIONS.getOceanRuinSeparation() > 8) {
+                OPTIONS.setOceanRuinSeparation(8);
+                LOGGER.warn("oceanRuinSeparation cannot be set below 2 or above 8!");
+                LOGGER.info("oceanRuinSeparation has been set to " + OPTIONS.getOceanRuinSeparation());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getFortressSpacing() < 4 || OPTIONS.getFortressSpacing() > 27) {
                 OPTIONS.setFortressSpacing(8);
-                SpeedrunnerMod.LOGGER.warn("fortressSpacing cannot be set below 2 or above 27!");
-                SpeedrunnerMod.LOGGER.info("fortressSpacing has been set to " + OPTIONS.getFortressSpacing());
+                LOGGER.warn("fortressSpacing cannot be set below 4 or above 27!");
+                LOGGER.info("fortressSpacing has been set to " + OPTIONS.getFortressSpacing());
                 saveAndReloadOptions();
             }
 
             if (OPTIONS.getFortressSeparation() < 2 || OPTIONS.getFortressSeparation() > 10) {
                 OPTIONS.setFortressSeparation(7);
-                SpeedrunnerMod.LOGGER.warn("fortressSeparation cannot be set below 2 or above 10!");
-                SpeedrunnerMod.LOGGER.info("fortressSeparation has been set to " + OPTIONS.getFortressSeparation());
+                LOGGER.warn("fortressSeparation cannot be set below 2 or above 10!");
+                LOGGER.info("fortressSeparation has been set to " + OPTIONS.getFortressSeparation());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getBastionSpacing() < 2 || OPTIONS.getBastionSpacing() > 27) {
+            if (OPTIONS.getBastionSpacing() < 5 || OPTIONS.getBastionSpacing() > 27) {
                 OPTIONS.setBastionSpacing(9);
-                SpeedrunnerMod.LOGGER.warn("bastionSpacing cannot be set below 2 or above 27!");
-                SpeedrunnerMod.LOGGER.info("bastionSpacing has been set to " + OPTIONS.getBastionSpacing());
+                LOGGER.warn("bastionSpacing cannot be set below 5 or above 27!");
+                LOGGER.info("bastionSpacing has been set to " + OPTIONS.getBastionSpacing());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getBastionSeparation() < 2 || OPTIONS.getBastionSeparation() > 10) {
+            if (OPTIONS.getBastionSeparation() < 3 || OPTIONS.getBastionSeparation() > 10) {
                 OPTIONS.setBastionSeparation(8);
-                SpeedrunnerMod.LOGGER.warn("bastionSeparation cannot be set below 2 or above 10!");
-                SpeedrunnerMod.LOGGER.info("bastionSeparation has been set to " + OPTIONS.getBastionSeparation());
+                LOGGER.warn("bastionSeparation cannot be set below 3 or above 10!");
+                LOGGER.info("bastionSeparation has been set to " + OPTIONS.getBastionSeparation());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getEndCitySpacing() < 2 || OPTIONS.getEndCitySpacing() > 20) {
+            if (OPTIONS.getEndCitySpacing() < 3 || OPTIONS.getEndCitySpacing() > 20) {
                 OPTIONS.setEndCitySpacing(7);
-                SpeedrunnerMod.LOGGER.warn("endCitySpacing cannot be set below 2 or above 20!");
-                SpeedrunnerMod.LOGGER.info("endCitySpacing has been set to " + OPTIONS.getEndCitySpacing());
+                LOGGER.warn("endCitySpacing cannot be set below 3 or above 20!");
+                LOGGER.info("endCitySpacing has been set to " + OPTIONS.getEndCitySpacing());
                 saveAndReloadOptions();
             }
 
-            if (OPTIONS.getEndCitySeparation() < 2 || OPTIONS.getEndCitySeparation() > 11) {
+            if (OPTIONS.getEndCitySeparation() < 1 || OPTIONS.getEndCitySeparation() > 11) {
                 OPTIONS.setEndCitySeparation(6);
-                SpeedrunnerMod.LOGGER.warn("endCitySeparation cannot be set below 2 or above 11!");
-                SpeedrunnerMod.LOGGER.info("endCitySeparation has been set to " + OPTIONS.getEndCitySeparation());
+                LOGGER.warn("endCitySeparation cannot be set below 1 or above 11!");
+                LOGGER.info("endCitySeparation has been set to " + OPTIONS.getEndCitySeparation());
                 saveAndReloadOptions();
             }
+
+            if (OPTIONS.getMansionSpacing() < 3 || OPTIONS.getMansionSpacing() > 80) {
+                OPTIONS.setMansionSpacing(80);
+                LOGGER.warn("mansionSpacing cannot be set below 3 or above 80!");
+                LOGGER.info("mansionSpacing has been set to " + OPTIONS.getMansionSpacing());
+                saveAndReloadOptions();
+            }
+
+            if (OPTIONS.getMansionSeparation() < 1 || OPTIONS.getMansionSeparation() > 20) {
+                OPTIONS.setMansionSeparation(20);
+                LOGGER.warn("mansionSeparation cannot be set below 1 or above 20!");
+                LOGGER.info("mansionSeparation has been set to " + OPTIONS.getMansionSeparation());
+                saveAndReloadOptions();
+            }
+        }
+    }
+
+    public static void fixForNormalMode() {
+        if (OPTIONS.makeStructuresMoreCommon) {
+            OPTIONS.setMakeStructuresMoreCommon(false);
         }
 
         if (OPTIONS.modifiedWorldGeneration) {
-            if (OPTIONS.getMaximumFortressBlazeSpawners() < 2 || OPTIONS.getMaximumFortressBlazeSpawners() > 4) {
-                OPTIONS.setMaximumFortressBlazeSpawners(3);
-                SpeedrunnerMod.LOGGER.warn("maximumFortressBlazeSpawners cannot be set below 2 or above 4!");
-                SpeedrunnerMod.LOGGER.info("maximumFortressBlazeSpawners has been set to " + OPTIONS.getMaximumFortressBlazeSpawners());
-                saveAndReloadOptions();
-            }
-
-            if (OPTIONS.getMaximumStrongholdPortalRooms() < 1 || OPTIONS.getMaximumStrongholdPortalRooms() > 3) {
-                OPTIONS.setMaximumStrongholdPortalRooms(3);
-                SpeedrunnerMod.LOGGER.warn("maximumStrongholdPortalRooms cannot be set below 1 or above 3!");
-                SpeedrunnerMod.LOGGER.info("maximumStrongholdPortalRooms has been set to " + OPTIONS.getMaximumStrongholdPortalRooms());
-                saveAndReloadOptions();
-            }
-
-            if (OPTIONS.getMaximumStrongholdLibraries() < 1 || OPTIONS.getMaximumStrongholdLibraries() > 2) {
-                OPTIONS.setMaximumStrongholdLibraries(2);
-                SpeedrunnerMod.LOGGER.warn("maximumStrongholdLibraries cannot be set below 1 or above 2!");
-                SpeedrunnerMod.LOGGER.info("maximumStrongholdLibraries has been set to " + OPTIONS.getMaximumStrongholdLibraries());
-                saveAndReloadOptions();
-            }
-        }
-
-    }
-
-    public static void fixForOfficialSpeedruns() {
-        if (!OPTIONS.makeStructuresMoreCommon) {
-            SpeedrunnerMod.LOGGER.warn("makeStructuresMoreCommon is not turned on, this is required for submitting your runs!");
-            SpeedrunnerMod.LOGGER.info("Turning ON makeStructuresMoreCommon for you.");
-            OPTIONS.setMakeStructuresMoreCommon(true);
-            saveAndReloadOptions();
-        }
-
-        if (!OPTIONS.modifiedWorldGeneration) {
-            SpeedrunnerMod.LOGGER.warn("modifiedWorldGeneration is not turned on, this is required for submitting your runs!");
-            SpeedrunnerMod.LOGGER.info("Turning ON modifiedWorldGeneration for you.");
-            OPTIONS.setModifiedWorldGeneration(true);
-            saveAndReloadOptions();
-        }
-
-        if (!OPTIONS.modifiedBlockHardness) {
-            SpeedrunnerMod.LOGGER.warn("modifiedBlockHardness is not turned on, this is required for submitting your runs!");
-            SpeedrunnerMod.LOGGER.info("Turning ON modifiedBlockHardness for you.");
-            OPTIONS.setModifiedBlockHardness(true);
-            saveAndReloadOptions();
-        }
-
-        if (!OPTIONS.modifiedLootTables) {
-            SpeedrunnerMod.LOGGER.warn("modifiedLootTables is not turned on, this is required for submitting your runs!");
-            SpeedrunnerMod.LOGGER.info("Turning ON modifiedLootTables for you.");
-            OPTIONS.setModifiedLootTables(true);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.killGhastUponFireball) {
-            SpeedrunnerMod.LOGGER.warn("killGhastUponFireball is turned on, this option is not allowed when submitting your runs!");
-            SpeedrunnerMod.LOGGER.info("Turning OFF killGhastUponFireball for you.");
-            OPTIONS.setKillGhastUponFireball(false);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getMaximumFortressBlazeSpawners() != 3) {
-            SpeedrunnerMod.LOGGER.warn("maximumFortressBlazeSpawners is set to " + OPTIONS.getMaximumFortressBlazeSpawners() + ", this option must be set to 3 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting maximumFortressBlazeSpawners to 3 for you.");
-            OPTIONS.setMaximumFortressBlazeSpawners(3);
-            saveAndReloadOptions();
+            OPTIONS.setModifiedWorldGeneration(false);
         }
 
         if (OPTIONS.getStrongholdCount() != 128) {
-            SpeedrunnerMod.LOGGER.warn("strongholdCount is set to " + OPTIONS.getStrongholdCount() + ", this option must be set to 128 in order to your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting strongholdCount to 128 for you.");
-            OPTIONS.setStrongholdCount(128);
-            saveAndReloadOptions();
+            OPTIONS.setStrongholdDistance(128);
         }
 
-        if (OPTIONS.getStrongholdDistance() != 5) {
-            SpeedrunnerMod.LOGGER.warn("strongholdDistance is set to " + OPTIONS.getStrongholdDistance() + ", this option must be set to 5 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting strongholdDistance to 5 for you.");
-            OPTIONS.setStrongholdDistance(5);
-            saveAndReloadOptions();
+        if (OPTIONS.getStrongholdDistance() != 32) {
+            OPTIONS.setStrongholdDistance(32);
         }
 
-        if (OPTIONS.getMaximumStrongholdPortalRooms() != 3) {
-            OPTIONS.setMaximumStrongholdPortalRooms(3);
-            SpeedrunnerMod.LOGGER.warn("maximumStrongholdPortalRooms is not set to 3, this option must be set to 3 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting maximumStrongholdPortalRooms to 3 for you.");
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getMaximumStrongholdLibraries() != 2) {
-            OPTIONS.setMaximumStrongholdLibraries(2);
-            SpeedrunnerMod.LOGGER.warn("maximumStrongholdLibraries is not set to 2, this option must be set to 2 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting maximumStrongholdLibraries to 2 for you.");
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.netherRuinedPortals) {
-            SpeedrunnerMod.LOGGER.warn("netherRuinedPortals is turned on, this option is not allowed when submitting your runs!");
-            SpeedrunnerMod.LOGGER.info("Turning OFF netherRuinedPortals for you.");
-            OPTIONS.setNetherRuinedPortals(false);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.netherPortalsInTheEnd) {
-            SpeedrunnerMod.LOGGER.warn("netherPortalsInTheEnd is turned on, this option is not allowed when submitting your runs!");
-            SpeedrunnerMod.LOGGER.info("Turning OFF netherPortalsInTheEnd for you.");
-            OPTIONS.setNetherPortalsInTheEnd(false);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getRuinedPortalSpacing() != 9) {
-            SpeedrunnerMod.LOGGER.warn("ruinedPortalSpacing is set to " + OPTIONS.getRuinedPortalSpacing() + ", this option must be set to 9 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting ruinedPortalSpacing to 9 for you.");
-            OPTIONS.setRuinedPortalSpacing(9);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getRuinedPortalSeparation() != 8) {
-            SpeedrunnerMod.LOGGER.warn("ruinedPortalSeparation is set to " + OPTIONS.getRuinedPortalSeparation() + ", this option must be set to 8 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting ruinedPortalSeparation to 8 for you.");
-            OPTIONS.setRuinedPortalSeparation(8);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getVillageSpacing() != 16) {
-            SpeedrunnerMod.LOGGER.warn("villageSpacing is set to " + OPTIONS.getVillageSpacing() + ", this option must be set to 16 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting villageSpacing to 16 for you.");
-            OPTIONS.setVillageSpacing(16);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getVillageSeparation() != 9) {
-            SpeedrunnerMod.LOGGER.warn("villageSeparation is set to " + OPTIONS.getVillageSeparation() + ", this option must be set to 9 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting villageSeparation to 9 for you.");
-            OPTIONS.setVillageSeparation(9);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getDesertPyramidSpacing() != 10) {
-            SpeedrunnerMod.LOGGER.warn("desertPyramidSpacing is set to " + OPTIONS.getDesertPyramidSpacing() + ", this option must be set to 10 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting desertPyramidSpacing to 10 for you.");
-            OPTIONS.setDesertPyramidSpacing(10);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getDesertPyramidSeparation() != 8) {
-            SpeedrunnerMod.LOGGER.warn("desertPyramidSeparation is set to " + OPTIONS.getDesertPyramidSeparation() + ", this option must be set to 8 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting desertPyramidSeparation to 8 for you.");
-            OPTIONS.setDesertPyramidSeparation(8);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getShipwreckSpacing() != 10) {
-            SpeedrunnerMod.LOGGER.warn("shipwreckSpacing is set to " + OPTIONS.getShipwreckSpacing() + ", this option must be set to 10 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting shipwreckSpacing to 10 for you.");
-            OPTIONS.setShipwreckSpacing(10);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getShipwreckSeparation() != 8) {
-            SpeedrunnerMod.LOGGER.warn("shipwreckSeparation is set to " + OPTIONS.getShipwreckSeparation() + ", this option must be set to 8 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting shipwreckSeparation to 8 for you.");
-            OPTIONS.setShipwreckSeparation(8);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getFortressSpacing() != 8) {
-            SpeedrunnerMod.LOGGER.warn("fortressSpacing is set to " + OPTIONS.getFortressSpacing() + ", this option must be set to 8 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting fortressSpacing to 8 for you.");
-            OPTIONS.setFortressSpacing(8);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getFortressSeparation() != 7) {
-            SpeedrunnerMod.LOGGER.warn("fortressSeparation is set to " + OPTIONS.getFortressSeparation() + ", this option must be set to 7 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting fortressSeparation to 7 for you.");
-            OPTIONS.setFortressSeparation(7);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getBastionSpacing() != 9) {
-            SpeedrunnerMod.LOGGER.warn("bastionSpacing is set to " + OPTIONS.getBastionSpacing() + ", this option must be set to 9 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting bastionSpacing to 9 for you.");
-            OPTIONS.setBastionSpacing(9);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getBastionSeparation() != 8) {
-            SpeedrunnerMod.LOGGER.warn("bastionSeparation is set to " + OPTIONS.getBastionSeparation() + ", this option must be set to 8 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting bastionSeparation to 8 for you.");
-            OPTIONS.setBastionSeparation(8);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getEndCitySpacing() != 7) {
-            SpeedrunnerMod.LOGGER.warn("endCitySpacing is set to " + OPTIONS.getEndCitySpacing() + ", this option must be set to 7 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting endCitySpacing to 7 for you.");
-            OPTIONS.setEndCitySpacing(7);
-            saveAndReloadOptions();
-        }
-
-        if (OPTIONS.getEndCitySeparation() != 6) {
-            SpeedrunnerMod.LOGGER.warn("endCitySeparation is set to " + OPTIONS.getEndCitySeparation() + ", this option must be set to 6 in order to submit your runs!");
-            SpeedrunnerMod.LOGGER.info("Setting endCitySeparation to 6 for you.");
-            OPTIONS.setEndCitySeparation(6);
-            saveAndReloadOptions();
+        if (!OPTIONS.netherRuinedPortals) {
+            OPTIONS.setNetherRuinedPortals(true);
         }
     }
 }
