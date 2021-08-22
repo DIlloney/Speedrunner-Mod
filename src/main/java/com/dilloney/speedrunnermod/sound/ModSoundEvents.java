@@ -3,7 +3,7 @@ package com.dilloney.speedrunnermod.sound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
-public class ModSoundEvents {
+public final class ModSoundEvents {
 
     public static final SoundEvent ENTITY_GIANT_AMBIENT = new SoundEvent(new Identifier("speedrunnermod", "giant_ambient"));
     public static final SoundEvent ENTITY_GIANT_HURT = new SoundEvent(new Identifier("speedrunnermod", "giant_hurt"));
