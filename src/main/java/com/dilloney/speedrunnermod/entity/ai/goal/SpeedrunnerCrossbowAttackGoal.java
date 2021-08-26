@@ -107,7 +107,7 @@ public class SpeedrunnerCrossbowAttackGoal<T extends HostileEntity & RangedAttac
 
                 int i = this.actor.getItemUseTime();
                 ItemStack itemStack = this.actor.getActiveItem();
-                if (i >= SpeedrunnerCrossbowItem.getPullTime(itemStack)) { // FIX THIS DUMBASS THING
+                if (i >= SpeedrunnerCrossbowItem.getPullTime(itemStack)) {
                     this.actor.stopUsingItem();
                     this.stage = SpeedrunnerCrossbowAttackGoal.Stage.CHARGED;
                     this.chargedTicksLeft = 15 + this.actor.getRandom().nextInt(15);
