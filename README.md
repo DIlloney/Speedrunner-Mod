@@ -1,13 +1,8 @@
 # _SPEEDRUNNER MOD_
-A Minecraft mod that makes Minecraft Speedrunning easier.
+A Minecraft Mod that makes Speedrunning, easier.
 
-Welcome to the **_Speedrunner Mod!_**
-_This is the official github page, where all of the main code can be found. Changelogs, features list, and more are on the website._
+All of the mods features, changelogs, frequently asked questions and more can be found on the Wiki page! You can also join my official disocrd server where you can get updates regarding the mod and more updates about me!
 
-This mod changes the Vanilla aspects of **_Minecraft Speedrunning_** and _completely_ overhauls it!
+_*Wiki:*_ https://www.speedrunnermod.net/
 
-# _MOD INFORMATION_
-
-_**Curseforge Page:**_ https://www.curseforge.com/minecraft/mc-mods/speedrunner-mod
-
-_**Find out more at the main website!:**_ https://sites.google.com/view/speedrunnermod/home
+_*Discord:*_ https://discord.gg/Qu8utnCwkq
