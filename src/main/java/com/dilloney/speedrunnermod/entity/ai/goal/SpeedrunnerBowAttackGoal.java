@@ -10,6 +10,7 @@ import net.minecraft.item.BowItem;
 
 import java.util.EnumSet;
 
+@Deprecated
 public class SpeedrunnerBowAttackGoal<T extends HostileEntity & RangedAttackMob> extends Goal {
     private final T actor;
     private final double speed;
@@ -33,7 +34,6 @@ public class SpeedrunnerBowAttackGoal<T extends HostileEntity & RangedAttackMob>
         this.attackInterval = attackInterval;
     }
 
-    @Override
     public boolean canStart() {
         return this.actor.getTarget() == null ? false : this.isHoldingBow();
     }
@@ -42,18 +42,15 @@ public class SpeedrunnerBowAttackGoal<T extends HostileEntity & RangedAttackMob>
         return this.actor.isHolding(ModItems.SPEEDRUNNER_BOW);
     }
 
-    @Override
     public boolean shouldContinue() {
         return (this.canStart() || !this.actor.getNavigation().isIdle()) && this.isHoldingBow();
     }
 
-    @Override
     public void start() {
         super.start();
         this.actor.setAttacking(true);
     }
 
-    @Override
     public void stop() {
         super.stop();
         this.actor.setAttacking(false);
@@ -62,7 +59,6 @@ public class SpeedrunnerBowAttackGoal<T extends HostileEntity & RangedAttackMob>
         this.actor.clearActiveItem();
     }
 
-    @Override
     public void tick() {
         LivingEntity livingEntity = this.actor.getTarget();
         if (livingEntity != null) {
