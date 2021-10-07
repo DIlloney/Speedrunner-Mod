@@ -1,7 +1,6 @@
 package com.dilloney.speedrunnermod;
 
 import com.dilloney.speedrunnermod.option.ModOptions;
-import com.dilloney.speedrunnermod.option.OptionsFileHelper;
 import com.dilloney.speedrunnermod.option.OptionsFileManager;
 import com.dilloney.speedrunnermod.util.ModRegistry;
 import net.fabricmc.api.ModInitializer;
@@ -10,28 +9,23 @@ import org.apache.logging.log4j.Logger;
 
 public class SpeedrunnerMod implements ModInitializer {
 
-    private static final String MINECRAFT_VERSION = "1.17x";
+    private static final String MOD_VERSION = "v1.3.2";
+    private static final String MINECRAFT_VERSION = "1.17.1";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static ModOptions OPTIONS = OptionsFileManager.get();
+    public static ModOptions OPTIONS = OptionsFileManager.getMain();
+    public static ModOptions.WorldOptions WORLD_OPTIONS = OptionsFileManager.getWorld();
+    public static ModOptions.MiscOptions MISC_OPTIONS = OptionsFileManager.getMisc();
 
-    @Override
     public void onInitialize() {
-        OptionsFileManager.load();
-        OptionsFileHelper.fix();
-        if (OPTIONS.normalMode) {
-            OptionsFileHelper.fixForNormalMode();
-        }
-        ModRegistry.registerItems();
-        ModRegistry.registerBlocks();
-        ModRegistry.registerBlockItems();
-        ModRegistry.registerSoundEvents();
-        ModRegistry.registerConfiguredFeatures();
-        ModRegistry.registerTags();
-        ModRegistry.registerMiscellaneous();
-        if (OPTIONS.manhuntMode) {
-            ModRegistry.registerManhuntModeCommands();
-        }
-        LOGGER.info("Speedrunner Mod loaded successfully! modVersion = v1.3.1 on " + MINECRAFT_VERSION);
-        LOGGER.info("See wiki for more information: https://sites.google.com/view/speedrunnermod");
+        ModRegistry.loadOptions();
+        ModRegistry.loadItems();
+        ModRegistry.loadBlocks();
+        ModRegistry.loadBlockItems();
+        ModRegistry.loadConfiguredFeatures();
+        ModRegistry.loadItemTags();
+        ModRegistry.loadBlockTags();
+        ModRegistry.loadMiscellaneous();
+        LOGGER.info("The Speedrunner Mod has been loaded successfully! modVersion = " + MOD_VERSION + " on " + MINECRAFT_VERSION);
+        LOGGER.info("Thank you for using this mod! Enjoy Speedrunning! :)");
     }
 }
