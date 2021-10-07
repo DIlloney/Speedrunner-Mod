@@ -33,7 +33,6 @@ public class SpeedrunnerCrossbowAttackGoal<T extends HostileEntity & RangedAttac
         this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
     }
 
-    @Override
     public boolean canStart() {
         return this.hasAliveTarget() && this.isEntityHoldingCrossbow();
     }
@@ -42,7 +41,6 @@ public class SpeedrunnerCrossbowAttackGoal<T extends HostileEntity & RangedAttac
         return this.actor.isHolding(ModItems.SPEEDRUNNER_CROSSBOW);
     }
 
-    @Override
     public boolean shouldContinue() {
         return this.hasAliveTarget() && (this.canStart() || !this.actor.getNavigation().isIdle()) && this.isEntityHoldingCrossbow();
     }
@@ -51,7 +49,6 @@ public class SpeedrunnerCrossbowAttackGoal<T extends HostileEntity & RangedAttac
         return this.actor.getTarget() != null && this.actor.getTarget().isAlive();
     }
 
-    @Override
     public void stop() {
         super.stop();
         this.actor.setAttacking(false);
@@ -59,12 +56,11 @@ public class SpeedrunnerCrossbowAttackGoal<T extends HostileEntity & RangedAttac
         this.seeingTargetTicker = 0;
         if (this.actor.isUsingItem()) {
             this.actor.clearActiveItem();
-            ((SpeedrunnerCrossbowUser)this.actor).setCharging0(false);
+            ((SpeedrunnerCrossbowUser)this.actor).setChargingMod(false);
             CrossbowItem.setCharged(this.actor.getActiveItem(), false);
         }
     }
 
-    @Override
     public void tick() {
         LivingEntity livingEntity = this.actor.getTarget();
         if (livingEntity != null) {
@@ -98,7 +94,7 @@ public class SpeedrunnerCrossbowAttackGoal<T extends HostileEntity & RangedAttac
                 if (!bl3) {
                     this.actor.setCurrentHand(ProjectileUtil.getHandPossiblyHolding(this.actor, ModItems.SPEEDRUNNER_CROSSBOW));
                     this.stage = SpeedrunnerCrossbowAttackGoal.Stage.CHARGING;
-                    ((SpeedrunnerCrossbowUser)this.actor).setCharging0(true);
+                    ((SpeedrunnerCrossbowUser)this.actor).setChargingMod(true);
                 }
             } else if (this.stage == SpeedrunnerCrossbowAttackGoal.Stage.CHARGING) {
                 if (!this.actor.isUsingItem()) {
@@ -111,7 +107,7 @@ public class SpeedrunnerCrossbowAttackGoal<T extends HostileEntity & RangedAttac
                     this.actor.stopUsingItem();
                     this.stage = SpeedrunnerCrossbowAttackGoal.Stage.CHARGED;
                     this.chargedTicksLeft = 15 + this.actor.getRandom().nextInt(15);
-                    ((SpeedrunnerCrossbowUser)this.actor).setCharging0(false);
+                    ((SpeedrunnerCrossbowUser)this.actor).setChargingMod(false);
                 }
             } else if (this.stage == SpeedrunnerCrossbowAttackGoal.Stage.CHARGED) {
                 --this.chargedTicksLeft;
@@ -135,6 +131,6 @@ public class SpeedrunnerCrossbowAttackGoal<T extends HostileEntity & RangedAttac
         UNCHARGED,
         CHARGING,
         CHARGED,
-        READY_TO_ATTACK;
+        READY_TO_ATTACK
     }
 }
