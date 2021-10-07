@@ -4,14 +4,15 @@ import com.dilloney.speedrunnermod.item.ModItems;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.BannerItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
+import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
+    public static SpecialRecipeSerializer<SpeedrunnerShieldDecorationRecipe> SPEEDRUNNER_SHIELD_DECORATION_RECIPE = new SpecialRecipeSerializer<>(SpeedrunnerShieldDecorationRecipe::new);
 
     public SpeedrunnerShieldDecorationRecipe(Identifier identifier) {
         super(identifier);
@@ -48,11 +49,7 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
             }
         }
 
-        if (!itemStack.isEmpty() && !itemStack2.isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+        return !itemStack.isEmpty() && !itemStack2.isEmpty();
     }
 
     public ItemStack craft(CraftingInventory craftingInventory) {
@@ -84,6 +81,6 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
     }
 
     public RecipeSerializer<?> getSerializer() {
-        return ModItems.SPEEDRUNNER_SHIELD_DECORATION_RECIPE;
+        return SPEEDRUNNER_SHIELD_DECORATION_RECIPE;
     }
 }
