@@ -14,21 +14,20 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3f;
 
 public interface SpeedrunnerCrossbowUser extends RangedAttackMob {
-    void setCharging0(boolean charging);
 
-    void postShoot0();
+    void setChargingMod(boolean charging);
 
-    default void shoot1(LivingEntity entity, float speed) {
+    void shootMod(LivingEntity target, ItemStack crossbow, ProjectileEntity projectile, float multiShotSpray);
+
+    default void shootMod(LivingEntity entity, float speed) {
         Hand hand = ProjectileUtil.getHandPossiblyHolding(entity, ModItems.SPEEDRUNNER_CROSSBOW);
         ItemStack itemStack = entity.getStackInHand(hand);
         if (entity.isHolding(ModItems.SPEEDRUNNER_CROSSBOW)) {
             SpeedrunnerCrossbowItem.shootAll(entity.world, entity, hand, itemStack, speed, (float)(14 - entity.world.getDifficulty().getId() * 4));
         }
-
-        this.postShoot0();
     }
 
-    default void shoot2(LivingEntity entity, LivingEntity target, ProjectileEntity projectile, float multishotSpray, float speed) {
+    default void shootMod(LivingEntity entity, LivingEntity target, ProjectileEntity projectile, float multishotSpray, float speed) {
         double d = target.getX() - entity.getX();
         double e = target.getZ() - entity.getZ();
         double f = Math.sqrt(d * d + e * e);
