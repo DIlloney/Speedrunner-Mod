@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "id": "speedrunnermod",
-  "version": "1.3.2",
+  "version": "1.3.3-mc1171",
   "accessWidener": "speedrunner-mod.accesswidener",
   "name": "Speedrunner Mod",
-  "description": "A Mod that makes Minecraft Speedrunning, easier.",
+  "description": "A Mod that makes Speedrunning, easier.",
   "authors": [
     "Dilloney"
   ],
   "contact": {
-    "homepage": "https://sites.google.com/view/speedrunnermod",
+    "homepage": "https://speedrunnermod.net",
     "issues": "https://github.com/Dilloney/Speedrunner-Mod/issues",
     "sources": "https://github.com/Dilloney/Speedrunner-Mod"
   },
@@ -18,13 +18,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.dilloney.speedrunnermod.SpeedrunnerMod"
+      "net.dilloney.speedrunnermod.SpeedrunnerMod"
     ],
     "client": [
-      "com.dilloney.speedrunnermod.SpeedrunnerModClient"
+      "net.dilloney.speedrunnermod.SpeedrunnerModClient"
     ],
     "modmenu": [
-      "com.dilloney.speedrunnermod.client.impl.ModMenuImplementation"
+      "net.dilloney.speedrunnermod.client.impl.ModMenuImplementation"
     ]
   },
   "mixins": [
@@ -35,5 +35,12 @@
     "fabric": "*",
     "minecraft": "1.17.1",
     "java": ">=16"
+  },
+  "recommends": {
+    "sodium": ">=0.3.0",
+    "lithium": ">=0.7.1"
+  },
+  "breaks": {
+    "optifabric": "*"
   }
 }
