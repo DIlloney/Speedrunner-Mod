@@ -1,6 +1,0 @@
-{
-  "parent": "item/fishing_rod",
-  "textures": {
-    "layer0": "speedrunnermod:items/speedrunner_fishing_rod_cast"
-  }
-}

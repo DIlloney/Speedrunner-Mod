@@ -1,6 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "speedrunnermod:items/andesite_axe"
-  }
-}
