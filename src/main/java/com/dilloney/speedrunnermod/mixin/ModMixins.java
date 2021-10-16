@@ -1,19 +1,19 @@
-package com.dilloney.speedrunnermod.mixin;
+package net.dilloney.speedrunnermod.mixin;
 
-import com.dilloney.speedrunnermod.block.ModBlocks;
-import com.dilloney.speedrunnermod.entity.SpeedrunnerCrossbowUser;
-import com.dilloney.speedrunnermod.entity.ai.goal.SpeedrunnerBowAttackGoal;
-import com.dilloney.speedrunnermod.entity.ai.goal.SpeedrunnerCrossbowAttackGoal;
-import com.dilloney.speedrunnermod.item.ModItems;
-import com.dilloney.speedrunnermod.tag.ModBlockTags;
-import com.dilloney.speedrunnermod.world.gen.feature.ModConfiguredFeatures;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.dilloney.speedrunnermod.SpeedrunnerMod;
+import net.dilloney.speedrunnermod.item.ModItems;
+import net.dilloney.speedrunnermod.tag.ModBlockTags;
+import net.dilloney.speedrunnermod.util.Giant;
+import net.dilloney.speedrunnermod.util.ModHelper;
+import net.dilloney.speedrunnermod.world.gen.feature.ModConfiguredFeatures;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
+import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.command.argument.ItemStackArgumentType;
 import net.minecraft.enchantment.*;
@@ -21,19 +21,22 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
-import net.minecraft.entity.ai.goal.BowAttackGoal;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.pathing.MobNavigation;
+import net.minecraft.entity.ai.pathing.PathNodeType;
+import net.minecraft.entity.ai.pathing.SwimNavigation;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.boss.BossBar;
+import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonFight;
 import net.minecraft.entity.boss.dragon.EnderDragonPart;
 import net.minecraft.entity.boss.dragon.phase.PhaseManager;
 import net.minecraft.entity.boss.dragon.phase.PhaseType;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -45,7 +48,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
-import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.CraftingInventory;
@@ -58,15 +60,13 @@ import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.BiomeAdditionsSound;
-import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.*;
 import net.minecraft.stat.ServerStatHandler;
 import net.minecraft.stat.Stats;
 import net.minecraft.structure.*;
 import net.minecraft.tag.Tag;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.Pool;
 import net.minecraft.util.hit.EntityHitResult;
@@ -80,6 +80,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.biome.layer.AddBaseBiomesLayer;
 import net.minecraft.world.dimension.AreaHelper;
+import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
@@ -101,10 +102,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static com.dilloney.speedrunnermod.SpeedrunnerMod.*;
+import static net.minecraft.world.gen.feature.DefaultBiomeFeatures.addBatsAndMonsters;
 
 /**
  * This class contains everything that needs to be changed in the game by using {@link Mixin}s.
@@ -116,13 +120,13 @@ import static com.dilloney.speedrunnermod.SpeedrunnerMod.*;
  * <p> For easier access to all of the mixins, I have provided a list of all the mixins below (CTRL + left click will instantly take you to the mixin). </p>
  * <h2> "block" package </h2>
  * <p> {@linkplain AbstractBlockStateMixin}, {@linkplain AbstractFireBlockMixin}, {@linkplain BeehiveBlockMixin}, {@linkplain BlockMixin}, {@linkplain OreBlockMixin},
- * {@linkplain PumpkinBlockMixin}, {@linkplain RedstoneOreBlockMixin}, {@linkplain SpawnerBlockMixin}, {@linkplain TntBlockMixin}, {@linkplain TripwireBlockMixin}. </p>
+ * {@linkplain PumpkinBlockMixin}, {@linkplain SpawnerBlockMixin}, {@linkplain TntBlockMixin}, {@linkplain TripwireBlockMixin}. </p>
  * <h2> "enchantment" package </h2>
  * <p> {@linkplain EfficiencyEnchantmentMixin} </p>
  * <h2> "entity" package </h2>
- * <p> {@linkplain EnderDragonEntityMixin}, {@linkplain WitherEntityMixin}, {@linkplain AbstractSkeletonEntityMixin}, {@linkplain BlazeEntityMixin}, {@linkplain CreeperEntityMixin},
- * {@linkplain ElderGuardianEntityMixin}, {@linkplain EndermanEntityMixin}, {@linkplain EndermiteEntityMixin}, {@linkplain GhastEntityMixin}, {@linkplain GuardianEntityMixin},
- * {@linkplain HoglinEntityMixin}, {@linkplain MagmaCubeEntityMixin}, {@linkplain PhantomEntityMixin}, {@linkplain PiglinBrainMixin}, {@linkplain PiglinEntityMixin}, {@linkplain PillagerEntityMixin},
+ * <p> {@linkplain EnderDragonEntityMixin}, {@linkplain EnderDragonFightMixin} {@linkplain WitherEntityMixin}, {@linkplain AbstractSkeletonEntityMixin}, {@linkplain BlazeEntityMixin}, {@linkplain CreeperEntityMixin},
+ * {@linkplain ElderGuardianEntityMixin}, {@linkplain EndermanEntityMixin}, {@linkplain EndermiteEntityMixin}, {@linkplain GhastEntityMixin}, {@linkplain GiantEntityMixin} {@linkplain GuardianEntityMixin},
+ * {@linkplain HoglinEntityMixin}, {@linkplain MagmaCubeEntityMixin}, {@linkplain PiglinBrainMixin}, {@linkplain PiglinEntityMixin}, {@linkplain PillagerEntityMixin},
  * {@linkplain RavagerEntityMixin}, {@linkplain ShulkerEntityMixin}, {@linkplain SilverfishEntityMixin}, {@linkplain SlimeEntityMixin} {@linkplain SpiderEntityMixin}, {@linkplain VindicatorEntityMixin},
  * {@linkplain WitchEntityMixin}, {@linkplain WitherSkeletonEntityMixin}, {@linkplain ZoglinEntityMixin}, {@linkplain ZombieEntityMixin}, {@linkplain ZombifiedPiglinEntityMixin},
  * {@linkplain DolphinEntityMixin}, {@linkplain IronGolemEntityMixin}, {@linkplain SheepEntityMixin}, {@linkplain SnowGolemEntityMixin},
@@ -142,6 +146,7 @@ import static com.dilloney.speedrunnermod.SpeedrunnerMod.*;
  * <p> {@linkplain AddBaseBiomesLayerMixin}, {@linkplain DefaultBiomeCreatorMixin}, {@linkplain AreaHelperMixin}, {@linkplain StrongholdConfigMixin}, {@linkplain StructuresConfigMixin}, {@linkplain DefaultBiomeFeaturesMixin}, {@linkplain NetherFortressFeatureMixin},
  * {@linkplain StrongholdFeatureStartMixin}, {@linkplain NetherFortressGeneratorMixin}, {@linkplain RuinedPortalFeatureMixin}, {@linkplain StrongholdGeneratorMixin}. </p>
  * Hope that helps! Enjoy speedrunning!
+ * <p> 3,224 lines of code! </p>
  * @author Dilloney
  */
 public class ModMixins {
@@ -150,47 +155,85 @@ public class ModMixins {
     public static class AbstractBlockStateMixin {
 
         @Inject(method = "getHardness", at = @At("HEAD"), cancellable = true)
-        private void changeBlockHardnessForCertainBlocks(BlockView world, BlockPos pos, CallbackInfoReturnable<Float> callbackInfoReturnable) {
+        private void getHardness(BlockView world, BlockPos pos, CallbackInfoReturnable<Float> cir) {
             if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(0.0F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_ONE_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(0.1F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_TWO_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(0.2F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_THREESEVEN_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(0.37F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_FOUR_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(0.4F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_FIVE_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(0.5F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_SIX_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(0.6F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_SIXFIVE_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(0.65F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_SEVEN_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(0.7F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_EIGHT_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(0.8F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ONE_ZERO_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(1.0F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ONE_THREE_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(1.3F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ONE_FOUR_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(1.4F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ONE_FIVE_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(1.5F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.ONE_SIX_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(1.6F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.TWO_ZERO_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(2.0F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.TWO_FIVE_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(2.5F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.THREE_ZERO_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(3.0F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.TEN_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(10.0F);
-            } else if (world.getBlockState(pos).isIn(ModBlockTags.TWENTY_FIVE_HARDNESS)) {
-                callbackInfoReturnable.setReturnValue(25.0F);
+                cir.setReturnValue(0.0F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_ONE_HARDNESS)) {
+                cir.setReturnValue(0.1F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_TWO_HARDNESS)) {
+                cir.setReturnValue(0.2F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_THREESEVEN_HARDNESS)) {
+                cir.setReturnValue(0.37F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_FOUR_HARDNESS)) {
+                cir.setReturnValue(0.4F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_FIVE_HARDNESS)) {
+                cir.setReturnValue(0.5F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_SIX_HARDNESS)) {
+                cir.setReturnValue(0.6F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_SIXFIVE_HARDNESS)) {
+                cir.setReturnValue(0.65F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_SEVEN_HARDNESS)) {
+                cir.setReturnValue(0.7F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ZERO_EIGHT_HARDNESS)) {
+                cir.setReturnValue(0.8F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ONE_ZERO_HARDNESS)) {
+                cir.setReturnValue(1.0F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ONE_THREE_HARDNESS)) {
+                cir.setReturnValue(1.3F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ONE_FOUR_HARDNESS)) {
+                cir.setReturnValue(1.4F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ONE_FIVE_HARDNESS)) {
+                cir.setReturnValue(1.5F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.ONE_SIX_HARDNESS)) {
+                cir.setReturnValue(1.6F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.TWO_ZERO_HARDNESS)) {
+                cir.setReturnValue(2.0F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.TWO_FIVE_HARDNESS)) {
+                cir.setReturnValue(2.5F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.THREE_ZERO_HARDNESS)) {
+                cir.setReturnValue(3.0F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.TEN_HARDNESS)) {
+                cir.setReturnValue(10.0F);
+            }
+
+            if (world.getBlockState(pos).isIn(ModBlockTags.TWENTY_FIVE_HARDNESS)) {
+                cir.setReturnValue(25.0F);
             }
         }
     }
@@ -239,8 +282,8 @@ public class ModMixins {
     public static class BeehiveBlockMixin {
 
         @Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 0))
-        private boolean allowSpeedrunnerShearsOnBeehiveBlocks(ItemStack stack, Item isOfItem) {
-            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
+        private boolean onUse(ItemStack stack, Item item) {
+            return ModHelper.fixBeehiveBlock(stack);
         }
     }
 
@@ -254,7 +297,7 @@ public class ModMixins {
          */
         @Overwrite
         public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-            entity.handleFallDamage(fallDistance, 0.7F, DamageSource.FALL);
+            entity.handleFallDamage(fallDistance, ModHelper.getFallDamageMultiplier(), DamageSource.FALL);
         }
     }
 
@@ -266,73 +309,20 @@ public class ModMixins {
         }
 
         @Inject(method = "onStacksDropped", at = @At("TAIL"))
-        public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, CallbackInfo callbackInfo) {
-            int f; int i;
+        public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, CallbackInfo ci) {
             if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
                 if (state.isOf(Blocks.GOLD_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 4;
-                    i = 2 + world.random.nextInt(5) + f;
-                    this.dropExperience(world, pos, i);
+                    int gold = 2 + world.random.nextInt(4);
+                    this.dropExperience(world, pos, gold);
                 } else if (state.isOf(Blocks.DEEPSLATE_GOLD_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 5;
-                    i = 2 + world.random.nextInt(5) + f;
-                    this.dropExperience(world, pos, i);
+                    int dgold = 2 + world.random.nextInt(4);
+                    this.dropExperience(world, pos, dgold);
                 } else if (state.isOf(Blocks.IRON_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 4;
-                    i = 1 + world.random.nextInt(2) + f;
-                    this.dropExperience(world, pos, i);
+                    int iron = 1 + world.random.nextInt(1);
+                    this.dropExperience(world, pos, iron);
                 } else if (state.isOf(Blocks.DEEPSLATE_IRON_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 5;
-                    i = 1 + world.random.nextInt(2) + f;
-                    this.dropExperience(world, pos, i);
-                } else if (state.isOf(Blocks.COAL_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 3;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(Blocks.DEEPSLATE_COAL_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 4;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(Blocks.NETHER_GOLD_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 3;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(Blocks.LAPIS_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 5;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(Blocks.DEEPSLATE_LAPIS_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 6;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(Blocks.DIAMOND_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 6;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(Blocks.DEEPSLATE_DIAMOND_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 7;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(Blocks.EMERALD_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 5;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(Blocks.DEEPSLATE_EMERALD_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 6;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(Blocks.NETHER_QUARTZ_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 4;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(ModBlocks.SPEEDRUNNER_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 8;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 9;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(ModBlocks.NETHER_SPEEDRUNNER_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 5;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(ModBlocks.IGNEOUS_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 4;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(ModBlocks.DEEPSLATE_IGNEOUS_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 5;
-                    this.dropExperience(world, pos, f);
-                } else if (state.isOf(ModBlocks.NETHER_IGNEOUS_ORE)) {
-                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 3;
-                    this.dropExperience(world, pos, f);
+                    int diron = 1 + world.random.nextInt(1);
+                    this.dropExperience(world, pos, diron);
                 }
             }
         }
@@ -342,58 +332,19 @@ public class ModMixins {
     public static class PumpkinBlockMixin {
 
         @Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private boolean allowSpeedrunnerShearsOnPumpkinBlocks(ItemStack stack, Item isOfItem) {
-            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
-        }
-    }
-
-    @Mixin(RedstoneOreBlock.class)
-    public static class RedstoneOreBlockMixin extends Block {
-
-        public RedstoneOreBlockMixin(Settings settings) {
-            super(settings);
-        }
-
-        /**
-         * Makes Redstone ores drop more experience when mined.
-         * @author Dilloney
-         * @reason
-         */
-        @Overwrite
-        public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
-            super.onStacksDropped(state, world, pos, stack);
-            if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
-                if (state.isOf(Blocks.REDSTONE_ORE)) {
-                    int f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 16;
-                    int i = 2 + world.random.nextInt(5) + f;
-                    this.dropExperience(world, pos, i);
-                } else if (state.isOf(Blocks.DEEPSLATE_REDSTONE_ORE)) {
-                    int f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 24;
-                    int i = 2 + world.random.nextInt(5) + f;
-                    this.dropExperience(world, pos, i);
-                }
-            }
+        private boolean onUse(ItemStack stack, Item item) {
+            return ModHelper.fixPumpkinBlock(stack);
         }
     }
 
     @Mixin(SpawnerBlock.class)
-    public abstract static class SpawnerBlockMixin extends BlockWithEntity {
+    public abstract static class SpawnerBlockMixin {
 
-        public SpawnerBlockMixin(Settings settings) {
-            super(settings);
-        }
-
-        /**
-         * Makes spawner blocks drop more experience when mined.
-         * @author Dilloney
-         * @reason
-         */
-        @Overwrite
-        public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
-            super.onStacksDropped(state, world, pos, stack);
-            int f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 128;
-            int i = 512 + world.random.nextInt(512) + f;
-            this.dropExperience(world, pos, i);
+        @Inject(method = "onStacksDropped", at = @At("TAIL"))
+        private void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, CallbackInfo ci) {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                world.setBlockState(pos, Blocks.LAVA.getDefaultState());
+            }
         }
     }
 
@@ -401,8 +352,8 @@ public class ModMixins {
     public static class TntBlockMixin {
 
         @Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private boolean allowSpeedrunnerFlintAndSteelsOnTntBlocks(ItemStack stack, Item item) {
-            return stack.isOf(Items.FLINT_AND_STEEL) || stack.isOf(ModItems.SPEEDRUNNER_FLINT_AND_STEEL) || stack.isOf(Items.FIRE_CHARGE);
+        private boolean onUse(ItemStack stack, Item item) {
+            return ModHelper.fixTntBlock(stack);
         }
     }
 
@@ -410,8 +361,8 @@ public class ModMixins {
     public static class TripwireBlockMixin {
 
         @Redirect(method = "onBreak", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private boolean allowSpeedrunnerShearsOnTripwireBlocks(ItemStack stack, Item isOfItem) {
-            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
+        private boolean onBreak(ItemStack stack, Item item) {
+            return ModHelper.fixTripwireBlock(stack);
         }
     }
 
@@ -419,12 +370,12 @@ public class ModMixins {
     public static class EfficiencyEnchantmentMixin {
 
         @Redirect(method = "isAcceptableItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private boolean allowEfficiencyEnchantmentToWorkWithSpeedrunnerShears(ItemStack stack, Item isOfItem) {
-            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
+        private boolean isAcceptableItem(ItemStack stack, Item item) {
+            return ModHelper.fixEfficiencyEnchantment(stack);
         }
     }
 
-    @Mixin(EnderDragonEntity.class)
+    @Mixin(value = EnderDragonEntity.class, priority = 999)
     public abstract static class EnderDragonEntityMixin extends MobEntity {
 
         public EnderDragonEntityMixin(EntityType<? extends EnderDragonEntity> entityType, World world) {
@@ -456,7 +407,7 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createEnderDragonAttributes() {
-            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D);
+            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getEnderDragonMaxHealth());
         }
 
         /**
@@ -470,7 +421,7 @@ public class ModMixins {
                 if (this.connectedCrystal.isRemoved()) {
                     this.connectedCrystal = null;
                 } else if (this.age % 10 == 0 && this.getHealth() < this.getMaxHealth()) {
-                    this.setHealth(this.getHealth() + 0.1F);
+                    this.setHealth(this.getHealth() + ModHelper.getEndCrystalHealAmount());
                 }
             }
 
@@ -505,7 +456,7 @@ public class ModMixins {
             while(var2.hasNext()) {
                 Entity entity = (Entity)var2.next();
                 if (entity instanceof LivingEntity) {
-                    entity.damage(DamageSource.mob(this), 3.0F);
+                    entity.damage(DamageSource.mob(this), ModHelper.getDragonDamageAmount());
                     this.applyDamageEffects(this, entity);
                 }
             }
@@ -539,7 +490,7 @@ public class ModMixins {
 
                         if (this.phaseManager.getCurrent().isSittingOrHovering()) {
                             this.damageDuringSitting = (int)((float)this.damageDuringSitting + (f - this.getHealth()));
-                            if ((float)this.damageDuringSitting > 0.60F * this.getMaxHealth()) {
+                            if ((float)this.damageDuringSitting > ModHelper.getDragonDamageDuringSittingAmount() * this.getMaxHealth()) {
                                 this.damageDuringSitting = 0;
                                 this.phaseManager.setPhase(PhaseType.TAKEOFF);
                             }
@@ -566,19 +517,31 @@ public class ModMixins {
             }
 
             if (crystal == this.connectedCrystal) {
-                damagePart(this.head, DamageSource.explosion(playerEntity2), 20.0F);
+                damagePart(this.head, DamageSource.explosion(playerEntity2), ModHelper.getEndCrystalDamageAmount());
             }
 
             this.phaseManager.getCurrent().crystalDestroyed(crystal, pos, source, playerEntity2);
         }
     }
 
-    @Mixin(WitherEntity.class)
-    public static class WitherEntityMixin extends HostileEntity {
+    @Mixin(EnderDragonFight.class)
+    public static class EnderDragonFightMixin {
 
-        public WitherEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
-            super(entityType, world);
+        @Shadow @Final
+        private ServerWorld world;
+
+        @Inject(method = "createDragon", at = @At("RETURN"))
+        private void createDragon(CallbackInfoReturnable cir) {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                GiantEntity giantEntity = (GiantEntity)EntityType.GIANT.create(this.world);
+                giantEntity.refreshPositionAndAngles(0.0D, 96.0D, -0.0D, this.world.random.nextFloat() * 270.0F, 0.0F);
+                this.world.spawnEntity(giantEntity);
+            }
         }
+    }
+
+    @Mixin(WitherEntity.class)
+    public static class WitherEntityMixin {
 
         /**
          * Changes the {@code Wither's} attributes.
@@ -587,100 +550,26 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createWitherAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6000000238418579D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 40.0D).add(EntityAttributes.GENERIC_ARMOR, 4.0D);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 500;
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getWitherMaxHealth()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6000000238418579D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 40.0D).add(EntityAttributes.GENERIC_ARMOR, 4.0D);
         }
     }
 
     @Mixin(AbstractSkeletonEntity.class)
-    public static class AbstractSkeletonEntityMixin extends HostileEntity {
-
-        public AbstractSkeletonEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
-            super(entityType, world);
-        }
-
-        private final SpeedrunnerBowAttackGoal<AbstractSkeletonEntity> speedrunnerBowAttackGoal = new SpeedrunnerBowAttackGoal(this, 1.0D, 20, 15.0F);
-
-        @Shadow @Final
-        private BowAttackGoal<AbstractSkeletonEntity> bowAttackGoal;
-
-        @Shadow @Final
-        private MeleeAttackGoal meleeAttackGoal;
+    public static class AbstractSkeletonEntityMixin {
 
         /**
-         * Allows {@code Skeletons} to have a 20% chance to spawn with a speedrunner bow.
+         * Changes the Abstract Skeletons generic movement speed.
          * @author Dilloney
          * @reason
          */
         @Overwrite
-        public void initEquipment(LocalDifficulty difficulty) {
-            super.initEquipment(difficulty);
-            if (world.random.nextFloat() < 0.20F && MISC_OPTIONS.allowEntitiesToUseSpeedrunnerBowAndCrossbow) {
-                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SPEEDRUNNER_BOW));
-            } else {
-                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
-            }
-        }
-
-        /**
-         * Makes {@code Skeletons} be able to use the Speedrunner Bow correctly.
-         * @author Dilloney
-         * @reason
-         */
-        @Overwrite
-        public void updateAttackType() {
-            if (this.world != null && !this.world.isClient) {
-                this.goalSelector.remove(this.meleeAttackGoal);
-                this.goalSelector.remove(this.bowAttackGoal);
-                this.goalSelector.remove(this.speedrunnerBowAttackGoal);
-                ItemStack itemStack = this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, Items.BOW));
-                ItemStack itemStack1 = this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, ModItems.SPEEDRUNNER_BOW));
-                if (itemStack.isOf(Items.BOW)) {
-                    int i = 20;
-                    if (this.world.getDifficulty() != Difficulty.HARD) {
-                        i = 40;
-                    }
-
-                    this.bowAttackGoal.setAttackInterval(i);
-                    this.goalSelector.add(4, this.bowAttackGoal);
-                } else if (itemStack1.isOf(ModItems.SPEEDRUNNER_BOW) && MISC_OPTIONS.allowEntitiesToUseSpeedrunnerBowAndCrossbow) {
-                    int i = 15;
-                    if (this.world.getDifficulty() != Difficulty.HARD) {
-                        i = 30;
-                    }
-
-                    this.speedrunnerBowAttackGoal.setAttackInterval(i);
-                    this.goalSelector.add(4, this.speedrunnerBowAttackGoal);
-                } else {
-                    this.goalSelector.add(4, this.meleeAttackGoal);
-                }
-            }
-        }
-
-        /**
-         * Also allows {@code Skeletons} to use speedrunner bows.
-         * @author Dilloney
-         * @reason
-         */
-        @Overwrite
-        public boolean canUseRangedWeapon(RangedWeaponItem weapon) {
-            return MISC_OPTIONS.allowEntitiesToUseSpeedrunnerBowAndCrossbow ? weapon == Items.BOW || weapon == ModItems.SPEEDRUNNER_BOW : weapon == Items.BOW;
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 25;
+        public static DefaultAttributeContainer.Builder createAbstractSkeletonAttributes() {
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, ModHelper.getAbstractSkeletonMovementSpeed());
         }
     }
 
     @Mixin(BlazeEntity.class)
-    public static class BlazeEntityMixin extends HostileEntity {
-
-        public BlazeEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
-            super(entityType, world);
-        }
+    public static class BlazeEntityMixin {
 
         /**
          * Changes the Blazes attributes.
@@ -689,11 +578,7 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createBlazeAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0D);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 75;
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getBlazeAttackDamage()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, ModHelper.getBlazeFollowRange());
         }
 
         @Mixin(BlazeEntity.ShootFireballGoal.class)
@@ -755,7 +640,7 @@ public class ModMixins {
                             } else if (this.fireballsFired <= 4) {
                                 this.fireballCooldown = 6;
                             } else {
-                                this.fireballCooldown = 120;
+                                this.fireballCooldown = ModHelper.getBlazeFireballCooldownAmount();
                                 this.fireballsFired = 0;
                                 this.blaze.setFireActive(false);
                             }
@@ -785,20 +670,98 @@ public class ModMixins {
         }
     }
 
+    @Mixin(CaveSpiderEntity.class)
+    public static class CaveSpiderEntityMixin extends SpiderEntity {
+
+        public CaveSpiderEntityMixin(EntityType<? extends SpiderEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        /**
+         * Makes the Cave Spider Entity give slowness if Doom Mode is enabled.
+         * @author Dilloney
+         * @reason
+         */
+        @Overwrite
+        public boolean tryAttack(Entity target) {
+            if (super.tryAttack(target)) {
+                if (target instanceof LivingEntity) {
+                    int i = 0;
+                    if (this.world.getDifficulty() == Difficulty.NORMAL) {
+                        i = 7;
+                    } else if (this.world.getDifficulty() == Difficulty.HARD) {
+                        i = 15;
+                    }
+
+                    if (i > 0) {
+                        ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, i * 20, 0), this);
+                    }
+                }
+
+                if (target instanceof PlayerEntity && SpeedrunnerMod.OPTIONS.doomMode) {
+                    ((PlayerEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0));
+                }
+
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
     @Mixin(CreeperEntity.class)
-    public static class CreeperEntityMixin extends HostileEntity {
+    public abstract static class CreeperEntityMixin extends HostileEntity implements SkinOverlayOwner {
 
         public CreeperEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
             super(entityType, world);
         }
 
-        @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private boolean allowSpeedrunnerFlintAndSteelToBeUsedAgainstCreeper(ItemStack stack, Item item) {
-            return stack.isOf(Items.FLINT_AND_STEEL) || stack.isOf(ModItems.SPEEDRUNNER_FLINT_AND_STEEL);
+        @Shadow
+        int explosionRadius;
+
+        @Shadow
+        abstract void ignite();
+
+        /**
+         * Changes the Creepers generic movement speed.
+         * @author Dilloney
+         * @reason
+         */
+        @Overwrite
+        public static DefaultAttributeContainer.Builder createCreeperAttributes() {
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, ModHelper.getCreeperMovementSpeed());
         }
 
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 50;
+        /**
+         * Allows speedrunner flint and steels to work on creepers + some doom mode stuff :)
+         * @author Dilloney
+         * @reason
+         */
+        @Overwrite
+        public ActionResult interactMob(PlayerEntity player, Hand hand) {
+            ItemStack itemStack = player.getStackInHand(hand);
+            Explosion.DestructionType destructionType = this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) ? Explosion.DestructionType.DESTROY : Explosion.DestructionType.NONE;
+            float f = this.shouldRenderOverlay() ? 2.0F : 1.0F;
+            if (ModHelper.getCreeperIgnitions(player, hand)) {
+                this.world.playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
+                if (!this.world.isClient && SpeedrunnerMod.OPTIONS.doomMode) {
+                    this.discard();
+                    this.world.createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius * f, destructionType);
+                    this.world.playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ITEM_BREAK, this.getSoundCategory(), 1.5F, this.random.nextFloat() * 0.4F + 0.8F);
+                    itemStack.damage(1, player, (playerx) -> {
+                        playerx.sendToolBreakStatus(hand);
+                    });
+                } else if (!this.world.isClient) {
+                    this.ignite();
+                    itemStack.damage(1, player, (playerx) -> {
+                        playerx.sendToolBreakStatus(hand);
+                    });
+                }
+
+                return ActionResult.success(this.world.isClient);
+            } else {
+                return super.interactMob(player, hand);
+            }
         }
     }
 
@@ -816,7 +779,7 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createElderGuardianAttributes() {
-            return GuardianEntity.createGuardianAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D).add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0D);
+            return GuardianEntity.createGuardianAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getElderGuardianAttackDamage()).add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getElderGuardianMaxHealth());
         }
 
         /**
@@ -827,10 +790,10 @@ public class ModMixins {
         @Overwrite
         public void mobTick() {
             super.mobTick();
-            if ((this.age + this.getId()) % 6000 == 0) {
+            if ((this.age + this.getId()) % ModHelper.getElderGuardianAgeAmount() == 0) {
                 StatusEffect statusEffect = StatusEffects.MINING_FATIGUE;
                 List<ServerPlayerEntity> list = ((ServerWorld)this.world).getPlayers((serverPlayerEntityx) -> {
-                    return this.squaredDistanceTo(serverPlayerEntityx) < 1250.0D && serverPlayerEntityx.interactionManager.isSurvivalLike();
+                    return this.squaredDistanceTo(serverPlayerEntityx) < ModHelper.getElderGuardianSquaredDistanceTo() && serverPlayerEntityx.interactionManager.isSurvivalLike();
                 });
                 Iterator var7 = list.iterator();
 
@@ -846,7 +809,7 @@ public class ModMixins {
                     } while(serverPlayerEntity.hasStatusEffect(statusEffect) && serverPlayerEntity.getStatusEffect(statusEffect).getAmplifier() >= 2 && serverPlayerEntity.getStatusEffect(statusEffect).getDuration() >= 1200);
 
                     serverPlayerEntity.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.ELDER_GUARDIAN_EFFECT, this.isSilent() ? 0.0F : 1.0F));
-                    serverPlayerEntity.addStatusEffect(new StatusEffectInstance(statusEffect, 600, 2));
+                    serverPlayerEntity.addStatusEffect(new StatusEffectInstance(statusEffect, ModHelper.getElderGuardianMiningFatigueAmount(), 2));
                 }
             }
 
@@ -854,18 +817,10 @@ public class ModMixins {
                 this.setPositionTarget(this.getBlockPos(), 16);
             }
         }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 250;
-        }
     }
 
     @Mixin(EndermanEntity.class)
-    public static class EndermanEntityMixin extends HostileEntity {
-
-        public EndermanEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
-            super(entityType, world);
-        }
+    public static class EndermanEntityMixin {
 
         /**
          * Changes the {@code Enderman's} attributes.
@@ -874,20 +829,12 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createEndermanAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0D);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 100;
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getEndermanMaxHealth()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getEndermanAttackDamage()).add(EntityAttributes.GENERIC_FOLLOW_RANGE, ModHelper.getEndermanFollowRange());
         }
     }
 
     @Mixin(EndermiteEntity.class)
-    public static class EndermiteEntityMixin extends HostileEntity {
-
-        public EndermiteEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
-            super(entityType, world);
-        }
+    public static class EndermiteEntityMixin {
 
         /**
          * Changes the {@code Endermite's} attributes.
@@ -897,10 +844,6 @@ public class ModMixins {
         @Overwrite
         public static DefaultAttributeContainer.Builder createEndermiteAttributes() {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.15D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0.01D);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 25;
         }
     }
 
@@ -914,7 +857,7 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createGhastAttributes() {
-            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 5.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 15.0D);
+            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getGhastMaxHealth()).add(EntityAttributes.GENERIC_FOLLOW_RANGE, ModHelper.getGhastFollowRange());
         }
 
         @Mixin(GhastEntity.ShootFireballGoal.class)
@@ -955,10 +898,10 @@ public class ModMixins {
                         FireballEntity fireballEntity = new FireballEntity(world, this.ghast, f, g, h, this.ghast.getFireballStrength());
                         fireballEntity.setPosition(this.ghast.getX() + vec3d.x * 4.0D, this.ghast.getBodyY(0.5D) + 0.5D, fireballEntity.getZ() + vec3d.z * 4.0D);
                         world.spawnEntity(fireballEntity);
-                        if (MISC_OPTIONS.killGhastUponFireball) {
+                        if (SpeedrunnerMod.MISC_OPTIONS.killGhastUponFireball) {
                             this.ghast.kill();
                         }
-                        this.cooldown = -40;
+                        this.cooldown = ModHelper.getGhastFireballCooldown();
                     }
                 } else if (this.cooldown > 0) {
                     --this.cooldown;
@@ -969,12 +912,382 @@ public class ModMixins {
         }
     }
 
-    @Mixin(GuardianEntity.class)
-    public static class GuardianEntityMixin extends HostileEntity {
+    /**
+     * Welcome to the new boss in {@code Doom Mode}.
+     */
+    @Mixin(GiantEntity.class)
+    public static class GiantEntityMixin extends HostileEntity implements Giant {
+        protected SwimNavigation waterNavigation;
+        protected MobNavigation landNavigation;
+        boolean targetingUnderwater;
+        private ServerBossBar bossBar;
 
-        public GuardianEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+        public GiantEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
             super(entityType, world);
         }
+
+        @Inject(method = "<init>", at = @At("TAIL"))
+        private void init(CallbackInfo ci) {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                this.bossBar = (ServerBossBar) (new ServerBossBar(this.getDisplayName(), BossBar.Color.GREEN, BossBar.Style.PROGRESS));
+                this.setPathfindingPenalty(PathNodeType.LAVA, 8.0F);
+                this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
+                this.setPathfindingPenalty(PathNodeType.DAMAGE_FIRE, 0.0F);
+                this.waterNavigation = new SwimNavigation(this, world);
+                this.landNavigation = new MobNavigation(this, world);
+            }
+        }
+
+        /**
+         * Changes the Giants attributes.
+         * @author Dilloney
+         * @reason
+         */
+        @Overwrite
+        public static DefaultAttributeContainer.Builder createGiantAttributes() {
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 100.0D).add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getGiantMaxHealth()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, ModHelper.getGiantMovementSpeed()).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getGiantAttackDamage()).add(EntityAttributes.GENERIC_ARMOR, 1.2D).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, ModHelper.getGiantAttackKnockback());
+        }
+
+        protected void initGoals() {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                this.goalSelector.add(1, new SwimGoal(this));
+                this.goalSelector.add(2, new GiantAttackGoal((GiantEntity) (Object) this, 1.0D, false));
+                this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0D));
+                this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 32.0F));
+                this.goalSelector.add(8, new LookAroundGoal(this));
+                this.targetSelector.add(2, new RevengeGoal(this, new Class[0]));
+                this.targetSelector.add(1, new FollowTargetGoal(this, PlayerEntity.class, true));
+                this.targetSelector.add(3, new FollowTargetGoal(this, MobEntity.class, true));
+            }
+        }
+
+        public void tick() {
+            super.tick();
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                if (this.age % 10 == 0) {
+                    this.heal(0.6F);
+                }
+
+                this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
+            }
+        }
+
+        public void attemptTickInVoid() {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                if (this.world instanceof ServerWorld && this.world.getRegistryKey() == World.END) {
+                    if (this.getY() <= -64) {
+                        this.teleport(0, 96, 0, true);
+                        if (!this.isSilent()) {
+                            this.world.playSound((PlayerEntity) null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.HOSTILE, 10.0F, 1.0F);
+                            this.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 10.0F, 1.0F);
+                        }
+                    }
+                }
+            } else {
+                super.attemptTickInVoid();
+            }
+        }
+
+        public void onDeath(DamageSource source) {
+            super.onDeath(source);
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                this.onGiantDeath();
+                if (!this.isSilent()) {
+                    this.world.playSound((PlayerEntity) null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, SoundCategory.AMBIENT, 1.0F, 1.0F);
+                    this.playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, 1.0F, 1.0F);
+                }
+            }
+        }
+
+        public boolean damage(DamageSource source, float amount) {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                Entity entity = source.getSource();
+
+                if (entity instanceof WitherSkullEntity || entity instanceof IronGolemEntity || entity instanceof RavagerEntity || entity instanceof VindicatorEntity || entity instanceof ZombieEntity || entity instanceof EnderDragonEntity) {
+                    return false;
+                }
+
+                if (this.getHealth() <= 150) {
+                    if (entity instanceof ProjectileEntity) {
+                        return false;
+                    }
+                }
+
+                if (this.getHealth() <= 50) {
+                    if (entity instanceof AreaEffectCloudEntity) {
+                        return false;
+                    }
+                }
+
+                if (this.random.nextFloat() < 0.10F) {
+                    this.onGiantDamage();
+                }
+
+                if (this.random.nextFloat() < 0.05F && this.getHealth() <= 250) {
+                    this.onGiantDamageDropFood();
+                }
+            }
+
+            return super.damage(source, amount);
+        }
+
+        public boolean tryAttack(Entity target) {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                this.world.sendEntityStatus(this, (byte)4);
+            }
+            return SpeedrunnerMod.OPTIONS.doomMode ? Giant.tryAttack(this, (LivingEntity)target) : super.tryAttack(target);
+        }
+
+        protected void knockback(LivingEntity target) {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                Giant.knockback(this, target);
+            }
+        }
+
+        public void travel(Vec3d movementInput) {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                if (this.canMoveVoluntarily() && this.isTouchingWater() && this.isTargetingUnderwater()) {
+                    this.updateVelocity(0.01F, movementInput);
+                    this.move(MovementType.SELF, this.getVelocity());
+                    this.setVelocity(this.getVelocity().multiply(0.9D));
+                } else {
+                    super.travel(movementInput);
+                }
+            } else {
+                super.travel(movementInput);
+            }
+        }
+
+        public void updateSwimming() {
+            super.updateSwimming();
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                if (!this.world.isClient) {
+                    if (this.canMoveVoluntarily() && this.isTouchingWater() && this.isTargetingUnderwater()) {
+                        this.navigation = this.waterNavigation;
+                        this.setSwimming(true);
+                    } else {
+                        this.navigation = this.landNavigation;
+                        this.setSwimming(false);
+                    }
+                }
+            }
+        }
+
+        public void checkDespawn() {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
+                    this.discard();
+                } else {
+                    this.despawnCounter = 0;
+                }
+            }
+        }
+
+        public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource source) {
+            return !SpeedrunnerMod.OPTIONS.doomMode;
+        }
+
+        public boolean addStatusEffect(StatusEffectInstance effect, @Nullable Entity source) {
+            return !SpeedrunnerMod.OPTIONS.doomMode;
+        }
+
+        public boolean isFireImmune() {
+            return SpeedrunnerMod.OPTIONS.doomMode;
+        }
+
+        public boolean isImmuneToExplosion() {
+            return SpeedrunnerMod.OPTIONS.doomMode;
+        }
+
+        public boolean canStartRiding(Entity entity) {
+            return SpeedrunnerMod.OPTIONS.doomMode ? false : super.canStartRiding(entity);
+        }
+
+        public boolean canUsePortals() {
+            return !SpeedrunnerMod.OPTIONS.doomMode;
+        }
+
+        public void setCustomName(@Nullable Text name) {
+            super.setCustomName(name);
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                this.bossBar.setName(this.getDisplayName());
+            }
+        }
+
+        public void onStartedTrackingBy(ServerPlayerEntity player) {
+            super.onStartedTrackingBy(player);
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                this.bossBar.addPlayer(player);
+            }
+        }
+
+        public void onStoppedTrackingBy(ServerPlayerEntity player) {
+            super.onStoppedTrackingBy(player);
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                this.bossBar.removePlayer(player);
+            }
+        }
+
+        public EntityGroup getGroup() {
+            return SpeedrunnerMod.OPTIONS.doomMode ? EntityGroup.UNDEAD : EntityGroup.DEFAULT;
+        }
+
+        public SoundCategory getSoundCategory() {
+            return SpeedrunnerMod.OPTIONS.doomMode ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
+        }
+
+        public SoundEvent getAmbientSound() {
+            return SpeedrunnerMod.OPTIONS.doomMode ? SoundEvents.ENTITY_ZOMBIE_AMBIENT : null;
+        }
+
+        public SoundEvent getHurtSound(DamageSource source) {
+            return SpeedrunnerMod.OPTIONS.doomMode ? SoundEvents.ENTITY_ZOMBIE_HURT : SoundEvents.ENTITY_GENERIC_HURT;
+        }
+
+        public SoundEvent getDeathSound() {
+            return SpeedrunnerMod.OPTIONS.doomMode ? SoundEvents.ENTITY_ZOMBIE_DEATH : SoundEvents.ENTITY_GENERIC_DEATH;
+        }
+
+        protected void playStepSound(BlockPos pos, BlockState state) {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                this.playSound(SoundEvents.ENTITY_ZOMBIE_STEP, 0.25F, 1.0F);
+            }
+        }
+
+        public float getSoundVolume() {
+            return ModHelper.getGiantSoundVolume();
+        }
+
+        boolean isTargetingUnderwater() {
+            if (this.targetingUnderwater) {
+                return true;
+            } else {
+                LivingEntity livingEntity = this.getTarget();
+                return livingEntity != null && livingEntity.isTouchingWater();
+            }
+        }
+
+        private void onGiantDamageDropFood() {
+            this.dropItem(Items.ROTTEN_FLESH);
+            this.dropItem(Items.ROTTEN_FLESH);
+            this.dropItem(Items.ROTTEN_FLESH);
+            if (this.random.nextFloat() < 0.3F) {
+                this.dropItem(Items.ROTTEN_FLESH);
+                this.dropItem(Items.ROTTEN_FLESH);
+            }
+
+            if (this.random.nextFloat() < 0.2F) {
+                this.dropItem(ModItems.COOKED_FLESH);
+                this.dropItem(ModItems.COOKED_FLESH);
+            }
+        }
+
+        private void onGiantDamage() {
+            TntEntity tntEntity = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity.setFuse(100);
+            tntEntity.refreshPositionAndAngles(this.getX() + 5, this.getY() + 25, this.getZ() + 5, 0.0F, 0.0F);
+            TntEntity tntEntity1 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity1.setFuse(100);
+            tntEntity1.refreshPositionAndAngles(this.getX() - 5, this.getY() + 25, this.getZ() + 5, 0.0F, 0.0F);
+            TntEntity tntEntity2 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity2.setFuse(100);
+            tntEntity2.refreshPositionAndAngles(this.getX() + 5, this.getY() + 25, this.getZ() - 5, 0.0F, 0.0F);
+            TntEntity tntEntity3 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity3.setFuse(100);
+            tntEntity3.refreshPositionAndAngles(this.getX() - 5, this.getY() + 25, this.getZ() - 5, 0.0F, 0.0F);
+            this.world.playSound((PlayerEntity) null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.AMBIENT, 5.0F, 1.0F);
+            this.world.spawnEntity(tntEntity);
+            this.world.spawnEntity(tntEntity1);
+            this.world.spawnEntity(tntEntity2);
+            this.world.spawnEntity(tntEntity3);
+        }
+
+        private void onGiantDeath() {
+            TntEntity tntEntity = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity.setInvulnerable(true);
+            tntEntity.setFuse(100);
+            tntEntity.refreshPositionAndAngles(this.getX() + 5, this.getY() + 25, this.getZ() + 5, 0.0F, 0.0F);
+            TntEntity tntEntity1 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity1.setFuse(100);
+            tntEntity1.refreshPositionAndAngles(this.getX() - 5, this.getY() + 25, this.getZ() + 5, 0.0F, 0.0F);
+            TntEntity tntEntity2 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity2.setFuse(100);
+            tntEntity2.refreshPositionAndAngles(this.getX() + 5, this.getY() + 25, this.getZ() - 5, 0.0F, 0.0F);
+            TntEntity tntEntity3 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity3.setFuse(100);
+            tntEntity3.refreshPositionAndAngles(this.getX() - 5, this.getY() + 25, this.getZ() - 5, 0.0F, 0.0F);
+            TntEntity tntEntity4 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity4.setFuse(100);
+            tntEntity4.refreshPositionAndAngles(this.getX() + 5, this.getY() + 50, this.getZ() + 5, 0.0F, 0.0F);
+            TntEntity tntEntity5 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity5.setFuse(100);
+            tntEntity5.refreshPositionAndAngles(this.getX() - 5, this.getY() + 50, this.getZ() + 5, 0.0F, 0.0F);
+            TntEntity tntEntity6 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity6.setFuse(100);
+            tntEntity6.refreshPositionAndAngles(this.getX() + 5, this.getY() + 50, this.getZ() - 5, 0.0F, 0.0F);
+            TntEntity tntEntity7 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity7.setFuse(100);
+            tntEntity7.refreshPositionAndAngles(this.getX() - 5, this.getY() + 50, this.getZ() - 5, 0.0F, 0.0F);
+            TntEntity tntEntity8 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity8.setFuse(120);
+            tntEntity8.refreshPositionAndAngles(this.getX() + 5, this.getY() + 75, this.getZ() + 5, 0.0F, 0.0F);
+            TntEntity tntEntity9 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity9.setFuse(120);
+            tntEntity9.refreshPositionAndAngles(this.getX() - 5, this.getY() + 75, this.getZ() + 5, 0.0F, 0.0F);
+            TntEntity tntEntity10 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity10.setFuse(120);
+            tntEntity10.refreshPositionAndAngles(this.getX() + 5, this.getY() + 75, this.getZ() - 5, 0.0F, 0.0F);
+            TntEntity tntEntity11 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity11.setFuse(120);
+            tntEntity11.refreshPositionAndAngles(this.getX() - 5, this.getY() + 75, this.getZ() - 5, 0.0F, 0.0F);
+            TntEntity tntEntity12 = (TntEntity) EntityType.TNT.create(this.world);
+            tntEntity12.setFuse(140);
+            tntEntity12.refreshPositionAndAngles(this.getX(), this.getY() + 100, this.getZ(), 0.0F, 0.0F);
+            this.world.playSound((PlayerEntity) null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.AMBIENT, 5.0F, 1.0F);
+            this.world.spawnEntity(tntEntity);
+            this.world.spawnEntity(tntEntity1);
+            this.world.spawnEntity(tntEntity2);
+            this.world.spawnEntity(tntEntity3);
+            this.world.spawnEntity(tntEntity4);
+            this.world.spawnEntity(tntEntity5);
+            this.world.spawnEntity(tntEntity6);
+            this.world.spawnEntity(tntEntity7);
+            this.world.spawnEntity(tntEntity8);
+            this.world.spawnEntity(tntEntity9);
+            this.world.spawnEntity(tntEntity10);
+            this.world.spawnEntity(tntEntity11);
+            this.world.spawnEntity(tntEntity12);
+        }
+
+        private static class GiantAttackGoal extends MeleeAttackGoal {
+            private final GiantEntity giant;
+            private int ticks;
+
+            GiantAttackGoal(GiantEntity giant, double speed, boolean pauseWhenMobIdle) {
+                super(giant, speed, pauseWhenMobIdle);
+                this.giant = giant;
+            }
+
+            public void start() {
+                super.start();
+                this.ticks = 0;
+            }
+
+            public void stop() {
+                super.stop();
+                this.giant.setAttacking(false);
+            }
+
+            public void tick() {
+                super.tick();
+                ++this.ticks;
+                this.giant.setAttacking(this.ticks >= 5 && this.getCooldown() < this.getMaxCooldown() / 2);
+            }
+        }
+    }
+
+    @Mixin(GuardianEntity.class)
+    public static class GuardianEntityMixin {
 
         /**
          * Changes the {@code Guardian's} health.
@@ -983,20 +1296,12 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createGuardianAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 8.0D).add(EntityAttributes.GENERIC_MAX_HEALTH, 15.0D);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 100;
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getGuardianAttackDamage()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, ModHelper.getGuardianFollowRange()).add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getGuardianMaxHealth());
         }
     }
 
     @Mixin(HoglinEntity.class)
-    public abstract static class HoglinEntityMixin extends AnimalEntity {
-
-        public HoglinEntityMixin(EntityType<? extends AnimalEntity> entityType, World world) {
-            super(entityType, world);
-        }
+    public abstract static class HoglinEntityMixin {
 
         /**
          * Changes the {@code Hoglin's} health.
@@ -1005,11 +1310,7 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createHoglinAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.6000000238418579D).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.5D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return this.isBaby() ? EnchantmentHelper.getLooting(player) + 25 : EnchantmentHelper.getLooting(player) + 125;
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getHoglinMaxHealth()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, ModHelper.getHoglinKnockbackResistance()).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, ModHelper.getHoglinAttackKnockback()).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getHoglinAttackDamage());
         }
     }
 
@@ -1027,7 +1328,7 @@ public class ModMixins {
          */
         @Overwrite
         public int getTicksUntilNextJump() {
-            return 100;
+            return ModHelper.getMagmaCubeTicksUntilNextJumpAmount();
         }
 
         /**
@@ -1037,7 +1338,7 @@ public class ModMixins {
          */
         @Overwrite
         public float getDamageAmount() {
-            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 1.5F;
+            return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * ModHelper.getMagmaCubeAttackDamage();
         }
 
         /**
@@ -1048,18 +1349,6 @@ public class ModMixins {
         @Overwrite
         public Identifier getLootTableId() {
             return this.getSize() <= 2 ? this.getType().getLootTableId() : LootTables.EMPTY;
-        }
-    }
-
-    @Mixin(PhantomEntity.class)
-    public static class PhantomEntityMixin extends FlyingEntity {
-
-        public PhantomEntityMixin(EntityType<? extends FlyingEntity> entityType, World world) {
-            super(entityType, world);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 50;
         }
     }
 
@@ -1083,16 +1372,16 @@ public class ModMixins {
         }
 
         @Inject(method = "wearsGoldArmor(Lnet/minecraft/entity/LivingEntity;)Z", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-        private static void makePiglinsLikePiglinSafeArmor(LivingEntity entity, CallbackInfoReturnable<Boolean> callbackInfoReturnable, Iterable<ItemStack> iterable, Iterator iterator, ItemStack stack, Item item) {
-            if (stack.isOf(ModItems.GOLDEN_SPEEDRUNNER_HELMET) || stack.isOf(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE) || stack.isOf(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS) || stack.isOf(ModItems.GOLDEN_SPEEDRUNNER_BOOTS)) {
-                callbackInfoReturnable.setReturnValue(true);
+        private static void wearsGoldArmor(LivingEntity entity, CallbackInfoReturnable<Boolean> cir, Iterable<ItemStack> iterable, Iterator iterator, ItemStack stack, Item item) {
+            if (ModHelper.getPiglinSafeArmor(stack)) {
+                cir.setReturnValue(true);
             }
         }
 
         @Inject(method = "acceptsForBarter(Lnet/minecraft/item/ItemStack;)Z", at = @At("RETURN"), cancellable = true)
-        private static void allowPiglinsToBarterWithOtherItems(ItemStack stack, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+        private static void acceptsForBarter(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
             if (stack.isOf(Items.RAW_GOLD)) {
-                callbackInfoReturnable.setReturnValue(true);
+                cir.setReturnValue(true);
             }
         }
     }
@@ -1104,6 +1393,9 @@ public class ModMixins {
             super(entityType, world);
         }
 
+        @Shadow
+        abstract void equipAtChance(EquipmentSlot slot, ItemStack stack);
+
         /**
          * Changes the {@code Piglin's} attributes.
          * @author Dilloney
@@ -1111,33 +1403,34 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createPiglinAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3499999940395355D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getPiglinMaxHealth()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3499999940395355D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getPiglinAttackDamage());
         }
 
-        public int getXpToDrop(PlayerEntity player) {
-            return this.isBaby() ? EnchantmentHelper.getLooting(player) + 25 : EnchantmentHelper.getLooting(player) + 75;
+        /**
+         * Allows piglins to spawn with golden speedrunner armor.
+         * @author Dilloney
+         * @reason
+         */
+        @Overwrite
+        public void initEquipment(LocalDifficulty difficulty) {
+            if (this.isAdult()) {
+                if (SpeedrunnerMod.OPTIONS.doomMode) {
+                    this.equipStack(EquipmentSlot.HEAD, new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_HELMET));
+                    this.equipStack(EquipmentSlot.CHEST, new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE));
+                    this.equipStack(EquipmentSlot.LEGS, new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS));
+                    this.equipStack(EquipmentSlot.FEET, new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_BOOTS));
+                } else {
+                    this.equipAtChance(EquipmentSlot.HEAD, new ItemStack(Items.GOLDEN_HELMET));
+                    this.equipAtChance(EquipmentSlot.CHEST, new ItemStack(Items.GOLDEN_CHESTPLATE));
+                    this.equipAtChance(EquipmentSlot.LEGS, new ItemStack(Items.GOLDEN_LEGGINGS));
+                    this.equipAtChance(EquipmentSlot.FEET, new ItemStack(Items.GOLDEN_BOOTS));
+                }
+            }
         }
     }
 
     @Mixin(PillagerEntity.class)
-    public abstract static class PillagerEntityMixin extends IllagerEntity implements CrossbowUser, InventoryOwner, SpeedrunnerCrossbowUser {
-
-        public PillagerEntityMixin(EntityType<? extends IllagerEntity> entityType, World world) {
-            super(entityType, world);
-        }
-
-        @Shadow @Final
-        private static TrackedData<Boolean> CHARGING;
-
-        @Shadow
-        abstract boolean isCharging();
-
-        @Inject(method = "initGoals", at = @At("TAIL"))
-        public void allowPillagersToUseSpeedrunnerCrossbows(CallbackInfo callbackInfo) {
-            if (MISC_OPTIONS.allowEntitiesToUseSpeedrunnerBowAndCrossbow) {
-                this.goalSelector.add(3, new SpeedrunnerCrossbowAttackGoal(this, 1.0D, 8.0F));
-            }
-        }
+    public static class PillagerEntityMixin {
 
         /**
          * Changes the pillagers attributes.
@@ -1146,75 +1439,12 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createPillagerAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3499999940395355D).add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0D);
-        }
-
-        /**
-         * Allows {@code Pillager's} to use speedrunner crossbows as weapons.
-         * @author Dilloney
-         * @reason
-         */
-        @Overwrite
-        public State getState() {
-            if (this.isCharging()) {
-                return State.CROSSBOW_CHARGE;
-            } else if (this.isHolding((stack) -> {
-                return MISC_OPTIONS.allowEntitiesToUseSpeedrunnerBowAndCrossbow ? stack.isOf(Items.CROSSBOW) || stack.isOf(ModItems.SPEEDRUNNER_CROSSBOW) : stack.isOf(Items.CROSSBOW);
-            })) {
-                return State.CROSSBOW_HOLD;
-            } else {
-                return this.isAttacking() ? State.ATTACKING : State.NEUTRAL;
-            }
-        }
-
-        /**
-         * Allows {@code Pillager's} to have a 20% chance to spawn with a speedrunner crossbow.
-         * @author Dilloney
-         * @reason
-         */
-        @Overwrite
-        public void initEquipment(LocalDifficulty difficulty) {
-            if (world.random.nextFloat() < 0.20F && MISC_OPTIONS.allowEntitiesToUseSpeedrunnerBowAndCrossbow) {
-                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SPEEDRUNNER_CROSSBOW));
-            } else {
-                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.CROSSBOW));
-            }
-        }
-
-        @Inject(method = "attack", at = @At("TAIL"))
-        public void allowPillagersToAttackWithSpeedrunnerCrossbows(LivingEntity target, float pullProgress, CallbackInfo callbackInfo) {
-            this.shootMod(this, 1.8F);
-        }
-
-        /**
-         * Allows Pillagers to use speedrunner crossbows as a weapon.
-         * @author Dilloney
-         * @reason
-         */
-        @Overwrite
-        public boolean canUseRangedWeapon(RangedWeaponItem weapon) {
-            return MISC_OPTIONS.allowEntitiesToUseSpeedrunnerBowAndCrossbow ? weapon == Items.CROSSBOW || weapon == ModItems.SPEEDRUNNER_CROSSBOW : weapon == Items.CROSSBOW;
-        }
-
-        public void setChargingMod(boolean charging) {
-            this.dataTracker.set(CHARGING, charging);
-        }
-
-        public void shootMod(LivingEntity target, ItemStack crossbow, ProjectileEntity projectile, float multiShotSpray) {
-            this.shootMod(this, target, projectile, multiShotSpray, 1.8F);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 75;
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3499999940395355D).add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getPillagerMaxHealth()).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getPillagerAttackDamage()).add(EntityAttributes.GENERIC_FOLLOW_RANGE, ModHelper.getPillagerFollowRange());
         }
     }
 
     @Mixin(RavagerEntity.class)
-    public abstract static class RavagerEntityMixin extends RaiderEntity {
-
-        public RavagerEntityMixin(EntityType<? extends RaiderEntity> entityType, World world) {
-            super(entityType, world);
-        }
+    public static class RavagerEntityMixin {
 
         /**
          * Changes the {@code Ravager's} attributes.
@@ -1223,14 +1453,16 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createRavagerAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.75D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 10.0D).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.1D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D);
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getRavagerMaxHealth()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.75D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getRavagerAttackDamage()).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, ModHelper.getRavagerAttackKnockback()).add(EntityAttributes.GENERIC_FOLLOW_RANGE, ModHelper.getRavagerFollowRange());
         }
 
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 200;
+        @Inject(method = "tryAttack", at = @At("RETURN"))
+        private void tryAttack(Entity target, CallbackInfoReturnable cir) {
+            if (target instanceof PlayerEntity && SpeedrunnerMod.OPTIONS.doomMode) {
+                ((PlayerEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0));
+            }
         }
     }
-
 
     @Mixin(ShulkerEntity.class)
     public abstract static class ShulkerEntityMixin extends GolemEntity {
@@ -1258,7 +1490,7 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createShulkerAttributes() {
-            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D);
+            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getShulkerMaxHealth());
         }
 
         /**
@@ -1271,8 +1503,14 @@ public class ModMixins {
             Entity entity2;
             if (this.isClosed()) {
                 entity2 = source.getSource();
-                if (entity2 instanceof PersistentProjectileEntity && this.random.nextFloat() < 0.25F) {
-                    return false;
+                if (SpeedrunnerMod.OPTIONS.doomMode) {
+                    if (entity2 instanceof PersistentProjectileEntity) {
+                        return false;
+                    }
+                } else {
+                    if (entity2 instanceof PersistentProjectileEntity && this.random.nextFloat() < 0.25F) {
+                        return false;
+                    }
                 }
             }
 
@@ -1290,21 +1528,13 @@ public class ModMixins {
             }
         }
 
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 75;
-        }
-
         static {
             COVERED_ARMOR_BONUS = new EntityAttributeModifier(COVERED_ARMOR_BONUS_ID, "Covered armor bonus", 10.0D, EntityAttributeModifier.Operation.ADDITION);
         }
     }
 
     @Mixin(SilverfishEntity.class)
-    public static class SilverfishEntityMixin extends HostileEntity {
-
-        public SilverfishEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
-            super(entityType, world);
-        }
+    public static class SilverfishEntityMixin {
 
         /**
          * Changes the {@code Silverfishes} attributes.
@@ -1314,10 +1544,6 @@ public class ModMixins {
         @Overwrite
         public static DefaultAttributeContainer.Builder createSilverfishAttributes() {
             return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.15D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 0.01D);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 25;
         }
 
         @Mixin(SilverfishEntity.CallForHelpGoal.class)
@@ -1333,21 +1559,31 @@ public class ModMixins {
             @Overwrite
             public void onHurt() {
                 if (this.delay == 0) {
-                    this.delay = 100;
+                    this.delay = ModHelper.getSilverfishDelayAmount();
                 }
             }
         }
     }
 
-    @Mixin(SlimeEntity.class)
-    public abstract static class SlimeEntityMixin extends MobEntity {
+    @Mixin(SkeletonEntity.class)
+    public abstract static class SkeletonEntityMixin extends AbstractSkeletonEntity {
 
-        public SlimeEntityMixin(EntityType<? extends MobEntity> entityType, World world) {
+        public SkeletonEntityMixin(EntityType<? extends AbstractSkeletonEntity> entityType, World world) {
             super(entityType, world);
         }
 
-        @Shadow
-        abstract int getSize();
+        protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
+            PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
+            if (persistentProjectileEntity instanceof ArrowEntity && SpeedrunnerMod.OPTIONS.doomMode) {
+                ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0));
+            }
+
+            return persistentProjectileEntity;
+        }
+    }
+
+    @Mixin(SlimeEntity.class)
+    public static class SlimeEntityMixin {
 
         /**
          * Changes how fast a {@code Slime} can jump per tick.
@@ -1356,12 +1592,7 @@ public class ModMixins {
          */
         @Overwrite
         public int getTicksUntilNextJump() {
-            return 100;
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            int i = EnchantmentHelper.getLooting(player);
-            return this.getSize() == 1 ? i + 10 : this.getSize() == 2 ? i + 25 : i + 100;
+            return ModHelper.getSlimeTicksUntilNextJumpAmount();
         }
     }
 
@@ -1372,8 +1603,63 @@ public class ModMixins {
             super(entityType, world);
         }
 
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 75;
+        public boolean tryAttack(Entity target) {
+            if (!super.tryAttack(target)) {
+                return false;
+            } else {
+                if (target instanceof PlayerEntity) {
+                    if (SpeedrunnerMod.OPTIONS.doomMode) {
+                        ((PlayerEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0));
+                    }
+                }
+
+                return true;
+            }
+        }
+    }
+
+    @Mixin(VexEntity.class)
+    public static class VexEntityMixin extends HostileEntity {
+
+        public VexEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Shadow
+        boolean alive;
+
+        @Shadow
+        int lifeTicks;
+
+        /**
+         * Changes the Vexes attributes.
+         * @author Dilloney
+         * @reason
+         */
+        @Overwrite
+        public static DefaultAttributeContainer.Builder createVexAttributes() {
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getVexMaxHealth()).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getVexAttackDamage());
+        }
+
+        /**
+         * Changes how the vex functions.
+         * @author Dilloney
+         * @reason
+         */
+        @Overwrite
+        public void tick() {
+            this.noClip = !SpeedrunnerMod.OPTIONS.doomMode;
+            super.tick();
+            this.noClip = false;
+            this.setNoGravity(true);
+            if (this.alive && --this.lifeTicks <= 0) {
+                this.lifeTicks = 20;
+                this.damage(DamageSource.STARVE, ModHelper.getVexDecayAmount());
+            }
+        }
+
+        public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource source) {
+            return !SpeedrunnerMod.OPTIONS.doomMode;
         }
     }
 
@@ -1391,20 +1677,24 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createVindicatorAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3499999940395355D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0D).add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D);
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3499999940395355D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, ModHelper.getVindicatorFollowRange()).add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getVindicatorMaxHealth()).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D);
         }
 
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 100;
+        public boolean tryAttack(Entity target) {
+            if (!super.tryAttack(target)) {
+                return false;
+            } else {
+                if (target instanceof PlayerEntity && SpeedrunnerMod.OPTIONS.doomMode) {
+                    ((PlayerEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0));
+                }
+
+                return true;
+            }
         }
     }
 
     @Mixin(WitchEntity.class)
-    public abstract static class WitchEntityMixin extends RaiderEntity {
-
-        public WitchEntityMixin(EntityType<? extends RaiderEntity> entityType, World world) {
-            super(entityType, world);
-        }
+    public static class WitchEntityMixin {
 
         /**
          * Changes the {@code Witch's} attributes.
@@ -1413,11 +1703,7 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createWitchAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 14.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 125;
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getWitchMaxHealth()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, ModHelper.getWitchMovementSpeed());
         }
     }
 
@@ -1436,7 +1722,7 @@ public class ModMixins {
         @Overwrite
         public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityTag) {
             EntityData entityData2 = super.initialize(world, difficulty, spawnReason, entityData, entityTag);
-            this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(1.0D);
+            this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(ModHelper.getWitherSkeletonAttackDamage());
             this.updateAttackType();
             return entityData2;
         }
@@ -1452,7 +1738,11 @@ public class ModMixins {
                 return false;
             } else {
                 if (target instanceof LivingEntity) {
-                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60), this);
+                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, ModHelper.getWitherSkeletonEffectDuration()), this);
+                }
+
+                if (target instanceof PlayerEntity && SpeedrunnerMod.OPTIONS.doomMode) {
+                    ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0));
                 }
 
                 return true;
@@ -1461,11 +1751,7 @@ public class ModMixins {
     }
 
     @Mixin(ZoglinEntity.class)
-    public static class ZoglinEntityMixin extends HostileEntity {
-
-        public ZoglinEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
-            super(entityType, world);
-        }
+    public static class ZoglinEntityMixin {
 
         /**
          * Changes the {@code Zoglin's} health.
@@ -1474,11 +1760,7 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createZoglinAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.6000000238418579D).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.5D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0D);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return this.isBaby() ? EnchantmentHelper.getLooting(player) + 25 : EnchantmentHelper.getLooting(player) + 125;
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getZoglinMaxHealth()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896D).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, ModHelper.getZoglinKnockbackResistance()).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, ModHelper.getZoglinAttackKnockback()).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getZoglinAttackDamage());
         }
     }
 
@@ -1496,16 +1778,51 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createZombieAttributes() {
-            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 25.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D).add(EntityAttributes.GENERIC_ARMOR, 1.0D).add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS);
+            return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, ModHelper.getZombieFollowRange()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, ModHelper.getZombieMovementSpeed()).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getZombieAttackDamage()).add(EntityAttributes.GENERIC_ARMOR, ModHelper.getZombieGenericArmor()).add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS);
         }
 
-        public int getXpToDrop(PlayerEntity player) {
-            return this.isBaby() ? EnchantmentHelper.getLooting(player) + 25 : EnchantmentHelper.getLooting(player) + 75;
+        /**
+         * Makes the zombies spawn with certain weapons
+         * @author Dilloney
+         * @reason
+         */
+        @Overwrite
+        public void initEquipment(LocalDifficulty difficulty) {
+            super.initEquipment(difficulty);
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
+            }
+            if (this.random.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
+                int i = this.random.nextInt(3);
+                if (i == 0) {
+                    this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+                } else {
+                    this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SHOVEL));
+                }
+            }
+        }
+
+        public boolean tryAttack(Entity target) {
+            if (!super.tryAttack(target)) {
+                return false;
+            } else {
+                if (target instanceof PlayerEntity) {
+                    if (SpeedrunnerMod.OPTIONS.doomMode) {
+                        ((PlayerEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0));
+                    }
+                }
+
+                return true;
+            }
         }
     }
 
     @Mixin(ZombifiedPiglinEntity.class)
-    public static class ZombifiedPiglinEntityMixin {
+    public static class ZombifiedPiglinEntityMixin extends ZombieEntity {
+
+        public ZombifiedPiglinEntityMixin(EntityType<? extends ZombieEntity> entityType, World world) {
+            super(entityType, world);
+        }
 
         /**
          * Changes the {@code Zombified Piglin's} health.
@@ -1514,7 +1831,19 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createZombifiedPiglinAttributes() {
-            return ZombieEntity.createZombieAttributes().add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS, 0.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
+            return ZombieEntity.createZombieAttributes().add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS, ModHelper.getZombifiedPiglinSpawnReinforcements()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, ModHelper.getZombifiedPiglinMovementSpeed()).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getZombifiedPiglinAttackDamage());
+        }
+
+        public boolean tryAttack(Entity target) {
+            if (!super.tryAttack(target)) {
+                return false;
+            } else {
+                if (target instanceof PlayerEntity && SpeedrunnerMod.OPTIONS.doomMode) {
+                    ((PlayerEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0));
+                }
+
+                return true;
+            }
         }
     }
 
@@ -1550,11 +1879,7 @@ public class ModMixins {
     }
 
     @Mixin(IronGolemEntity.class)
-    public static class IronGolemEntityMixin extends GolemEntity {
-
-        public IronGolemEntityMixin(EntityType<? extends GolemEntity> entityType, World world) {
-            super(entityType, world);
-        }
+    public static class IronGolemEntityMixin {
 
         /**
          * Changes the {@code Iron Golem's} attributes.
@@ -1563,11 +1888,7 @@ public class ModMixins {
          */
         @Overwrite
         public static DefaultAttributeContainer.Builder createIronGolemAttributes() {
-            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 50.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.5D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 7.0D);
-        }
-
-        public int getXpToDrop(PlayerEntity player) {
-            return EnchantmentHelper.getLooting(player) + 125;
+            return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, ModHelper.getIronGolemMaxHealth()).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, ModHelper.getIronGolemMovementSpeed()).add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, ModHelper.getIronGolemKnockbackResistance()).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, ModHelper.getIronGolemAttackDamage());
         }
     }
 
@@ -1578,37 +1899,14 @@ public class ModMixins {
             super(entityType, world);
         }
 
-        @Shadow @Final
-        private static Map<DyeColor, ItemConvertible> DROPS;
-
-        @Shadow
-        abstract void setSheared(boolean sheared);
-
-        @Shadow
-        abstract DyeColor getColor();
-
-        /**
-         * Changes how much wool a {@code Sheep} can drop.
-         * @author Dilloney
-         * @reason
-         */
-        @Overwrite
-        public void sheared(SoundCategory shearedSoundCategory) {
-            int i = 6 + this.random.nextInt(4);
-            this.world.playSoundFromEntity((PlayerEntity)null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
-            this.setSheared(true);
-
-            for(int j = 0; j < i; ++j) {
-                ItemEntity itemEntity = this.dropItem((ItemConvertible)DROPS.get(this.getColor()), 1);
-                if (itemEntity != null) {
-                    itemEntity.setVelocity(itemEntity.getVelocity().add((double)((this.random.nextFloat() - this.random.nextFloat()) * 0.1F), (double)(this.random.nextFloat() * 0.05F), (double)((this.random.nextFloat() - this.random.nextFloat()) * 0.1F)));
-                }
-            }
+        @ModifyVariable(method = "sheared", at = @At("STORE"))
+        private int sheared(int x) {
+            return 6 + this.random.nextInt(4);
         }
 
         @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private boolean makeSpeedrunnerShearsWorkOnSheep(ItemStack stack, Item isOfItem) {
-            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
+        private boolean interactMob(ItemStack stack, Item item) {
+            return ModHelper.fixShearingSheep(stack);
         }
     }
 
@@ -1616,8 +1914,8 @@ public class ModMixins {
     public static class SnowGolemEntityMixin {
 
         @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private boolean makeSpeedrunnerShearsWorkOnSnowGolems(ItemStack stack, Item isOfItem) {
-            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
+        private boolean interactMob(ItemStack stack, Item item) {
+            return ModHelper.fixShearingSnowGolem(stack);
         }
     }
 
@@ -1632,31 +1930,41 @@ public class ModMixins {
         abstract ItemCooldownManager getItemCooldownManager();
 
         @Inject(method = "disableShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getItemCooldownManager()Lnet/minecraft/entity/player/ItemCooldownManager;"))
-        private void disableSpeedrunnerShield(CallbackInfo callbackInfo) {
+        private void disableShield(CallbackInfo ci) {
             this.getItemCooldownManager().set(ModItems.SPEEDRUNNER_SHIELD, 80);
         }
 
         @Redirect(method = "damageShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private boolean allowSpeedrunnerShieldToWorkCorrectly(ItemStack stack, Item item) {
-            return stack.isOf(Items.SHIELD) || stack.isOf(ModItems.SPEEDRUNNER_SHIELD);
+        private boolean damageShield(ItemStack stack, Item item) {
+            return ModHelper.fixShields(stack);
+        }
+
+        @Inject(method = "takeShieldHit", at = @At("TAIL"))
+        private void takeShieldHit(LivingEntity attacker, CallbackInfo ci) {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                if (attacker instanceof GiantEntity) {
+                    this.getItemCooldownManager().set(Items.SHIELD, 200);
+                    this.getItemCooldownManager().set(ModItems.SPEEDRUNNER_SHIELD, 180);
+                    this.clearActiveItem();
+                    this.world.sendEntityStatus(this, (byte)30);
+                }
+            }
         }
 
         @Inject(method = "eatFood", at = @At("RETURN"))
-        private void makeGoldenFoodItemsClearPoison(World world, ItemStack stack, CallbackInfoReturnable callbackInfoReturnable) {
+        private void eatFood(World world, ItemStack stack, CallbackInfoReturnable cir) {
             boolean bl = stack.isOf(ModItems.SPEEDRUNNER_BULK);
             if (stack.isOf(Items.GOLDEN_CARROT) || stack.isOf(Items.GOLDEN_APPLE) || stack.isOf(Items.ENCHANTED_GOLDEN_APPLE) || stack.isOf(ModItems.SPEEDRUNNER_BULK)) {
                 this.removeStatusEffect(StatusEffects.POISON);
-            } else if (bl) {
-                this.heal(2.0F);
+                if (bl) {
+                    this.heal(2.0F);
+                }
             }
         }
 
         @Inject(method = "travel", at = @At("TAIL"))
-        private void makeSpeedrunnerBootsMakePlayerFasterInLavaOrWater(Vec3d movementInput, CallbackInfo callbackInfo) {
+        private void travel(Vec3d movementInput, CallbackInfo ci) {
             if (this.getEquippedStack(EquipmentSlot.FEET).isOf(ModItems.SPEEDRUNNER_BOOTS) || this.getEquippedStack(EquipmentSlot.FEET).isOf(ModItems.GOLDEN_SPEEDRUNNER_BOOTS)) {
-                if (MISC_OPTIONS.speedrunnerItemsGiveStatusEffects) {
-                    this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 0, 0, false, false, false));
-                }
                 FluidState fluidState = this.world.getFluidState(this.getBlockPos());
                 if (this.isInLava() && this.shouldSwimInFluids() && !this.canWalkOnFluid(fluidState.getFluid())) {
                     this.updateVelocity(0.025F, movementInput);
@@ -1675,15 +1983,6 @@ public class ModMixins {
                             livingEntity.sendEquipmentBreakStatus(EquipmentSlot.FEET);
                         });
                     }
-                }
-            }
-
-            if (this.getEquippedStack(EquipmentSlot.LEGS).isOf(ModItems.SPEEDRUNNER_LEGGINGS) && this.isTouchingWater() && this.isSwimming() && MISC_OPTIONS.speedrunnerItemsGiveStatusEffects || this.getEquippedStack(EquipmentSlot.LEGS).isOf(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS) && this.isTouchingWater() && this.isSwimming() && MISC_OPTIONS.speedrunnerItemsGiveStatusEffects) {
-                this.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 0, 0, false, false, false));
-                if (this.getRandom().nextFloat() < 0.04F) {
-                    this.getEquippedStack(EquipmentSlot.LEGS).damage(1, this, (livingEntity) -> {
-                        livingEntity.sendEquipmentBreakStatus(EquipmentSlot.LEGS);
-                    });
                 }
             }
         }
@@ -1737,7 +2036,12 @@ public class ModMixins {
 
                         entity.fallDistance = 0.0F;
                         if (!ifb) {
-                            entity.damage(DamageSource.FALL, 2.0F);
+                            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                                if (!serverPlayerEntity.isCreative() || !serverPlayerEntity.isSpectator()) {
+                                    ((ServerPlayerEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60, 0));
+                                }
+                            }
+                            entity.damage(DamageSource.FALL, ModHelper.getEnderPearlDamage());
                         }
                     }
                 } else if (entity != null) {
@@ -1770,8 +2074,8 @@ public class ModMixins {
                 if (!entity.isFireImmune()) {
                     Entity entity2 = this.getOwner();
                     int i = entity.getFireTicks();
-                    entity.setOnFireFor(3);
-                    boolean bl = entity.damage(DamageSource.fireball(this, entity2), 3.0F);
+                    entity.setOnFireFor(ModHelper.getSmallFireballEntityFireTicks());
+                    boolean bl = entity.damage(DamageSource.fireball(this, entity2), ModHelper.getSmallFireballDamageAmount());
                     if (!bl) {
                         entity.setFireTicks(i);
                     } else if (entity2 instanceof LivingEntity) {
@@ -1794,8 +2098,8 @@ public class ModMixins {
         public void setOnFireFromLava() {
             Entity entity = (Entity)(Object)this;
             if (!entity.isFireImmune()) {
-                entity.setOnFireFor(7);
-                if (entity.damage(DamageSource.LAVA, 2.0F)) {
+                entity.setOnFireFor(ModHelper.getLavaFireTicks());
+                if (entity.damage(DamageSource.LAVA, ModHelper.getLavaDamageAmount())) {
                     entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.world.random.nextFloat() * 0.4F);
                 }
             }
@@ -1824,6 +2128,7 @@ public class ModMixins {
         public void tick() {
             super.tick();
             Vec3d vec3d = this.getVelocity();
+            Explosion.DestructionType destructionType = this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) ? Explosion.DestructionType.DESTROY : Explosion.DestructionType.NONE;
             double d = this.getX() + vec3d.x;
             double e = this.getY() + vec3d.y;
             double f = this.getZ() + vec3d.z;
@@ -1861,10 +2166,12 @@ public class ModMixins {
             if (!this.world.isClient) {
                 this.setPosition(d, e, f);
                 ++this.lifespan;
-                if (this.lifespan > 40 && !this.world.isClient) {
+                if (this.lifespan > SpeedrunnerMod.MISC_OPTIONS.enderEyesLifespan && !this.world.isClient) {
                     this.discard();
                     this.world.spawnEntity(new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), this.getStack()));
-                    if (this.getStack().getItem() == Items.ENDER_EYE || this.getStack().getItem() == ModItems.ANNUL_EYE) {
+                    if (SpeedrunnerMod.OPTIONS.doomMode) {
+                        this.world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 3.0F, destructionType);
+                    } else if (this.getStack().getItem() == Items.ENDER_EYE || this.getStack().getItem() == ModItems.ANNUL_EYE) {
                         this.playSound(SoundEvents.ENTITY_ENDER_EYE_DEATH, 1.0F, 1.0F);
                     } else if (this.getStack().getItem() == ModItems.INFERNO_EYE) {
                         this.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1.0F, 1.0F);
@@ -1880,7 +2187,7 @@ public class ModMixins {
     public static class ItemEntityMixin {
 
         @Inject(method = "isFireImmune", at = @At("RETURN"))
-        public boolean makeFireproofsFireImmune(CallbackInfoReturnable info) {
+        public boolean isFireImmune(CallbackInfoReturnable cir) {
             ItemEntity item = (ItemEntity)(Object)this;
             ItemStack stack = item.getStack();
 
@@ -1888,7 +2195,7 @@ public class ModMixins {
                 return true;
             }
 
-            return info.getReturnValueZ();
+            return cir.getReturnValueZ();
         }
     }
 
@@ -1896,8 +2203,20 @@ public class ModMixins {
     public static class LivingEntityMixin {
 
         @Redirect(method = "getPreferredEquipmentSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 2))
-        private static boolean allowSpeedrunnerShieldToBePreferredInOffhand(ItemStack stack, Item item) {
+        private static boolean getPreferredEquipmentSlot(ItemStack stack, Item item) {
             return stack.isOf(Items.SHIELD) || stack.isOf(ModItems.SPEEDRUNNER_SHIELD);
+        }
+    }
+
+    @Mixin(TntEntity.class)
+    public abstract static class TntEntityMixin extends Entity {
+
+        public TntEntityMixin(EntityType<?> type, World world) {
+            super(type, world);
+        }
+
+        public boolean canExplosionDestroyBlock(Explosion explosion, BlockView world, BlockPos pos, BlockState state, float explosionPower) {
+            return !(this.world instanceof ServerWorld) || this.world.getRegistryKey() != World.END || !SpeedrunnerMod.OPTIONS.doomMode;
         }
     }
 
@@ -1942,42 +2261,81 @@ public class ModMixins {
         private static final FoodComponent APPLE, BAKED_POTATO, BEEF, BEETROOT, BREAD, CARROT, CHICKEN, CHORUS_FRUIT, COD, COOKED_BEEF, COOKED_CHICKEN, COOKED_COD, COOKED_MUTTON, COOKED_PORKCHOP, COOKED_RABBIT, COOKED_SALMON, COOKIE, DRIED_KELP, ENCHANTED_GOLDEN_APPLE, GOLDEN_APPLE, GOLDEN_CARROT, HONEY_BOTTLE, MELON_SLICE, MUTTON, POISONOUS_POTATO, PORKCHOP, POTATO, PUFFERFISH, PUMPKIN_PIE, RABBIT, ROTTEN_FLESH, SALMON, SPIDER_EYE, SWEET_BERRIES, GLOW_BERRIES, TROPICAL_FISH;
 
         static {
-            APPLE = new FoodComponent.Builder().hunger(4).saturationModifier(0.8F).build();
-            BAKED_POTATO = new FoodComponent.Builder().hunger(6).saturationModifier(0.9F).build();
-            BEEF = new FoodComponent.Builder().hunger(4).saturationModifier(0.7F).meat().build();
-            BEETROOT = new FoodComponent.Builder().hunger(2).saturationModifier(1.4F).build();
-            BREAD = new FoodComponent.Builder().hunger(5).saturationModifier(1.1F).build();
-            CARROT = new FoodComponent.Builder().hunger(3).saturationModifier(1.2F).build();
-            CHICKEN = new FoodComponent.Builder().hunger(2).saturationModifier(1.2F).build();
-            CHORUS_FRUIT = new FoodComponent.Builder().hunger(4).saturationModifier(0.6F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0F).alwaysEdible().build();
-            COD = new FoodComponent.Builder().hunger(2).saturationModifier(1.2F).build();
-            COOKED_BEEF = new FoodComponent.Builder().hunger(8).saturationModifier(0.9F).meat().build();
-            COOKED_CHICKEN = new FoodComponent.Builder().hunger(6).saturationModifier(0.9F).meat().build();
-            COOKED_COD = new FoodComponent.Builder().hunger(5).saturationModifier(1.1F).build();
-            COOKED_MUTTON = new FoodComponent.Builder().hunger(6).saturationModifier(0.9F).meat().build();
-            COOKED_PORKCHOP = new FoodComponent.Builder().hunger(8).saturationModifier(0.9F).meat().build();
-            COOKED_RABBIT = new FoodComponent.Builder().hunger(5).saturationModifier(1.1F).meat().build();
-            COOKED_SALMON = new FoodComponent.Builder().hunger(6).saturationModifier(0.9F).build();
-            COOKIE = new FoodComponent.Builder().hunger(2).saturationModifier(1.3F).build();
-            DRIED_KELP = new FoodComponent.Builder().hunger(1).saturationModifier(0.6F).snack().build();
-            ENCHANTED_GOLDEN_APPLE = new FoodComponent.Builder().hunger(4).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 600, 1), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3), 1.0F).alwaysEdible().build();
-            GOLDEN_APPLE = new FoodComponent.Builder().hunger(4).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEdible().build();
-            GOLDEN_CARROT = new FoodComponent.Builder().hunger(6).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F).build();
-            HONEY_BOTTLE = new FoodComponent.Builder().hunger(6).saturationModifier(0.5F).build();
-            MELON_SLICE = new FoodComponent.Builder().hunger(4).saturationModifier(1.2F).build();
-            MUTTON = new FoodComponent.Builder().hunger(2).saturationModifier(0.8F).meat().build();
-            POISONOUS_POTATO = new FoodComponent.Builder().hunger(2).saturationModifier(0.7F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 0.6F).build();
-            PORKCHOP = new FoodComponent.Builder().hunger(4).saturationModifier(0.4F).meat().build();
-            POTATO = new FoodComponent.Builder().hunger(1).saturationModifier(1.0F).build();
-            PUFFERFISH = new FoodComponent.Builder().hunger(1).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 1200, 3), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 2), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 300, 0), 1.0F).build();
-            PUMPKIN_PIE = new FoodComponent.Builder().hunger(8).saturationModifier(0.9F).build();
-            RABBIT = new FoodComponent.Builder().hunger(3).saturationModifier(0.9F).meat().build();
-            ROTTEN_FLESH = new FoodComponent.Builder().hunger(4).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 200, 0), 0.8F).meat().build();
-            SALMON = new FoodComponent.Builder().hunger(2).saturationModifier(1.4F).build();
-            SPIDER_EYE = new FoodComponent.Builder().hunger(2).saturationModifier(1.1F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 1.0F).build();
-            SWEET_BERRIES = new FoodComponent.Builder().hunger(4).saturationModifier(1.2F).build();
-            GLOW_BERRIES = new FoodComponent.Builder().hunger(2).saturationModifier(1.0F).build();
-            TROPICAL_FISH = new FoodComponent.Builder().hunger(2).saturationModifier(1.2F).build();
+            if (SpeedrunnerMod.MISC_OPTIONS.modifiedSaturationAndHungerValues) {
+                APPLE = new FoodComponent.Builder().hunger(4).saturationModifier(0.8F).build();
+                BAKED_POTATO = new FoodComponent.Builder().hunger(6).saturationModifier(0.9F).build();
+                BEEF = new FoodComponent.Builder().hunger(4).saturationModifier(0.7F).meat().build();
+                BEETROOT = new FoodComponent.Builder().hunger(2).saturationModifier(1.4F).build();
+                BREAD = new FoodComponent.Builder().hunger(5).saturationModifier(1.1F).build();
+                CARROT = new FoodComponent.Builder().hunger(3).saturationModifier(1.2F).build();
+                CHICKEN = new FoodComponent.Builder().hunger(2).saturationModifier(1.2F).build();
+                CHORUS_FRUIT = new FoodComponent.Builder().hunger(4).saturationModifier(0.6F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0F).alwaysEdible().build();
+                COD = new FoodComponent.Builder().hunger(2).saturationModifier(1.2F).build();
+                COOKED_BEEF = new FoodComponent.Builder().hunger(8).saturationModifier(0.9F).meat().build();
+                COOKED_CHICKEN = new FoodComponent.Builder().hunger(6).saturationModifier(0.9F).meat().build();
+                COOKED_COD = new FoodComponent.Builder().hunger(5).saturationModifier(1.1F).build();
+                COOKED_MUTTON = new FoodComponent.Builder().hunger(6).saturationModifier(0.9F).meat().build();
+                COOKED_PORKCHOP = new FoodComponent.Builder().hunger(8).saturationModifier(0.9F).meat().build();
+                COOKED_RABBIT = new FoodComponent.Builder().hunger(5).saturationModifier(1.1F).meat().build();
+                COOKED_SALMON = new FoodComponent.Builder().hunger(6).saturationModifier(0.9F).build();
+                COOKIE = new FoodComponent.Builder().hunger(2).saturationModifier(1.3F).build();
+                DRIED_KELP = new FoodComponent.Builder().hunger(1).saturationModifier(0.6F).snack().build();
+                ENCHANTED_GOLDEN_APPLE = new FoodComponent.Builder().hunger(4).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 600, 1), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3), 1.0F).alwaysEdible().build();
+                GOLDEN_APPLE = new FoodComponent.Builder().hunger(4).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEdible().build();
+                GOLDEN_CARROT = new FoodComponent.Builder().hunger(6).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F).build();
+                HONEY_BOTTLE = new FoodComponent.Builder().hunger(6).saturationModifier(0.5F).build();
+                MELON_SLICE = new FoodComponent.Builder().hunger(4).saturationModifier(1.2F).build();
+                MUTTON = new FoodComponent.Builder().hunger(2).saturationModifier(0.8F).meat().build();
+                POISONOUS_POTATO = new FoodComponent.Builder().hunger(2).saturationModifier(0.7F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 0.6F).build();
+                PORKCHOP = new FoodComponent.Builder().hunger(4).saturationModifier(0.4F).meat().build();
+                POTATO = new FoodComponent.Builder().hunger(1).saturationModifier(1.0F).build();
+                PUFFERFISH = new FoodComponent.Builder().hunger(1).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 1200, 3), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 2), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 300, 0), 1.0F).build();
+                PUMPKIN_PIE = new FoodComponent.Builder().hunger(8).saturationModifier(0.9F).build();
+                RABBIT = new FoodComponent.Builder().hunger(3).saturationModifier(0.9F).meat().build();
+                ROTTEN_FLESH = new FoodComponent.Builder().hunger(4).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 200, 0), 0.8F).meat().build();
+                SALMON = new FoodComponent.Builder().hunger(2).saturationModifier(1.4F).build();
+                SPIDER_EYE = new FoodComponent.Builder().hunger(2).saturationModifier(1.1F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 1.0F).build();
+                SWEET_BERRIES = new FoodComponent.Builder().hunger(4).saturationModifier(1.2F).build();
+                GLOW_BERRIES = new FoodComponent.Builder().hunger(2).saturationModifier(1.0F).build();
+                TROPICAL_FISH = new FoodComponent.Builder().hunger(2).saturationModifier(1.2F).build();
+            } else {
+                APPLE = new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).build();
+                BAKED_POTATO = new FoodComponent.Builder().hunger(5).saturationModifier(0.6F).build();
+                BEEF = new FoodComponent.Builder().hunger(3).saturationModifier(0.3F).meat().build();
+                BEETROOT = new FoodComponent.Builder().hunger(1).saturationModifier(0.6F).build();
+                BREAD = new FoodComponent.Builder().hunger(5).saturationModifier(0.6F).build();
+                CARROT = new FoodComponent.Builder().hunger(3).saturationModifier(0.6F).build();
+                CHICKEN = new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F).meat().build();
+                CHORUS_FRUIT = new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).alwaysEdible().build();
+                COD = new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build();
+                COOKED_BEEF = new FoodComponent.Builder().hunger(8).saturationModifier(0.8F).meat().build();
+                COOKED_CHICKEN = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).meat().build();
+                COOKED_COD = new FoodComponent.Builder().hunger(5).saturationModifier(0.6F).build();
+                COOKED_MUTTON = new FoodComponent.Builder().hunger(6).saturationModifier(0.8F).meat().build();
+                COOKED_PORKCHOP = new FoodComponent.Builder().hunger(8).saturationModifier(0.8F).meat().build();
+                COOKED_RABBIT = new FoodComponent.Builder().hunger(5).saturationModifier(0.6F).meat().build();
+                COOKED_SALMON = new FoodComponent.Builder().hunger(6).saturationModifier(0.8F).build();
+                COOKIE = new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build();
+                DRIED_KELP = new FoodComponent.Builder().hunger(1).saturationModifier(0.3F).snack().build();
+                ENCHANTED_GOLDEN_APPLE = new FoodComponent.Builder().hunger(4).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 400, 1), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3), 1.0F).alwaysEdible().build();
+                GOLDEN_APPLE = new FoodComponent.Builder().hunger(4).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEdible().build();
+                GOLDEN_CARROT = new FoodComponent.Builder().hunger(6).saturationModifier(1.2F).build();
+                HONEY_BOTTLE = new FoodComponent.Builder().hunger(6).saturationModifier(0.1F).build();
+                MELON_SLICE = new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).build();
+                MUTTON = new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).meat().build();
+                POISONOUS_POTATO = new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 0.6F).build();
+                PORKCHOP = new FoodComponent.Builder().hunger(3).saturationModifier(0.3F).meat().build();
+                POTATO = new FoodComponent.Builder().hunger(1).saturationModifier(0.3F).build();
+                PUFFERFISH = new FoodComponent.Builder().hunger(1).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 1200, 1), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 2), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 300, 0), 1.0F).build();
+                PUMPKIN_PIE = new FoodComponent.Builder().hunger(8).saturationModifier(0.3F).build();
+                RABBIT = new FoodComponent.Builder().hunger(3).saturationModifier(0.3F).meat().build();
+                ROTTEN_FLESH = new FoodComponent.Builder().hunger(4).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.8F).meat().build();
+                SALMON = new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build();
+                SPIDER_EYE = new FoodComponent.Builder().hunger(2).saturationModifier(0.8F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 1.0F).build();
+                SWEET_BERRIES = new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build();
+                GLOW_BERRIES = new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build();
+                TROPICAL_FISH = new FoodComponent.Builder().hunger(1).saturationModifier(0.1F).build();
+            }
         }
     }
 
@@ -2004,13 +2362,13 @@ public class ModMixins {
         @Shadow @Final
         private Identifier id;
 
-        @Inject(at = @At("HEAD"), method = "matches", cancellable = true)
-        private void cancelCraftingWithInfinityPearls(CraftingInventory craftingInventory, World world, CallbackInfoReturnable<Boolean> info) {
+        @Inject(method = "matches", at = @At("HEAD"), cancellable = true)
+        private void matches(CraftingInventory craftingInventory, World world, CallbackInfoReturnable<Boolean> cir) {
             if (id.toString().equals("minecraft:ender_eye") || id.toString().equals("speedrunnermod:inferno_eye") || id.toString().equals("speedrunnermod:annul_eye")) {
                 for (int i = 0; i < craftingInventory.size(); i++) {
                     ItemStack itemStack = craftingInventory.getStack(i);
                     if (itemStack.hasEnchantments()) {
-                        info.setReturnValue(false);
+                        cir.setReturnValue(false);
                     }
                 }
             }
@@ -2028,17 +2386,17 @@ public class ModMixins {
         private ServerStatHandler statHandler;
 
         @Inject(method = "<init>", at = @At("TAIL"))
-        private void icarusAndInfinityPearlMode(CallbackInfo info) throws CommandSyntaxException {
+        private void init(CallbackInfo info) throws CommandSyntaxException {
             if (this.statHandler.getStat(Stats.CUSTOM.getOrCreateStat(Stats.PLAY_TIME)) == 0) {
                 ItemStack item;
-                if (OPTIONS.iCarusMode) {
+                if (SpeedrunnerMod.OPTIONS.iCarusMode) {
                     item = this.itemStackFromString("minecraft:elytra{Unbreakable:1b}", 1);
                     ItemStack item2 = this.itemStackFromString("minecraft:firework_rocket{Fireworks:{Flight:3b}}", 64);
                     this.getInventory().armor.set(2, item);
                     this.getInventory().main.set(0, item2);
                 }
 
-                if (OPTIONS.infiniPearlMode) {
+                if (SpeedrunnerMod.OPTIONS.infiniPearlMode) {
                     item = new ItemStack(Items.ENDER_PEARL, 1);
                     item.addEnchantment(Enchantments.INFINITY, 1);
                     item.getOrCreateTag().putInt("HideFlags", 1);
@@ -2047,7 +2405,7 @@ public class ModMixins {
                     text.setStyle(text.getStyle().withItalic(false));
                     item.setCustomName(text);
 
-                    if (!OPTIONS.iCarusMode) {
+                    if (!SpeedrunnerMod.OPTIONS.iCarusMode) {
                         this.getInventory().main.set(0, item);
                     } else {
                         this.getInventory().main.set(1, item);
@@ -2108,7 +2466,7 @@ public class ModMixins {
         private static final int[] SNOWY_BIOMES;
 
         static {
-            if (MISC_OPTIONS.modifiedBiomeGeneration) {
+            if (SpeedrunnerMod.MISC_OPTIONS.makeBiomesMoreCommon) {
                 DRY_BIOMES = new int[]{2, 2, 2, 35, 35, 35, 36, 1, 1, 2, 35, 35, 1, 1, 2, 35, 2, 1, 35, 35, 2};
                 TEMPERATE_BIOMES = new int[]{4, 29, 2, 2, 2, 1, 1, 35, 35, 2, 35, 1};
                 COOL_BIOMES = new int[]{4, 5, 6, 1, 2, 2, 35};
@@ -2180,7 +2538,7 @@ public class ModMixins {
         @Overwrite
         public static Biome createTheEnd() {
             net.minecraft.world.biome.GenerationSettings.Builder builder;
-            if (WORLD_OPTIONS.getEndCitySpacing() <= 3 && WORLD_OPTIONS.getEndCitySeparation() <= 1) {
+            if (SpeedrunnerMod.WORLD_OPTIONS.getEndCitySpacing() <= 3 && SpeedrunnerMod.WORLD_OPTIONS.getEndCitySeparation() <= 1) {
                 builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.END).feature(GenerationStep.Feature.SURFACE_STRUCTURES, ConfiguredFeatures.END_SPIKE).structureFeature(ConfiguredStructureFeatures.END_CITY);
             } else {
                 builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.END).feature(GenerationStep.Feature.SURFACE_STRUCTURES, ConfiguredFeatures.END_SPIKE);
@@ -2274,7 +2632,12 @@ public class ModMixins {
          */
         @Overwrite
         public static Biome createNetherWastes() {
-            SpawnSettings spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 20, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 2, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 50, 2, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            SpawnSettings spawnSettings;
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 20, 1, 1)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 50, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 50, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 100, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 20, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 25, 1, 2)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.VINDICATOR, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.HOGLIN, 100, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            } else {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 20, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 2, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 50, 2, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            }
             net.minecraft.world.biome.GenerationSettings.Builder builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.NETHER).structureFeature(ConfiguredStructureFeatures.FORTRESS).structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT).carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRING_LAVA);
             DefaultBiomeFeatures.addDefaultMushrooms(builder);
             builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_OPEN).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_SOUL_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE_EXTRA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.BROWN_MUSHROOM_NETHER).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.RED_MUSHROOM_NETHER).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_MAGMA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_CLOSED);
@@ -2289,7 +2652,12 @@ public class ModMixins {
          */
         @Overwrite
         public static Biome createSoulSandValley() {
-            SpawnSettings spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 10, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 5, 4, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).spawnCost(EntityType.SKELETON, 0.7D, 0.15D).spawnCost(EntityType.GHAST, 0.7D, 0.15D).spawnCost(EntityType.ENDERMAN, 0.7D, 0.15D).spawnCost(EntityType.STRIDER, 0.7D, 0.15D).build();
+            SpawnSettings spawnSettings;
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 50, 5, 5)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.VINDICATOR, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 10, 4, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).spawnCost(EntityType.SKELETON, 0.7D, 0.15D).spawnCost(EntityType.GHAST, 0.7D, 0.15D).spawnCost(EntityType.ENDERMAN, 0.7D, 0.15D).spawnCost(EntityType.STRIDER, 0.7D, 0.15D).build();
+            } else {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 10, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 5, 4, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).spawnCost(EntityType.SKELETON, 0.7D, 0.15D).spawnCost(EntityType.GHAST, 0.7D, 0.15D).spawnCost(EntityType.ENDERMAN, 0.7D, 0.15D).spawnCost(EntityType.STRIDER, 0.7D, 0.15D).build();
+            }
             net.minecraft.world.biome.GenerationSettings.Builder builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.SOUL_SAND_VALLEY).structureFeature(ConfiguredStructureFeatures.FORTRESS).structureFeature(ConfiguredStructureFeatures.NETHER_FOSSIL).structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT).carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRING_LAVA).feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, ConfiguredFeatures.BASALT_PILLAR).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_OPEN).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE_EXTRA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_CRIMSON_ROOTS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_SOUL_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_MAGMA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_CLOSED).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_SOUL_SAND);
             DefaultBiomeFeatures.addNetherMineables(builder);
             return (new net.minecraft.world.biome.Biome.Builder()).precipitation(Biome.Precipitation.NONE).category(Biome.Category.NETHER).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(0.0F).effects((new net.minecraft.world.biome.BiomeEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(1787717).skyColor(getSkyColor(2.0F)).particleConfig(new BiomeParticleConfig(ParticleTypes.ASH, 0.00625F)).loopSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_LOOP).moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D)).additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, 0.0111D)).music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_SOUL_SAND_VALLEY)).build()).spawnSettings(spawnSettings).generationSettings(builder.build()).build();
@@ -2302,7 +2670,12 @@ public class ModMixins {
          */
         @Overwrite
         public static Biome createBasaltDeltas() {
-            SpawnSettings spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 25, 1, 1)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 25, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            SpawnSettings spawnSettings;
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 40, 1, 1)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.VINDICATOR, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 50, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 50, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            } else {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 25, 1, 1)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 25, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            }
             net.minecraft.world.biome.GenerationSettings.Builder builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.BASALT_DELTAS).carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE).structureFeature(ConfiguredStructureFeatures.FORTRESS).feature(GenerationStep.Feature.SURFACE_STRUCTURES, ConfiguredFeatures.DELTA).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRING_LAVA_DOUBLE).feature(GenerationStep.Feature.SURFACE_STRUCTURES, ConfiguredFeatures.SMALL_BASALT_COLUMNS).feature(GenerationStep.Feature.SURFACE_STRUCTURES, ConfiguredFeatures.LARGE_BASALT_COLUMNS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.BASALT_BLOBS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.BLACKSTONE_BLOBS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_DELTA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_SOUL_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE_EXTRA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.BROWN_MUSHROOM_NETHER).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.RED_MUSHROOM_NETHER).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_MAGMA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_CLOSED_DOUBLE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_GOLD_DELTAS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_QUARTZ_DELTAS);
             DefaultBiomeFeatures.addAncientDebris(builder);
             return (new net.minecraft.world.biome.Biome.Builder()).precipitation(Biome.Precipitation.NONE).category(Biome.Category.NETHER).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(0.0F).effects((new net.minecraft.world.biome.BiomeEffects.Builder()).waterColor(4159204).waterFogColor(4341314).fogColor(6840176).skyColor(getSkyColor(2.0F)).particleConfig(new BiomeParticleConfig(ParticleTypes.WHITE_ASH, 0.118093334F)).loopSound(SoundEvents.AMBIENT_BASALT_DELTAS_LOOP).moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0D)).additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111D)).music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_BASALT_DELTAS)).build()).spawnSettings(spawnSettings).generationSettings(builder.build()).build();
@@ -2315,7 +2688,12 @@ public class ModMixins {
          */
         @Overwrite
         public static Biome createCrimsonForest() {
-            SpawnSettings spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 1, 1, 2)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.HOGLIN, 6, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 9, 2, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            SpawnSettings spawnSettings;
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 1, 1, 2)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.HOGLIN, 50, 4, 6)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 25, 2, 6)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.VINDICATOR, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 50, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            } else {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 1, 1, 2)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.HOGLIN, 6, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 9, 2, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            }
             net.minecraft.world.biome.GenerationSettings.Builder builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.CRIMSON_FOREST).carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE).structureFeature(ConfiguredStructureFeatures.FORTRESS).structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRING_LAVA);
             DefaultBiomeFeatures.addDefaultMushrooms(builder);
             builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_OPEN).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE_EXTRA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_MAGMA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_CLOSED).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.WEEPING_VINES).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.CRIMSON_FUNGI).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.CRIMSON_FOREST_VEGETATION);
@@ -2330,7 +2708,12 @@ public class ModMixins {
          */
         @Overwrite
         public static Biome createWarpedForest() {
-            SpawnSettings spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 5, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 5, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).spawnCost(EntityType.ENDERMAN, 1.0D, 0.12D).build();
+            SpawnSettings spawnSettings;
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 25, 4, 6)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.HOGLIN, 50, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.VINDICATOR, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 50, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).spawnCost(EntityType.ENDERMAN, 1.0D, 0.12D).build();
+            } else {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 5, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 5, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).spawnCost(EntityType.ENDERMAN, 1.0D, 0.12D).build();
+            }
             net.minecraft.world.biome.GenerationSettings.Builder builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.WARPED_FOREST).structureFeature(ConfiguredStructureFeatures.FORTRESS).structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT).carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRING_LAVA);
             DefaultBiomeFeatures.addDefaultMushrooms(builder);
             builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_OPEN).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.PATCH_SOUL_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE_EXTRA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.GLOWSTONE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.ORE_MAGMA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.SPRING_CLOSED).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.WARPED_FUNGI).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.WARPED_FOREST_VEGETATION).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.NETHER_SPROUTS).feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.TWISTING_VINES);
@@ -2380,7 +2763,7 @@ public class ModMixins {
          */
         @Overwrite
         public int getDistance() {
-            return OPTIONS.makeStructuresMoreCommon ? 4 : this.distance;
+            return SpeedrunnerMod.OPTIONS.makeStructuresMoreCommon ? 4 : this.distance;
         }
 
         /**
@@ -2390,7 +2773,7 @@ public class ModMixins {
          */
         @Overwrite
         public int getCount() {
-            return OPTIONS.makeStructuresMoreCommon ? MISC_OPTIONS.getStrongholdCount() : this.count;
+            return SpeedrunnerMod.OPTIONS.makeStructuresMoreCommon ? SpeedrunnerMod.MISC_OPTIONS.getStrongholdCount() : this.count;
         }
     }
 
@@ -2401,8 +2784,8 @@ public class ModMixins {
         private static final ImmutableMap<Object, Object> DEFAULT_STRUCTURES;
 
         static {
-            if (OPTIONS.makeStructuresMoreCommon) {
-                DEFAULT_STRUCTURES = ImmutableMap.builder().put(StructureFeature.VILLAGE, new StructureConfig(WORLD_OPTIONS.getVillageSpacing(), WORLD_OPTIONS.getVillageSeparation(), 10387312)).put(StructureFeature.DESERT_PYRAMID, new StructureConfig(WORLD_OPTIONS.getDesertPyramidSpacing(), WORLD_OPTIONS.getDesertPyramidSeparation(), 14357617)).put(StructureFeature.IGLOO, new StructureConfig(WORLD_OPTIONS.getIglooSpacing(), WORLD_OPTIONS.getIglooSeparation(), 14357618)).put(StructureFeature.JUNGLE_PYRAMID, new StructureConfig(WORLD_OPTIONS.getJunglePyramidSpacing(), WORLD_OPTIONS.getJunglePyramidSeparation(), 14357619)).put(StructureFeature.SWAMP_HUT, new StructureConfig(WORLD_OPTIONS.getSwampHutSpacing(), WORLD_OPTIONS.getSwampHutSeparation(), 14357620)).put(StructureFeature.PILLAGER_OUTPOST, new StructureConfig(WORLD_OPTIONS.getPillagerOutpostSpacing(), WORLD_OPTIONS.getPillagerOutpostSeparation(), 165745296)).put(StructureFeature.STRONGHOLD, new StructureConfig(1, 0, 0)).put(StructureFeature.MONUMENT, new StructureConfig(WORLD_OPTIONS.getMonumentSpacing(), WORLD_OPTIONS.getMonumentSeparation(), 10387313)).put(StructureFeature.END_CITY, new StructureConfig(WORLD_OPTIONS.getEndCitySpacing(), WORLD_OPTIONS.getEndCitySeparation(), 10387313)).put(StructureFeature.MANSION, new StructureConfig(WORLD_OPTIONS.getMansionSpacing(), WORLD_OPTIONS.getMansionSeparation(), 10387319)).put(StructureFeature.BURIED_TREASURE, new StructureConfig(1, 0, 0)).put(StructureFeature.MINESHAFT, new StructureConfig(1, 0, 0)).put(StructureFeature.RUINED_PORTAL, new StructureConfig(WORLD_OPTIONS.getRuinedPortalSpacing(), WORLD_OPTIONS.getRuinedPortalSeparation(), 34222645)).put(StructureFeature.SHIPWRECK, new StructureConfig(WORLD_OPTIONS.getShipwreckSpacing(), WORLD_OPTIONS.getShipwreckSeparation(), 165745295)).put(StructureFeature.OCEAN_RUIN, new StructureConfig(WORLD_OPTIONS.getOceanRuinSpacing(), WORLD_OPTIONS.getOceanRuinSeparation(), 14357621)).put(StructureFeature.BASTION_REMNANT, new StructureConfig(WORLD_OPTIONS.getBastionSpacing(), WORLD_OPTIONS.getBastionSeparation(), 30084232)).put(StructureFeature.FORTRESS, new StructureConfig(WORLD_OPTIONS.getFortressSpacing(), WORLD_OPTIONS.getFortressSeparation(), 30084232)).put(StructureFeature.NETHER_FOSSIL, new StructureConfig(2, 1, 14357921)).build();
+            if (SpeedrunnerMod.OPTIONS.makeStructuresMoreCommon) {
+                DEFAULT_STRUCTURES = ImmutableMap.builder().put(StructureFeature.VILLAGE, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getVillageSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getVillageSeparation(), 10387312)).put(StructureFeature.DESERT_PYRAMID, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getDesertPyramidSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getDesertPyramidSeparation(), 14357617)).put(StructureFeature.IGLOO, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getIglooSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getIglooSeparation(), 14357618)).put(StructureFeature.JUNGLE_PYRAMID, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getJunglePyramidSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getJunglePyramidSeparation(), 14357619)).put(StructureFeature.SWAMP_HUT, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getSwampHutSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getSwampHutSeparation(), 14357620)).put(StructureFeature.PILLAGER_OUTPOST, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getPillagerOutpostSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getPillagerOutpostSeparation(), 165745296)).put(StructureFeature.STRONGHOLD, new StructureConfig(1, 0, 0)).put(StructureFeature.MONUMENT, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getMonumentSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getMonumentSeparation(), 10387313)).put(StructureFeature.END_CITY, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getEndCitySpacing(), SpeedrunnerMod.WORLD_OPTIONS.getEndCitySeparation(), 10387313)).put(StructureFeature.MANSION, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getMansionSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getMansionSeparation(), 10387319)).put(StructureFeature.BURIED_TREASURE, new StructureConfig(1, 0, 0)).put(StructureFeature.MINESHAFT, new StructureConfig(1, 0, 0)).put(StructureFeature.RUINED_PORTAL, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getRuinedPortalSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getRuinedPortalSeparation(), 34222645)).put(StructureFeature.SHIPWRECK, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getShipwreckSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getShipwreckSeparation(), 165745295)).put(StructureFeature.OCEAN_RUIN, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getOceanRuinSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getOceanRuinSeparation(), 14357621)).put(StructureFeature.BASTION_REMNANT, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getBastionSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getBastionSeparation(), 30084232)).put(StructureFeature.FORTRESS, new StructureConfig(SpeedrunnerMod.WORLD_OPTIONS.getFortressSpacing(), SpeedrunnerMod.WORLD_OPTIONS.getFortressSeparation(), 30084232)).put(StructureFeature.NETHER_FOSSIL, new StructureConfig(2, 1, 14357921)).build();
             } else {
                 DEFAULT_STRUCTURES = ImmutableMap.builder().put(StructureFeature.VILLAGE, new StructureConfig(32, 8, 10387312)).put(StructureFeature.DESERT_PYRAMID, new StructureConfig(32, 8, 14357617)).put(StructureFeature.IGLOO, new StructureConfig(32, 8, 14357618)).put(StructureFeature.JUNGLE_PYRAMID, new StructureConfig(32, 8, 14357619)).put(StructureFeature.SWAMP_HUT, new StructureConfig(32, 8, 14357620)).put(StructureFeature.PILLAGER_OUTPOST, new StructureConfig(32, 8, 165745296)).put(StructureFeature.STRONGHOLD, new StructureConfig(1, 0, 0)).put(StructureFeature.MONUMENT, new StructureConfig(32, 5, 10387313)).put(StructureFeature.END_CITY, new StructureConfig(20, 11, 10387313)).put(StructureFeature.MANSION, new StructureConfig(80, 20, 10387319)).put(StructureFeature.BURIED_TREASURE, new StructureConfig(1, 0, 0)).put(StructureFeature.MINESHAFT, new StructureConfig(1, 0, 0)).put(StructureFeature.RUINED_PORTAL, new StructureConfig(40, 15, 34222645)).put(StructureFeature.SHIPWRECK, new StructureConfig(24, 4, 165745295)).put(StructureFeature.OCEAN_RUIN, new StructureConfig(20, 8, 14357621)).put(StructureFeature.BASTION_REMNANT, new StructureConfig(27, 4, 30084232)).put(StructureFeature.FORTRESS, new StructureConfig(27, 4, 30084232)).put(StructureFeature.NETHER_FOSSIL, new StructureConfig(2, 1, 14357921)).build();
             }
@@ -2413,20 +2796,20 @@ public class ModMixins {
     public static class DefaultBiomeFeaturesMixin {
 
         @Inject(method = "addDefaultOres", at = @At("TAIL"))
-        private static void addModdedOresToOverorld(GenerationSettings.Builder builder, CallbackInfo callbackInfo) {
+        private static void addDefaultOres(GenerationSettings.Builder builder, CallbackInfo ci) {
             builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, ModConfiguredFeatures.SPEEDRUNNER_ORE);
             builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, ModConfiguredFeatures.IGNEOUS_ORE);
             builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, ModConfiguredFeatures.DIAMOND_ORE);
         }
 
         @Inject(method = "addNetherMineables", at = @At("TAIL"))
-        private static void addModdedOresToNether(GenerationSettings.Builder builder, CallbackInfo callbackInfo) {
+        private static void addNetherMineables(GenerationSettings.Builder builder, CallbackInfo ci) {
             builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ModConfiguredFeatures.NETHER_SPEEDRUNNER_ORE);
             builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ModConfiguredFeatures.NETHER_IGNEOUS_ORE);
         }
 
         @Inject(method = "addAncientDebris", at = @At("TAIL"))
-        private static void makeAncientDebrisMoreCommon(GenerationSettings.Builder builder, CallbackInfo callbackInfo) {
+        private static void addAncientDebris(GenerationSettings.Builder builder, CallbackInfo ci) {
             builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ModConfiguredFeatures.ANCIENT_DEBRIS);
         }
 
@@ -2437,14 +2820,71 @@ public class ModMixins {
          */
         @Overwrite
         public static void addMonsters(net.minecraft.world.biome.SpawnSettings.Builder builder, int zombieWeight, int zombieVillagerWeight, int skeletonWeight) {
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 100, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIE, zombieWeight, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIE_VILLAGER, zombieVillagerWeight, 1, 1));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, skeletonWeight, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CREEPER, 100, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SLIME, 100, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 50, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.WITCH, 5, 1, 1));
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIE, zombieWeight, 1, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIE_VILLAGER, zombieVillagerWeight, 1, 1));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, skeletonWeight, 1, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CREEPER, 100, 1, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.VINDICATOR, 100, 1, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 75, 1, 5));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.WITCH, 50, 1, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SLIME, 50, 1, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 25, 1, 4));
+            } else {
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 100, 4, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIE, zombieWeight, 4, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIE_VILLAGER, zombieVillagerWeight, 1, 1));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, skeletonWeight, 1, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CREEPER, 100, 2, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SLIME, 100, 1, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 50, 4, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.WITCH, 5, 1, 1));
+            }
+        }
+
+        /**
+         * Allows certain animals to spawn more often.
+         * @author Dilloney
+         * @reason.
+         */
+        @Overwrite
+        public static void addFarmAnimals(net.minecraft.world.biome.SpawnSettings.Builder builder) {
+            builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.COW, 16, 4, 8));
+            builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.PIG, 12, 4, 8));
+            builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.SHEEP, 8, 4, 8));
+            builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.CHICKEN, 8, 4, 8));
+        }
+
+        /**
+         * Allows dolphins to spawn more commonly.
+         * @author Dilloney
+         * @reason
+         */
+        @Overwrite
+        public static void addWarmOceanMobs(net.minecraft.world.biome.SpawnSettings.Builder builder, int squidWeight, int squidMinGroupSize) {
+            builder.spawn(SpawnGroup.WATER_CREATURE, new SpawnSettings.SpawnEntry(EntityType.SQUID, squidWeight, squidMinGroupSize, 4));
+            builder.spawn(SpawnGroup.WATER_AMBIENT, new SpawnSettings.SpawnEntry(EntityType.TROPICAL_FISH, 10, 4, 8));
+            builder.spawn(SpawnGroup.WATER_CREATURE, new SpawnSettings.SpawnEntry(EntityType.DOLPHIN, 15, 1, 2));
+            addBatsAndMonsters(builder);
+        }
+
+        /**
+         * Changes what mobs spawn in the end when Doom Mode is enabled.
+         * @author Dilloney
+         * @reason
+         */
+        @Overwrite
+        public static void addEndMobs(net.minecraft.world.biome.SpawnSettings.Builder builder) {
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 85, 1, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 75, 1, 4));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.VINDICATOR, 75, 1, 2));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.RAVAGER, 50, 1, 1));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.EVOKER, 50, 1, 1));
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIE, 25, 1, 1));
+            } else {
+                builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 10, 4, 4));
+            }
         }
     }
 
@@ -2455,7 +2895,11 @@ public class ModMixins {
         private static final Pool<SpawnSettings.SpawnEntry> MONSTER_SPAWNS;
 
         static {
-            MONSTER_SPAWNS = Pool.of(new SpawnSettings.SpawnEntry(EntityType.BLAZE, 15, 1, 4), new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 15, 2, 4), new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 3, 1, 2), new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 8, 1, 3), new SpawnSettings.SpawnEntry(EntityType.SKELETON, 1, 1, 3), new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 1, 1, 3));
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                MONSTER_SPAWNS = Pool.of(new SpawnSettings.SpawnEntry(EntityType.BLAZE, 50, 1, 4), new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 25, 1, 1), new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 75, 4, 12), new SpawnSettings.SpawnEntry(EntityType.SKELETON, 50, 5, 5), new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 20, 1, 4));
+            } else {
+                MONSTER_SPAWNS = Pool.of(new SpawnSettings.SpawnEntry(EntityType.BLAZE, 15, 1, 4), new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 15, 2, 4), new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 3, 1, 2), new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 8, 1, 3), new SpawnSettings.SpawnEntry(EntityType.SKELETON, 1, 1, 3), new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 1, 1, 3));
+            }
         }
     }
 
@@ -2602,19 +3046,31 @@ public class ModMixins {
         private static final StrongholdGenerator.PieceData[] ALL_PIECES;
 
         static {
-            ALL_PIECES = new StrongholdGenerator.PieceData[]{new StrongholdGenerator.PieceData(StrongholdGenerator.Corridor.class, 20, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.PrisonHall.class, 5, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.LeftTurn.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.RightTurn.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.SquareRoom.class, 20, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.Stairs.class, 10, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.SpiralStaircase.class, 10, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.FiveWayCrossing.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.ChestCorridor.class, 25, 2) {
-                public boolean canGenerate(int chainLength) {
-                    return super.canGenerate(chainLength) && chainLength > 4;
-                }
-            }, new StrongholdGenerator.PieceData(StrongholdGenerator.PortalRoom.class, 200, 3) {
-                public boolean canGenerate(int chainLength) {
-                    return super.canGenerate(chainLength) && chainLength > 2;
-                }
-            }, new StrongholdGenerator.PieceData(StrongholdGenerator.Library.class, 200, 2) {
-                public boolean canGenerate(int chainLength) {
-                    return super.canGenerate(chainLength);
-                }
-            }};
+            if (SpeedrunnerMod.OPTIONS.doomMode) {
+                ALL_PIECES = new StrongholdGenerator.PieceData[]{new StrongholdGenerator.PieceData(StrongholdGenerator.Corridor.class, 25, 10), new StrongholdGenerator.PieceData(StrongholdGenerator.PrisonHall.class, 50, 10), new StrongholdGenerator.PieceData(StrongholdGenerator.LeftTurn.class, 25, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.RightTurn.class, 25, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.SquareRoom.class, 75, 10), new StrongholdGenerator.PieceData(StrongholdGenerator.Stairs.class, 50, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.SpiralStaircase.class, 50, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.FiveWayCrossing.class, 50, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.ChestCorridor.class, 25, 5), new StrongholdGenerator.PieceData(StrongholdGenerator.Library.class, 100, 6) {
+                    public boolean canGenerate(int chainLength) {
+                        return super.canGenerate(chainLength) && chainLength > 3;
+                    }
+                }, new StrongholdGenerator.PieceData(StrongholdGenerator.PortalRoom.class, 20, 1) {
+                    public boolean canGenerate(int chainLength) {
+                        return super.canGenerate(chainLength) && chainLength > 5;
+                    }
+                }};
+            } else {
+                ALL_PIECES = new StrongholdGenerator.PieceData[]{new StrongholdGenerator.PieceData(StrongholdGenerator.Corridor.class, 20, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.PrisonHall.class, 5, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.LeftTurn.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.RightTurn.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.SquareRoom.class, 20, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.Stairs.class, 10, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.SpiralStaircase.class, 10, 1), new StrongholdGenerator.PieceData(StrongholdGenerator.FiveWayCrossing.class, 10, 2), new StrongholdGenerator.PieceData(StrongholdGenerator.ChestCorridor.class, 25, 2) {
+                    public boolean canGenerate(int chainLength) {
+                        return super.canGenerate(chainLength) && chainLength > 4;
+                    }
+                }, new StrongholdGenerator.PieceData(StrongholdGenerator.PortalRoom.class, 200, 3) {
+                    public boolean canGenerate(int chainLength) {
+                        return super.canGenerate(chainLength) && chainLength > 2;
+                    }
+                }, new StrongholdGenerator.PieceData(StrongholdGenerator.Library.class, 200, 2) {
+                    public boolean canGenerate(int chainLength) {
+                        return super.canGenerate(chainLength);
+                    }
+                }};
+            }
         }
 
         @Mixin(StrongholdGenerator.PortalRoom.class)
@@ -2679,7 +3135,7 @@ public class ModMixins {
                 boolean[] bls = new boolean[12];
 
                 for (int m = 0; m < bls.length; ++m) {
-                    bls[m] = random.nextFloat() > 0.7F;
+                    bls[m] = random.nextFloat() > ModHelper.getEndPortalFilledWithEyeChance();
                     bl &= bls[m];
                 }
 
