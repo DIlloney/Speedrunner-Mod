@@ -1,4 +1,4 @@
-package com.dilloney.speedrunnermod.option;
+package net.dilloney.speedrunnermod.option;
 
 public class ModOptions {
 
@@ -266,11 +266,11 @@ public class ModOptions {
 
     public static class MiscOptions {
 
-        public boolean modifiedBiomeGeneration = true;
+        public boolean makeBiomesMoreCommon = true;
+        public boolean modifiedSaturationAndHungerValues = true;
         public int strongholdCount = 128;
         public boolean killGhastUponFireball = false;
-        public boolean speedrunnerItemsGiveStatusEffects = true;
-        public boolean allowEntitiesToUseSpeedrunnerBowAndCrossbow = false;
+        public int enderEyesLifespan = 80;
 
         public int getStrongholdCount() {
             return this.strongholdCount;
@@ -278,6 +278,14 @@ public class ModOptions {
 
         public void setStrongholdCount(int strongholdCount) {
             this.strongholdCount = strongholdCount;
+        }
+
+        public int getEnderEyesLifespan() {
+            return enderEyesLifespan;
+        }
+
+        public void setEnderEyesLifespan(int enderEyesLifespan) {
+            this.enderEyesLifespan = enderEyesLifespan;
         }
     }
 }
