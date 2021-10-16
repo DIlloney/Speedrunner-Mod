@@ -1,6 +1,5 @@
-package com.dilloney.speedrunnermod.item;
+package net.dilloney.speedrunnermod.item;
 
-import com.dilloney.speedrunnermod.block.ModBlocks;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -10,15 +9,16 @@ public class ModItemGroup {
 
     public static final ItemGroup SPEEDRUNNER_MOD_ITEM_GROUP = FabricItemGroupBuilder.create(
             new Identifier("speedrunnermod", "speedrunner_mod_item_group"))
-            .icon(() -> new ItemStack(ModBlocks.SPEEDRUNNER_BLOCK_ITEM))
+            .icon(() -> new ItemStack(ModItems.SPEEDRUNNER_BLOCK))
             .appendItems(itemStacks -> {
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_INGOT));
                 itemStacks.add(new ItemStack(ModItems.RAW_SPEEDRUNNER));
+                itemStacks.add(new ItemStack(ModItems.RAW_SPEEDRUNNER_BLOCK));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_NUGGET));
-                itemStacks.add(new ItemStack(ModBlocks.SPEEDRUNNER_BLOCK_ITEM));
-                itemStacks.add(new ItemStack(ModBlocks.SPEEDRUNNER_ORE_BLOCK_ITEM));
-                itemStacks.add(new ItemStack(ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE_BLOCK_ITEM));
-                itemStacks.add(new ItemStack(ModBlocks.NETHER_SPEEDRUNNER_ORE_BLOCK_ITEM));
+                itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_BLOCK));
+                itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_ORE));
+                itemStacks.add(new ItemStack(ModItems.DEEPSLATE_SPEEDRUNNER_ORE));
+                itemStacks.add(new ItemStack(ModItems.NETHER_SPEEDRUNNER_ORE));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_SWORD));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_SHOVEL));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_PICKAXE));
@@ -36,9 +36,9 @@ public class ModItemGroup {
                 itemStacks.add(new ItemStack(ModItems.INFERNO_EYE));
                 itemStacks.add(new ItemStack(ModItems.ANNUL_EYE));
                 itemStacks.add(new ItemStack(ModItems.IGNEOUS_ROCK));
-                itemStacks.add(new ItemStack(ModBlocks.IGNEOUS_ORE_BLOCK_ITEM));
-                itemStacks.add(new ItemStack(ModBlocks.DEEPSLATE_IGNEOUS_ORE_BLOCK_ITEM));
-                itemStacks.add(new ItemStack(ModBlocks.NETHER_IGNEOUS_ORE_BLOCK_ITEM));
+                itemStacks.add(new ItemStack(ModItems.IGNEOUS_ORE));
+                itemStacks.add(new ItemStack(ModItems.DEEPSLATE_IGNEOUS_ORE));
+                itemStacks.add(new ItemStack(ModItems.NETHER_IGNEOUS_ORE));
                 itemStacks.add(new ItemStack(ModItems.PIGLIN_PORK));
                 itemStacks.add(new ItemStack(ModItems.COOKED_PIGLIN_PORK));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_BULK));
