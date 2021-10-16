@@ -1,15 +1,15 @@
-package com.dilloney.speedrunnermod;
+package net.dilloney.speedrunnermod;
 
-import com.dilloney.speedrunnermod.option.ModOptions;
-import com.dilloney.speedrunnermod.option.OptionsFileManager;
-import com.dilloney.speedrunnermod.util.ModRegistry;
+import net.dilloney.speedrunnermod.option.ModOptions;
+import net.dilloney.speedrunnermod.option.OptionsFileManager;
+import net.dilloney.speedrunnermod.util.ModRegistry;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class SpeedrunnerMod implements ModInitializer {
 
-    private static final String MOD_VERSION = "v1.3.2";
+    private static final String MOD_VERSION = "v1.3.3";
     private static final String MINECRAFT_VERSION = "1.17.1";
     public static final Logger LOGGER = LogManager.getLogger();
     public static ModOptions OPTIONS = OptionsFileManager.getMain();
@@ -20,7 +20,6 @@ public class SpeedrunnerMod implements ModInitializer {
         ModRegistry.loadOptions();
         ModRegistry.loadItems();
         ModRegistry.loadBlocks();
-        ModRegistry.loadBlockItems();
         ModRegistry.loadConfiguredFeatures();
         ModRegistry.loadItemTags();
         ModRegistry.loadBlockTags();
