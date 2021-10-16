@@ -1,14 +1,14 @@
-package com.dilloney.speedrunnermod.util;
+package net.dilloney.speedrunnermod.util;
 
-import com.dilloney.speedrunnermod.block.ModBlocks;
-import com.dilloney.speedrunnermod.client.render.SpeedrunnerShieldRenderer;
-import com.dilloney.speedrunnermod.item.ModItems;
-import com.dilloney.speedrunnermod.item.SpeedrunnerCrossbowItem;
-import com.dilloney.speedrunnermod.option.OptionsFileManager;
-import com.dilloney.speedrunnermod.recipe.SpeedrunnerShieldDecorationRecipe;
-import com.dilloney.speedrunnermod.tag.ModBlockTags;
-import com.dilloney.speedrunnermod.tag.ModItemTags;
-import com.dilloney.speedrunnermod.world.gen.feature.ModConfiguredFeatures;
+import net.dilloney.speedrunnermod.block.ModBlocks;
+import net.dilloney.speedrunnermod.client.render.SpeedrunnerShieldRenderer;
+import net.dilloney.speedrunnermod.item.ModItems;
+import net.dilloney.speedrunnermod.item.SpeedrunnerCrossbowItem;
+import net.dilloney.speedrunnermod.option.OptionsFileManager;
+import net.dilloney.speedrunnermod.recipe.SpeedrunnerShieldDecorationRecipe;
+import net.dilloney.speedrunnermod.tag.ModBlockTags;
+import net.dilloney.speedrunnermod.tag.ModItemTags;
+import net.dilloney.speedrunnermod.world.gen.feature.ModConfiguredFeatures;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
@@ -64,6 +64,14 @@ public class ModRegistry {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "cooked_flesh"), ModItems.COOKED_FLESH);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "inferno_eye"), ModItems.INFERNO_EYE);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "annul_eye"), ModItems.ANNUL_EYE);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_block"), ModItems.SPEEDRUNNER_BLOCK);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "raw_speedrunner_block"), ModItems.RAW_SPEEDRUNNER_BLOCK);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_ore"), ModItems.SPEEDRUNNER_ORE);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "deepslate_speedrunner_ore"), ModItems.DEEPSLATE_SPEEDRUNNER_ORE);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "nether_speedrunner_ore"), ModItems.NETHER_SPEEDRUNNER_ORE);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "igneous_ore"), ModItems.IGNEOUS_ORE);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "deepslate_igneous_ore"), ModItems.DEEPSLATE_IGNEOUS_ORE);
+        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "nether_igneous_ore"), ModItems.NETHER_IGNEOUS_ORE);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "andesite_sword"), ModItems.ANDESITE_SWORD);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "andesite_shovel"), ModItems.ANDESITE_SHOVEL);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "andesite_pickaxe"), ModItems.ANDESITE_PICKAXE);
@@ -88,22 +96,13 @@ public class ModRegistry {
 
     public static void loadBlocks() {
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "speedrunner_block"), ModBlocks.SPEEDRUNNER_BLOCK);
+        Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "raw_speedrunner_block"), ModBlocks.RAW_SPEEDRUNNER_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "speedrunner_ore"), ModBlocks.SPEEDRUNNER_ORE);
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "deepslate_speedrunner_ore"), ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE);
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "nether_speedrunner_ore"), ModBlocks.NETHER_SPEEDRUNNER_ORE);
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "igneous_ore"), ModBlocks.IGNEOUS_ORE);
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "deepslate_igneous_ore"), ModBlocks.DEEPSLATE_IGNEOUS_ORE);
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "nether_igneous_ore"), ModBlocks.NETHER_IGNEOUS_ORE);
-    }
-
-    public static void loadBlockItems() {
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_block"), ModBlocks.SPEEDRUNNER_BLOCK_ITEM);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_ore"), ModBlocks.SPEEDRUNNER_ORE_BLOCK_ITEM);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "deepslate_speedrunner_ore"), ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE_BLOCK_ITEM);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "nether_speedrunner_ore"), ModBlocks.NETHER_SPEEDRUNNER_ORE_BLOCK_ITEM);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "igneous_ore"), ModBlocks.IGNEOUS_ORE_BLOCK_ITEM);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "deepslate_igneous_ore"), ModBlocks.DEEPSLATE_IGNEOUS_ORE_BLOCK_ITEM);
-        Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "nether_igneous_ore"), ModBlocks.NETHER_IGNEOUS_ORE_BLOCK_ITEM);
     }
 
     public static void loadConfiguredFeatures() {
