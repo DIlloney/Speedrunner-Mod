@@ -1,12 +1,14 @@
-package com.dilloney.speedrunnermod.mixin;
+package net.dilloney.speedrunnermod.mixin;
 
-import com.dilloney.speedrunnermod.SpeedrunnerModClient;
-import com.dilloney.speedrunnermod.client.ModMenuScreen;
-import com.dilloney.speedrunnermod.item.ModItems;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.dilloney.speedrunnermod.SpeedrunnerMod;
+import net.dilloney.speedrunnermod.SpeedrunnerModClient;
+import net.dilloney.speedrunnermod.client.ModMenuScreen;
+import net.dilloney.speedrunnermod.item.ModItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.hud.DebugHud;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -47,7 +49,6 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static com.dilloney.speedrunnermod.SpeedrunnerMod.OPTIONS;
 import static java.lang.Math.abs;
 
 /**
@@ -74,7 +75,7 @@ public class ModMixinsClient {
         }
 
         @Inject(method = "openScreen", at = @At("HEAD"))
-        private void changeMaxBrightnessOptionSodium(Screen screen, CallbackInfo info) {
+        private void openScreen(Screen screen, CallbackInfo info) {
             if (screen != null && screen.getClass().getSimpleName().equals("SodiumOptionsGUI")) {
                 try {
                     List<?> optionPages = (List<?>) get(screen, "me.jellysquid.mods.sodium.client.gui.SodiumOptionsGUI", "pages");
@@ -112,10 +113,20 @@ public class ModMixinsClient {
         }
 
         @Inject(method = "init", at = @At("TAIL"))
-        private void addSpeedrunnerModOptionsScreen(CallbackInfo callbackInfo) {
+        private void init(CallbackInfo callbackInfo) {
             this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, this.height / 6 + 144 - 6, 310, 20, new TranslatableText("speedrunnermod.title"), (button) -> {
                 this.client.openScreen(new ModMenuScreen(this));
             }));
+        }
+    }
+
+    @Mixin(DebugHud.class)
+    public static class DebugHudMixin {
+
+        @Inject(method = "getRightText", at = @At("RETURN"), cancellable = true)
+        private void getRightText(CallbackInfoReturnable<List<String>> ci) {
+            List<String> returnValue = (List<String>)ci.getReturnValue();
+            returnValue.add("Speedrunner Mod v1.3.3 on 1.16.5");
         }
     }
 
@@ -123,7 +134,7 @@ public class ModMixinsClient {
     public static class AbstractClientPlayerEntityMixin {
 
         @Redirect(method = "getSpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private boolean zoomFOVWhenUsingSpeedrunnerBow(ItemStack stack, Item item) {
+        private boolean getSpeed(ItemStack stack, Item item) {
             return stack.isOf(Items.BOW) || stack.isOf(ModItems.SPEEDRUNNER_BOW);
         }
     }
@@ -132,7 +143,7 @@ public class ModMixinsClient {
     public static class PlayerEntityRendererMixin {
 
         @Inject(method = "getArmPose", at = @At("HEAD"), cancellable = true)
-        private static void renderSpeedrunnerCrossbowCorrectlyInThirdPerson(AbstractClientPlayerEntity abstractClientPlayerEntity, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
+        private static void getArmPose(AbstractClientPlayerEntity abstractClientPlayerEntity, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
             ItemStack stack = abstractClientPlayerEntity.getStackInHand(hand);
             if (!abstractClientPlayerEntity.handSwinging && stack.isOf(Items.CROSSBOW) && CrossbowItem.isCharged(stack) || !abstractClientPlayerEntity.handSwinging && stack.isOf(ModItems.SPEEDRUNNER_CROSSBOW) && CrossbowItem.isCharged(stack)) {
                 cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
@@ -144,22 +155,22 @@ public class ModMixinsClient {
     public static class HeldItemRendererMixin {
 
         @Redirect(method = "getHandRenderType", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private static boolean renderSpeedrunnerBowsAndCrossbowsCorrectly(ItemStack stack, Item item, ClientPlayerEntity player) {
+        private static boolean getHandRenderType(ItemStack stack, Item item, ClientPlayerEntity player) {
             return stack.isOf(Items.BOW) || stack.isOf(ModItems.SPEEDRUNNER_BOW) || stack.isOf(Items.CROSSBOW) || stack.isOf(ModItems.SPEEDRUNNER_CROSSBOW);
         }
 
         @Redirect(method = "getUsingItemHandRenderType", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private static boolean renderSpeedrunnerBowsAndCrossbowsCorrectly(ItemStack stack, Item item) {
+        private static boolean getUsingItemHandRenderType(ItemStack stack, Item item) {
             return stack.isOf(Items.BOW) || stack.isOf(ModItems.SPEEDRUNNER_BOW) || stack.isOf(Items.CROSSBOW) || stack.isOf(ModItems.SPEEDRUNNER_CROSSBOW);
         }
 
         @Redirect(method = "isChargedCrossbow", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private static boolean addSpeedrunnerCrossbowToIsChargedCrossbow(ItemStack stack, Item item) {
+        private static boolean isChargedCrossbow(ItemStack stack, Item item) {
             return stack.isOf(Items.CROSSBOW) && CrossbowItem.isCharged(stack) || stack.isOf(ModItems.SPEEDRUNNER_CROSSBOW) && CrossbowItem.isCharged(stack);
         }
 
         @Redirect(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 1))
-        private boolean renderSpeedrunnerCrossbowCorrectlyInFirstPerson(ItemStack stack, Item item) {
+        private boolean renderFirstPersonItem(ItemStack stack, Item item) {
             return stack.isOf(Items.CROSSBOW) || stack.isOf(ModItems.SPEEDRUNNER_CROSSBOW);
         }
     }
@@ -174,7 +185,7 @@ public class ModMixinsClient {
         double min, max;
 
         @Inject(method = "<init>", at = @At("RETURN"))
-        private void changeMaxBrightnessOption(String key, double min, double max, float step, Function<GameOptions, Double> getter, BiConsumer<GameOptions, Double> setter, BiFunction<GameOptions, DoubleOption, Text> displayStringGetter, Function<MinecraftClient, List<OrderedText>> function, CallbackInfo info) {
+        private void init(String key, double min, double max, float step, Function<GameOptions, Double> getter, BiConsumer<GameOptions, Double> setter, BiFunction<GameOptions, DoubleOption, Text> displayStringGetter, Function<MinecraftClient, List<OrderedText>> function, CallbackInfo info) {
             if (key.equals("options.gamma")) {
                 this.min = SpeedrunnerModClient.minBrightness;
                 this.max = SpeedrunnerModClient.maxBrightness;
@@ -247,7 +258,7 @@ public class ModMixinsClient {
                     }
                 } else if (thickFog) {
                     y = viewDistance * 0.05F;
-                    if (!OPTIONS.fog) {
+                    if (!SpeedrunnerMod.OPTIONS.fog) {
                         ab = 1024;
                     } else {
                         ab = Math.min(viewDistance, 192.0F) * 0.5F;
@@ -257,7 +268,7 @@ public class ModMixinsClient {
                     ab = viewDistance;
                 } else {
                     y = viewDistance * 0.75F;
-                    if (!OPTIONS.fog) {
+                    if (!SpeedrunnerMod.OPTIONS.fog) {
                         ab = 1024;
                     } else {
                         ab = viewDistance;
