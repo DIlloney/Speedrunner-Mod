@@ -1,0 +1,23 @@
+accessWidener v1 named
+
+accessible class net/minecraft/entity/passive/DolphinEntity$SwimWithPlayerGoal
+accessible class net/minecraft/entity/mob/BlazeEntity$ShootFireballGoal
+accessible class net/minecraft/entity/mob/GhastEntity$ShootFireballGoal
+accessible class net/minecraft/entity/mob/SilverfishEntity$CallForHelpGoal
+accessible class net/minecraft/structure/NetherFortressGenerator$Piece
+accessible class net/minecraft/structure/NetherFortressGenerator$PieceData
+accessible class net/minecraft/structure/StrongholdGenerator$Piece
+accessible class net/minecraft/structure/StrongholdGenerator$PieceData
+accessible class net/minecraft/village/TradeOffers$EnchantBookFactory
+
+accessible method net/minecraft/item/PickaxeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
+accessible method net/minecraft/item/AxeItem <init> (Lnet/minecraft/item/ToolMaterial;FFLnet/minecraft/item/Item$Settings;)V
+accessible method net/minecraft/item/HoeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
+accessible method net/minecraft/entity/mob/BlazeEntity setFireActive (Z)V
+accessible method net/minecraft/entity/projectile/ProjectileEntity updateRotation (FF)F
+accessible method net/minecraft/world/gen/feature/RuinedPortalFeature method_27211 (Ljava/util/Random;Lnet/minecraft/world/gen/chunk/ChunkGenerator;Lnet/minecraft/structure/RuinedPortalStructurePiece$VerticalPlacement;ZIILnet/minecraft/util/math/BlockBox;)I
+accessible method net/minecraft/world/gen/feature/RuinedPortalFeature method_27209 (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/biome/Biome;)Z
+
+accessible field net/minecraft/structure/StrongholdGenerator STONE_BRICK_RANDOMIZER Lnet/minecraft/structure/StrongholdGenerator$StoneBrickRandomizer;
+accessible field net/minecraft/world/gen/feature/RuinedPortalFeature COMMON_PORTAL_STRUCTURE_IDS [Ljava/lang/String;
+accessible field net/minecraft/world/gen/feature/RuinedPortalFeature RARE_PORTAL_STRUCTURE_IDS [Ljava/lang/String;
