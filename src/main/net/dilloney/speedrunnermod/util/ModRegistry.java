@@ -33,10 +33,6 @@ import java.io.File;
 
 public class ModRegistry {
 
-    public static void loadOptions() {
-        OptionsFileManager.loadAll();
-    }
-
     public static void loadItems() {
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_ingot"), ModItems.SPEEDRUNNER_INGOT);
         Registry.register(Registry.ITEM, new Identifier("speedrunnermod", "speedrunner_nugget"), ModItems.SPEEDRUNNER_NUGGET);
@@ -181,6 +177,11 @@ public class ModRegistry {
         UniqueItemRegistry.TNT_BLOCK_IGNITERS.addItemToRegistry(ModItems.SPEEDRUNNER_FLINT_AND_STEEL);
         UniqueItemRegistry.TNT_BLOCK_IGNITERS.addItemToRegistry(Items.FLINT_AND_STEEL);
         UniqueItemRegistry.TNT_BLOCK_IGNITERS.addItemToRegistry(Items.FIRE_CHARGE);
+    }
+
+    public static void loadOptions() {
+        OptionsFileManager.saveWorld();
+        OptionsFileManager.loadAll();
     }
 
     @Environment(EnvType.CLIENT)
