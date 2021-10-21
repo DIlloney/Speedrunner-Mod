@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "net.dilloney.speedrunnermod.mixin",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ModMixins$AbstractBlockStateMixin",
     "ModMixins$AbstractFireBlockMixin",
@@ -65,7 +65,6 @@
     "ModMixins$CrossbowItemMixin",
     "ModMixins$ShapelessRecipeMixin",
     "ModMixins$ServerPlayerEntityMixin",
-    "ModMixins$ServerPlayerEntityMixin$SeenCreditsAccessor",
     "ModMixins$EnchantBookFactoryMixin",
     "ModMixins$SetBaseBiomesLayerMixin",
     "ModMixins$DefaultBiomeCreatorMixin",
@@ -82,14 +81,16 @@
     "ModMixins$MobSpawnerLogicMixin"
   ],
   "client": [
-    "ModMixinsClient$MinecraftClientMixin",
-    "ModMixinsClient$MinecraftClientMixin$GameOptionsAccessor",
-    "ModMixinsClient$OptionsScreenMixin",
+    "client.gui.screen.options.OptionsScreenMixin",
+    "ModMixinsClient$DebugHudMixin",
     "ModMixinsClient$AbstractClientPlayerEntityMixin",
     "ModMixinsClient$PlayerEntityRendererMixin",
     "ModMixinsClient$HeldItemRendererMixin",
+    "ModMixinsClient$BackgroundRendererMixin",
+    "ModMixinsClient$MinecraftClientMixin",
     "ModMixinsClient$DoubleOptionMixin",
-    "ModMixinsClient$BackgroundRendererMixin"
+    "ModMixinsClient$GameOptionsAccessor",
+    "ModMixinsClient$SeenCreditsAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
