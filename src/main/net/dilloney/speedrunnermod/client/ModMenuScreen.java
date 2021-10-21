@@ -29,8 +29,16 @@ public class ModMenuScreen extends Screen {
         this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, 40, 150, 20, new TranslatableText("speedrunnermod.options.title"), (buttonWidget) -> {
             this.client.openScreen(ModOptionsScreen.openScreen().build());
         }));
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, 40, 150, 20, new TranslatableText("speedrunnermod.miscellaneous.title"), (buttonWidget) -> {
-            this.client.openScreen(new MiscellaneousScreen(this));
+        ButtonWidget leaderboards = this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, 40, 150, 20, new TranslatableText("speedrunnermod.leaderboards.title"), (buttonWidget) -> {
+            this.client.openScreen(this.parent);
+        }, new TooltipSupplier() {
+            public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
+                ModMenuScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.leaderboards.tooltip"), mouseX, mouseY);
+            }
+
+            public void supply(Consumer<Text> consumer) {
+                consumer.accept(new TranslatableText("speedrunnermod.leaderboards.tooltip"));
+            }
         }));
         ButtonWidget structure_settings = this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, 65, 150, 20, new TranslatableText("speedrunnermod.structure_settings.title"), (buttonWidget) -> {
             this.client.openScreen(StructureOptionsScreen.openScreen().build());
@@ -47,20 +55,18 @@ public class ModMenuScreen extends Screen {
                 }
             }
         }));
-        structure_settings.active = SpeedrunnerMod.OPTIONS.makeStructuresMoreCommon;
-        ButtonWidget leaderboards = this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, 65, 150, 20, new TranslatableText("speedrunnermod.leaderboards.title"), (buttonWidget) -> {
-            this.client.openScreen(this.parent);
-        }, new TooltipSupplier() {
-            public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
-                ModMenuScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.leaderboards.tooltip"), mouseX, mouseY);
-            }
-
-            public void supply(Consumer<Text> consumer) {
-                consumer.accept(new TranslatableText("speedrunnermod.leaderboards.tooltip"));
-            }
-        }));
         leaderboards.active = false;
-        ButtonWidget timer = this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, 90, 150, 20, new TranslatableText("speedrunnermod.timer.title"), (buttonWidget) -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, 65, 150, 20, new TranslatableText("speedrunnermod.miscellaneous.title"), (buttonWidget) -> {
+            this.client.openScreen(new MiscellaneousScreen(this));
+        }));
+        structure_settings.active = SpeedrunnerMod.OPTIONS.makeStructuresMoreCommon;
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, 90, 150, 20, new TranslatableText("speedrunnermod.resources.title"), (buttonWidget) -> {
+            this.client.openScreen(new ResourcesScreen(this));
+        }));
+        this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, 90, 150, 20, new TranslatableText("speedrunnermod.socials.title"), (buttonWidget) -> {
+            this.client.openScreen(new SocialsScreen(this));
+        }));
+        ButtonWidget timer = this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, 115, 150, 20, new TranslatableText("speedrunnermod.timer.title"), (buttonWidget) -> {
             this.client.openScreen(this.parent);
         }, new TooltipSupplier() {
             public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
@@ -72,12 +78,6 @@ public class ModMenuScreen extends Screen {
             }
         }));
         timer.active = false;
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, 90, 150, 20, new TranslatableText("speedrunnermod.resources.title"), (buttonWidget) -> {
-            this.client.openScreen(new ResourcesScreen(this));
-        }));
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, 115, 150, 20, new TranslatableText("speedrunnermod.socials.title"), (buttonWidget) -> {
-            this.client.openScreen(new SocialsScreen(this));
-        }));
         this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height - 27, 200, 20, ScreenTexts.DONE, (button) -> {
             this.client.openScreen(this.parent);
         }));
