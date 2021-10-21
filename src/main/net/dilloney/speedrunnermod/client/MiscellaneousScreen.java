@@ -44,10 +44,7 @@ class MiscellaneousScreen extends Screen {
             this.renderTooltip(matrixStack, new TranslatableText("speedrunnermod.make_world_structures.tooltip"), i, j);
         }));
         make_world_structures.active =  SpeedrunnerMod.OPTIONS.makeStructuresMoreCommon && !ModHelper.getMakeWorldStructureSettings();
-        this.addButton(new ButtonWidget(this.width / 2 - 155, this.height - 27, 150, 20, new TranslatableText("speedrunnermod.miscellaneous_options.title"), (buttonWidget) -> {
-            this.client.openScreen(MiscellaneousOptionsScreen.openScreen().build());
-        }));
-        this.addButton(new ButtonWidget(this.width / 2 + 5, this.height - 27, 150, 20, ScreenTexts.DONE, (button) -> {
+        this.addButton(new ButtonWidget(this.width / 2 - 100, this.height - 27, 200, 20, ScreenTexts.DONE, (button) -> {
             this.client.openScreen(this.parent);
         }));
     }
