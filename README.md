@@ -14,4 +14,4 @@ You can download the Speedrunner Mod [here](https://www.curseforge.com/minecraft
 
 ### Resources
 
-You can check out the [official mod showcase video here](), where you can find almost every single feature that the mod has to offer. We also have a [discord server](), where you can get updates regarding the mod and more!
+You can check out the [official mod showcase video here](), where you can find almost every single feature that the mod has to offer. We also have a [discord server](), where you can get updates regarding the mod and more! Enjoy speedrunning!
