@@ -10,7 +10,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class ModBlocks {
 
-    public static final Block SPEEDRUNNER_BLOCK = new Block(FabricBlockSettings.of(Material.STONE)
+    public static final Block SPEEDRUNNER_BLOCK = new Block(FabricBlockSettings.of(Material.METAL)
             .breakByTool(FabricToolTags.PICKAXES, 1)
             .requiresTool()
             .strength(5.0F, 6.0F)
