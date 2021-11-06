@@ -40,15 +40,6 @@ public class ModItemGroup {
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_BULK));
                 itemStacks.add(new ItemStack(ModItems.ROTTEN_SPEEDRUNNER_BULK));
                 itemStacks.add(new ItemStack(ModItems.COOKED_FLESH));
-                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_SWORD));
-                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_SHOVEL));
-                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_PICKAXE));
-                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_AXE));
-                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_HOE));
-                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_HELMET));
-                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE));
-                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS));
-                itemStacks.add(new ItemStack(ModItems.GOLDEN_SPEEDRUNNER_BOOTS));
                 itemStacks.add(new ItemStack(ModItems.BLACKSTONE_SWORD));
                 itemStacks.add(new ItemStack(ModItems.BLACKSTONE_SHOVEL));
                 itemStacks.add(new ItemStack(ModItems.BLACKSTONE_PICKAXE));
