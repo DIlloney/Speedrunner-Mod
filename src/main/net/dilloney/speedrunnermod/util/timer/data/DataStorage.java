@@ -3,16 +3,18 @@ package net.dilloney.speedrunnermod.util.timer.data;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.dilloney.speedrunnermod.SpeedrunnerMod;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+@Environment(EnvType.CLIENT)
 public class DataStorage {
 
     static final class Data {
-        public String version = SpeedrunnerMod.MOD_VERSION;
         public Runs runs = new Runs();
         public PersonalBest personalBest = new PersonalBest();
         public BestSplits bestSplits = new BestSplits();
@@ -31,7 +33,10 @@ public class DataStorage {
     public static DataStorage of(File file) {
         Data initData = new Data();
         if (file.isFile()) {
-            try (FileReader reader = new FileReader(file)) {
+            if (file.length() == 0) {
+                file.delete();
+                SpeedrunnerMod.LOGGER.warn("Deleted timer storage file, as it was blank. Restart your game to regenerate the file and make sure you load into a world.");
+            } try (FileReader reader = new FileReader(file)) {
                 initData = GSON.fromJson(reader, Data.class);
             } catch (IOException e) {
                 e.printStackTrace();

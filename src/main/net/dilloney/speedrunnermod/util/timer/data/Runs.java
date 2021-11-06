@@ -1,10 +1,13 @@
 package net.dilloney.speedrunnermod.util.timer.data;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.WorldSavePath;
 
 import java.util.HashMap;
 
+@Environment(EnvType.CLIENT)
 public class Runs extends HashMap<String, SingleRun> {
 
     public SingleRun solveItem(MinecraftServer server, long ticks) {

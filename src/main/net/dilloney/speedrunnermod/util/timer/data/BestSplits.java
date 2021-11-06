@@ -1,5 +1,9 @@
 package net.dilloney.speedrunnermod.util.timer.data;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+@Environment(EnvType.CLIENT)
 public class BestSplits extends AbstractRun {
 
     private long specialMin(long n1, long n2) {
@@ -10,9 +14,6 @@ public class BestSplits extends AbstractRun {
     }
 
     public void tryRun(AbstractRun run) {
-        overworldSplitTicks = specialMin(overworldSplitTicks, run.overworldSplitTicks);
-        netherSplitTicks = specialMin(netherSplitTicks, run.netherSplitTicks);
-        strongholdSplitTicks = specialMin(strongholdSplitTicks, run.strongholdSplitTicks);
         finishedSplitTicks = specialMin(finishedSplitTicks, run.finishedSplitTicks);
         finishedRealTime = specialMin(finishedRealTime, run.finishedRealTime);
     }
