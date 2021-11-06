@@ -1,5 +1,7 @@
 package net.dilloney.speedrunnermod.util.timer;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
@@ -7,6 +9,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import java.util.ArrayList;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 class Hud {
 
     private final List<TextStuff> textList;
@@ -44,8 +47,7 @@ class Hud {
     public void render(int backgroundPadding, int backgroundColor, double backgroundTransparency) {
         drawBackground(backgroundPadding, backgroundColor, backgroundTransparency);
         for (TextStuff textStuff : textList) {
-            textRenderer.drawWithShadow(
-                    matrixStack, textStuff.text, textStuff.x, textStuff.y, textStuff.color);
+            textRenderer.drawWithShadow(matrixStack, textStuff.text, textStuff.x, textStuff.y, textStuff.color);
         }
     }
 

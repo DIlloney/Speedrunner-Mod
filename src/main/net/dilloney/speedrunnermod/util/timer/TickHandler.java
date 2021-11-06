@@ -1,23 +1,16 @@
 package net.dilloney.speedrunnermod.util.timer;
 
 import net.dilloney.speedrunnermod.SpeedrunnerMod;
-import net.dilloney.speedrunnermod.mixin.ModMixins;
-import net.dilloney.speedrunnermod.mixin.ModMixinsClient;
-import net.dilloney.speedrunnermod.option.OptionsFileManager;
-import net.dilloney.speedrunnermod.util.ModHelper;
-import net.dilloney.speedrunnermod.util.timer.data.AbstractRun;
+import net.dilloney.speedrunnermod.mod.ModFeaturesClient;
 import net.dilloney.speedrunnermod.util.timer.data.DataStorage;
 import net.dilloney.speedrunnermod.util.timer.data.SingleRun;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementProgress;
-import net.minecraft.advancement.PlayerAdvancementTracker;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,10 +18,8 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+@Environment(EnvType.CLIENT)
 public class TickHandler {
-
-    private static final String ACHIEVEMENT_NETHER = "minecraft:nether/root";
-    private static final String ACHIEVEMENT_STRONGHOLD = "minecraft:end/root";
 
     private static final long DEBOUNCE_PERSIST_MS = 2000L;
     private static final long DEBOUNCE_SERVER_QUERY_MS = 500L;
@@ -37,12 +28,10 @@ public class TickHandler {
     private final Debounce persistDebounce;
     private final Debounce serverQueryDebounce;
     private final DataStorage store;
-    private final OptionsFileManager.TimerFileManager config;
     private final Executor executor;
     private final Runnable lambda;
 
-    public TickHandler(MinecraftClient client, DataStorage store, OptionsFileManager.TimerFileManager config) {
-        this.config = config;
+    public TickHandler(MinecraftClient client, DataStorage store) {
         this.store = store;
         persistDebounce = new Debounce(DEBOUNCE_PERSIST_MS);
         serverQueryDebounce = new Debounce(DEBOUNCE_SERVER_QUERY_MS);
@@ -77,13 +66,6 @@ public class TickHandler {
         render(minecraftClient, server, run);
     }
 
-    private boolean advancementDone(String advancementId, ServerPlayerEntity serverPlayer, MinecraftServer server) {
-        PlayerAdvancementTracker tracker = serverPlayer.getAdvancementTracker();
-        Advancement advancement = server.getAdvancementLoader().get(new Identifier(advancementId));
-        AdvancementProgress advancementProgress = tracker.getProgress(advancement);
-        return advancementProgress.isDone();
-    }
-
     @Nullable
     private ServerPlayerEntity getServerPlayer(MinecraftServer server) {
         List<ServerPlayerEntity> playerList = server.getPlayerManager().getPlayerList();
@@ -105,8 +87,8 @@ public class TickHandler {
 
         boolean seenCredits = false;
 
-        if (serverPlayer instanceof ModMixins.ServerPlayerEntityMixin.SeenCreditsAccessor) {
-            seenCredits = ((ModMixins.ServerPlayerEntityMixin.SeenCreditsAccessor)serverPlayer).seenCredits();
+        if (serverPlayer instanceof ModFeaturesClient.SeenCreditsAccessor) {
+            seenCredits = ((ModFeaturesClient.SeenCreditsAccessor)serverPlayer).seenCredits();
         }
 
         if (!run.isFinished() && seenCredits) {
@@ -116,54 +98,42 @@ public class TickHandler {
             store.getPersonalBest().tryRun(run);
         }
 
-        if (!run.hasOverworldSplit() && advancementDone(ACHIEVEMENT_NETHER, serverPlayer, server)) {
-            run.overworldSplitTicks = ticks;
-            store.getBestSplits().tryRun(run);
-        }
-
-        if (!run.hasNetherSplit() && run.hasOverworldSplit() && serverPlayer.world.getRegistryKey() == World.OVERWORLD) {
-            run.netherSplitTicks = ticks;
-            store.getBestSplits().tryRun(run);
-        }
-
-        if (!run.hasStrongholdSplit() && advancementDone(ACHIEVEMENT_STRONGHOLD, serverPlayer, server)) {
-            run.strongholdSplitTicks = ticks;
-            store.getBestSplits().tryRun(run);
-        }
-
         return run;
     }
 
-    private String fullLabel(String prefix, long firstMs, long secondMs, boolean shouldShowSecond) {
-        if (secondMs == -1|| !shouldShowSecond) return String.format("%s: %s", prefix, timeLabel(firstMs));
-        return String.format("%s: %s vs %s", prefix, timeLabel(firstMs), timeLabel(secondMs));
+    private String timeLabel(long gameTime, long realTime) {
+        return String.format("%s | %s", timeLabel(gameTime), timeLabel(realTime));
     }
 
-    private void render(MinecraftClient client, MinecraftServer server,SingleRun run) {
+    private String finishedLabel(long finished) {
+        return String.format("%s: %s", "Finished", timeLabel(finished));
+    }
 
-        boolean showCompare = config.data.showCompareSplits;
+    private void render(MinecraftClient client, MinecraftServer server, SingleRun run) {
+
         final TextRenderer textRenderer = client.textRenderer;
-        final AbstractRun comparedRun = config.data.useBestSplits ? store.getBestSplits() : store.getPersonalBest();
-        Hud hud = new Hud(textRenderer, config.data.xOffset, config.data.yOffset);
+        Hud hud = new Hud(textRenderer, 5, 5);
 
-        if (((ModMixinsClient.MinecraftClientMixin.GameOptionsAccessor)client).getGameOptions().debugEnabled) {
+        if (((ModFeaturesClient.GameOptionsAccessor)client).getGameOptions().debugEnabled) {
             return;
         }
 
-        String gameTimeLabel = fullLabel(ModHelper.getGameTimeText(), run.getGameTime(), -1, false);
-        String realTimeLabel = fullLabel(ModHelper.getRealTimeText(), run.getRealTimeDuration(), -1, false);
-        String overworldSplitLabel = fullLabel(ModHelper.getOverworldText(), run.getOverworld(), comparedRun.getOverworld(), showCompare);
-        String netherSplitLabel = fullLabel(ModHelper.getNetherText(), run.getNether(), comparedRun.getNether(), showCompare);
-        String strongholdSplitLabel = fullLabel(ModHelper.getStrongholdText(), run.getStronghold(), comparedRun.getStronghold(), showCompare);
-        String finishedSplitLabel = fullLabel(ModHelper.getFinishedText(), run.getFinished(), comparedRun.getFinished(), showCompare);
-        String seedLabel = String.format(ModHelper.getSeedText(), server.getSaveProperties().getGeneratorOptions().getSeed());
+        String timeLabel = timeLabel(run.getGameTime(), run.getRealTimeDuration());
+        String finishedSplitLabel = finishedLabel(run.getFinished());
+        String seedLabel = String.format("Seed: %s", server.getSaveProperties().getGeneratorOptions().getSeed());
 
-        hud.print(gameTimeLabel, SpeedrunnerMod.TIMER_OPTIONS.getGameTimeLabelColor()).println(realTimeLabel, 10, SpeedrunnerMod.TIMER_OPTIONS.getRealTimeLabelColor()).insertSpace(10).println(overworldSplitLabel, 10, SpeedrunnerMod.TIMER_OPTIONS.getOverworldSplitColor()).println(netherSplitLabel, 10, SpeedrunnerMod.TIMER_OPTIONS.getNetherSplitColor()).println(strongholdSplitLabel, 10, SpeedrunnerMod.TIMER_OPTIONS.getStrongholdSplitColor()).println(finishedSplitLabel, 10, SpeedrunnerMod.TIMER_OPTIONS.getFinishedSplitColor());
+        if (SpeedrunnerMod.OPTIONS.timer) {
+            if (run.isFinished()) {
+                hud.print(timeLabel, 0x29DB87).println(finishedSplitLabel, 10, 0xFFA500);
+            } else {
+                hud.print(timeLabel, 0x29DB87);
+            }
 
-        if (config.data.showSeed && run.isFinished()) {
-            hud.insertSpace(5).println(seedLabel, 10, SpeedrunnerMod.TIMER_OPTIONS.getSeedColor());
+            if (run.isFinished()) {
+                hud.insertSpace(5).println(seedLabel, 10, 0x00FF22);
+            }
+
+            hud.render(4, 0x000011, 0);
         }
-
-        hud.render(4, SpeedrunnerMod.TIMER_OPTIONS.getBackgroundColor(), config.data.backgroundTransparency);
     }
 }
