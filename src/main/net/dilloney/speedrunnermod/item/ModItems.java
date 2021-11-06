@@ -16,7 +16,7 @@ public class ModItems {
     public static final Item RAW_SPEEDRUNNER = new Item(
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MATERIALS));
 
-    public static final Item SPEEDRUNNER_SWORD = new SpeedrunnerSwordItem(ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, 5, -2.4F,
+    public static final Item SPEEDRUNNER_SWORD = new SwordItem(ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, 5, -2.4F,
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.COMBAT));
 
     public static final Item SPEEDRUNNER_SHOVEL = new ShovelItem(ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 4, -3.0F,
@@ -63,33 +63,6 @@ public class ModItems {
 
     public static final Item ROTTEN_SPEEDRUNNER_BULK = new Item(
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.FOOD).food(ModFoodComponents.ROTTEN_SPEEDRUNNER_BULK));
-
-    public static final Item GOLDEN_SPEEDRUNNER_SWORD = new SpeedrunnerSwordItem(ModToolMaterials.GOLDEN_SPEEDRUNNER, 4, -2.4F,
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.COMBAT));
-
-    public static final Item GOLDEN_SPEEDRUNNER_SHOVEL = new ShovelItem(ModToolMaterials.GOLDEN_SPEEDRUNNER, 2.5F, -3.0F,
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.TOOLS));
-
-    public static final Item GOLDEN_SPEEDRUNNER_PICKAXE = new PickaxeItem(ModToolMaterials.GOLDEN_SPEEDRUNNER, 2, -2.8F,
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.TOOLS));
-
-    public static final Item GOLDEN_SPEEDRUNNER_AXE = new AxeItem(ModToolMaterials.GOLDEN_SPEEDRUNNER, 7, -3.0F,
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.TOOLS));
-
-    public static final Item GOLDEN_SPEEDRUNNER_HOE = new HoeItem(ModToolMaterials.GOLDEN_SPEEDRUNNER, 0, -0.5F,
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.TOOLS));
-
-    public static final Item GOLDEN_SPEEDRUNNER_HELMET = new ArmorItem(ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.HEAD,
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.COMBAT));
-
-    public static final Item GOLDEN_SPEEDRUNNER_CHESTPLATE = new ArmorItem(ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.CHEST,
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.COMBAT));
-
-    public static final Item GOLDEN_SPEEDRUNNER_LEGGINGS = new ArmorItem(ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.LEGS,
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.COMBAT));
-
-    public static final Item GOLDEN_SPEEDRUNNER_BOOTS = new ArmorItem(ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.FEET,
-            new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.COMBAT));
 
     public static final Item IGNEOUS_ROCK = new Item(
             new Item.Settings().group(ModItemGroup.SPEEDRUNNER_MOD_ITEM_GROUP).group(ItemGroup.MATERIALS));

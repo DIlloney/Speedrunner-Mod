@@ -29,14 +29,13 @@ public class InfernoEyeItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         user.setCurrentHand(hand);
-        if(!world.isClient) {
+        if (!world.isClient) {
             ServerWorld serverWorld = (ServerWorld)world;
-            if(user.isSneaking() && serverWorld.getRegistryKey().equals(World.NETHER)) {
+            if (user.isSneaking() && serverWorld.getRegistryKey().equals(World.NETHER)) {
                 if (structureType.equals("Fortress")) {
                     structureType = "Bastion";
                     type = StructureFeature.BASTION_REMNANT;
-                }
-                else if (structureType.equals("Bastion")) {
+                } else if (structureType.equals("Bastion")) {
                     structureType = "Fortress";
                     type = StructureFeature.FORTRESS;
                 }
@@ -46,16 +45,15 @@ public class InfernoEyeItem extends Item {
             }
         }
 
-        if(!world.isClient) {
+        if (!world.isClient) {
             ServerWorld serverWorld = (ServerWorld)world;
-            if(serverWorld.getRegistryKey().equals(World.OVERWORLD) || serverWorld.getRegistryKey().equals(World.END)) {
-                user.sendMessage((new TranslatableText("item.speedrunnermod.eye_of_inferno.wrong_dimension").formatted(Formatting.RED)), true);
+            if (serverWorld.getRegistryKey().equals(World.OVERWORLD) || serverWorld.getRegistryKey().equals(World.END)) {
                 return TypedActionResult.consume(itemStack);
             }
         }
 
-        if(!user.isSneaking()) {
-            if(!world.isClient) {
+        if (!user.isSneaking()) {
+            if (!world.isClient) {
                 ServerWorld serverWorld = (ServerWorld)world;
 
                 serverWorld.getRegistryKey(); {
