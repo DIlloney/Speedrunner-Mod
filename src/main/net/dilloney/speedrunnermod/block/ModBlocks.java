@@ -1,19 +1,15 @@
 package net.dilloney.speedrunnermod.block;
 
-import net.dilloney.speedrunnermod.item.ModItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.OreBlock;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 
 public class ModBlocks {
 
-    public static final Block SPEEDRUNNER_BLOCK = new Block(FabricBlockSettings.of(Material.STONE)
+    public static final Block SPEEDRUNNER_BLOCK = new Block(FabricBlockSettings.of(Material.METAL)
             .breakByTool(FabricToolTags.PICKAXES, 1)
             .requiresTool()
             .strength(5.0F, 6.0F)
