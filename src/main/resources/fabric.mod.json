@@ -1,15 +1,16 @@
 {
   "schemaVersion": 1,
   "id": "speedrunnermod",
-  "version": "1.3.3-mc1165",
-  "accessWidener": "speedrunner-mod.accesswidener",
+  "version": "1.4-mc1165",
+  "accessWidener": "speedrunner-mod.accessWidener",
   "name": "Speedrunner Mod",
   "description": "A Mod that makes Speedrunning, easier.",
   "authors": [
-    "Dilloney"
+    "Dilloney",
+    "dislikeyourvideo/Rowan"
   ],
   "contact": {
-    "homepage": "https://speedrunnermod.net",
+    "homepage": "https://speedrunnermod.net/home",
     "issues": "https://github.com/Dilloney/Speedrunner-Mod/issues",
     "sources": "https://github.com/Dilloney/Speedrunner-Mod"
   },
@@ -28,16 +29,15 @@
     ]
   },
   "mixins": [
-    "speedrunner-mod.mixins.json"
+    "speedrunner-mod.features.json",
+    "speedrunner-mod.fixes.json"
   ],
   "depends": {
     "fabricloader": ">=0.11.6",
     "fabric": "*",
     "minecraft": "1.16.5"
   },
-  "recommends": {
-    "sodium": ">=0.2.0",
-    "lithium": ">=0.6.6",
-    "phosphor": ">=0.7.2"
+  "breaks": {
+    "autoreset": "*"
   }
 }
