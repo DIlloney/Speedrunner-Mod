@@ -7,9 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A helper class used for allowing modded items to work correctly.
+ * A helper class used for allowing modded items to work correctly (1.16 exclusive)
  * <p> Thanks to {@code oroarmor} for this. </p>
  */
+@Deprecated
 public class UniqueItemRegistry {
 
     public static final UniqueItemRegistry SHEARS = new UniqueItemRegistry(Items.SHEARS);
