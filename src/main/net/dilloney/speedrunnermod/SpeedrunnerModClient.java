@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.dilloney.speedrunnermod.client.render.SpeedrunnerShieldRenderer;
 import net.dilloney.speedrunnermod.item.ModItems;
 import net.dilloney.speedrunnermod.item.SpeedrunnerCrossbowItem;
+import net.dilloney.speedrunnermod.option.ModOption;
 import net.dilloney.speedrunnermod.util.timer.TickHandler;
 import net.dilloney.speedrunnermod.util.timer.data.DataStorage;
 import net.fabricmc.api.ClientModInitializer;
@@ -16,6 +17,7 @@ import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredica
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.option.Option;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.CameraSubmersionType;
@@ -163,5 +165,13 @@ public class SpeedrunnerModClient implements ClientModInitializer {
             RenderSystem.setShaderFogStart(y);
             RenderSystem.setShaderFogEnd(ab);
         }
+    }
+
+    public static Option[] getModOptions() {
+        return new Option[]{ModOption.MAKE_STRUCTURES_MORE_COMMON, ModOption.MAKE_BIOMES_MORE_COMMON, ModOption.ICARUS_MODE, ModOption.INFINITY_PEARL_MODE, ModOption.FOG, ModOption.TIMER, ModOption.DOOM_MODE, ModOption.KILL_GHAST_UPON_FIREBALL, ModOption.STRONGHOLD_COUNT, ModOption.DRAGON_PERCH_TIME, ModOption.AUTO_CREATE_WORLD, ModOption.WORLD_DIFFICULTY};
+    }
+
+    public static Option[] newVideoOptions() {
+        return new Option[]{Option.GRAPHICS, Option.RENDER_DISTANCE, Option.AO, Option.FRAMERATE_LIMIT, Option.VSYNC, Option.VIEW_BOBBING, Option.GUI_SCALE, Option.ATTACK_INDICATOR, Option.GAMMA, Option.CLOUDS, Option.FULLSCREEN, Option.PARTICLES, ModOption.FOG, Option.MIPMAP_LEVELS, Option.ENTITY_SHADOWS, Option.DISTORTION_EFFECT_SCALE, Option.ENTITY_DISTANCE_SCALING, Option.FOV_EFFECT_SCALE};
     }
 }
