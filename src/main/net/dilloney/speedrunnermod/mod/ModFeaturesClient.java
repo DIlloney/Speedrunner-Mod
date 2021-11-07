@@ -4,8 +4,10 @@ import net.dilloney.speedrunnermod.SpeedrunnerModClient;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.VideoOptionsScreen;
 import net.minecraft.client.options.DoubleOption;
 import net.minecraft.client.options.GameOptions;
+import net.minecraft.client.options.Option;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -27,7 +29,7 @@ import static java.lang.Math.abs;
 /**
  * This class contains everything that needs to be changed in the game by using {@link Mixin}s. Client-side only.
  * <p> Please read {@link ModFeatures} for more information. </p>
- * <p> {@linkplain DebugText}, {@linkplain ModButtonFunction}, {@linkplain ModButtonGM}, {@linkplain ModButtonTS}, {@linkplain ModOptionButton} </p>
+ * <p> {@linkplain DebugModText}, {@linkplain ModButtonFunction}, {@linkplain ModButtonGM}, {@linkplain ModButtonTS}, {@linkplain ModOptionButton} </p>
  * <p> {@linkplain FogFeature} </p>
  * <p> {@linkplain BrightnessFeature}. </p>
  */
@@ -41,6 +43,13 @@ public class ModFeaturesClient {
         public static void applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog) {
             SpeedrunnerModClient.injectFogFunction(camera, fogType, viewDistance, thickFog);
         }
+    }
+
+    @Mixin(VideoOptionsScreen.class)
+    public static class FogOption {
+
+        @Shadow
+        private static final Option[] OPTIONS = SpeedrunnerModClient.newVideoOptions();
     }
 
     @Mixin(DoubleOption.class)
