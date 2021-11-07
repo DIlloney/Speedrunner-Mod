@@ -15,12 +15,15 @@ import net.minecraft.text.TranslatableText;
 public class ModOption {
 
     public static final BooleanOption MAKE_STRUCTURES_MORE_COMMON = new BooleanOption("options.make_structures_more_common", new TranslatableText("options.make_structures_more_common.tooltip"), gameOptions -> SpeedrunnerMod.OPTIONS.getMakeStructuresMoreCommon(), (gameOptions, newValue) -> SpeedrunnerMod.OPTIONS.setMakeStructuresMoreCommon(newValue));
+    public static final BooleanOption MAKE_BIOMES_MORE_COMMON = new BooleanOption("options.make_biomes_more_common", new TranslatableText("options.make_biomes_more_common.tooltip"), gameOptions -> SpeedrunnerMod.OPTIONS.getMakeBiomesMoreCommon(), (gameOptions, newValue) -> SpeedrunnerMod.OPTIONS.setMakeBiomesMoreCommon(newValue));
     public static final BooleanOption ICARUS_MODE = new BooleanOption("options.icarus_mode", new TranslatableText("options.icarus_mode.tooltip"), gameOptions -> SpeedrunnerMod.OPTIONS.getiCarusMode(), (gameOptions, newValue) -> SpeedrunnerMod.OPTIONS.setiCarusMode(newValue));
     public static final BooleanOption INFINITY_PEARL_MODE = new BooleanOption("options.infini_pearl_mode", new TranslatableText("options.infini_pearl_mode.tooltip"), gameOptions -> SpeedrunnerMod.OPTIONS.getInfinityPearlMode(), (gameOptions, newValue) -> SpeedrunnerMod.OPTIONS.setInfiniPearlMode(newValue));
-    public static final BooleanOption FOG = new BooleanOption("options.fog", new TranslatableText("options.fog.tooltip"), gameOptions -> SpeedrunnerMod.OPTIONS.getFog(), (gameOptions, newValue) -> SpeedrunnerMod.OPTIONS.setFog(newValue));
+    public static final BooleanOption FOG = new BooleanOption("options.fog", new TranslatableText("options.fog.tooltip"), gameOptions -> SpeedrunnerMod.OPTIONS.getFog(), (gameOptions, newValue) -> {
+        SpeedrunnerMod.OPTIONS.setFog(newValue);
+        MinecraftClient.getInstance().worldRenderer.reload();
+    });
     public static final BooleanOption TIMER = new BooleanOption("options.timer", new TranslatableText("options.timer.tooltip"), gameOptions -> SpeedrunnerMod.OPTIONS.getTimer(), (gameOptions, newValue) -> SpeedrunnerMod.OPTIONS.setTimer(newValue));
     public static final BooleanOption DOOM_MODE = new BooleanOption("options.doom_mode", new TranslatableText("options.doom_mode.tooltip"), gameOptions -> SpeedrunnerMod.OPTIONS.getDoomMode(), (gameOptions, newValue) -> SpeedrunnerMod.OPTIONS.setDoomMode(newValue));
-    public static final BooleanOption MAKE_BIOMES_MORE_COMMON = new BooleanOption("options.make_biomes_more_common", new TranslatableText("options.make_biomes_more_common.tooltip"), gameOptions -> SpeedrunnerMod.OPTIONS.getMakeBiomesMoreCommon(), (gameOptions, newValue) -> SpeedrunnerMod.OPTIONS.setMakeBiomesMoreCommon(newValue));
     public static final BooleanOption KILL_GHAST_UPON_FIREBALL = new BooleanOption("options.kill_ghast_upon_fireball", new TranslatableText("options.kill_ghast_upon_fireball.tooltip"), gameOptions -> SpeedrunnerMod.OPTIONS.getKillGhastUponFireball(), (gameOptions, newValue) -> SpeedrunnerMod.OPTIONS.setKillGhastUponFireball(newValue));
     public static final DoubleOption STRONGHOLD_COUNT = new DoubleOption("options.stronghold_count", 64.0D, 128.0D, 8.0F, gameOptions -> (double)SpeedrunnerMod.OPTIONS.getStrongholdCount(), (gameOptions, newValue) -> SpeedrunnerMod.OPTIONS.setStrongholdCount(newValue.intValue()), (gameOptions, option) -> {
         option.setTooltip(MinecraftClient.getInstance().textRenderer.wrapLines(new TranslatableText("options.stronghold_count.tooltip"), 200));
