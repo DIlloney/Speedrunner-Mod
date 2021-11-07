@@ -1,7 +1,7 @@
 package net.dilloney.speedrunnermod.client;
 
 import net.dilloney.speedrunnermod.SpeedrunnerMod;
-import net.dilloney.speedrunnermod.option.ModOption;
+import net.dilloney.speedrunnermod.SpeedrunnerModClient;
 import net.dilloney.speedrunnermod.option.OptionsFileManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -20,11 +20,11 @@ import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class ModOptionsScreen extends GameOptionsScreen {
-    private static final Option[] OPTIONS;
+    private static final Option[] OPTIONS = SpeedrunnerModClient.getModOptions();
     private ButtonListWidget list;
 
     public ModOptionsScreen(Screen parent, GameOptions options) {
-        super(parent, options, new TranslatableText("speedrunnermod.options.title"));
+        super(parent, options, new TranslatableText("speedrunnermod.title.options"));
     }
 
     protected void init() {
@@ -53,9 +53,5 @@ public class ModOptionsScreen extends GameOptionsScreen {
         OptionsFileManager.save();
         SpeedrunnerMod.LOGGER.info("Flushed changes to the Speedrunner Mod");
         super.onClose();
-    }
-
-    static {
-        OPTIONS = new Option[]{ModOption.MAKE_STRUCTURES_MORE_COMMON, ModOption.MAKE_BIOMES_MORE_COMMON, ModOption.ICARUS_MODE, ModOption.INFINITY_PEARL_MODE, ModOption.FOG, ModOption.TIMER, ModOption.DOOM_MODE, ModOption.KILL_GHAST_UPON_FIREBALL, ModOption.STRONGHOLD_COUNT, ModOption.DRAGON_PERCH_TIME, ModOption.AUTO_CREATE_WORLD, ModOption.WORLD_DIFFICULTY};
     }
 }
