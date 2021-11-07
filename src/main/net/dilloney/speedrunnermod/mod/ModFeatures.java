@@ -1483,12 +1483,8 @@ public class ModFeatures {
 
         @Inject(method = "eatFood", at = @At("RETURN"))
         private void eatFood(World world, ItemStack stack, CallbackInfoReturnable cir) {
-            boolean bl = stack.getItem() == ModItems.SPEEDRUNNER_BULK;
-            if (stack.getItem() == Items.GOLDEN_CARROT || stack.getItem() == Items.GOLDEN_APPLE || stack.getItem() == Items.ENCHANTED_GOLDEN_APPLE || stack.getItem() == ModItems.SPEEDRUNNER_BULK) {
-                this.removeStatusEffect(StatusEffects.POISON);
-                if (bl) {
-                    this.heal(2.0F);
-                }
+            if (stack.getItem() == ModItems.SPEEDRUNNER_BULK) {
+                this.heal(2.0F);
             }
         }
     }
