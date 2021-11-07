@@ -72,7 +72,7 @@ import static net.minecraft.world.gen.feature.DefaultBiomeFeatures.addBatsAndMon
 public class SpeedrunnerMod implements ModInitializer {
     public static final Identifier SPEEDRUNNER_BOOTS = new Identifier("speedrunnermod", "textures/item/speedrunner_boots.png");
     public static final Text SPEEDRUNNER_MOD_TITLE = new TranslatableText("speedrunnermod.title");
-    public static final String MOD_VERSION = "v1.4";
+    public static final String MOD_VERSION = "v1.4.1";
     public static final String MINECRAFT_VERSION = "1.16.5";
     public static final Logger LOGGER = LogManager.getLogger();
     public static ModOptions OPTIONS = OptionsFileManager.get();
@@ -939,7 +939,7 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     public static ImmutableMap<Object, Object> makeStructuresMoreCommon() {
-        return ImmutableMap.builder().put(StructureFeature.VILLAGE, new StructureConfig(getVillageSpacing(), getVillageSeparation(), 10387312)).put(StructureFeature.DESERT_PYRAMID, new StructureConfig(getDesertPyramidSpacing(), getDesertPyramidSeparation(), 14357617)).put(StructureFeature.IGLOO, new StructureConfig(getIglooSpacing(), getIglooSeparation(), 14357618)).put(StructureFeature.JUNGLE_PYRAMID, new StructureConfig(getJunglePyramidSpacing(), getJunglePyramidSeparation(), 14357619)).put(StructureFeature.SWAMP_HUT, new StructureConfig(getSwampHutSpacing(), getSwampHutSeparation(), 14357620)).put(StructureFeature.PILLAGER_OUTPOST, new StructureConfig(getPillagerOutpostSpacing(), getPillagerOutpostSeparation(), 165745296)).put(StructureFeature.STRONGHOLD, new StructureConfig(1, 0, 0)).put(StructureFeature.MONUMENT, new StructureConfig(getMonumentSpacing(), getMonumentSeparation(), 10387313)).put(StructureFeature.END_CITY, new StructureConfig(getEndCitySpacing(), getEndCitySeparation(), 10387313)).put(StructureFeature.MANSION, new StructureConfig(getMansionSpacing(), getMansionSeparation(), 10387319)).put(StructureFeature.BURIED_TREASURE, new StructureConfig(1, 0, 0)).put(StructureFeature.MINESHAFT, new StructureConfig(1, 0, 0)).put(StructureFeature.RUINED_PORTAL, new StructureConfig(getRuinedPortalSpacing(), getRuinedPortalSeparation(), 34222645)).put(StructureFeature.SHIPWRECK, new StructureConfig(getShipwreckSpacing(), getShipwreckSeparation(), 165745295)).put(StructureFeature.OCEAN_RUIN, new StructureConfig(getOceanRuinSpacing(), getOceanRuinSeparation(), 14357621)).put(StructureFeature.BASTION_REMNANT, new StructureConfig(getBastionSpacing(), getBastionSeparation(), 30084232)).put(StructureFeature.FORTRESS, new StructureConfig(getFortressSpacing(), getFortressSeparation(), 30084232)).put(StructureFeature.NETHER_FOSSIL, new StructureConfig(2, 1, 14357921)).build();
+        return ImmutableMap.builder().put(StructureFeature.VILLAGE, new StructureConfig(getVillageSpacing(), getVillageSeparation(), 10387312)).put(StructureFeature.DESERT_PYRAMID, new StructureConfig(getDesertPyramidSpacing(), getDesertPyramidSeparation(), 14357617)).put(StructureFeature.IGLOO, new StructureConfig(getIglooSpacing(), getIglooSeparation(), 14357618)).put(StructureFeature.JUNGLE_PYRAMID, new StructureConfig(getJunglePyramidSpacing(), getJunglePyramidSeparation(), 14357619)).put(StructureFeature.SWAMP_HUT, new StructureConfig(getSwampHutSpacing(), getSwampHutSeparation(), 14357620)).put(StructureFeature.PILLAGER_OUTPOST, new StructureConfig(getPillagerOutpostSpacing(), getPillagerOutpostSeparation(), 165745296)).put(StructureFeature.STRONGHOLD, new StructureConfig(getStrongholdSpacing(), getStrongholdSeparation(), 0)).put(StructureFeature.MONUMENT, new StructureConfig(getMonumentSpacing(), getMonumentSeparation(), 10387313)).put(StructureFeature.END_CITY, new StructureConfig(getEndCitySpacing(), getEndCitySeparation(), 10387313)).put(StructureFeature.MANSION, new StructureConfig(getMansionSpacing(), getMansionSeparation(), 10387319)).put(StructureFeature.BURIED_TREASURE, new StructureConfig(getBuriedTreasureSpacing(), getBuriedTreasureSeparation(), 0)).put(StructureFeature.MINESHAFT, new StructureConfig(getMineshaftSpacing(), getMineshaftSeparation(), 0)).put(StructureFeature.RUINED_PORTAL, new StructureConfig(getRuinedPortalSpacing(), getRuinedPortalSeparation(), 34222645)).put(StructureFeature.SHIPWRECK, new StructureConfig(getShipwreckSpacing(), getShipwreckSeparation(), 165745295)).put(StructureFeature.OCEAN_RUIN, new StructureConfig(getOceanRuinSpacing(), getOceanRuinSeparation(), 14357621)).put(StructureFeature.BASTION_REMNANT, new StructureConfig(getBastionSpacing(), getBastionSeparation(), 30084232)).put(StructureFeature.FORTRESS, new StructureConfig(getFortressSpacing(), getFortressSeparation(), 30084232)).put(StructureFeature.NETHER_FOSSIL, new StructureConfig(getNetherFossilSpacing(), getNetherFossilSeparation(), 14357921)).build();
     }
 
     public static void addModdedOresAndMakeDiamondsMoreCommon(GenerationSettings.Builder builder, CallbackInfo ci) {
@@ -1008,7 +1008,7 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     public static List<SpawnSettings.SpawnEntry> applyNetherFortressMobSpawns() {
-        return SpeedrunnerMod.OPTIONS.makeStructuresMoreCommon ? ImmutableList.of(new SpawnSettings.SpawnEntry(EntityType.BLAZE, 50, 1, 4), new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 25, 1, 1), new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 75, 4, 12), new SpawnSettings.SpawnEntry(EntityType.SKELETON, 50, 5, 5), new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 20, 1, 4)) : ImmutableList.of(new SpawnSettings.SpawnEntry(EntityType.BLAZE, 15, 1, 4), new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 15, 2, 4), new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 3, 1, 2), new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 8, 1, 3), new SpawnSettings.SpawnEntry(EntityType.SKELETON, 1, 1, 3), new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 1, 1, 3));
+        return SpeedrunnerMod.OPTIONS.doomMode ? ImmutableList.of(new SpawnSettings.SpawnEntry(EntityType.BLAZE, 50, 1, 4), new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 25, 1, 1), new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 75, 4, 12), new SpawnSettings.SpawnEntry(EntityType.SKELETON, 50, 5, 5), new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 20, 1, 4)) : ImmutableList.of(new SpawnSettings.SpawnEntry(EntityType.BLAZE, 15, 1, 4), new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 15, 2, 4), new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 3, 1, 2), new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 8, 1, 2), new SpawnSettings.SpawnEntry(EntityType.SKELETON, 1, 1, 2), new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 1, 1, 1));
     }
 
     public static NetherFortressGenerator.PieceData[] applyNetherFortressBridgeGeneration() {
@@ -1091,6 +1091,14 @@ public class SpeedrunnerMod implements ModInitializer {
         return 8;
     }
 
+    private static int getStrongholdSpacing() {
+        return 1;
+    }
+
+    private static int getStrongholdSeparation() {
+        return 0;
+    }
+
     private static int getMonumentSpacing() {
         return 32;
     }
@@ -1113,6 +1121,22 @@ public class SpeedrunnerMod implements ModInitializer {
 
     private static int getMansionSeparation() {
         return 20;
+    }
+
+    private static int getBuriedTreasureSpacing() {
+        return 1;
+    }
+
+    private static int getBuriedTreasureSeparation() {
+        return 0;
+    }
+
+    private static int getMineshaftSpacing() {
+        return 1;
+    }
+
+    private static int getMineshaftSeparation() {
+        return 0;
     }
 
     private static int getRuinedPortalSpacing() {
@@ -1153,6 +1177,14 @@ public class SpeedrunnerMod implements ModInitializer {
 
     private static int getFortressSeparation() {
         return SpeedrunnerMod.OPTIONS.makeStructuresMoreCommon ? 7 : 4;
+    }
+
+    private static int getNetherFossilSpacing() {
+        return 2;
+    }
+
+    private static int getNetherFossilSeparation() {
+        return 1;
     }
 
     public static int getStrongholdMinY() {
