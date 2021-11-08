@@ -3,11 +3,11 @@ package net.dilloney.speedrunnermod;
 import com.google.common.collect.ImmutableMap;
 import net.dilloney.speedrunnermod.block.ModBlocks;
 import net.dilloney.speedrunnermod.item.ModItems;
+import net.dilloney.speedrunnermod.misc.recipe.SpeedrunnerShieldDecorationRecipe;
+import net.dilloney.speedrunnermod.misc.tag.ModBlockTags;
+import net.dilloney.speedrunnermod.misc.tag.ModItemTags;
 import net.dilloney.speedrunnermod.option.ModOptions;
 import net.dilloney.speedrunnermod.option.OptionsFileManager;
-import net.dilloney.speedrunnermod.recipe.SpeedrunnerShieldDecorationRecipe;
-import net.dilloney.speedrunnermod.tag.ModBlockTags;
-import net.dilloney.speedrunnermod.tag.ModItemTags;
 import net.dilloney.speedrunnermod.world.gen.feature.ModConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.tag.TagFactory;
@@ -70,7 +70,7 @@ import static net.minecraft.world.gen.feature.DefaultBiomeFeatures.addBatsAndMon
 public class SpeedrunnerMod implements ModInitializer {
     public static final Identifier SPEEDRUNNER_BOOTS = new Identifier("speedrunnermod", "textures/item/speedrunner_boots.png");
     public static final Text SPEEDRUNNER_MOD_TITLE = new TranslatableText("speedrunnermod.title");
-    public static final String MOD_VERSION = "v1.4.1";
+    public static final String MOD_VERSION = "v1.4.2";
     public static final String MINECRAFT_VERSION = "1.17.1";
     public static final Logger LOGGER = LogManager.getLogger();
     public static ModOptions OPTIONS = OptionsFileManager.get();
