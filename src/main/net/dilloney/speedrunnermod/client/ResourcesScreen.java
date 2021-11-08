@@ -35,7 +35,7 @@ class ResourcesScreen extends GameOptionsScreen {
             }
 
             this.client.openScreen(this);
-        }, MOD_SHOWCASE_LINK, false)), new ButtonWidget.TooltipSupplier() {
+        }, MOD_SHOWCASE_LINK, true)), new ButtonWidget.TooltipSupplier() {
             public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
                 ResourcesScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.mod_showcase_video.tooltip"), mouseX, mouseY);
             }
@@ -50,7 +50,7 @@ class ResourcesScreen extends GameOptionsScreen {
             }
 
             this.client.openScreen(this);
-        }, WIKI_LINK, false)), new ButtonWidget.TooltipSupplier() {
+        }, WIKI_LINK, true)), new ButtonWidget.TooltipSupplier() {
             public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
                 ResourcesScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.wiki.tooltip"), mouseX, mouseY);
             }
@@ -59,31 +59,21 @@ class ResourcesScreen extends GameOptionsScreen {
                 consumer.accept(new TranslatableText("speedrunnermod.wiki.tooltip"));
             }
         }));
-        ButtonWidget timer_mod = this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, 65, 150, 20, new TranslatableText("speedrunnermod.timer_mod"), (buttonWidget) -> {}, new ButtonWidget.TooltipSupplier() {
-            public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
-                ResourcesScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.timer_mod.unavailable"), mouseX, mouseY);
-            }
-
-            public void supply(Consumer<Text> consumer) {
-                consumer.accept(new TranslatableText("speedrunnermod.timer_mod.unavailable"));
-            }
-        }));
-        timer_mod.active = false;
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, 65, 150, 20, new TranslatableText("speedrunnermod.sodium"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, 65, 150, 20, new TranslatableText("speedrunnermod.sodium"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(SODIUM_MOD_LINK);
             }
 
             this.client.openScreen(this);
         }, SODIUM_MOD_LINK, false))));
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, 90, 150, 20, new TranslatableText("speedrunnermod.lithium"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, 65, 150, 20, new TranslatableText("speedrunnermod.lithium"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(LITHIUM_MOD_LINK);
             }
 
             this.client.openScreen(this);
         }, LITHIUM_MOD_LINK, false))));
-        ButtonWidget prosphor = this.addDrawableChild(new ButtonWidget(this.width / 2 + 5, 90, 150, 20, new TranslatableText("speedrunnermod.phosphor"), (buttonWidget) -> {}, new ButtonWidget.TooltipSupplier() {
+        ButtonWidget prosphor = this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, 90, 150, 20, new TranslatableText("speedrunnermod.phosphor"), (buttonWidget) -> {}, new ButtonWidget.TooltipSupplier() {
             public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
                 ResourcesScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.phosphor.unavailable"), mouseX, mouseY);
             }

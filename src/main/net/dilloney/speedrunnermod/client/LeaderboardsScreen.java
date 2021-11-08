@@ -34,7 +34,7 @@ class LeaderboardsScreen extends GameOptionsScreen {
             }
 
             this.client.openScreen(this);
-        }, LEADERBOARDS_PAGE_LINK, false)), new ButtonWidget.TooltipSupplier() {
+        }, LEADERBOARDS_PAGE_LINK, true)), new ButtonWidget.TooltipSupplier() {
             public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
                 LeaderboardsScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.official_leaderboards_page.tooltip"), mouseX, mouseY);
             }
@@ -49,7 +49,7 @@ class LeaderboardsScreen extends GameOptionsScreen {
             }
 
             this.client.openScreen(this);
-        }, RULES_LINK, false)), new ButtonWidget.TooltipSupplier() {
+        }, RULES_LINK, true)), new ButtonWidget.TooltipSupplier() {
             public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
                 LeaderboardsScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.rules.tooltip"), mouseX, mouseY);
             }
@@ -64,7 +64,7 @@ class LeaderboardsScreen extends GameOptionsScreen {
             }
 
             this.client.openScreen(this);
-        }, SUBMIT_SPEEDRUN_LINK, false)), new ButtonWidget.TooltipSupplier() {
+        }, SUBMIT_SPEEDRUN_LINK, true)), new ButtonWidget.TooltipSupplier() {
             public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
                 LeaderboardsScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.submit_speedrun.tooltip"), mouseX, mouseY);
             }

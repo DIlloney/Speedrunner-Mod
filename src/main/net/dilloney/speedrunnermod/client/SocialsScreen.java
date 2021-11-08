@@ -66,13 +66,13 @@ class SocialsScreen extends GameOptionsScreen {
             }
 
             this.client.openScreen(this);
-        }, YOUTUBE_LINK, false)), new TooltipSupplier() {
+        }, YOUTUBE_LINK, true)), new TooltipSupplier() {
             public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
                 SocialsScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.youtube.tooltip"), mouseX, mouseY);
             }
 
             public void supply(Consumer<Text> consumer) {
-                consumer.accept(new TranslatableText("speedrunnermod.my_youtube.tooltip"));
+                consumer.accept(new TranslatableText("speedrunnermod.youtube.tooltip"));
             }
         }));
         this.addDrawableChild(new ButtonWidget(this.width / 2 - 155, 90, 150, 20, new TranslatableText("speedrunnermod.twitch"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
