@@ -41,23 +41,21 @@ class ResourcesScreen extends GameOptionsScreen {
 
             this.client.openScreen(this);
         }, WIKI_LINK, true)), (buttonWidget, matrixStack, i, j) -> this.renderTooltip(matrixStack, new TranslatableText("speedrunnermod.wiki.tooltip"), i, j)));
-        ButtonWidget timer_mod = this.addButton(new ButtonWidget(this.width / 2 - 155, 65, 150, 20, new TranslatableText("speedrunnermod.timer_mod"), (buttonWidget) -> {}, (buttonWidget, matrixStack, i, j) -> this.renderTooltip(matrixStack, new TranslatableText("speedrunnermod.timer_mod.unavailable"), i, j)));
-        timer_mod.active = false;
-        this.addButton(new ButtonWidget(this.width / 2 + 5, 65, 150, 20, new TranslatableText("speedrunnermod.sodium"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
+        this.addButton(new ButtonWidget(this.width / 2 - 155, 65, 150, 20, new TranslatableText("speedrunnermod.sodium"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(SODIUM_MOD_LINK);
             }
 
             this.client.openScreen(this);
         }, SODIUM_MOD_LINK, false))));
-        this.addButton(new ButtonWidget(this.width / 2 - 155, 90, 150, 20, new TranslatableText("speedrunnermod.lithium"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
+        this.addButton(new ButtonWidget(this.width / 2 + 5, 65, 150, 20, new TranslatableText("speedrunnermod.lithium"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(LITHIUM_MOD_LINK);
             }
 
             this.client.openScreen(this);
         }, LITHIUM_MOD_LINK, false))));
-        this.addButton(new ButtonWidget(this.width / 2 + 5, 90, 150, 20, new TranslatableText("speedrunnermod.phosphor"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
+        this.addButton(new ButtonWidget(this.width / 2 - 155, 90, 150, 20, new TranslatableText("speedrunnermod.phosphor"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(PHOSPHOR_MOD_LINK);
             }

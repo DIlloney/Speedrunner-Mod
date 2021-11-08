@@ -21,6 +21,7 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 public class ModOptionsScreen extends GameOptionsScreen {
     private static final Option[] OPTIONS = SpeedrunnerModClient.getModOptions();
+    private static final String FLUSHED = "Flushed changes to the Speedrunner Mod";
     private ButtonListWidget list;
 
     public ModOptionsScreen(Screen parent, GameOptions options) {
@@ -33,7 +34,7 @@ public class ModOptionsScreen extends GameOptionsScreen {
         this.children.add(this.list);
         this.addButton(new ButtonWidget(this.width / 2 - 100, this.height - 27, 200, 20, ScreenTexts.DONE, (button) -> {
             OptionsFileManager.save();
-            SpeedrunnerMod.LOGGER.info("Flushed changes to the Speedrunner Mod");
+            SpeedrunnerMod.LOGGER.info(FLUSHED);
             this.client.openScreen(this.parent);
         }));
     }
@@ -51,7 +52,7 @@ public class ModOptionsScreen extends GameOptionsScreen {
 
     public void onClose() {
         OptionsFileManager.save();
-        SpeedrunnerMod.LOGGER.info("Flushed changes to the Speedrunner Mod");
+        SpeedrunnerMod.LOGGER.info(FLUSHED);
         super.onClose();
     }
 }

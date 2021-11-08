@@ -54,7 +54,7 @@ class SocialsScreen extends GameOptionsScreen {
             }
 
             this.client.openScreen(this);
-        }, YOUTUBE_LINK, false)), (buttonWidget, matrixStack, i, j) -> this.renderTooltip(matrixStack, new TranslatableText("speedrunnermod.youtube.tooltip"), i, j)));
+        }, YOUTUBE_LINK, true)), (buttonWidget, matrixStack, i, j) -> this.renderTooltip(matrixStack, new TranslatableText("speedrunnermod.youtube.tooltip"), i, j)));
         this.addButton(new ButtonWidget(this.width / 2 - 155, 90, 150, 20, new TranslatableText("speedrunnermod.twitch"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(TWITCH_LINK);

@@ -31,7 +31,7 @@ class LeaderboardsScreen extends GameOptionsScreen {
             }
 
             this.client.openScreen(this);
-        }, LEADERBOARDS_PAGE_LINK, false)), (buttonWidget, matrixStack, i, j) -> this.renderTooltip(matrixStack, new TranslatableText("speedrunnermod.official_leaderboards_page.tooltip"), i, j)));
+        }, LEADERBOARDS_PAGE_LINK, true)), (buttonWidget, matrixStack, i, j) -> this.renderTooltip(matrixStack, new TranslatableText("speedrunnermod.official_leaderboards_page.tooltip"), i, j)));
         this.addButton(new ButtonWidget(this.width / 2 - 155, 65, 150, 20, new TranslatableText("speedrunnermod.rules.title"), (buttonWidget) -> this.client.openScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(RULES_LINK);
