@@ -1,96 +1,51 @@
 package net.dilloney.speedrunnermod;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.dilloney.speedrunnermod.client.render.SpeedrunnerShieldRenderer;
+import net.dilloney.speedrunnermod.client.timer.Timer;
 import net.dilloney.speedrunnermod.item.ModItems;
 import net.dilloney.speedrunnermod.option.ModOption;
-import net.dilloney.speedrunnermod.timer.TickHandler;
-import net.dilloney.speedrunnermod.timer.data.DataStorage;
+import net.dilloney.speedrunnermod.option.clModOptions;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
-import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.options.Option;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
-import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.item.CrossbowItem;
-import net.minecraft.item.Items;
 import net.minecraft.tag.FluidTags;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 @Environment(EnvType.CLIENT)
 public class SpeedrunnerModClient implements ClientModInitializer {
     public static double minBrightness = 1.0;
     public static double maxBrightness = 5.0;
+    private static final Gson GSON = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).setPrettyPrinting().create();
+    private static final String CONFIG = "speedrunnermod-cloptions.json";
+    private static File file;
+    private static clModOptions CLOPTIONS = getClientConfig();
 
     public void onInitializeClient() {
-        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW, new Identifier("pull"), (itemStack, clientWorld, livingEntity) -> {
-            if (livingEntity == null) {
-                return 0.0F;
-            } else {
-                return livingEntity.getActiveItem() != itemStack ? 0.0F : (float)(itemStack.getMaxUseTime() - livingEntity.getItemUseTimeLeft()) / 20.0F;
-            }
-        });
-        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW, new Identifier("pulling"), (itemStack, clientWorld, livingEntity) -> {
-            return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
-        });
+        loadClientConfig();
 
-        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW, new Identifier("pull"), (itemStack, clientWorld, livingEntity) -> {
-            if (livingEntity == null) {
-                return 0.0F;
-            } else {
-                return CrossbowItem.isCharged(itemStack) ? 0.0F : (float)(itemStack.getMaxUseTime() - livingEntity.getItemUseTimeLeft()) / (float)CrossbowItem.getPullTime(itemStack);
-            }
-        });
-        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW, new Identifier("pulling"), (itemStack, clientWorld, livingEntity) -> {
-            return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack && !CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F;
-        });
-        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW, new Identifier("charged"), (itemStack, clientWorld, livingEntity) -> {
-            return livingEntity != null && CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F;
-        });
-        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW, new Identifier("firework"), (itemStack, clientWorld, livingEntity) -> {
-            return livingEntity != null && CrossbowItem.isCharged(itemStack) && CrossbowItem.hasProjectile(itemStack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
-        });
-
-        FabricModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_SHIELD, new Identifier("blocking"), (itemStack, clientWorld, livingEntity) -> {
-            return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
-        });
-
-        BuiltinItemRendererRegistry.INSTANCE.register(ModItems.SPEEDRUNNER_SHIELD, new SpeedrunnerShieldRenderer());
-
-        ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
-            if (atlasTexture.getId() == SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE) {
-                registry.register(new Identifier("speedrunnermod:entity/speedrunner_shield_base"));
-            }
-        });
-
-        if (SpeedrunnerMod.OPTIONS.timer) {
-            MinecraftClient client = MinecraftClient.getInstance();
-            File configDir = FabricLoader.getInstance().getConfigDir().toFile();
-            DataStorage store = DataStorage.of(new File(configDir, "speedrunnermod-timer_storage.json"));
-            store.refreshBests("");
-            TickHandler tickHandler = new TickHandler(client, store);
-            HudRenderCallback.EVENT.register((__, ___) -> tickHandler.tick());
-        }
+        ModItems.clinit();
+        Timer.init();
     }
 
-    public static void injectFogFunction(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog) {
+    public static void applyNewFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog) {
         FluidState fluidState = camera.getSubmergedFluidState();
         Entity entity = camera.getFocusedEntity();
         float s;
@@ -132,7 +87,7 @@ public class SpeedrunnerModClient implements ClientModInitializer {
                 }
             } else if (thickFog) {
                 s = viewDistance * 0.05F;
-                if (!SpeedrunnerMod.OPTIONS.fog) {
+                if (!SpeedrunnerModClient.CLOPTIONS.fog) {
                     v = fog;
                 } else {
                     v = Math.min(viewDistance, 192.0F) * 0.5F;
@@ -142,7 +97,7 @@ public class SpeedrunnerModClient implements ClientModInitializer {
                 v = viewDistance;
             } else {
                 s = viewDistance * 0.75F;
-                if (!SpeedrunnerMod.OPTIONS.fog) {
+                if (!SpeedrunnerModClient.CLOPTIONS.fog) {
                     v = fog;
                 } else {
                     v = viewDistance;
@@ -156,11 +111,64 @@ public class SpeedrunnerModClient implements ClientModInitializer {
         }
     }
 
-    public static Option[] getModOptions() {
-        return new Option[]{ModOption.MAKE_STRUCTURES_MORE_COMMON, ModOption.MAKE_BIOMES_MORE_COMMON, ModOption.ICARUS_MODE, ModOption.INFINITY_PEARL_MODE, ModOption.FOG, ModOption.TIMER, ModOption.DOOM_MODE, ModOption.KILL_GHAST_UPON_FIREBALL, ModOption.STRONGHOLD_COUNT, ModOption.DRAGON_PERCH_TIME, ModOption.AUTO_CREATE_WORLD, ModOption.WORLD_DIFFICULTY};
+    public static Option[] newVideoOptions() {
+        return new Option[]{Option.GRAPHICS, Option.RENDER_DISTANCE, Option.AO, Option.FRAMERATE_LIMIT, Option.VSYNC, Option.VIEW_BOBBING, Option.GUI_SCALE, Option.ATTACK_INDICATOR, ModOption.GAMMA, Option.CLOUDS, Option.FULLSCREEN, Option.PARTICLES, ModOption.FOG, Option.MIPMAP_LEVELS, Option.ENTITY_SHADOWS, Option.DISTORTION_EFFECT_SCALE, Option.ENTITY_DISTANCE_SCALING, Option.FOV_EFFECT_SCALE};
     }
 
-    public static Option[] newVideoOptions() {
-        return new Option[]{Option.GRAPHICS, Option.RENDER_DISTANCE, Option.AO, Option.FRAMERATE_LIMIT, Option.VSYNC, Option.VIEW_BOBBING, Option.GUI_SCALE, Option.ATTACK_INDICATOR, Option.GAMMA, Option.CLOUDS, Option.FULLSCREEN, Option.PARTICLES, ModOption.FOG, Option.MIPMAP_LEVELS, Option.ENTITY_SHADOWS, Option.DISTORTION_EFFECT_SCALE, Option.ENTITY_DISTANCE_SCALING, Option.FOV_EFFECT_SCALE};
+    private static void loadClientConfig() {
+        File file = getClientConfigFile();
+        if (!file.exists()) {
+            SpeedrunnerModClient.CLOPTIONS = new clModOptions();
+        } else {
+            sanitize();
+            readClientConfig();
+        }
+        saveClientConfig();
+    }
+
+    private static void readClientConfig() {
+        SpeedrunnerModClient.CLOPTIONS = getClientConfig();
+    }
+
+    public static void saveClientConfig() {
+        File file = getClientConfigFile();
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(GSON.toJson(SpeedrunnerModClient.CLOPTIONS));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void setClientConfig(clModOptions config) {
+        SpeedrunnerModClient.CLOPTIONS = config;
+        saveClientConfig();
+    }
+
+    private static clModOptions getClientConfig() {
+        File file = getClientConfigFile();
+        try (FileReader reader = new FileReader(file)) {
+            return GSON.fromJson(reader, clModOptions.class);
+        } catch (Exception e) {
+            clModOptions newconfig = new clModOptions();
+            setClientConfig(newconfig);
+            return newconfig;
+        }
+    }
+
+    private static File getClientConfigFile() {
+        if (file == null) {
+            file = new File(FabricLoader.getInstance().getConfigDir().toFile(), CONFIG);
+        }
+        return file;
+    }
+
+    private static void sanitize() {
+        if (SpeedrunnerModClient.clOptions().worldDifficulty == null) {
+            SpeedrunnerModClient.clOptions().worldDifficulty = clModOptions.WorldDifficulty.EASY;
+        }
+    }
+
+    public static clModOptions clOptions() {
+        return CLOPTIONS;
     }
 }
