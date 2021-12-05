@@ -2,6 +2,7 @@ package net.dilloney.speedrunnermod.client.render;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
+import net.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry.DynamicItemRenderer;
@@ -49,13 +50,13 @@ public class SpeedrunnerShieldRenderer implements DynamicItemRenderer {
 
     public void render(ItemStack stack, ModelTransformation.Mode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();
-        boolean bl = stack.getSubTag("BlockEntityTag") != null;
+        boolean bl = stack.getSubNbt("BlockEntityTag") != null;
         matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(180.0F));
         if (!bl) {
-            VertexConsumer vertexConsumer2 = ItemRenderer.getDirectItemGlintConsumer(vertexConsumers, this.shieldModel.getLayer(new Identifier("speedrunnermod:textures/entity/speedrunner_shield_base_nopattern.png")), false, stack.hasGlint());
+            VertexConsumer vertexConsumer2 = ItemRenderer.getDirectItemGlintConsumer(vertexConsumers, this.shieldModel.getLayer(new Identifier(SpeedrunnerMod.MOD_ID, "textures/entity/speedrunner_shield_base_nopattern.png")), false, stack.hasGlint());
             this.shieldModel.render(matrices, vertexConsumer2, light, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
         } else {
-            SpriteIdentifier spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("speedrunnermod:entity/speedrunner_shield_base"));
+            SpriteIdentifier spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier(SpeedrunnerMod.MOD_ID, "entity/speedrunner_shield_base"));
             VertexConsumer vertexConsumer = spriteIdentifier.getSprite().getTextureSpecificVertexConsumer(ItemRenderer.getDirectItemGlintConsumer(vertexConsumers, this.shieldModel.getLayer(ModelLoader.SHIELD_BASE_NO_PATTERN.getAtlasId()), true, stack.hasGlint()));
             this.shieldModel.getHandle().render(matrices, vertexConsumer, light, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
             List<Pair<BannerPattern, DyeColor>> list = BannerBlockEntity.getPatternsFromNbt(ShieldItem.getColor(stack), BannerBlockEntity.getPatternListTag(stack));
