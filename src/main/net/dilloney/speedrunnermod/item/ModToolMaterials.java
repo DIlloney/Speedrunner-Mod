@@ -8,18 +8,6 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
-    ANDESITE(1, 131, 4.0F, 1.0F, 5, () -> {
-        return Ingredient.ofItems(Items.ANDESITE);
-    }),
-    BLACKSTONE(1, 131, 4.0F, 1.0F, 5, () -> {
-        return Ingredient.ofItems(Items.ANDESITE);
-    }),
-    DIORITE(1, 131, 4.0F, 1.0F, 5, () -> {
-        return Ingredient.ofItems(Items.ANDESITE);
-    }),
-    GRANITE(1, 131, 4.0F, 1.0F, 5, () -> {
-        return Ingredient.ofItems(Items.ANDESITE);
-    }),
     SPEEDRUNNER_SHOVEL_AXE_HOE(2, 500, 11.0F, 0.0F, 17, () -> {
         return Ingredient.ofItems(ModItems.SPEEDRUNNER_INGOT);
     }),

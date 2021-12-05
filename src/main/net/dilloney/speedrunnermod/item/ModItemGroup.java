@@ -43,25 +43,5 @@ public class ModItemGroup {
                 itemStacks.add(new ItemStack(ModItems.COOKED_PIGLIN_PORK));
                 itemStacks.add(new ItemStack(ModItems.SPEEDRUNNER_BULK));
                 itemStacks.add(new ItemStack(ModItems.ROTTEN_SPEEDRUNNER_BULK));
-                itemStacks.add(new ItemStack(ModItems.COOKED_FLESH));
-                itemStacks.add(new ItemStack(ModItems.BLACKSTONE_SWORD));
-                itemStacks.add(new ItemStack(ModItems.BLACKSTONE_SHOVEL));
-                itemStacks.add(new ItemStack(ModItems.BLACKSTONE_PICKAXE));
-                itemStacks.add(new ItemStack(ModItems.BLACKSTONE_AXE));
-                itemStacks.add(new ItemStack(ModItems.BLACKSTONE_HOE));
-                itemStacks.add(new ItemStack(ModItems.ANDESITE_SWORD));
-                itemStacks.add(new ItemStack(ModItems.ANDESITE_SHOVEL));
-                itemStacks.add(new ItemStack(ModItems.ANDESITE_PICKAXE));
-                itemStacks.add(new ItemStack(ModItems.ANDESITE_AXE));
-                itemStacks.add(new ItemStack(ModItems.ANDESITE_HOE));
-                itemStacks.add(new ItemStack(ModItems.GRANITE_SWORD));
-                itemStacks.add(new ItemStack(ModItems.GRANITE_SHOVEL));
-                itemStacks.add(new ItemStack(ModItems.GRANITE_PICKAXE));
-                itemStacks.add(new ItemStack(ModItems.GRANITE_AXE));
-                itemStacks.add(new ItemStack(ModItems.GRANITE_HOE));
-                itemStacks.add(new ItemStack(ModItems.DIORITE_SWORD));
-                itemStacks.add(new ItemStack(ModItems.DIORITE_SHOVEL));
-                itemStacks.add(new ItemStack(ModItems.DIORITE_PICKAXE));
-                itemStacks.add(new ItemStack(ModItems.DIORITE_AXE));
-                itemStacks.add(new ItemStack(ModItems.DIORITE_HOE)); }).build();
+                itemStacks.add(new ItemStack(ModItems.COOKED_FLESH)); }).build();
 }
