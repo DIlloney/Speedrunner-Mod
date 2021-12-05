@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "speedrunnermod",
-  "version": "1.4.1-mc1165",
+  "version": "1.5-mc1165",
   "accessWidener": "speedrunner-mod.accessWidener",
   "name": "Speedrunner Mod",
   "description": "A Mod that makes Speedrunning, easier.",
@@ -23,14 +23,12 @@
     ],
     "client": [
       "net.dilloney.speedrunnermod.SpeedrunnerModClient"
-    ],
-    "modmenu": [
-      "net.dilloney.speedrunnermod.client.impl.ModMenuImplementation"
     ]
   },
   "mixins": [
-    "speedrunner-mod.features.json",
-    "speedrunner-mod.fixes.json"
+    "speedrunner-mod.buttons.json",
+    "speedrunner-mod.hud.json",
+    "speedrunner-mod.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.11.6",
@@ -38,6 +36,8 @@
     "minecraft": "1.16.5"
   },
   "breaks": {
-    "autoreset": "*"
+    "optifabric": "*",
+    "autoreset": "*",
+    "modmenu": "*"
   }
 }

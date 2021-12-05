@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.dilloney.speedrunnermod.client.gui.widget",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "ModButtonFunction",
+    "ModButtonGM",
+    "ModButtonTS",
+    "ModOptionButton"
+  ],
+  "server": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
