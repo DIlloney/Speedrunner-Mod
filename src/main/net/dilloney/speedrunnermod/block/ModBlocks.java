@@ -1,11 +1,14 @@
 package net.dilloney.speedrunnermod.block;
 
+import net.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.OreBlock;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 public class ModBlocks {
 
@@ -38,4 +41,12 @@ public class ModBlocks {
             .requiresTool()
             .strength(3.0F, 3.0F)
             .sounds(BlockSoundGroup.NETHER_ORE));
+
+    public static void init() {
+        Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_block"), ModBlocks.SPEEDRUNNER_BLOCK);
+        Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_ore"), ModBlocks.SPEEDRUNNER_ORE);
+        Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "nether_speedrunner_ore"), ModBlocks.NETHER_SPEEDRUNNER_ORE);
+        Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "igneous_ore"), ModBlocks.IGNEOUS_ORE);
+        Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "nether_igneous_ore"), ModBlocks.NETHER_IGNEOUS_ORE);
+    }
 }
