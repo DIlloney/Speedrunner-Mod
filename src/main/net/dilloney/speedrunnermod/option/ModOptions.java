@@ -11,22 +11,22 @@ public class ModOptions {
     public final Advanced advanced = new Advanced();
 
     public static class Main {
-        public boolean commonStructures = true;
-        public boolean commonBiomes = true;
+        public boolean makeStructuresMoreCommon = true;
+        public boolean makeBiomesMoreCommon = true;
         public boolean iCarusMode = false;
         public boolean infiniPearlMode = false;
         public boolean doomMode = false;
-        public boolean modifyBlockHardness = true;
+        public boolean modifiedBlockHardness = true;
         public boolean killGhastUponFireball = false;
         public int strongholdCount = 128;
         public int dragonPerchTime = 30;
 
-        public boolean getCommonStructures() {
-            return this.commonStructures;
+        public boolean getMakeStructuresMoreCommon() {
+            return this.makeStructuresMoreCommon;
         }
 
-        public boolean getCommonBiomes() {
-            return this.commonBiomes;
+        public boolean getMakeBiomesMoreCommon() {
+            return this.makeBiomesMoreCommon;
         }
 
         public boolean getiCarusMode() {
@@ -41,8 +41,8 @@ public class ModOptions {
             return this.doomMode;
         }
 
-        public boolean getModifyBlockHardness() {
-            return this.modifyBlockHardness;
+        public boolean getModifiedBlockHardness() {
+            return this.modifiedBlockHardness;
         }
 
         public boolean getKillGhastUponFireball() {
@@ -57,12 +57,12 @@ public class ModOptions {
             return this.dragonPerchTime;
         }
 
-        public void setCommonStructures(boolean commonStructures) {
-            this.commonStructures = commonStructures;
+        public void setMakeStructuresMoreCommon(boolean makeStructuresMoreCommon) {
+            this.makeStructuresMoreCommon = makeStructuresMoreCommon;
         }
 
-        public void setCommonBiomes(boolean commonBiomes) {
-            this.commonBiomes = commonBiomes;
+        public void setMakeBiomesMoreCommon(boolean makeBiomesMoreCommon) {
+            this.makeBiomesMoreCommon = makeBiomesMoreCommon;
         }
 
         public void setiCarusMode(boolean iCarusMode) {
@@ -77,8 +77,8 @@ public class ModOptions {
             this.doomMode = doomMode;
         }
 
-        public void setModifyBlockHardness(boolean modifyBlockHardness) {
-            this.modifyBlockHardness = modifyBlockHardness;
+        public void setModifiedBlockHardness(boolean modifiedBlockHardness) {
+            this.modifiedBlockHardness = modifiedBlockHardness;
         }
 
         public void setKillGhastUponFireball(boolean killGhastUponFireball) {
@@ -100,6 +100,7 @@ public class ModOptions {
         public boolean modifyBiomes = true;
         public boolean commonOres = true;
         public int strongholdDistance = 4;
+        public boolean combineFortressesAndBastions = false;
 
         public boolean getModifyBiomes() {
             return this.modifyBiomes;
@@ -107,6 +108,10 @@ public class ModOptions {
 
         public boolean getCommonOres() {
             return this.commonOres;
+        }
+
+        public boolean getCombineFortressesAndBastions() {
+            return combineFortressesAndBastions;
         }
 
         public int getStrongholdDistance() {
@@ -123,6 +128,10 @@ public class ModOptions {
 
         public void setStrongholdDistance(int strongholdDistance) {
             this.strongholdDistance = strongholdDistance;
+        }
+
+        public void setCombineFortressesAndBastions(boolean combineFortressesAndBastions) {
+            this.combineFortressesAndBastions = combineFortressesAndBastions;
         }
 
         public enum MobSpawningRate {
