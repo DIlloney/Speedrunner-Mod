@@ -8,6 +8,8 @@ import net.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.dilloney.speedrunnermod.block.ModBlocks;
 import net.dilloney.speedrunnermod.item.ModFoodComponents;
 import net.dilloney.speedrunnermod.item.ModItems;
+import net.dilloney.speedrunnermod.util.ModFeatures;
+import net.dilloney.speedrunnermod.util.UniqueItemRegistry;
 import net.dilloney.speedrunnermod.util.entity.Giant;
 import net.dilloney.speedrunnermod.world.gen.feature.ModConfiguredFeatures;
 import net.fabricmc.api.EnvType;
@@ -50,10 +52,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.item.*;
 import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -68,6 +68,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.collection.WeightedPicker;
 import net.minecraft.util.hit.HitResult;
@@ -78,7 +79,10 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeCreator;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.biome.source.BiomeSource;
+import net.minecraft.world.dimension.AreaHelper;
 import net.minecraft.world.explosion.Explosion;
+import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -105,7 +109,7 @@ public class ModMixins {
 
         @Inject(method = "getHardness", at = @At("HEAD"), cancellable = true)
         private void getHardness(BlockView world, BlockPos pos, CallbackInfoReturnable<Float> cir) {
-            SpeedrunnerMod.applyBlockHardnessValues(world, pos, cir);
+            ModFeatures.applyBlockHardnessValues(world, pos, cir);
         }
     }
 
@@ -157,6 +161,86 @@ public class ModMixins {
             } else {
                 return this == Blocks.NETHER_GOLD_ORE || this == ModBlocks.NETHER_SPEEDRUNNER_ORE || this == ModBlocks.NETHER_IGNEOUS_ORE ? MathHelper.nextInt(random, 0, 1) : 0;
             }
+        }
+    }
+
+    @Mixin(net.minecraft.block.AbstractFireBlock.class)
+    public static class AbstractFireBlockMixin {
+
+        @Overwrite
+        public static boolean method_30033(World world, BlockPos blockPos, Direction direction) {
+            if (!method_30366(world)) {
+                return false;
+            } else {
+                BlockPos.Mutable mutable = blockPos.mutableCopy();
+                boolean bl = false;
+                Direction[] var5 = Direction.values();
+                int var6 = var5.length;
+
+                for(int var7 = 0; var7 < var6; ++var7) {
+                    Direction direction2 = var5[var7];
+                    if (world.getBlockState(mutable.set(blockPos).move(direction2)).isOf(Blocks.OBSIDIAN) || world.getBlockState(mutable.set(blockPos).move(direction2)).isOf(Blocks.CRYING_OBSIDIAN)) {
+                        bl = true;
+                        break;
+                    }
+                }
+
+                if (!bl) {
+                    return false;
+                } else {
+                    Direction.Axis axis = direction.getAxis().isHorizontal() ? direction.rotateYCounterclockwise().getAxis() : Direction.Type.HORIZONTAL.randomAxis(world.random);
+                    return AreaHelper.method_30485(world, blockPos, axis).isPresent();
+                }
+            }
+        }
+
+        private static boolean method_30366(World world) {
+            return world.getRegistryKey() == World.OVERWORLD || world.getRegistryKey() == World.NETHER;
+        }
+    }
+
+    @Mixin(net.minecraft.block.BeehiveBlock.class)
+    public static class BeehiveBlockMixin {
+
+        @Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;", ordinal = 0))
+        private Item onUse(ItemStack stack) {
+            return UniqueItemRegistry.SHEARS.getDefaultItem(stack.getItem());
+        }
+    }
+
+    @Mixin(net.minecraft.block.PumpkinBlock.class)
+    public static class PumpkinBlockMixin {
+
+        @Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+        private Item onUse(ItemStack stack) {
+            return UniqueItemRegistry.SHEARS.getDefaultItem(stack.getItem());
+        }
+    }
+
+    @Mixin(net.minecraft.block.TntBlock.class)
+    public static class TntBlockMixin {
+
+        @Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+        private Item onUse(ItemStack stack) {
+            return UniqueItemRegistry.TNT_BLOCK_IGNITERS.getDefaultItem(stack.getItem());
+        }
+    }
+
+    @Mixin(net.minecraft.block.TripwireBlock.class)
+    public static class TripwireBlockMixin {
+
+        @Redirect(method = "onBreak", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+        private Item onBreak(ItemStack stack) {
+            return  UniqueItemRegistry.SHEARS.getDefaultItem(stack.getItem());
+        }
+    }
+
+    @Mixin(net.minecraft.enchantment.EfficiencyEnchantment.class)
+    public static class EfficiencyEnchantmentMixin {
+
+        @Redirect(method = "isAcceptableItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+        private Item isAcceptableItem(ItemStack stack) {
+            return  UniqueItemRegistry.SHEARS.getDefaultItem(stack.getItem());
         }
     }
 
@@ -1411,6 +1495,20 @@ public class ModMixins {
         private int sheared(int x) {
             return 6 + this.random.nextInt(4);
         }
+
+        @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+        private Item interactMob(ItemStack stack) {
+            return UniqueItemRegistry.SHEARS.getDefaultItem(stack.getItem());
+        }
+    }
+
+    @Mixin(net.minecraft.entity.passive.SnowGolemEntity.class)
+    public static class SnowGolemEntityMixin {
+
+        @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+        private Item interactMob(ItemStack stack) {
+            return UniqueItemRegistry.SHEARS.getDefaultItem(stack.getItem());
+        }
     }
 
     @Mixin(net.minecraft.entity.player.PlayerEntity.class)
@@ -1422,6 +1520,16 @@ public class ModMixins {
 
         @Shadow
         abstract ItemCooldownManager getItemCooldownManager();
+
+        @Inject(method = "disableShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getItemCooldownManager()Lnet/minecraft/entity/player/ItemCooldownManager;"))
+        private void disableShield(CallbackInfo ci) {
+            this.getItemCooldownManager().set(ModItems.SPEEDRUNNER_SHIELD, 80);
+        }
+
+        @Redirect(method = "damageShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+        private Item damageShield(ItemStack stack) {
+            return UniqueItemRegistry.SHIELD.getDefaultItem(stack.getItem());
+        }
 
         @Inject(method = "takeShieldHit", at = @At("TAIL"))
         private void takeShieldHit(LivingEntity attacker, CallbackInfo ci) {
@@ -1538,6 +1646,26 @@ public class ModMixins {
         }
     }
 
+    @Mixin(value = net.minecraft.entity.mob.MobEntity.class, priority = 999)
+    public static class MobEntityMixin {
+
+        @Overwrite
+        public static EquipmentSlot getPreferredEquipmentSlot(ItemStack stack) {
+            Item item = stack.getItem();
+            if (item != Blocks.CARVED_PUMPKIN.asItem() && (!(item instanceof BlockItem) || !(((BlockItem)item).getBlock() instanceof AbstractSkullBlock))) {
+                if (item instanceof ArmorItem) {
+                    return ((ArmorItem)item).getSlotType();
+                } else if (item == Items.ELYTRA) {
+                    return EquipmentSlot.CHEST;
+                } else {
+                    return item == Items.SHIELD || item == ModItems.SPEEDRUNNER_SHIELD ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
+                }
+            } else {
+                return EquipmentSlot.HEAD;
+            }
+        }
+    }
+
     @Mixin(net.minecraft.entity.EyeOfEnderEntity.class)
     public abstract static class EyeOfEnderEntityMixin extends Entity {
         @Shadow
@@ -1640,7 +1768,7 @@ public class ModMixins {
 
         static {
             if (SpeedrunnerMod.options().main.doomMode) {
-                SpawnRestriction.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SpeedrunnerMod::canPiglinBruteSpawn);
+                SpawnRestriction.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ModFeatures::canPiglinBruteSpawn);
             }
         }
     }
@@ -1680,6 +1808,50 @@ public class ModMixins {
         private static final FoodComponent APPLE = ModFoodComponents.APPLE, BAKED_POTATO = ModFoodComponents.BAKED_POTATO, BEEF = ModFoodComponents.BEEF, BEETROOT = ModFoodComponents.BEETROOT, BREAD = ModFoodComponents.BREAD, CARROT = ModFoodComponents.CARROT, CHICKEN = ModFoodComponents.CHICKEN, CHORUS_FRUIT = ModFoodComponents.CHORUS_FRUIT, COD = ModFoodComponents.COD, COOKED_BEEF = ModFoodComponents.COOKED_BEEF, COOKED_CHICKEN = ModFoodComponents.COOKED_CHICKEN, COOKED_COD = ModFoodComponents.COOKED_COD, COOKED_MUTTON = ModFoodComponents.COOKED_MUTTON, COOKED_PORKCHOP = ModFoodComponents.COOKED_PORKCHOP, COOKED_RABBIT = ModFoodComponents.COOKED_RABBIT, COOKED_SALMON = ModFoodComponents.COOKED_SALMON, COOKIE = ModFoodComponents.COOKIE, DRIED_KELP = ModFoodComponents.DRIED_KELP, ENCHANTED_GOLDEN_APPLE = ModFoodComponents.ENCHANTED_GOLDEN_APPLE, GOLDEN_APPLE = ModFoodComponents.GOLDEN_APPLE, GOLDEN_CARROT = ModFoodComponents.GOLDEN_CARROT, HONEY_BOTTLE = ModFoodComponents.HONEY_BOTTLE, MELON_SLICE = ModFoodComponents.MELON_SLICE, MUTTON = ModFoodComponents.MUTTON, POISONOUS_POTATO = ModFoodComponents.POISONOUS_POTATO, PORKCHOP = ModFoodComponents.PORKCHOP, POTATO = ModFoodComponents.POTATO, PUFFERFISH = ModFoodComponents.PUFFERFISH, PUMPKIN_PIE = ModFoodComponents.PUMPKIN_PIE, RABBIT = ModFoodComponents.RABBIT, ROTTEN_FLESH = ModFoodComponents.ROTTEN_FLESH, SALMON = ModFoodComponents.SALMON, SPIDER_EYE = ModFoodComponents.SPIDER_EYE, SWEET_BERRIES = ModFoodComponents.SWEET_BERRIES, TROPICAL_FISH = ModFoodComponents.TROPICAL_FISH;
     }
 
+    @Deprecated
+    @Mixin(net.minecraft.predicate.item.ItemPredicate.class)
+    public static class ItemPredicateMixin {
+
+        @ModifyVariable(method = "test", at = @At("HEAD"))
+        private ItemStack test(ItemStack stack) {
+            if (stack.getItem().getDefaultStack().getItem() == ModItems.SPEEDRUNNER_SHEARS) {
+                ItemStack itemStack = new ItemStack(Items.SHEARS);
+                itemStack.setCount(stack.getCount());
+                itemStack.setTag(stack.getOrCreateTag());
+                return itemStack;
+            }
+
+            return stack;
+        }
+    }
+
+    @Mixin(net.minecraft.item.CrossbowItem.class)
+    public static class CrossbowItemMixin {
+
+        @Redirect(method = "getSpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"))
+        private static Item tickMovement(ItemStack stack) {
+            return UniqueItemRegistry.CROSSBOW.getDefaultItem(stack.getItem());
+        }
+    }
+
+    @Mixin(net.minecraft.recipe.ShapelessRecipe.class)
+    public static class ShapelessRecipeMixin {
+        @Shadow @Final
+        private Identifier id;
+
+        @Inject(method = "matches", at = @At("HEAD"), cancellable = true)
+        private void matches(CraftingInventory craftingInventory, World world, CallbackInfoReturnable<Boolean> cir) {
+            if (id.toString().equals("minecraft:ender_eye") || id.toString().equals("speedrunnermod:inferno_eye") || id.toString().equals("speedrunnermod:annul_eye")) {
+                for (int i = 0; i < craftingInventory.size(); i++) {
+                    ItemStack itemStack = craftingInventory.getStack(i);
+                    if (itemStack.hasEnchantments()) {
+                        cir.setReturnValue(false);
+                    }
+                }
+            }
+        }
+    }
+    
     @Mixin(net.minecraft.server.network.ServerPlayerEntity.class)
     public abstract static class ServerPlayerEntityMixin extends PlayerEntity {
         @Shadow @Final
@@ -1726,13 +1898,13 @@ public class ModMixins {
     @Mixin(value = net.minecraft.world.biome.layer.SetBaseBiomesLayer.class, priority = 999)
     public static class SetBaseBiomesLayerMixin {
         @Shadow
-        private static final int[] DRY_BIOMES = SpeedrunnerMod.DRY_BIOME_IDS;
+        private static final int[] DRY_BIOMES = ModFeatures.DRY_BIOME_IDS;
         @Shadow
-        private static final int[] TEMPERATE_BIOMES = SpeedrunnerMod.TEMPERATE_BIOME_IDS;
+        private static final int[] TEMPERATE_BIOMES = ModFeatures.TEMPERATE_BIOME_IDS;
         @Shadow
-        private static final int[] COOL_BIOMES = SpeedrunnerMod.COOL_BIOME_IDS;
+        private static final int[] COOL_BIOMES = ModFeatures.COOL_BIOME_IDS;
         @Shadow
-        private static final int[] SNOWY_BIOMES = SpeedrunnerMod.SNOWY_BIOME_IDS;
+        private static final int[] SNOWY_BIOMES = ModFeatures.SNOWY_BIOME_IDS;
     }
 
     @Mixin(net.minecraft.world.biome.DefaultBiomeCreator.class)
@@ -1740,42 +1912,42 @@ public class ModMixins {
 
         @Overwrite
         public static Biome createPlains(boolean bl) {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifyPlains(bl) : DefaultBiomeCreator.createPlains(bl);
+            return SpeedrunnerMod.options().advanced.modifyBiomes ? ModFeatures.modifyPlains(bl) : DefaultBiomeCreator.createPlains(bl);
         }
 
         @Overwrite
         public static Biome createForest(float depth, float scale, boolean flower, SpawnSettings.Builder spawnSettings) {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifyForest(depth, scale, flower, spawnSettings) : DefaultBiomeCreator.createForest(depth, scale, flower, spawnSettings);
+            return SpeedrunnerMod.options().advanced.modifyBiomes ? ModFeatures.modifyForest(depth, scale, flower, spawnSettings) : DefaultBiomeCreator.createForest(depth, scale, flower, spawnSettings);
         }
 
         @Overwrite
         public static Biome createMountains(float depth, float scale, ConfiguredSurfaceBuilder<TernarySurfaceConfig> surfaceBuilder, boolean extraTrees) {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifyMountains(depth, scale, surfaceBuilder, extraTrees) : DefaultBiomeCreator.createMountains(depth, scale, surfaceBuilder, extraTrees);
+            return SpeedrunnerMod.options().advanced.modifyBiomes ? ModFeatures.modifyMountains(depth, scale, surfaceBuilder, extraTrees) : DefaultBiomeCreator.createMountains(depth, scale, surfaceBuilder, extraTrees);
         }
 
         @Overwrite
         public static Biome createNetherWastes() {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifyNetherWastes() : DefaultBiomeCreator.createNetherWastes();
+            return SpeedrunnerMod.options().advanced.modifyBiomes ? ModFeatures.modifyNetherWastes() : DefaultBiomeCreator.createNetherWastes();
         }
 
         @Overwrite
         public static Biome createSoulSandValley() {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifySoulSandValley() : DefaultBiomeCreator.createSoulSandValley();
+            return SpeedrunnerMod.options().advanced.modifyBiomes ? ModFeatures.modifySoulSandValley() : DefaultBiomeCreator.createSoulSandValley();
         }
 
         @Overwrite
         public static Biome createBasaltDeltas() {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifyBasaltDeltas() : SpeedrunnerMod.addDeltasOres();
+            return SpeedrunnerMod.options().advanced.modifyBiomes ? ModFeatures.modifyBasaltDeltas() : ModFeatures.createBasaltDeltasWithModdedOres();
         }
 
         @Overwrite
         public static Biome createCrimsonForest() {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifyCrimsonForest() : DefaultBiomeCreator.createCrimsonForest();
+            return SpeedrunnerMod.options().advanced.modifyBiomes ? ModFeatures.modifyCrimsonForest() : DefaultBiomeCreator.createCrimsonForest();
         }
 
         @Overwrite
         public static Biome createWarpedForest() {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifyWarpedForest() : DefaultBiomeCreator.createWarpedForest();
+            return SpeedrunnerMod.options().advanced.modifyBiomes ? ModFeatures.modifyWarpedForest() : DefaultBiomeCreator.createWarpedForest();
         }
     }
 
@@ -1796,12 +1968,12 @@ public class ModMixins {
 
         @Overwrite
         public int getDistance() {
-            return SpeedrunnerMod.options().main.commonStructures ? SpeedrunnerMod.options().advanced.getStrongholdDistance() : this.distance;
+            return SpeedrunnerMod.options().main.makeStructuresMoreCommon ? SpeedrunnerMod.options().advanced.getStrongholdDistance() : this.distance;
         }
 
         @Overwrite
         public int getCount() {
-            return SpeedrunnerMod.options().main.commonStructures ? SpeedrunnerMod.options().main.getStrongholdCount() : this.count;
+            return SpeedrunnerMod.options().main.makeStructuresMoreCommon ? SpeedrunnerMod.options().main.getStrongholdCount() : this.count;
         }
     }
 
@@ -1833,29 +2005,34 @@ public class ModMixins {
 
         @Overwrite
         public static void addMonsters(net.minecraft.world.biome.SpawnSettings.Builder builder, int zombieWeight, int zombieVillagerWeight, int skeletonWeight) {
-            SpeedrunnerMod.modifyMonsters(builder, zombieWeight, zombieVillagerWeight, skeletonWeight);
+            ModFeatures.modifyMonsterSpawns(builder, zombieWeight, zombieVillagerWeight, skeletonWeight);
         }
 
         @Overwrite
         public static void addFarmAnimals(net.minecraft.world.biome.SpawnSettings.Builder builder) {
-            SpeedrunnerMod.makeAnimalsMoreCommon(builder);
+            ModFeatures.makeAnimalsMoreCommon(builder);
         }
 
         @Overwrite
         public static void addWarmOceanMobs(net.minecraft.world.biome.SpawnSettings.Builder builder, int squidWeight, int squidMinGroupSize) {
-            SpeedrunnerMod.makeDolphinsMoreCommon(builder, squidWeight, squidMinGroupSize);
+            ModFeatures.makeDolphinsMoreCommon(builder, squidWeight, squidMinGroupSize);
         }
 
         @Overwrite
         public static void addEndMobs(net.minecraft.world.biome.SpawnSettings.Builder builder) {
-            SpeedrunnerMod.modifyEndMobs(builder);
+            ModFeatures.modifyEndMonsterSpawning(builder);
         }
     }
 
     @Mixin(net.minecraft.world.gen.feature.NetherFortressFeature.class)
     public static class NetherFortressFeatureMixin {
         @Shadow
-        private static final List<SpawnSettings.SpawnEntry> MONSTER_SPAWNS = SpeedrunnerMod.NETHER_FORTRESS_MOB_SPAWNS;
+        private static final List<SpawnSettings.SpawnEntry> MONSTER_SPAWNS = ModFeatures.NETHER_FORTRESS_MOB_SPAWNS;
+
+        @Overwrite
+        public boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long l, ChunkRandom chunkRandom, int i, int j, Biome biome, ChunkPos chunkPos, DefaultFeatureConfig defaultFeatureConfig) {
+            return SpeedrunnerMod.options().advanced.combineFortressesAndBastions ? chunkRandom.nextInt(5) >= 2 : chunkRandom.nextInt(5) < 2;
+        }
     }
 
     @Mixin(net.minecraft.world.gen.feature.StrongholdFeature.Start.class)
@@ -1900,15 +2077,15 @@ public class ModMixins {
     @Mixin(net.minecraft.structure.NetherFortressGenerator.class)
     public static class NetherFortressGeneratorMixin {
         @Shadow
-        private static final NetherFortressGenerator.PieceData[] ALL_BRIDGE_PIECES = SpeedrunnerMod.NETHER_FORTRESS_GENERATION_BRIDGE;
+        private static final NetherFortressGenerator.PieceData[] ALL_BRIDGE_PIECES = ModFeatures.NETHER_FORTRESS_GENERATION_BRIDGE;
         @Shadow
-        private static final NetherFortressGenerator.PieceData[] ALL_CORRIDOR_PIECES = SpeedrunnerMod.NETHER_FORTRESS_GENERATION_CORRIDOR;
+        private static final NetherFortressGenerator.PieceData[] ALL_CORRIDOR_PIECES = ModFeatures.NETHER_FORTRESS_GENERATION_CORRIDOR;
     }
 
     @Mixin(net.minecraft.structure.StrongholdGenerator.class)
     public static class StrongholdGeneratorMixin {
         @Shadow
-        private static final StrongholdGenerator.PieceData[] ALL_PIECES = SpeedrunnerMod.STRONGHOLD_GENERATION;
+        private static final StrongholdGenerator.PieceData[] ALL_PIECES = ModFeatures.STRONGHOLD_GENERATION;
 
         @Mixin(StrongholdGenerator.PortalRoom.class)
         public static class PortalRoomMixin extends StrongholdGenerator.Piece {
@@ -2011,6 +2188,15 @@ public class ModMixins {
 
                 return true;
             }
+        }
+    }
+
+    @Mixin(net.minecraft.world.gen.feature.RuinedPortalFeature.Start.class)
+    public static class RuinedPortalFeatureMixin {
+
+        @ModifyVariable(method = "init", at = @At(value = "STORE", ordinal = 0), index = 8)
+        private RuinedPortalStructurePiece.VerticalPlacement init(RuinedPortalStructurePiece.VerticalPlacement verticalPlacement) {
+            return RuinedPortalStructurePiece.VerticalPlacement.ON_LAND_SURFACE;
         }
     }
 
