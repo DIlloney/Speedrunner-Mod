@@ -7,12 +7,14 @@ import com.mojang.serialization.Codec;
 import net.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.dilloney.speedrunnermod.item.ModFoodComponents;
 import net.dilloney.speedrunnermod.item.ModItems;
+import net.dilloney.speedrunnermod.util.ModFeatures;
 import net.dilloney.speedrunnermod.util.entity.Giant;
 import net.dilloney.speedrunnermod.world.gen.feature.ModOrePlacedFeatures;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
+import net.minecraft.client.sound.MusicType;
 import net.minecraft.command.argument.ItemStackArgumentType;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -48,6 +50,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -56,9 +59,7 @@ import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.*;
 import net.minecraft.stat.ServerStatHandler;
 import net.minecraft.stat.Stats;
 import net.minecraft.structure.*;
@@ -66,6 +67,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.collection.Pool;
@@ -74,13 +76,18 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.*;
+import net.minecraft.world.dimension.AreaHelper;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.*;
 import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -96,7 +103,7 @@ public class ModMixins {
 
         @Inject(method = "getHardness", at = @At("HEAD"), cancellable = true)
         private void getHardness(BlockView world, BlockPos pos, CallbackInfoReturnable<Float> cir) {
-            SpeedrunnerMod.applyBlockHardnessValues(world, pos, cir);
+            ModFeatures.applyBlockHardnessValues(world, pos, cir);
         }
     }
 
@@ -142,6 +149,86 @@ public class ModMixins {
                     this.dropExperience(world, pos, diron);
                 }
             }
+        }
+    }
+
+    @Mixin(net.minecraft.block.AbstractFireBlock.class)
+    public static class AbstractFireBlockMixin {
+
+        @Overwrite
+        private static boolean shouldLightPortalAt(World world, BlockPos pos, Direction direction) {
+            if (!isOverworldOrNether(world)) {
+                return false;
+            } else {
+                BlockPos.Mutable mutable = pos.mutableCopy();
+                boolean bl = false;
+                Direction[] var5 = Direction.values();
+                int var6 = var5.length;
+
+                for(int var7 = 0; var7 < var6; ++var7) {
+                    Direction direction2 = var5[var7];
+                    if (world.getBlockState(mutable.set(pos).move(direction2)).isOf(Blocks.OBSIDIAN) || world.getBlockState(mutable.set(pos).move(direction2)).isOf(Blocks.CRYING_OBSIDIAN)) {
+                        bl = true;
+                        break;
+                    }
+                }
+
+                if (!bl) {
+                    return false;
+                } else {
+                    Direction.Axis axis = direction.getAxis().isHorizontal() ? direction.rotateYCounterclockwise().getAxis() : Direction.Type.HORIZONTAL.randomAxis(world.random);
+                    return AreaHelper.getNewPortal(world, pos, axis).isPresent();
+                }
+            }
+        }
+
+        private static boolean isOverworldOrNether(World world) {
+            return world.getRegistryKey() == World.OVERWORLD || world.getRegistryKey() == World.NETHER;
+        }
+    }
+
+    @Mixin(net.minecraft.block.BeehiveBlock.class)
+    public static class BeehiveBlockMixin {
+
+        @Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 0))
+        private boolean onUse(ItemStack stack, Item item) {
+            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
+        }
+    }
+
+    @Mixin(net.minecraft.block.PumpkinBlock.class)
+    public static class PumpkinBlockMixin {
+
+        @Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+        private boolean onUse(ItemStack stack, Item item) {
+            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
+        }
+    }
+
+    @Mixin(net.minecraft.block.TntBlock.class)
+    public static class TntBlockMixin {
+
+        @Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+        private boolean onUse(ItemStack stack, Item item) {
+            return stack.isOf(Items.FLINT_AND_STEEL) || stack.isOf(ModItems.SPEEDRUNNER_FLINT_AND_STEEL) || stack.isOf(Items.FIRE_CHARGE);
+        }
+    }
+
+    @Mixin(net.minecraft.block.TripwireBlock.class)
+    public static class TripwireBlockMixin {
+
+        @Redirect(method = "onBreak", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+        private boolean onBreak(ItemStack stack, Item item) {
+            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
+        }
+    }
+
+    @Mixin(net.minecraft.enchantment.EfficiencyEnchantment.class)
+    public static class EfficiencyEnchantmentMixin {
+
+        @Redirect(method = "isAcceptableItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+        private boolean isAcceptableItem(ItemStack stack, Item item) {
+            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
         }
     }
 
@@ -1405,6 +1492,20 @@ public class ModMixins {
         private int sheared(int x) {
             return 6 + this.random.nextInt(4);
         }
+
+        @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+        private boolean interactMob(ItemStack stack, Item item) {
+            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
+        }
+    }
+
+    @Mixin(net.minecraft.entity.passive.SnowGolemEntity.class)
+    public static class SnowGolemEntityMixin {
+
+        @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+        private boolean interactMob(ItemStack stack, Item item) {
+            return stack.isOf(Items.SHEARS) || stack.isOf(ModItems.SPEEDRUNNER_SHEARS);
+        }
     }
 
     @Mixin(net.minecraft.entity.player.PlayerEntity.class)
@@ -1416,6 +1517,16 @@ public class ModMixins {
 
         @Shadow
         abstract ItemCooldownManager getItemCooldownManager();
+
+        @Inject(method = "disableShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getItemCooldownManager()Lnet/minecraft/entity/player/ItemCooldownManager;"))
+        private void disableShield(CallbackInfo ci) {
+            this.getItemCooldownManager().set(ModItems.SPEEDRUNNER_SHIELD, 80);
+        }
+
+        @Redirect(method = "damageShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+        private boolean damageShield(ItemStack stack, Item item) {
+            return stack.isOf(Items.SHIELD) || stack.isOf(ModItems.SPEEDRUNNER_SHIELD);
+        }
 
         @Inject(method = "takeShieldHit", at = @At("TAIL"))
         private void takeShieldHit(LivingEntity attacker, CallbackInfo ci) {
@@ -1532,6 +1643,11 @@ public class ModMixins {
         public int getNextAirOnLand(int air) {
             return Math.min(air + 8, this.getMaxAir());
         }
+
+        @Redirect(method = "getPreferredEquipmentSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 2))
+        private static boolean getPreferredEquipmentSlot(ItemStack stack, Item item) {
+            return stack.isOf(Items.SHIELD) || stack.isOf(ModItems.SPEEDRUNNER_SHIELD);
+        }
     }
 
     @Mixin(net.minecraft.entity.EyeOfEnderEntity.class)
@@ -1625,7 +1741,7 @@ public class ModMixins {
 
         static {
             if (SpeedrunnerMod.options().main.doomMode) {
-                SpawnRestriction.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SpeedrunnerMod::canPiglinBruteSpawn);
+                SpawnRestriction.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ModFeatures::canPiglinBruteSpawn);
             }
         }
     }
@@ -1663,6 +1779,41 @@ public class ModMixins {
     public static class FoodComponentsMixin {
         @Shadow
         private static final FoodComponent APPLE = ModFoodComponents.APPLE, BAKED_POTATO = ModFoodComponents.BAKED_POTATO, BEEF = ModFoodComponents.BEEF, BEETROOT = ModFoodComponents.BEETROOT, BREAD = ModFoodComponents.BREAD, CARROT = ModFoodComponents.CARROT, CHICKEN = ModFoodComponents.CHICKEN, CHORUS_FRUIT = ModFoodComponents.CHORUS_FRUIT, COD = ModFoodComponents.COD, COOKED_BEEF = ModFoodComponents.COOKED_BEEF, COOKED_CHICKEN = ModFoodComponents.COOKED_CHICKEN, COOKED_COD = ModFoodComponents.COOKED_COD, COOKED_MUTTON = ModFoodComponents.COOKED_MUTTON, COOKED_PORKCHOP = ModFoodComponents.COOKED_PORKCHOP, COOKED_RABBIT = ModFoodComponents.COOKED_RABBIT, COOKED_SALMON = ModFoodComponents.COOKED_SALMON, COOKIE = ModFoodComponents.COOKIE, DRIED_KELP = ModFoodComponents.DRIED_KELP, ENCHANTED_GOLDEN_APPLE = ModFoodComponents.ENCHANTED_GOLDEN_APPLE, GOLDEN_APPLE = ModFoodComponents.GOLDEN_APPLE, GOLDEN_CARROT = ModFoodComponents.GOLDEN_CARROT, HONEY_BOTTLE = ModFoodComponents.HONEY_BOTTLE, MELON_SLICE = ModFoodComponents.MELON_SLICE, MUTTON = ModFoodComponents.MUTTON, POISONOUS_POTATO = ModFoodComponents.POISONOUS_POTATO, PORKCHOP = ModFoodComponents.PORKCHOP, POTATO = ModFoodComponents.POTATO, PUFFERFISH = ModFoodComponents.PUFFERFISH, PUMPKIN_PIE = ModFoodComponents.PUMPKIN_PIE, RABBIT = ModFoodComponents.RABBIT, ROTTEN_FLESH = ModFoodComponents.ROTTEN_FLESH, SALMON = ModFoodComponents.SALMON, SPIDER_EYE = ModFoodComponents.SPIDER_EYE, SWEET_BERRIES = ModFoodComponents.SWEET_BERRIES, GLOW_BERRIES = ModFoodComponents.GLOW_BERRIES, TROPICAL_FISH = ModFoodComponents.TROPICAL_FISH;
+    }
+
+    @Deprecated
+    @Mixin(net.minecraft.predicate.item.ItemPredicate.class)
+    public static class ItemPredicateMixin {
+
+        @ModifyVariable(method = "test", at = @At("HEAD"))
+        private ItemStack fixSpeedrunnerShears(ItemStack stack) {
+            if (stack.getItem().getDefaultStack().isOf(ModItems.SPEEDRUNNER_SHEARS)) {
+                ItemStack itemStack = new ItemStack(Items.SHEARS);
+                itemStack.setCount(stack.getCount());
+                itemStack.setNbt(stack.getOrCreateNbt());
+                return itemStack;
+            }
+
+            return stack;
+        }
+    }
+
+    @Mixin(net.minecraft.recipe.ShapelessRecipe.class)
+    public static class ShapelessRecipeMixin {
+        @Shadow @Final
+        private Identifier id;
+
+        @Inject(method = "matches", at = @At("HEAD"), cancellable = true)
+        private void matches(CraftingInventory craftingInventory, World world, CallbackInfoReturnable<Boolean> cir) {
+            if (id.toString().equals("minecraft:ender_eye") || id.toString().equals("speedrunnermod:inferno_eye") || id.toString().equals("speedrunnermod:annul_eye")) {
+                for (int i = 0; i < craftingInventory.size(); i++) {
+                    ItemStack itemStack = craftingInventory.getStack(i);
+                    if (itemStack.hasEnchantments()) {
+                        cir.setReturnValue(false);
+                    }
+                }
+            }
+        }
     }
 
     @Mixin(net.minecraft.server.network.ServerPlayerEntity.class)
@@ -1708,17 +1859,6 @@ public class ModMixins {
         }
     }
 
-    @Mixin(net.minecraft.world.biome.source.util.VanillaBiomeParameters.class)
-    public static class VanillaBiomeParametersMixin {
-        @Shadow @Final @Mutable
-        private RegistryKey<Biome>[][] COMMON_BIOMES;
-
-        @Inject(method = "<init>", at = @At("TAIL"))
-        private void init(CallbackInfo ci) {
-            this.COMMON_BIOMES = SpeedrunnerMod.COMMON_BIOMES;
-        }
-    }
-
     @Mixin(net.minecraft.world.gen.feature.ConfiguredStructureFeatures.class)
     public static class ConfiguredStructureFeaturesMixin {
         @Shadow @Final
@@ -1742,27 +1882,75 @@ public class ModMixins {
 
         @Overwrite
         public static Biome createNetherWastes() {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifyNetherWastes() : TheNetherBiomeCreator.createNetherWastes();
+            SpawnSettings spawnSettings;
+            if (SpeedrunnerMod.options().main.doomMode) {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 20, 1, 1)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 50, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 50, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 100, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 20, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 25, 1, 2)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN_BRUTE, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.HOGLIN, 100, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            } else {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 20, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 2, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 50, 2, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            }
+            net.minecraft.world.biome.GenerationSettings.Builder builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE).feature(GenerationStep.Feature.VEGETAL_DECORATION, MiscPlacedFeatures.SPRING_LAVA);
+            DefaultBiomeFeatures.addDefaultMushrooms(builder);
+            builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_OPEN).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_SOUL_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, VegetationPlacedFeatures.BROWN_MUSHROOM_NETHER).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, VegetationPlacedFeatures.RED_MUSHROOM_NETHER).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED);
+            DefaultBiomeFeatures.addNetherMineables(builder);
+            return (new net.minecraft.world.biome.Biome.Builder()).precipitation(Biome.Precipitation.NONE).category(Biome.Category.NETHER).temperature(2.0F).downfall(0.0F).effects((new net.minecraft.world.biome.BiomeEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(3344392).skyColor(OverworldBiomeCreator.getSkyColor(2.0F)).loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP).moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_NETHER_WASTES_MOOD, 6000, 8, 2.0D)).additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_NETHER_WASTES_ADDITIONS, 0.0111D)).music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_NETHER_WASTES)).build()).spawnSettings(spawnSettings).generationSettings(builder.build()).build();
         }
 
         @Overwrite
         public static Biome createSoulSandValley() {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifySoulSandValley() : TheNetherBiomeCreator.createSoulSandValley();
+            double d = 0.7D;
+            double e = 0.15D;
+            SpawnSettings spawnSettings;
+            if (SpeedrunnerMod.options().main.doomMode) {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 50, 5, 5)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN_BRUTE, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 10, 4, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).spawnCost(EntityType.SKELETON, 0.7D, 0.15D).spawnCost(EntityType.GHAST, 0.7D, 0.15D).spawnCost(EntityType.ENDERMAN, 0.7D, 0.15D).spawnCost(EntityType.STRIDER, 0.7D, 0.15D).build();
+            } else {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 10, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 5, 4, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).spawnCost(EntityType.SKELETON, 0.7D, 0.15D).spawnCost(EntityType.GHAST, 0.7D, 0.15D).spawnCost(EntityType.ENDERMAN, 0.7D, 0.15D).spawnCost(EntityType.STRIDER, 0.7D, 0.15D).build();
+            }
+            net.minecraft.world.biome.GenerationSettings.Builder builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE).feature(GenerationStep.Feature.VEGETAL_DECORATION, MiscPlacedFeatures.SPRING_LAVA).feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, NetherPlacedFeatures.BASALT_PILLAR).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_OPEN).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_SOUL_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_CRIMSON_ROOTS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_SOUL_SAND);
+            DefaultBiomeFeatures.addNetherMineables(builder);
+            return (new net.minecraft.world.biome.Biome.Builder()).precipitation(Biome.Precipitation.NONE).category(Biome.Category.NETHER).temperature(2.0F).downfall(0.0F).effects((new net.minecraft.world.biome.BiomeEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(1787717).skyColor(OverworldBiomeCreator.getSkyColor(2.0F)).particleConfig(new BiomeParticleConfig(ParticleTypes.ASH, 0.00625F)).loopSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_LOOP).moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D)).additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_ADDITIONS, 0.0111D)).music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_SOUL_SAND_VALLEY)).build()).spawnSettings(spawnSettings).generationSettings(builder.build()).build();
         }
 
         @Overwrite
         public static Biome createBasaltDeltas() {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifyBasaltDeltas() : SpeedrunnerMod.addDeltasOres();
+            SpawnSettings spawnSettings;
+            if (SpeedrunnerMod.options().main.doomMode) {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 40, 1, 1)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN_BRUTE, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 50, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 50, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            } else {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 25, 1, 1)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 25, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            }
+            net.minecraft.world.biome.GenerationSettings.Builder builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE).feature(GenerationStep.Feature.SURFACE_STRUCTURES, NetherPlacedFeatures.DELTA).feature(GenerationStep.Feature.SURFACE_STRUCTURES, NetherPlacedFeatures.SMALL_BASALT_COLUMNS).feature(GenerationStep.Feature.SURFACE_STRUCTURES, NetherPlacedFeatures.LARGE_BASALT_COLUMNS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.BASALT_BLOBS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.BLACKSTONE_BLOBS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_DELTA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_SOUL_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, VegetationPlacedFeatures.BROWN_MUSHROOM_NETHER).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, VegetationPlacedFeatures.RED_MUSHROOM_NETHER).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED_DOUBLE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_GOLD_DELTAS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_QUARTZ_DELTAS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ModOrePlacedFeatures.ORE_SPEEDRUNNER_DELTAS).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ModOrePlacedFeatures.ORE_IGNEOUS_DELTAS);
+            DefaultBiomeFeatures.addAncientDebris(builder);
+            return (new net.minecraft.world.biome.Biome.Builder()).precipitation(Biome.Precipitation.NONE).category(Biome.Category.NETHER).temperature(2.0F).downfall(0.0F).effects((new net.minecraft.world.biome.BiomeEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(6840176).skyColor(OverworldBiomeCreator.getSkyColor(2.0F)).particleConfig(new BiomeParticleConfig(ParticleTypes.WHITE_ASH, 0.118093334F)).loopSound(SoundEvents.AMBIENT_BASALT_DELTAS_LOOP).moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0D)).additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_BASALT_DELTAS_ADDITIONS, 0.0111D)).music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_BASALT_DELTAS)).build()).spawnSettings(spawnSettings).generationSettings(builder.build()).build();
         }
 
         @Overwrite
         public static Biome createCrimsonForest() {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifyCrimsonForest() : TheNetherBiomeCreator.createCrimsonForest();
+            SpawnSettings spawnSettings;
+            if (SpeedrunnerMod.options().main.doomMode) {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 1, 1, 2)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.HOGLIN, 50, 4, 6)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 25, 2, 6)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN_BRUTE, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 50, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            } else {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 1, 1, 2)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.HOGLIN, 6, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 9, 2, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).build();
+            }
+            net.minecraft.world.biome.GenerationSettings.Builder builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE).feature(GenerationStep.Feature.VEGETAL_DECORATION, MiscPlacedFeatures.SPRING_LAVA);
+            DefaultBiomeFeatures.addDefaultMushrooms(builder);
+            builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_OPEN).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED).feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.WEEPING_VINES).feature(GenerationStep.Feature.VEGETAL_DECORATION, TreePlacedFeatures.CRIMSON_FUNGI).feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.CRIMSON_FOREST_VEGETATION);
+            DefaultBiomeFeatures.addNetherMineables(builder);
+            return (new net.minecraft.world.biome.Biome.Builder()).precipitation(Biome.Precipitation.NONE).category(Biome.Category.NETHER).temperature(2.0F).downfall(0.0F).effects((new net.minecraft.world.biome.BiomeEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(3343107).skyColor(OverworldBiomeCreator.getSkyColor(2.0F)).particleConfig(new BiomeParticleConfig(ParticleTypes.CRIMSON_SPORE, 0.025F)).loopSound(SoundEvents.AMBIENT_CRIMSON_FOREST_LOOP).moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_CRIMSON_FOREST_MOOD, 6000, 8, 2.0D)).additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_CRIMSON_FOREST_ADDITIONS, 0.0111D)).music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_CRIMSON_FOREST)).build()).spawnSettings(spawnSettings).generationSettings(builder.build()).build();
         }
 
         @Overwrite
         public static Biome createWarpedForest() {
-            return SpeedrunnerMod.options().advanced.modifyBiomes ? SpeedrunnerMod.modifyWarpedForest() : TheNetherBiomeCreator.createWarpedForest();
+            SpawnSettings spawnSettings;
+            if (SpeedrunnerMod.options().main.doomMode) {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 25, 4, 6)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.HOGLIN, 50, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN_BRUTE, 25, 1, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 50, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).spawnCost(EntityType.ENDERMAN, 1.0D, 0.12D).build();
+            } else {
+                spawnSettings = (new SpawnSettings.Builder()).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 5, 4, 4)).spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 5, 1, 4)).spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2)).spawnCost(EntityType.ENDERMAN, 1.0D, 0.12D).build();
+            }
+            net.minecraft.world.biome.GenerationSettings.Builder builder = (new net.minecraft.world.biome.GenerationSettings.Builder()).carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE).feature(GenerationStep.Feature.VEGETAL_DECORATION, MiscPlacedFeatures.SPRING_LAVA);
+            DefaultBiomeFeatures.addDefaultMushrooms(builder);
+            builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_OPEN).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_SOUL_FIRE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_MAGMA).feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED).feature(GenerationStep.Feature.VEGETAL_DECORATION, TreePlacedFeatures.WARPED_FUNGI).feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.WARPED_FOREST_VEGETATION).feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.NETHER_SPROUTS).feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.TWISTING_VINES);
+            DefaultBiomeFeatures.addNetherMineables(builder);
+            return (new net.minecraft.world.biome.Biome.Builder()).precipitation(Biome.Precipitation.NONE).category(Biome.Category.NETHER).temperature(2.0F).downfall(0.0F).effects((new net.minecraft.world.biome.BiomeEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(1705242).skyColor(OverworldBiomeCreator.getSkyColor(2.0F)).particleConfig(new BiomeParticleConfig(ParticleTypes.WARPED_SPORE, 0.01428F)).loopSound(SoundEvents.AMBIENT_WARPED_FOREST_LOOP).moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D)).additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111D)).music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_WARPED_FOREST)).build()).spawnSettings(spawnSettings).generationSettings(builder.build()).build();
         }
     }
 
@@ -1783,20 +1971,20 @@ public class ModMixins {
 
         @Overwrite
         public int getDistance() {
-            return SpeedrunnerMod.options().main.commonStructures ? SpeedrunnerMod.options().advanced.getStrongholdDistance() : this.distance;
+            return SpeedrunnerMod.options().main.makeStructuresMoreCommon ? SpeedrunnerMod.options().advanced.getStrongholdDistance() : this.distance;
         }
 
         @Overwrite
         public int getCount() {
-            return SpeedrunnerMod.options().main.commonStructures ? SpeedrunnerMod.options().main.getStrongholdCount() : this.count;
+            return SpeedrunnerMod.options().main.makeStructuresMoreCommon ? SpeedrunnerMod.options().main.getStrongholdCount() : this.count;
         }
     }
 
     @Mixin(net.minecraft.world.gen.feature.DefaultBiomeFeatures.class)
     public static class DefaultBiomeFeaturesMixin {
 
-        @Inject(method = "addDefaultOres", at = @At("TAIL"))
-        private static void addDefaultOres(GenerationSettings.Builder builder, CallbackInfo ci) {
+        @Inject(method = "addDefaultOres(Lnet/minecraft/world/biome/GenerationSettings$Builder;Z)V", at = @At("TAIL"))
+        private static void addDefaultOres(GenerationSettings.Builder builder, boolean largeCopperOreBlob, CallbackInfo ci) {
             builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_SPEEDRUNNER_UPPER);
             builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_SPEEDRUNNER_MIDDLE);
             builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_SPEEDRUNNER_SMALL);
@@ -1811,29 +1999,29 @@ public class ModMixins {
 
         @Overwrite
         public static void addMonsters(net.minecraft.world.biome.SpawnSettings.Builder builder, int zombieWeight, int zombieVillagerWeight, int skeletonWeight, boolean drowned) {
-            SpeedrunnerMod.modifyMonsters(builder, zombieWeight, zombieVillagerWeight, skeletonWeight, drowned);
+            ModFeatures.modifyMonsterSpawns(builder, zombieWeight, zombieVillagerWeight, skeletonWeight, drowned);
         }
 
         @Overwrite
         public static void addFarmAnimals(net.minecraft.world.biome.SpawnSettings.Builder builder) {
-            SpeedrunnerMod.makeAnimalsMoreCommon(builder);
+            ModFeatures.makeAnimalsMoreCommon(builder);
         }
 
         @Overwrite
         public static void addWarmOceanMobs(net.minecraft.world.biome.SpawnSettings.Builder builder, int squidWeight, int squidMinGroupSize) {
-            SpeedrunnerMod.makeDolphinsMoreCommon(builder, squidWeight, squidMinGroupSize);
+            ModFeatures.makeDolphinsMoreCommon(builder, squidWeight, squidMinGroupSize);
         }
 
         @Overwrite
         public static void addEndMobs(net.minecraft.world.biome.SpawnSettings.Builder builder) {
-            SpeedrunnerMod.modifyEndMobs(builder);
+            ModFeatures.modifyEndMonsterSpawning(builder);
         }
     }
 
     @Mixin(net.minecraft.world.gen.feature.NetherFortressFeature.class)
     public static class NetherFortressFeatureMixin {
         @Shadow
-        private static final Pool<SpawnSettings.SpawnEntry> MONSTER_SPAWNS = SpeedrunnerMod.NETHER_FORTRESS_MOB_SPAWNS;
+        private static final Pool<SpawnSettings.SpawnEntry> MONSTER_SPAWNS = ModFeatures.NETHER_FORTRESS_MOB_SPAWNS;
     }
 
     @Mixin(net.minecraft.world.gen.feature.StrongholdFeature.class)
@@ -1874,15 +2062,15 @@ public class ModMixins {
     @Mixin(net.minecraft.structure.NetherFortressGenerator.class)
     public static class NetherFortressGeneratorMixin {
         @Shadow
-        private static final NetherFortressGenerator.PieceData[] ALL_BRIDGE_PIECES = SpeedrunnerMod.NETHER_FORTRESS_GENERATION_BRIDGE;
+        private static final NetherFortressGenerator.PieceData[] ALL_BRIDGE_PIECES = ModFeatures.NETHER_FORTRESS_GENERATION_BRIDGE;
         @Shadow
-        private static final NetherFortressGenerator.PieceData[] ALL_CORRIDOR_PIECES = SpeedrunnerMod.NETHER_FORTRESS_GENERATION_CORRIDOR;
+        private static final NetherFortressGenerator.PieceData[] ALL_CORRIDOR_PIECES = ModFeatures.NETHER_FORTRESS_GENERATION_CORRIDOR;
     }
 
     @Mixin(net.minecraft.structure.StrongholdGenerator.class)
     public static class StrongholdGeneratorMixin {
         @Shadow
-        private static final StrongholdGenerator.PieceData[] ALL_PIECES = SpeedrunnerMod.STRONGHOLD_GENERATION;
+        private static final StrongholdGenerator.PieceData[] ALL_PIECES = ModFeatures.STRONGHOLD_GENERATION;
 
         @Mixin(StrongholdGenerator.PortalRoom.class)
         public abstract static class PortalRoomMixin extends StrongholdGenerator.Piece {
@@ -1988,6 +2176,15 @@ public class ModMixins {
                 }
 
             }
+        }
+    }
+
+    @Mixin(net.minecraft.world.gen.feature.RuinedPortalFeature.class)
+    public static class RuinedPortalFeatureMixin {
+
+        @ModifyVariable(method = "addPieces", at = @At(value = "STORE", ordinal = 0), index = 1)
+        private static RuinedPortalStructurePiece.VerticalPlacement addPieces(RuinedPortalStructurePiece.VerticalPlacement verticalPlacement) {
+            return RuinedPortalStructurePiece.VerticalPlacement.ON_LAND_SURFACE;
         }
     }
 
