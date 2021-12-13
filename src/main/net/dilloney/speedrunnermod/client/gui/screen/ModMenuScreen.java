@@ -1,6 +1,8 @@
 package net.dilloney.speedrunnermod.client.gui.screen;
 
 import net.dilloney.speedrunnermod.SpeedrunnerMod;
+import net.dilloney.speedrunnermod.client.gui.screen.option.AdvancedOptionsScreen;
+import net.dilloney.speedrunnermod.client.gui.screen.option.ModOptionsScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
