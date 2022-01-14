@@ -1,7 +1,8 @@
 package net.dilloney.speedrunnermod.client.gui.screen.option;
 
 import net.dilloney.speedrunnermod.SpeedrunnerMod;
-import net.dilloney.speedrunnermod.SpeedrunnerModClient;
+import net.dilloney.speedrunnermod.option.CLModOptions;
+import net.dilloney.speedrunnermod.option.ModOptions;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
@@ -19,8 +20,7 @@ import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class ModOptionsScreen extends GameOptionsScreen {
-    private static final Option[] FIRST_OPTIONS;
-    private static final Option[] SECOND_OPTIONS;
+    private static final Option[] OPTIONS;
     private ButtonListWidget list;
 
     public ModOptionsScreen(Screen parent, GameOptions options) {
@@ -30,13 +30,13 @@ public class ModOptionsScreen extends GameOptionsScreen {
     protected void init() {
         this.list = new ButtonListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
         this.list.addSingleOptionEntry(ModOption.MAKE_STRUCTURES_MORE_COMMON);
-        this.list.addAll(FIRST_OPTIONS);
+        this.list.addSingleOptionEntry(ModOption.MAKE_BIOMES_MORE_COMMON);
         this.list.addSingleOptionEntry(ModOption.MODIFIED_BLOCK_HARDNESS);
-        this.list.addAll(SECOND_OPTIONS);
+        this.list.addAll(OPTIONS);
         this.addSelectableChild(this.list);
         this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height - 29, 200, 20, ScreenTexts.DONE, (button) -> {
-            SpeedrunnerMod.saveConfig();
-            SpeedrunnerModClient.saveClientConfig();
+            ModOptions.saveConfig();
+            CLModOptions.saveClientConfig();
             SpeedrunnerMod.LOGGER.info("Flushed changes to the Speedrunner Mod");
             this.client.setScreen(this.parent);
         }));
@@ -54,14 +54,13 @@ public class ModOptionsScreen extends GameOptionsScreen {
     }
 
     public void onClose() {
-        SpeedrunnerMod.saveConfig();
-        SpeedrunnerModClient.saveClientConfig();
+        ModOptions.saveConfig();
+        CLModOptions.saveClientConfig();
         SpeedrunnerMod.LOGGER.info("Flushed changes to the Speedrunner Mod");
         super.onClose();
     }
 
     static {
-        FIRST_OPTIONS = new Option[]{ModOption.ICARUS_MODE, ModOption.INFINITY_PEARL_MODE, ModOption.FOG, ModOption.GAMMA, ModOption.TIMER, ModOption.DOOM_MODE};
-        SECOND_OPTIONS = new Option[]{ModOption.KILL_GHAST_UPON_FIREBALL, ModOption.STRONGHOLD_COUNT, ModOption.DRAGON_PERCH_TIME, ModOption.AUTO_CREATE_WORLD, ModOption.WORLD_DIFFICULTY};
+        OPTIONS = new Option[]{ModOption.ICARUS_MODE, ModOption.INFINITY_PEARL_MODE, ModOption.FOG, ModOption.DOOM_MODE, ModOption.KILL_GHAST_UPON_FIREBALL, ModOption.STRONGHOLD_COUNT, ModOption.DRAGON_PERCH_TIME, ModOption.AUTO_CREATE_WORLD, ModOption.WORLD_DIFFICULTY, ModOption.ALLOW_CHEATS};
     }
 }
