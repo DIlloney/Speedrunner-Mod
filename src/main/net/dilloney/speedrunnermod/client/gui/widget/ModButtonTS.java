@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.dilloney.speedrunnermod.SpeedrunnerModClient;
 import net.dilloney.speedrunnermod.client.gui.screen.ModMenuScreen;
+import net.dilloney.speedrunnermod.option.CLModOptions;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -15,6 +16,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Final;
@@ -41,28 +43,37 @@ public class ModButtonTS extends Screen {
 
     @Inject(method = "init", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
-        createWorldButton = this.addDrawableChild(new ButtonWidget(this.width / 2 - 124, this.height / 4 + 48, 20, 20, new LiteralText(""), (buttonWidget) -> {
-            this.client.setScreen(CreateWorldScreen.create(this));
-        }));
-        createWorldButton.active = SpeedrunnerModClient.clOptions().autoCreateWorld;
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 124, this.height / 4 + 48 + 24 * 2, 20, 20, new LiteralText(""), (buttonWidget) -> {
-            this.client.setScreen(new ModMenuScreen(this, MinecraftClient.getInstance().options));
-        }));
+        if (SpeedrunnerModClient.clOptions().autoCreateWorld) {
+            createWorldButton = this.addDrawableChild(new ButtonWidget(this.width / 2 - 124, this.height / 4 + 48, 20, 20, new LiteralText(""), (buttonWidget) -> {
+                this.client.setScreen(CreateWorldScreen.create(this));
+            }));
+        }
+
+        if (SpeedrunnerModClient.clOptions().modButtonType == CLModOptions.ModButtonType.LOGO) {
+            this.addDrawableChild(new ButtonWidget(this.width / 2 - 124, this.height / 4 + 48 + 24 * 2, 20, 20, new LiteralText(""), (buttonWidget) -> {
+                this.client.setScreen(new ModMenuScreen(this, MinecraftClient.getInstance().options));
+            }));
+        }
     }
 
     @Inject(method = "render", at = @At("TAIL"))
     private void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        RenderSystem.setShaderTexture(0, SpeedrunnerMod.SPEEDRUNNER_BOOTS);
-        drawTexture(matrices, (this.width / 2) - 122, this.height / 4 + 48 + 2, 0.0F, 0.0F, 16, 16, 16, 16);
-        if (createWorldButton.isHovered() && hasShiftDown()) {
-            if (SpeedrunnerModClient.clOptions().autoCreateWorld) {
-                drawCenteredText(matrices, this.textRenderer, CREATE_WORLD_BUTTON_DESCRIPTION, this.width / 2 - 114, this.height / 4 + 35, 16777215);
-            } else {
-                drawCenteredText(matrices, this.textRenderer, CREATE_WORLD_BUTTON_ERROR, this.width / 2 - 114, this.height / 4 + 35, 16777215);
+        if (SpeedrunnerModClient.clOptions().autoCreateWorld) {
+            RenderSystem.setShaderTexture(0, new Identifier("speedrunnermod:textures/item/speedrunner_boots.png"));
+            drawTexture(matrices, (this.width / 2) - 122, this.height / 4 + 48 + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            if (createWorldButton.isHovered() && hasShiftDown()) {
+                if (SpeedrunnerModClient.clOptions().autoCreateWorld) {
+                    drawCenteredText(matrices, this.textRenderer, CREATE_WORLD_BUTTON_DESCRIPTION, this.width / 2 - 114, this.height / 4 + 35, 16777215);
+                } else {
+                    drawCenteredText(matrices, this.textRenderer, CREATE_WORLD_BUTTON_ERROR, this.width / 2 - 114, this.height / 4 + 35, 16777215);
+                }
             }
         }
-        RenderSystem.setShaderTexture(0, SpeedrunnerMod.SPEEDRUNNER_INGOT);
-        drawTexture(matrices, (this.width / 2) - 122, this.height / 4 + 48 + 24 * 2 + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+
+        if (SpeedrunnerModClient.clOptions().modButtonType == CLModOptions.ModButtonType.LOGO) {
+            RenderSystem.setShaderTexture(0, new Identifier("speedrunnermod:textures/item/speedrunner_ingot.png"));
+            drawTexture(matrices, (this.width / 2) - 122, this.height / 4 + 48 + 24 * 2 + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        }
     }
 
     @Inject(method = "render", at = @At("TAIL"), cancellable = true)

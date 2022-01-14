@@ -14,13 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Environment(EnvType.CLIENT)
 @Mixin(CreateWorldScreen.class)
 public abstract class ModButtonFunction {
-
     @Shadow
-    public boolean hardcore;
-
+    private boolean hardcore;
+    @Shadow
+    private boolean cheatsEnabled;
     @Shadow
     private Difficulty currentDifficulty;
-
     @Shadow
     abstract void createLevel();
 
@@ -50,6 +49,7 @@ public abstract class ModButtonFunction {
 
             assert difficulty != null;
             currentDifficulty = difficulty;
+            cheatsEnabled = SpeedrunnerModClient.clOptions().allowCheats;
             createLevel();
         }
     }
