@@ -4,21 +4,34 @@ accessible class net/minecraft/entity/passive/DolphinEntity$SwimWithPlayerGoal
 accessible class net/minecraft/entity/mob/BlazeEntity$ShootFireballGoal
 accessible class net/minecraft/entity/mob/GhastEntity$ShootFireballGoal
 accessible class net/minecraft/entity/mob/SilverfishEntity$CallForHelpGoal
+accessible class net/minecraft/entity/SpawnRestriction$Entry
+
 accessible class net/minecraft/structure/NetherFortressGenerator$Piece
 accessible class net/minecraft/structure/NetherFortressGenerator$PieceData
 accessible class net/minecraft/structure/StrongholdGenerator$Piece
 accessible class net/minecraft/structure/StrongholdGenerator$PieceData
-accessible class net/minecraft/entity/SpawnRestriction$Entry
+
 accessible class net/minecraft/loot/function/ApplyBonusLootFunction$OreDrops
 
 accessible method net/minecraft/item/PickaxeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/item/AxeItem <init> (Lnet/minecraft/item/ToolMaterial;FFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/item/HoeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
+
 accessible method net/minecraft/entity/mob/BlazeEntity setFireActive (Z)V
 accessible method net/minecraft/entity/projectile/ProjectileEntity updateRotation (FF)F
 accessible method net/minecraft/entity/SpawnRestriction register (Lnet/minecraft/entity/EntityType;Lnet/minecraft/entity/SpawnRestriction$Location;Lnet/minecraft/world/Heightmap$Type;Lnet/minecraft/entity/SpawnRestriction$SpawnPredicate;)V
+
 accessible method net/minecraft/world/biome/DefaultBiomeCreator createForest (FFZLnet/minecraft/world/biome/SpawnSettings$Builder;)Lnet/minecraft/world/biome/Biome;
+accessible method net/minecraft/world/biome/DefaultBiomeCreator getSkyColor (F)I
+accessible method net/minecraft/world/gen/feature/ConfiguredFeatures register (Ljava/lang/String;Lnet/minecraft/world/gen/feature/ConfiguredFeature;)Lnet/minecraft/world/gen/feature/ConfiguredFeature;
+
+accessible method net/minecraft/loot/LootTables register (Ljava/lang/String;)Lnet/minecraft/util/Identifier;
+
 accessible method net/minecraft/client/options/Option getGenericLabel (Lnet/minecraft/text/Text;)Lnet/minecraft/text/Text;
 accessible method net/minecraft/client/options/Option getGenericLabel (I)Lnet/minecraft/text/Text;
 
 accessible field net/minecraft/structure/StrongholdGenerator STONE_BRICK_RANDOMIZER Lnet/minecraft/structure/StrongholdGenerator$StoneBrickRandomizer;
+
+accessible field net/minecraft/world/gen/feature/ConfiguredFeatures$States DIAMOND_ORE Lnet/minecraft/block/BlockState;
+accessible field net/minecraft/world/gen/feature/ConfiguredFeatures$States LAPIS_ORE Lnet/minecraft/block/BlockState;
+accessible field net/minecraft/world/gen/feature/ConfiguredFeatures$States ANCIENT_DEBRIS Lnet/minecraft/block/BlockState;
