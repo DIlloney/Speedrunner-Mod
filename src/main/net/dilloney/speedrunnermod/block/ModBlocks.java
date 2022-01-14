@@ -48,5 +48,8 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "nether_speedrunner_ore"), ModBlocks.NETHER_SPEEDRUNNER_ORE);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "igneous_ore"), ModBlocks.IGNEOUS_ORE);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "nether_igneous_ore"), ModBlocks.NETHER_IGNEOUS_ORE);
+        if (SpeedrunnerMod.options().advanced.debugMode) {
+            SpeedrunnerMod.LOGGER.debug("Initialized Speedrunner Mod blocks");
+        }
     }
 }
