@@ -1,6 +1,7 @@
 package net.dilloney.speedrunnermod.client.gui.widget;
 
 import net.dilloney.speedrunnermod.SpeedrunnerModClient;
+import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.world.Difficulty;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -8,18 +9,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(net.minecraft.client.gui.screen.world.CreateWorldScreen.class)
+@Mixin(CreateWorldScreen.class)
 public abstract class ModButtonFunction {
-
     @Shadow
-    public boolean hardcore;
-
+    private boolean hardcore;
+    @Shadow
+    private boolean cheatsEnabled;
     @Shadow
     private Difficulty field_24289;
-
     @Shadow
     private Difficulty field_24290;
-
     @Shadow
     abstract void createLevel();
 
@@ -50,6 +49,7 @@ public abstract class ModButtonFunction {
             assert difficulty != null;
             field_24289 = difficulty;
             field_24290 = difficulty;
+            cheatsEnabled = SpeedrunnerModClient.clOptions().allowCheats;
             createLevel();
         }
     }
