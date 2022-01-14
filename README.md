@@ -1,17 +1,9 @@
-<img src="src/main/resources/assets/speedrunnermod/icon.png" width="128">
+# Fabric Example Mod
 
-# The Speedrunner Mod (for Fabric)
+## Setup
 
-A Minecraft mod that makes Speedrunning, easier.
+For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
 
----
+## License
 
-## Installation
-
-You can download the Speedrunner Mod [here](https://www.curseforge.com/minecraft/mc-mods/speedrunner-mod). You will also need to download the [fabric installer](https://fabricmc.net/use/) in order to run the mod. Fabric API is NOT required, but you can use it if you would like, unless you want to submit official speedruns.
-
----
-
-### Resources
-
-You can check out the [official mod showcase video here](), where you can find almost every single feature that the mod has to offer. We also have a [discord server](), where you can get updates regarding the mod and more! Enjoy speedrunning!
+This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
