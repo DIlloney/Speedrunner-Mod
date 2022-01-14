@@ -4,23 +4,31 @@ accessible class net/minecraft/entity/passive/DolphinEntity$SwimWithPlayerGoal
 accessible class net/minecraft/entity/mob/BlazeEntity$ShootFireballGoal
 accessible class net/minecraft/entity/mob/GhastEntity$ShootFireballGoal
 accessible class net/minecraft/entity/mob/SilverfishEntity$CallForHelpGoal
+accessible class net/minecraft/entity/SpawnRestriction$Entry
+
 accessible class net/minecraft/structure/NetherFortressGenerator$Piece
 accessible class net/minecraft/structure/NetherFortressGenerator$PieceData
 accessible class net/minecraft/structure/StrongholdGenerator$Piece
 accessible class net/minecraft/structure/StrongholdGenerator$PieceData
-accessible class net/minecraft/entity/SpawnRestriction$Entry
+
 accessible class net/minecraft/loot/function/ApplyBonusLootFunction$OreDrops
 
 accessible method net/minecraft/item/PickaxeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/item/AxeItem <init> (Lnet/minecraft/item/ToolMaterial;FFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/item/HoeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
+
 accessible method net/minecraft/entity/mob/BlazeEntity setFireActive (Z)V
 accessible method net/minecraft/entity/projectile/ProjectileEntity updateRotation (FF)F
 accessible method net/minecraft/entity/SpawnRestriction register (Lnet/minecraft/entity/EntityType;Lnet/minecraft/entity/SpawnRestriction$Location;Lnet/minecraft/world/Heightmap$Type;Lnet/minecraft/entity/SpawnRestriction$SpawnPredicate;)V
+
 accessible method net/minecraft/world/gen/feature/OrePlacedFeatures modifiersWithCount (ILnet/minecraft/world/gen/decorator/PlacementModifier;)Ljava/util/List;
+accessible method net/minecraft/world/gen/feature/OrePlacedFeatures modifiersWithRarity (ILnet/minecraft/world/gen/decorator/PlacementModifier;)Ljava/util/List;
 accessible method net/minecraft/world/gen/feature/ConfiguredStructureFeatures register (Ljava/util/function/BiConsumer;Lnet/minecraft/world/gen/feature/ConfiguredStructureFeature;Lnet/minecraft/util/registry/RegistryKey;)V
+
 accessible method net/minecraft/world/biome/OverworldBiomeCreator addBasicFeatures (Lnet/minecraft/world/biome/GenerationSettings$Builder;)V
 accessible method net/minecraft/world/biome/OverworldBiomeCreator createBiome (Lnet/minecraft/world/biome/Biome$Precipitation;Lnet/minecraft/world/biome/Biome$Category;FFLnet/minecraft/world/biome/SpawnSettings$Builder;Lnet/minecraft/world/biome/GenerationSettings$Builder;Lnet/minecraft/sound/MusicSound;)Lnet/minecraft/world/biome/Biome;
+accessible method net/minecraft/world/biome/OverworldBiomeCreator getSkyColor (F)I
+
 accessible method net/minecraft/client/option/Option getGenericLabel (Lnet/minecraft/text/Text;)Lnet/minecraft/text/Text;
 accessible method net/minecraft/client/option/Option getGenericLabel (I)Lnet/minecraft/text/Text;
 
