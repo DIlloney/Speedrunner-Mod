@@ -1,5 +1,6 @@
 package net.dilloney.speedrunnermod.block;
 
+import net.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
@@ -60,5 +61,8 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "igneous_ore"), ModBlocks.IGNEOUS_ORE);
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "deepslate_igneous_ore"), ModBlocks.DEEPSLATE_IGNEOUS_ORE);
         Registry.register(Registry.BLOCK, new Identifier("speedrunnermod", "nether_igneous_ore"), ModBlocks.NETHER_IGNEOUS_ORE);
+        if (SpeedrunnerMod.options().advanced.debugMode) {
+            SpeedrunnerMod.LOGGER.debug("Initialized Speedrunner Mod blocks");
+        }
     }
 }
