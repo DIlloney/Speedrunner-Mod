@@ -11,13 +11,12 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	maven { url "https://maven.terraformersmc.com/" }
 }
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	modApi("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
 	include "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
@@ -40,14 +39,11 @@ dependencies {
 	include "net.fabricmc.fabric-api:fabric-rendering-fluids-v1:${project.fabric_rendering_fluids_v1_version}"
 	include "net.fabricmc.fabric-api:fabric-rendering-v1:${project.fabric_rendering_v1_version}"
 	include "net.fabricmc.fabric-api:fabric-resource-loader-v0:${project.fabric_resource_loader_v0_version}"
+	include "net.fabricmc.fabric-api:fabric-structure-api-v1:${project.fabric_structure_api_v1_version}"
 	include "net.fabricmc.fabric-api:fabric-tag-extensions-v0:${project.fabric_tag_extensions_v0_version}"
 	include "net.fabricmc.fabric-api:fabric-textures-v0:${project.fabric_textures_v0_version}"
 	include "net.fabricmc.fabric-api:fabric-tool-attribute-api-v1:${project.fabric_tool_attribute_api_v1_version}"
 	include "net.fabricmc.fabric-api:fabric-transfer-api-v1:${project.fabric_transfer_api_v1_version}"
-
-	modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}", {
-		exclude module: 'fabric-api'
-	}
 }
 
 minecraft {
