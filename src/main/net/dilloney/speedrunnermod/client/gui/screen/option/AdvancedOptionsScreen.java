@@ -1,6 +1,8 @@
 package net.dilloney.speedrunnermod.client.gui.screen.option;
 
 import net.dilloney.speedrunnermod.SpeedrunnerMod;
+import net.dilloney.speedrunnermod.option.CLModOptions;
+import net.dilloney.speedrunnermod.option.ModOptions;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
@@ -27,11 +29,12 @@ public class AdvancedOptionsScreen extends GameOptionsScreen {
 
     protected void init() {
         this.list = new ButtonListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
-        this.list.addSingleOptionEntry(ModOption.COMBINE_FORTRESSES_AND_BASTIONS);
+        this.list.addSingleOptionEntry(ModOption.MOB_SPAWNER_SPAWN_DURATION);
         this.list.addAll(OPTIONS);
         this.children.add(this.list);
         this.addButton(new ButtonWidget(this.width / 2 - 100, this.height - 29, 200, 20, ScreenTexts.DONE, (button) -> {
-            SpeedrunnerMod.saveConfig();
+            ModOptions.saveConfig();
+            CLModOptions.saveClientConfig();
             SpeedrunnerMod.LOGGER.info("Flushed changes to the Speedrunner Mod");
             this.client.openScreen(this.parent);
         }));
@@ -49,12 +52,13 @@ public class AdvancedOptionsScreen extends GameOptionsScreen {
     }
 
     public void onClose() {
-        SpeedrunnerMod.saveConfig();
+        ModOptions.saveConfig();
+        CLModOptions.saveClientConfig();
         SpeedrunnerMod.LOGGER.info("Flushed changes to the Speedrunner Mod");
         super.onClose();
     }
 
     static {
-        OPTIONS = new Option[]{ModOption.MOB_SPAWNING_RATE, ModOption.MODIFY_BIOMES, ModOption.COMMON_ORES, ModOption.STRONGHOLD_DISTANCE, ModOption.MOD_BUTTON_TYPE};
+        OPTIONS = new Option[]{ModOption.MOB_SPAWNING_RATE, ModOption.MODIFIED_FOODS, ModOption.MODIFIED_ITEM_EFFECTS, ModOption.MAKE_ORES_MORE_COMMON, ModOption.STRONGHOLD_DISTANCE, ModOption.MOD_BUTTON_TYPE, ModOption.DEBUG_MODE};
     }
 }
