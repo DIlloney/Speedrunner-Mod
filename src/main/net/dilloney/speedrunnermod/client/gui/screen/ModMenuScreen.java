@@ -1,6 +1,5 @@
 package net.dilloney.speedrunnermod.client.gui.screen;
 
-import net.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.dilloney.speedrunnermod.client.gui.screen.option.AdvancedOptionsScreen;
 import net.dilloney.speedrunnermod.client.gui.screen.option.ModOptionsScreen;
 import net.fabricmc.api.EnvType;
@@ -18,7 +17,7 @@ public class ModMenuScreen extends GameOptionsScreen {
     private final GameOptions options;
 
     public ModMenuScreen(Screen parent, GameOptions options) {
-        super(parent, options, SpeedrunnerMod.SPEEDRUNNER_MOD_TITLE);
+        super(parent, options, new TranslatableText("speedrunnermod.title"));
         this.options = options;
     }
 
