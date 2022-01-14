@@ -17,8 +17,9 @@ import java.util.function.Consumer;
 
 @Environment(EnvType.CLIENT)
 class ResourcesScreen extends GameOptionsScreen {
-    private static final String MOD_SHOWCASE_LINK = "https://www.youtube.com/watch?v=6MmH5B3zciA";
+    private static final String MOD_SHOWCASE_LINK = "https://www.youtube.com/watch?v=Aue9X3RcZAM";
     private static final String WIKI_LINK = "https://www.speedrunnermod.net/";
+    private static final String SPEEDRUN_IGT_MOD = "https://www.curseforge.com/minecraft/mc-mods/speedrunigt";
     private static final String SODIUM_MOD_LINK = "https://www.curseforge.com/minecraft/mc-mods/sodium";
     private static final String LITHIUM_MOD_LINK = "https://www.curseforge.com/minecraft/mc-mods/lithium";
     private static final String PHOSPHOR_MOD_LINK = "https://www.curseforge.com/minecraft/mc-mods/phosphor";
@@ -67,37 +68,52 @@ class ResourcesScreen extends GameOptionsScreen {
             }
         }));
         height += 24;
-        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.sodium"), (buttonWidget) -> this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
+        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.speedrun_igt_mod"), (buttonWidget) -> this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
+            if (openInBrowser) {
+                Util.getOperatingSystem().open(SPEEDRUN_IGT_MOD);
+            }
+
+            this.client.setScreen(this);
+        }, SPEEDRUN_IGT_MOD, true)), new ButtonWidget.TooltipSupplier() {
+            public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
+                ResourcesScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.speedrun_igt_mod.tooltip"), mouseX, mouseY);
+            }
+
+            public void supply(Consumer<Text> consumer) {
+                consumer.accept(new TranslatableText("speedrunnermod.wiki.tooltip"));
+            }
+        }));
+        this.addDrawableChild(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.sodium"), (buttonWidget) -> this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(SODIUM_MOD_LINK);
             }
 
             this.client.setScreen(this);
         }, SODIUM_MOD_LINK, true))));
-        this.addDrawableChild(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.lithium"), (buttonWidget) -> this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
+        height += 24;
+        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.lithium"), (buttonWidget) -> this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(LITHIUM_MOD_LINK);
             }
 
             this.client.setScreen(this);
         }, LITHIUM_MOD_LINK, true))));
-        height += 24;
-        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.phosphor"), (buttonWidget) -> this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
+        this.addDrawableChild(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.phosphor"), (buttonWidget) -> this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(PHOSPHOR_MOD_LINK);
             }
 
             this.client.setScreen(this);
         }, PHOSPHOR_MOD_LINK, true))));
-        this.addDrawableChild(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.lazy_dfu"), (buttonWidget) -> this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
+        height += 24;
+        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.lazy_dfu"), (buttonWidget) -> this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(LAZY_DFU_LINK);
             }
 
             this.client.setScreen(this);
         }, LAZY_DFU_LINK, true))));
-        height += 24;
-        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.krypton"), (buttonWidget) -> this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
+        this.addDrawableChild(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.krypton"), (buttonWidget) -> this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
             if (openInBrowser) {
                 Util.getOperatingSystem().open(KRYPTON_LINK);
             }
