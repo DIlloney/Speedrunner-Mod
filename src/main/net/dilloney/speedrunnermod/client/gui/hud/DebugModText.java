@@ -18,6 +18,6 @@ public class DebugModText {
     @Inject(method = "getRightText", at = @At("RETURN"), cancellable = true)
     private void getRightText(CallbackInfoReturnable<List<String>> cir) {
         List<String> returnValue = (List<String>)cir.getReturnValue();
-        returnValue.add("Speedrunner Mod: " + SpeedrunnerMod.MOD_VERSION + " Fabric " + SpeedrunnerMod.MINECRAFT_VERSION);
+        returnValue.add("Speedrunner Mod: " + SpeedrunnerMod.MOD_VERSION);
     }
 }
