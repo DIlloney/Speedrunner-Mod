@@ -2,18 +2,23 @@ package net.dilloney.speedrunnermod.mixin.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.dilloney.speedrunnermod.SpeedrunnerModClient;
-import net.dilloney.speedrunnermod.client.gui.screen.option.ModOption;
 import net.dilloney.speedrunnermod.item.ModItems;
+import net.dilloney.speedrunnermod.item.SpeedrunnerCrossbowItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.GameMenuScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.option.DoubleOption;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.option.Option;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.CameraSubmersionType;
+import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.client.render.item.HeldItemRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
@@ -21,22 +26,41 @@ import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.OrderedText;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 @Environment(EnvType.CLIENT)
 public class ModMixinsClient {
 
-    @Mixin(net.minecraft.client.render.BackgroundRenderer.class)
+    @Mixin(AbstractClientPlayerEntity.class)
+    public static class AbstractClientPlayerEntityMixin {
+
+        @Redirect(method = "getSpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+        private boolean getSpeed(ItemStack stack, Item item) {
+            return stack.isOf(Items.BOW) || stack.isOf(ModItems.SPEEDRUNNER_BOW);
+        }
+    }
+
+    @Mixin(BackgroundRenderer.class)
     public static class BackgroundRendererMixin {
 
         @Overwrite
@@ -117,28 +141,87 @@ public class ModMixinsClient {
         }
     }
 
-    @Mixin(net.minecraft.client.network.AbstractClientPlayerEntity.class)
-    public static class AbstractClientPlayerEntityMixin {
+    @Mixin(DoubleOption.class)
+    public static class DoubleOptionMixin {
+        @Shadow @Final @Mutable
+        private BiFunction<GameOptions, DoubleOption, Text> displayStringGetter;
+        @Shadow @Final @Mutable
+        protected double min;
+        @Shadow @Final @Mutable
+        protected float step;
+        @Shadow @Mutable
+        protected double max;
 
-        @Redirect(method = "getSpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-        private boolean getSpeed(ItemStack stack, Item item) {
-            return stack.isOf(Items.BOW) || stack.isOf(ModItems.SPEEDRUNNER_BOW);
-        }
-    }
-
-    @Mixin(net.minecraft.client.render.entity.PlayerEntityRenderer.class)
-    public static class PlayerEntityRendererMixin {
-
-        @Inject(method = "getArmPose", at = @At("HEAD"), cancellable = true)
-        private static void getArmPose(AbstractClientPlayerEntity abstractClientPlayerEntity, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
-            ItemStack stack = abstractClientPlayerEntity.getStackInHand(hand);
-            if (!abstractClientPlayerEntity.handSwinging && stack.isOf(Items.CROSSBOW) && CrossbowItem.isCharged(stack) || !abstractClientPlayerEntity.handSwinging && stack.isOf(ModItems.SPEEDRUNNER_CROSSBOW) && CrossbowItem.isCharged(stack)) {
-                cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
+        @Inject(method = "<init>", at = @At("RETURN"))
+        private void init(String key, double min, double max, float step, Function<GameOptions, Double> getter, BiConsumer<GameOptions, Double> setter, BiFunction<GameOptions, DoubleOption, Text> displayStringGetter, Function<MinecraftClient, List<OrderedText>> tooltipsGetter, CallbackInfo ci) {
+            if (key.equals("options.gamma")) {
+                this.min = 1.0D;
+                this.max = 5.0D;
+                this.step = 0.1F;
+                this.displayStringGetter = this::displayStringGetter;
             }
         }
+
+        private Text displayStringGetter(GameOptions gameOptions, DoubleOption doubleOption) {
+            return new TranslatableText("options.gamma").append(": ").append(gameOptions.gamma == 0 ? new TranslatableText("options.gamma.min") : gameOptions.gamma == 1 ? new TranslatableText("options.gamma.max") : new LiteralText(Math.round(gameOptions.gamma * 100) + "%"));
+        }
     }
 
-    @Mixin(net.minecraft.client.render.item.HeldItemRenderer.class)
+    @Mixin(MinecraftClient.class)
+    public static class MinecraftClientMixin {
+        private final long SAVE_INTERVAL = 10000;
+
+        @Shadow
+        private GameOptions options;
+        private long lastSaveTime = 0;
+
+        @Inject(at = @At("HEAD"), method = "close")
+        private void close(CallbackInfo info) {
+            options.write();
+        }
+
+        @Inject(at = @At("HEAD"), method = "setScreen")
+        private void setScreen(Screen screen, CallbackInfo info) {
+            if (screen instanceof GameMenuScreen && System.currentTimeMillis() - lastSaveTime > SAVE_INTERVAL) {
+                lastSaveTime = System.currentTimeMillis();
+            }
+
+            if (screen != null && screen.getClass().getSimpleName().equals("SodiumOptionsGUI")) {
+                try {
+                    List<?> optionPages = (List<?>) get(screen, "me.jellysquid.mods.sodium.client.gui.SodiumOptionsGUI", "pages");
+                    List<?> optionGroups = (List<?>) get(optionPages.get(0), "me.jellysquid.mods.sodium.client.gui.options.OptionPage", "groups");
+                    List<?> options = (List<?>) get(optionGroups.get(0), "me.jellysquid.mods.sodium.client.gui.options.OptionGroup", "options");
+                    Object sliderControl = get(options.get(2), "me.jellysquid.mods.sodium.client.gui.options.OptionImpl", "control");
+                    Class<?> sliderControlClass = Class.forName("me.jellysquid.mods.sodium.client.gui.options.control.SliderControl");
+                    setInt(sliderControl, sliderControlClass, "min", (int) (1.0D * 100));
+                    setInt(sliderControl, sliderControlClass, "max", (int) (5.0D * 100));
+                    setInt(sliderControl, sliderControlClass, "interval", 10);
+                } catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException ex) {
+                    SpeedrunnerModClient.logException(ex, "an exception occurred during the manipulation of the sodium options gui");
+                }
+            }
+        }
+
+        private Object get(Object instance, String className, String name) throws NoSuchFieldException, IllegalAccessException, ClassNotFoundException {
+            Field f = Class.forName(className).getDeclaredField(name);
+            f.setAccessible(true);
+            return f.get(instance);
+        }
+
+        private void setInt(Object instance, Class<?> clazz, String field, int value) throws NoSuchFieldException, IllegalAccessException {
+            Field f = clazz.getDeclaredField(field);
+            f.setAccessible(true);
+            f.setInt(instance, value);
+        }
+    }
+
+    @Mixin(MinecraftClient.class)
+    public interface GameOptionsAccessor {
+        @Accessor("options")
+        GameOptions getGameOptions();
+    }
+
+    @Mixin(HeldItemRenderer.class)
     public static class HeldItemRendererMixin {
 
         @Redirect(method = "getHandRenderType", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
@@ -153,7 +236,7 @@ public class ModMixinsClient {
 
         @Redirect(method = "isChargedCrossbow", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
         private static boolean isChargedCrossbow(ItemStack stack, Item item) {
-            return stack.isOf(Items.CROSSBOW) && CrossbowItem.isCharged(stack) || stack.isOf(ModItems.SPEEDRUNNER_CROSSBOW) && CrossbowItem.isCharged(stack);
+            return stack.isOf(Items.CROSSBOW) && CrossbowItem.isCharged(stack) || stack.isOf(ModItems.SPEEDRUNNER_CROSSBOW) && SpeedrunnerCrossbowItem.isCharged(stack);
         }
 
         @Redirect(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 1))
@@ -162,19 +245,19 @@ public class ModMixinsClient {
         }
     }
 
-    @Mixin(net.minecraft.client.gui.screen.option.VideoOptionsScreen.class)
-    public static class VideoOptionsScreenMixin {
-        @Shadow
-        private static final Option[] OPTIONS = new Option[]{Option.GRAPHICS, Option.RENDER_DISTANCE, Option.AO, Option.FRAMERATE_LIMIT, Option.VSYNC, Option.VIEW_BOBBING, Option.GUI_SCALE, Option.ATTACK_INDICATOR, ModOption.GAMMA, Option.CLOUDS, Option.FULLSCREEN, Option.PARTICLES, ModOption.FOG, Option.MIPMAP_LEVELS, Option.ENTITY_SHADOWS, Option.DISTORTION_EFFECT_SCALE, Option.ENTITY_DISTANCE_SCALING, Option.FOV_EFFECT_SCALE};
+    @Mixin(PlayerEntityRenderer.class)
+    public static class PlayerEntityRendererMixin {
+
+        @Inject(method = "getArmPose", at = @At("HEAD"), cancellable = true)
+        private static void getArmPose(AbstractClientPlayerEntity abstractClientPlayerEntity, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
+            ItemStack stack = abstractClientPlayerEntity.getStackInHand(hand);
+            if (!abstractClientPlayerEntity.handSwinging && stack.isOf(Items.CROSSBOW) && CrossbowItem.isCharged(stack) || !abstractClientPlayerEntity.handSwinging && stack.isOf(ModItems.SPEEDRUNNER_CROSSBOW) && SpeedrunnerCrossbowItem.isCharged(stack)) {
+                cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
+            }
+        }
     }
 
-    @Mixin(net.minecraft.client.MinecraftClient.class)
-    public interface GameOptionsAccessor {
-        @Accessor("options")
-        GameOptions getGameOptions();
-    }
-
-    @Mixin(net.minecraft.server.network.ServerPlayerEntity.class)
+    @Mixin(ServerPlayerEntity.class)
     public interface SeenCreditsAccessor {
         @Accessor("seenCredits")
         boolean seenCredits();
