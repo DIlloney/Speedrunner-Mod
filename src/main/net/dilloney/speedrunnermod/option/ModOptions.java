@@ -1,142 +1,140 @@
 package net.dilloney.speedrunnermod.option;
 
-import net.minecraft.util.math.MathHelper;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import net.dilloney.speedrunnermod.SpeedrunnerMod;
+import net.fabricmc.loader.api.FabricLoader;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
 
 public class ModOptions {
+    private static final Gson GSON = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).setPrettyPrinting().create();
+    private static final String CONFIG = "speedrunnermod-options.json";
+    private static File file;
+    public static ModOptions OPTIONS = getConfig();
+    private static final String OLD_CONFIG = "speedrunnermod_options.json";
+    private static File old_config_file;
+    public final Main main = new Main();
+    public final Advanced advanced = new Advanced();
 
-    public boolean makeStructuresMoreCommon = true;
-    public boolean makeBiomesMoreCommon = true;
-    public boolean iCarusMode = false;
-    public boolean infiniPearlMode = false;
-    public boolean fog = true;
-    public boolean timer = false;
-    public boolean doomMode = false;
-    public boolean killGhastUponFireball = false;
-    public int strongholdCount = 128;
-    public int dragonPerchTime = 30;
-    public boolean autoCreateWorld = true;
-    public WorldDifficulty worldDifficulty = WorldDifficulty.EASY;
+    public static class Main {
 
-    protected boolean getMakeStructuresMoreCommon() {
-        return this.makeStructuresMoreCommon;
+        public boolean makeStructuresMoreCommon = true;
+        public boolean makeBiomesMoreCommon = true;
+        public boolean iCarusMode = false;
+        public boolean infiniPearlMode = false;
+        public boolean doomMode = false;
+        public boolean modifiedBlockHardness = true;
+        public boolean killGhastUponFireball = false;
+        public int strongholdCount = 128;
+        public int dragonPerchTime = 30;
     }
 
-    protected boolean getMakeBiomesMoreCommon() {
-        return this.makeBiomesMoreCommon;
+    public static class Advanced {
+
+        public MobSpawningRate mobSpawningRate = MobSpawningRate.HIGH;
+        public boolean modifiedFoods = true;
+        public boolean modifiedItemEffects = true;
+        public boolean makeOresMoreCommon = true;
+        public int mobSpawnerSpawnDuration = 40;
+        public int strongholdDistance = 4;
+        public boolean debugMode = false;
+
+        public enum MobSpawningRate {
+            LOW(0, "options.mob_spawning_rate.low"),
+            NORMAL(1, "options.mob_spawning_rate.normal"),
+            HIGH(2, "options.mob_spawning_rate.high");
+
+            private static final MobSpawningRate[] VALUES = (MobSpawningRate[])Arrays.stream(values()).sorted(Comparator.comparingInt(MobSpawningRate::getId)).toArray((i) -> {
+                return new MobSpawningRate[i];
+            });
+            private final int id;
+            private final String translateKey;
+
+            MobSpawningRate(int id, String translationKey) {
+                this.id = id;
+                this.translateKey = Objects.requireNonNull(translationKey, "translateKey");
+            }
+
+            public int getId() {
+                return this.id;
+            }
+
+            public String getTranslationKey() {
+                return this.translateKey;
+            }
+        }
     }
 
-    protected boolean getiCarusMode() {
-        return this.iCarusMode;
-    }
-
-    protected boolean getInfinityPearlMode() {
-        return this.infiniPearlMode;
-    }
-
-    protected boolean getFog() {
-        return this.fog;
-    }
-
-    protected boolean getTimer() {
-        return this.timer;
-    }
-
-    protected boolean getDoomMode() {
-        return this.doomMode;
-    }
-
-    protected boolean getKillGhastUponFireball() {
-        return this.killGhastUponFireball;
-    }
-
-    public int getStrongholdCount() {
-        return this.strongholdCount;
-    }
-
-    public int getDragonPerchTime() {
-        return this.dragonPerchTime;
-    }
-
-    protected boolean getAutoCreateWorld() {
-        return this.autoCreateWorld;
-    }
-
-    protected void setMakeStructuresMoreCommon(boolean makeStructuresMoreCommon) {
-        this.makeStructuresMoreCommon = makeStructuresMoreCommon;
-    }
-
-    protected void setMakeBiomesMoreCommon(boolean makeBiomesMoreCommon) {
-        this.makeBiomesMoreCommon = makeBiomesMoreCommon;
-    }
-
-    protected void setiCarusMode(boolean iCarusMode) {
-        this.iCarusMode = iCarusMode;
-    }
-
-    protected void setInfiniPearlMode(boolean infiniPearlMode) {
-        this.infiniPearlMode = infiniPearlMode;
-    }
-
-    protected void setFog(boolean fog) {
-        this.fog = fog;
-    }
-
-    protected void setTimer(boolean timer) {
-        this.timer = timer;
-    }
-
-    protected void setDoomMode(boolean doomMode) {
-        this.doomMode = doomMode;
-    }
-
-    protected void setKillGhastUponFireball(boolean killGhastUponFireball) {
-        this.killGhastUponFireball = killGhastUponFireball;
-    }
-
-    public void setStrongholdCount(int strongholdCount) {
-        this.strongholdCount = strongholdCount;
-    }
-
-    protected void setDragonPerchTime(int dragonPerchTime) {
-        this.dragonPerchTime = dragonPerchTime;
-    }
-
-    protected void setAutoCreateWorld(boolean autoCreateWorld) {
-        this.autoCreateWorld = autoCreateWorld;
-    }
-
-    public enum WorldDifficulty {
-        PEACEFUL(0, "options.difficulty.peaceful"),
-        EASY(1, "options.difficulty.easy"),
-        NORMAL(2, "options.difficulty.normal"),
-        HARD(3, "options.difficulty.hard"),
-        HARDCORE(4, "options.difficulty.hardcore");
-
-        private static final WorldDifficulty[] VALUES = (WorldDifficulty[])Arrays.stream(values()).sorted(Comparator.comparingInt(WorldDifficulty::getId)).toArray((i) -> {
-            return new WorldDifficulty[i];
-        });
-        private final int id;
-        private final String translateKey;
-
-        WorldDifficulty(int id, String translationKey) {
-            this.id = id;
-            this.translateKey = Objects.requireNonNull(translationKey, "translateKey");
+    public static void loadConfig() {
+        File configFile = getConfigFile();
+        File oldConfigFile = getOldConfigFile();
+        if (oldConfigFile.exists()) {
+            oldConfigFile.delete();
+            SpeedrunnerMod.LOGGER.warn("Found an old configuration file, deleting.");
         }
 
-        public int getId() {
-            return this.id;
+        if (!configFile.exists()) {
+            OPTIONS = new ModOptions();
+        } else {
+            sanitize();
+            readConfig();
         }
+        saveConfig();
+    }
 
-        public String getTranslationKey() {
-            return this.translateKey;
-        }
+    private static void readConfig() {
+        OPTIONS = getConfig();
+    }
 
-        public static WorldDifficulty byId(int id) {
-            return VALUES[MathHelper.floorMod(id, VALUES.length)];
+    public static void saveConfig() {
+        File file = getConfigFile();
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(GSON.toJson(SpeedrunnerMod.options()));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
+    private static void setConfig(ModOptions config) {
+        OPTIONS = config;
+        saveConfig();
+    }
+
+    private static ModOptions getConfig() {
+        File file = getConfigFile();
+        try (FileReader reader = new FileReader(file)) {
+            return GSON.fromJson(reader, ModOptions.class);
+        } catch (Exception e) {
+            ModOptions newconfig = new ModOptions();
+            setConfig(newconfig);
+            return newconfig;
+        }
+    }
+
+    private static File getConfigFile() {
+        if (file == null) {
+            file = new File(FabricLoader.getInstance().getConfigDir().toFile(), CONFIG);
+        }
+        return file;
+    }
+
+    private static void sanitize() {
+        if (SpeedrunnerMod.options().advanced.mobSpawningRate == null) {
+            SpeedrunnerMod.options().advanced.mobSpawningRate = Advanced.MobSpawningRate.HIGH;
+        }
+    }
+
+    private static File getOldConfigFile() {
+        if (old_config_file == null) {
+            old_config_file = new File(FabricLoader.getInstance().getConfigDir().toFile(), OLD_CONFIG);
+        }
+        return old_config_file;
     }
 }
