@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.6";
+    public static final String MOD_VERSION = "v1.6.1";
     public static final Logger LOGGER = LogManager.getLogger();
 
     public void onInitialize() {
