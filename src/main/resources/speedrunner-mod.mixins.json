@@ -78,7 +78,6 @@
     "ModMixins$VexEntityMixin",
     "ModMixins$VindicatorEntityMixin",
     "ModMixins$WitchEntityMixin",
-    "ModMixins$WitherEntityMixin",
     "ModMixins$WitherSkeletonEntityMixin",
     "ModMixins$ZoglinEntityMixin",
     "ModMixins$ZombieEntityMixin",
