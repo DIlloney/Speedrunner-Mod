@@ -5,6 +5,7 @@ import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;
 import net.dilloney.speedrunnermod.SpeedrunnerMod;
+import net.dilloney.speedrunnermod.block.ModBlocks;
 import net.dilloney.speedrunnermod.item.ModFoodComponents;
 import net.dilloney.speedrunnermod.item.ModItems;
 import net.dilloney.speedrunnermod.tag.ModBlockTags;
@@ -12,15 +13,14 @@ import net.dilloney.speedrunnermod.util.entity.Giant;
 import net.dilloney.speedrunnermod.util.entity.GiantAttackGoal;
 import net.dilloney.speedrunnermod.world.gen.feature.ModFeatures;
 import net.dilloney.speedrunnermod.world.gen.feature.ModOrePlacedFeatures;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.command.argument.ItemStackArgumentType;
-import net.minecraft.enchantment.EfficiencyEnchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
+import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.brain.Brain;
@@ -52,6 +52,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
+import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.CraftingInventory;
@@ -242,6 +243,31 @@ public class ModMixins {
             super(entityType, world);
         }
 
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 32;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
+
         @ModifyArg(method = "createAbstractSkeletonAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;add(Lnet/minecraft/entity/attribute/EntityAttribute;D)Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;"), index = 1)
         private static double genericMovementSpeed(double baseValue) {
             return SpeedrunnerMod.options().main.doomMode ? 0.3D : 0.25D;
@@ -284,7 +310,36 @@ public class ModMixins {
     }
 
     @Mixin(BlazeEntity.class)
-    public static class BlazeEntityMixin {
+    public static class BlazeEntityMixin extends HostileEntity {
+
+        public BlazeEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 10 + EnchantmentHelper.getLooting(player) * 48;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createBlazeAttributes() {
@@ -422,6 +477,31 @@ public class ModMixins {
             super(entityType, world);
         }
 
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 32;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
+
         @ModifyArg(method = "createCreeperAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;add(Lnet/minecraft/entity/attribute/EntityAttribute;D)Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;"), index = 1)
         private static double genericMovementSpeed(double baseValue) {
             return SpeedrunnerMod.options().main.doomMode ? 0.3D : 0.25D;
@@ -538,6 +618,31 @@ public class ModMixins {
             super(entityType, world);
         }
 
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 10 + EnchantmentHelper.getLooting(player) * 72;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
+
         @Overwrite
         public static DefaultAttributeContainer.Builder createElderGuardianAttributes() {
             final double genericAttackDamage = SpeedrunnerMod.options().main.doomMode ? 8.0D : 4.0D;
@@ -576,6 +681,24 @@ public class ModMixins {
 
             if (!this.hasPositionTarget()) {
                 this.setPositionTarget(this.getBlockPos(), 16);
+            }
+        }
+    }
+
+    @Mixin(Enchantment.class)
+    public static class EnchantmentMixin {
+
+        @Inject(method = "isAcceptableItem", at = @At("HEAD"), cancellable = true)
+        private void isAcceptableItem(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+            Enchantment enchantment = (Enchantment)(Object)this;
+            if (stack.getItem() instanceof AxeItem) {
+                if (enchantment instanceof FireAspectEnchantment) {
+                    cir.setReturnValue(true);
+                } else if (enchantment instanceof KnockbackEnchantment) {
+                    cir.setReturnValue(true);
+                } else if (enchantment instanceof LuckEnchantment) {
+                    cir.setReturnValue(true);
+                }
             }
         }
     }
@@ -716,7 +839,36 @@ public class ModMixins {
     }
 
     @Mixin(EndermanEntity.class)
-    public static class EndermanEntityMixin {
+    public static class EndermanEntityMixin extends HostileEntity {
+
+        public EndermanEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 10 + EnchantmentHelper.getLooting(player) * 48;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createEndermanAttributes() {
@@ -728,7 +880,36 @@ public class ModMixins {
     }
 
     @Mixin(EndermiteEntity.class)
-    public static class EndermiteEntityMixin {
+    public static class EndermiteEntityMixin extends HostileEntity {
+
+        public EndermiteEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 16;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createEndermiteAttributes() {
@@ -833,6 +1014,39 @@ public class ModMixins {
         @ModifyArg(method = "setOnFireFromLava", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
         private float setOnFireFromLava(float x) {
             return SpeedrunnerMod.options().main.doomMode ? 4.0F : 2.0F;
+        }
+    }
+
+    @Mixin(EvokerEntity.class)
+    public abstract static class EvokerEntityMixin extends SpellcastingIllagerEntity {
+
+        public EvokerEntityMixin(EntityType<? extends SpellcastingIllagerEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 63;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
         }
     }
 
@@ -952,7 +1166,36 @@ public class ModMixins {
     }
 
     @Mixin(GhastEntity.class)
-    public static class GhastEntityMixin {
+    public static class GhastEntityMixin extends FlyingEntity {
+
+        public GhastEntityMixin(EntityType<? extends FlyingEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 36;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createGhastAttributes() {
@@ -1015,6 +1258,31 @@ public class ModMixins {
 
         public GiantEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
             super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 50 + EnchantmentHelper.getLooting(player) * 150;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
         }
 
         @Inject(method = "<init>", at = @At("TAIL"))
@@ -1351,7 +1619,36 @@ public class ModMixins {
     }
 
     @Mixin(GuardianEntity.class)
-    public static class GuardianEntityMixin {
+    public static class GuardianEntityMixin extends HostileEntity {
+
+        public GuardianEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 10 + EnchantmentHelper.getLooting(player) * 36;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createGuardianAttributes() {
@@ -1363,7 +1660,16 @@ public class ModMixins {
     }
 
     @Mixin(HoglinEntity.class)
-    public static class HoglinEntityMixin {
+    public abstract static class HoglinEntityMixin extends AnimalEntity {
+
+        public HoglinEntityMixin(EntityType<? extends AnimalEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            return this.experiencePoints + EnchantmentHelper.getLooting(player) * 36;
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createHoglinAttributes() {
@@ -1376,7 +1682,36 @@ public class ModMixins {
     }
 
     @Mixin(IronGolemEntity.class)
-    public static class IronGolemEntityMixin {
+    public static class IronGolemEntityMixin extends GolemEntity {
+
+        public IronGolemEntityMixin(EntityType<? extends GolemEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 32;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createIronGolemAttributes() {
@@ -1422,6 +1757,10 @@ public class ModMixins {
 
     @Mixin(LivingEntity.class)
     public abstract static class LivingEntityMixin extends Entity {
+        @Shadow abstract ItemStack getStackInHand(Hand hand);
+        @Shadow abstract void setHealth(float health);
+        @Shadow abstract boolean clearStatusEffects();
+        @Shadow @Final abstract boolean addStatusEffect(StatusEffectInstance effect);
 
         public LivingEntityMixin(EntityType<?> type, World world) {
             super(type, world);
@@ -1430,6 +1769,44 @@ public class ModMixins {
         @Overwrite
         public int getNextAirOnLand(int air) {
             return Math.min(air + 8, this.getMaxAir());
+        }
+
+        @Overwrite
+        private boolean tryUseTotem(DamageSource source) {
+            if (source.isOutOfWorld()) {
+                return false;
+            } else {
+                ItemStack itemStack = null;
+                Hand[] var4 = Hand.values();
+                int var5 = var4.length;
+
+                for(int var6 = 0; var6 < var5; ++var6) {
+                    Hand hand = var4[var6];
+                    ItemStack itemStack2 = this.getStackInHand(hand);
+                    if (itemStack2.isOf(Items.TOTEM_OF_UNDYING)) {
+                        itemStack = itemStack2.copy();
+                        itemStack2.decrement(1);
+                        break;
+                    }
+                }
+
+                if (itemStack != null) {
+                    if ((LivingEntity)(Object)this instanceof ServerPlayerEntity) {
+                        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)(Object)this;
+                        serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(Items.TOTEM_OF_UNDYING));
+                        Criteria.USED_TOTEM.trigger(serverPlayerEntity, itemStack);
+                    }
+
+                    this.setHealth(1.0F);
+                    this.clearStatusEffects();
+                    this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 900, 1));
+                    this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 100, 1));
+                    this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 2400, 0));
+                    this.world.sendEntityStatus(this, (byte)35);
+                }
+
+                return itemStack != null;
+            }
         }
 
         @Redirect(method = "getPreferredEquipmentSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 2))
@@ -1459,22 +1836,16 @@ public class ModMixins {
 
     @Mixin(value = MobSpawnerLogic.class, priority = 999)
     public abstract static class MobSpawnerLogicMixin {
-
         @Shadow
         private int spawnDelay;
-
         @Shadow
         private DataPool<MobSpawnerEntry> spawnPotentials;
-
         @Shadow @Final
         private Random random;
-
         @Shadow
         abstract void setSpawnEntry(@Nullable World world, BlockPos pos, MobSpawnerEntry spawnEntry);
-
         @Shadow
         abstract void sendStatus(World world, BlockPos pos, int i);
-
         int minSpawnDelayMixin = 200;
         int maxSpawnDelayMixin = SpeedrunnerMod.options().advanced.mobSpawnerSpawnDuration * 10;
 
@@ -1517,18 +1888,78 @@ public class ModMixins {
         @Inject(method = "onStacksDropped", at = @At("TAIL"))
         public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, CallbackInfo ci) {
             if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
+                int f;
+                int i;
                 if (state.isOf(Blocks.GOLD_ORE)) {
-                    int gold = 2 + world.random.nextInt(4);
-                    this.dropExperience(world, pos, gold);
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 36;
+                    i = 2 + world.random.nextInt(5) + f;
+                    this.dropExperience(world, pos, i);
                 } else if (state.isOf(Blocks.DEEPSLATE_GOLD_ORE)) {
-                    int dgold = 2 + world.random.nextInt(4);
-                    this.dropExperience(world, pos, dgold);
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 54;
+                    i = 2 + world.random.nextInt(5) + f;
+                    this.dropExperience(world, pos, i);
                 } else if (state.isOf(Blocks.IRON_ORE)) {
-                    int iron = 1 + world.random.nextInt(1);
-                    this.dropExperience(world, pos, iron);
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 32;
+                    i = 1 + world.random.nextInt(2) + f;
+                    this.dropExperience(world, pos, i);
                 } else if (state.isOf(Blocks.DEEPSLATE_IRON_ORE)) {
-                    int diron = 1 + world.random.nextInt(1);
-                    this.dropExperience(world, pos, diron);
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 48;
+                    i = 1 + world.random.nextInt(2) + f;
+                    this.dropExperience(world, pos, i);
+                } else if (state.isOf(Blocks.COAL_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 12;
+                    this.dropExperience(world, pos, f);
+                } else if (state.isOf(Blocks.DEEPSLATE_COAL_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 18;
+                    this.dropExperience(world, pos, f);
+                } else if (state.isOf(Blocks.NETHER_GOLD_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 24;
+                    this.dropExperience(world, pos, f);
+                } else if (state.isOf(Blocks.LAPIS_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 36;
+                    this.dropExperience(world, pos, f);
+                } else if (state.isOf(Blocks.DEEPSLATE_LAPIS_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 54;
+                    this.dropExperience(world, pos, f);
+                } else if (state.isOf(Blocks.DIAMOND_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 44;
+                    this.dropExperience(world, pos, f);
+                } else if (state.isOf(Blocks.DEEPSLATE_DIAMOND_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 66;
+                    this.dropExperience(world, pos, f);
+                } else if (state.isOf(Blocks.EMERALD_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 36;
+                    this.dropExperience(world, pos, f);
+                } else if (state.isOf(Blocks.DEEPSLATE_EMERALD_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 54;
+                    this.dropExperience(world, pos, f);
+                } else if (state.isOf(Blocks.NETHER_QUARTZ_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 24;
+                    this.dropExperience(world, pos, f);
+                } else if (state.isOf(ModBlocks.SPEEDRUNNER_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 42;
+                    i = 2 + world.random.nextInt(6) + f;
+                    this.dropExperience(world, pos, i);
+                } else if (state.isOf(ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 63;
+                    i = 2 + world.random.nextInt(6) + f;
+                    this.dropExperience(world, pos, i);
+                } else if (state.isOf(ModBlocks.NETHER_SPEEDRUNNER_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 36;
+                    i = 1 + world.random.nextInt(3) + f;
+                    this.dropExperience(world, pos, i);
+                } else if (state.isOf(ModBlocks.IGNEOUS_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 40;
+                    i = 2 + world.random.nextInt(6) + f;
+                    this.dropExperience(world, pos, i);
+                } else if (state.isOf(ModBlocks.DEEPSLATE_IGNEOUS_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 60;
+                    i = 2 + world.random.nextInt(6) + f;
+                    this.dropExperience(world, pos, i);
+                } else if (state.isOf(ModBlocks.NETHER_IGNEOUS_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 36;
+                    i = 2 + world.random.nextInt(6) + f;
+                    this.dropExperience(world, pos, i);
                 }
             }
         }
@@ -1587,7 +2018,36 @@ public class ModMixins {
     }
 
     @Mixin(PiglinBruteEntity.class)
-    public static class PiglinBruteEntityMixin {
+    public abstract static class PiglinBruteEntityMixin extends AbstractPiglinEntity {
+
+        public PiglinBruteEntityMixin(EntityType<? extends AbstractPiglinEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 20 + EnchantmentHelper.getLooting(player) * 72;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @ModifyArg(method = "createPiglinBruteAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;add(Lnet/minecraft/entity/attribute/EntityAttribute;D)Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", ordinal = 0), index = 1)
         private static double genericMaxHealth(double baseValue) {
@@ -1596,7 +2056,36 @@ public class ModMixins {
     }
 
     @Mixin(PiglinEntity.class)
-    public static class PiglinEntityMixin {
+    public abstract static class PiglinEntityMixin extends AbstractPiglinEntity {
+
+        public PiglinEntityMixin(EntityType<? extends AbstractPiglinEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 32;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createPiglinAttributes() {
@@ -1607,7 +2096,36 @@ public class ModMixins {
     }
 
     @Mixin(PillagerEntity.class)
-    public static class PillagerEntityMixin {
+    public abstract static class PillagerEntityMixin extends IllagerEntity {
+
+        public PillagerEntityMixin(EntityType<? extends IllagerEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 36;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createPillagerAttributes() {
@@ -1620,13 +2138,12 @@ public class ModMixins {
 
     @Mixin(PlayerEntity.class)
     public abstract static class PlayerEntityMixin extends LivingEntity {
+        @Shadow
+        abstract ItemCooldownManager getItemCooldownManager();
 
         public PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
             super(entityType, world);
         }
-
-        @Shadow
-        abstract ItemCooldownManager getItemCooldownManager();
 
         @Inject(method = "disableShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getItemCooldownManager()Lnet/minecraft/entity/player/ItemCooldownManager;"))
         private void disableShield(CallbackInfo ci) {
@@ -1689,6 +2206,39 @@ public class ModMixins {
         }
     }
 
+    @Mixin(PhantomEntity.class)
+    public static class PhantomEntityMixin extends FlyingEntity {
+
+        public PhantomEntityMixin(EntityType<? extends FlyingEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 32;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
+    }
+
     @Mixin(PumpkinBlock.class)
     public static class PumpkinBlockMixin {
 
@@ -1699,7 +2249,36 @@ public class ModMixins {
     }
 
     @Mixin(RavagerEntity.class)
-    public static class RavagerEntityMixin {
+    public abstract static class RavagerEntityMixin extends RaiderEntity {
+
+        public RavagerEntityMixin(EntityType<? extends RaiderEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 72;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createRavagerAttributes() {
@@ -1714,6 +2293,28 @@ public class ModMixins {
         private void tryAttack(Entity target, CallbackInfoReturnable cir) {
             if (SpeedrunnerMod.options().main.doomMode && target instanceof PlayerEntity) {
                 ((PlayerEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0));
+            }
+        }
+    }
+
+    @Mixin(RedstoneOreBlock.class)
+    public static class RedstoneOreBlockMixin extends Block {
+
+        public RedstoneOreBlockMixin(Settings settings) {
+            super(settings);
+        }
+
+        @Inject(method = "onStacksDropped", at = @At("TAIL"))
+        private void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, CallbackInfo ci) {
+            if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
+                int f;
+                if (state.isOf(Blocks.REDSTONE_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 32;
+                    this.dropExperience(world, pos, f);
+                } else if (state.isOf(Blocks.DEEPSLATE_REDSTONE_ORE)) {
+                    f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 48;
+                    this.dropExperience(world, pos, f);
+                }
             }
         }
     }
@@ -1821,6 +2422,31 @@ public class ModMixins {
             super(entityType, world);
         }
 
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 36;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
+
         @ModifyArg(method = "createShulkerAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;add(Lnet/minecraft/entity/attribute/EntityAttribute;D)Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;"), index = 1)
         private static double genericMaxHealth(double baseValue) {
             return SpeedrunnerMod.options().main.doomMode ? 32.0D : 20.0D;
@@ -1858,7 +2484,36 @@ public class ModMixins {
     }
 
     @Mixin(SilverfishEntity.class)
-    public static class SilverfishEntityMixin {
+    public abstract static class SilverfishEntityMixin extends HostileEntity {
+
+        public SilverfishEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 16;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createSilverfishAttributes() {
@@ -1898,7 +2553,36 @@ public class ModMixins {
     }
 
     @Mixin(SlimeEntity.class)
-    public static class SlimeEntityMixin {
+    public static class SlimeEntityMixin extends MobEntity {
+
+        public SlimeEntityMixin(EntityType<? extends MobEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 36;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public int getTicksUntilNextJump() {
@@ -1929,6 +2613,21 @@ public class ModMixins {
         }
     }
 
+    @Mixin(SpawnerBlock.class)
+    public static abstract class SpawnerBlockMixin extends BlockWithEntity {
+
+        public SpawnerBlockMixin(Settings settings) {
+            super(settings);
+        }
+
+        @Inject(method = "onStacksDropped", at = @At("TAIL"))
+        private void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, CallbackInfo ci) {
+            int f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 172;
+            int i = 512 + world.random.nextInt(524) + world.random.nextInt(128) + f;
+            this.dropExperience(world, pos, i);
+        }
+    }
+
     @Mixin(SpawnRestriction.class)
     public static class SpawnRestrictionMixin {
 
@@ -1948,6 +2647,31 @@ public class ModMixins {
 
         public SpiderEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
             super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 32;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
         }
 
         public boolean tryAttack(Entity target) {
@@ -2253,6 +2977,31 @@ public class ModMixins {
             super(entityType, world);
         }
 
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 36;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
+
         @Overwrite
         public static DefaultAttributeContainer.Builder createVexAttributes() {
             final double genericMaxHealth = SpeedrunnerMod.options().main.doomMode ? 7.0D : 14.0D;
@@ -2285,6 +3034,31 @@ public class ModMixins {
             super(entityType, world);
         }
 
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 36;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
+
         @Overwrite
         public static DefaultAttributeContainer.Builder createVindicatorAttributes() {
             final double genericFollowRange = SpeedrunnerMod.options().main.doomMode ? 48.0D : 12.0D;
@@ -2306,7 +3080,36 @@ public class ModMixins {
     }
 
     @Mixin(WitchEntity.class)
-    public static class WitchEntityMixin {
+    public abstract static class WitchEntityMixin extends RaiderEntity {
+
+        public WitchEntityMixin(EntityType<? extends RaiderEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 36;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createWitchAttributes() {
@@ -2317,7 +3120,36 @@ public class ModMixins {
     }
 
     @Mixin(WitherEntity.class)
-    public static class WitherEntityMixin {
+    public static class WitherEntityMixin extends HostileEntity {
+
+        public WitherEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 50 + EnchantmentHelper.getLooting(player) * 150;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @ModifyArg(method = "createWitherAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;add(Lnet/minecraft/entity/attribute/EntityAttribute;D)Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;"), index = 1)
         private static double genericMaxHealth(double baseValue) {
@@ -2330,6 +3162,31 @@ public class ModMixins {
 
         public WitherSkeletonEntityMixin(EntityType<? extends WitherSkeletonEntity> entityType, World world) {
             super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 36;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
         }
 
         @ModifyArg(method = "initialize", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/EntityAttributeInstance;setBaseValue(D)V"))
@@ -2351,7 +3208,36 @@ public class ModMixins {
     }
 
     @Mixin(ZoglinEntity.class)
-    public static class ZoglinEntityMixin {
+    public static class ZoglinEntityMixin extends HostileEntity {
+
+        public ZoglinEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
+            super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 36;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
+        }
 
         @Overwrite
         public static DefaultAttributeContainer.Builder createZoglinAttributes() {
@@ -2368,6 +3254,31 @@ public class ModMixins {
 
         public ZombieEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
             super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 32;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
         }
 
         @Overwrite
@@ -2397,6 +3308,31 @@ public class ModMixins {
 
         public ZombifiedPiglinEntityMixin(EntityType<? extends ZombieEntity> entityType, World world) {
             super(entityType, world);
+        }
+
+        @Override
+        public int getXpToDrop(PlayerEntity player) {
+            this.experiencePoints = 5 + EnchantmentHelper.getLooting(player) * 32;
+            if (this.experiencePoints > 0) {
+                int i = this.experiencePoints;
+
+                int j;
+                for(j = 0; j < this.armorItems.size(); ++j) {
+                    if (!((ItemStack)this.armorItems.get(j)).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                for(j = 0; j < this.handItems.size(); ++j) {
+                    if (!((ItemStack)this.handItems.get(j)).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                        i += 1 + this.random.nextInt(3);
+                    }
+                }
+
+                return i;
+            } else {
+                return this.experiencePoints;
+            }
         }
 
         @Overwrite
