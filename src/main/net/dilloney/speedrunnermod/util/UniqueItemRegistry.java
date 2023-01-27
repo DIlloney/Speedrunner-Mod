@@ -1,5 +1,6 @@
 package net.dilloney.speedrunnermod.util;
 
+import net.dilloney.speedrunnermod.item.ModItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
@@ -12,7 +13,6 @@ import java.util.Set;
  */
 @Deprecated
 public class UniqueItemRegistry {
-
     public static final UniqueItemRegistry SHEARS = new UniqueItemRegistry(Items.SHEARS);
     public static final UniqueItemRegistry SHIELD = new UniqueItemRegistry(Items.SHIELD);
     public static final UniqueItemRegistry BOW = new UniqueItemRegistry(Items.BOW);
@@ -42,5 +42,21 @@ public class UniqueItemRegistry {
 
     public boolean isItemInRegistry(Item item) {
         return itemList.contains(item);
+    }
+
+    public static void init() {
+        SHEARS.addItemToRegistry(ModItems.SPEEDRUNNER_SHEARS);
+        SHEARS.addItemToRegistry(Items.SHEARS);
+        SHIELD.addItemToRegistry(ModItems.SPEEDRUNNER_SHIELD);
+        SHIELD.addItemToRegistry(Items.SHIELD);
+        BOW.addItemToRegistry(ModItems.SPEEDRUNNER_BOW);
+        BOW.addItemToRegistry(Items.BOW);
+        CROSSBOW.addItemToRegistry(ModItems.SPEEDRUNNER_CROSSBOW);
+        CROSSBOW.addItemToRegistry(Items.CROSSBOW);
+        FLINT_AND_STEEL.addItemToRegistry(ModItems.SPEEDRUNNER_FLINT_AND_STEEL);
+        FLINT_AND_STEEL.addItemToRegistry(Items.FLINT_AND_STEEL);
+        TNT_BLOCK_IGNITERS.addItemToRegistry(ModItems.SPEEDRUNNER_FLINT_AND_STEEL);
+        TNT_BLOCK_IGNITERS.addItemToRegistry(Items.FLINT_AND_STEEL);
+        TNT_BLOCK_IGNITERS.addItemToRegistry(Items.FIRE_CHARGE);
     }
 }
