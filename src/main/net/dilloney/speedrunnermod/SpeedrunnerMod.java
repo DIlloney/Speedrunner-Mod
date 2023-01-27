@@ -7,9 +7,11 @@ import net.dilloney.speedrunnermod.option.ModOptions;
 import net.dilloney.speedrunnermod.recipe.SpeedrunnerShieldDecorationRecipe;
 import net.dilloney.speedrunnermod.tag.ModBlockTags;
 import net.dilloney.speedrunnermod.tag.ModItemTags;
+import net.dilloney.speedrunnermod.util.entity.ModVillagers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.mixin.structure.StructuresConfigAccessor;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.chunk.StructureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 import org.apache.logging.log4j.LogManager;
@@ -20,8 +22,9 @@ import java.util.Map;
 
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.6.1";
+    public static final String MOD_VERSION = "v1.7.2";
     public static final Logger LOGGER = LogManager.getLogger();
+    public static final Identifier SPEEDRUNNER_MOD_ICON = new Identifier("speedrunnermod:icon.png");
 
     public void onInitialize() {
         ModOptions.loadConfig();
@@ -30,6 +33,7 @@ public class SpeedrunnerMod implements ModInitializer {
         ModBlocks.init();
         ModItemTags.init();
         ModBlockTags.init();
+        ModVillagers.init();
         SpeedrunnerShieldDecorationRecipe.init();
 
         if (options().main.makeStructuresMoreCommon) {
@@ -37,6 +41,8 @@ public class SpeedrunnerMod implements ModInitializer {
         }
 
         LOGGER.info("The Speedrunner Mod (" + MOD_VERSION + ")" + " has been loaded.");
+        LOGGER.info("Consider subscribing to me, Dilloney, on YouTube. :)");
+        LOGGER.info("https://www.youtube.com/channel/UCNZVI8pFpzn-eXEZsyDEagg");
     }
 
     private static void makeStructuresMoreCommon() {
