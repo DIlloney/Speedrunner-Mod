@@ -1,16 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.dilloney.speedrunnermod.client.gui.widget",
+  "package": "net.dilloney.speedrunnermod.util.entity.modifications",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "VillagerTradeModifications$SellEnchantedToolFactoryMixin"
   ],
   "client": [
-    "ModButtonFunction",
-    "ModButtonGM",
-    "ModButtonTS",
-    "ModDeathButton",
-    "ModOptionButton"
   ],
   "server": [
   ],
