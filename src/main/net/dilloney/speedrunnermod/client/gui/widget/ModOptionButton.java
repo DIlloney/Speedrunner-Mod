@@ -1,7 +1,9 @@
 package net.dilloney.speedrunnermod.client.gui.widget;
 
+import net.dilloney.speedrunnermod.SpeedrunnerMod;
 import net.dilloney.speedrunnermod.SpeedrunnerModClient;
 import net.dilloney.speedrunnermod.client.gui.screen.ModMenuScreen;
+import net.dilloney.speedrunnermod.client.gui.screen.SocialsScreen;
 import net.dilloney.speedrunnermod.option.CLModOptions;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.options.OptionsScreen;
@@ -12,6 +14,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -30,6 +33,10 @@ public class ModOptionButton extends Screen {
 
     @Inject(method = "init", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
+        this.addButton(new ButtonWidget(this.width / 2 - 124, this.height / 6 + 168, 20, 20, new LiteralText(""), (button) -> {
+            Util.getOperatingSystem().open(SocialsScreen.DILLONEY_YOUTUBE_CHANNEL_LINK);
+        }));
+
         if (SpeedrunnerModClient.clOptions().modButtonType == CLModOptions.ModButtonType.LOGO) {
             this.addButton(new ButtonWidget(this.width / 2 - 179, this.height / 6 + 120 - 6, 20, 20, new LiteralText(""), (button) -> {
                 this.client.openScreen(new ModMenuScreen(this, this.settings));
@@ -43,9 +50,12 @@ public class ModOptionButton extends Screen {
 
     @Inject(method = "render", at = @At("TAIL"))
     private void renderModOptionsButtonTexture(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+        this.client.getTextureManager().bindTexture(new Identifier("dilloney:textures/dilloney.png"));
+        drawTexture(matrices, this.width / 2 - 123, this.height / 6 + 169, 0.0F, 0.0F, 18, 18, 18, 18);
+
         if (SpeedrunnerModClient.clOptions().modButtonType == CLModOptions.ModButtonType.LOGO) {
-            this.client.getTextureManager().bindTexture(new Identifier("speedrunnermod:textures/item/speedrunner_ingot.png"));
-            drawTexture(matrices, (this.width / 2) - 177, this.height / 6 + 120 - 6 + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            this.client.getTextureManager().bindTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON);
+            drawTexture(matrices, (this.width / 2) - 178, this.height / 6 + 119 - 6 + 2, 0.0F, 0.0F, 18, 18, 18, 18);
         }
     }
 }
