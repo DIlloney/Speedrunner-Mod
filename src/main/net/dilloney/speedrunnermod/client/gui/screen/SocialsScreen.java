@@ -2,27 +2,28 @@ package net.dilloney.speedrunnermod.client.gui.screen;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.screen.ConfirmChatLinkScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ScreenTexts;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.ButtonWidget.TooltipSupplier;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Util;
 
-import java.util.function.Consumer;
-
 @Environment(EnvType.CLIENT)
-class SocialsScreen extends GameOptionsScreen {
+public class SocialsScreen extends GameOptionsScreen {
+    public static final String DILLONEY_REWIND_2022_LINK = "https://www.youtube.com/watch?v=FlkFMG5sXQI";
+    public static final String DILLONEY_YOUTUBE_CHANNEL_LINK = "https://www.youtube.com/channel/UCNZVI8pFpzn-eXEZsyDEagg";
+    public static final String MOD_SHOWCASE_VIDEO_LINK = "https://www.youtube.com/watch?v=Aue9X3RcZAM";
+    public static final String DISCORD_LINK = "https://discord.gg/b9HZ4MVFUV";
+    public static final String TWITTER_LINK = "https://twitter.com/dilloney7";
+    public static final String WEBPAGE_LINK = "https://sites.google.com/view/dilloney";
+    public static final String ICE_AND_FIRE_PLAYLIST_LINK = "https://www.youtube.com/playlist?list=PLMq8d1rtsQN_BXKeCnEwLlz9shx0fmtre";
+    public static final String GEOMETRY_DASH_PLAYLIST_LINK = "https://www.youtube.com/playlist?list=PLMq8d1rtsQN8AX4dYuA6X7R6kdTwtuLnU";
+    public static final String MANNYQUESO_YOUTUBE_CHANNEL_LINK = "https://www.youtube.com/channel/UC6hympnK4biWoAZ2L79brVg";
     private static final String CURSEFORGE_LINK = "https://www.curseforge.com/minecraft/mc-mods/speedrunner-mod";
-    private static final String DISCORD_LINK = "https://discord.gg/Qu8utnCwkq";
-    private static final String GITHUB_LINK = "https://github.com/Dilloney/Speedrunner-Mod/";
-    private static final String YOUTUBE_LINK = "https://www.youtube.com/channel/UCNZVI8pFpzn-eXEZsyDEagg";
-    private static final String TWITCH_LINK = "https://www.twitch.tv/dilloney";
+    private static final String PLANET_MINECRAFT_LINK = "https://www.planetminecraft.com/member/dilloney/";
     private final Screen parent;
 
     protected SocialsScreen(Screen parent, GameOptions options) {
@@ -35,77 +36,34 @@ class SocialsScreen extends GameOptionsScreen {
         int leftSide = this.width / 2 - 155;
         int rightSide = leftSide + 160;
         int height = this.height / 6 - 12;
-        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.curseforge"), (buttonWidget) -> {
-            this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
-                if (openInBrowser) {
-                    Util.getOperatingSystem().open(CURSEFORGE_LINK);
-                }
-
-                this.client.setScreen(this);
-            }, CURSEFORGE_LINK, true));
+        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.socials.youtube"), (buttonWidget) -> {
+            Util.getOperatingSystem().open(DILLONEY_YOUTUBE_CHANNEL_LINK);
         }));
-        this.addDrawableChild(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.discord"), (buttonWidget) -> {
-            this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
-                if (openInBrowser) {
-                    Util.getOperatingSystem().open(DISCORD_LINK);
-                }
-
-                this.client.setScreen(this);
-            }, DISCORD_LINK, false));
-        }, new TooltipSupplier() {
-            public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
-                SocialsScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.discord.tooltip"), mouseX, mouseY);
-            }
-
-            public void supply(Consumer<Text> consumer) {
-                consumer.accept(new TranslatableText("speedrunnermod.discord.tooltip"));
-            }
+        this.addDrawableChild(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.socials.discord"), (buttonWidget) -> {
+            Util.getOperatingSystem().open(DISCORD_LINK);
         }));
         height += 24;
-        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.github"), (buttonWidget) -> {
-            this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
-                if (openInBrowser) {
-                    Util.getOperatingSystem().open(GITHUB_LINK);
-                }
-
-                this.client.setScreen(this);
-            }, GITHUB_LINK, false));
+        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.socials.twitter"), (buttonWidget) -> {
+            Util.getOperatingSystem().open(TWITTER_LINK);
         }));
-        this.addDrawableChild(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.youtube"), (buttonWidget) -> {
-            this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
-                if (openInBrowser) {
-                    Util.getOperatingSystem().open(YOUTUBE_LINK);
-                }
-
-                this.client.setScreen(this);
-            }, YOUTUBE_LINK, true));
-        }, new TooltipSupplier() {
-            public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
-                SocialsScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.youtube.tooltip"), mouseX, mouseY);
-            }
-
-            public void supply(Consumer<Text> consumer) {
-                consumer.accept(new TranslatableText("speedrunnermod.youtube.tooltip"));
-            }
+        this.addDrawableChild(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.socials.webpage"), (buttonWidget) -> {
+            Util.getOperatingSystem().open(WEBPAGE_LINK);
         }));
         height += 24;
-        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.twitch"), (buttonWidget) -> {
-            this.client.setScreen(new ConfirmChatLinkScreen((openInBrowser) -> {
-                if (openInBrowser) {
-                    Util.getOperatingSystem().open(TWITCH_LINK);
-                }
-
-                this.client.setScreen(this);
-            }, TWITCH_LINK, false));
-        }, new TooltipSupplier() {
-            public void onTooltip(ButtonWidget button, MatrixStack matrices, int mouseX, int mouseY) {
-                SocialsScreen.this.renderTooltip(matrices, new TranslatableText("speedrunnermod.twitch.tooltip"), mouseX, mouseY);
-            }
-
-            public void supply(Consumer<Text> consumer) {
-                consumer.accept(new TranslatableText("speedrunnermod.twitch.tooltip"));
-            }
+        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.socials.curseforge"), (buttonWidget) -> {
+            Util.getOperatingSystem().open(CURSEFORGE_LINK);
         }));
+        this.addDrawableChild(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.socials.planetminecraft"), (buttonWidget) -> {
+            Util.getOperatingSystem().open(PLANET_MINECRAFT_LINK);
+        }));
+        height += 24;
+        this.addDrawableChild(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.socials.mod_showcase_video"), (buttonWidget) -> {
+            Util.getOperatingSystem().open(MOD_SHOWCASE_VIDEO_LINK);
+        }));
+        this.addDrawableChild(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.socials.dilloney_rewind_2022"), (buttonWidget) -> {
+            Util.getOperatingSystem().open(DILLONEY_REWIND_2022_LINK);
+        }));
+
         this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height - 29, 200, 20, ScreenTexts.DONE, (button) -> {
             this.client.setScreen(this.parent);
         }));
