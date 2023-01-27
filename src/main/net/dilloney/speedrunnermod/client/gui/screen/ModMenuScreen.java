@@ -29,13 +29,6 @@ public class ModMenuScreen extends GameOptionsScreen {
         this.addButton(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("menu.options"), (buttonWidget) -> {
             this.client.openScreen(new ModOptionsScreen(this, this.options));
         }));
-        this.addButton(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.leaderboards.title"), (buttonWidget) -> {
-            this.client.openScreen(new LeaderboardsScreen(this, this.options));
-        }));
-        height += 24;
-        this.addButton(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.resources.title"), (buttonWidget) -> {
-            this.client.openScreen(new ResourcesScreen(this, this.options));
-        }));
         this.addButton(new ButtonWidget(rightSide, height, 150, 20, new TranslatableText("speedrunnermod.socials.title"), (buttonWidget) -> {
             this.client.openScreen(new SocialsScreen(this, this.options));
         }));
@@ -43,6 +36,7 @@ public class ModMenuScreen extends GameOptionsScreen {
         this.addButton(new ButtonWidget(leftSide, height, 150, 20, new TranslatableText("speedrunnermod.menu.advanced"), (buttonWidget) -> {
             this.client.openScreen(new AdvancedOptionsScreen(this, this.options));
         }));
+
         this.addButton(new ButtonWidget(this.width / 2 - 100, this.height - 29, 200, 20, ScreenTexts.DONE, (button) -> {
             this.client.openScreen(this.parent);
         }));
