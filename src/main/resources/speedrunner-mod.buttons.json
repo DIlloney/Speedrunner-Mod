@@ -6,11 +6,11 @@
   "mixins": [
   ],
   "client": [
-    "ModButtonFunction",
-    "ModButtonGM",
-    "ModButtonTS",
-    "ModDeathButton",
-    "ModOptionButton"
+    "CreateWorldMixin",
+    "DeathScreenMixin",
+    "GameMenuScreenMixin",
+    "OptionsScreenMixin",
+    "TitleScreenMixin"
   ],
   "server": [
   ],
