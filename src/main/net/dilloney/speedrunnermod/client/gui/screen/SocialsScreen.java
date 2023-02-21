@@ -13,9 +13,9 @@ import net.minecraft.util.Util;
 
 @Environment(EnvType.CLIENT)
 public class SocialsScreen extends GameOptionsScreen {
-    public static final String DILLONEY_REWIND_2022_LINK = "https://www.youtube.com/watch?v=FlkFMG5sXQI";
     public static final String DILLONEY_YOUTUBE_CHANNEL_LINK = "https://www.youtube.com/channel/UCNZVI8pFpzn-eXEZsyDEagg";
-    public static final String MOD_SHOWCASE_VIDEO_LINK = "https://www.youtube.com/watch?v=Aue9X3RcZAM";
+    public static final String MOD_SHOWCASE_VIDEO_LINK = "LINK";
+    public static final String DILLONEY_REWIND_2022_LINK = "https://www.youtube.com/watch?v=FlkFMG5sXQI";
     public static final String DISCORD_LINK = "https://discord.gg/b9HZ4MVFUV";
     public static final String TWITTER_LINK = "https://twitter.com/dilloney7";
     public static final String WEBPAGE_LINK = "https://sites.google.com/view/dilloney";
