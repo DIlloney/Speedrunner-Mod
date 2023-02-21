@@ -25,7 +25,6 @@ import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class SpeedrunnerShieldRenderer implements BuiltinItemRenderer {
-
     private final ShieldEntityModel shieldModel = new ShieldEntityModel();
 
     public void render(ItemStack stack, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
