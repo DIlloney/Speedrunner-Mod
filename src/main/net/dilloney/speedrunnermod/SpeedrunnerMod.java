@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.7.2";
+    public static final String MOD_VERSION = "v1.7.3";
     public static final Logger LOGGER = LogManager.getLogger();
     public static final Identifier SPEEDRUNNER_MOD_ICON = new Identifier("speedrunnermod:icon.png");
 
@@ -43,8 +43,12 @@ public class SpeedrunnerMod implements ModInitializer {
         LOGGER.info("The Speedrunner Mod (" + MOD_VERSION + ")" + " has been loaded.");
         LOGGER.info("Consider subscribing to me, Dilloney, on YouTube. :)");
         LOGGER.info("https://www.youtube.com/channel/UCNZVI8pFpzn-eXEZsyDEagg");
+        LOGGER.info("Thanks to Frqnny for the \"Make Structures More Common\" feature. :)");
     }
 
+    /**
+     * <p> Thanks to {@code Frqnny} for this. </p>
+     */
     private static void makeStructuresMoreCommon() {
         ServerWorldEvents.LOAD.register((server, world) -> {
             Map<StructureFeature<?>, StructureConfig> map = new HashMap<>(world.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
