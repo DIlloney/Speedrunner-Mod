@@ -1,6 +1,6 @@
-package net.dilloney.speedrunnermod.block;
+package net.dillon.speedrunnermod.block;
 
-import net.dilloney.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
