@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.10-SNAPSHOT'
+	id 'fabric-loom' version '0.12-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -17,33 +17,7 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	modApi("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
-	include "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-
-	include "net.fabricmc.fabric-api:fabric-api-base:${project.fabric_api_base_version}"
-	include "net.fabricmc.fabric-api:fabric-api-lookup-api-v1:${project.fabric_api_lookup_api_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-blockrenderlayer-v1:${project.fabric_blockrenderlayer_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-content-registries-v0:${project.fabric_content_registries_v0_version}"
-	include "net.fabricmc.fabric-api:fabric-crash-report-info-v1:${project.fabric_crash_report_info_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-item-groups-v0:${project.fabric_item_groups_v0_version}"
-	include "net.fabricmc.fabric-api:fabric-lifecycle-events-v1:${project.fabric_lifecycle_events_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-mining-level-api-v1:${project.fabric_mining_level_api_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-networking-api-v1:${project.fabric_networking_api_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-object-builder-api-v1:${project.fabric_object_builder_api_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-registry-sync-v0:${project.fabric_registry_sync_v0_version}"
-	include "net.fabricmc.fabric-api:fabric-renderer-api-v1:${project.fabric_renderer_api_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-renderer-indigo:${project.fabric_renderer_indigo_version}"
-	include "net.fabricmc.fabric-api:fabric-renderer-registries-v1:${project.fabric_renderer_registries_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-rendering-data-attachment-v1:${project.fabric_rendering_data_attachment_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-rendering-fluids-v1:${project.fabric_rendering_fluids_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-rendering-v1:${project.fabric_rendering_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-resource-loader-v0:${project.fabric_resource_loader_v0_version}"
-	include "net.fabricmc.fabric-api:fabric-structure-api-v1:${project.fabric_structure_api_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-tag-extensions-v0:${project.fabric_tag_extensions_v0_version}"
-	include "net.fabricmc.fabric-api:fabric-textures-v0:${project.fabric_textures_v0_version}"
-	include "net.fabricmc.fabric-api:fabric-tool-attribute-api-v1:${project.fabric_tool_attribute_api_v1_version}"
-	include "net.fabricmc.fabric-api:fabric-transfer-api-v1:${project.fabric_transfer_api_v1_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 loom {
