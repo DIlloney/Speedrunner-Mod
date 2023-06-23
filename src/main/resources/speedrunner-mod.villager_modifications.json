@@ -1,16 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.dillon.speedrunnermod.client.gui.widget",
+  "package": "net.dillon.speedrunnermod.util.entity.modifications",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "VillagerTradeModifications$SellEnchantedToolFactoryMixin"
   ],
   "client": [
-    "CreateWorldMixin",
-    "DeathScreenMixin",
-    "GameMenuScreenMixin",
-    "OptionsScreenMixin",
-    "TitleScreenMixin"
   ],
   "server": [
   ],
