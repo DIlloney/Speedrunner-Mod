@@ -1,7 +1,7 @@
-package net.dilloney.speedrunnermod;
+package net.dillon.speedrunnermod;
 
-import net.dilloney.speedrunnermod.item.ModItems;
-import net.dilloney.speedrunnermod.option.CLModOptions;
+import net.dillon.speedrunnermod.item.ModItems;
+import net.dillon.speedrunnermod.option.CLModOptions;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

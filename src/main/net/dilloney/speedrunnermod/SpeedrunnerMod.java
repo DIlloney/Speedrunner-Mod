@@ -1,17 +1,19 @@
-package net.dilloney.speedrunnermod;
+package net.dillon.speedrunnermod;
 
 import com.google.common.collect.ImmutableMap;
-import net.dilloney.speedrunnermod.block.ModBlocks;
-import net.dilloney.speedrunnermod.item.ModItems;
-import net.dilloney.speedrunnermod.option.ModOptions;
-import net.dilloney.speedrunnermod.recipe.SpeedrunnerShieldDecorationRecipe;
-import net.dilloney.speedrunnermod.tag.ModBlockTags;
-import net.dilloney.speedrunnermod.tag.ModItemTags;
-import net.dilloney.speedrunnermod.util.UniqueItemRegistry;
-import net.dilloney.speedrunnermod.world.gen.feature.ModConfiguredFeatures;
+import net.dillon.speedrunnermod.item.ModItems;
+import net.dillon.speedrunnermod.block.ModBlocks;
+import net.dillon.speedrunnermod.option.ModOptions;
+import net.dillon.speedrunnermod.recipe.SpeedrunnerShieldDecorationRecipe;
+import net.dillon.speedrunnermod.tag.ModBlockTags;
+import net.dillon.speedrunnermod.tag.ModItemTags;
+import net.dillon.speedrunnermod.util.UniqueItemRegistry;
+import net.dillon.speedrunnermod.util.entity.ModVillagers;
+import net.dillon.speedrunnermod.world.gen.feature.ModConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.mixin.structure.StructuresConfigAccessor;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.chunk.StructureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 import org.apache.logging.log4j.LogManager;
@@ -22,8 +24,9 @@ import java.util.Map;
 
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.6.1";
+    public static final String MOD_VERSION = "v1.7.6";
     public static final Logger LOGGER = LogManager.getLogger();
+    public static final Identifier SPEEDRUNNER_MOD_ICON = new Identifier("speedrunnermod:icon.png");
 
     public void onInitialize() {
         ModOptions.loadConfig();
@@ -33,6 +36,7 @@ public class SpeedrunnerMod implements ModInitializer {
         ModConfiguredFeatures.init();
         ModItemTags.init();
         ModBlockTags.init();
+        ModVillagers.init();
         SpeedrunnerShieldDecorationRecipe.init();
         UniqueItemRegistry.init();
 
@@ -41,8 +45,12 @@ public class SpeedrunnerMod implements ModInitializer {
         }
 
         LOGGER.info("The Speedrunner Mod (" + MOD_VERSION + ")" + " has been loaded.");
+        LOGGER.info("Thanks to Frqnny for the \"Make Structures More Common\" feature. :)");
     }
 
+    /**
+     * <p> Thanks to {@code Frqnny} for this. </p>
+     */
     private static void makeStructuresMoreCommon() {
         ServerWorldEvents.LOAD.register((server, world) -> {
             Map<StructureFeature<?>, StructureConfig> map = new HashMap<>(world.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
@@ -71,7 +79,7 @@ public class SpeedrunnerMod implements ModInitializer {
 
             ImmutableMap<StructureFeature<?>, StructureConfig> immutableMap = ImmutableMap.copyOf(map);
 
-            ((StructuresConfigAccessor)world.getChunkManager().getChunkGenerator().getStructuresConfig()).setStructures(immutableMap);
+            ((StructuresConfigAccessor) world.getChunkManager().getChunkGenerator().getStructuresConfig()).setStructures(immutableMap);
 
             if (options().advanced.debugMode) {
                 LOGGER.debug("Structures have been made more common");
