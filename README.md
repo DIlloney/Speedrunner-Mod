@@ -4,7 +4,7 @@
 
 Download the mod from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/speedrunner-mod) or [Modrinth.](https://modrinth.com/mod/speedrunner-mod)
 
-Next, download and run the [Fabric Installer]() and select the correct Minecraft version.
+Next, download and run the [Fabric Installer](https://fabricmc.net/use/installer/) and select the correct Minecraft version.
 
 To install, place the mod .jar file in your ".mods" folder, and don't forget to also download [Fabric API.](https://modrinth.com/mod/fabric-api) Without it, the mod will not run.
 
@@ -18,7 +18,7 @@ To install, place the mod .jar file in your ".mods" folder, and don't forget to 
 - *and more!*
 
 ## Dependencies & Compatibility
-- ### **Requires** [Fabric API]()
+- ### **Requires** [Fabric API](https://modrinth.com/mod/fabric-api)
 - ### **Incompatible** with OptiFine/OptiFabric.
 - **Recommended mods** (not required): [Sodium,](https://modrinth.com/mod/sodium) [Lithium,](https://modrinth.com/mod/lithium) [Phosphor,](https://modrinth.com/mod/phosphor) and [SpeedrunIGT](https://modrinth.com/mod/speedrunigt) (and in-game timer mod)
 
