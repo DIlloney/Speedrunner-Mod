@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ggg",
+    "gCg",
+    "ggg"
+  ],
+  "key": {
+    "g": {
+      "item": "minecraft:gold_nugget"
+    },
+    "C": {
+      "item": "speedrunnermod:cooked_piglin_pork"
+    }
+  },
+  "result": {
+    "item": "speedrunnermod:golden_piglin_pork",
+    "count": 1
+  }
+}
