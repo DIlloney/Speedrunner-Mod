@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "speedrunnermod",
-  "version": "1.8",
+  "version": "1.8.1",
   "accessWidener": "speedrunner-mod.accessWidener",
   "name": "Speedrunner Mod",
   "description": "A mod that makes speedrunning, easier.",
@@ -22,6 +22,9 @@
     ],
     "client": [
       "net.dillon8775.speedrunnermod.SpeedrunnerModClient"
+    ],
+    "fabric-datagen": [
+      "net.dillon8775.speedrunnermod.SpeedrunnerModDataGenerator"
     ]
   },
   "mixins": [
