@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.dillon8775.speedrunnermod.client.gui.widget",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
+  "client": [
+    "CreateWorldScreenMixin",
+    "DeathScreenMixin",
+    "GameMenuScreenMixin",
+    "MinecraftClientMixin",
+    "OptionsScreenMixin",
+    "TitleScreenMixin"
+  ],
+  "server": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
