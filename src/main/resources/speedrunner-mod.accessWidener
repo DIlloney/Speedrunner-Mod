@@ -44,7 +44,10 @@ accessible method net/minecraft/block/Blocks never (Lnet/minecraft/block/BlockSt
 
 accessible method net/minecraft/block/WeightedPressurePlateBlock <init> (ILnet/minecraft/block/AbstractBlock$Settings;)V
 
+accessible method net/minecraft/block/entity/AbstractFurnaceBlockEntity isNonFlammableWood (Lnet/minecraft/item/Item;)Z
+
 accessible method net/minecraft/entity/mob/BlazeEntity setFireActive (Z)V
+accessible method net/minecraft/entity/mob/PiglinBrain doBarter (Lnet/minecraft/entity/mob/PiglinEntity;Ljava/util/List;)V
 accessible method net/minecraft/entity/projectile/ProjectileEntity updateRotation (FF)F
 accessible method net/minecraft/entity/SpawnRestriction register (Lnet/minecraft/entity/EntityType;Lnet/minecraft/entity/SpawnRestriction$Location;Lnet/minecraft/world/Heightmap$Type;Lnet/minecraft/entity/SpawnRestriction$SpawnPredicate;)V
 
@@ -61,8 +64,12 @@ accessible method net/minecraft/world/biome/OverworldBiomeCreator getSkyColor (F
 accessible method net/minecraft/client/option/Option getGenericLabel (Lnet/minecraft/text/Text;)Lnet/minecraft/text/Text;
 accessible method net/minecraft/client/option/Option getGenericLabel (I)Lnet/minecraft/text/Text;
 
+accessible method net/minecraft/loot/LootTables register (Ljava/lang/String;)Lnet/minecraft/util/Identifier;
+
 accessible field net/minecraft/entity/mob/MobEntity armorItems Lnet/minecraft/util/collection/DefaultedList;
 accessible field net/minecraft/entity/mob/MobEntity handItems Lnet/minecraft/util/collection/DefaultedList;
+
+accessible field net/minecraft/entity/mob/BlazeEntity$ShootFireballGoal fireballCooldown I
 
 accessible field net/minecraft/world/biome/OverworldBiomeCreator DEFAULT_MUSIC Lnet/minecraft/sound/MusicSound;
 

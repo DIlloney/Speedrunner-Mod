@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "speedrunnermod",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "accessWidener": "speedrunner-mod.accessWidener",
   "name": "Speedrunner Mod",
   "description": "A mod that makes speedrunning, easier.",
@@ -28,8 +28,6 @@
     ]
   },
   "mixins": [
-    "speedrunner-mod.buttons.json",
-    "speedrunner-mod.hud.json",
     "speedrunner-mod.mixins.json"
   ],
   "depends": {

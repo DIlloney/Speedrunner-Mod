@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "main.better_loot.BetterLoot",
+    "main.block.BedBlockMixin",
     "main.block.BlockMixin",
     "main.block.FasterBlockBreaking",
     "main.block.HigherEnchantmentLevels",
@@ -102,11 +103,17 @@
     "client.fix.PlayerEntityRendererMixin",
     "client.fix.RenderLayersMixin",
     "client.fix.SmithingScreenHandlerMixin",
+    "client.hud.DebugModText",
+    "client.screen.CreateWorldScreenMixin",
+    "client.screen.CreditsScreenMixin",
+    "client.screen.DeathScreenMixin",
+    "client.screen.GameMenuScreenMixin",
+    "client.screen.MinecraftClientMixin",
+    "client.screen.OptionsScreenMixin",
+    "client.screen.TitleScreenMixin",
     "client.Fog",
-    "client.GameOptionsAccessor",
     "client.Keybindings",
-    "client.MoreBrightness",
-    "client.SeenCreditsAccessor"
+    "client.IncreasedBrightness"
   ],
   "server": [
   ],
