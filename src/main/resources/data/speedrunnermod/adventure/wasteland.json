@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/root",
+  "display": {
+    "icon": {
+      "item": "speedrunnermod:speedrunner_planks"
+    },
+    "title": {
+      "translate": "advancements.speedrunnermod.wasteland.title"
+    },
+    "description": {
+      "translate": "advancements.speedrunnermod.wasteland.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "stepped_in_biome": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "speedrunnermod:speedrunners_wasteland"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "stepped_in_biome"
+    ]
+  ]
+}
