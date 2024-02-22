@@ -43,7 +43,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
      */
     @ModifyArg(method = "tickWithEndCrystals", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/boss/dragon/EnderDragonEntity;setHealth(F)V"))
     private float tickCrystals(float value) {
-        return DOOM_MODE ? 1.7F : 0.1F;
+        return DOOM_MODE ? this.getHealth() + 1.7F : this.getHealth() + 0.1F;
     }
 
     /**
