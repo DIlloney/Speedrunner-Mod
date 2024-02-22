@@ -21,6 +21,8 @@ public class CreditsScreenMixin extends Screen {
      */
     @ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/CreditsScreen;drawTexture(Lnet/minecraft/client/util/math/MatrixStack;IIFFIIII)V"))
     private void fixSpeedrunnerEditionRendering(Args args) {
+        int j = this.width / 2 - 137;
+        args.set(1, j + 58);
         args.set(5, 184);
         args.set(7, 184);
     }
