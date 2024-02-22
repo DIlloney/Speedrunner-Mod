@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "id": "speedrunnermod",
   "version": "1.8.4",
-  "accessWidener": "speedrunner-mod.accessWidener",
   "name": "Speedrunner Mod",
   "description": "A mod that makes speedrunning, easier.",
+  "accessWidener": "speedrunner-mod.accessWidener",
   "authors": [
     "Dillon8775",
     "MannyQUESO"
