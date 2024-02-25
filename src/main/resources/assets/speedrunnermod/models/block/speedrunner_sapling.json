@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "speedrunnermod:block/speedrunner_sapling"
-  }
-}
