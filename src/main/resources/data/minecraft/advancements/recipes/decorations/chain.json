@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:chain"
+    ]
+  },
+  "criteria": {
+    "has_nuggets": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "speedrunnermod:iron_nuggets"
+          }
+        ]
+      }
+    },
+    "has_ingots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "speedrunnermod:iron_ingots"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:chain"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_nuggets",
+      "has_ingots",
+      "has_the_recipe"
+    ]
+  ]
+}
