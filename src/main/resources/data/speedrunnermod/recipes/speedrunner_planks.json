@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "speedrunnermod:speedrunner_logs"
+    }
+  ],
+  "result": {
+    "item": "speedrunnermod:speedrunner_planks",
+    "count": 4
+  }
+}
