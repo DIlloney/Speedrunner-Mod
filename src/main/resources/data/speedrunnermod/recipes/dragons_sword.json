@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "speedrunnermod:speedrunner_sword"
+    },
+    {
+      "item": "speedrunnermod:dragons_pearl"
+    }
+  ],
+  "result": {
+    "item": "speedrunnermod:dragons_sword",
+    "count": 1
+  }
+}

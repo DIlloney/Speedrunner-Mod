@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "speedrunnermod:piglin_pork"
+  },
+  "result": "speedrunnermod:cooked_piglin_pork",
+  "experience": 0.35,
+  "cookingtime": 20
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sticks",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "speedrunnermod:speedrunner_planks"
+    }
+  },
+  "result": {
+    "item": "speedrunnermod:speedrunner_stick",
+    "count": 4
+  }
+}
