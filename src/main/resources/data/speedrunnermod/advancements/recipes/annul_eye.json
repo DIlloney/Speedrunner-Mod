@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blaze_powder_or_fire_charge": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ender_pearl",
+              "minecraft:blaze_powder",
+              "minecraft:fire_charge"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "speedrunnermod:annul_eye"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blaze_powder_or_fire_charge",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "speedrunnermod:annul_eye"
+    ]
+  }
+}
