@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "speedrunnermod:piglin_pork",
+    "speedrunnermod:cooked_piglin_pork",
+    "speedrunnermod:golden_piglin_pork",
+    "speedrunnermod:golden_beef",
+    "speedrunnermod:golden_porkchop",
+    "speedrunnermod:golden_mutton",
+    "speedrunnermod:golden_chicken",
+    "speedrunnermod:golden_rabbit",
+    "speedrunnermod:golden_cod",
+    "speedrunnermod:golden_salmon",
+    "speedrunnermod:golden_bread",
+    "speedrunnermod:golden_potato",
+    "speedrunnermod:golden_beetroot",
+    "speedrunnermod:speedrunner_bulk",
+    "speedrunnermod:rotten_speedrunner_bulk",
+    "speedrunnermod:cooked_flesh"
+  ]
+}
