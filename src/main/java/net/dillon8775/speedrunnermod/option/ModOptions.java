@@ -79,11 +79,10 @@ public class ModOptions {
         public boolean arrowsDestroyBeds = false;
         public boolean globalNetherPortals = true;
         public boolean betterAnvil = true;
-        public int anvilCostLimit = 40;
+        public int anvilCostLimit = 10;
         public boolean higherEnchantmentLevels = true;
         public boolean stackUnstackables = false;
-        public int mobSpawnerMinimumSpawnDuration = 20;
-        public int mobSpawnerMaximumSpawnDuration = 40;
+        public boolean fasterSpawners = true;
     }
 
     /**
@@ -130,7 +129,7 @@ public class ModOptions {
         public boolean generateSpeedrunnerWood = true;
         public boolean longerDragonPerchStayTime = true;
         public boolean decreasedZombifiedPiglinScareDistance = true;
-        public int eyeOfEnderBreakingCooldown = 40;
+        public int eyeOfEnderBreakingCooldown = 60;
         public int piglinAwakenerPiglinCount = 10;
         public boolean teleportPiglinDirectlyTowardsPlayer = false;
         public int throwableFireballsExplosionPower = 1;
@@ -198,14 +197,6 @@ public class ModOptions {
 
     public boolean isStrongholdLibraryCountValid() {
         return this.inBounds(main.strongholdLibraryCount, 1, 10);
-    }
-
-    public boolean isMobSpawnerMinimumSpawnDurationValid() {
-        return this.inBounds(main.mobSpawnerMinimumSpawnDuration, 5, 40);
-    }
-
-    public boolean isMobSpawnerMaximumSpawnDurationValid() {
-        return this.inBounds(main.mobSpawnerMaximumSpawnDuration, 20, 80);
     }
 
     public boolean isAnvilCostLimitValid() {
@@ -580,14 +571,6 @@ public class ModOptions {
 
         if (!options().isDragonPerchTimeValid()) {
             warn(OPTIONS_WARNING_MESSAGE + related + "speedrunnermod.options.dragonPerchTime");
-        }
-
-        if (!options().isMobSpawnerMinimumSpawnDurationValid()) {
-            warn(OPTIONS_WARNING_MESSAGE + related + "speedrunnermod.options.mobSpawnerMinimumSpawnDuration");
-        }
-
-        if (!options().isMobSpawnerMaximumSpawnDurationValid()) {
-            warn(OPTIONS_WARNING_MESSAGE + related + "speedrunnermod.options.mobSpawnerMaximumSpawnDuration");
         }
 
         if (!options().isAnvilCostLimitValid()) {

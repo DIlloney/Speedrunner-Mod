@@ -108,23 +108,12 @@ public class ModListOptions {
                                     SpeedrunnerMod.options().client.panorama = panorama)
                     .tooltip(client -> (mobSpawningRate) -> client.textRenderer.wrapLines(
                             new TranslatableText("speedrunnermod.options.panorama.tooltip"), 200));
-    public static final DoubleOption MOB_SPAWNER_MINIMUM_SPAWN_DURATION =
-            new DoubleOption("speedrunnermod.options.mob_spawner_minimum_spawn_duration",
-                    5.0D, 40.0D, 5.0F, gameOptions ->
-                    (double)SpeedrunnerMod.options().main.mobSpawnerMinimumSpawnDuration, (gameOptions, newValue) ->
-                    SpeedrunnerMod.options().main.mobSpawnerMinimumSpawnDuration = newValue.intValue(), (gameOptions, option) ->
-                    new LiteralText(I18n.translate("speedrunnermod.options.mob_spawner_minimum_spawn_duration") + ": " + (int)option.get(gameOptions) + " seconds"),
-                    client -> client.textRenderer.wrapLines(
-                            new TranslatableText("speedrunnermod.options.mob_spawner_minimum_spawn_duration.tooltip"), 200));
-    public static final DoubleOption MOB_SPAWNER_MAXIMUM_SPAWN_DURATION =
-            new DoubleOption("speedrunnermod.options.mob_spawner_max_spawn_duration",
-                    20.0D, 80.0D, 5.0F, gameOptions ->
-                    (double)SpeedrunnerMod.options().main.mobSpawnerMaximumSpawnDuration, (gameOptions, newValue) ->
-                    SpeedrunnerMod.options().main.mobSpawnerMaximumSpawnDuration = newValue.intValue(), (gameOptions, option) ->
-                    new LiteralText(I18n.translate("speedrunnermod.options.mob_spawner_maximum_spawn_duration") + ": " + (int)option.get(gameOptions) + " seconds"),
-                    client -> client.textRenderer.wrapLines(
-                            new TranslatableText("speedrunnermod.options.mob_spawner_maximum_spawn_duration.tooltip"), 200));
-    public static final CyclingOption<Boolean> CUSTOM_BIOMES =
+    public static final CyclingOption<Boolean> FASTER_SPAWNERS =
+            CyclingOption.create("speedrunnermod.options.faster_spawners",
+                    new TranslatableText("speedrunnermod.options.faster_spawners.tooltip"), gameOptions ->
+                            SpeedrunnerMod.options().main.customBiomes, (gameOptions, option, newValue) ->
+                            SpeedrunnerMod.options().main.customBiomes = newValue);
+    public static final CyclingOption<Boolean> CUSTOM_BIOMES_AND_CUSTOM_BIOME_FEATURES =
             CyclingOption.create("speedrunnermod.options.custom_biomes",
                     new TranslatableText("speedrunnermod.options.custom_biomes.tooltip"), gameOptions ->
                             SpeedrunnerMod.options().main.customBiomes, (gameOptions, option, newValue) ->

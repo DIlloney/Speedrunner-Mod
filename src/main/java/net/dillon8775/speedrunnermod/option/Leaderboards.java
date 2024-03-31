@@ -29,8 +29,6 @@ public class Leaderboards {
     private static int currentStrongholdLibrariesCount;
     private static int currentAnvilCostLimit;
     private static int currentNetherPortalCooldown;
-    private static int currentMinMobSpawnerSpawnDuration;
-    private static int currentMaxMobSpawnerSpawnDuration;
 
     /**
      * Used to call the class and initialize it ({@link SpeedrunnerMod#onInitialize()}).
@@ -54,8 +52,7 @@ public class Leaderboards {
                 isStrongholdLibrariesEligible() &&
                 isAnvilCostLimitEligible() &&
                 isNetherPortalCooldownEligible() &&
-                isMinMobSpawnerSpawnDurationEligible() &&
-                isMaxMobSpawnerSpawnDurationEligible() &&
+                isFasterSpawnersEligible() &&
                 isIcarusModeEligible() &&
                 isInfiniPearlModeEligible() &&
                 isFallDamageEligible() &&
@@ -126,16 +123,6 @@ public class Leaderboards {
             addIneligible("nether_portal_cooldown", withFormatting(options.netherPortalCooldown, Formatting.RED, Formatting.BOLD));
         }
 
-        if (!isMinMobSpawnerSpawnDurationEligible()) {
-            warnIneligible("Minimum Mob Spawner Spawn Duration");
-            addIneligible("minimum_mob_spawner_spawn_duration", withFormatting(options.mobSpawnerMinimumSpawnDuration, Formatting.RED, Formatting.BOLD));
-        }
-
-        if (!isMaxMobSpawnerSpawnDurationEligible()) {
-            warnIneligible("Maximum Mob Spawner Spawn Duration");
-            addIneligible("maximum_mob_spawner_spawn_duration", withFormatting(options.mobSpawnerMaximumSpawnDuration, Formatting.RED, Formatting.BOLD));
-        }
-
         if (!isIcarusModeEligible()) {
             warnIneligible("iCarus Mode");
             addIneligible("icarus_mode");
@@ -171,6 +158,11 @@ public class Leaderboards {
             addIneligible("nether_water");
         }
 
+        if (!isFasterSpawnersEligible()) {
+            warnIneligible("Faster Spawners");
+            addIneligible("faster_spawners");
+        }
+
         if (!isStackUnstackablesEligible()) {
             warnIneligible("Stack Unstackables");
             addIneligible("stack_unstackables");
@@ -192,8 +184,6 @@ public class Leaderboards {
         currentStrongholdLibrariesCount = options.strongholdLibraryCount;
         currentAnvilCostLimit = options.anvilCostLimit;
         currentNetherPortalCooldown = options.netherPortalCooldown;
-        currentMinMobSpawnerSpawnDuration = options.mobSpawnerMinimumSpawnDuration;
-        currentMaxMobSpawnerSpawnDuration = options.mobSpawnerMaximumSpawnDuration;
     }
 
     /**
@@ -224,9 +214,7 @@ public class Leaderboards {
                 currentStrongholdPortalRoomCount == options.strongholdPortalRoomCount &&
                 currentStrongholdLibrariesCount == options.strongholdLibraryCount &&
                 currentAnvilCostLimit == options.anvilCostLimit &&
-                currentNetherPortalCooldown == options.netherPortalCooldown &&
-                currentMinMobSpawnerSpawnDuration == options.mobSpawnerMinimumSpawnDuration &&
-                currentMaxMobSpawnerSpawnDuration == options.mobSpawnerMaximumSpawnDuration;
+                currentNetherPortalCooldown == options.netherPortalCooldown;
     }
 
     /**
@@ -277,12 +265,8 @@ public class Leaderboards {
             options.netherPortalCooldown = 2;
         }
 
-        if (!isMinMobSpawnerSpawnDurationEligible()) {
-            options.mobSpawnerMinimumSpawnDuration = 20;
-        }
-
-        if (!isMaxMobSpawnerSpawnDurationEligible()) {
-            options.mobSpawnerMaximumSpawnDuration = 40;
+        if (!isFasterSpawnersEligible()) {
+            options.fasterSpawners = true;
         }
 
         fixBooleanOptions();
@@ -338,14 +322,6 @@ public class Leaderboards {
 
         if (!isNetherPortalCooldownEligible()) {
             options.netherPortalCooldown = currentNetherPortalCooldown;
-        }
-
-        if (!isMinMobSpawnerSpawnDurationEligible()) {
-            options.mobSpawnerMinimumSpawnDuration = currentMinMobSpawnerSpawnDuration;
-        }
-
-        if (!isMaxMobSpawnerSpawnDurationEligible()) {
-            options.mobSpawnerMaximumSpawnDuration = currentMaxMobSpawnerSpawnDuration;
         }
 
         fixBooleanOptions();
@@ -481,12 +457,8 @@ public class Leaderboards {
         return options().inBounds(options.netherPortalCooldown, 1, 20);
     }
 
-    private static boolean isMinMobSpawnerSpawnDurationEligible() {
-        return options().inBounds(options.mobSpawnerMinimumSpawnDuration, 5, 80);
-    }
-
-    private static boolean isMaxMobSpawnerSpawnDurationEligible() {
-        return options().inBounds(options.mobSpawnerMaximumSpawnDuration, 5, 80);
+    private static boolean isFasterSpawnersEligible() {
+        return options.fasterSpawners;
     }
 
     private static boolean isIcarusModeEligible() {
