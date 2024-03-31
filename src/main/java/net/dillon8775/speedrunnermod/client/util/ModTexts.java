@@ -34,7 +34,7 @@ public class ModTexts {
     public static final Text TITLE_FAST_WORLD_CREATION = new TranslatableText("speedrunnermod.title.options.fast_world_creation");
     public static final Text MENU_CREDITS = new TranslatableText("speedrunnermod.menu.credits");
     public static final Text TITLE_CREDITS = new TranslatableText("speedrunnermod.title.credits");
-    public static final Text MENU_EXTERNAL = new TranslatableText("speedrunnermod.menu.external");
+    public static final Text MENU_EXTERNAL = new TranslatableText("speedrunnermod.menu.external").formatted(Formatting.RED);
     public static final Text TITLE_EXTERNAL = new TranslatableText("speedrunnermod.external");
     public static final Text MENU_FEATURES_TOOLTIP = new TranslatableText("speedrunnermod.menu.features.tooltip");
     public static final Text TITLE_FEATURES = new TranslatableText("speedrunnermod.title.features");
@@ -55,16 +55,16 @@ public class ModTexts {
     public static final Text EASIER_SPEEDRUNNING_MOD = new TranslatableText("speedrunnermod.the_easier_speedrunning_mod");
     public static final Text EASIER_SPEEDRUNNING_MOD_TOOLTIP = new TranslatableText("speedrunnermod.the_easier_speedrunning_mod.tooltip");
 
-    public static final Text CURSEFORGE = new TranslatableText("speedrunnermod.menu.external.curseforge");
-    public static final Text MODRINTH = new TranslatableText("speedrunnermod.menu.external.modrinth");
-    public static final Text GITHUB = new TranslatableText("speedrunnermod.menu.external.github");
-    public static final Text DISCORD = new TranslatableText("speedrunnermod.menu.external.discord");
+    public static final Text CURSEFORGE = new TranslatableText("speedrunnermod.menu.external.curseforge").formatted(Formatting.GOLD);
+    public static final Text MODRINTH = new TranslatableText("speedrunnermod.menu.external.modrinth").formatted(Formatting.GREEN);
+    public static final Text GITHUB = new TranslatableText("speedrunnermod.menu.external.github").formatted(Formatting.GRAY);
+    public static final Text DISCORD = new TranslatableText("speedrunnermod.menu.external.discord").formatted(Formatting.BLUE);
     public static final Text DISCORD_TOOLTIP = new TranslatableText("speedrunnermod.menu.external.discord.tooltip");
-    public static final Text WEBPAGE = new TranslatableText("speedrunnermod.menu.external.webpage");
+    public static final Text WEBPAGE = new TranslatableText("speedrunnermod.menu.external.webpage").formatted(Formatting.LIGHT_PURPLE);
     public static final Text WEBPAGE_TOOLTIP = new TranslatableText("speedrunnermod.menu.external.webpage.tooltip");
-    public static final Text YOUTUBE = new TranslatableText("speedrunnermod.menu.external.youtube");
-    public static final Text MOD_SHOWCASE_VIDEO = new TranslatableText("speedrunnermod.menu.external.mod_showcase_video");
-    public static final Text MENU_LEADERBOARDS = new TranslatableText("speedrunnermod.menu.external.leaderboards");
+    public static final Text YOUTUBE = new TranslatableText("speedrunnermod.menu.external.youtube").formatted(Formatting.RED);
+    public static final Text MOD_SHOWCASE_VIDEO = new TranslatableText("speedrunnermod.menu.external.mod_showcase_video").formatted(Formatting.AQUA);
+    public static final Text MENU_LEADERBOARDS = new TranslatableText("speedrunnermod.menu.external.leaderboards").formatted(Formatting.GREEN);
     public static final Text MENU_LEADERBOARD_VIEW = new TranslatableText("speedrunnermod.menu.leaderboards.view");
     public static final Text MENU_LEADERBOARD_SPREADSHEET = new TranslatableText("speedrunnermod.menu.leaderboards.spreadsheet");
     public static final Text TITLE_LEADERBOARDS = new TranslatableText("speedrunnermod.title.leaderboards").formatted(Formatting.GREEN);
@@ -112,8 +112,8 @@ public class ModTexts {
         return new LiteralText(formattedText);
     }
 
-    public static MutableText featuresText(boolean coloured) {
-        return new TranslatableText("speedrunnermod.menu.features").formatted(coloured ? Formatting.AQUA : Formatting.WHITE);
+    public static MutableText featuresText() {
+        return new TranslatableText("speedrunnermod.menu.features").formatted(Formatting.AQUA);
     }
 
     public static MutableText wikiText(boolean coloured) {
