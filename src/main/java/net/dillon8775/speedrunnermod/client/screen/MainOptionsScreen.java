@@ -26,14 +26,14 @@ public class MainOptionsScreen extends AbstractModScreen {
         this.list.addSingleOptionEntry(ModListOptions.FASTER_BLOCK_BREAKING);
         this.list.addSingleOptionEntry(ModListOptions.BLOCK_BREAKING_MULTIPLIER);
         this.list.addSingleOptionEntry(ModListOptions.DRAGON_PERCH_TIME);
-        this.list.addSingleOptionEntry(ModListOptions.ICARUS_MODE);
-        this.list.addSingleOptionEntry(ModListOptions.INFINITY_PEARL_MODE);
         this.list.addSingleOptionEntry(ModListOptions.LEADERBOARDS_MODE);
         this.list.addSingleOptionEntry(ModListOptions.DOOM_MODE);
+        this.list.addSingleOptionEntry(ModListOptions.ICARUS_MODE);
+        this.list.addSingleOptionEntry(ModListOptions.INFINITY_PEARL_MODE);
         this.list.addSingleOptionEntry(ModListOptions.BETTER_VILLAGER_TRADES);
-        this.list.addSingleOptionEntry(ModListOptions.BETTER_BIOMES);
-        this.list.addSingleOptionEntry(ModListOptions.CUSTOM_BIOMES);
         this.list.addSingleOptionEntry(ModListOptions.BETTER_FOODS);
+        this.list.addSingleOptionEntry(ModListOptions.BETTER_BIOMES);
+        this.list.addSingleOptionEntry(ModListOptions.CUSTOM_BIOMES_AND_CUSTOM_BIOME_FEATURES);
         this.list.addSingleOptionEntry(ModListOptions.STACK_UNSTACKABLES);
         this.list.addSingleOptionEntry(ModListOptions.FIREPROOF_ITEMS);
         this.list.addSingleOptionEntry(ModListOptions.THROWABLE_FIREBALLS);
@@ -54,8 +54,7 @@ public class MainOptionsScreen extends AbstractModScreen {
         this.list.addSingleOptionEntry(ModListOptions.HIGHER_ENCHANTMENT_LEVELS);
         this.list.addSingleOptionEntry(ModListOptions.ARROWS_DESTROY_BEDS);
         this.list.addSingleOptionEntry(ModListOptions.MOB_SPAWNING_RATE);
-        this.list.addSingleOptionEntry(ModListOptions.MOB_SPAWNER_MINIMUM_SPAWN_DURATION);
-        this.list.addSingleOptionEntry(ModListOptions.MOB_SPAWNER_MAXIMUM_SPAWN_DURATION);
+        this.list.addSingleOptionEntry(ModListOptions.FASTER_SPAWNERS);
         this.list.addSingleOptionEntry(ModListOptions.KILL_GHAST_ON_FIREBALL);
         this.addSelectableChild(this.list);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);
