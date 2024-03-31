@@ -7,6 +7,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,9 +29,9 @@ public class SpeedrunnerBoatItem extends BoatItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (options().client.itemTooltips) {
-            tooltip.add(new TranslatableText("item.speedrunnermod.boat.tooltip"));
+            tooltip.add(new TranslatableText("item.speedrunnermod.boat.tooltip").formatted(Formatting.GRAY));
             if (isFastBoat) {
-                tooltip.add(new TranslatableText("item.speedrunnermod.boat.tooltip.fast"));
+                tooltip.add(new TranslatableText("item.speedrunnermod.boat.tooltip.fast").formatted(Formatting.GRAY));
             }
         }
     }

@@ -6,6 +6,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -76,10 +77,10 @@ public class ModBlockItems {
         @Override
         public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
             if (options().client.itemTooltips) {
-                tooltip.add(new TranslatableText("item.speedrunnermod.speedrunners_workbench.tooltip.line1"));
-                tooltip.add(new TranslatableText("item.speedrunnermod.speedrunners_workbench.tooltip.line2"));
-                tooltip.add(new TranslatableText("item.speedrunnermod.speedrunners_workbench.tooltip.line3"));
-                tooltip.add(new TranslatableText("item.speedrunnermod.speedrunners_workbench.tooltip.line4"));
+                tooltip.add(new TranslatableText("item.speedrunnermod.speedrunners_workbench.tooltip.line1").formatted(Formatting.GRAY));
+                tooltip.add(new TranslatableText("item.speedrunnermod.speedrunners_workbench.tooltip.line2").formatted(Formatting.GRAY));
+                tooltip.add(new TranslatableText("item.speedrunnermod.speedrunners_workbench.tooltip.line3").formatted(Formatting.GRAY));
+                tooltip.add(new TranslatableText("item.speedrunnermod.speedrunners_workbench.tooltip.line4").formatted(Formatting.GRAY));
             }
         }
     };

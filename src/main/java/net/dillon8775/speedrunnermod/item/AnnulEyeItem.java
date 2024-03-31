@@ -167,8 +167,8 @@ public class AnnulEyeItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (options().client.itemTooltips) {
-            tooltip.add(new TranslatableText("item.speedrunnermod.eye_of_annul.tooltip.line1"));
-            tooltip.add(new TranslatableText("item.speedrunnermod.eye_of_annul.tooltip.line2"));
+            tooltip.add(new TranslatableText("item.speedrunnermod.eye_of_annul.tooltip.line1").formatted(Formatting.GRAY));
+            tooltip.add(new TranslatableText("item.speedrunnermod.eye_of_annul.tooltip.line2").formatted(Formatting.GRAY));
             tooltip.add(new TranslatableText("item.speedrunnermod.eye_of_annul.tooltip.line3"));
             tooltip.add(new TranslatableText("item.speedrunnermod.eye_of_annul.tooltip.line4"));
         }

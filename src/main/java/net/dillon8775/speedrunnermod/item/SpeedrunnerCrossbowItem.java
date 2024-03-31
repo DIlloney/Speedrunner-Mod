@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -67,7 +68,7 @@ public class SpeedrunnerCrossbowItem extends CrossbowItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (options().client.itemTooltips) {
-            tooltip.add(new TranslatableText("item.speedrunnermod.speedrunner_crossbow.tooltip"));
+            tooltip.add(new TranslatableText("item.speedrunnermod.speedrunner_crossbow.tooltip").formatted(Formatting.GRAY));
         }
     }
 }

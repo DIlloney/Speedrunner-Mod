@@ -9,6 +9,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.SwordItem;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,8 +41,8 @@ public class WitherSwordItem extends SwordItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (options().client.itemTooltips) {
-            tooltip.add(new TranslatableText("item.speedrunnermod.wither_sword.tooltip.line1"));
-            tooltip.add(new TranslatableText("item.speedrunnermod.wither_sword.tooltip.line2"));
+            tooltip.add(new TranslatableText("item.speedrunnermod.wither_sword.tooltip.line1").formatted(Formatting.GRAY));
+            tooltip.add(new TranslatableText("item.speedrunnermod.wither_sword.tooltip.line2").formatted(Formatting.GRAY));
         }
     }
 }

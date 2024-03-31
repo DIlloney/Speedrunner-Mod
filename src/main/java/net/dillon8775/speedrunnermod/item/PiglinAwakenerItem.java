@@ -78,9 +78,9 @@ public class PiglinAwakenerItem extends Item {
                                                     if (world.random.nextFloat() < 0.50F) {
                                                         piglin.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, TickCalculator.minutes(2), 0, false, true, false));
                                                     }
-                                                    double x = !options().advanced.teleportPiglinDirectlyTowardsPlayer ? player.getX() + world.random.nextInt(7) - 3 : player.getX();
-                                                    double y = !options().advanced.teleportPiglinDirectlyTowardsPlayer ? player.getY() + world.random.nextDouble() * (2.0 - 0.5) + 0.5 : player.getY();
-                                                    double z = !options().advanced.teleportPiglinDirectlyTowardsPlayer ? player.getZ() + world.random.nextInt(7) - 3 : player.getZ();
+                                                    double x = !player.isSneaking() ? player.getX() + world.random.nextInt(7) - 3 : player.getX();
+                                                    double y = !player.isSneaking() ? player.getY() + world.random.nextDouble() * (2.0 - 0.5) + 0.5 : player.getY();
+                                                    double z = !player.isSneaking() ? player.getZ() + world.random.nextInt(7) - 3 : player.getZ();
                                                     piglin.teleport(x, y, z);
                                                     maxNumberOfPiglin++;
                                                     SpeedrunnerMod.debug("Teleported piglin (" + piglin.getUuidAsString() + ") to X = " + piglin.getX() + ", Y = " + piglin.getY() + ", Z = " + piglin.getZ() + ".");

@@ -77,7 +77,15 @@ public class ModItems {
     public static final Item SPEEDRUNNER_SHEARS = new SpeedrunnerShearsItem(new Item.Settings());
     public static final Item SPEEDRUNNER_FLINT_AND_STEEL = new FlintAndSteelItem(
             new Item.Settings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(128));
-    public static final Item SPEEDRUNNER_SHIELD = new SpeedrunnerShieldItem(new Item.Settings());
+    public static final Item SPEEDRUNNER_SHIELD = new SpeedrunnerShieldItem(new Item.Settings()) {
+
+        @Override
+        public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+            if (options().client.itemTooltips) {
+                tooltip.add(new TranslatableText("item.speedrunnermod.speedrunner_shield.tooltip").formatted(Formatting.GRAY));
+            }
+        }
+    };
     public static final Item GOLDEN_SPEEDRUNNER_SWORD = new SpeedrunnerSwordItem(
             4, new Item.Settings().group(ItemGroup.COMBAT));
     public static final Item GOLDEN_SPEEDRUNNER_SHOVEL = new ShovelItem(
@@ -152,7 +160,7 @@ public class ModItems {
         @Override
         public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
             if (options().client.itemTooltips) {
-                tooltip.add(new TranslatableText("item.speedrunnermod.igneous_rock.tooltip"));
+                tooltip.add(new TranslatableText("item.speedrunnermod.igneous_rock.tooltip").formatted(Formatting.GRAY));
             }
         }
     };
@@ -167,7 +175,7 @@ public class ModItems {
         @Override
         public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
             if (options().client.itemTooltips) {
-                tooltip.add(new TranslatableText("item.speedrunnermod.wither_bone.tooltip"));
+                tooltip.add(new TranslatableText("item.speedrunnermod.wither_bone.tooltip").formatted(Formatting.GRAY));
             }
         }
     };

@@ -48,13 +48,7 @@ public class DragonsPearlItem extends Item {
 
                     if (!dragons.isEmpty()) {
                         EnderDragonEntity enderDragon = dragons.get(0);
-                        boolean isSitting = enderDragon.getPhaseManager().getCurrent().getType() == PhaseType.SITTING_SCANNING ||
-                                enderDragon.getPhaseManager().getCurrent().getType() == PhaseType.SITTING_FLAMING ||
-                                enderDragon.getPhaseManager().getCurrent().getType() == PhaseType.SITTING_ATTACKING;
-                        boolean isAlreadyPerchingOrPerched =
-                                        enderDragon.getPhaseManager().getCurrent().getType() == PhaseType.LANDING || isSitting;
-                        boolean isDead = enderDragon.getHealth() < 1.0F;
-                        if (!isAlreadyPerchingOrPerched && !isDead) {
+                        if (!isDragonAlreadyPerchingOrPerched(enderDragon) && !isDragonDead(enderDragon)) {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 2.0F, 0.3F);
                             player.getItemCooldownManager().set(this, TickCalculator.seconds(10));
                             if (!player.getAbilities().creativeMode) {
@@ -70,8 +64,8 @@ public class DragonsPearlItem extends Item {
                             }, TimeCalculator.secondsToMilliseconds(2));
                             return TypedActionResult.success(itemStack);
                         } else {
-                            if (!isDead) {
-                                if (isSitting) {
+                            if (!isDragonDead(enderDragon)) {
+                                if (isDragonSitting(enderDragon)) {
                                     player.sendMessage(new TranslatableText("item.speedrunnermod.dragons_pearl.already_perched").formatted(Formatting.LIGHT_PURPLE), ModOptions.ItemMessages.isActionbar());
                                 } else {
                                     player.sendMessage(new TranslatableText("item.speedrunnermod.dragons_pearl.already_perching").formatted(Formatting.LIGHT_PURPLE), ModOptions.ItemMessages.isActionbar());
@@ -97,6 +91,29 @@ public class DragonsPearlItem extends Item {
         }
 
         return TypedActionResult.consume(itemStack);
+    }
+
+    /**
+     * Determines if the ender dragon is sitting or not.
+     */
+    private static boolean isDragonSitting(EnderDragonEntity enderDragon) {
+        return enderDragon.getPhaseManager().getCurrent().getType() == PhaseType.SITTING_SCANNING ||
+                enderDragon.getPhaseManager().getCurrent().getType() == PhaseType.SITTING_FLAMING ||
+                enderDragon.getPhaseManager().getCurrent().getType() == PhaseType.SITTING_ATTACKING;
+    }
+
+    /**
+     * Determines if the ender dragon is perching or already perched.
+     */
+    private static boolean isDragonAlreadyPerchingOrPerched(EnderDragonEntity enderDragon) {
+        return enderDragon.getPhaseManager().getCurrent().getType() == PhaseType.LANDING || isDragonSitting(enderDragon);
+    }
+
+    /**
+     * Checks to see if the ender dragon is dead.
+     */
+    private static boolean isDragonDead(EnderDragonEntity enderDragon) {
+        return enderDragon.getHealth() < 1.0F;
     }
 
     @Override
