@@ -44,7 +44,7 @@ public class ModMenuScreen extends AbstractModScreen {
                 }
             }
         }));
-        this.addDrawableChild(new ButtonWidget(this.getButtonsRightSide(), height, 150, 20, ModTexts.featuresText(false), (button) -> {
+        this.addDrawableChild(new ButtonWidget(this.getButtonsRightSide(), height, 150, 20, ModTexts.featuresText(), (button) -> {
             this.client.setScreen(new FeaturesScreen(this, options));
         }, (button, matrices, x, y) -> this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.MENU_FEATURES_TOOLTIP, 200), x, y)));
 
@@ -99,7 +99,7 @@ public class ModMenuScreen extends AbstractModScreen {
                 return Formatting.GREEN;
             }
         } else {
-            return Formatting.WHITE;
+            return Formatting.AQUA;
         }
     }
 
