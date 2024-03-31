@@ -2,6 +2,7 @@ package net.dillon8775.speedrunnermod.mixin.main.boat;
 
 import net.dillon8775.speedrunnermod.block.ModBlocks;
 import net.dillon8775.speedrunnermod.entity.ModEntityTypes;
+import net.dillon8775.speedrunnermod.util.Author;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.vehicle.BoatEntity;
@@ -20,6 +21,7 @@ import java.util.List;
  * Allows for custom boat entity types to be added to the game.
  * <p>Without this, the game crashes because it thinks {@link BoatEntity.Type} is null.</p>
  */
+@Author("Anxietie")
 @Mixin(BoatEntity.Type.class)
 public class BoatEntityTypeMixin {
     @SuppressWarnings("ShadowTarget") @Shadow
