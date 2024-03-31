@@ -26,7 +26,6 @@ public class FastWorldCreationOptionsScreen extends AbstractModScreen {
         this.list = new ButtonListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
         this.list.addAll(FWC_OPTIONS);
         this.addSelectableChild(this.list);
-        this.addSelectableChild(this.list);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);
 
         super.init();
