@@ -72,7 +72,7 @@ public class SpeedrunnerMod implements ModInitializer {
      * <p><b>For client options, refer to</b> {@link SpeedrunnerModClient}.</p>
      */
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.9";
+    public static final String MOD_VERSION = "v1.9.1";
     public static final String VERSION = "Version: " + MOD_VERSION;
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
     public static final String WIKI_LINK = "https://sites.google.com/view/dillon8775/the-speedrunner-mod";
@@ -198,14 +198,13 @@ public class SpeedrunnerMod implements ModInitializer {
         options().main.strongholdPortalRoomCount = 3;
         options().main.strongholdLibraryCount = 2;
         options().main.mobSpawningRate = ModOptions.MobSpawningRate.HIGH;
-        options().main.mobSpawnerMinimumSpawnDuration = 20;
-        options().main.mobSpawnerMaximumSpawnDuration = 40;
+        options().main.fasterSpawners = true;
         options().main.netherPortalCooldown = 2;
         options().main.throwableFireballs = true;
         options().main.arrowsDestroyBeds = false;
         options().main.globalNetherPortals = true;
         options().main.betterAnvil = true;
-        options().main.anvilCostLimit = 40;
+        options().main.anvilCostLimit = 10;
         options().main.higherEnchantmentLevels = true;
         options().main.stackUnstackables = false;
 
@@ -240,7 +239,7 @@ public class SpeedrunnerMod implements ModInitializer {
         options().advanced.generateSpeedrunnerWood = true;
         options().advanced.longerDragonPerchStayTime = true;
         options().advanced.decreasedZombifiedPiglinScareDistance = true;
-        options().advanced.eyeOfEnderBreakingCooldown = 40;
+        options().advanced.eyeOfEnderBreakingCooldown = 60;
         options().advanced.piglinAwakenerPiglinCount = 10;
         options().advanced.teleportPiglinDirectlyTowardsPlayer = false;
         options().advanced.throwableFireballsExplosionPower = 1;
