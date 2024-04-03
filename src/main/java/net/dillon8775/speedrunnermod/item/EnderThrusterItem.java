@@ -59,6 +59,8 @@ public class EnderThrusterItem extends Item {
                                 world.setBlockState(pos, Blocks.FROSTED_ICE.getDefaultState());
                             } else if (world.getBlockState(pos).getBlock() == Blocks.LAVA) {
                                 world.setBlockState(pos, Blocks.BASALT.getDefaultState());
+                            } else {
+                                world.setBlockState(pos, Blocks.BLUE_WOOL.getDefaultState());
                             }
                             player.teleport(player.getX(), y, player.getZ(), true);
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
