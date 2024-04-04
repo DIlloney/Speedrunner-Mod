@@ -17,7 +17,7 @@ import static net.dillon8775.speedrunnermod.SpeedrunnerMod.info;
 public class ModEnchantments {
     public static final Enchantment DASH = Registry.register(Registry.ENCHANTMENT, new Identifier(SpeedrunnerMod.MOD_ID, "dash"),
             new DashEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.FEET));
-    public static final Enchantment COOL = Registry.register(Registry.ENCHANTMENT, new Identifier(SpeedrunnerMod.MOD_ID, "cooldown"),
+    public static final Enchantment COOLDOWN = Registry.register(Registry.ENCHANTMENT, new Identifier(SpeedrunnerMod.MOD_ID, "cooldown"),
             new CooldownEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND));
 
     public static void init() {
@@ -25,7 +25,7 @@ public class ModEnchantments {
     }
 
     /**
-     * The enchantments that can be offered with the {@link net.dillon8775.speedrunnermod.village.ModTradeOffers.MaxedEnchantBookFactory} trades
+     * The enchantments that can be offered with the {@link net.dillon8775.speedrunnermod.village.ModTradeOffers.MaxedEnchantBookFactory} trades.
      */
     public static List<Enchantment> availableForRetiredSpeedrunnerTrades() {
         return List.of(Enchantments.PROTECTION, Enchantments.FEATHER_FALLING, Enchantments.THORNS, Enchantments.SHARPNESS, Enchantments.FIRE_ASPECT, Enchantments.LOOTING, Enchantments.FORTUNE, Enchantments.POWER, Enchantments.INFINITY, Enchantments.MENDING);
