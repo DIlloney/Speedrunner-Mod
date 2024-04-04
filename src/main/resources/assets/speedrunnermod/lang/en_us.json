@@ -222,7 +222,9 @@
   "speedrunnermod.removed_silk_touch": "Removed silk touch!",
 
   "enchantment.speedrunnermod.dash": "Dash",
+  "enchantment.speedrunnermod.dash.tooltip": "Dash: Drastically increases the players speed.",
   "enchantment.speedrunnermod.cooldown": "Cooldown",
+  "enchantment.speedrunnermod.cooldown.tooltip": "Cooldown: Lowers the cooldown on certain items.",
 
   "advancements.speedrunnermod.title": "Speedrunner Mod",
   "advancements.speedrunnermod.description": "The mod that makes speedrunning, easier",
