@@ -80,7 +80,7 @@
     "main.item.ChorusFruitItemMixin",
     "main.item.FirechargeItemMixin",
     "main.item.FireproofItems",
-    "main.item.ItemsMixin",
+    "main.item.ItemMixin",
     "main.modes.infinipearl.EnderPearlItemMixin",
     "main.entity.player.ServerPlayerEntityMixin",
     "main.nether.nether_portal.AllowNetherPortalBaseBlocks",
