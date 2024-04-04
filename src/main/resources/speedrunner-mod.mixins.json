@@ -78,6 +78,7 @@
     "main.fix.TripwireBlockMixin",
     "main.item.BetterFoods",
     "main.item.ChorusFruitItemMixin",
+    "main.item.EnchantedBookItemMixin",
     "main.item.FirechargeItemMixin",
     "main.item.FireproofItems",
     "main.item.ItemMixin",
