@@ -188,7 +188,7 @@ public class SpeedrunnerMod implements ModInitializer {
         options().main.customBiomes = true;
         options().main.commonOres = true;
         options().main.lavaBoats = true;
-        options().main.netherWater = false;
+        options().main.netherWater = true;
         options().main.betterFoods = true;
         options().main.fallDamage = true;
         options().main.kineticDamage = true;
