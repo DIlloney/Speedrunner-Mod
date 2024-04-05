@@ -4,7 +4,6 @@ import net.dillon8775.speedrunnermod.client.screen.features.ScreenCategories;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -37,13 +36,15 @@ public class ModTexts {
     public static final Text MENU_EXTERNAL = new TranslatableText("speedrunnermod.menu.external").formatted(Formatting.RED);
     public static final Text TITLE_EXTERNAL = new TranslatableText("speedrunnermod.external");
     public static final Text MENU_FEATURES_TOOLTIP = new TranslatableText("speedrunnermod.menu.features.tooltip");
+    public static final Text MENU_FEATURES = new TranslatableText("speedrunnermod.menu.features").formatted(Formatting.AQUA);
     public static final Text TITLE_FEATURES = new TranslatableText("speedrunnermod.title.features");
+    public static final Text MENU_WIKI = new TranslatableText("speedrunnermod.menu.resources.wiki").formatted(Formatting.LIGHT_PURPLE);
     public static final Text MENU_RESOURCES = new TranslatableText("speedrunnermod.menu.resources");
     public static final Text MENU_RESOURCES_TOOLTIP = new TranslatableText("speedrunnermod.menu.resources.tooltip");
     public static final Text TITLE_RESOURCES = new TranslatableText("speedrunnermod.title.resources");
-    public static final Text MENU_MODS = new TranslatableText("speedrunnermod.menu.resources.mods");
+    public static final Text MENU_MODS = new TranslatableText("speedrunnermod.menu.resources.mods").formatted(Formatting.AQUA);
     public static final Text TITLE_MODS = new TranslatableText("speedrunnermod.title.resources.mods");
-    public static final Text MENU_TUTORIALS = new TranslatableText("speedrunnermod.menu.resources.tutorials");
+    public static final Text MENU_TUTORIALS = new TranslatableText("speedrunnermod.menu.resources.tutorials").formatted(Formatting.BLUE);
     public static final Text TITLE_TUTORIALS = new TranslatableText("speedrunnermod.title.resources.tutorials");
     public static final Text TITLE_RESTART_REQUIRED = new TranslatableText("speedrunnermod.title.restart_required");
     public static final Text TITLE_SAFE_BOOT = new TranslatableText("speedrunnermod.title.safe_mode");
@@ -72,19 +73,19 @@ public class ModTexts {
 
     public static final Text MENU_OPEN_OPTIONS_FILE = new TranslatableText("speedrunnermod.menu.open_options_file");
 
-    public static final Text SODIUM = new TranslatableText("speedrunnermod.title.resources.mods.sodium");
+    public static final Text SODIUM = new TranslatableText("speedrunnermod.title.resources.mods.sodium").formatted(Formatting.GREEN);
     public static final Text SODIUM_TOOLTIP = new TranslatableText("speedrunnermod.title.resources.mods.sodium.tooltip");
-    public static final Text LITHIUM = new TranslatableText("speedrunnermod.title.resources.mods.lithium");
+    public static final Text LITHIUM = new TranslatableText("speedrunnermod.title.resources.mods.lithium").formatted(Formatting.AQUA);
     public static final Text LITHIUM_TOOLTIP = new TranslatableText("speedrunnermod.title.resources.mods.lithium.tooltip");
-    public static final Text PHOSPHOR = new TranslatableText("speedrunnermod.title.resources.mods.phosphor");
+    public static final Text PHOSPHOR = new TranslatableText("speedrunnermod.title.resources.mods.phosphor").formatted(Formatting.YELLOW);
     public static final Text PHOSPHOR_TOOLTIP = new TranslatableText("speedrunnermod.title.resources.mods.phosphor.tooltip");
-    public static final Text SPEEDRUN_IGT = new TranslatableText("speedrunnermod.title.resources.mods.speedrunigt");
+    public static final Text SPEEDRUN_IGT = new TranslatableText("speedrunnermod.title.resources.mods.speedrunigt").formatted(Formatting.GREEN);
     public static final Text SPEEDRUN_IGT_TOOLTIP = new TranslatableText("speedrunnermod.title.resources.mods.speedrunigt.tooltip");
-    public static final Text LAZYDFU = new TranslatableText("speedrunnermod.title.resources.mods.lazydfu");
+    public static final Text LAZYDFU = new TranslatableText("speedrunnermod.title.resources.mods.lazydfu").formatted(Formatting.BLUE);
     public static final Text LAZYDFU_TOOLTIP = new TranslatableText("speedrunnermod.title.resources.mods.lazydfu.tooltip");
-    public static final Text KRYPTON = new TranslatableText("speedrunnermod.title.resources.mods.krypton");
+    public static final Text KRYPTON = new TranslatableText("speedrunnermod.title.resources.mods.krypton").formatted(Formatting.GRAY);
     public static final Text KRYPTON_TOOLTIP = new TranslatableText("speedrunnermod.title.resources.mods.krypton.tooltip");
-    public static final Text OPTIFINE = new TranslatableText("speedrunnermod.title.resources.mods.optifine");
+    public static final Text OPTIFINE = new TranslatableText("speedrunnermod.title.resources.mods.optifine").formatted(Formatting.RED);
     public static final Text OPTIFINE_TOOLTIP = new TranslatableText("speedrunnermod.title.resources.mods.optifine.tooltip");
 
     public static final Text RESET = new TranslatableText("speedrunnermod.reset");
@@ -107,17 +108,10 @@ public class ModTexts {
     public static final String fB = "§b";
     public static final String fBfL = "§b§l";
     public static final String fR = "§r";
+    public static final String fL = "§l";
 
     public static LiteralText fText(String formattedText) {
         return new LiteralText(formattedText);
-    }
-
-    public static MutableText featuresText() {
-        return new TranslatableText("speedrunnermod.menu.features").formatted(Formatting.AQUA);
-    }
-
-    public static MutableText wikiText(boolean coloured) {
-        return new TranslatableText("speedrunnermod.menu.resources.wiki").formatted(coloured ? Formatting.LIGHT_PURPLE : Formatting.WHITE);
     }
 
     public static TranslatableText featureTitleText(ScreenCategories category, String lang) {
