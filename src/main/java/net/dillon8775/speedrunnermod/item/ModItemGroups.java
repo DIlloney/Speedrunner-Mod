@@ -78,6 +78,7 @@ public class ModItemGroups {
                 item.add(new ItemStack(ModItems.SPEEDRUNNER_SHIELD));
                 item.add(new ItemStack(ModItems.SPEEDRUNNERS_EYE));
                 item.add(new ItemStack(ModItems.ENDER_THRUSTER));
+                item.add(new ItemStack(ModBlockItems.THRUSTER_BLOCK));
                 item.add(new ItemStack(ModItems.INFERNO_EYE));
                 item.add(new ItemStack(ModItems.PIGLIN_AWAKENER));
                 item.add(new ItemStack(ModItems.BLAZE_SPOTTER));
@@ -91,7 +92,7 @@ public class ModItemGroups {
                 item.add(new ItemStack(ModItems.CRIMSON_BOAT));
                 item.add(new ItemStack(ModItems.WARPED_BOAT));
                 for (int i = 1; i < 7; i++) {
-                    item.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(i >= 4 ? ModEnchantments.COOL : ModEnchantments.DASH, i >= 4 ? i - 3 : i)));
+                    item.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(i >= 4 ? ModEnchantments.COOLDOWN : ModEnchantments.DASH, i >= 4 ? i - 3 : i)));
                 }
                 item.add(new ItemStack(ModItems.IGNEOUS_ROCK));
                 item.add(new ItemStack(ModBlockItems.IGNEOUS_ORE));

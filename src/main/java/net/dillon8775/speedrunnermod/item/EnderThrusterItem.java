@@ -1,6 +1,7 @@
 package net.dillon8775.speedrunnermod.item;
 
 import net.dillon8775.speedrunnermod.SpeedrunnerMod;
+import net.dillon8775.speedrunnermod.block.ModBlocks;
 import net.dillon8775.speedrunnermod.option.ModOptions;
 import net.dillon8775.speedrunnermod.util.ItemUtil;
 import net.dillon8775.speedrunnermod.util.MathUtil;
@@ -55,16 +56,26 @@ public class EnderThrusterItem extends Item {
                             if (!player.getAbilities().creativeMode) {
                                 itemStack.decrement(1);
                             }
+
                             if (world.getBlockState(pos).getBlock() == Blocks.WATER) {
                                 world.setBlockState(pos, Blocks.FROSTED_ICE.getDefaultState());
                             } else if (world.getBlockState(pos).getBlock() == Blocks.LAVA) {
                                 world.setBlockState(pos, Blocks.BASALT.getDefaultState());
                             } else {
-                                world.setBlockState(pos, Blocks.BLUE_WOOL.getDefaultState());
+                                world.setBlockState(pos, ModBlocks.THRUSTER_BLOCK.getDefaultState());
                             }
+
+                            boolean isAir = world.getBlockState(pos.up()).isAir() && world.getBlockState(pos.up(1)).isAir();
+                            if (!isAir) {
+                                for (int i = 1; i < 3; i++) {
+                                    world.setBlockState(pos.up(i), Blocks.AIR.getDefaultState(), 3);
+                                    SpeedrunnerMod.debug("Removing non-air blocks for ender thruster. (" + player.getName().asString() + ", " + player.getUuidAsString() + ").");
+                                }
+                            }
+
                             player.teleport(player.getX(), y, player.getZ(), true);
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                            SpeedrunnerMod.debug("Teleported player " + player.getName().asString() + " (" + player.getUuidAsString() + ") to X = " + player.getX() + ", Y = " + player.getY() + ", Z = " + player.getZ() + ".");
+                            SpeedrunnerMod.debug("Teleported player " + player.getName().asString() + " (" + player.getUuidAsString() + ") to X = " + player.getX() + ", Y = " + player.getY() + ", Z = " + player.getZ() + "with Ender Thruster.");
                         } else {
                             player.sendMessage(new TranslatableText("item.speedrunnermod.ender_thruster.confirm").formatted(Formatting.WHITE), false);
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDERMAN_AMBIENT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
