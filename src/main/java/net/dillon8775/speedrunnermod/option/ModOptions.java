@@ -59,7 +59,7 @@ public class ModOptions {
         @RequiresRestart
         public boolean commonOres = true;
         public boolean lavaBoats = true;
-        public boolean netherWater = false;
+        public boolean netherWater = true;
         public boolean betterFoods = true;
         public boolean fallDamage = true;
         public boolean kineticDamage = true;
@@ -312,6 +312,7 @@ public class ModOptions {
         CAVE("speedrunnermod.options.panorama.cave"),
         CLASSIC("speedrunnermod.options.panorama.classic"),
         EMPTY("speedrunnermod.options.panorama.empty"),
+        OLD_SPEEDRUNNER_MOD("speedrunnermod.options.panorama.old_speedrunner_mod"),
         DEFAULT("speedrunnermod.options.panorama.default");
 
         private final String translateKey;

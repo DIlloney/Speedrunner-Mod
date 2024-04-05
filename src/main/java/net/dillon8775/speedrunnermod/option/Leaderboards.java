@@ -360,7 +360,7 @@ public class Leaderboards {
         }
 
         if (!isNetherWaterEligible()) {
-            options.netherWater = false;
+            options.netherWater = true;
         }
     }
 
@@ -486,7 +486,7 @@ public class Leaderboards {
     }
 
     private static boolean isNetherWaterEligible() {
-        return !options.netherWater;
+        return options.netherWater;
     }
 
     private static boolean isStackUnstackablesEligible() {
