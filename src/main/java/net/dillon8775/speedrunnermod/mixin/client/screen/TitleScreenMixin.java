@@ -85,13 +85,13 @@ public class TitleScreenMixin extends Screen {
         if (options().advanced.showResetButton) {
             createWorldButton = this.addDrawableChild(new ButtonWidget(this.width / 2 - 124, this.height / 4 + 72, 20, 20, new LiteralText(""), (buttonWidget) -> {
                 this.client.setScreen(CreateWorldScreen.create(this));
-            }, (button, matrices, x, y) -> this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(options().client.fastWorldCreation ? CREATE_WORLD_BUTTON_TOOLTIP : CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), x, y)));
+            }));
             createWorldButton.active = options().client.fastWorldCreation;
         }
 
         int l = this.height / 4 + 48;
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, l + 72 + 36, 98, 20, ModTexts.featuresText(true), button -> this.client.setScreen(new FeaturesScreen(this, MinecraftClient.getInstance().options))));
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 2, l + 72 + 36, 98, 20, ModTexts.wikiText(true), button -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, l + 72 + 36, 98, 20, ModTexts.MENU_FEATURES, button -> this.client.setScreen(new FeaturesScreen(this, MinecraftClient.getInstance().options))));
+        this.addDrawableChild(new ButtonWidget(this.width / 2 + 2, l + 72 + 36, 98, 20, ModTexts.MENU_WIKI, button -> {
             this.client.setScreen(new ConfirmChatLinkScreen(openInBrowser -> {
                 if (openInBrowser) {
                     Util.getOperatingSystem().open(ModLinks.SPEEDRUNNER_MOD_WEBPAGE_LINK);
@@ -102,7 +102,7 @@ public class TitleScreenMixin extends Screen {
 
         optionsButton = this.addDrawableChild(new ButtonWidget(this.width / 2 - 124, this.height / 4 + 48 + 24 * 2, 20, 20, new LiteralText(""), (buttonWidget) -> {
             this.client.setScreen(new ModMenuScreen(this, MinecraftClient.getInstance().options));
-        }, (button, matrices, x, y) -> this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(OPTIONS_TOOLTIP, 200), x, y)));
+        }));
 
         if (options().client.socialButtons) {
             dillon8775YouTubeButton = this.addDrawableChild(new ButtonWidget(this.width / 2 - 124, this.height / 4 + 48, 20, 20, new LiteralText(""), (buttonWidget) -> {
@@ -112,7 +112,7 @@ public class TitleScreenMixin extends Screen {
                     }
                     this.client.setScreen(this);
                 }, ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK, true));
-            }, (button, matrices, x, y) -> this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(DILLON8775_YOUTUBE_TOOLTIP, 200), x, y)));
+            }));
 
             discordButton = this.addDrawableChild(new ButtonWidget(this.width / 2 + 104, this.height / 4 + 72, 20, 20, new LiteralText(""), (buttonWidget) -> {
                 this.client.setScreen(new ConfirmChatLinkScreen(openInBrowser -> {
@@ -121,7 +121,7 @@ public class TitleScreenMixin extends Screen {
                     }
                     this.client.setScreen(this);
                 }, ModLinks.DISCORD_LINK, false));
-            }, (button, matrices, x, y) -> this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(DISCORD_TOOLTIP, 200), x, y)));
+            }));
 
             webpageButton = this.addDrawableChild(new ButtonWidget(this.width / 2 + 104, this.height / 4 + 96, 20, 20, new LiteralText(""), (buttonWidget) -> {
                 this.client.setScreen(new ConfirmChatLinkScreen(openInBrowser -> {
@@ -130,7 +130,7 @@ public class TitleScreenMixin extends Screen {
                     }
                     this.client.setScreen(this);
                 }, ModLinks.WEBPAGE_LINK, true));
-            }, (button, matrices, x, y) -> this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(WEBPAGE_TOOLTIP, 200), x, y)));
+            }));
 
             nuzlandYouTubeButton = this.addDrawableChild(new ButtonWidget(this.width / 2 + 128, this.height / 4 + 72, 20, 20, new LiteralText(""), (buttonWidget) -> {
                 this.client.setScreen(new ConfirmChatLinkScreen(openInBrowser -> {
@@ -139,7 +139,7 @@ public class TitleScreenMixin extends Screen {
                     }
                     this.client.setScreen(this);
                 }, ModLinks.NUZLAND_YOUTUBE_CHANNEL_LINK, true));
-            }, (button, matrices, x, y) -> this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(NUZLAND_YOUTUBE_TOOLTIP, 200), x, y)));
+            }));
 
             mannyQuesoYouTubeButton = this.addDrawableChild(new ButtonWidget(this.width / 2 + 128, this.height / 4 + 96, 20, 20, new LiteralText(""), (buttonWidget) -> {
                 this.client.setScreen(new ConfirmChatLinkScreen(openInBrowser -> {
@@ -148,7 +148,7 @@ public class TitleScreenMixin extends Screen {
                     }
                     this.client.setScreen(this);
                 }, ModLinks.MANNYQUESO_YOUTUBE_CHANNEL_LINK, true));
-            }, (button, matrices, x, y) -> this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(MANNYQUESO_YOUTUBE_TOOLTIP, 200), x, y)));
+            }));
         }
     }
 
@@ -196,10 +196,48 @@ public class TitleScreenMixin extends Screen {
             drawTexture(matrices, this.width / 2 + 129, mannyQuesoYouTubeButton.y + 1, 0.0F, 0.0F, 18, 18, 18, 18);
         }
 
+        this.renderTooltips(matrices, mouseX, mouseY);
+
         float f = this.doBackgroundFade ? (float)(Util.getMeasuringTimeMs() - this.backgroundFadeStart) / 1000.0F : 1.0F;
         float g = this.doBackgroundFade ? MathHelper.clamp(f - 1.0F, 0.0F, 1.0F) : 1.0F;
         int l = MathHelper.ceil(g * 255.0F) << 24;
         drawStringWithShadow(matrices, this.textRenderer, SpeedrunnerMod.THE_SPEEDRUNNER_MOD_STRING + " " + SpeedrunnerMod.MOD_VERSION, 2, this.height - 20, 16777215 | l);
+    }
+
+    /**
+     * Renders the tooltips on the title screen buttons.
+     */
+    @Unique
+    private void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+        if (options().advanced.showResetButton && createWorldButton.isHovered()) {
+            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(options().client.fastWorldCreation ? CREATE_WORLD_BUTTON_TOOLTIP : CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
+        }
+
+        if (optionsButton.isHovered()) {
+            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(OPTIONS_TOOLTIP, 200), mouseX, mouseY);
+        }
+
+        if (options().client.socialButtons) {
+            if (dillon8775YouTubeButton.isHovered()) {
+                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+            }
+
+            if (discordButton.isHovered()) {
+                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(DISCORD_TOOLTIP, 200), mouseX, mouseY);
+            }
+
+            if (webpageButton.isHovered()) {
+                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(WEBPAGE_TOOLTIP, 200), mouseX, mouseY);
+            }
+
+            if (nuzlandYouTubeButton.isHovered()) {
+                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(NUZLAND_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+            }
+
+            if (mannyQuesoYouTubeButton.isHovered()) {
+                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(MANNYQUESO_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+            }
+        }
     }
 
     static {
@@ -210,6 +248,7 @@ public class TitleScreenMixin extends Screen {
             case CAVE -> PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/cave/panorama"));
             case CLASSIC -> PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/classic/panorama"));
             case EMPTY -> PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/empty/panorama"));
+            case OLD_SPEEDRUNNER_MOD -> PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/old_speedrunner_mod"));
             default -> PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier("textures/gui/title/background/panorama"));
         }
     }
