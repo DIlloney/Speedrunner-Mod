@@ -15,7 +15,7 @@ import static net.dillon8775.speedrunnermod.SpeedrunnerMod.info;
 @Environment(EnvType.CLIENT)
 public class ModKeybindings {
     public static final String MOD_KEYBINDS = "speedrunnermod.keybinds";
-    public static KeyBinding resetKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("speedrunnermod.reset", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_R, MOD_KEYBINDS));
+    public static KeyBinding resetKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("speedrunnermod.create_new_world", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_R, MOD_KEYBINDS));
     public static KeyBinding fogKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("speedrunnermod.toggle_fog", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, MOD_KEYBINDS));
     public static KeyBinding hitboxesKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("speedrunnermod.toggle_hitboxes", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H, MOD_KEYBINDS));
     public static KeyBinding chunkBordersKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("speedrunnermod.toggle_chunk_borders", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_K, MOD_KEYBINDS));
