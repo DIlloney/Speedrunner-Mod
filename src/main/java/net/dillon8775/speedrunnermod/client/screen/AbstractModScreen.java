@@ -68,11 +68,11 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
 
             this.helpButton = this.addDrawableChild(new ButtonWidget(this.getButtonsRightSide() + 104, this.getDoneButtonsHeight(), 20, 20, ModTexts.BLANK, (button) -> {
                 this.openLink(ModLinks.OPTIONS_EXPLANATION, true);
-            }));
+            }, (button, matrices, x, y) -> this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(new TranslatableText("speedrunnermod.help"), 200), x, y)));
             this.addDrawableChild(new ButtonWidget(this.getButtonsRightSide() + 128, this.getDoneButtonsHeight(), 20, 20, new LiteralText("D."), (button) -> {
                 this.close();
                 Util.getOperatingSystem().open(this.configDirectory);
-            }));
+            }, (button, matrices, x, y) -> this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(new TranslatableText("speedrunnermod.directory"), 200), x, y)));
         } else {
             this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height - 29, 200, 20, this.getDoneText(), (button) -> this.client.setScreen(this.parent)));
         }

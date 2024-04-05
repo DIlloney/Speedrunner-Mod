@@ -28,7 +28,7 @@ public class ResourcesScreen extends AbstractModScreen {
         }));
 
         height += 24;
-        this.addDrawableChild(new ButtonWidget(this.getButtonsLeftSide(), height, 150, 20, ModTexts.wikiText(false), (button) -> {
+        this.addDrawableChild(new ButtonWidget(this.getButtonsLeftSide(), height, 150, 20, ModTexts.MENU_WIKI, (button) -> {
             this.openLink(SpeedrunnerMod.WIKI_LINK, true);
         }));
 
