@@ -4,6 +4,7 @@
     "minecraft:mycelium",
     "minecraft:gravel",
     "minecraft:clay",
-    "minecraft:dirt_path"
+    "minecraft:dirt_path",
+    "speedrunnermod:thruster_block"
   ]
 }
