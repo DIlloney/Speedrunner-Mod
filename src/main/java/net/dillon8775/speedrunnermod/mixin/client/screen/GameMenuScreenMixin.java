@@ -67,7 +67,7 @@ public class GameMenuScreenMixin extends Screen {
                     this.client.disconnect(new SaveLevelScreen(new TranslatableText("menu.savingLevel")));
                     this.client.setScreen(CreateWorldScreen.create(this));
                 }));
-                createWorldButton.active = options().client.fastWorldCreation && this.client.isInSingleplayer();
+                createWorldButton.active = options().client.fastWorldCreation && this.client.isInSingleplayer() && this.client.isIntegratedServerRunning() && !this.client.getServer().isRemote();
             }
 
             optionsButton = this.addDrawableChild(new ButtonWidget(this.width / 2 - 4 - 120 - 2, this.height / 4 + 96 - 16, 20, 20, new LiteralText(""), (buttonWidget) -> {
