@@ -59,7 +59,6 @@ public class Leaderboards {
                 isKineticDamageEligible() &&
                 isAllowCheatsEligible() &&
                 isKillGhastOnFireballEligible() &&
-                isNetherWaterEligible() &&
                 isStackUnstackablesEligible();
     }
 
@@ -151,11 +150,6 @@ public class Leaderboards {
         if (!isKillGhastOnFireballEligible()) {
             warnIneligible("Kill Ghast On Fireball");
             addIneligible("kill_ghast_on_fireball");
-        }
-
-        if (!isNetherWaterEligible()) {
-            warnIneligible("Nether Water");
-            addIneligible("nether_water");
         }
 
         if (!isFasterSpawnersEligible()) {
@@ -358,10 +352,6 @@ public class Leaderboards {
         if (!isKillGhastOnFireballEligible()) {
             options.killGhastOnFireball = false;
         }
-
-        if (!isNetherWaterEligible()) {
-            options.netherWater = true;
-        }
     }
 
     /**
@@ -483,10 +473,6 @@ public class Leaderboards {
 
     private static boolean isKillGhastOnFireballEligible() {
         return !options.killGhastOnFireball;
-    }
-
-    private static boolean isNetherWaterEligible() {
-        return options.netherWater;
     }
 
     private static boolean isStackUnstackablesEligible() {
