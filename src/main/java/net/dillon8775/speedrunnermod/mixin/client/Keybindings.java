@@ -10,6 +10,7 @@ import net.minecraft.client.gui.screen.SaveLevelScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -38,6 +39,10 @@ public abstract class Keybindings {
     public abstract void setScreen(@Nullable Screen screen);
     @Shadow
     public abstract boolean isInSingleplayer();
+    @Shadow
+    public abstract boolean isIntegratedServerRunning();
+    @Shadow @Nullable
+    public abstract IntegratedServer getServer();
 
     /**
      * Applies the {@code speedrunner mod keybinds} to the game.
@@ -45,7 +50,7 @@ public abstract class Keybindings {
     @Inject(at = @At("TAIL"), method = "handleInputEvents")
     private void handleInputEvents(CallbackInfo info) {
         while (ModKeybindings.resetKey.wasPressed()) {
-            if (this.isInSingleplayer()) {
+            if (this.isInSingleplayer() && this.isIntegratedServerRunning() && !this.getServer().isRemote()) {
                 if (options().client.fastWorldCreation) {
                     if (this.inGameHud != null) {
                         this.inGameHud.getChatHud().clear(false);
