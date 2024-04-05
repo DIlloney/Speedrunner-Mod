@@ -142,6 +142,10 @@ public class ModBlocks {
             .requiresTool()
             .strength(5.0F, 6.0F)
             .sounds(BlockSoundGroup.STONE));
+    public static final Block THRUSTER_BLOCK = new Block(FabricBlockSettings.of(Material.SOIL)
+            .strength(0.5F)
+            .allowsSpawning(Blocks::never)
+            .sounds(BlockSoundGroup.GRASS));
     public static final Block SPEEDRUNNER_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(3.0F, 3.0F)
@@ -178,7 +182,6 @@ public class ModBlocks {
             .requiresTool()
             .strength(3.0F, 3.0F)
             .sounds(BlockSoundGroup.NETHER_ORE));
-
     public static final Block DOOM_STONE = new DoomBlock.Default(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(1.5F, 3600000.0F)
@@ -241,6 +244,7 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunners_workbench"), SPEEDRUNNERS_WORKBENCH);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_block"), SPEEDRUNNER_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "raw_speedrunner_block"), RAW_SPEEDRUNNER_BLOCK);
+        Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "thruster_block"), THRUSTER_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_ore"), SPEEDRUNNER_ORE);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "deepslate_speedrunner_ore"), DEEPSLATE_SPEEDRUNNER_ORE);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "nether_speedrunner_ore"), NETHER_SPEEDRUNNER_ORE);
