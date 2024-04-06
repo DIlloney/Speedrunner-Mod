@@ -332,6 +332,7 @@ public class ModOptions {
                     options().client.panorama.equals(CAVE) ||
                     options().client.panorama.equals(CLASSIC) ||
                     options().client.panorama.equals(EMPTY) ||
+                    options().client.panorama.equals(OLD_SPEEDRUNNER_MOD) ||
                     options().client.panorama.equals(DEFAULT);
         }
     }
