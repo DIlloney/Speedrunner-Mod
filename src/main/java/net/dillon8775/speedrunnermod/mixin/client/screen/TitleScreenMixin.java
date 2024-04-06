@@ -248,7 +248,7 @@ public class TitleScreenMixin extends Screen {
             case CAVE -> PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/cave/panorama"));
             case CLASSIC -> PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/classic/panorama"));
             case EMPTY -> PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/empty/panorama"));
-            case OLD_SPEEDRUNNER_MOD -> PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/oldspeedrunnermod"));
+            case OLD_SPEEDRUNNER_MOD -> PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/oldspeedrunnermod/panorama"));
             default -> PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier("textures/gui/title/background/panorama"));
         }
     }
