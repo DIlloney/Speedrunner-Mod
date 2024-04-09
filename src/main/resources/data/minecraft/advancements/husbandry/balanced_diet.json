@@ -468,6 +468,116 @@
           ]
         }
       }
+    },
+    "golden_piglin_pork": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "speedrunnermod:golden_piglin_pork"
+          ]
+        }
+      }
+    },
+    "golden_beef": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "speedrunnermod:golden_beef"
+          ]
+        }
+      }
+    },
+    "golden_porkchop": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "speedrunnermod:golden_porkchop"
+          ]
+        }
+      }
+    },
+    "golden_mutton": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "speedrunnermod:golden_mutton"
+          ]
+        }
+      }
+    },
+    "golden_chicken": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "speedrunnermod:golden_chicken"
+          ]
+        }
+      }
+    },
+    "golden_rabbit": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "speedrunnermod:golden_rabbit"
+          ]
+        }
+      }
+    },
+    "golden_cod": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "speedrunnermod:golden_cod"
+          ]
+        }
+      }
+    },
+    "golden_salmon": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "speedrunnermod:golden_salmon"
+          ]
+        }
+      }
+    },
+    "golden_bread": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "speedrunnermod:golden_bread"
+          ]
+        }
+      }
+    },
+    "golden_potato": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "speedrunnermod:golden_potato"
+          ]
+        }
+      }
+    },
+    "golden_beetroot": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "speedrunnermod:golden_beetroot"
+          ]
+        }
+      }
     }
   },
   "requirements": [
@@ -605,6 +715,39 @@
     ],
     [
       "cooked_flesh"
+    ],
+    [
+      "golden_piglin_pork"
+    ],
+    [
+      "golden_beef"
+    ],
+    [
+      "golden_porkchop"
+    ],
+    [
+      "golden_mutton"
+    ],
+    [
+      "golden_chicken"
+    ],
+    [
+      "golden_rabbit"
+    ],
+    [
+      "golden_cod"
+    ],
+    [
+      "golden_salmon"
+    ],
+    [
+      "golden_bread"
+    ],
+    [
+      "golden_potato"
+    ],
+    [
+      "golden_beetroot"
     ]
   ]
 }
