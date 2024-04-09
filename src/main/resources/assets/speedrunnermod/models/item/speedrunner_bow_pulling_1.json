@@ -1,6 +1,0 @@
-{
-  "parent": "speedrunnermod:item/speedrunner_bow",
-  "textures": {
-    "layer0": "speedrunnermod:item/speedrunner_bow_pulling_1"
-  }
-}

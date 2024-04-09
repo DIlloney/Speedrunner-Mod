@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "speedrunnermod:block/dead_speedrunner_log",
-    "side": "speedrunnermod:block/dead_speedrunner_log"
-  }
-}
