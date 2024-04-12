@@ -87,7 +87,7 @@ public class SpeedrunnerMod implements ModInitializer {
     public static final String OPTIONS_ERROR_MESSAGE = "Found error with speedrunner mod settings, launching in safe mode.";
     public static final String OPTIONS_WARNING_MESSAGE = "Found an unusual value in the speedrunner mod settings.";
     public static boolean safeBoot;
-    private static final Logger LOGGER = LogManager.getLogger("Speedrunner Mod");
+    private static final Logger LOGGER = LogManager.getLogger("Speedrunner Moda");
 
     /**
      * <p>Initializes all the {@code Speedrunner Mod} features, items, blocks, etc.</p>
