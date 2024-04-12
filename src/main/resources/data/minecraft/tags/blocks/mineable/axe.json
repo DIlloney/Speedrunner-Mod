@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "speedrunnermod:speedrunners_workbench",
+    "speedrunnermod:speedrunner_log",
+    "speedrunnermod:stripped_speedrunner_log",
+    "speedrunnermod:speedrunner_wood",
+    "speedrunnermod:stripped_speedrunner_wood",
+    "speedrunnermod:dead_speedrunner_log",
+    "speedrunnermod:dead_stripped_speedrunner_log",
+    "speedrunnermod:dead_speedrunner_wood",
+    "speedrunnermod:dead_stripped_speedrunner_wood",
+    "speedrunnermod:speedrunner_planks",
+    "speedrunnermod:speedrunner_slab",
+    "speedrunnermod:speedrunner_stairs",
+    "speedrunnermod:speedrunner_fence",
+    "speedrunnermod:speedrunner_fence_gate",
+    "speedrunnermod:speedrunner_trapdoor",
+    "speedrunnermod:speedrunner_button",
+    "speedrunnermod:wooden_speedrunner_pressure_plate",
+    "speedrunnermod:speedrunner_door",
+    "speedrunnermod:speedrunner_sign",
+    "speedrunnermod:speedrunner_wall_sign",
+    "speedrunnermod:doom_log",
+    "speedrunnermod:stripped_doom_log"
+  ]
+}
