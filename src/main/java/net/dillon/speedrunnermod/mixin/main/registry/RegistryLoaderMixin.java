@@ -397,7 +397,7 @@ public abstract class RegistryLoaderMixin {
                 }
             }
 
-            info(fileName.equals(monsterRoom) ? "Created deep monster room feature." : "Created monster room feature.");
+            debug(fileName.equals(monsterRoom) ? "Created deep monster room feature." : "Created monster room feature.");
         }
 
         if (options().main.commonOres) {
@@ -413,7 +413,7 @@ public abstract class RegistryLoaderMixin {
                     }
                 }
 
-                info(fileName.equals(oreDiamond) ? "Created diamond ore feature." : "Created diamond ore buried feature.");
+                debug(fileName.equals(oreDiamond) ? "Created diamond ore feature." : "Created diamond ore buried feature.");
             }
 
             if (fileName.equals("worldgen/placed_feature/ore_diamond_large.json")) {
@@ -448,7 +448,7 @@ public abstract class RegistryLoaderMixin {
                     }
                 }
 
-                info(fileName.equals(oreLapis) ? "Created lapis ore feature." : "Created lapis ore buried feature.");
+                debug(fileName.equals(oreLapis) ? "Created lapis ore feature." : "Created lapis ore buried feature.");
             }
         }
 

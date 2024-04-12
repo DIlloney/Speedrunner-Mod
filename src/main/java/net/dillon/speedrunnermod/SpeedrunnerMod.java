@@ -58,30 +58,7 @@ public class SpeedrunnerMod implements ModInitializer {
      */
     @Override
     public void onInitialize() {
-        ModWorldGen.init();
-
-        ModBoatTypes.init();
-
-        ModItemGroups.init();
-        ModMaterials.init();
-        ModSignTypes.init();
-        ModItems.init();
-        ModBlocks.init();
-        ModBlockItems.init();
-
-        ModStructureTags.init();
-        ModBlockTags.init();
-        ModItemTags.init();
-        ModFluidTags.init();
-
-        ModSoundEvents.init();
-
-        ModEnchantments.init();
-        ModRecipes.init();
-        ModFuels.init();
-
-        ModVillagers.init();
-        ModTradeOffers.init();
+        initialize();
 
         safeBoot = false;
         ModOptions.loadConfig();
@@ -128,6 +105,36 @@ public class SpeedrunnerMod implements ModInitializer {
      * */
     public static ModOptions options() {
         return ModOptions.OPTIONS;
+    }
+
+    /**
+     * Initalizes all the main mod features.
+     */
+    private static void initialize() {
+        ModWorldGen.init();
+
+        ModBoatTypes.init();
+
+        ModMaterials.init();
+        ModSignTypes.init();
+        ModItems.init();
+        ModBlocks.init();
+        ModBlockItems.init();
+        ModItemGroups.init();
+
+        ModStructureTags.init();
+        ModBlockTags.init();
+        ModItemTags.init();
+        ModFluidTags.init();
+
+        ModSoundEvents.init();
+
+        ModEnchantments.init();
+        ModRecipes.init();
+        ModFuels.init();
+
+        ModVillagers.init();
+        ModTradeOffers.init();
     }
 
     /**

@@ -17,7 +17,7 @@ import net.minecraft.world.poi.PointOfInterestType;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 public class ModVillagers {
-    protected static final PointOfInterestType RETIRED_SPEEDRUNNER_POI = registerPOI("speedrunner_poi", ModBlocks.SPEEDRUNNERS_WORKBENCH);
+    protected static final PointOfInterestType RETIRED_SPEEDRUNNER_POI = registerPoi("speedrunner_poi", ModBlocks.SPEEDRUNNERS_WORKBENCH);
     public static final VillagerProfession RETIRED_SPEEDRUNNER = registerProfessions(RegistryKey.of(
             Registries.POINT_OF_INTEREST_TYPE.getKey(), new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_poi")));
 
@@ -26,7 +26,7 @@ public class ModVillagers {
                 VillagerProfessionBuilder.create().id(new Identifier(SpeedrunnerMod.MOD_ID, "retired_speedrunner")).workstation(type).workSound(SoundEvents.ENTITY_VILLAGER_WORK_ARMORER).build());
     }
 
-    public static PointOfInterestType registerPOI(String name, Block block) {
+    public static PointOfInterestType registerPoi(String name, Block block) {
         Identifier id = new Identifier(SpeedrunnerMod.MOD_ID, name);
         return PointOfInterestHelper.register(id, 3, 1, ImmutableSet.copyOf(block.getStateManager().getStates()));
     }
