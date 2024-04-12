@@ -11,6 +11,6 @@ public class ModSignTypes {
     public static final SignType SPEEDRUNNER = SignType.register(new SignType("speedrunner"));
 
     public static void init() {
-        info("Initialized mod sign types.");
+        info("Initialized speedrunner sign type.");
     }
 }

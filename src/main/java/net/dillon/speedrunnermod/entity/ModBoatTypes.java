@@ -29,6 +29,6 @@ public class ModBoatTypes {
     }
 
     public static void init() {
-        info("Initialized entities.");
+        info("Initialized speedrunner boat types (crimson, warped and speedrunner).");
     }
 }

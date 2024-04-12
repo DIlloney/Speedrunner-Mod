@@ -30,7 +30,7 @@ public class ModBiomes {
     public static void init() {
         Registry.register(BuiltinRegistries.BIOME, SPEEDRUNNERS_WASTELAND_KEY.getValue(), SPEEDRUNNERS_WASTELAND);
 
-        info("Initialized biomes.");
+        info("Initialized and registered the Speedrunner's Wasteland biome.");
     }
 
     private static Biome createSpeedrunnersWasteland() {

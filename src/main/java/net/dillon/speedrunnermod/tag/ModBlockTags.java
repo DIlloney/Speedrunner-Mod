@@ -55,6 +55,6 @@ public class ModBlockTags {
     }
 
     public static void init() {
-        info("Initialized block tags.");
+        info("Registered block tags.");
     }
 }

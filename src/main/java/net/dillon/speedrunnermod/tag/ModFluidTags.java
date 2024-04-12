@@ -15,6 +15,6 @@ public class ModFluidTags {
     public static TagKey<Fluid> BOAT_SAFE_FLUIDS = TagKey.of(Registry.FLUID_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "boat_safe_fluids"));
 
     public static void init() {
-        info("Initialized fluid tags.");
+        info("Registered fluid tags.");
     }
 }

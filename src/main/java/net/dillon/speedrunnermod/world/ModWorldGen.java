@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.world;
 
+import net.dillon.speedrunnermod.world.biome.ModBiomes;
 import net.dillon.speedrunnermod.world.feature.ModPlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -99,6 +100,8 @@ public class ModWorldGen {
         }
 
         info("Initialized worldgen features.");
+
+        ModBiomes.init();
     }
 
     public static void modifyMonsterSpawns(SpawnSettings.Builder builder, int zombieWeight, int zombieVillagerWeight, int skeletonWeight, boolean drowned) {

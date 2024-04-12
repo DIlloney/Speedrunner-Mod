@@ -8,9 +8,6 @@ import net.dillon.speedrunnermod.item.ModBlockItems;
 import net.dillon.speedrunnermod.item.ModFuels;
 import net.dillon.speedrunnermod.item.ModItemGroups;
 import net.dillon.speedrunnermod.item.ModItems;
-import net.dillon.speedrunnermod.mixin.main.entity.DragonPerchTime;
-import net.dillon.speedrunnermod.mixin.main.entity.player.ServerPlayerEntityMixin;
-import net.dillon.speedrunnermod.mixin.main.world.VanillaBiomeParametersMixin;
 import net.dillon.speedrunnermod.option.Leaderboards;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.recipe.ModRecipes;
@@ -22,16 +19,14 @@ import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.dillon.speedrunnermod.util.MathUtil;
 import net.dillon.speedrunnermod.util.ModSignTypes;
 import net.dillon.speedrunnermod.village.ModTradeOffers;
-import net.dillon.speedrunnermod.village.ModVillagerProfessions;
+import net.dillon.speedrunnermod.village.ModVillagers;
 import net.dillon.speedrunnermod.world.ModWorldGen;
-import net.dillon.speedrunnermod.world.biome.ModBiomes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.SpawnSettings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,36 +36,6 @@ import static net.dillon.speedrunnermod.option.ModOptions.createListOption;
  * The main class file for {@code The Speedrunner Mod}.
  */
 public class SpeedrunnerMod implements ModInitializer {
-    /**
-     * <p>{@link VanillaBiomeParametersMixin}
-     * <p>Speedrunner's Wasteland Biome Spawning <i>and</i> Better Biomes configuration</p>
-     * <p></p>
-     * <p>{@link net.dillon.speedrunnermod.mixin.main.entity.basic.EntityMixin}, {@link net.dillon.speedrunnermod.mixin.main.boat.BoatEntityMixin} <i>and</i> {@link net.dillon.speedrunnermod.mixin.main.boat.BoatEntityTypeMixin} </p>
-     * <p>Modded boats configuration and functions.</p>
-     * <p></p>
-     * <p>{@link net.dillon.speedrunnermod.mixin.main.nether.AllowWaterInNether}</p>
-     * <p>Allow water in the nether configuration.</p>
-     * <p></p>
-     * <p>{@link net.dillon.speedrunnermod.mixin.main.block.FasterBlockBreaking}
-     * <p>Faster Block Breaking configurations</p>
-     * <p></p>
-     * <p>{@link ServerPlayerEntityMixin}
-     * <p>iCarus Mode and InfiniPearl Mode</p>
-     * <p></p>
-     * <p>{@link net.dillon.speedrunnermod.mixin.main.entity.GhastEntityShootFireballGoalMixin}
-     * <p>Kill Ghast On Fireball feature</p>
-     * <p></p>
-     * <p>{@link net.dillon.speedrunnermod.mixin.main.world.StructureSetsMixin}
-     * <p>Stronghold Count <i>and</i> Stronghold Distance option configuration</p>
-     * <p></p>
-     * <p>{@link DragonPerchTime}
-     * <p>Dragon Perch Time configuration</p>
-     * <p></p>
-     * <p>{@link ModWorldGen#makeAnimalsMoreCommon(SpawnSettings.Builder)} <i>and</i> {@link ModWorldGen#makeDolphinsMoreCommon(SpawnSettings.Builder, int, int)}
-     * <p>{@link net.dillon.speedrunnermod.option.ModOptions.MobSpawningRate} configuration</p>
-     * <p></p>
-     * <p><b>For client options, refer to</b> {@link SpeedrunnerModClient}.</p>
-     */
     public static final String MOD_ID = "speedrunnermod";
     public static final String MOD_VERSION = "v1.9.4";
     public static final String VERSION = "Version: " + MOD_VERSION;
@@ -90,32 +55,7 @@ public class SpeedrunnerMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ModBoatTypes.init();
-
-        ModMaterials.init();
-        ModSignTypes.init();
-        ModBlocks.init();
-        ModItemGroups.init();
-        ModBlockItems.init();
-        ModItems.init();
-
-        ModBiomes.init();
-
-        ModConfiguredFeatureTags.init();
-        ModBlockTags.init();
-        ModItemTags.init();
-        ModFluidTags.init();
-
-        ModSoundEvents.init();
-
-        ModEnchantments.init();
-        ModRecipes.init();
-        ModFuels.init();
-
-        ModVillagerProfessions.init();
-        ModTradeOffers.init();
-
-        ModWorldGen.init();
+        initialize();
 
         safeBoot = false;
         ModOptions.loadConfig();
@@ -162,6 +102,36 @@ public class SpeedrunnerMod implements ModInitializer {
      * */
     public static ModOptions options() {
         return ModOptions.OPTIONS;
+    }
+
+    /**
+     * Initializes all the main mod features.
+     */
+    private static void initialize() {
+        ModWorldGen.init();
+
+        ModBoatTypes.init();
+
+        ModMaterials.init();
+        ModSignTypes.init();
+        ModItems.init();
+        ModBlocks.init();
+        ModBlockItems.init();
+        ModItemGroups.init();
+
+        ModConfiguredFeatureTags.init();
+        ModBlockTags.init();
+        ModItemTags.init();
+        ModFluidTags.init();
+
+        ModSoundEvents.init();
+
+        ModEnchantments.init();
+        ModRecipes.init();
+        ModFuels.init();
+
+        ModVillagers.init();
+        ModTradeOffers.init();
     }
 
     /**

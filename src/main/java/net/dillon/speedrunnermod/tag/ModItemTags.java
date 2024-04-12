@@ -42,6 +42,6 @@ public class ModItemTags {
     public static TagKey<Item> IRON_BLOCKS = TagKey.of(Registry.ITEM_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "iron_blocks"));
 
     public static void init() {
-        info("Initialized item tags.");
+        info("Registered item tags.");
     }
 }

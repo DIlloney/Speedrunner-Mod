@@ -27,48 +27,48 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 public class ModTradeOffers {
 
     public static void init() {
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 1, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 1, factories -> {
             factories.add(new TradeOffers.BuyForOneEmeraldFactory(ModItems.SPEEDRUNNER_INGOT, 1, 24, 3));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 1, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 1, factories -> {
             factories.add(new TradeOffers.SellItemFactory(Items.BOOK, 1, 3, 12, 4));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 1, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 1, factories -> {
             factories.add(new MaxedEnchantBookFactory(3, 24, 12, 0.2F));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 2, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 2, factories -> {
             factories.add(new TradeOffers.ProcessItemFactory(Items.COOKED_BEEF, 1, ModItems.GOLDEN_BEEF, 1, 64, 5));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 2, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 2, factories -> {
             factories.add(new MaxedEnchantBookFactory(3, 24, 6, 0.0F));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 3, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 3, factories -> {
             factories.add(new TradeOffers.SellPotionHoldingItemFactory(Items.WATER_BUCKET, 1, Items.SPLASH_POTION, 1, 1, 12, 9));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 3, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 3, factories -> {
             factories.add(new MaxedEnchantBookFactory(3, 24, 15, 0.0F));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 3, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 3, factories -> {
             factories.add(new TradeOffers.SellItemFactory(ModItems.ENDER_THRUSTER, 3, 1, 12, 20));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 4, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 4, factories -> {
             factories.add(new TradeOffers.SellItemFactory(Items.GOLDEN_APPLE, 4, 3, 21, 10));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 4, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 4, factories -> {
             factories.add(new TradeOffers.SellItemFactory(Items.ENCHANTED_GOLDEN_APPLE, 12, 1, 3, 20));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 4, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 4, factories -> {
             factories.add(new TradeOffers.SellItemFactory(ModItems.DRAGONS_PEARL, 3, 1, 12, 25));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 5, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 5, factories -> {
             factories.add(new MaxedEnchantBookFactory(3, 32, 24, 0.0F));
         });
-        TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.RETIRED_SPEEDRUNNER, 5, factories -> {
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 5, factories -> {
             factories.add(new TradeOffers.SellEnchantedToolFactory(Items.NETHERITE_CHESTPLATE, 24, 1, 100, 2));
         });
-        PointOfInterestTypeAccessor.callSetup(ModVillagerProfessions.RETIRED_SPEEDRUNNER_POI);
+        PointOfInterestTypeAccessor.callSetup(ModVillagers.RETIRED_SPEEDRUNNER_POI);
 
-        info("Initialized villager trades.");
+        info("Registered the Retired Speedrunner villager trades.");
     }
 
     public static class SellItemFactorySpeedrunnerIngot implements TradeOffers.Factory {

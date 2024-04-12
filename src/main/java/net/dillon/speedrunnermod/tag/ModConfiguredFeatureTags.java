@@ -14,6 +14,6 @@ public class ModConfiguredFeatureTags {
     public static final TagKey<ConfiguredStructureFeature<?, ?>> DESERT_PYRAMIDS = TagKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "desert_pyramids"));
 
     public static void init() {
-        info("Initialized configured structure feature tags.");
+        info("Registered configured structure feature tags.");
     }
 }

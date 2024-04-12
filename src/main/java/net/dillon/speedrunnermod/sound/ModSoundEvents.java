@@ -14,6 +14,6 @@ public class ModSoundEvents {
     public static final SoundEvent ENTITY_BOAT_PADDLE_LAVA = Registry.register(Registry.SOUND_EVENT, "speedrunnermod:entity.boat.paddle_lava", new SoundEvent(new Identifier(SpeedrunnerMod.MOD_ID, "entity.boat.paddle_lava")));
 
     public static void init() {
-        info("Initialized sounds.");
+        info("Initialized lava boat paddling sound.");
     }
 }

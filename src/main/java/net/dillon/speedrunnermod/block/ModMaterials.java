@@ -14,6 +14,6 @@ public class ModMaterials {
     public static final Material SPEEDRUNNER_WOOD = new Material.Builder(MapColor.OAK_TAN).build();
 
     public static void init() {
-        info("Initialized mod block materials.");
+        info("Initialized speedrunner wood material.");
     }
 }
