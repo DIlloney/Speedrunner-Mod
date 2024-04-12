@@ -55,7 +55,7 @@ public class ModOptions {
         public boolean betterVillagerTrades = true;
         public boolean fireproofItems = true;
         @RequiresRestart
-        public boolean customBiomes = true;
+        public boolean customBiomesAndCustomBiomeFeatures = true;
         @RequiresRestart
         public boolean commonOres = true;
         public boolean lavaBoats = true;

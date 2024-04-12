@@ -25,7 +25,7 @@ public class VanillaBiomeParametersMixin {
      */
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
-        if (SpeedrunnerMod.options().main.betterBiomes && SpeedrunnerMod.options().main.customBiomes) {
+        if (SpeedrunnerMod.options().main.betterBiomes && SpeedrunnerMod.options().main.customBiomesAndCustomBiomeFeatures) {
             this.commonBiomes = new RegistryKey[][]{
                     {ModBiomes.SPEEDRUNNERS_WASTELAND_KEY,
                             ModBiomes.SPEEDRUNNERS_WASTELAND_KEY,
@@ -79,7 +79,7 @@ public class VanillaBiomeParametersMixin {
                             BiomeKeys.DESERT,
                             BiomeKeys.DESERT,
                             BiomeKeys.DESERT}};
-        } else if (SpeedrunnerMod.options().main.customBiomes) {
+        } else if (SpeedrunnerMod.options().main.customBiomesAndCustomBiomeFeatures) {
             this.commonBiomes = new RegistryKey[][]{
                     {ModBiomes.SPEEDRUNNERS_WASTELAND_KEY,
                             ModBiomes.SPEEDRUNNERS_WASTELAND_KEY,

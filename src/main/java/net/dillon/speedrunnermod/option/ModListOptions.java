@@ -126,14 +126,14 @@ public class ModListOptions {
     public static final CyclingOption<Boolean> FASTER_SPAWNERS =
             CyclingOption.create("speedrunnermod.options.faster_spawners",
                     new TranslatableText("speedrunnermod.options.faster_spawners.tooltip"), gameOptions ->
-                            SpeedrunnerMod.options().main.customBiomes, (gameOptions, option, newValue) ->
-                            SpeedrunnerMod.options().main.customBiomes = newValue);
+                            SpeedrunnerMod.options().main.fasterSpawners, (gameOptions, option, newValue) ->
+                            SpeedrunnerMod.options().main.fasterSpawners = newValue);
 
     public static final CyclingOption<Boolean> CUSTOM_BIOMES_AND_CUSTOM_BIOME_FEATURES =
-            CyclingOption.create("speedrunnermod.options.custom_biomes",
-                    new TranslatableText("speedrunnermod.options.custom_biomes.tooltip"), gameOptions ->
-                            SpeedrunnerMod.options().main.customBiomes, (gameOptions, option, newValue) ->
-                            SpeedrunnerMod.options().main.customBiomes = newValue);
+            CyclingOption.create("speedrunnermod.options.custom_biomes_and_custom_biome_features",
+                    new TranslatableText("speedrunnermod.options.custom_biomes_and_custom_biome_features.tooltip"), gameOptions ->
+                            SpeedrunnerMod.options().main.customBiomesAndCustomBiomeFeatures, (gameOptions, option, newValue) ->
+                            SpeedrunnerMod.options().main.customBiomesAndCustomBiomeFeatures = newValue);
 
     public static final CyclingOption<Boolean> COMMON_ORES =
             CyclingOption.create("speedrunnermod.options.common_ores",

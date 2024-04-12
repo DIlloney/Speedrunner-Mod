@@ -151,7 +151,7 @@ public class SpeedrunnerMod implements ModInitializer {
         options().main.killGhastOnFireball = false;
         options().main.betterVillagerTrades = true;
         options().main.fireproofItems = true;
-        options().main.customBiomes = true;
+        options().main.customBiomesAndCustomBiomeFeatures = true;
         options().main.commonOres = true;
         options().main.lavaBoats = true;
         options().main.netherWater = true;

@@ -97,7 +97,7 @@ public class RestartRequiredScreen extends AbstractModScreen {
         currentBetterBiomes = options().main.betterBiomes;
         currentDoomMode = options().main.doomMode;
         currentBetterVillagerTrades = options().main.betterVillagerTrades;
-        currentCustomBiomes = options().main.customBiomes;
+        currentCustomBiomes = options().main.customBiomesAndCustomBiomeFeatures;
         currentCommonOres = options().main.commonOres;
         currentStrongholdDistance = options().main.strongholdDistance;
         currentStrongholdSpread = options().main.strongholdSpread;
@@ -115,7 +115,7 @@ public class RestartRequiredScreen extends AbstractModScreen {
                 currentBetterBiomes != options().main.betterBiomes ||
                 currentDoomMode != options().main.doomMode ||
                 currentBetterVillagerTrades != options().main.betterVillagerTrades ||
-                currentCustomBiomes != options().main.customBiomes ||
+                currentCustomBiomes != options().main.customBiomesAndCustomBiomeFeatures ||
                 currentCommonOres != options().main.commonOres ||
                 currentStrongholdDistance != options().main.strongholdDistance ||
                 currentStrongholdSpread != options().main.strongholdSpread ||
@@ -133,7 +133,7 @@ public class RestartRequiredScreen extends AbstractModScreen {
         options().main.betterBiomes = currentBetterBiomes;
         options().main.doomMode = currentDoomMode;
         options().main.betterVillagerTrades = currentBetterVillagerTrades;
-        options().main.customBiomes = currentCustomBiomes;
+        options().main.customBiomesAndCustomBiomeFeatures = currentCustomBiomes;
         options().main.commonOres = currentCommonOres;
         options().main.strongholdDistance = currentStrongholdDistance;
         options().main.strongholdSpread = currentStrongholdSpread;
