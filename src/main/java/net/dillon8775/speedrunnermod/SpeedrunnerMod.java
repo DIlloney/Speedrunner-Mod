@@ -73,7 +73,7 @@ public class SpeedrunnerMod implements ModInitializer {
      * <p><b>For client options, refer to</b> {@link SpeedrunnerModClient}.</p>
      */
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.9.3";
+    public static final String MOD_VERSION = "v1.9.3.1";
     public static final String VERSION = "Version: " + MOD_VERSION;
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
     public static final String WIKI_LINK = "https://sites.google.com/view/dillon8775/the-speedrunner-mod";
