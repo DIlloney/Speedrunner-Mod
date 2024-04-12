@@ -8,7 +8,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -59,16 +58,16 @@ public class ModItems {
             ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 0, -0.5F,
             new Item.Settings());
     public static final Item SPEEDRUNNER_HELMET = new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, EquipmentSlot.HEAD,
+            ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.HELMET,
             new Item.Settings());
     public static final Item SPEEDRUNNER_CHESTPLATE = new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, EquipmentSlot.CHEST,
+            ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.CHESTPLATE,
             new Item.Settings());
     public static final Item SPEEDRUNNER_LEGGINGS = new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, EquipmentSlot.LEGS,
+            ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.LEGGINGS,
             new Item.Settings());
     public static final Item SPEEDRUNNER_BOOTS = new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, EquipmentSlot.FEET,
+            ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.BOOTS,
             new Item.Settings());
     public static final Item SPEEDRUNNER_BOW = new SpeedrunnerBowItem(new Item.Settings());
     public static final Item SPEEDRUNNER_CROSSBOW = new SpeedrunnerCrossbowItem(new Item.Settings());
@@ -99,16 +98,16 @@ public class ModItems {
             ModToolMaterials.GOLDEN_SPEEDRUNNER, 0, -0.5F,
             new Item.Settings());
     public static final Item GOLDEN_SPEEDRUNNER_HELMET = new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.HEAD,
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.HELMET,
             new Item.Settings());
     public static final Item GOLDEN_SPEEDRUNNER_CHESTPLATE = new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.CHEST,
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.CHESTPLATE,
             new Item.Settings());
     public static final Item GOLDEN_SPEEDRUNNER_LEGGINGS = new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.LEGS,
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.LEGGINGS,
             new Item.Settings());
     public static final Item GOLDEN_SPEEDRUNNER_BOOTS = new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.FEET,
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.BOOTS,
             new Item.Settings());
     public static final Item SPEEDRUNNER_BULK = new Item(
             new Item.Settings().rarity(Rarity.RARE).food(ModFoodComponents.SPEEDRUNNER_BULK)) {

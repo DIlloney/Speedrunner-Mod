@@ -112,17 +112,15 @@
     "client.hud.DebugModText",
     "client.render.CustomWorldEvents",
     "client.screen.CreateWorldScreenMixin",
-    "client.screen.CreditsScreenMixin",
     "client.screen.DeathScreenMixin",
     "client.screen.GameMenuScreenMixin",
+    "client.screen.LogoDrawerMixin",
     "client.screen.MinecraftClientMixin",
     "client.screen.OptionsScreenMixin",
     "client.screen.TitleScreenMixin",
     "client.Fog",
-    "client.GameOptionsAccessor",
     "client.IncreasedBrightness",
-    "client.Keybindings",
-    "client.SeenCreditsAccessor"
+    "client.Keybindings"
   ],
   "server": [
   ],

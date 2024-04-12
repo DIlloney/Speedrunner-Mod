@@ -108,7 +108,6 @@ public class ModTexts {
     public static final String fB = "§b";
     public static final String fBfL = "§b§l";
     public static final String fR = "§r";
-    public static final String fL = "§l";
 
     public static Text fText(String formattedText) {
         return Text.literal(formattedText);

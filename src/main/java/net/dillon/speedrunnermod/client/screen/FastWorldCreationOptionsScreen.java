@@ -7,7 +7,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ButtonListWidget;
+import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
 
@@ -22,7 +22,7 @@ public class FastWorldCreationOptionsScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        this.list = new ButtonListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
+        this.list = new OptionListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
         this.list.addAll(fwcOptions());
         this.addSelectableChild(this.list);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);

@@ -42,7 +42,7 @@ public class ResetOptionsConfirmScreen extends AbstractModScreen {
 
     @Override
     public void renderCustomText(MatrixStack matrices) {
-        drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.reset_options_confirm"), this.width / 2, 110, 16777215);
+        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.reset_options_confirm"), this.width / 2, 110, 16777215);
     }
 
     @Override

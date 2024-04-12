@@ -184,7 +184,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
 
             if (this.getHealth() <= 150 && entity instanceof ProjectileEntity projectile) {
                 if (projectile.getOwner() != null) {
-                    projectile.getOwner().damage(DamageSource.GENERIC, MathUtil.randomFloat(1.0F, 3.0F));
+                    projectile.getOwner().damage(projectile.getOwner().getDamageSources().generic(), MathUtil.randomFloat(1.0F, 3.0F));
                 }
                 return false;
             }

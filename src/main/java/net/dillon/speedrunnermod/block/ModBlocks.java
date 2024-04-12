@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.block;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.util.ModSignTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -12,7 +11,6 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
@@ -83,48 +81,56 @@ public class ModBlocks {
             .sounds(BlockSoundGroup.WOOD));
     public static final Block SPEEDRUNNER_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
-            .sounds(BlockSoundGroup.WOOD), SoundEvents.BLOCK_FENCE_GATE_CLOSE, SoundEvents.BLOCK_FENCE_GATE_OPEN);
+            .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
     public static final Block WOODEN_SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.3F)
             .nonOpaque()
             .allowsSpawning(Blocks::never)
-            .sounds(BlockSoundGroup.WOOD), SoundEvents.BLOCK_WOODEN_TRAPDOOR_CLOSE, SoundEvents.BLOCK_WOODEN_TRAPDOOR_OPEN);
+            .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
     public static final Block SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings.of(Material.METAL)
             .requiresTool()
             .strength(2.5F)
             .nonOpaque()
             .allowsSpawning(Blocks::never)
-            .sounds(BlockSoundGroup.METAL), SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE, SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN);
+            .sounds(BlockSoundGroup.METAL), BlockSetType.OAK);
     public static final Block SPEEDRUNNER_BUTTON = new ButtonBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(0.35F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), 30, true, SoundEvents.BLOCK_WOODEN_BUTTON_CLICK_OFF, SoundEvents.BLOCK_WOODEN_BUTTON_CLICK_ON);
+            .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK, 30, true);
     public static final Block WOODEN_SPEEDRUNNER_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(0.35F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), SoundEvents.BLOCK_WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundEvents.BLOCK_WOODEN_PRESSURE_PLATE_CLICK_ON);
+            .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
     public static final Block SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE = new WeightedPressurePlateBlock(100, FabricBlockSettings.of(Material.METAL)
             .requiresTool()
             .strength(0.5F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), SoundEvents.BLOCK_METAL_PRESSURE_PLATE_CLICK_OFF, SoundEvents.BLOCK_METAL_PRESSURE_PLATE_CLICK_ON);
+            .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
     public static final Block WOODEN_SPEEDRUNNER_DOOR = new DoorBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.3F)
             .nonOpaque()
-            .sounds(BlockSoundGroup.WOOD), SoundEvents.BLOCK_WOODEN_DOOR_CLOSE, SoundEvents.BLOCK_WOODEN_DOOR_OPEN);
+            .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
     public static final Block SPEEDRUNNER_DOOR = new DoorBlock(FabricBlockSettings.of(Material.METAL)
             .requiresTool()
             .strength(2.5F)
             .nonOpaque()
-            .sounds(BlockSoundGroup.METAL), SoundEvents.BLOCK_IRON_DOOR_CLOSE, SoundEvents.BLOCK_IRON_DOOR_OPEN);
+            .sounds(BlockSoundGroup.METAL), BlockSetType.OAK);
     public static final Block SPEEDRUNNER_SIGN = new SignBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), ModSignTypes.SPEEDRUNNER);
+            .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
     public static final Block SPEEDRUNNER_WALL_SIGN = new WallSignBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), ModSignTypes.SPEEDRUNNER);
+            .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
+    public static final Block SPEEDRUNNER_HANGING_SIGN = new HangingSignBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+            .strength(1.0F)
+            .noCollision()
+            .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
+    public static final Block SPEEDRUNNER_HANGING_WALL_SIGN = new HangingSignBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+            .strength(1.0F)
+            .noCollision()
+            .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
     public static final Block DEAD_SPEEDRUNNER_BUSH = new DeadBushBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT)
             .breakInstantly()
             .noCollision()
@@ -241,6 +247,8 @@ public class ModBlocks {
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_door"), SPEEDRUNNER_DOOR);
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_sign"), SPEEDRUNNER_SIGN);
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_wall_sign"), SPEEDRUNNER_WALL_SIGN);
+        Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_hanging_sign"), SPEEDRUNNER_HANGING_SIGN);
+        Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_hanging_wall_sign"), SPEEDRUNNER_HANGING_WALL_SIGN);
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_bush"), DEAD_SPEEDRUNNER_BUSH);
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "potted_dead_speedrunner_bush"), POTTED_DEAD_SPEEDRUNNER_BUSH);
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunners_workbench"), SPEEDRUNNERS_WORKBENCH);

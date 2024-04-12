@@ -13,7 +13,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.Vec3d;
@@ -26,7 +25,6 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -121,14 +119,6 @@ public abstract class LivingEntityMixin extends Entity {
         } else {
             this.setVelocity(this.getVelocity().add(0.0D, 0.04D, 0.0D));
         }
-    }
-
-    /**
-     * Redirects the preferred equipment slot to be either a shield or a speedrunner shield.
-     */
-    @Redirect(method = "getPreferredEquipmentSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 2))
-    private static boolean getPreferredEquipmentSlot(ItemStack stack, Item item) {
-        return stack.isIn(ModItemTags.SHIELDS);
     }
 
     /**

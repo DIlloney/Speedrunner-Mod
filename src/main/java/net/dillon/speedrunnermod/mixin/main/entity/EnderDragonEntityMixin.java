@@ -14,6 +14,7 @@ import net.minecraft.entity.mob.GiantEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.*;
@@ -126,7 +127,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
             if (DOOM_MODE && this.getHealth() <= 1.0F && options().advanced.dragonImmunityFromGiantAndWither && this.isGiantOrWitherAlive()) {
                 return false;
             } else {
-                if (source.getAttacker() instanceof PlayerEntity || source.isExplosive()) {
+                if (source.getAttacker() instanceof PlayerEntity || source.isIn(DamageTypeTags.ALWAYS_HURTS_ENDER_DRAGONS)) {
                     float f = this.getHealth();
                     this.parentDamage(source, amount);
                     if (this.isDead() && !this.phaseManager.getCurrent().isSittingOrHovering()) {

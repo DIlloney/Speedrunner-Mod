@@ -3,7 +3,6 @@ package net.dillon.speedrunnermod.mixin.main.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,6 +29,6 @@ public class BlockMixin {
                 fallDamage = fallDamage / 1.25F;
             }
         }
-        entity.handleFallDamage(fallDistance, fallDamage, DamageSource.FALL);
+        entity.handleFallDamage(fallDistance, fallDamage, entity.getDamageSources().fall());
     }
 }

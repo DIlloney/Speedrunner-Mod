@@ -7,6 +7,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.passive.GolemEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -68,7 +69,7 @@ public abstract class ShulkerEntityMixin extends GolemEntity {
         if (!super.damage(source, amount)) {
             return false;
         } else {
-            if (source.isProjectile()) {
+            if (source.isIn(DamageTypeTags.IS_PROJECTILE)) {
                 entity2 = source.getSource();
                 if (entity2 != null && entity2.getType() == EntityType.SHULKER_BULLET) {
                     this.spawnNewShulker();

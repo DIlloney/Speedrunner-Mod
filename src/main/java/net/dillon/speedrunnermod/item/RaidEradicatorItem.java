@@ -6,7 +6,6 @@ import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.dillon.speedrunnermod.util.TimeCalculator;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.WitchEntity;
@@ -79,7 +78,7 @@ public class RaidEradicatorItem extends Item {
                                             SpeedrunnerMod.debug("Killed raider entity, " + raider.getName().toString() + " (" + raider.getUuidAsString() + ").");
                                         }
                                     }
-                                    player.damage(DamageSource.GENERIC, player.getHealth());
+                                    player.damage(player.getDamageSources().generic(), player.getHealth());
                                     player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.success").formatted(Formatting.RED), false);
                                 }
                             }, TimeCalculator.secondsToMilliseconds(3));

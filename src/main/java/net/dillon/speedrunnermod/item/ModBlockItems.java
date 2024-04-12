@@ -69,6 +69,8 @@ public class ModBlockItems {
             new Item.Settings());
     public static final BlockItem SPEEDRUNNER_SIGN = new SignItem(
             new Item.Settings().maxCount(16), ModBlocks.SPEEDRUNNER_SIGN, ModBlocks.SPEEDRUNNER_WALL_SIGN);
+    public static final BlockItem SPEEDRUNNER_HANGING_SIGN = new HangingSignItem(
+            ModBlocks.SPEEDRUNNER_HANGING_SIGN, ModBlocks.SPEEDRUNNER_HANGING_WALL_SIGN, new Item.Settings().maxCount(16));
     public static final BlockItem DEAD_SPEEDRUNNER_BUSH = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_BUSH,
             new Item.Settings());
     public static final Item SPEEDRUNNERS_WORKBENCH = new BlockItem(ModBlocks.SPEEDRUNNERS_WORKBENCH,
@@ -140,6 +142,7 @@ public class ModBlockItems {
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_door"), WOODEN_SPEEDRUNNER_DOOR);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_door"), SPEEDRUNNER_DOOR);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_sign"), SPEEDRUNNER_SIGN);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_hanging_sign"), SPEEDRUNNER_HANGING_SIGN);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_bush"), DEAD_SPEEDRUNNER_BUSH);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunners_workbench"), SPEEDRUNNERS_WORKBENCH);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_block"), SPEEDRUNNER_BLOCK);

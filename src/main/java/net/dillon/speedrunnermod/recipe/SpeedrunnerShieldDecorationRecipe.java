@@ -9,6 +9,7 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -19,6 +20,7 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
         super(id, category);
     }
 
+    @Override
     public boolean matches(CraftingInventory craftingInventory, World world) {
         ItemStack itemStack = ItemStack.EMPTY;
         ItemStack itemStack2 = ItemStack.EMPTY;
@@ -53,12 +55,13 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
         return !itemStack.isEmpty() && !itemStack2.isEmpty();
     }
 
-    public ItemStack craft(CraftingInventory craftingInventory) {
+    @Override
+    public ItemStack craft(CraftingInventory inventory, DynamicRegistryManager registryManager) {
         ItemStack itemStack = ItemStack.EMPTY;
         ItemStack itemStack2 = ItemStack.EMPTY;
 
-        for(int i = 0; i < craftingInventory.size(); ++i) {
-            ItemStack itemStack3 = craftingInventory.getStack(i);
+        for(int i = 0; i < inventory.size(); ++i) {
+            ItemStack itemStack3 = inventory.getStack(i);
             if (!itemStack3.isEmpty()) {
                 if (itemStack3.getItem() instanceof BannerItem) {
                     itemStack = itemStack3;

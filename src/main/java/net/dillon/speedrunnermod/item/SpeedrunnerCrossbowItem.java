@@ -38,7 +38,7 @@ public class SpeedrunnerCrossbowItem extends CrossbowItem {
             setCharged(itemStack, false);
             return TypedActionResult.consume(itemStack);
         }
-        if (!user.getArrowType(itemStack).isEmpty()) {
+        if (!user.getProjectileType(itemStack).isEmpty()) {
             if (!isCharged(itemStack)) {
                 this.charged = false;
                 this.loaded = false;

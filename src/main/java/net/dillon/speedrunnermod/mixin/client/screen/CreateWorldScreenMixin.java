@@ -6,7 +6,9 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
+import net.minecraft.client.gui.screen.world.WorldCreator;
 import net.minecraft.world.Difficulty;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,12 +20,8 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 @Environment(EnvType.CLIENT)
 @Mixin(CreateWorldScreen.class)
 public abstract class CreateWorldScreenMixin {
-    @Shadow
-    private CreateWorldScreen.Mode currentMode;
-    @Shadow
-    private boolean cheatsEnabled;
-    @Shadow
-    private Difficulty currentDifficulty;
+    @Shadow @Final
+    WorldCreator worldCreator;
     @Shadow
     protected abstract void createLevel();
 
@@ -58,27 +56,27 @@ public abstract class CreateWorldScreenMixin {
                     break;
             }
 
-            CreateWorldScreen.Mode gameMode = null;
+            WorldCreator.Mode gameMode = null;
             switch (options().client.gameMode) {
                 case SURVIVAL:
-                    gameMode = CreateWorldScreen.Mode.SURVIVAL;
+                    gameMode = WorldCreator.Mode.SURVIVAL;
                     break;
                 case CREATIVE:
-                    gameMode = CreateWorldScreen.Mode.CREATIVE;
+                    gameMode = WorldCreator.Mode.CREATIVE;
                     break;
                 case HARDCORE:
-                    gameMode = CreateWorldScreen.Mode.HARDCORE;
+                    gameMode = WorldCreator.Mode.HARDCORE;
                     break;
                 case SPECTATOR:
-                    gameMode = CreateWorldScreen.Mode.DEBUG;
+                    gameMode = WorldCreator.Mode.DEBUG;
                     break;
             }
 
             assert gameMode != null;
             assert difficulty != null;
-            currentMode = gameMode;
-            currentDifficulty = difficulty;
-            cheatsEnabled = options().client.allowCheats;
+            worldCreator.setGameMode(gameMode);
+            worldCreator.setDifficulty(difficulty);
+            worldCreator.setCheatsEnabled(options().client.allowCheats);
             createLevel();
         }
     }

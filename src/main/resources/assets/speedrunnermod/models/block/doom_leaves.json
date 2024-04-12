@@ -1,6 +1,0 @@
-{
-  "parent": "block/leaves",
-  "textures": {
-    "all": "speedrunnermod:block/doom_leaves"
-  }
-}

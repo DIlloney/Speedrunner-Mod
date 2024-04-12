@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod;
 
+import net.dillon.speedrunnermod.block.ModBlockFamilies;
 import net.dillon.speedrunnermod.block.ModBlocks;
 import net.dillon.speedrunnermod.block.ModMaterials;
 import net.dillon.speedrunnermod.enchantment.ModEnchantments;
@@ -17,7 +18,6 @@ import net.dillon.speedrunnermod.tag.ModFluidTags;
 import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.dillon.speedrunnermod.tag.ModStructureTags;
 import net.dillon.speedrunnermod.util.MathUtil;
-import net.dillon.speedrunnermod.util.ModSignTypes;
 import net.dillon.speedrunnermod.village.ModTradeOffers;
 import net.dillon.speedrunnermod.village.ModVillagers;
 import net.dillon.speedrunnermod.world.ModWorldGen;
@@ -37,7 +37,7 @@ import static net.dillon.speedrunnermod.option.ModOptions.createListOption;
  */
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.9.4";
+    public static final String MOD_VERSION = "v1.9.5";
     public static final String VERSION = "Version: " + MOD_VERSION;
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
     public static final String WIKI_LINK = "https://sites.google.com/view/dillon8775/the-speedrunner-mod";
@@ -116,10 +116,10 @@ public class SpeedrunnerMod implements ModInitializer {
         ModBoatTypes.init();
 
         ModMaterials.init();
-        ModSignTypes.init();
         ModItems.init();
         ModBlocks.init();
         ModBlockItems.init();
+        ModBlockFamilies.init();
         ModItemGroups.init();
 
         ModStructureTags.init();

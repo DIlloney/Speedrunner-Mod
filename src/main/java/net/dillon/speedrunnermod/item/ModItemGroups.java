@@ -61,6 +61,7 @@ public class ModItemGroups {
         addToItemGroup(ModBlockItems.WOODEN_SPEEDRUNNER_DOOR);
         addToItemGroup(ModBlockItems.SPEEDRUNNER_DOOR);
         addToItemGroup(ModBlockItems.SPEEDRUNNER_SIGN);
+        addToItemGroup(ModBlockItems.SPEEDRUNNER_HANGING_SIGN);
         addToItemGroup(ModBlockItems.SPEEDRUNNERS_WORKBENCH);
         addToItemGroup(ModItems.SPEEDRUNNER_SWORD);
         addToItemGroup(ModItems.SPEEDRUNNER_SHOVEL);

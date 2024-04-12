@@ -79,16 +79,16 @@ public class LeaderboardsIneligibleScreen extends AbstractModScreen {
     @Override
     public void renderCustomText(MatrixStack matrices) {
         if (needsRestartFromEnablingLeaderboardsMode) {
-            drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart_required.line1"), this.width / 2, 110, 16777215);
-            drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart_required.line2"), this.width / 2, 130, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart_required.line1"), this.width / 2, 110, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart_required.line2"), this.width / 2, 130, 16777215);
         } else if (Leaderboards.noOptionsWereChanged()) {
-            drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line1"), this.width / 2, 80, 16777215);
-            drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line2"), this.width / 2, 100, 16777215);
-            drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line3"), this.width / 2, 120, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line1"), this.width / 2, 80, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line2"), this.width / 2, 100, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line3"), this.width / 2, 120, 16777215);
         } else {
-            drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible.line1"), this.width / 2, 80, 16777215);
-            drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible.line2"), this.width / 2, 100, 16777215);
-            drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible_options.line3"), this.width / 2, 120, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible.line1"), this.width / 2, 80, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible.line2"), this.width / 2, 100, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible_options.line3"), this.width / 2, 120, 16777215);
         }
     }
 

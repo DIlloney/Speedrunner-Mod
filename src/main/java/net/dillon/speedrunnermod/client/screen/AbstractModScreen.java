@@ -14,8 +14,8 @@ import net.minecraft.client.gui.screen.ConfirmLinkScreen;
 import net.minecraft.client.gui.screen.MessageScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
-import net.minecraft.client.gui.widget.ButtonListWidget;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.ScreenTexts;
@@ -39,7 +39,7 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
     protected final GameOptions options = MinecraftClient.getInstance().options;
     protected final Screen parent;
     protected ButtonWidget helpButton, saveButton, openOptionsFileButton, resetOptionsButton, openOptionsDirectoryButton, doneButton;
-    protected ButtonListWidget list;
+    protected OptionListWidget list;
 
     public AbstractModScreen(Screen parent, GameOptions options, Text title) {
         super(parent, options, title);
@@ -126,11 +126,11 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
             int rightSide = leftSide + 160;
             int farRightSide = rightSide + 267;
             int height = this.height - 24;
-            drawCenteredText(matrices, this.textRenderer, SpeedrunnerMod.VERSION, farRightSide, height, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, SpeedrunnerMod.VERSION, farRightSide, height, 16777215);
         }
 
         if (this.shouldRenderTitleText()) {
-            drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 15, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.title, this.width / 2, 15, 16777215);
         }
 
         super.render(matrices, mouseX, mouseY, delta);

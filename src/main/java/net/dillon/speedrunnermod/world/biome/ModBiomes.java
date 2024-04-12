@@ -70,7 +70,7 @@ public class ModBiomes {
         DefaultBiomeFeatures.addDefaultVegetation(lookupBackedBuilder);
 
         return new Biome.Builder()
-                .precipitation(Biome.Precipitation.RAIN)
+                .precipitation(true)
                 .temperature(0.3F)
                 .downfall(0.7F)
                 .effects(new BiomeEffects.Builder()

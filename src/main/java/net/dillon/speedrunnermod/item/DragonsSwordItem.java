@@ -6,7 +6,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,7 +41,7 @@ public class DragonsSwordItem extends SwordItem {
                 stack.damage(ModToolMaterials.DRAGONS_SWORD.getDurability(), attacker, (e) -> attacker.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
                 dragon.setHealth(0.0F);
             } else {
-                attacker.damage(DamageSource.mob(target), MathUtil.randomFloat(2.0F, 3.0F));
+                attacker.damage(attacker.getDamageSources().mobAttack(attacker), MathUtil.randomFloat(2.0F, 3.0F));
                 attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, TickCalculator.seconds(5), 0, false, true, true));
                 attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, TickCalculator.seconds(2), 0, false, true, true));
                 if (attacker instanceof PlayerEntity) {

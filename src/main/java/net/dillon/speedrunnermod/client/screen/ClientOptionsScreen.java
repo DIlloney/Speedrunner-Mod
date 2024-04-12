@@ -7,7 +7,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ButtonListWidget;
+import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.GameOptions;
 
 import java.io.File;
@@ -21,7 +21,7 @@ public class ClientOptionsScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        this.list = new ButtonListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
+        this.list = new OptionListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
         this.list.addSingleOptionEntry(ModListOptions.FOG);
         this.list.addSingleOptionEntry(this.options.getGamma());
         this.list.addSingleOptionEntry(ModListOptions.ITEM_TOOLTIPS);

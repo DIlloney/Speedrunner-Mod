@@ -42,7 +42,7 @@ class LeaderboardsIneligibleOptionsScreen extends AbstractModScreen {
         boolean longList = Leaderboards.ineligibleOptions.size() > 12;
         int textHeight = longList ? 35 : 50;
         for (int i = 0; i < Leaderboards.ineligibleOptions.size(); i++) {
-            drawCenteredText(matrices, this.textRenderer, Leaderboards.ineligibleOptions.get(i), this.width / 2, textHeight, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, Leaderboards.ineligibleOptions.get(i), this.width / 2, textHeight, 16777215);
             textHeight = longList ? textHeight + 10 : textHeight + 20;
         }
     }

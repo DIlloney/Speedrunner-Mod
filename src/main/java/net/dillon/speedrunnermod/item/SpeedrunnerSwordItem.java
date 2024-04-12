@@ -3,7 +3,6 @@ package net.dillon.speedrunnermod.item;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.GiantEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -32,11 +31,13 @@ public class SpeedrunnerSwordItem extends SwordItem {
      */
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target instanceof WitherEntity) {
-            target.damage(DamageSource.player((PlayerEntity)attacker), getAttackDamage() * 4.45F);
-        } else if (target instanceof GiantEntity giant) {
-            if (!(giant.getHealth() <= 150)) {
-                target.damage(DamageSource.player((PlayerEntity)attacker), getAttackDamage() * 2.25F);
+        if (attacker instanceof PlayerEntity) {
+            if (target instanceof WitherEntity) {
+                target.damage(attacker.getDamageSources().playerAttack((PlayerEntity)attacker), getAttackDamage() * 4.45F);
+            } else if (target instanceof GiantEntity giant) {
+                if (!(giant.getHealth() <= 150)) {
+                    target.damage(attacker.getDamageSources().playerAttack((PlayerEntity)attacker), getAttackDamage() * 2.25F);
+                }
             }
         }
         return super.postHit(stack, target, attacker);

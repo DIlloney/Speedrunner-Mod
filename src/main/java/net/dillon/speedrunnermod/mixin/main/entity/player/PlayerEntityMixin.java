@@ -131,7 +131,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                     this.world.setBlockState(pos, Blocks.LAVA.getDefaultState());
                 }
                 this.teleport(0.5, y, 0.5, true);
-                this.damage(DamageSource.GENERIC, 1000000.0F);
+                this.damage(this.getDamageSources().generic(), 1000000.0F);
                 this.world.playSound(null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 10.0F, 1.0F);
             }
         } else {

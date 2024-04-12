@@ -8,7 +8,7 @@ import net.minecraft.registry.RegistryWrapper;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Used to create the JSON files from scratch using code.
+ * Used to create the world JSON files from scratch using code.
  */
 public class ModWorldGenerator extends FabricDynamicRegistryProvider {
 

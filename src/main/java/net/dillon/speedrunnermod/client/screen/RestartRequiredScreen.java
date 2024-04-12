@@ -60,8 +60,8 @@ public class RestartRequiredScreen extends AbstractModScreen {
 
     @Override
     public void renderCustomText(MatrixStack matrices) {
-        drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.restart_required.line1"), this.width / 2, 110, 16777215);
-        drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.restart_required.line2"), this.width / 2, 130, 16777215);
+        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.restart_required.line1"), this.width / 2, 110, 16777215);
+        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.restart_required.line2"), this.width / 2, 130, 16777215);
     }
 
     @Override

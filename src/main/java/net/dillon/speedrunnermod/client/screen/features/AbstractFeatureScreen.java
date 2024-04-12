@@ -129,33 +129,33 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.renderBackground(matrices);
-        drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 15, 16777215);
+        drawCenteredTextWithShadow(matrices, this.textRenderer, this.title, this.width / 2, 15, 16777215);
 
         if (this.getScreenLines() == 2) {
-            drawCenteredText(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 100, 16777215);
-            drawCenteredText(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 120, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 100, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 120, 16777215);
         } else if (this.getScreenLines() == 3) {
-            drawCenteredText(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 90, 16777215);
-            drawCenteredText(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 110, 16777215);
-            drawCenteredText(matrices, this.textRenderer, this.getThirdLineText(), this.width / 2, 130, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 90, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 110, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getThirdLineText(), this.width / 2, 130, 16777215);
         } else if (this.getScreenLines() == 4) {
-            drawCenteredText(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 80, 16777215);
-            drawCenteredText(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 100, 16777215);
-            drawCenteredText(matrices, this.textRenderer, this.getThirdLineText(), this.width / 2, 120, 16777215);
-            drawCenteredText(matrices, this.textRenderer, this.getFourthLineText(), this.width / 2, 140, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 80, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 100, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getThirdLineText(), this.width / 2, 120, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFourthLineText(), this.width / 2, 140, 16777215);
         } else if (this.getScreenLines() == 5) {
-            drawCenteredText(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 70, 16777215);
-            drawCenteredText(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 90, 16777215);
-            drawCenteredText(matrices, this.textRenderer, this.getThirdLineText(), this.width / 2, 110, 16777215);
-            drawCenteredText(matrices, this.textRenderer, this.getFourthLineText(), this.width / 2, 130, 16777215);
-            drawCenteredText(matrices, this.textRenderer, this.getFifthLineText(), this.width / 2, 150, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 70, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 90, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getThirdLineText(), this.width / 2, 110, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFourthLineText(), this.width / 2, 130, 16777215);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFifthLineText(), this.width / 2, 150, 16777215);
         }
 
         int leftSide = this.width / 2 - 155;
         int rightSide = leftSide + 160;
         int farRightSide = rightSide + 273;
         int height = this.height - 24;
-        drawCenteredText(matrices, this.textRenderer, Text.literal("§lPage:§r " + this.pageNumber + "/" + this.getMaxPages()), farRightSide, height, 16777215);
+        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.literal("§lPage:§r " + this.pageNumber + "/" + this.getMaxPages()), farRightSide, height, 16777215);
 
         if (renderImage) {
             RenderSystem.setShaderTexture(0, this.getImage());

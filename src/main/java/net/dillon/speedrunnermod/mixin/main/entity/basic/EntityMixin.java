@@ -4,7 +4,7 @@ import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.entity.ModBoatTypes;
 import net.dillon.speedrunnermod.util.Author;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -25,6 +25,8 @@ public abstract class EntityMixin {
     public abstract Entity getVehicle();
     @Shadow
     public World world;
+    @Shadow
+    public abstract DamageSources getDamageSources();
 
     /**
      * Decreases time set on fire for from lava.
@@ -51,7 +53,7 @@ public abstract class EntityMixin {
         Entity vehicle = getVehicle();
         if (options().main.lavaBoats && vehicle instanceof BoatEntity boat && ModBoatTypes.isFireproofBoat(boat.getVariant())) {
             if (fireTicks > 0 && fireTicks % 20 == 0) {
-                ((Entity)(Object)this).damage(DamageSource.ON_FIRE, 1.0F);
+                ((Entity)(Object)this).damage(this.getDamageSources().onFire(), 1.0F);
             }
             ci.cancel();
         }

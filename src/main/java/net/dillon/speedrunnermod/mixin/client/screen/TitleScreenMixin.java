@@ -26,9 +26,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
@@ -153,20 +151,6 @@ public class TitleScreenMixin extends Screen {
     }
 
     /**
-     * <p>Fixes the {@code speedrunner edition} logo rendering incorrectly.</p>
-     * <p>Using {@link ModifyArgs}, we can get the values inside the "drawTexture" method, and overwrite those values.</p>
-     */
-    @ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/TitleScreen;drawTexture(Lnet/minecraft/client/util/math/MatrixStack;IIFFIIII)V"))
-    private void speedrunnerEdition(Args args) {
-        if (options().advanced.fixSpeedrunnerEditionTextOffset) {
-            int j = this.width / 2 - 137;
-            args.set(1, j + 58);
-            args.set(5, 184);
-            args.set(7, 184);
-        }
-    }
-
-    /**
      * Adds additional textures to the title screen.
      */
     @Inject(method = "render", at = @At("TAIL"))
@@ -201,7 +185,7 @@ public class TitleScreenMixin extends Screen {
         float f = this.doBackgroundFade ? (float)(Util.getMeasuringTimeMs() - this.backgroundFadeStart) / 1000.0F : 1.0F;
         float g = this.doBackgroundFade ? MathHelper.clamp(f - 1.0F, 0.0F, 1.0F) : 1.0F;
         int l = MathHelper.ceil(g * 255.0F) << 24;
-        drawStringWithShadow(matrices, this.textRenderer, SpeedrunnerMod.THE_SPEEDRUNNER_MOD_STRING + " " + SpeedrunnerMod.MOD_VERSION, 2, this.height - 20, 16777215 | l);
+        drawTextWithShadow(matrices, this.textRenderer, SpeedrunnerMod.THE_SPEEDRUNNER_MOD_STRING + " " + SpeedrunnerMod.MOD_VERSION, 2, this.height - 20, 16777215 | l);
     }
 
     /**

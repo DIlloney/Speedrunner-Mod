@@ -56,9 +56,9 @@ public class SpeedrunIGTMissingScreen extends AbstractModScreen {
 
     @Override
     public void renderCustomText(MatrixStack matrices) {
-        drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line1"), this.width / 2, 90, 16777215);
-        drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line2"), this.width / 2, 110, 16777215);
-        drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line3"), this.width / 2, 130, 16777215);
+        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line1"), this.width / 2, 90, 16777215);
+        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line2"), this.width / 2, 110, 16777215);
+        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line3"), this.width / 2, 130, 16777215);
     }
 
     @Override

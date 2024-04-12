@@ -54,7 +54,7 @@ public class DeathScreenMixin extends Screen {
     @Inject(method = "render", at = @At("TAIL"))
     private void displayDeathCords(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if (options().client.showDeathCords) {
-            DeathScreen.drawCenteredText(matrices, this.textRenderer, SpeedrunnerMod.deathCords(this.client.player.getX(), this.client.player.getY(), this.client.player.getZ()), this.width / 2, 115, 0xFFFFFF);
+            drawCenteredTextWithShadow(matrices, this.textRenderer, SpeedrunnerMod.deathCords(this.client.player.getX(), this.client.player.getY(), this.client.player.getZ()), this.width / 2, 115, 0xFFFFFF);
         }
     }
 }

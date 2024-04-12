@@ -43,7 +43,7 @@ public class SpeedrunnerBowItem extends BowItem {
             return;
         }
         boolean hasUnlimitedArrows = playerEntity.getAbilities().creativeMode || EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0;
-        ItemStack itemStack = playerEntity.getArrowType(stack);
+        ItemStack itemStack = playerEntity.getProjectileType(stack);
         if (itemStack.isEmpty() && !hasUnlimitedArrows) {
             return;
         }

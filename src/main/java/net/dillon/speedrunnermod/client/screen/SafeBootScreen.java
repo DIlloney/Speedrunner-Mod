@@ -46,8 +46,8 @@ public class SafeBootScreen extends AbstractModScreen {
 
     @Override
     public void renderCustomText(MatrixStack matrices) {
-        drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.options.error.line1"), this.width / 2, 100, 16777215);
-        drawCenteredText(matrices, this.textRenderer, Text.translatable("speedrunnermod.options.error.line2"), this.width / 2, 120, 16777215);
+        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.options.error.line1"), this.width / 2, 100, 16777215);
+        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.options.error.line2"), this.width / 2, 120, 16777215);
     }
 
     @Override
