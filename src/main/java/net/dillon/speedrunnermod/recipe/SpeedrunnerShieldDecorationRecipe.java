@@ -18,6 +18,7 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
         super(identifier);
     }
 
+    @Override
     public boolean matches(CraftingInventory craftingInventory, World world) {
         ItemStack itemStack = ItemStack.EMPTY;
         ItemStack itemStack2 = ItemStack.EMPTY;
@@ -52,6 +53,7 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
         return !itemStack.isEmpty() && !itemStack2.isEmpty();
     }
 
+    @Override
     public ItemStack craft(CraftingInventory craftingInventory) {
         ItemStack itemStack = ItemStack.EMPTY;
         ItemStack itemStack2 = ItemStack.EMPTY;

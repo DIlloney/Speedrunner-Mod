@@ -125,10 +125,8 @@
     "client.screen.OptionsScreenMixin",
     "client.screen.TitleScreenMixin",
     "client.Fog",
-    "client.GameOptionsAccessor",
     "client.IncreasedBrightness",
-    "client.Keybindings",
-    "client.SeenCreditsAccessor"
+    "client.Keybindings"
   ],
   "server": [
   ],
