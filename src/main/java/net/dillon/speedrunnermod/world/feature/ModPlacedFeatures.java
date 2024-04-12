@@ -106,11 +106,11 @@ public class ModPlacedFeatures {
                 BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(ModBlocks.SPEEDRUNNER_SAPLING.getDefaultState(), BlockPos.ORIGIN)), BiomePlacementModifier.of());
         PlacedFeatures.register(context, DOOM_TREE_PLACED, registryEntryLookup.getOrThrow(ModConfiguredFeatures.DOOM_TREE), VegetationPlacedFeatures.modifiers(1));
         PlacedFeatures.register(context, ORE_SPEEDRUNNER_UPPER, registryEntryLookup.getOrThrow(ModConfiguredFeatures.ORE_SPEEDRUNNER),
-                modifiersWithCount(64, HeightRangePlacementModifier.trapezoid(YOffset.fixed(80), YOffset.fixed(384))));
+                modifiersWithCount(72, HeightRangePlacementModifier.trapezoid(YOffset.fixed(80), YOffset.fixed(384))));
         PlacedFeatures.register(context, ORE_SPEEDRUNNER_MIDDLE, registryEntryLookup.getOrThrow(ModConfiguredFeatures.ORE_SPEEDRUNNER),
-                modifiersWithCount(9, HeightRangePlacementModifier.trapezoid(YOffset.fixed(-24), YOffset.fixed(56))));
+                modifiersWithCount(10, HeightRangePlacementModifier.trapezoid(YOffset.fixed(-24), YOffset.fixed(56))));
         PlacedFeatures.register(context, ORE_SPEEDRUNNER_SMALL, registryEntryLookup.getOrThrow(ModConfiguredFeatures.ORE_SPEEDRUNNER_SMALL),
-                modifiersWithCount(8, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(72))));
+                modifiersWithCount(9, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(72))));
         PlacedFeatures.register(context, ORE_SPEEDRUNNER_DELTAS, registryEntryLookup.getOrThrow(ModConfiguredFeatures.ORE_NETHER_SPEEDRUNNER),
                 modifiersWithCount(20, PlacedFeatures.TEN_ABOVE_AND_BELOW_RANGE));
         PlacedFeatures.register(context, ORE_SPEEDRUNNER_NETHER, registryEntryLookup.getOrThrow(ModConfiguredFeatures.ORE_NETHER_SPEEDRUNNER),
