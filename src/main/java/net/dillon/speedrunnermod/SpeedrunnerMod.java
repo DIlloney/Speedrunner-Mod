@@ -735,7 +735,7 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     public static int getOreDiamondBuriedChance() {
-        return 10;
+        return 101;
     }
 
     public static int getOreDiamondLargeChance() {
