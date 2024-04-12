@@ -1,0 +1,34 @@
+package net.dillon.speedrunnermod.datagen;
+
+import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.world.biome.ModBiomes;
+import net.dillon.speedrunnermod.world.feature.ModConfiguredFeatures;
+import net.dillon.speedrunnermod.world.feature.ModPlacedFeatures;
+import net.dillon.speedrunnermod.world.feature.WastelandConfiguredFeatures;
+import net.dillon.speedrunnermod.world.feature.WastelandPlacedFeatures;
+import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
+
+/**
+ * See {@link net.dillon.speedrunnermod.world} for more.
+ */
+public class SpeedrunnerModDataGenerator implements DataGeneratorEntrypoint {
+
+    @Override
+    public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
+        SpeedrunnerMod.info("Initialzing speedrunner mod data generator!");
+        FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+        pack.addProvider(ModWorldGenerator::new);
+    }
+
+    @Override
+    public void buildRegistry(RegistryBuilder registryBuilder) {
+        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, WastelandConfiguredFeatures::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, WastelandPlacedFeatures::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.BIOME, ModBiomes::bootstrap);
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:golden_leggings"
+  },
+  "addition": {
+    "item": "speedrunnermod:speedrunner_ingot"
+  },
+  "result": {
+    "item": "speedrunnermod:golden_speedrunner_leggings"
+  }
+}
