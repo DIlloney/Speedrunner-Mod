@@ -2,6 +2,7 @@ package net.dillon.speedrunnermod.mixin.main.entity;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.util.Author;
+import net.dillon.speedrunnermod.util.Authors;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -32,7 +33,7 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
     /**
      * Makes ender pearls do less damage, and implements the {@code Infinit Pearl Mode} feature to work correctly.
      */
-    @Author("DuncanRuns")
+    @Author(Authors.DUNCANRUNS)
     @Overwrite
     public void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);

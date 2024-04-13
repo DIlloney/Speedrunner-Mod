@@ -3,6 +3,7 @@ package net.dillon.speedrunnermod.mixin.main.entity.player;
 import com.mojang.authlib.GameProfile;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.util.Author;
+import net.dillon.speedrunnermod.util.Authors;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -53,7 +54,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     /**
      * Implements the {@code iCarus Mode} and {@code InfiniPearl Mode}.
      */
-    @Author("DuncanRuns")
+    @Author(Authors.DUNCANRUNS)
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
         if (this.statHandler.getStat(Stats.CUSTOM.getOrCreateStat(Stats.PLAY_TIME)) == 0) {

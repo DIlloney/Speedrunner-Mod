@@ -31,7 +31,7 @@ public class ModFuels {
         registry.add(ModBlocks.SPEEDRUNNER_FENCE, 400);
         registry.add(ModBlocks.SPEEDRUNNER_FENCE_GATE, 400);
         registry.add(ModBlocks.WOODEN_SPEEDRUNNER_DOOR, 300);
-        registry.add(ModBlocks.SPEEDRUNNER_BUTTON, 200);
+        registry.add(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON, 200);
         registry.add(ModBlocks.DEAD_SPEEDRUNNER_BUSH, 200);
 
         info("Initialized fuels.");

@@ -1,6 +1,6 @@
-// 1.19.4	2024-04-13T02:57:13.5239996	Speedrunner Mod/Tags for minecraft:item
+// 1.19.4	2024-04-13T16:40:26.8177271	Speedrunner Mod/Tags for minecraft:item
 725785c658a4a6ee6b802d7729f39af2b60304e8 data\speedrunnermod\tags\items\speedrunner_sapling_placeables.json
-ca68a44f8458e90a7cbe6e8e58b30f640b7bfa59 data\speedrunnermod\tags\items\speedrunner_fuels.json
+0ea2f44d6de61a59cf4cf10daeafb5a54a6f70ef data\speedrunnermod\tags\items\speedrunner_fuels.json
 3f628d3dbfde5fe34108d431aca132c28939486d data\speedrunnermod\tags\items\fireproof_boats.json
 82ea7d1653babb20bca9094ece9fe02429505e06 data\minecraft\tags\items\wooden_stairs.json
 0c20af3c7d177d0fc95df17d965357dd14825133 data\minecraft\tags\items\fence_gates.json
@@ -26,10 +26,11 @@ e25108eaf7c72e0b5365c0cdcbdbb4701f658686 data\minecraft\tags\items\logs.json
 6183712045d9abd8cc5925bdae8b9e76f04100b2 data\minecraft\tags\items\wooden_pressure_plates.json
 f9205197d7db64785dd0f5fa43ba6aa1fea8b95b data\speedrunnermod\tags\items\faster_chest_boats.json
 39c4fcccfd66b39b70e3320da92c861112e8ea7d data\minecraft\tags\items\wooden_slabs.json
+1703fcd581b076d8899e7e2db245d064c396ccf2 data\minecraft\tags\items\trimmable_armor.json
 a0c0e7ba251aa92f29ea9d777ac41a5f1914c4dc data\minecraft\tags\items\wooden_trapdoors.json
 54d367bea780b46329031d8d50e7ecf5519bab74 data\speedrunnermod\tags\items\faster_boats.json
 3c27ad13a63f809507a0e170125c8fd521179a00 data\speedrunnermod\tags\items\fireproof_chest_boats.json
-0130cf115b9d6023d68c1d0cb98b23dce9d5e9a2 data\minecraft\tags\items\wooden_buttons.json
+90b0d575036dee7c53ecd8bb546039990a700c33 data\minecraft\tags\items\wooden_buttons.json
 6cd234681b6cf66acacacb589fa8c553143ac803 data\speedrunnermod\tags\items\shields.json
 43f2e4f501680827a422eb4c227ee3c35cf4f948 data\speedrunnermod\tags\items\sticks.json
 b16587a5720c186da3104216a30d74b5adb0d834 data\speedrunnermod\tags\items\bows.json

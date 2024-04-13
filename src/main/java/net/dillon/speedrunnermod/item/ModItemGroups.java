@@ -18,11 +18,15 @@ public class ModItemGroups {
             .displayName(Text.literal("Speedrunner Mod"))
             .icon(() -> new ItemStack(ModBlockItems.SPEEDRUNNER_BLOCK)).build();
 
-    public static void addToItemGroup(Item item) {
+    private static void addToItemGroup(Item item) {
         ItemGroupEvents.modifyEntriesEvent(SPEEDRUNNER_MOD).register(entries -> entries.add(item));
     }
 
-    public static void addToItemGroup(ItemGroup group, Item item) {
+    private static void addToItemGroup(ItemStack stack) {
+        ItemGroupEvents.modifyEntriesEvent(SPEEDRUNNER_MOD).register(entries -> entries.add(stack));
+    }
+
+    private static void addToItemGroup(ItemGroup group, Item item) {
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
     }
 
@@ -55,7 +59,7 @@ public class ModItemGroups {
         addToItemGroup(ModBlockItems.SPEEDRUNNER_FENCE_GATE);
         addToItemGroup(ModBlockItems.WOODEN_SPEEDRUNNER_TRAPDOOR);
         addToItemGroup(ModBlockItems.SPEEDRUNNER_TRAPDOOR);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_BUTTON);
+        addToItemGroup(ModBlockItems.WOODEN_SPEEDRUNNER_BUTTON);
         addToItemGroup(ModBlockItems.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         addToItemGroup(ModBlockItems.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
         addToItemGroup(ModBlockItems.WOODEN_SPEEDRUNNER_DOOR);
@@ -105,7 +109,7 @@ public class ModItemGroups {
         addToItemGroup(ModItems.WARPED_BOAT);
         addToItemGroup(ModItems.WARPED_CHEST_BOAT);
         for (int i = 1; i < 7; i++) {
-            addToItemGroup(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(i >= 4 ? ModEnchantments.COOLDOWN : ModEnchantments.DASH, i >= 4 ? i - 3 : i)).getItem());
+            addToItemGroup(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(i >= 4 ? ModEnchantments.COOLDOWN : ModEnchantments.DASH, i >= 4 ? i - 3 : i)));
         }
         addToItemGroup(ModItems.IGNEOUS_ROCK);
         addToItemGroup(ModBlockItems.IGNEOUS_ORE);
@@ -214,7 +218,7 @@ public class ModItemGroups {
         addToItemGroup(ItemGroups.BUILDING_BLOCKS, ModBlockItems.SPEEDRUNNER_FENCE_GATE);
         addToItemGroup(ItemGroups.BUILDING_BLOCKS, ModBlockItems.WOODEN_SPEEDRUNNER_TRAPDOOR);
         addToItemGroup(ItemGroups.BUILDING_BLOCKS, ModBlockItems.SPEEDRUNNER_TRAPDOOR);
-        addToItemGroup(ItemGroups.BUILDING_BLOCKS, ModBlockItems.SPEEDRUNNER_BUTTON);
+        addToItemGroup(ItemGroups.BUILDING_BLOCKS, ModBlockItems.WOODEN_SPEEDRUNNER_BUTTON);
         addToItemGroup(ItemGroups.BUILDING_BLOCKS, ModBlockItems.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         addToItemGroup(ItemGroups.BUILDING_BLOCKS, ModBlockItems.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
         addToItemGroup(ItemGroups.BUILDING_BLOCKS, ModBlockItems.SPEEDRUNNER_DOOR);

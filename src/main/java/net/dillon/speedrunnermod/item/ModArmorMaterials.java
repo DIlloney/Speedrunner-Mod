@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.item;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Items;
@@ -82,7 +83,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
 
     @Override
     public String getName() {
-        return this.name;
+        return SpeedrunnerMod.MOD_ID + ":" + this.name;
     }
 
     @Override

@@ -9,6 +9,7 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 import net.minecraft.data.client.TexturedModel;
+import net.minecraft.item.ArmorItem;
 
 /**
  * Used to create the blockstate and model JSON files from scratch using code.
@@ -40,7 +41,7 @@ public class ModModelGenerator extends FabricModelProvider {
         speedrunnerPool.stairs(ModBlocks.SPEEDRUNNER_STAIRS);
         speedrunnerPool.fence(ModBlocks.SPEEDRUNNER_FENCE);
         speedrunnerPool.fenceGate(ModBlocks.SPEEDRUNNER_FENCE_GATE);
-        speedrunnerPool.button(ModBlocks.SPEEDRUNNER_BUTTON);
+        speedrunnerPool.button(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON);
         speedrunnerPool.pressurePlate(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         blockStateModelGenerator.registerPressurePlate(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE, ModBlocks.SPEEDRUNNER_BLOCK);
 
@@ -76,14 +77,14 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_SPEEDRUNNER, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPEEDRUNNER_NUGGET, Models.GENERATED);
 
-        itemModelGenerator.register(ModItems.SPEEDRUNNER_HELMET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.SPEEDRUNNER_CHESTPLATE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.SPEEDRUNNER_LEGGINGS, Models.GENERATED);
-        itemModelGenerator.register(ModItems.SPEEDRUNNER_BOOTS, Models.GENERATED);
-        itemModelGenerator.register(ModItems.GOLDEN_SPEEDRUNNER_HELMET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS, Models.GENERATED);
-        itemModelGenerator.register(ModItems.GOLDEN_SPEEDRUNNER_BOOTS, Models.GENERATED);
+        itemModelGenerator.registerArmor((ArmorItem)ModItems.SPEEDRUNNER_HELMET);
+        itemModelGenerator.registerArmor((ArmorItem)ModItems.SPEEDRUNNER_CHESTPLATE);
+        itemModelGenerator.registerArmor((ArmorItem)ModItems.SPEEDRUNNER_LEGGINGS);
+        itemModelGenerator.registerArmor((ArmorItem)ModItems.SPEEDRUNNER_BOOTS);
+        itemModelGenerator.registerArmor((ArmorItem)ModItems.GOLDEN_SPEEDRUNNER_HELMET);
+        itemModelGenerator.registerArmor((ArmorItem)ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE);
+        itemModelGenerator.registerArmor((ArmorItem)ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS);
+        itemModelGenerator.registerArmor((ArmorItem)ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
 
         itemModelGenerator.register(ModItems.SPEEDRUNNER_SHEARS, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPEEDRUNNER_FLINT_AND_STEEL, Models.GENERATED);

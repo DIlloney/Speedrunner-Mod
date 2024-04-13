@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
@@ -112,7 +113,7 @@ public class ModBlocks {
             .allowsSpawning(Blocks::never)
             .sounds(BlockSoundGroup.METAL), BlockSetType.OAK);
 
-    public static final Block SPEEDRUNNER_BUTTON = new ButtonBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block WOODEN_SPEEDRUNNER_BUTTON = new ButtonBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(0.35F)
             .noCollision()
             .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK, 30, true);
@@ -156,14 +157,14 @@ public class ModBlocks {
     public static final Block SPEEDRUNNER_HANGING_SIGN = new TerraformHangingSignBlock(SPEEDRUNNER_HANGING_SIGN_TEXTURE, SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD)
-            /*.requires(FeatureFlags.UPDATE_1_20)*/);
+            .sounds(BlockSoundGroup.HANGING_SIGN)
+            .requires(FeatureFlags.UPDATE_1_20));
 
     public static final Block SPEEDRUNNER_HANGING_WALL_SIGN = new TerraformWallHangingSignBlock(SPEEDRUNNER_HANGING_SIGN_TEXTURE, SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD)
-            /*.requires(FeatureFlags.UPDATE_1_20)*/);
+            .sounds(BlockSoundGroup.HANGING_SIGN)
+            .requires(FeatureFlags.UPDATE_1_20));
 
     public static final Block DEAD_SPEEDRUNNER_BUSH = new DeadBushBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT)
             .breakInstantly()
@@ -291,7 +292,7 @@ public class ModBlocks {
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_fence_gate"), SPEEDRUNNER_FENCE_GATE);
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_trapdoor"), WOODEN_SPEEDRUNNER_TRAPDOOR);
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_trapdoor"), SPEEDRUNNER_TRAPDOOR);
-        Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_button"), SPEEDRUNNER_BUTTON);
+        Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_button"), WOODEN_SPEEDRUNNER_BUTTON);
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_pressure_plate"), WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_weighted_pressure_plate"), SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
         Registry.register(Registries.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_door"), WOODEN_SPEEDRUNNER_DOOR);

@@ -218,7 +218,7 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlockItems.WOODEN_SPEEDRUNNER_PRESSURE_PLATE)
                 .add(ModBlockItems.SPEEDRUNNER_FENCE)
                 .add(ModBlockItems.SPEEDRUNNER_FENCE_GATE)
-                .add(ModBlockItems.SPEEDRUNNER_BUTTON)
+                .add(ModBlockItems.WOODEN_SPEEDRUNNER_BUTTON)
                 .add(ModBlockItems.DEAD_SPEEDRUNNER_BUSH);
 
         getOrCreateTagBuilder(ModItemTags.Block.SPEEDRUNNER_ORES)
@@ -288,8 +288,11 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ItemTags.TRAPDOORS)
                 .add(ModBlockItems.SPEEDRUNNER_TRAPDOOR);
 
+        getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
+                .forceAddTag(ModItemTags.SPEEDRUNNER_ARMOR);
+
         getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS)
-                .add(ModBlockItems.SPEEDRUNNER_BUTTON);
+                .add(ModBlockItems.WOODEN_SPEEDRUNNER_BUTTON);
 
         getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES)
                 .add(ModBlockItems.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);

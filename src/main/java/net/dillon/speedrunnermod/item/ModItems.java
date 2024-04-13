@@ -35,41 +35,57 @@ public class ModItems {
             }
         }
     };
+
     public static final Item SPEEDRUNNER_NUGGET = new Item(
             new Item.Settings());
+
     public static final Item RAW_SPEEDRUNNER = new Item(
             new Item.Settings());
+
     public static final Item SPEEDRUNNER_SWORD = new SpeedrunnerSwordItem(
             5, new Item.Settings());
+
     public static final Item SPEEDRUNNER_SHOVEL = new ShovelItem(
             ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 4, -3.0F,
             new Item.Settings());
+
     public static final Item SPEEDRUNNER_PICKAXE = new PickaxeItem(
             ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, 3, -2.8F,
             new Item.Settings());
+
     public static final Item SPEEDRUNNER_AXE = new AxeItem(
             ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 8, -3.05F,
             new Item.Settings());
+
     public static final Item SPEEDRUNNER_HOE = new HoeItem(
             ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 0, -0.5F,
             new Item.Settings());
+
     public static final Item SPEEDRUNNER_HELMET = new ArmorItem(
             ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.HELMET,
             new Item.Settings());
+
     public static final Item SPEEDRUNNER_CHESTPLATE = new ArmorItem(
             ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.CHESTPLATE,
             new Item.Settings());
+
     public static final Item SPEEDRUNNER_LEGGINGS = new ArmorItem(
             ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.LEGGINGS,
             new Item.Settings());
+
     public static final Item SPEEDRUNNER_BOOTS = new ArmorItem(
             ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.BOOTS,
             new Item.Settings());
+
     public static final Item SPEEDRUNNER_BOW = new SpeedrunnerBowItem(new Item.Settings());
+
     public static final Item SPEEDRUNNER_CROSSBOW = new SpeedrunnerCrossbowItem(new Item.Settings());
+
     public static final Item SPEEDRUNNER_SHEARS = new SpeedrunnerShearsItem(new Item.Settings());
+
     public static final Item SPEEDRUNNER_FLINT_AND_STEEL = new FlintAndSteelItem(
             new Item.Settings().maxCount(1).maxDamage(128));
+
     public static final Item SPEEDRUNNER_SHIELD = new SpeedrunnerShieldItem(new Item.Settings()) {
 
         @Override
@@ -79,32 +95,42 @@ public class ModItems {
             }
         }
     };
+
     public static final Item GOLDEN_SPEEDRUNNER_SWORD = new SpeedrunnerSwordItem(
             4, new Item.Settings());
+
     public static final Item GOLDEN_SPEEDRUNNER_SHOVEL = new ShovelItem(
             ModToolMaterials.GOLDEN_SPEEDRUNNER, 2.5F, -3.0F,
             new Item.Settings());
+
     public static final Item GOLDEN_SPEEDRUNNER_PICKAXE = new PickaxeItem(
             ModToolMaterials.GOLDEN_SPEEDRUNNER, 2, -2.8F,
             new Item.Settings());
+
     public static final Item GOLDEN_SPEEDRUNNER_AXE = new AxeItem(
             ModToolMaterials.GOLDEN_SPEEDRUNNER, 7, -3.0F,
             new Item.Settings());
+
     public static final Item GOLDEN_SPEEDRUNNER_HOE = new HoeItem(
             ModToolMaterials.GOLDEN_SPEEDRUNNER, 0, -0.5F,
             new Item.Settings());
+
     public static final Item GOLDEN_SPEEDRUNNER_HELMET = new ArmorItem(
             ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.HELMET,
             new Item.Settings());
+
     public static final Item GOLDEN_SPEEDRUNNER_CHESTPLATE = new ArmorItem(
             ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.CHESTPLATE,
             new Item.Settings());
+
     public static final Item GOLDEN_SPEEDRUNNER_LEGGINGS = new ArmorItem(
             ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.LEGGINGS,
             new Item.Settings());
+
     public static final Item GOLDEN_SPEEDRUNNER_BOOTS = new ArmorItem(
             ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.BOOTS,
             new Item.Settings());
+
     public static final Item SPEEDRUNNER_BULK = new Item(
             new Item.Settings().rarity(Rarity.RARE).food(ModFoodComponents.SPEEDRUNNER_BULK)) {
 
@@ -117,36 +143,52 @@ public class ModItems {
             }
         }
     };
+
     public static final Item ROTTEN_SPEEDRUNNER_BULK = new Item(
             new Item.Settings().food(ModFoodComponents.ROTTEN_SPEEDRUNNER_BULK));
+
     public static final Item COOKED_FLESH = new Item(
             new Item.Settings().food(ModFoodComponents.COOKED_FLESH));
+
     public static final Item PIGLIN_PORK = new Item(
             new Item.Settings().food(ModFoodComponents.PIGLIN_PORK));
+
     public static final Item COOKED_PIGLIN_PORK = new Item(
             new Item.Settings().food(ModFoodComponents.COOKED_PIGLIN_PORK));
+
     public static final Item GOLDEN_PIGLIN_PORK = new Item(
             new Item.Settings().food(ModFoodComponents.GOLDEN_PIGLIN_PORK));
+
     public static final Item GOLDEN_BEEF = new Item(
             new Item.Settings().food(ModFoodComponents.GOLDEN_BEEF));
+
     public static final Item GOLDEN_PORKCHOP = new Item(
             new Item.Settings().food(ModFoodComponents.GOLDEN_PORKCHOP));
+
     public static final Item GOLDEN_MUTTON = new Item(
             new Item.Settings().food(ModFoodComponents.GOLDEN_MUTTON));
+
     public static final Item GOLDEN_CHICKEN = new Item(
             new Item.Settings().food(ModFoodComponents.GOLDEN_CHICKEN));
+
     public static final Item GOLDEN_RABBIT = new Item(
             new Item.Settings().food(ModFoodComponents.GOLDEN_RABBIT));
+
     public static final Item GOLDEN_COD = new Item(
             new Item.Settings().food(ModFoodComponents.GOLDEN_COD));
+
     public static final Item GOLDEN_SALMON = new Item(
             new Item.Settings().food(ModFoodComponents.GOLDEN_SALMON));
+
     public static final Item GOLDEN_BREAD = new Item(
             new Item.Settings().food(ModFoodComponents.GOLDEN_BREAD));
+
     public static final Item GOLDEN_POTATO = new Item(
             new Item.Settings().food(ModFoodComponents.GOLDEN_POTATO));
+
     public static final Item GOLDEN_BEETROOT = new Item(
             new Item.Settings().food(ModFoodComponents.GOLDEN_BEETROOT));
+
     public static final Item IGNEOUS_ROCK = new Item(
             new Item.Settings()) {
 
@@ -157,14 +199,17 @@ public class ModItems {
             }
         }
     };
+
     public static final Item SPEEDRUNNER_STICK = new Item(
             new Item.Settings());
+
     public static final Item SPEEDRUNNER_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.SPEEDRUNNER_BOAT_ID, ModBoats.SPEEDRUNNER_BOAT_KEY, false);
     public static final Item SPEEDRUNNER_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.SPEEDRUNNER_CHEST_BOAT_ID, ModBoats.SPEEDRUNNER_BOAT_KEY, true);
     public static final Item CRIMSON_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.CRIMSON_BOAT_ID, ModBoats.CRIMSON_BOAT_KEY, false);
     public static final Item CRIMSON_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.CRIMSON_CHEST_BOAT_ID, ModBoats.CRIMSON_BOAT_KEY, true);
     public static final Item WARPED_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.WARPED_BOAT_ID, ModBoats.WARPED_BOAT_KEY, false);
     public static final Item WARPED_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.WARPED_CHEST_BOAT_ID, ModBoats.WARPED_BOAT_KEY, true);
+
     public static final Item WITHER_BONE = new Item(
             new Item.Settings()) {
 
@@ -175,6 +220,7 @@ public class ModItems {
             }
         }
     };
+
     public static final Item WITHER_SWORD = new WitherSwordItem(new Item.Settings());
     public static final Item ANNUL_EYE = new AnnulEyeItem(new Item.Settings());
     public static final Item SPEEDRUNNERS_EYE = new SpeedrunnersEyeItem(new Item.Settings());

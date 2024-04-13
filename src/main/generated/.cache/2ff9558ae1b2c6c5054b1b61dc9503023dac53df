@@ -1,4 +1,4 @@
-// 1.19.4	2024-04-13T02:57:13.5189988	Speedrunner Mod/Tags for minecraft:block
+// 1.19.4	2024-04-13T16:40:26.8137255	Speedrunner Mod/Tags for minecraft:block
 f53ed9298cdd24e7e9fd91e8ff69439fa7e75196 data\minecraft\tags\blocks\needs_iron_tool.json
 dd1ad80156881ff894b6c7ea619cad15020717ab data\minecraft\tags\blocks\beacon_base_blocks.json
 4ab42c0845ee0d2568851f6558c9a728b8127f4a data\minecraft\tags\blocks\ceiling_hanging_signs.json
@@ -6,7 +6,7 @@ dd1ad80156881ff894b6c7ea619cad15020717ab data\minecraft\tags\blocks\beacon_base_
 6183712045d9abd8cc5925bdae8b9e76f04100b2 data\minecraft\tags\blocks\wooden_pressure_plates.json
 09175c989cd91d22ce9e585d95d1202c439cfca8 data\minecraft\tags\blocks\wooden_fences.json
 574b63fe62424ecd0f4b73f4bd7d8caa66648836 data\minecraft\tags\blocks\leaves.json
-0130cf115b9d6023d68c1d0cb98b23dce9d5e9a2 data\minecraft\tags\blocks\wooden_buttons.json
+90b0d575036dee7c53ecd8bb546039990a700c33 data\minecraft\tags\blocks\wooden_buttons.json
 2ee4be15fc4376f4e44f6ebd5bfd84733279c245 data\speedrunnermod\tags\blocks\speedrunner_logs.json
 a0c0e7ba251aa92f29ea9d777ac41a5f1914c4dc data\minecraft\tags\blocks\wooden_trapdoors.json
 7d9547db0e077e402e92587d8eba9e839a598985 data\minecraft\tags\blocks\dragon_immune.json
@@ -24,11 +24,11 @@ f53ed9298cdd24e7e9fd91e8ff69439fa7e75196 data\speedrunnermod\tags\blocks\igneous
 29908f7f87339112c7200396efb59db131164665 data\minecraft\tags\blocks\mineable\pickaxe.json
 9afa7a918ce98c1ff29120aae8205639d04f3528 data\minecraft\tags\blocks\needs_stone_tool.json
 0fe2ea89ae39c0769635614a4d44c9f831d5bf8f data\minecraft\tags\blocks\doors.json
-4a86d8a33c2d36013c28eb667e0766fa0be8376a data\minecraft\tags\blocks\mineable\axe.json
 574b63fe62424ecd0f4b73f4bd7d8caa66648836 data\minecraft\tags\blocks\mineable\hoe.json
+9ad4bc9378d63478182195092352160cf7010a87 data\minecraft\tags\blocks\mineable\axe.json
 82ea7d1653babb20bca9094ece9fe02429505e06 data\minecraft\tags\blocks\wooden_stairs.json
 e083265c93fa1d416a9104b2dc18d268009e421a data\minecraft\tags\blocks\trapdoors.json
-ca68a44f8458e90a7cbe6e8e58b30f640b7bfa59 data\speedrunnermod\tags\blocks\speedrunner_fuels.json
+0ea2f44d6de61a59cf4cf10daeafb5a54a6f70ef data\speedrunnermod\tags\blocks\speedrunner_fuels.json
 2c619db5ffb028abca77179589dd43a60cf25a2b data\minecraft\tags\blocks\planks.json
 0c20af3c7d177d0fc95df17d965357dd14825133 data\minecraft\tags\blocks\fence_gates.json
 72a486064f51725ec98244e0837f864a81b4fbe8 data\minecraft\tags\blocks\wall_hanging_signs.json

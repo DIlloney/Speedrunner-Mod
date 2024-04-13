@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import net.dillon.speedrunnermod.SpeedrunnerModClient;
 import net.dillon.speedrunnermod.util.Author;
+import net.dillon.speedrunnermod.util.Authors;
 import net.minecraft.client.option.SimpleOption;
 
 import java.util.Optional;
@@ -11,7 +12,7 @@ import java.util.Optional;
 /**
  * Used to increase the maximum brightness.
  */
-@Author("adamviola")
+@Author(Authors.ADAMVIOLA)
 public enum IncreasedBrightnessSliderCallbacks implements SimpleOption.SliderCallbacks<Double> {
     INSTANCE;
 

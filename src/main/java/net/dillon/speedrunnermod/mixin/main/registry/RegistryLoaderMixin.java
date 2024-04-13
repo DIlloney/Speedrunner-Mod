@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.mojang.serialization.Decoder;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.Author;
+import net.dillon.speedrunnermod.util.Authors;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.minecraft.registry.*;
 import net.minecraft.resource.Resource;
@@ -34,7 +35,7 @@ public abstract class RegistryLoaderMixin {
     /**
      * Directly modifies json files to change world generation.
      */
-    @Author("MaxenceDC")
+    @Author(Authors.MAXENCEDC)
     @ChatGPT
     @Inject(method = "load(Lnet/minecraft/registry/RegistryOps$RegistryInfoGetter;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/registry/MutableRegistry;Lcom/mojang/serialization/Decoder;Ljava/util/Map;)V", at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;parse(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), locals = LocalCapture.CAPTURE_FAILHARD)
     private static <E> void load(RegistryOps.RegistryInfoGetter registryInfoGetter, ResourceManager resourceManager, RegistryKey<? extends Registry<E>> registryRef, MutableRegistry<E> newRegistry, Decoder<E> decoder, Map<RegistryKey<?>, Exception> exceptions, CallbackInfo ci, String string, ResourceFinder resourceFinder, RegistryOps<?> registryOps, Iterator<?> var9, Map.Entry<?, ?> entry, Identifier identifier, RegistryKey<?> registryKey, Resource resource, Reader reader, JsonElement jsonElement) {

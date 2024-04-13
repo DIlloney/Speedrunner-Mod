@@ -14,7 +14,7 @@ import net.minecraft.util.Identifier;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 /**
- * See {@link net.dillon.speedrunnermod.mixin.main.boat.BoatEntityMixin} and {@link net.dillon.speedrunnermod.mixin.main.entity.basic.EntityMixin} for modded boats functions and code.
+ * See {@link net.dillon.speedrunnermod.mixin.main.entity.boat.BoatEntityMixin}, {@link net.dillon.speedrunnermod.mixin.main.entity.boat.TerraformBoatEntityMixin}, {@link net.dillon.speedrunnermod.mixin.main.entity.boat.TerraformChestBoatEntityMixin} and {@link net.dillon.speedrunnermod.mixin.main.entity.basic.EntityMixin} for modded boats functions and code.
  */
 public class ModBoats {
     public static final Identifier SPEEDRUNNER_BOAT_ID = new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_boat");
@@ -28,14 +28,14 @@ public class ModBoats {
     public static final RegistryKey<TerraformBoatType> CRIMSON_BOAT_KEY = TerraformBoatTypeRegistry.createKey(CRIMSON_BOAT_ID);
     public static final RegistryKey<TerraformBoatType> WARPED_BOAT_KEY = TerraformBoatTypeRegistry.createKey(WARPED_BOAT_ID);
 
-    public static void init() {
-        TerraformBoatType speedrunnerBoat = new TerraformBoatType.Builder().item(ModItems.SPEEDRUNNER_BOAT).chestItem(ModItems.SPEEDRUNNER_CHEST_BOAT).planks(ModBlocks.SPEEDRUNNER_PLANKS.asItem()).build();
-        TerraformBoatType crimsonBoat = new TerraformBoatType.Builder().item(ModItems.CRIMSON_BOAT).chestItem(ModItems.CRIMSON_CHEST_BOAT).planks(Blocks.CRIMSON_PLANKS.asItem()).build();
-        TerraformBoatType warpedBoat = new TerraformBoatType.Builder().item(ModItems.WARPED_BOAT).chestItem(ModItems.WARPED_CHEST_BOAT).planks(Blocks.WARPED_PLANKS.asItem()).build();
+    public static final TerraformBoatType SPEEDRUNNER_BOAT = new TerraformBoatType.Builder().item(ModItems.SPEEDRUNNER_BOAT).chestItem(ModItems.SPEEDRUNNER_CHEST_BOAT).planks(ModBlocks.SPEEDRUNNER_PLANKS.asItem()).build();
+    public static final TerraformBoatType CRIMSON_BOAT = new TerraformBoatType.Builder().item(ModItems.CRIMSON_BOAT).chestItem(ModItems.CRIMSON_CHEST_BOAT).planks(Blocks.CRIMSON_PLANKS.asItem()).build();
+    public static final TerraformBoatType WARPED_BOAT = new TerraformBoatType.Builder().item(ModItems.WARPED_BOAT).chestItem(ModItems.WARPED_CHEST_BOAT).planks(Blocks.WARPED_PLANKS.asItem()).build();
 
-        Registry.register(TerraformBoatTypeRegistry.INSTANCE, SPEEDRUNNER_BOAT_KEY, speedrunnerBoat);
-        Registry.register(TerraformBoatTypeRegistry.INSTANCE, CRIMSON_BOAT_KEY, crimsonBoat);
-        Registry.register(TerraformBoatTypeRegistry.INSTANCE, WARPED_BOAT_KEY, warpedBoat);
+    public static void init() {
+        Registry.register(TerraformBoatTypeRegistry.INSTANCE, SPEEDRUNNER_BOAT_KEY, SPEEDRUNNER_BOAT);
+        Registry.register(TerraformBoatTypeRegistry.INSTANCE, CRIMSON_BOAT_KEY, CRIMSON_BOAT);
+        Registry.register(TerraformBoatTypeRegistry.INSTANCE, WARPED_BOAT_KEY, WARPED_BOAT);
 
         info("Initialized speedrunner mod boats (crimson, warped and speedrunner).");
     }

@@ -113,6 +113,8 @@ public class SpeedrunnerMod implements ModInitializer {
     private static void initialize() {
         ModWorldGen.init();
 
+        ModBoats.init();
+
         ModMaterials.init();
         ModItems.init();
         ModBlocks.init();
@@ -124,8 +126,6 @@ public class SpeedrunnerMod implements ModInitializer {
         ModBlockTags.init();
         ModItemTags.init();
         ModFluidTags.init();
-
-        ModBoats.init();
 
         ModSoundEvents.init();
 

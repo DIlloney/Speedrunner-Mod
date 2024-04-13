@@ -22,7 +22,7 @@ public class ItemUtil {
     /**
      * See {@link net.dillon.speedrunnermod.item.SpeedrunnersEyeItem} and {@link net.dillon.speedrunnermod.item.InfernoEyeItem} for more.
      */
-    @Author("kwpugh")
+    @Author(Authors.KWPUGH)
     public static void findStructureAndShoot(World world, PlayerEntity player, ItemStack itemstack, TagKey<Structure> type) {
         BlockPos playerpos = player.getBlockPos();
         ServerWorld serverWorld = (ServerWorld)world;
@@ -40,7 +40,7 @@ public class ItemUtil {
         world.syncWorldEvent(null, 1003, player.getBlockPos(), 0);
     }
 
-    @Author("kwpugh")
+    @Author(Authors.KWPUGH)
     public static float getDistance(int x1, int z1, int x2, int z2) {
         int i = x2 - x1;
         int j = z2 - z1;

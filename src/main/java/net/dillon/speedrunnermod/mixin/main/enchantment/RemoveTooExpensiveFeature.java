@@ -2,6 +2,7 @@ package net.dillon.speedrunnermod.mixin.main.enchantment;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.util.Author;
+import net.dillon.speedrunnermod.util.Authors;
 import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.screen.Property;
 import org.spongepowered.asm.mixin.Final;
@@ -13,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Author("kuraion")
+@Author(Authors.KURAION)
 @Mixin(AnvilScreenHandler.class)
 public class RemoveTooExpensiveFeature {
     @Shadow @Final
