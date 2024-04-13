@@ -20,6 +20,9 @@ accessible class net/minecraft/village/TradeOffers$SellItemFactory
 accessible class net/minecraft/village/TradeOffers$ProcessItemFactory
 accessible class net/minecraft/village/TradeOffers$SellPotionHoldingItemFactory
 accessible class net/minecraft/loot/function/ApplyBonusLootFunction$OreDrops
+accessible class net/minecraft/data/client/BlockStateModelGenerator$BlockTexturePool
+accessible class net/minecraft/data/client/BlockStateModelGenerator$LogTexturePool
+accessible class net/minecraft/data/client/BlockStateModelGenerator$TintType
 accessible class net/minecraft/client/gui/screen/world/CreateWorldScreen$Mode
 
 accessible method net/minecraft/world/gen/feature/OrePlacedFeatures modifiersWithCount (ILnet/minecraft/world/gen/placementmodifier/PlacementModifier;)Ljava/util/List;

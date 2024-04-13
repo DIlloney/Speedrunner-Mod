@@ -18,14 +18,14 @@ public class ModBoatTypes {
      * <p>See {@link net.dillon.speedrunnermod.mixin.main.boat.BoatEntityMixin} for more.</p>
      */
     public static boolean isFireproofBoat(BoatEntity.Type boatType) {
-        return boatType.getBaseBlock().getDefaultState().isIn(ModBlockTags.FIREPROOF_BOAT_BASE_BLOCKS);
+        return false; /*boatType.getBaseBlock().getDefaultState().isIn(ModBlockTags.FIREPROOF_BOAT_BASE_BLOCKS);*/
     }
 
     /**
      * <p>Determines {@code "faster"} boats, which is only the speedrunner boats.</p>
      */
     public static boolean isFastBoat(BoatEntity.Type boatType) {
-        return boatType.getBaseBlock().getDefaultState().isIn(ModBlockTags.FASTER_BOAT_BASE_BLOCKS);
+        return false; /*boatType.getBaseBlock().getDefaultState().isIn(ModBlockTags.FASTER_BOAT_BASE_BLOCKS);*/
     }
 
     public static void init() {

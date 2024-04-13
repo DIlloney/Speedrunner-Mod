@@ -2,9 +2,9 @@ package net.dillon.speedrunnermod.tag;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.block.Block;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
@@ -12,17 +12,17 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
  * {@link SpeedrunnerMod} block tags. Useful for many things in some mixins.
  */
 public class ModBlockTags {
-    public static TagKey<Block> SPEEDRUNNER_ORES = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_ores"));
-    public static TagKey<Block> IGNEOUS_ORES = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "igneous_ores"));
-    public static TagKey<Block> SPEEDRUNNER_LOGS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_logs"));
-    public static TagKey<Block> SPEEDRUNNER_PARTICLE_BLOCKS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_particle_blocks"));
+    public static TagKey<Block> DOOM_LOGS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "doom_logs"));
     public static TagKey<Block> EXPERIENCE_ORES = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "experience_ores"));
-    public static TagKey<Block> SPEEDRUNNER_SAPLING_BLOCKS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_sapling_blocks"));
+    public static TagKey<Block> IGNEOUS_ORES = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "igneous_ores"));
+    public static TagKey<Block> IRON_BLOCKS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "iron_blocks"));
     public static TagKey<Block> NETHER_PORTAL_BASE_BLOCKS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "nether_portal_base_blocks"));
     public static TagKey<Block> SMITHING_TABLES = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "smithing_tables"));
     public static TagKey<Block> SPEEDRUNNER_FUELS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_fuels"));
-    public static TagKey<Block> FIREPROOF_BOAT_BASE_BLOCKS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "fireproof_boat_base_blocks"));
-    public static TagKey<Block> FASTER_BOAT_BASE_BLOCKS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "faster_boat_base_blocks"));
+    public static TagKey<Block> SPEEDRUNNER_LOGS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_logs"));
+    public static TagKey<Block> SPEEDRUNNER_ORES = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_ores"));
+    public static TagKey<Block> SPEEDRUNNER_SAPLING_PLACEABLES = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_sapling_placeables"));
+    public static TagKey<Block> SPEEDRUNNER_SIGNS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_signs"));
 
     public static class BlockHardness {
         public static TagKey<Block> ZERO_HARDNESS = TagKey.of(Registry.BLOCK_KEY, new Identifier(SpeedrunnerMod.MOD_ID, "block_hardness/0_hardness"));

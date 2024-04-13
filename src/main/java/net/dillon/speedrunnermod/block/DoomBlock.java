@@ -33,7 +33,7 @@ public class DoomBlock {
      * Does... stuff.
      */
     private static void whenBroken(World world, BlockPos pos, PlayerEntity player) {
-        if (!player.getMainHandStack().isIn(ModItemTags.DOOM_SAFE_ITEMS)) {
+        if (!player.getMainHandStack().isIn(ModItemTags.DOOM_STONE_SAFE_TOOLS)) {
             if (world.random.nextFloat() < 0.50F) {
                 world.setBlockState(pos, Blocks.LAVA.getDefaultState());
             }
