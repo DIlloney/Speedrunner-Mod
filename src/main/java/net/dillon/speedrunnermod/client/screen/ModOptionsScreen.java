@@ -1,5 +1,8 @@
 package net.dillon.speedrunnermod.client.screen;
 
+import net.dillon.speedrunnermod.client.screen.options.ClientOptionsScreen;
+import net.dillon.speedrunnermod.client.screen.options.FastWorldCreationOptionsScreen;
+import net.dillon.speedrunnermod.client.screen.options.MainOptionsScreen;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

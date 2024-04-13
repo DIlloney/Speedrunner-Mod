@@ -1,5 +1,6 @@
-package net.dillon.speedrunnermod.client.screen;
+package net.dillon.speedrunnermod.client.screen.options;
 
+import net.dillon.speedrunnermod.client.screen.AbstractModScreen;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.ModListOptions;
 import net.dillon.speedrunnermod.option.ModOptions;
@@ -20,6 +21,13 @@ public class FastWorldCreationOptionsScreen extends AbstractModScreen {
         super(parent, options, ModTexts.TITLE_FAST_WORLD_CREATION);
     }
 
+    /**
+     * All of the {@code fast world creation options.}
+     */
+    private static SimpleOption<?>[] fwcOptions() {
+        return new SimpleOption[]{ModListOptions.FAST_WORLD_CREATION, ModListOptions.GAMEMODE, ModListOptions.DIFFICULTY, ModListOptions.ALLOW_CHEATS};
+    }
+
     @Override
     protected void init() {
         this.list = new OptionListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
@@ -28,10 +36,6 @@ public class FastWorldCreationOptionsScreen extends AbstractModScreen {
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);
 
         super.init();
-    }
-
-    private static SimpleOption<?>[] fwcOptions() {
-        return new SimpleOption[]{ModListOptions.FAST_WORLD_CREATION, ModListOptions.GAMEMODE, ModListOptions.DIFFICULTY, ModListOptions.ALLOW_CHEATS};
     }
 
     @Override

@@ -1,5 +1,6 @@
-package net.dillon.speedrunnermod.client.screen;
+package net.dillon.speedrunnermod.client.screen.options;
 
+import net.dillon.speedrunnermod.client.screen.AbstractModScreen;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.ModListOptions;
 import net.dillon.speedrunnermod.option.ModOptions;
@@ -9,6 +10,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.option.SimpleOption;
 
 import java.io.File;
 
@@ -19,18 +21,27 @@ public class ClientOptionsScreen extends AbstractModScreen {
         super(parent, options, ModTexts.TITLE_OPTIONS_CLIENT);
     }
 
+    /**
+     * All of the {@code client-side speedrunner mod options.}
+     */
+    private static SimpleOption<?>[] clientOptions(GameOptions gameOptions) {
+        return new SimpleOption[]{
+                ModListOptions.FOG,
+                gameOptions.getGamma(),
+                ModListOptions.ITEM_TOOLTIPS,
+                ModListOptions.ITEM_MESSAGES,
+                ModListOptions.SHOW_DEATH_CORDS,
+                ModListOptions.CONFIRM_MESSAGES,
+                ModListOptions.PANORAMA,
+                ModListOptions.MOD_BUTTON_TYPE,
+                ModListOptions.SOCIAL_BUTTONS
+        };
+    }
+
     @Override
     protected void init() {
         this.list = new OptionListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
-        this.list.addSingleOptionEntry(ModListOptions.FOG);
-        this.list.addSingleOptionEntry(this.options.getGamma());
-        this.list.addSingleOptionEntry(ModListOptions.ITEM_TOOLTIPS);
-        this.list.addSingleOptionEntry(ModListOptions.ITEM_MESSAGES);
-        this.list.addSingleOptionEntry(ModListOptions.SHOW_DEATH_CORDS);
-        this.list.addSingleOptionEntry(ModListOptions.CONFIRM_MESSAGES);
-        this.list.addSingleOptionEntry(ModListOptions.PANORAMA);
-        this.list.addSingleOptionEntry(ModListOptions.MOD_BUTTON_TYPE);
-        this.list.addSingleOptionEntry(ModListOptions.SOCIAL_BUTTONS);
+        this.list.addAll(clientOptions(this.gameOptions));
         this.addSelectableChild(this.list);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);
 
