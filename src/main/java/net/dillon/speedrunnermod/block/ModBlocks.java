@@ -1,13 +1,13 @@
 package net.dillon.speedrunnermod.block;
 
+import com.terraformersmc.terraform.sign.block.TerraformHangingSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -22,27 +22,35 @@ public class ModBlocks {
     public static final Block SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block STRIPPED_SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block STRIPPED_SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block DEAD_SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block DEAD_STRIPPED_SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block DEAD_SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block DEAD_STRIPPED_SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block SPEEDRUNNER_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES)
             .strength(0.1F)
             .nonOpaque()
@@ -51,6 +59,7 @@ public class ModBlocks {
             .suffocates(Blocks::never)
             .blockVision(Blocks::never)
             .sounds(BlockSoundGroup.GRASS));
+
     public static final Block DEAD_SPEEDRUNNER_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES)
             .strength(0.1F)
             .nonOpaque()
@@ -59,133 +68,172 @@ public class ModBlocks {
             .suffocates(Blocks::never)
             .blockVision(Blocks::never)
             .sounds(BlockSoundGroup.GRASS));
+
     public static final Block SPEEDRUNNER_SAPLING = new SpeedrunnerSaplingBlock(new SpeedrunnerSaplingGenerator(), FabricBlockSettings.of(Material.LEAVES)
             .breakInstantly()
             .noCollision()
             .sounds(BlockSoundGroup.GRASS));
+
     public static final Block POTTED_SPEEDRUNNER_SAPLING = new FlowerPotBlock(SPEEDRUNNER_SAPLING, FabricBlockSettings.of(Material.DECORATION)
             .breakInstantly()
             .nonOpaque()
             .nonOpaque());
+
     public static final Block SPEEDRUNNER_PLANKS = new Block(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block SPEEDRUNNER_SLAB = new SlabBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F, 6.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block SPEEDRUNNER_STAIRS = new StairsBlock(SPEEDRUNNER_PLANKS.getDefaultState(), FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block SPEEDRUNNER_FENCE = new FenceBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block SPEEDRUNNER_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
+
     public static final Block WOODEN_SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.3F)
             .nonOpaque()
             .allowsSpawning(Blocks::never)
             .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+
     public static final Block SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings.of(Material.METAL)
             .requiresTool()
             .strength(2.5F)
             .nonOpaque()
             .allowsSpawning(Blocks::never)
             .sounds(BlockSoundGroup.METAL), BlockSetType.OAK);
+
     public static final Block SPEEDRUNNER_BUTTON = new ButtonBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(0.35F)
             .noCollision()
             .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK, 30, true);
+
     public static final Block WOODEN_SPEEDRUNNER_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(0.35F)
             .noCollision()
             .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+
     public static final Block SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE = new WeightedPressurePlateBlock(100, FabricBlockSettings.of(Material.METAL)
             .requiresTool()
             .strength(0.5F)
             .noCollision()
             .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+
     public static final Block WOODEN_SPEEDRUNNER_DOOR = new DoorBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.3F)
             .nonOpaque()
             .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+
     public static final Block SPEEDRUNNER_DOOR = new DoorBlock(FabricBlockSettings.of(Material.METAL)
             .requiresTool()
             .strength(2.5F)
             .nonOpaque()
             .sounds(BlockSoundGroup.METAL), BlockSetType.OAK);
-    public static final Block SPEEDRUNNER_SIGN = new SignBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+
+    public static final Identifier SPEEDRUNNER_SIGN_TEXTURE = new Identifier(SpeedrunnerMod.MOD_ID, "entity/signs/speedrunner");
+    public static final Identifier SPEEDRUNNER_HANGING_SIGN_TEXTURE = new Identifier(SpeedrunnerMod.MOD_ID, "entity/signs/hanging/speedrunner");
+    public static final Identifier SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE = new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/hanging_signs/speedrunner");
+
+    public static final Block SPEEDRUNNER_SIGN = new TerraformSignBlock(SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
-    public static final Block SPEEDRUNNER_WALL_SIGN = new WallSignBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+            .sounds(BlockSoundGroup.WOOD));
+
+    public static final Block SPEEDRUNNER_WALL_SIGN = new TerraformWallSignBlock(SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
-    public static final Block SPEEDRUNNER_HANGING_SIGN = new HangingSignBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+            .sounds(BlockSoundGroup.WOOD));
+
+    public static final Block SPEEDRUNNER_HANGING_SIGN = new TerraformHangingSignBlock(SPEEDRUNNER_HANGING_SIGN_TEXTURE, SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
-    public static final Block SPEEDRUNNER_HANGING_WALL_SIGN = new HangingSignBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+            .sounds(BlockSoundGroup.WOOD)
+            /*.requires(FeatureFlags.UPDATE_1_20)*/);
+
+    public static final Block SPEEDRUNNER_HANGING_WALL_SIGN = new TerraformWallHangingSignBlock(SPEEDRUNNER_HANGING_SIGN_TEXTURE, SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
+            .sounds(BlockSoundGroup.WOOD)
+            /*.requires(FeatureFlags.UPDATE_1_20)*/);
+
     public static final Block DEAD_SPEEDRUNNER_BUSH = new DeadBushBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT)
             .breakInstantly()
             .noCollision()
             .sounds(BlockSoundGroup.GRASS));
+
     public static final Block POTTED_DEAD_SPEEDRUNNER_BUSH = new FlowerPotBlock(DEAD_SPEEDRUNNER_BUSH, FabricBlockSettings.of(Material.REPLACEABLE_PLANT)
             .breakInstantly()
             .noCollision()
             .sounds(BlockSoundGroup.GRASS));
+
     public static final Block SPEEDRUNNERS_WORKBENCH = new SpeedrunnersWorkbenchBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.6F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block SPEEDRUNNER_BLOCK = new Block(FabricBlockSettings.of(Material.METAL)
             .requiresTool()
             .strength(5.0F, 6.0F)
             .sounds(BlockSoundGroup.METAL));
+
     public static final Block RAW_SPEEDRUNNER_BLOCK = new Block(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(5.0F, 6.0F)
             .sounds(BlockSoundGroup.STONE));
+
     public static final Block THRUSTER_BLOCK = new Block(FabricBlockSettings.of(Material.SOIL)
             .strength(0.5F)
             .allowsSpawning(Blocks::never)
             .sounds(BlockSoundGroup.GRASS));
+
     public static final Block SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(3.0F, 3.0F)
             .sounds(BlockSoundGroup.STONE));
+
     public static final Block DEEPSLATE_SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(4.5F, 4.5F)
             .sounds(BlockSoundGroup.DEEPSLATE));
+
     public static final Block NETHER_SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(3.0F, 3.0F)
             .sounds(BlockSoundGroup.NETHER_GOLD_ORE));
+
     public static final Block IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(3.0F, 3.0F)
             .sounds(BlockSoundGroup.STONE));
+
     public static final Block DEEPSLATE_IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(4.5F, 4.5F)
             .sounds(BlockSoundGroup.DEEPSLATE));
+
     public static final Block NETHER_IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(3.0F, 3.0F)
             .sounds(BlockSoundGroup.NETHER_ORE));
+
     public static final Block EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(5.0F, 10.0F)
             .sounds(BlockSoundGroup.STONE));
+
     public static final Block DEEPSLATE_EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(6.0F, 12.5F)
             .sounds(BlockSoundGroup.DEEPSLATE));
+
     public static final Block NETHER_EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(3.0F, 3.0F)
@@ -194,12 +242,15 @@ public class ModBlocks {
             .requiresTool()
             .strength(1.5F, 3600000.0F)
             .sounds(BlockSoundGroup.STONE));
+
     public static final Block DOOM_LOG = new DoomBlock.Pillar(FabricBlockSettings.of(Material.WOOD)
             .strength(1.0F, 3600000.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block STRIPPED_DOOM_LOG = new DoomBlock.Pillar(FabricBlockSettings.of(Material.WOOD)
             .strength(1.0F, 3600000.0F)
             .sounds(BlockSoundGroup.WOOD));
+
     public static final Block DOOM_LEAVES = new DoomBlock.Leaves(FabricBlockSettings.of(Material.LEAVES)
             .strength(0.1F, 3600000.0F)
             .nonOpaque()
@@ -273,22 +324,5 @@ public class ModBlocks {
         registerStrippables();
 
         info("Initialized blocks.");
-    }
-
-    /**
-     * Initialize custom block renderers.
-     */
-    @Environment(EnvType.CLIENT)
-    public static void clinit() {
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPEEDRUNNER_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPEEDRUNNER_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DOOM_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WOODEN_SPEEDRUNNER_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPEEDRUNNER_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPEEDRUNNER_TRAPDOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DEAD_SPEEDRUNNER_BUSH, RenderLayer.getCutout());
-
-        info("Initialized custom block models.");
     }
 }

@@ -1,8 +1,7 @@
 package net.dillon.speedrunnermod;
 
-import net.dillon.speedrunnermod.block.ModBlocks;
 import net.dillon.speedrunnermod.client.keybind.ModKeybindings;
-import net.dillon.speedrunnermod.item.ModItems;
+import net.dillon.speedrunnermod.client.render.ModRenderers;
 import net.dillon.speedrunnermod.option.BrokenModOptions;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.fabricmc.api.ClientModInitializer;
@@ -24,8 +23,7 @@ public class SpeedrunnerModClient implements ClientModInitializer {
      */
     @Override
     public void onInitializeClient() {
-        ModItems.clinit();
-        ModBlocks.clinit();
+        ModRenderers.init();
 
         if (options().main.leaderboardsMode && !isSpeedrunIGTLoaded()) {
             speedrunIGTMissing = true;

@@ -1,12 +1,8 @@
 package net.dillon.speedrunnermod.item;
 
+import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.client.render.SpeedrunnerShieldRenderer;
-import net.dillon.speedrunnermod.entity.ModBoatTypes;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
-import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.dillon.speedrunnermod.entity.ModBoats;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -163,12 +159,12 @@ public class ModItems {
     };
     public static final Item SPEEDRUNNER_STICK = new Item(
             new Item.Settings());
-    public static final Item SPEEDRUNNER_BOAT = new SpeedrunnerBoatItem(false, ModBoatTypes.SPEEDRUNNER, true, new Item.Settings());
-    public static final Item SPEEDRUNNER_CHEST_BOAT = new SpeedrunnerBoatItem(true, ModBoatTypes.SPEEDRUNNER, true, new Item.Settings());
-    public static final Item CRIMSON_BOAT = new SpeedrunnerBoatItem(false, ModBoatTypes.CRIMSON, false, new Item.Settings());
-    public static final Item CRIMSON_CHEST_BOAT = new SpeedrunnerBoatItem(true, ModBoatTypes.CRIMSON, false, new Item.Settings());
-    public static final Item WARPED_BOAT = new SpeedrunnerBoatItem(false, ModBoatTypes.WARPED, false, new Item.Settings());
-    public static final Item WARPED_CHEST_BOAT = new SpeedrunnerBoatItem(true, ModBoatTypes.WARPED, false, new Item.Settings());
+    public static final Item SPEEDRUNNER_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.SPEEDRUNNER_BOAT_ID, ModBoats.SPEEDRUNNER_BOAT_KEY, false);
+    public static final Item SPEEDRUNNER_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.SPEEDRUNNER_CHEST_BOAT_ID, ModBoats.SPEEDRUNNER_BOAT_KEY, true);
+    public static final Item CRIMSON_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.CRIMSON_BOAT_ID, ModBoats.CRIMSON_BOAT_KEY, false);
+    public static final Item CRIMSON_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.CRIMSON_CHEST_BOAT_ID, ModBoats.CRIMSON_BOAT_KEY, true);
+    public static final Item WARPED_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.WARPED_BOAT_ID, ModBoats.WARPED_BOAT_KEY, false);
+    public static final Item WARPED_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.WARPED_CHEST_BOAT_ID, ModBoats.WARPED_BOAT_KEY, true);
     public static final Item WITHER_BONE = new Item(
             new Item.Settings()) {
 
@@ -235,12 +231,6 @@ public class ModItems {
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_beetroot"), GOLDEN_BEETROOT);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "igneous_rock"), IGNEOUS_ROCK);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_stick"), SPEEDRUNNER_STICK);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_boat"), SPEEDRUNNER_BOAT);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_chest_boat"), SPEEDRUNNER_CHEST_BOAT);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "crimson_boat"), CRIMSON_BOAT);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "crimson_chest_boat"), CRIMSON_CHEST_BOAT);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "warped_boat"), WARPED_BOAT);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "warped_chest_boat"), WARPED_CHEST_BOAT);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "wither_bone"), WITHER_BONE);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "wither_sword"), WITHER_SWORD);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "annul_eye"), ANNUL_EYE);
@@ -254,37 +244,5 @@ public class ModItems {
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dragons_pearl"), DRAGONS_PEARL);
 
         info("Initialized items.");
-    }
-
-    @Environment(EnvType.CLIENT)
-    public static void clinit() {
-        ModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW, new Identifier("pull"), (stack, world, entity, seed) -> {
-            if (entity == null) {
-                return 0.0f;
-            }
-            if (entity.getActiveItem() != stack) {
-                return 0.0f;
-            }
-            return (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / 15.0F;
-        });
-        ModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW, new Identifier("pulling"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F);
-
-        ModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW, new Identifier("pull"), (stack, world, entity, seed) -> {
-            if (entity == null) {
-                return 0.0f;
-            }
-            if (CrossbowItem.isCharged(stack)) {
-                return 0.0f;
-            }
-            return (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / (float)CrossbowItem.getPullTime(stack);
-        });
-        ModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW, new Identifier("pulling"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-        ModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW, new Identifier("charged"), (stack, world, entity, seed) -> entity != null && CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-        ModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_CROSSBOW, new Identifier("firework"), (stack, world, entity, seed) -> entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.hasProjectile(stack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F);
-
-        ModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_SHIELD, new Identifier("blocking"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F);
-        BuiltinItemRendererRegistry.INSTANCE.register(SPEEDRUNNER_SHIELD, new SpeedrunnerShieldRenderer());
-
-        info("Initialized custom item models.");
     }
 }

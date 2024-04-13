@@ -14,7 +14,7 @@
     "main.block.MoreBlockXPSpawner",
     "main.block.ExperienceDroppingBlockMixin",
     "main.boat.BoatEntityMixin",
-    "main.boat.BoatEntityTypeMixin",
+    "main.boat.TerraformBoatEntityMixin",
     "main.enchantment.AllowEnchantmentsOnAxe",
     "main.enchantment.HigherEnchantmentLevels",
     "main.enchantment.RemoveTooExpensiveFeature",

@@ -5,10 +5,9 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.LogoDrawer;
 import net.minecraft.client.util.math.MatrixStack;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Environment(EnvType.CLIENT)
 @Mixin(LogoDrawer.class)

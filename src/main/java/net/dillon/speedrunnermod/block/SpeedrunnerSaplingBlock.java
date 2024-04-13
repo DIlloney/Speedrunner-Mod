@@ -19,6 +19,6 @@ public class SpeedrunnerSaplingBlock extends SaplingBlock {
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(ModBlockTags.SPEEDRUNNER_SAPLING_BLOCKS) || super.canPlantOnTop(floor, world, pos);
+        return floor.isIn(ModBlockTags.SPEEDRUNNER_SAPLING_PLACEABLES) || super.canPlantOnTop(floor, world, pos);
     }
 }

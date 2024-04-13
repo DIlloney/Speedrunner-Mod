@@ -54,14 +54,14 @@ public abstract class LivingEntityMixin extends Entity {
      */
     @Inject(method = "travel", at = @At("TAIL"))
     private void travel(Vec3d movementInput, CallbackInfo ci) {
-        if (this.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.BUFFED_ITEMS) || EnchantmentHelper.getEquipmentLevel(ModEnchantments.DASH, (LivingEntity)(Object)this) > 0) {
+        if (this.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.SPEED_BOOTS) || EnchantmentHelper.getEquipmentLevel(ModEnchantments.DASH, (LivingEntity)(Object)this) > 0) {
             int i = this.world.getDifficulty() != Difficulty.HARD ? 60 : 20;
             int dashEnchantmentLevel = EnchantmentHelper.getEquipmentLevel(ModEnchantments.DASH, (LivingEntity)(Object)this);
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, i, dashEnchantmentLevel, true, false, true));
             FluidState fluidState = this.world.getFluidState(this.getBlockPos());
             float lavaVelocity = dashEnchantmentLevel > 8 ? (0.1F * dashEnchantmentLevel) / 6.0F : dashEnchantmentLevel == 8 ? 0.1F : dashEnchantmentLevel == 7 ? 0.090F : dashEnchantmentLevel == 6 ? 0.080F : dashEnchantmentLevel == 5 ? 0.070F : dashEnchantmentLevel == 4 ? 0.060F : dashEnchantmentLevel == 3 ? 0.045F : dashEnchantmentLevel == 2 ? 0.040F : dashEnchantmentLevel == 1 ? 0.035F : 0.025F;
             float waterVelocity = dashEnchantmentLevel > 8 ? (0.020F * dashEnchantmentLevel) / 6.0F : dashEnchantmentLevel == 8 ? 0.020F : dashEnchantmentLevel == 7 ? 0.018F : dashEnchantmentLevel == 6 ? 0.016F : dashEnchantmentLevel == 5 ? 0.014F : dashEnchantmentLevel == 4 ? 0.012F : dashEnchantmentLevel == 3 ? 0.010F : dashEnchantmentLevel == 2 ? 0.008F : dashEnchantmentLevel == 1 ? 0.006F : 0.004F;
-            boolean isBuffedItems = this.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.BUFFED_ITEMS) && this.getRandom().nextFloat() < 0.01F;
+            boolean isBuffedItems = this.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.SPEED_BOOTS) && this.getRandom().nextFloat() < 0.01F;
             if (this.isInLava() && this.shouldSwimInFluids() && !this.canWalkOnFluid(fluidState)) {
                 this.updateVelocity(lavaVelocity, movementInput);
                 if (!this.hasNoGravity()) {
@@ -110,7 +110,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Overwrite
     public void swimUpward(TagKey<Fluid> fluid) {
         double dashEnchantment = EnchantmentHelper.getEquipmentLevel(ModEnchantments.DASH, (LivingEntity)(Object)this);
-        if (this.isInLava() && this.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.BUFFED_ITEMS)) {
+        if (this.isInLava() && this.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.SPEED_BOOTS)) {
             double velocity = dashEnchantment > 8 ? (0.21D * dashEnchantment) / 6.0D : dashEnchantment == 8 ? 0.21D : dashEnchantment == 7 ? 0.19D : dashEnchantment == 6 ? 0.17D : dashEnchantment == 5 ? 0.15D : dashEnchantment == 4 ? 0.13D : dashEnchantment == 3 ? 0.11D : dashEnchantment == 2 ? 0.09D : dashEnchantment == 1 ? 0.07D : 0.06D;
             this.setVelocity(this.getVelocity().add(0.0D, velocity, 0.0D));
         } else if (this.isInLava() && EnchantmentHelper.getEquipmentLevel(ModEnchantments.DASH, (LivingEntity)(Object)this) > 0) {

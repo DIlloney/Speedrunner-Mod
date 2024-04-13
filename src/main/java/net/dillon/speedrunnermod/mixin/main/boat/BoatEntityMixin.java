@@ -1,8 +1,6 @@
 package net.dillon.speedrunnermod.mixin.main.boat;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.entity.ModBoatTypes;
-import net.dillon.speedrunnermod.item.ModItems;
 import net.dillon.speedrunnermod.sound.ModSoundEvents;
 import net.dillon.speedrunnermod.tag.ModFluidTags;
 import net.dillon.speedrunnermod.util.Author;
@@ -11,7 +9,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.item.Item;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.ActionResult;
@@ -36,8 +33,6 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 @Mixin(BoatEntity.class)
 public abstract class BoatEntityMixin extends Entity {
     @Shadow
-    public abstract BoatEntity.Type getVariant();
-    @Shadow
     public abstract ActionResult interact(PlayerEntity player, Hand hand);
 
     public BoatEntityMixin(EntityType<?> type, World world) {
@@ -45,30 +40,14 @@ public abstract class BoatEntityMixin extends Entity {
     }
 
     /**
-     * Makes speedrunner boats  faster, and makes boats slightly slower in lava.
+     * Makes {@code all boats} slightly slower in lava.
      */
     @Inject(method = "tick", at = @At("HEAD"))
-    private void makeSpeedrunnerBoatsFaster(CallbackInfo ci) {
+    private void slowDownBoats(CallbackInfo ci) {
         BoatEntity boat = (BoatEntity)(Object)this;
 
         if (boat.isInLava()) {
             boat.setVelocity(boat.getVelocity().multiply(SpeedrunnerMod.getBoatInLavaVelocityMultiplier()));
-        }
-
-        if (ModBoatTypes.isFastBoat(boat.getVariant())) {
-            boat.setVelocity(boat.getVelocity().multiply(SpeedrunnerMod.getSpeedrunnerBoatVelocityMultiplier()));
-        }
-    }
-
-    /**
-     * Fixes the "fire immune" attribute on modded boats.
-     */
-    @Override
-    public boolean isFireImmune() {
-        if (options().main.lavaBoats) {
-            return ModBoatTypes.isFireproofBoat(this.getVariant()) || super.isFireImmune();
-        } else {
-            return super.isFireImmune();
         }
     }
 
@@ -79,20 +58,6 @@ public abstract class BoatEntityMixin extends Entity {
     public void getPaddleSoundEvent(CallbackInfoReturnable<SoundEvent> cir) {
         if (this.isInLava()) {
             cir.setReturnValue(ModSoundEvents.ENTITY_BOAT_PADDLE_LAVA);
-        }
-    }
-
-    /**
-     * Makes the correct item drop for modded boats.
-     */
-    @Inject(method = "asItem", at = @At("RETURN"), cancellable = true)
-    public void dropItem(CallbackInfoReturnable<Item> cir) {
-        if (this.getVariant().equals(ModBoatTypes.SPEEDRUNNER)) {
-            cir.setReturnValue(ModItems.SPEEDRUNNER_BOAT);
-        } else if (this.getVariant().equals(ModBoatTypes.CRIMSON)) {
-            cir.setReturnValue(ModItems.CRIMSON_BOAT);
-        } else if (this.getVariant().equals(ModBoatTypes.WARPED)) {
-            cir.setReturnValue(ModItems.WARPED_BOAT);
         }
     }
 

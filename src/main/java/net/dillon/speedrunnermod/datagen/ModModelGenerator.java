@@ -2,7 +2,6 @@ package net.dillon.speedrunnermod.datagen;
 
 import net.dillon.speedrunnermod.block.ModBlockFamilies;
 import net.dillon.speedrunnermod.block.ModBlocks;
-import net.dillon.speedrunnermod.item.ModBlockItems;
 import net.dillon.speedrunnermod.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -33,10 +32,8 @@ public class ModModelGenerator extends FabricModelProvider {
         blockStateModelGenerator.registerSingleton(ModBlocks.DEAD_SPEEDRUNNER_LEAVES, TexturedModel.LEAVES);
         blockStateModelGenerator.registerSingleton(ModBlocks.DOOM_LEAVES, TexturedModel.LEAVES);
 
-        blockStateModelGenerator.registerTintableCross(ModBlocks.SPEEDRUNNER_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
-        blockStateModelGenerator.registerTintableCross(ModBlocks.DEAD_SPEEDRUNNER_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED);
-//        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.SPEEDRUNNER_SAPLING, ModBlocks.POTTED_SPEEDRUNNER_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
-//        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.DEAD_SPEEDRUNNER_BUSH, ModBlocks.POTTED_DEAD_SPEEDRUNNER_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.SPEEDRUNNER_SAPLING, ModBlocks.POTTED_SPEEDRUNNER_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.DEAD_SPEEDRUNNER_BUSH, ModBlocks.POTTED_DEAD_SPEEDRUNNER_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED);
 
         BlockStateModelGenerator.BlockTexturePool speedrunnerPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.SPEEDRUNNER_PLANKS);
         speedrunnerPool.slab(ModBlocks.SPEEDRUNNER_SLAB);
@@ -48,6 +45,7 @@ public class ModModelGenerator extends FabricModelProvider {
         blockStateModelGenerator.registerPressurePlate(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE, ModBlocks.SPEEDRUNNER_BLOCK);
 
         speedrunnerPool.family(ModBlockFamilies.SPEEDRUNNER_FAMILY);
+        blockStateModelGenerator.registerHangingSign(ModBlocks.STRIPPED_SPEEDRUNNER_LOG, ModBlocks.SPEEDRUNNER_HANGING_SIGN, ModBlocks.SPEEDRUNNER_HANGING_WALL_SIGN);
 
         blockStateModelGenerator.registerTrapdoor(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR);
         blockStateModelGenerator.registerTrapdoor(ModBlocks.SPEEDRUNNER_TRAPDOOR);
@@ -121,8 +119,6 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAID_ERADICATOR, Models.GENERATED);
         itemModelGenerator.register(ModItems.ENDER_THRUSTER, Models.GENERATED);
         itemModelGenerator.register(ModItems.DRAGONS_PEARL, Models.GENERATED);
-
-        itemModelGenerator.register(ModBlockItems.SPEEDRUNNER_HANGING_SIGN, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.SPEEDRUNNER_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SPEEDRUNNER_SHOVEL, Models.HANDHELD);

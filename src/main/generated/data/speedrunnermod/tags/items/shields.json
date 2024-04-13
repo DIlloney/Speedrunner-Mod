@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:shield",
+    "speedrunnermod:speedrunner_shield",
+    "minecraft:shield",
+    "speedrunnermod:speedrunner_shield"
+  ]
+}
