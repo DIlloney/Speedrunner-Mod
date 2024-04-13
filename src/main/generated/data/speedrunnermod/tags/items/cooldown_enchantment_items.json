@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#speedrunnermod:shields",
+    "minecraft:ender_pearl",
+    "minecraft:chorus_fruit"
+  ]
+}
