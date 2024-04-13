@@ -2,6 +2,7 @@ package net.dillon.speedrunnermod.mixin.main.fix;
 
 import net.dillon.speedrunnermod.item.ModItems;
 import net.dillon.speedrunnermod.util.Author;
+import net.dillon.speedrunnermod.util.Authors;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.predicate.item.ItemPredicate;
@@ -15,8 +16,8 @@ public class ItemPredicateMixin {
     /**
      * Fixes the speedrunner shears not working correctly.
      */
-    @Author("UNKNOWN")
-    @ModifyVariable(method = "test", at = @At("HEAD"))
+    @Author(Authors.UNKNOWN)
+    @ModifyVariable(method = "test", at = @At("HEAD"), argsOnly = true)
     private ItemStack fixSpeedrunnerShears(ItemStack stack) {
         if (stack.getItem().getDefaultStack().isOf(ModItems.SPEEDRUNNER_SHEARS)) {
             ItemStack itemStack = new ItemStack(Items.SHEARS);

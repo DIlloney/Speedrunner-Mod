@@ -16,6 +16,7 @@ public class SpeedrunnerModDataGenerator implements DataGeneratorEntrypoint {
         fabricDataGenerator.addProvider(ModItemTagGenerator::new);
         fabricDataGenerator.addProvider(ModBlockTagGenerator::new);
         fabricDataGenerator.addProvider(ModFluidTagGenerator::new);
+        fabricDataGenerator.addProvider(ModLootTableGenerator::new);
         fabricDataGenerator.addProvider(ModModelGenerator::new);
 
         SpeedrunnerMod.info("Finished running through data generator.");

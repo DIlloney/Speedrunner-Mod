@@ -3,6 +3,7 @@ package net.dillon.speedrunnermod.mixin.main.entity;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.dillon.speedrunnermod.util.Author;
+import net.dillon.speedrunnermod.util.Authors;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.mob.PiglinEntity;
@@ -24,7 +25,7 @@ public class PiglinBrainMixin {
     /**
      * Allows players to be able to wear modded items, such as golden speedrunner armor, and still be safe from piglin.
      */
-    @Author("UNKNOWN")
+    @Author(Authors.UNKNOWN)
     @Inject(method = "wearsGoldArmor(Lnet/minecraft/entity/LivingEntity;)Z", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
     private static void wearsGoldArmor(LivingEntity entity, CallbackInfoReturnable<Boolean> cir, Iterable iterable, Iterator var2, ItemStack stack) {
         if (isPiglinSafeArmor(stack)) {

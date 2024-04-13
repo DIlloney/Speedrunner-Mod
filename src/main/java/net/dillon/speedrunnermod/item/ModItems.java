@@ -1,8 +1,9 @@
 package net.dillon.speedrunnermod.item;
 
+import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.render.SpeedrunnerShieldRenderer;
-import net.dillon.speedrunnermod.entity.ModBoatTypes;
+import net.dillon.speedrunnermod.entity.ModBoats;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
@@ -42,41 +43,57 @@ public class ModItems {
             }
         }
     };
+
     public static final Item SPEEDRUNNER_NUGGET = new Item(
             new Item.Settings().group(ItemGroup.MATERIALS));
+
     public static final Item RAW_SPEEDRUNNER = new Item(
             new Item.Settings().group(ItemGroup.MATERIALS));
+
     public static final Item SPEEDRUNNER_SWORD = new SpeedrunnerSwordItem(
             5, new Item.Settings().group(ItemGroup.COMBAT));
+
     public static final Item SPEEDRUNNER_SHOVEL = new ShovelItem(
             ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 4, -3.0F,
             new Item.Settings().group(ItemGroup.TOOLS));
+
     public static final Item SPEEDRUNNER_PICKAXE = new PickaxeItem(
             ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, 3, -2.8F,
             new Item.Settings().group(ItemGroup.TOOLS));
+
     public static final Item SPEEDRUNNER_AXE = new AxeItem(
             ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 8, -3.05F,
             new Item.Settings().group(ItemGroup.TOOLS));
+
     public static final Item SPEEDRUNNER_HOE = new HoeItem(
             ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 0, -0.5F,
             new Item.Settings().group(ItemGroup.TOOLS));
+
     public static final Item SPEEDRUNNER_HELMET = new ArmorItem(
             ModArmorMaterials.SPEEDRUNNER, EquipmentSlot.HEAD,
             new Item.Settings().group(ItemGroup.COMBAT));
+
     public static final Item SPEEDRUNNER_CHESTPLATE = new ArmorItem(
             ModArmorMaterials.SPEEDRUNNER, EquipmentSlot.CHEST,
             new Item.Settings().group(ItemGroup.COMBAT));
+
     public static final Item SPEEDRUNNER_LEGGINGS = new ArmorItem(
             ModArmorMaterials.SPEEDRUNNER, EquipmentSlot.LEGS,
             new Item.Settings().group(ItemGroup.COMBAT));
+
     public static final Item SPEEDRUNNER_BOOTS = new ArmorItem(
             ModArmorMaterials.SPEEDRUNNER, EquipmentSlot.FEET,
             new Item.Settings().group(ItemGroup.COMBAT));
+
     public static final Item SPEEDRUNNER_BOW = new SpeedrunnerBowItem(new Item.Settings());
+
     public static final Item SPEEDRUNNER_CROSSBOW = new SpeedrunnerCrossbowItem(new Item.Settings());
+
     public static final Item SPEEDRUNNER_SHEARS = new SpeedrunnerShearsItem(new Item.Settings());
+
     public static final Item SPEEDRUNNER_FLINT_AND_STEEL = new FlintAndSteelItem(
             new Item.Settings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(128));
+
     public static final Item SPEEDRUNNER_SHIELD = new SpeedrunnerShieldItem(new Item.Settings()) {
 
         @Override
@@ -86,32 +103,42 @@ public class ModItems {
             }
         }
     };
+
     public static final Item GOLDEN_SPEEDRUNNER_SWORD = new SpeedrunnerSwordItem(
             4, new Item.Settings().group(ItemGroup.COMBAT));
+
     public static final Item GOLDEN_SPEEDRUNNER_SHOVEL = new ShovelItem(
             ModToolMaterials.GOLDEN_SPEEDRUNNER, 2.5F, -3.0F,
             new Item.Settings().group(ItemGroup.TOOLS));
+
     public static final Item GOLDEN_SPEEDRUNNER_PICKAXE = new PickaxeItem(
             ModToolMaterials.GOLDEN_SPEEDRUNNER, 2, -2.8F,
             new Item.Settings().group(ItemGroup.TOOLS));
+
     public static final Item GOLDEN_SPEEDRUNNER_AXE = new AxeItem(
             ModToolMaterials.GOLDEN_SPEEDRUNNER, 7, -3.0F,
             new Item.Settings().group(ItemGroup.TOOLS));
+
     public static final Item GOLDEN_SPEEDRUNNER_HOE = new HoeItem(
             ModToolMaterials.GOLDEN_SPEEDRUNNER, 0, -0.5F,
             new Item.Settings().group(ItemGroup.TOOLS));
+
     public static final Item GOLDEN_SPEEDRUNNER_HELMET = new ArmorItem(
             ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.HEAD,
             new Item.Settings().group(ItemGroup.COMBAT));
+
     public static final Item GOLDEN_SPEEDRUNNER_CHESTPLATE = new ArmorItem(
             ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.CHEST,
             new Item.Settings().group(ItemGroup.COMBAT));
+
     public static final Item GOLDEN_SPEEDRUNNER_LEGGINGS = new ArmorItem(
             ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.LEGS,
             new Item.Settings().group(ItemGroup.COMBAT));
+
     public static final Item GOLDEN_SPEEDRUNNER_BOOTS = new ArmorItem(
             ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentSlot.FEET,
             new Item.Settings().group(ItemGroup.COMBAT));
+
     public static final Item SPEEDRUNNER_BULK = new Item(
             new Item.Settings().group(ItemGroup.FOOD).rarity(Rarity.RARE).food(ModFoodComponents.SPEEDRUNNER_BULK)) {
 
@@ -124,36 +151,52 @@ public class ModItems {
             }
         }
     };
+
     public static final Item ROTTEN_SPEEDRUNNER_BULK = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.ROTTEN_SPEEDRUNNER_BULK));
+
     public static final Item COOKED_FLESH = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.COOKED_FLESH));
+
     public static final Item PIGLIN_PORK = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.PIGLIN_PORK));
+
     public static final Item COOKED_PIGLIN_PORK = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.COOKED_PIGLIN_PORK));
+
     public static final Item GOLDEN_PIGLIN_PORK = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_PIGLIN_PORK));
+
     public static final Item GOLDEN_BEEF = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_BEEF));
+
     public static final Item GOLDEN_PORKCHOP = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_PORKCHOP));
+
     public static final Item GOLDEN_MUTTON = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_MUTTON));
+
     public static final Item GOLDEN_CHICKEN = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_CHICKEN));
+
     public static final Item GOLDEN_RABBIT = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_RABBIT));
+
     public static final Item GOLDEN_COD = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_COD));
+
     public static final Item GOLDEN_SALMON = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_SALMON));
+
     public static final Item GOLDEN_BREAD = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_BREAD));
+
     public static final Item GOLDEN_POTATO = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_POTATO));
+
     public static final Item GOLDEN_BEETROOT = new Item(
             new Item.Settings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLDEN_BEETROOT));
+
     public static final Item IGNEOUS_ROCK = new Item(
             new Item.Settings().group(ItemGroup.MATERIALS)) {
 
@@ -164,11 +207,14 @@ public class ModItems {
             }
         }
     };
+
     public static final Item SPEEDRUNNER_STICK = new Item(
             new Item.Settings().group(ItemGroup.MATERIALS));
-    public static final Item SPEEDRUNNER_BOAT = new SpeedrunnerBoatItem(ModBoatTypes.SPEEDRUNNER, true, new Item.Settings());
-    public static final Item CRIMSON_BOAT = new SpeedrunnerBoatItem(ModBoatTypes.CRIMSON, false, new Item.Settings());
-    public static final Item WARPED_BOAT = new SpeedrunnerBoatItem(ModBoatTypes.WARPED, false, new Item.Settings());
+
+    public static final Item SPEEDRUNNER_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.SPEEDRUNNER_BOAT_ID, () -> ModBoats.SPEEDRUNNER_BOAT);
+    public static final Item CRIMSON_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.CRIMSON_BOAT_ID, () -> ModBoats.CRIMSON_BOAT);
+    public static final Item WARPED_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.WARPED_BOAT_ID, () -> ModBoats.WARPED_BOAT);
+
     public static final Item WITHER_BONE = new Item(
             new Item.Settings().group(ItemGroup.MISC)) {
 
@@ -179,6 +225,7 @@ public class ModItems {
             }
         }
     };
+
     public static final Item WITHER_SWORD = new WitherSwordItem(new Item.Settings());
     public static final Item ANNUL_EYE = new AnnulEyeItem(new Item.Settings());
     public static final Item SPEEDRUNNERS_EYE = new SpeedrunnersEyeItem(new Item.Settings());
@@ -235,9 +282,6 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_beetroot"), GOLDEN_BEETROOT);
         Registry.register(Registry.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "igneous_rock"), IGNEOUS_ROCK);
         Registry.register(Registry.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_stick"), SPEEDRUNNER_STICK);
-        Registry.register(Registry.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_boat"), SPEEDRUNNER_BOAT);
-        Registry.register(Registry.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "crimson_boat"), CRIMSON_BOAT);
-        Registry.register(Registry.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "warped_boat"), WARPED_BOAT);
         Registry.register(Registry.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "wither_bone"), WITHER_BONE);
         Registry.register(Registry.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "wither_sword"), WITHER_SWORD);
         Registry.register(Registry.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "annul_eye"), ANNUL_EYE);

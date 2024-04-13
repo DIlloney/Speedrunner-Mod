@@ -2,6 +2,7 @@ package net.dillon.speedrunnermod.mixin.main.item;
 
 import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.dillon.speedrunnermod.util.Author;
+import net.dillon.speedrunnermod.util.Authors;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +18,7 @@ public class FireproofItems {
     /**
      * Makes all items in the {@code Fireproof Items} tag, fireproof.
      */
-    @Author("UNKNOWN")
+    @Author(Authors.UNKNOWN)
     @Inject(method = "isFireImmune", at = @At("RETURN"), cancellable = true)
     public void isFireImmune(CallbackInfoReturnable<Boolean> cir) {
         ItemEntity item = (ItemEntity)(Object)this;

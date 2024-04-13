@@ -68,3 +68,4 @@ accessible field net/minecraft/entity/mob/MobEntity handItems Lnet/minecraft/uti
 accessible field net/minecraft/entity/mob/BlazeEntity$ShootFireballGoal fireballCooldown I
 accessible field net/minecraft/item/CrossbowItem charged Z
 accessible field net/minecraft/item/CrossbowItem loaded Z
+accessible field net/minecraft/data/server/BlockLootTableGenerator WITHOUT_SILK_TOUCH_NOR_SHEARS Lnet/minecraft/loot/condition/LootCondition$Builder;

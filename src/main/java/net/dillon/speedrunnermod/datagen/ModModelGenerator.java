@@ -40,7 +40,7 @@ public class ModModelGenerator extends FabricModelProvider {
         speedrunnerPool.stairs(ModBlocks.SPEEDRUNNER_STAIRS);
         speedrunnerPool.fence(ModBlocks.SPEEDRUNNER_FENCE);
         speedrunnerPool.fenceGate(ModBlocks.SPEEDRUNNER_FENCE_GATE);
-        speedrunnerPool.button(ModBlocks.SPEEDRUNNER_BUTTON);
+        speedrunnerPool.button(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON);
         speedrunnerPool.pressurePlate(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         blockStateModelGenerator.registerPressurePlate(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE, ModBlocks.SPEEDRUNNER_BLOCK);
 

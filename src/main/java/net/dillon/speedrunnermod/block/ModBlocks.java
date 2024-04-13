@@ -1,14 +1,11 @@
 package net.dillon.speedrunnermod.block;
 
+import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.util.ModSignTypes;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -112,7 +109,7 @@ public class ModBlocks {
             .allowsSpawning(Blocks::never)
             .sounds(BlockSoundGroup.METAL));
 
-    public static final Block SPEEDRUNNER_BUTTON = new WoodenButtonBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block WOODEN_SPEEDRUNNER_BUTTON = new WoodenButtonBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(0.35F)
             .noCollision()
             .sounds(BlockSoundGroup.WOOD));
@@ -139,15 +136,17 @@ public class ModBlocks {
             .nonOpaque()
             .sounds(BlockSoundGroup.METAL));
 
-    public static final Block SPEEDRUNNER_SIGN = new SignBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
-            .strength(1.0F)
-            .noCollision()
-            .sounds(BlockSoundGroup.WOOD), ModSignTypes.SPEEDRUNNER);
+    public static final Identifier SPEEDRUNNER_SIGN_TEXTURE = new Identifier("entity/signs/speedrunner");
 
-    public static final Block SPEEDRUNNER_WALL_SIGN = new WallSignBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNER_SIGN = new TerraformSignBlock(SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.0F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), ModSignTypes.SPEEDRUNNER);
+            .sounds(BlockSoundGroup.WOOD));
+
+    public static final Block SPEEDRUNNER_WALL_SIGN = new TerraformWallSignBlock(SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+            .strength(1.0F)
+            .noCollision()
+            .sounds(BlockSoundGroup.WOOD));
 
     public static final Block DEAD_SPEEDRUNNER_BUSH = new DeadBushBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT)
             .breakInstantly()
@@ -276,7 +275,7 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_fence_gate"), SPEEDRUNNER_FENCE_GATE);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_trapdoor"), WOODEN_SPEEDRUNNER_TRAPDOOR);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_trapdoor"), SPEEDRUNNER_TRAPDOOR);
-        Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_button"), SPEEDRUNNER_BUTTON);
+        Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_button"), WOODEN_SPEEDRUNNER_BUTTON);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_pressure_plate"), WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_weighted_pressure_plate"), SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
         Registry.register(Registry.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_door"), WOODEN_SPEEDRUNNER_DOOR);
@@ -307,22 +306,5 @@ public class ModBlocks {
         registerStrippables();
 
         info("Initialized blocks.");
-    }
-
-    /**
-     * Initialize custom block renderers.
-     */
-    @Environment(EnvType.CLIENT)
-    public static void clinit() {
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPEEDRUNNER_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPEEDRUNNER_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DOOM_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WOODEN_SPEEDRUNNER_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPEEDRUNNER_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SPEEDRUNNER_TRAPDOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DEAD_SPEEDRUNNER_BUSH, RenderLayer.getCutout());
-
-        info("Initialized custom block models.");
     }
 }

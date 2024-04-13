@@ -1,11 +1,12 @@
 package net.dillon.speedrunnermod.mixin.main.entity.basic;
 
+import com.terraformersmc.terraform.boat.impl.TerraformBoatEntity;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.entity.ModBoatTypes;
+import net.dillon.speedrunnermod.entity.ModBoats;
 import net.dillon.speedrunnermod.util.Author;
+import net.dillon.speedrunnermod.util.Authors;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -43,13 +44,13 @@ public abstract class EntityMixin {
     }
 
     /**
-     * Allows players to ride in fireproof boats without burning from the lava.
+     * Allows players to ride in fireproof boats and chest without burning from the lava.
      */
-    @Author("Anxietie")
+    @Author(Authors.ANXIETIE)
     @Inject(method = "setOnFireFromLava", at = @At("HEAD"), cancellable = true)
     private void setOnFireFromLava(CallbackInfo ci) {
         Entity vehicle = getVehicle();
-        if (options().main.lavaBoats && vehicle instanceof BoatEntity boat && ModBoatTypes.isFireproofBoat(boat.getBoatType())) {
+        if (options().main.lavaBoats && vehicle instanceof TerraformBoatEntity terraformBoat && ModBoats.isFireproofBoat(terraformBoat.getTerraformBoat())) {
             if (fireTicks > 0 && fireTicks % 20 == 0) {
                 ((Entity)(Object)this).damage(DamageSource.ON_FIRE, 1.0F);
             }

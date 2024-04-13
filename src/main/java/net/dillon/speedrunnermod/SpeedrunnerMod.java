@@ -3,7 +3,7 @@ package net.dillon.speedrunnermod;
 import net.dillon.speedrunnermod.block.ModBlocks;
 import net.dillon.speedrunnermod.block.ModMaterials;
 import net.dillon.speedrunnermod.enchantment.ModEnchantments;
-import net.dillon.speedrunnermod.entity.ModBoatTypes;
+import net.dillon.speedrunnermod.entity.ModBoats;
 import net.dillon.speedrunnermod.item.ModBlockItems;
 import net.dillon.speedrunnermod.item.ModFuels;
 import net.dillon.speedrunnermod.item.ModItemGroups;
@@ -110,7 +110,7 @@ public class SpeedrunnerMod implements ModInitializer {
     private static void initialize() {
         ModWorldGen.init();
 
-        ModBoatTypes.init();
+        ModBoats.init();
 
         ModMaterials.init();
         ModSignTypes.init();

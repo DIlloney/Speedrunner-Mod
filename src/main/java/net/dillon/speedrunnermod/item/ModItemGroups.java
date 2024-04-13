@@ -46,7 +46,7 @@ public class ModItemGroups {
                 item.add(new ItemStack(ModBlockItems.SPEEDRUNNER_FENCE_GATE));
                 item.add(new ItemStack(ModBlockItems.WOODEN_SPEEDRUNNER_TRAPDOOR));
                 item.add(new ItemStack(ModBlockItems.SPEEDRUNNER_TRAPDOOR));
-                item.add(new ItemStack(ModBlockItems.SPEEDRUNNER_BUTTON));
+                item.add(new ItemStack(ModBlockItems.WOODEN_SPEEDRUNNER_BUTTON));
                 item.add(new ItemStack(ModBlockItems.WOODEN_SPEEDRUNNER_PRESSURE_PLATE));
                 item.add(new ItemStack(ModBlockItems.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE));
                 item.add(new ItemStack(ModBlockItems.WOODEN_SPEEDRUNNER_DOOR));

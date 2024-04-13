@@ -2,9 +2,9 @@ package net.dillon.speedrunnermod.tag;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.block.Block;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
