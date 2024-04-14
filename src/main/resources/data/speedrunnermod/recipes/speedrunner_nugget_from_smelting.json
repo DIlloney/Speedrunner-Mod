@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": [
+    {
+      "item": "speedrunnermod:speedrunner_pickaxe"
+    },
+    {
+      "item": "speedrunnermod:speedrunner_shovel"
+    },
+    {
+      "item": "speedrunnermod:speedrunner_axe"
+    },
+    {
+      "item": "speedrunnermod:speedrunner_hoe"
+    },
+    {
+      "item": "speedrunnermod:speedrunner_sword"
+    },
+    {
+      "item": "speedrunnermod:speedrunner_helmet"
+    },
+    {
+      "item": "speedrunnermod:speedrunner_chestplate"
+    },
+    {
+      "item": "speedrunnermod:speedrunner_leggings"
+    }
+  ,{
+      "item": "speedrunnermod:speedrunner_boots"
+    }
+  ],
+  "result": "speedrunnermod:speedrunner_nugget",
+  "experience": 0.35,
+  "cookingtime": 200
+}
