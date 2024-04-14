@@ -103,7 +103,7 @@ public class BlazeSpotterItem extends Item {
                 BlockEntity blockEntity = world.getBlockEntity(pos);
                 if (blockEntity instanceof MobSpawnerBlockEntity) {
                     MobSpawnerBlockEntity spawnerBlockEntity = (MobSpawnerBlockEntity) blockEntity;
-                    if (spawnerBlockEntity.getLogic().getRenderedEntity(world, world.random, pos).getType() == EntityType.BLAZE) {
+                    if (spawnerBlockEntity.getLogic().getRenderedEntity(world, pos).getType() == EntityType.BLAZE) {
                         if (!world.getBlockState(pos.up()).isAir() || !world.getBlockState(pos.up(1)).isAir()) {
                             SpeedrunnerMod.debug("Detected blocks above blaze spawner were not air, so setting to air.");
                             for (int i = 1; i < 3; i++) {

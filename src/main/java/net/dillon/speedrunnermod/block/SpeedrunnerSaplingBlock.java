@@ -3,7 +3,7 @@ package net.dillon.speedrunnermod.block;
 import net.dillon.speedrunnermod.tag.ModBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SaplingBlock;
-import net.minecraft.block.sapling.SaplingGenerator;
+import net.minecraft.block.SaplingGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;

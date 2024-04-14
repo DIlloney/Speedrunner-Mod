@@ -14,6 +14,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
@@ -83,7 +84,7 @@ public class ModBlocks {
             .solidBlock(Blocks::never)
             .sounds(BlockSoundGroup.GRASS));
 
-    public static final Block SPEEDRUNNER_SAPLING = new SpeedrunnerSaplingBlock(new SpeedrunnerSaplingGenerator(), FabricBlockSettings.create()
+    public static final Block SPEEDRUNNER_SAPLING = new SpeedrunnerSaplingBlock(ModSaplingGenerators.SPEEDRUNNER, FabricBlockSettings.create()
             .breakInstantly()
             .ticksRandomly()
             .noCollision()
@@ -111,60 +112,60 @@ public class ModBlocks {
             .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.create()
+    public static final Block SPEEDRUNNER_FENCE_GATE = new FenceGateBlock(WoodType.OAK, FabricBlockSettings.create()
             .strength(1.0F)
             .instrument(Instrument.BASS)
-            .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
+            .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block WOODEN_SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings.create()
+    public static final Block WOODEN_SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(BlockSetType.OAK, FabricBlockSettings.create()
             .strength(1.3F)
             .nonOpaque()
             .allowsSpawning(Blocks::never)
             .instrument(Instrument.BASS)
-            .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+            .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings.create()
+    public static final Block SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(BlockSetType.IRON, FabricBlockSettings.create()
             .requiresTool()
             .strength(2.5F)
             .nonOpaque()
             .allowsSpawning(Blocks::never)
             .instrument(Instrument.BASS)
-            .sounds(BlockSoundGroup.METAL), BlockSetType.IRON);
+            .sounds(BlockSoundGroup.METAL));
 
-    public static final Block WOODEN_SPEEDRUNNER_BUTTON = new ButtonBlock(FabricBlockSettings.create()
+    public static final Block WOODEN_SPEEDRUNNER_BUTTON = new ButtonBlock(BlockSetType.OAK, 30, FabricBlockSettings.create()
             .strength(0.35F)
             .noCollision()
             .pistonBehavior(PistonBehavior.DESTROY)
-            .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK, 30, true);
+            .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block WOODEN_SPEEDRUNNER_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.create()
+    public static final Block WOODEN_SPEEDRUNNER_PRESSURE_PLATE = new PressurePlateBlock(BlockSetType.OAK, FabricBlockSettings.create()
             .strength(0.35F)
             .noCollision()
             .instrument(Instrument.BASS)
             .pistonBehavior(PistonBehavior.DESTROY)
-            .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+            .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE = new WeightedPressurePlateBlock(100, FabricBlockSettings.create()
+    public static final Block SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE = new WeightedPressurePlateBlock(100, BlockSetType.IRON, FabricBlockSettings.create()
             .requiresTool()
             .strength(0.5F)
             .noCollision()
             .pistonBehavior(PistonBehavior.DESTROY)
-            .sounds(BlockSoundGroup.WOOD), BlockSetType.IRON);
+            .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block WOODEN_SPEEDRUNNER_DOOR = new DoorBlock(FabricBlockSettings.create()
+    public static final Block WOODEN_SPEEDRUNNER_DOOR = new DoorBlock(BlockSetType.OAK, FabricBlockSettings.create()
             .strength(1.3F)
             .nonOpaque()
             .instrument(Instrument.BASS)
             .pistonBehavior(PistonBehavior.DESTROY)
-            .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+            .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_DOOR = new DoorBlock(FabricBlockSettings.create()
+    public static final Block SPEEDRUNNER_DOOR = new DoorBlock(BlockSetType.IRON, FabricBlockSettings.create()
             .requiresTool()
             .strength(2.5F)
             .nonOpaque()
             .instrument(Instrument.BASS)
             .pistonBehavior(PistonBehavior.DESTROY)
-            .sounds(BlockSoundGroup.METAL), BlockSetType.IRON);
+            .sounds(BlockSoundGroup.METAL));
 
     public static final Identifier SPEEDRUNNER_SIGN_TEXTURE = new Identifier(SpeedrunnerMod.MOD_ID, "entity/signs/speedrunner");
     public static final Identifier SPEEDRUNNER_HANGING_SIGN_TEXTURE = new Identifier(SpeedrunnerMod.MOD_ID, "entity/signs/hanging/speedrunner");
@@ -228,54 +229,54 @@ public class ModBlocks {
             .allowsSpawning(Blocks::never)
             .sounds(BlockSoundGroup.GRASS));
 
-    public static final Block SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
+    public static final Block SPEEDRUNNER_ORE = new ExperienceDroppingBlock(UniformIntProvider.create(0, 0), FabricBlockSettings.create()
             .requiresTool()
             .strength(3.0F, 3.0F)
             .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.STONE));
 
-    public static final Block DEEPSLATE_SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
+    public static final Block DEEPSLATE_SPEEDRUNNER_ORE = new ExperienceDroppingBlock(UniformIntProvider.create(0, 0), FabricBlockSettings.create()
             .requiresTool()
             .strength(4.5F, 4.5F)
             .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.DEEPSLATE));
 
-    public static final Block NETHER_SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
+    public static final Block NETHER_SPEEDRUNNER_ORE = new ExperienceDroppingBlock(UniformIntProvider.create(0, 0), FabricBlockSettings.create()
             .requiresTool()
             .strength(3.0F, 3.0F)
             .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.NETHER_GOLD_ORE));
 
-    public static final Block IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
+    public static final Block IGNEOUS_ORE = new ExperienceDroppingBlock(UniformIntProvider.create(0, 0), FabricBlockSettings.create()
             .requiresTool()
             .strength(3.0F, 3.0F)
             .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.STONE));
 
-    public static final Block DEEPSLATE_IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
+    public static final Block DEEPSLATE_IGNEOUS_ORE = new ExperienceDroppingBlock(UniformIntProvider.create(0, 0), FabricBlockSettings.create()
             .requiresTool()
             .strength(4.5F, 4.5F)
             .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.DEEPSLATE));
 
-    public static final Block NETHER_IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
+    public static final Block NETHER_IGNEOUS_ORE = new ExperienceDroppingBlock(UniformIntProvider.create(0, 0), FabricBlockSettings.create()
             .requiresTool()
             .strength(3.0F, 3.0F)
             .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.NETHER_ORE));
 
-    public static final Block EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
+    public static final Block EXPERIENCE_ORE = new ExperienceDroppingBlock(UniformIntProvider.create(0, 0), FabricBlockSettings.create()
             .requiresTool()
             .strength(5.0F, 10.0F)
             .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.STONE));
 
-    public static final Block DEEPSLATE_EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
+    public static final Block DEEPSLATE_EXPERIENCE_ORE = new ExperienceDroppingBlock(UniformIntProvider.create(0, 0), FabricBlockSettings.create()
             .requiresTool()
             .strength(6.0F, 12.5F)
             .sounds(BlockSoundGroup.DEEPSLATE));
 
-    public static final Block NETHER_EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
+    public static final Block NETHER_EXPERIENCE_ORE = new ExperienceDroppingBlock(UniformIntProvider.create(0, 0), FabricBlockSettings.create()
             .requiresTool()
             .strength(3.0F, 3.0F)
             .instrument(Instrument.BASEDRUM)

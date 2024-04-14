@@ -40,7 +40,7 @@ public class ClientOptionsScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        this.list = new OptionListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
+        this.list = this.addDrawableChild(new OptionListWidget(this.client, this.width, this.height - 64, 32, 25));
         this.list.addAll(clientOptions(this.gameOptions));
         this.addSelectableChild(this.list);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);

@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.SpectralArrowEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -16,10 +17,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Mixin(value = {ArrowEntity.class, SpectralArrowEntity.class})
-public abstract class ArrowEntitiesMixin extends PersistentProjectileEntity {
+public class ArrowEntitiesMixin extends PersistentProjectileEntity {
 
-    public ArrowEntitiesMixin(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
-        super(entityType, world);
+    public ArrowEntitiesMixin(EntityType<? extends PersistentProjectileEntity> type, World world, ItemStack stack) {
+        super(type, world, stack);
     }
 
     /**

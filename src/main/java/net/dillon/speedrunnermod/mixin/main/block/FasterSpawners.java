@@ -1,6 +1,6 @@
 package net.dillon.speedrunnermod.mixin.main.block;
 
-import net.minecraft.world.MobSpawnerLogic;
+import net.minecraft.block.spawner.MobSpawnerLogic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 

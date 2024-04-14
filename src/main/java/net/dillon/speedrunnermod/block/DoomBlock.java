@@ -163,11 +163,11 @@ public class DoomBlock {
         }
 
         @Override
-        public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
             if (DOOM_MODE) {
                 whenBroken(world, pos, player);
             }
-            super.onBreak(world, pos, state, player);
+            return super.onBreak(world, pos, state, player);
         }
     }
 
@@ -186,11 +186,11 @@ public class DoomBlock {
         }
 
         @Override
-        public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
             if (DOOM_MODE) {
                 whenBroken(world, pos, player);
             }
-            super.onBreak(world, pos, state, player);
+            return super.onBreak(world, pos, state, player);
         }
     }
 
@@ -209,11 +209,11 @@ public class DoomBlock {
         }
 
         @Override
-        public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
             if (DOOM_MODE) {
                 whenBroken(world, pos, player);
             }
-            super.onBreak(world, pos, state, player);
+            return super.onBreak(world, pos, state, player);
         }
     }
 }
