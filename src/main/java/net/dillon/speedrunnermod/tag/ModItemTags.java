@@ -28,6 +28,7 @@ public class ModItemTags {
     public static TagKey<Item> IRON_NUGGETS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "iron_nuggets"));
     public static TagKey<Item> PIGLIN_AWAKENER_CRAFTABLES = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "piglin_awakener_craftables"));
     public static TagKey<Item> PIGLIN_SAFE_ARMOR = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "piglin_safe_armor"));
+    public static TagKey<Item> SCULK_SENSOR_SAFE_BOOTS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "sculk_sensor_safe_boots"));
     public static TagKey<Item> SHIELDS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "shields"));
     public static TagKey<Item> SHEARS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "shears"));
     public static TagKey<Item> SPEED_BOOTS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speed_boots"));

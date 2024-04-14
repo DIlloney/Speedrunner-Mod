@@ -125,6 +125,10 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
 
+        getOrCreateTagBuilder(ModItemTags.SCULK_SENSOR_SAFE_BOOTS)
+                .add(ModItems.SPEEDRUNNER_BOOTS)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
+
         getOrCreateTagBuilder(ModItemTags.SHIELDS)
                 .add(Items.SHIELD)
                 .add(ModItems.SPEEDRUNNER_SHIELD);

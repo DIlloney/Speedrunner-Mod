@@ -101,7 +101,8 @@
     "main.world.StrongholdFeatureMixin",
     "main.world.StrongholdGeneratorMixin",
     "main.world.StrongholdPortalRoomMixin",
-    "main.world.VanillaBiomeParametersMixin"
+    "main.world.VanillaBiomeParametersMixin",
+    "main.world.VibrationsCallbackMixin"
   ],
   "client": [
     "client.enchantment.RemoveTooExpensiveText",

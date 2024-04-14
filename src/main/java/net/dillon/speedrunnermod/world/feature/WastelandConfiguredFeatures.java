@@ -27,12 +27,12 @@ public class WastelandConfiguredFeatures {
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         List<OreFeatureConfig.Target> speedrunnerOres = List.of(
                 OreFeatureConfig.createTarget(ModConfiguredFeatures.STONE_ORE_REPLACEABLES, ModBlocks.SPEEDRUNNER_ORE.getDefaultState()),
-                OreFeatureConfig.createTarget(ModConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE.getDefaultState()),
-                OreFeatureConfig.createTarget(ModConfiguredFeatures.NETHERRACK, ModBlocks.NETHER_SPEEDRUNNER_ORE.getDefaultState()));
+                OreFeatureConfig.createTarget(ModConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE.getDefaultState()));
+
         List<OreFeatureConfig.Target> experienceOres = List.of(
                 OreFeatureConfig.createTarget(ModConfiguredFeatures.STONE_ORE_REPLACEABLES, ModBlocks.EXPERIENCE_ORE.getDefaultState()),
-                OreFeatureConfig.createTarget(ModConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_EXPERIENCE_ORE.getDefaultState()),
-                OreFeatureConfig.createTarget(ModConfiguredFeatures.NETHERRACK, ModBlocks.NETHER_EXPERIENCE_ORE.getDefaultState()));
+                OreFeatureConfig.createTarget(ModConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_EXPERIENCE_ORE.getDefaultState()));
+
         List<OreFeatureConfig.Target> diamondOres = List.of(
                 OreFeatureConfig.createTarget(ModConfiguredFeatures.STONE_ORE_REPLACEABLES, Blocks.DIAMOND_ORE.getDefaultState()),
                 OreFeatureConfig.createTarget(ModConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_DIAMOND_ORE.getDefaultState()));

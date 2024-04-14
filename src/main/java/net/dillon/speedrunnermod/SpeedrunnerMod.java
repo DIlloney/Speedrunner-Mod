@@ -36,7 +36,7 @@ import static net.dillon.speedrunnermod.option.ModOptions.createListOption;
  */
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.9.6.4";
+    public static final String MOD_VERSION = "v1.9.7";
     public static final String VERSION = "Version: " + MOD_VERSION;
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
     public static final String WIKI_LINK = "https://sites.google.com/view/dillon8775/the-speedrunner-mod";
@@ -736,23 +736,23 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     public static int getOreDiamondChance() {
-        return 9;
+        return 8;
     }
 
     public static int getOreDiamondBuriedChance() {
-        return 10;
+        return 9;
     }
 
     public static int getOreDiamondLargeChance() {
-        return 6;
+        return 5;
     }
 
     public static int getOreLapisChance() {
-        return 4;
+        return 3;
     }
 
     public static int getOreLapisBuriedChance() {
-        return 5;
+        return 4;
     }
 
     public static int getTreesPlainsCount() {

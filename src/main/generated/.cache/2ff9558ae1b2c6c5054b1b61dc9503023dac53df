@@ -1,4 +1,4 @@
-// 1.20.4	2024-04-14T01:45:04.9595521	Speedrunner Mod/Tags for minecraft:block
+// 1.20.4	2024-04-14T15:52:38.2807693	Speedrunner Mod/Tags for minecraft:block
 0fe2ea89ae39c0769635614a4d44c9f831d5bf8f data\minecraft\tags\blocks\doors.json
 7fe02b6bf714963bc22b3f3708b0a44533dbfb4d data\minecraft\tags\blocks\wall_signs.json
 dce578ecec843739645a3b55143465cfa953bdb5 data\speedrunnermod\tags\blocks\iron_blocks.json
@@ -26,8 +26,8 @@ f53ed9298cdd24e7e9fd91e8ff69439fa7e75196 data\speedrunnermod\tags\blocks\igneous
 90b0d575036dee7c53ecd8bb546039990a700c33 data\minecraft\tags\blocks\wooden_buttons.json
 7a65d29987486bce9c4b475e0a3662462adfec9c data\minecraft\tags\blocks\mineable\shovel.json
 9afa7a918ce98c1ff29120aae8205639d04f3528 data\minecraft\tags\blocks\needs_stone_tool.json
-5207afbd6d4d58e1520eb6b25de7d3487ca1463a data\speedrunnermod\tags\blocks\doom_logs.json
 acf17d4397f9f257f57e004d5bb391edf8bc1706 data\speedrunnermod\tags\blocks\experience_ores.json
+5207afbd6d4d58e1520eb6b25de7d3487ca1463a data\speedrunnermod\tags\blocks\doom_logs.json
 09175c989cd91d22ce9e585d95d1202c439cfca8 data\minecraft\tags\blocks\wooden_fences.json
 e25108eaf7c72e0b5365c0cdcbdbb4701f658686 data\minecraft\tags\blocks\logs.json
 0093417fa4c405cfaf62980b0f7c901c05e54483 data\speedrunnermod\tags\blocks\speedrunner_signs.json

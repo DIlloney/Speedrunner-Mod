@@ -59,7 +59,8 @@ public class MainOptionsScreen extends AbstractModScreen {
                 ModListOptions.ARROWS_DESTROY_BEDS,
                 ModListOptions.MOB_SPAWNING_RATE,
                 ModListOptions.FASTER_SPAWNERS,
-                ModListOptions.KILL_GHAST_ON_FIREBALL
+                ModListOptions.KILL_GHAST_ON_FIREBALL,
+                ModListOptions.CUSTOM_DATA_GENERATION
         };
     }
 

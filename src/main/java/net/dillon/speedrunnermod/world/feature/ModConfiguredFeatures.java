@@ -50,15 +50,23 @@ public class ModConfiguredFeatures {
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         List<OreFeatureConfig.Target> speedrunnerOres = List.of(
                 OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, ModBlocks.SPEEDRUNNER_ORE.getDefaultState()),
-                OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE.getDefaultState()),
+                OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE.getDefaultState()));
+
+        List<OreFeatureConfig.Target> netherSpeedrunnerOres = List.of(
                 OreFeatureConfig.createTarget(NETHERRACK, ModBlocks.NETHER_SPEEDRUNNER_ORE.getDefaultState()));
+
         List<OreFeatureConfig.Target> igneousOres = List.of(
                 OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, ModBlocks.IGNEOUS_ORE.getDefaultState()),
-                OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_IGNEOUS_ORE.getDefaultState()),
+                OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_IGNEOUS_ORE.getDefaultState()));
+
+        List<OreFeatureConfig.Target> netherIgneousOres = List.of(
                 OreFeatureConfig.createTarget(NETHERRACK, ModBlocks.NETHER_IGNEOUS_ORE.getDefaultState()));
+
         List<OreFeatureConfig.Target> experienceOres = List.of(
                 OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, ModBlocks.EXPERIENCE_ORE.getDefaultState()),
-                OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_EXPERIENCE_ORE.getDefaultState()),
+                OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_EXPERIENCE_ORE.getDefaultState()));
+
+        List<OreFeatureConfig.Target> netherExperienceOres = List.of(
                 OreFeatureConfig.createTarget(NETHERRACK, ModBlocks.NETHER_EXPERIENCE_ORE.getDefaultState()));
 
         ConfiguredFeatures.register(context, DEFAULT_SPEEDRUNNER, Feature.TREE, defaultSpeedrunner(ModBlocks.SPEEDRUNNER_LOG, ModBlocks.SPEEDRUNNER_LEAVES).build());
@@ -81,11 +89,11 @@ public class ModConfiguredFeatures {
                 VegetationConfiguredFeatures.createRandomPatchFeatureConfig(BlockStateProvider.of(ModBlocks.DEAD_SPEEDRUNNER_BUSH), 4));
         ConfiguredFeatures.register(context, ORE_SPEEDRUNNER, Feature.ORE, new OreFeatureConfig(speedrunnerOres, 9));
         ConfiguredFeatures.register(context, ORE_SPEEDRUNNER_SMALL,  Feature.ORE, new OreFeatureConfig(speedrunnerOres, 4));
-        ConfiguredFeatures.register(context, ORE_NETHER_SPEEDRUNNER, Feature.ORE, new OreFeatureConfig(speedrunnerOres, 10));
+        ConfiguredFeatures.register(context, ORE_NETHER_SPEEDRUNNER, Feature.ORE, new OreFeatureConfig(netherSpeedrunnerOres, 10));
         ConfiguredFeatures.register(context, ORE_IGNEOUS, Feature.ORE, new OreFeatureConfig(igneousOres, 4, 0.2F));
-        ConfiguredFeatures.register(context, ORE_NETHER_IGNEOUS, Feature.ORE, new OreFeatureConfig(igneousOres, 4));
+        ConfiguredFeatures.register(context, ORE_NETHER_IGNEOUS, Feature.ORE, new OreFeatureConfig(netherIgneousOres, 4));
         ConfiguredFeatures.register(context, ORE_EXPERIENCE, Feature.ORE, new OreFeatureConfig(experienceOres, 3, 0.3F));
-        ConfiguredFeatures.register(context, ORE_NETHER_EXPERIENCE, Feature.ORE, new OreFeatureConfig(experienceOres, 3));
+        ConfiguredFeatures.register(context, ORE_NETHER_EXPERIENCE, Feature.ORE, new OreFeatureConfig(netherExperienceOres, 3));
     }
 
     private static TreeFeatureConfig.Builder defaultSpeedrunner(Block trunk, Block leave) {

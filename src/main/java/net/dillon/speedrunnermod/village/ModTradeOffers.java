@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
@@ -69,7 +70,7 @@ public class ModTradeOffers {
             factories.add(new MaxedEnchantBookFactory(3, 32, 24, 0.0F));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 5, factories -> {
-            factories.add(new ModTradeOffers.SellMaxedEnchantedToolFactory(Items.NETHERITE_CHESTPLATE, 24, 1, 100, 2));
+            factories.add(new ModTradeOffers.SellMaxedEnchantedNetheriteChestplateFactory(12, 1, 100, 1.35F));
         });
 
         info("Registered the Retired Speedrunner villager trades.");
@@ -196,6 +197,49 @@ public class ModTradeOffers {
         public TradeOffer create(Entity entity, Random random) {
             int i = random.nextInt(4) + 30;
             ItemStack itemStack = EnchantmentHelper.enchant(random, new ItemStack(this.tool.getItem()), i, true);
+            return new TradeOffer(new ItemStack(Items.EMERALD, this.price), itemStack, this.maxUses, this.experience, this.multiplier);
+        }
+    }
+
+    public static class SellMaxedEnchantedNetheriteChestplateFactory implements TradeOffers.Factory {
+        private final int price;
+        private final int maxUses;
+        private final int experience;
+        private final float multiplier;
+
+        public SellMaxedEnchantedNetheriteChestplateFactory(int price, int maxUses, int experience, float multiplier) {
+            this.price = price;
+            this.maxUses = maxUses;
+            this.experience = experience;
+            this.multiplier = multiplier;
+        }
+
+        @Override
+        public TradeOffer create(Entity entity, Random random) {
+            int i = random.nextInt(4) + 1;
+            ItemStack itemStack = new ItemStack(i == 1 ? Items.NETHERITE_HELMET : i == 2 ? Items.NETHERITE_CHESTPLATE : i == 3 ? Items.NETHERITE_LEGGINGS : Items.NETHERITE_BOOTS);
+            itemStack.addEnchantment(Enchantments.PROTECTION, random.nextInt(3) + 3);
+            itemStack.addEnchantment(Enchantments.UNBREAKING, random.nextInt(3) + 3);
+            if (random.nextBoolean()) {
+                itemStack.addEnchantment(Enchantments.MENDING, 1);
+            }
+            if (random.nextDouble() < 0.35) {
+                itemStack.addEnchantment(Enchantments.THORNS, random.nextInt(3) + 2);
+            }
+            if (i == 1 && random.nextDouble() < 0.40) {
+                itemStack.addEnchantment(Enchantments.RESPIRATION, random.nextInt(2) + 2);
+            }
+            if (i == 3 && random.nextDouble() < 0.25) {
+                itemStack.addEnchantment(Enchantments.SWIFT_SNEAK, random.nextInt(3) + 2);
+            }
+            if (i == 4) {
+                if (random.nextDouble() < 0.40) {
+                    itemStack.addEnchantment(ModEnchantments.DASH, random.nextInt(3) + 2);
+                }
+                if (random.nextDouble() < 0.35) {
+                    itemStack.addEnchantment(Enchantments.FEATHER_FALLING, random.nextInt(2) + 3);
+                }
+            }
             return new TradeOffer(new ItemStack(Items.EMERALD, this.price), itemStack, this.maxUses, this.experience, this.multiplier);
         }
     }

@@ -446,6 +446,8 @@
   "speedrunnermod.options.kinetic_damage.tooltip": "Enable/disable the damage from flying into walls.",
   "speedrunnermod.options.arrows_destroy_beds": "Arrows Destroy Beds",
   "speedrunnermod.options.arrows_destroy_beds.tooltip": "Shoot an arrow at a bed in the end, and watch it explode.",
+  "speedrunnermod.options.custom_data_generation": "Custom Data Generation",
+  "speedrunnermod.options.custom_data_generation.tooltip": "This allows all world modifications to be applied, which includes making structures more common, modifying mob/creature spawn rates, doom mode features, and more.\n\n§e§lRequires world reload.",
 
   "speedrunnermod.menu.options.fast_world_creation": "Fast World Creation...",
   "speedrunnermod.title.options.fast_world_creation": "Fast World Creation",
@@ -871,6 +873,9 @@
   "speedrunnermod.toggle_fog": "Toggle Fog",
   "speedrunnermod.toggle_fog.on": "Fog: §lON",
   "speedrunnermod.toggle_fog.off": "Fog: §lOFF",
+  "speedrunnermod.toggle_fullbright": "Toggle Fullbright",
+  "speedrunnermod.toggle_fullbright.on": "Fullbright: §lON",
+  "speedrunnermod.toggle_fullbright.off": "Fullbright: §lOFF",
   "speedrunnermod.toggle_hitboxes": "Toggle Hitboxes",
   "speedrunnermod.toggle_chunk_borders": "Toggle Chunk Borders",
 

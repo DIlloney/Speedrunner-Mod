@@ -85,6 +85,7 @@ public class ModOptions {
         public boolean higherEnchantmentLevels = true;
         public boolean stackUnstackables = false;
         public boolean fasterSpawners = true;
+        public boolean customDataGeneration = true;
     }
 
     /**
@@ -93,6 +94,7 @@ public class ModOptions {
      */
     public static class Client {
         public boolean fog = true;
+        public boolean fullBright = false;
         public boolean itemTooltips = true;
         @RequiresRestart
         public Panorama panorama = Panorama.SPEEDRUNNER_MOD;

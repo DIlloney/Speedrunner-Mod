@@ -6,24 +6,6 @@
     "targets": [
       {
         "state": {
-          "Name": "speedrunnermod:experience_ore"
-        },
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "minecraft:stone_ore_replaceables"
-        }
-      },
-      {
-        "state": {
-          "Name": "speedrunnermod:deepslate_experience_ore"
-        },
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "minecraft:deepslate_ore_replaceables"
-        }
-      },
-      {
-        "state": {
           "Name": "speedrunnermod:nether_experience_ore"
         },
         "target": {

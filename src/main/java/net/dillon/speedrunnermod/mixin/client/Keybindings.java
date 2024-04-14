@@ -10,6 +10,7 @@ import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.screen.MessageScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.text.Text;
@@ -44,6 +45,10 @@ public abstract class Keybindings {
     @Shadow @Nullable
     public abstract IntegratedServer getServer();
 
+    @Shadow @Final public GameOptions options;
+
+    @Shadow public abstract void openGameMenu(boolean pauseOnly);
+
     /**
      * Applies the {@code speedrunner mod keybinds} to the game.
      */
@@ -72,6 +77,13 @@ public abstract class Keybindings {
             ModOptions.saveConfig();
             MinecraftClient.getInstance().worldRenderer.reload();
             debugWarnSpeedrunnerMod(options().client.fog ? "speedrunnermod.toggle_fog.on" : "speedrunnermod.toggle_fog.off");
+        }
+
+        while (ModKeybindings.fullbrightKey.wasPressed()) {
+            options().client.fullBright = !options().client.fullBright;
+            ModOptions.saveConfig();
+            MinecraftClient.getInstance().options.getGamma().setValue(options().client.fullBright ? 10.0D : 1.0D);
+            debugWarnSpeedrunnerMod(options().client.fullBright ? "speedrunnermod.toggle_fullbright.on" : "speedrunnermod.toggle_fullbright.off");
         }
 
         while (ModKeybindings.hitboxesKey.wasPressed()) {

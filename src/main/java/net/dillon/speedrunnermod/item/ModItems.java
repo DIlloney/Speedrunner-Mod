@@ -212,12 +212,12 @@ public class ModItems {
     public static final Item SPEEDRUNNER_STICK = new Item(
             new Item.Settings());
 
-    public static final Item SPEEDRUNNER_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.SPEEDRUNNER_BOAT_ID, ModBoats.SPEEDRUNNER_BOAT_KEY, false);
-    public static final Item SPEEDRUNNER_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.SPEEDRUNNER_CHEST_BOAT_ID, ModBoats.SPEEDRUNNER_BOAT_KEY, true);
-    public static final Item CRIMSON_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.CRIMSON_BOAT_ID, ModBoats.CRIMSON_BOAT_KEY, false);
-    public static final Item CRIMSON_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.CRIMSON_CHEST_BOAT_ID, ModBoats.CRIMSON_BOAT_KEY, true);
-    public static final Item WARPED_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.WARPED_BOAT_ID, ModBoats.WARPED_BOAT_KEY, false);
-    public static final Item WARPED_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.WARPED_CHEST_BOAT_ID, ModBoats.WARPED_BOAT_KEY, true);
+    public static final Item SPEEDRUNNER_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.SPEEDRUNNER_BOAT_ID, ModBoats.SPEEDRUNNER_BOAT_KEY, false, new Item.Settings().maxCount(1).fireproof());
+    public static final Item SPEEDRUNNER_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.SPEEDRUNNER_CHEST_BOAT_ID, ModBoats.SPEEDRUNNER_BOAT_KEY, true, new Item.Settings().maxCount(1).fireproof());
+    public static final Item CRIMSON_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.CRIMSON_BOAT_ID, ModBoats.CRIMSON_BOAT_KEY, false, new Item.Settings().maxCount(1).fireproof());
+    public static final Item CRIMSON_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.CRIMSON_CHEST_BOAT_ID, ModBoats.CRIMSON_BOAT_KEY, true, new Item.Settings().maxCount(1).fireproof());
+    public static final Item WARPED_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.WARPED_BOAT_ID, ModBoats.WARPED_BOAT_KEY, false, new Item.Settings().maxCount(1).fireproof());
+    public static final Item WARPED_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.WARPED_CHEST_BOAT_ID, ModBoats.WARPED_BOAT_KEY, true, new Item.Settings().maxCount(1).fireproof());
 
     public static final Item WITHER_BONE = new Item(
             new Item.Settings()) {

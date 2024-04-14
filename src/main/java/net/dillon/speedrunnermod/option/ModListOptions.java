@@ -139,6 +139,9 @@ public class ModListOptions {
     public static final SimpleOption<Boolean> THROWABLE_FIREBALLS = new SimpleOption<>("speedrunnermod.options.throwable_fireballs", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.throwable_fireballs.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.throwableFireballs, value -> options().main.throwableFireballs = value);
 
+    public static final SimpleOption<Boolean> CUSTOM_DATA_GENERATION = new SimpleOption<>("speedrunnermod.options.custom_data_generation", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.custom_data_generation.tooltip")),
+            (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.customDataGeneration, value -> options().main.customDataGeneration = value);
+
     public static final SimpleOption<Boolean> FAST_WORLD_CREATION = new SimpleOption<>("speedrunnermod.options.fast_world_creation", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.fast_world_creation.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.fastWorldCreation, value -> options().client.fastWorldCreation = value);
 
