@@ -72,12 +72,12 @@ public class ModBlocks {
 
     public static final Block SPEEDRUNNER_SAPLING = new SpeedrunnerSaplingBlock(new SpeedrunnerSaplingGenerator(), FabricBlockSettings.of(Material.LEAVES)
             .breakInstantly()
+            .ticksRandomly()
             .noCollision()
             .sounds(BlockSoundGroup.GRASS));
 
     public static final Block POTTED_SPEEDRUNNER_SAPLING = new FlowerPotBlock(SPEEDRUNNER_SAPLING, FabricBlockSettings.of(Material.DECORATION)
             .breakInstantly()
-            .nonOpaque()
             .nonOpaque());
 
     public static final Block SPEEDRUNNER_PLANKS = new Block(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
@@ -111,7 +111,7 @@ public class ModBlocks {
             .strength(2.5F)
             .nonOpaque()
             .allowsSpawning(Blocks::never)
-            .sounds(BlockSoundGroup.METAL), BlockSetType.OAK);
+            .sounds(BlockSoundGroup.METAL), BlockSetType.IRON);
 
     public static final Block WOODEN_SPEEDRUNNER_BUTTON = new ButtonBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(0.35F)
@@ -127,7 +127,7 @@ public class ModBlocks {
             .requiresTool()
             .strength(0.5F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+            .sounds(BlockSoundGroup.WOOD), BlockSetType.IRON);
 
     public static final Block WOODEN_SPEEDRUNNER_DOOR = new DoorBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
             .strength(1.3F)
@@ -138,7 +138,7 @@ public class ModBlocks {
             .requiresTool()
             .strength(2.5F)
             .nonOpaque()
-            .sounds(BlockSoundGroup.METAL), BlockSetType.OAK);
+            .sounds(BlockSoundGroup.METAL), BlockSetType.IRON);
 
     public static final Identifier SPEEDRUNNER_SIGN_TEXTURE = new Identifier(SpeedrunnerMod.MOD_ID, "entity/signs/speedrunner");
     public static final Identifier SPEEDRUNNER_HANGING_SIGN_TEXTURE = new Identifier(SpeedrunnerMod.MOD_ID, "entity/signs/hanging/speedrunner");
@@ -239,6 +239,7 @@ public class ModBlocks {
             .requiresTool()
             .strength(3.0F, 3.0F)
             .sounds(BlockSoundGroup.NETHER_ORE));
+
     public static final Block DOOM_STONE = new DoomBlock.Default(FabricBlockSettings.of(Material.STONE)
             .requiresTool()
             .strength(1.5F, 3600000.0F)

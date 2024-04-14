@@ -49,8 +49,8 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SPEEDRUNNER_STAIRS);
         addDrop(ModBlocks.SPEEDRUNNERS_WORKBENCH);
 
-        addDrop(ModBlocks.SPEEDRUNNER_DOOR);
-        addDrop(ModBlocks.WOODEN_SPEEDRUNNER_DOOR);
+        addDrop(ModBlocks.SPEEDRUNNER_DOOR, this::doorDrops);
+        addDrop(ModBlocks.WOODEN_SPEEDRUNNER_DOOR, this::doorDrops);
         addDrop(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
         addDrop(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         addDrop(ModBlocks.SPEEDRUNNER_TRAPDOOR);

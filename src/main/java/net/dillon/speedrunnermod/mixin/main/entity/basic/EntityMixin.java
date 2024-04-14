@@ -27,10 +27,8 @@ public abstract class EntityMixin {
     public abstract DamageSources getDamageSources();
     @Shadow
     public abstract @Nullable Entity getVehicle();
-
-    @Shadow private int fireTicks;
-
-    @Shadow public abstract void onPassengerLookAround(Entity passenger);
+    @Shadow
+    private int fireTicks;
 
     /**
      * Decreases time set on fire for from lava.
