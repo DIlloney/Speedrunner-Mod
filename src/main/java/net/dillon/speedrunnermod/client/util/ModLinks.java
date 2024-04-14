@@ -23,12 +23,12 @@ public class ModLinks {
     public static final String LEADERBOARDS_SUBMISSION_LINK = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScnw-e4gkYyHGEVztWY-DLmm64jIbnqLw_LCIBkF2uQFfqVTg/viewform";
     public static final String LEADERBOARDS_SPREADSHEET_LINK = "https://docs.google.com/spreadsheets/d/1JHiHHzRrcQnEeLCqxcjx9znPBJbCVDkhZ6ump9VtKHY";
 
-    public static final String SODIUM_MOD_LINK = "https://modrinth.com/mod/sodium/versions?g=1.20.2";
-    public static final String LITHIUM_MOD_LINK = "https://modrinth.com/mod/lithium/versions?g=1.20.2";
-    public static final String PHOSPHOR_MOD_LINK = "https://modrinth.com/mod/phosphor/versions?g=1.20.2";
-    public static final String SPEEDRUN_IGT_MOD_LINK = "https://modrinth.com/mod/speedrunigt/versions?g=1.20.2";
-    public static final String LAZYDFU_MOD_LINK = "https://modrinth.com/mod/lazydfu/versions?g=1.20.2";
-    public static final String KRYPTON_MOD_LINK = "https://modrinth.com/mod/krypton/versions?g=1.20.2";
+    public static final String SODIUM_MOD_LINK = "https://modrinth.com/mod/sodium/versions?g=1.20.4";
+    public static final String LITHIUM_MOD_LINK = "https://modrinth.com/mod/lithium/versions?g=1.20.4";
+    public static final String PHOSPHOR_MOD_LINK = "https://modrinth.com/mod/phosphor/versions?g=1.20.4";
+    public static final String SPEEDRUN_IGT_MOD_LINK = "https://modrinth.com/mod/speedrunigt/versions?g=1.20.4";
+    public static final String LAZYDFU_MOD_LINK = "https://modrinth.com/mod/lazydfu/versions?g=1.20.4";
+    public static final String KRYPTON_MOD_LINK = "https://modrinth.com/mod/krypton/versions?g=1.20.4";
 
     public static final String OPTIONS_EXPLANATION = "https://sites.google.com/view/dillon8775/speedrunner-mod-options-explanations";
 }
