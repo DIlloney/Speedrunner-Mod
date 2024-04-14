@@ -113,12 +113,10 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context);
-        this.renderCustomText(context);
-
-        if (this.isOptionsScreen()) {
-            this.list.render(context, mouseX, mouseY, delta);
+        if (!this.isOptionsScreen()) {
+            this.renderBackground(context, mouseX, mouseY, delta);
         }
+        this.renderCustomText(context);
 
         if (this.shouldRenderVersionText()) {
             int leftSide = this.width / 2 - 155;
@@ -133,11 +131,21 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
         }
 
         super.render(context, mouseX, mouseY, delta);
-        if (isOptionsScreen()) {
+        if (this.isOptionsScreen()) {
+            this.list.render(context, mouseX, mouseY, delta);
             context.drawTexture(new Identifier("speedrunnermod:textures/gui/question_mark.png"), this.getButtonsRightSide() + 106, this.helpButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         }
         this.renderCustomObjects(context);
         this.renderTooltips(context, mouseX, mouseY);
+    }
+
+    @Override
+    public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
+        if (this.isOptionsScreen()) {
+            this.renderBackgroundTexture(context);
+        } else {
+            super.renderBackground(context, mouseX, mouseY, delta);
+        }
     }
 
     /**

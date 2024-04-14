@@ -10,14 +10,13 @@ import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
     public static SpecialRecipeSerializer<SpeedrunnerShieldDecorationRecipe> SPEEDRUNNER_SHIELD_DECORATION_RECIPE = new SpecialRecipeSerializer<>(SpeedrunnerShieldDecorationRecipe::new);
 
-    public SpeedrunnerShieldDecorationRecipe(Identifier id, CraftingRecipeCategory category) {
-        super(id, category);
+    public SpeedrunnerShieldDecorationRecipe(CraftingRecipeCategory category) {
+        super(category);
     }
 
     @Override

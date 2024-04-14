@@ -27,7 +27,7 @@ public class ModTradeOffers {
 
     public static void init() {
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 1, factories -> {
-            factories.add(new TradeOffers.BuyForOneEmeraldFactory(ModItems.SPEEDRUNNER_INGOT, 1, 24, 3));
+            factories.add(new TradeOffers.BuyItemFactory(ModItems.SPEEDRUNNER_INGOT, 1, 24, 3));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 1, factories -> {
             factories.add(new TradeOffers.SellItemFactory(Items.BOOK, 1, 3, 12, 4));
@@ -36,7 +36,7 @@ public class ModTradeOffers {
             factories.add(new MaxedEnchantBookFactory(3, 24, 12, 0.2F));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 2, factories -> {
-            factories.add(new TradeOffers.ProcessItemFactory(Items.COOKED_BEEF, 1, ModItems.GOLDEN_BEEF, 1, 64, 5));
+            factories.add(new TradeOffers.ProcessItemFactory(Items.COOKED_BEEF, 1, 1, ModItems.GOLDEN_BEEF, 1, 1, 64, 5));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 2, factories -> {
             factories.add(new MaxedEnchantBookFactory(3, 24, 6, 0.0F));
