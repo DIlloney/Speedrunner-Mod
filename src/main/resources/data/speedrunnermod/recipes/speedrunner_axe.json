@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ss",
+    "s/",
+    " /"
+  ],
+  "key": {
+    "s": {
+      "item": "speedrunnermod:speedrunner_ingot"
+    },
+    "/": {
+      "tag": "speedrunnermod:sticks"
+    }
+  },
+  "result": {
+    "item": "speedrunnermod:speedrunner_axe",
+    "count": 1
+  }
+}
