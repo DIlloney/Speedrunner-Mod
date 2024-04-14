@@ -21,11 +21,11 @@ import net.minecraft.loot.provider.number.UniformLootNumberProvider;
  * Generates block loot tables.
  * <p>Vanilla loot tables are modified separately, this is only used to generate the {@code speedrunner mod block loot tables.}</p>
  */
-public class ModLootTableGenerator extends FabricBlockLootTableProvider {
+public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
     private static final float[] SPEEDRUNNER_SAPLING_DROP_CHANCE = new float[]{0.075F, 0.0800F, 0.093333336F, 0.15F};
     private static final float[] SPEEDRUNNER_LEAVES_STICK_DROP_CHANCE = new float[]{0.65F,  0.06555558F, 0.70F, 0.075F, 0.1F};
 
-    public ModLootTableGenerator(FabricDataGenerator dataGenerator) {
+    public ModBlockLootTableGenerator(FabricDataGenerator dataGenerator) {
         super(dataGenerator);
     }
 
@@ -48,8 +48,8 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SPEEDRUNNER_STAIRS);
         addDrop(ModBlocks.SPEEDRUNNERS_WORKBENCH);
 
-        addDrop(ModBlocks.SPEEDRUNNER_DOOR);
-        addDrop(ModBlocks.WOODEN_SPEEDRUNNER_DOOR);
+        addDrop(ModBlocks.SPEEDRUNNER_DOOR, BlockLootTableGenerator::addDoorDrop);
+        addDrop(ModBlocks.WOODEN_SPEEDRUNNER_DOOR, BlockLootTableGenerator::addDoorDrop);
         addDrop(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
         addDrop(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         addDrop(ModBlocks.SPEEDRUNNER_TRAPDOOR);

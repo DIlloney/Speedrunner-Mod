@@ -64,7 +64,7 @@ public class ModTradeOffers {
             factories.add(new MaxedEnchantBookFactory(3, 32, 24, 0.0F));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 5, factories -> {
-            factories.add(new TradeOffers.SellEnchantedToolFactory(Items.NETHERITE_CHESTPLATE, 24, 1, 100, 2));
+            factories.add(new ModTradeOffers.SellMaxedEnchantedToolFactory(Items.NETHERITE_CHESTPLATE, 24, 1, 100, 2));
         });
         PointOfInterestTypeAccessor.callSetup(ModVillagers.RETIRED_SPEEDRUNNER_POI);
 
@@ -190,7 +190,7 @@ public class ModTradeOffers {
 
         @Override
         public TradeOffer create(Entity entity, Random random) {
-            int i = 30 + random.nextInt(33);
+            int i = random.nextInt(4) + 30;
             ItemStack itemStack = EnchantmentHelper.enchant(random, new ItemStack(this.tool.getItem()), i, true);
             return new TradeOffer(new ItemStack(Items.EMERALD, this.price), itemStack, this.maxUses, this.experience, this.multiplier);
         }

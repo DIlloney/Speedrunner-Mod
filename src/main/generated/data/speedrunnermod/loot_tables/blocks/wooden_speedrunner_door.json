@@ -7,6 +7,15 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "speedrunnermod:wooden_speedrunner_door",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
           "name": "speedrunnermod:wooden_speedrunner_door"
         }
       ],

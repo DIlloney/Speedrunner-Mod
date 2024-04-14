@@ -68,12 +68,12 @@ public class ModBlocks {
 
     public static final Block SPEEDRUNNER_SAPLING = new SpeedrunnerSaplingBlock(new SpeedrunnerSaplingGenerator(), FabricBlockSettings.of(Material.LEAVES)
             .breakInstantly()
+            .ticksRandomly()
             .noCollision()
             .sounds(BlockSoundGroup.GRASS));
 
     public static final Block POTTED_SPEEDRUNNER_SAPLING = new FlowerPotBlock(SPEEDRUNNER_SAPLING, FabricBlockSettings.of(Material.DECORATION)
             .breakInstantly()
-            .nonOpaque()
             .nonOpaque());
 
     public static final Block SPEEDRUNNER_PLANKS = new Block(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
