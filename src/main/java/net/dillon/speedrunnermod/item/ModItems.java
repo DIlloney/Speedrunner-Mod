@@ -11,6 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.Util;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,6 +24,12 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * {@link SpeedrunnerMod} items.
  */
 public class ModItems {
+    private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", new Identifier(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.applies_to"))).formatted(Formatting.GOLD);
+    private static final Text GOLDEN_SPEEDRUNNER_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", new Identifier(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.ingredients"))).formatted(Formatting.AQUA);
+    private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_upgrade"))).formatted(Formatting.GRAY);
+    private static final Text GOLDEN_SPEEDRUNNER_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", new Identifier(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.base_slot_description")));
+    private static final Text GOLDEN_SPEEDRUNNER_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", new Identifier(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.additions_slot_description")));
+
     public static final Item SPEEDRUNNER_INGOT = new Item(
             new Item.Settings()) {
 
@@ -130,6 +137,8 @@ public class ModItems {
     public static final Item GOLDEN_SPEEDRUNNER_BOOTS = new ArmorItem(
             ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.BOOTS,
             new Item.Settings());
+
+    public static final Item GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE = new SmithingTemplateItem(GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT, GOLDEN_SPEEDRUNNER_INGREDIENTS_TEXT, GOLDEN_SPEEDRUNNER_UPGRADE_TEXT, GOLDEN_SPEEDRUNNER_BASE_SLOT_DESCRIPTION_TEXT, GOLDEN_SPEEDRUNNER_ADDITIONS_SLOT_DESCRIPTION_TEXT, SmithingTemplateItem.getNetheriteUpgradeEmptyBaseSlotTextures(), SmithingTemplateItem.getNetheriteUpgradeEmptyAdditionsSlotTextures());
 
     public static final Item SPEEDRUNNER_BULK = new Item(
             new Item.Settings().rarity(Rarity.RARE).food(ModFoodComponents.SPEEDRUNNER_BULK)) {
@@ -259,6 +268,7 @@ public class ModItems {
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_chestplate"), GOLDEN_SPEEDRUNNER_CHESTPLATE);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_leggings"), GOLDEN_SPEEDRUNNER_LEGGINGS);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_boots"), GOLDEN_SPEEDRUNNER_BOOTS);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_upgrade_smithing_template"), GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_bulk"), SPEEDRUNNER_BULK);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "rotten_speedrunner_bulk"), ROTTEN_SPEEDRUNNER_BULK);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "cooked_flesh"), COOKED_FLESH);

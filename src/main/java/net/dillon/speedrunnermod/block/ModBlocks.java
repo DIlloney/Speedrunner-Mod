@@ -8,9 +8,10 @@ import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
+import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
@@ -20,244 +21,290 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
  * The {@code Speedrunner Mod} blocks.
  */
 public class ModBlocks {
-    public static final Block SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.create()
             .strength(1.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block STRIPPED_SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block STRIPPED_SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.create()
             .strength(1.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.create()
             .strength(1.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block STRIPPED_SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block STRIPPED_SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.create()
             .strength(1.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block DEAD_SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block DEAD_SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.create()
             .strength(1.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block DEAD_STRIPPED_SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block DEAD_STRIPPED_SPEEDRUNNER_LOG = new PillarBlock(FabricBlockSettings.create()
             .strength(1.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block DEAD_SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block DEAD_SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.create()
             .strength(1.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block DEAD_STRIPPED_SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block DEAD_STRIPPED_SPEEDRUNNER_WOOD = new PillarBlock(FabricBlockSettings.create()
             .strength(1.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES)
+    public static final Block SPEEDRUNNER_LEAVES = new LeavesBlock(FabricBlockSettings.create()
             .strength(0.1F)
             .nonOpaque()
             .ticksRandomly()
             .allowsSpawning(Blocks::canSpawnOnLeaves)
             .suffocates(Blocks::never)
             .blockVision(Blocks::never)
+            .pistonBehavior(PistonBehavior.DESTROY)
+            .solidBlock(Blocks::never)
             .sounds(BlockSoundGroup.GRASS));
 
-    public static final Block DEAD_SPEEDRUNNER_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES)
+    public static final Block DEAD_SPEEDRUNNER_LEAVES = new LeavesBlock(FabricBlockSettings.create()
             .strength(0.1F)
             .nonOpaque()
             .ticksRandomly()
             .allowsSpawning(Blocks::canSpawnOnLeaves)
             .suffocates(Blocks::never)
             .blockVision(Blocks::never)
+            .pistonBehavior(PistonBehavior.DESTROY)
+            .solidBlock(Blocks::never)
             .sounds(BlockSoundGroup.GRASS));
 
-    public static final Block SPEEDRUNNER_SAPLING = new SpeedrunnerSaplingBlock(new SpeedrunnerSaplingGenerator(), FabricBlockSettings.of(Material.LEAVES)
+    public static final Block SPEEDRUNNER_SAPLING = new SpeedrunnerSaplingBlock(new SpeedrunnerSaplingGenerator(), FabricBlockSettings.create()
             .breakInstantly()
+            .ticksRandomly()
             .noCollision()
             .sounds(BlockSoundGroup.GRASS));
 
-    public static final Block POTTED_SPEEDRUNNER_SAPLING = new FlowerPotBlock(SPEEDRUNNER_SAPLING, FabricBlockSettings.of(Material.DECORATION)
+    public static final Block POTTED_SPEEDRUNNER_SAPLING = new FlowerPotBlock(SPEEDRUNNER_SAPLING, FabricBlockSettings.create()
             .breakInstantly()
             .nonOpaque()
-            .nonOpaque());
+            .pistonBehavior(PistonBehavior.DESTROY));
 
-    public static final Block SPEEDRUNNER_PLANKS = new Block(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNER_PLANKS = new Block(FabricBlockSettings.create()
             .strength(1.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_SLAB = new SlabBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNER_SLAB = new SlabBlock(FabricBlockSettings.create()
             .strength(1.0F, 6.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_STAIRS = new StairsBlock(SPEEDRUNNER_PLANKS.getDefaultState(), FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNER_STAIRS = new StairsBlock(SPEEDRUNNER_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(ModBlocks.SPEEDRUNNER_PLANKS));
+
+    public static final Block SPEEDRUNNER_FENCE = new FenceBlock(FabricBlockSettings.create()
             .strength(1.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_FENCE = new FenceBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNER_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.create()
             .strength(1.0F)
-            .sounds(BlockSoundGroup.WOOD));
-
-    public static final Block SPEEDRUNNER_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
-            .strength(1.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD), WoodType.OAK);
 
-    public static final Block WOODEN_SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block WOODEN_SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings.create()
             .strength(1.3F)
             .nonOpaque()
             .allowsSpawning(Blocks::never)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
 
-    public static final Block SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings.of(Material.METAL)
+    public static final Block SPEEDRUNNER_TRAPDOOR = new TrapdoorBlock(FabricBlockSettings.create()
             .requiresTool()
             .strength(2.5F)
             .nonOpaque()
             .allowsSpawning(Blocks::never)
-            .sounds(BlockSoundGroup.METAL), BlockSetType.OAK);
+            .instrument(Instrument.BASS)
+            .sounds(BlockSoundGroup.METAL), BlockSetType.IRON);
 
-    public static final Block WOODEN_SPEEDRUNNER_BUTTON = new ButtonBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block WOODEN_SPEEDRUNNER_BUTTON = new ButtonBlock(FabricBlockSettings.create()
             .strength(0.35F)
             .noCollision()
+            .pistonBehavior(PistonBehavior.DESTROY)
             .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK, 30, true);
 
-    public static final Block WOODEN_SPEEDRUNNER_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block WOODEN_SPEEDRUNNER_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.create()
             .strength(0.35F)
             .noCollision()
+            .instrument(Instrument.BASS)
+            .pistonBehavior(PistonBehavior.DESTROY)
             .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
 
-    public static final Block SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE = new WeightedPressurePlateBlock(100, FabricBlockSettings.of(Material.METAL)
+    public static final Block SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE = new WeightedPressurePlateBlock(100, FabricBlockSettings.create()
             .requiresTool()
             .strength(0.5F)
             .noCollision()
-            .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
+            .pistonBehavior(PistonBehavior.DESTROY)
+            .sounds(BlockSoundGroup.WOOD), BlockSetType.IRON);
 
-    public static final Block WOODEN_SPEEDRUNNER_DOOR = new DoorBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block WOODEN_SPEEDRUNNER_DOOR = new DoorBlock(FabricBlockSettings.create()
             .strength(1.3F)
             .nonOpaque()
+            .instrument(Instrument.BASS)
+            .pistonBehavior(PistonBehavior.DESTROY)
             .sounds(BlockSoundGroup.WOOD), BlockSetType.OAK);
 
-    public static final Block SPEEDRUNNER_DOOR = new DoorBlock(FabricBlockSettings.of(Material.METAL)
+    public static final Block SPEEDRUNNER_DOOR = new DoorBlock(FabricBlockSettings.create()
             .requiresTool()
             .strength(2.5F)
             .nonOpaque()
-            .sounds(BlockSoundGroup.METAL), BlockSetType.OAK);
+            .instrument(Instrument.BASS)
+            .pistonBehavior(PistonBehavior.DESTROY)
+            .sounds(BlockSoundGroup.METAL), BlockSetType.IRON);
 
     public static final Identifier SPEEDRUNNER_SIGN_TEXTURE = new Identifier(SpeedrunnerMod.MOD_ID, "entity/signs/speedrunner");
     public static final Identifier SPEEDRUNNER_HANGING_SIGN_TEXTURE = new Identifier(SpeedrunnerMod.MOD_ID, "entity/signs/hanging/speedrunner");
     public static final Identifier SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE = new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/hanging_signs/speedrunner");
 
-    public static final Block SPEEDRUNNER_SIGN = new TerraformSignBlock(SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNER_SIGN = new TerraformSignBlock(SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.create()
             .strength(1.0F)
             .noCollision()
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_WALL_SIGN = new TerraformWallSignBlock(SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNER_WALL_SIGN = new TerraformWallSignBlock(SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.create()
             .strength(1.0F)
             .noCollision()
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_HANGING_SIGN = new TerraformHangingSignBlock(SPEEDRUNNER_HANGING_SIGN_TEXTURE, SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNER_HANGING_SIGN = new TerraformHangingSignBlock(SPEEDRUNNER_HANGING_SIGN_TEXTURE, SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.create()
             .strength(1.0F)
             .noCollision()
-            .sounds(BlockSoundGroup.HANGING_SIGN)
-            .requires(FeatureFlags.UPDATE_1_20));
+            .instrument(Instrument.BASS)
+            .sounds(BlockSoundGroup.HANGING_SIGN));
 
-    public static final Block SPEEDRUNNER_HANGING_WALL_SIGN = new TerraformWallHangingSignBlock(SPEEDRUNNER_HANGING_SIGN_TEXTURE, SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNER_HANGING_WALL_SIGN = new TerraformWallHangingSignBlock(SPEEDRUNNER_HANGING_SIGN_TEXTURE, SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.create()
             .strength(1.0F)
             .noCollision()
-            .sounds(BlockSoundGroup.HANGING_SIGN)
-            .requires(FeatureFlags.UPDATE_1_20));
+            .instrument(Instrument.BASS)
+            .sounds(BlockSoundGroup.HANGING_SIGN));
 
-    public static final Block DEAD_SPEEDRUNNER_BUSH = new DeadBushBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT)
+    public static final Block DEAD_SPEEDRUNNER_BUSH = new DeadBushBlock(FabricBlockSettings.create()
             .breakInstantly()
             .noCollision()
+            .pistonBehavior(PistonBehavior.DESTROY)
             .sounds(BlockSoundGroup.GRASS));
 
-    public static final Block POTTED_DEAD_SPEEDRUNNER_BUSH = new FlowerPotBlock(DEAD_SPEEDRUNNER_BUSH, FabricBlockSettings.of(Material.REPLACEABLE_PLANT)
+    public static final Block POTTED_DEAD_SPEEDRUNNER_BUSH = new FlowerPotBlock(DEAD_SPEEDRUNNER_BUSH, FabricBlockSettings.create()
             .breakInstantly()
             .noCollision()
+            .pistonBehavior(PistonBehavior.DESTROY)
             .sounds(BlockSoundGroup.GRASS));
 
-    public static final Block SPEEDRUNNERS_WORKBENCH = new SpeedrunnersWorkbenchBlock(FabricBlockSettings.of(ModMaterials.SPEEDRUNNER_WOOD)
+    public static final Block SPEEDRUNNERS_WORKBENCH = new SpeedrunnersWorkbenchBlock(FabricBlockSettings.create()
             .strength(1.6F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_BLOCK = new Block(FabricBlockSettings.of(Material.METAL)
+    public static final Block SPEEDRUNNER_BLOCK = new Block(FabricBlockSettings.create()
             .requiresTool()
             .strength(5.0F, 6.0F)
+            .instrument(Instrument.IRON_XYLOPHONE)
             .sounds(BlockSoundGroup.METAL));
 
-    public static final Block RAW_SPEEDRUNNER_BLOCK = new Block(FabricBlockSettings.of(Material.STONE)
+    public static final Block RAW_SPEEDRUNNER_BLOCK = new Block(FabricBlockSettings.create()
             .requiresTool()
             .strength(5.0F, 6.0F)
+            .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.STONE));
 
-    public static final Block THRUSTER_BLOCK = new Block(FabricBlockSettings.of(Material.SOIL)
+    public static final Block THRUSTER_BLOCK = new Block(FabricBlockSettings.create()
             .strength(0.5F)
             .allowsSpawning(Blocks::never)
             .sounds(BlockSoundGroup.GRASS));
 
-    public static final Block SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
+    public static final Block SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
             .requiresTool()
             .strength(3.0F, 3.0F)
+            .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.STONE));
 
-    public static final Block DEEPSLATE_SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
+    public static final Block DEEPSLATE_SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
             .requiresTool()
             .strength(4.5F, 4.5F)
+            .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.DEEPSLATE));
 
-    public static final Block NETHER_SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
+    public static final Block NETHER_SPEEDRUNNER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
             .requiresTool()
             .strength(3.0F, 3.0F)
+            .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.NETHER_GOLD_ORE));
 
-    public static final Block IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
+    public static final Block IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
             .requiresTool()
             .strength(3.0F, 3.0F)
+            .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.STONE));
 
-    public static final Block DEEPSLATE_IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
+    public static final Block DEEPSLATE_IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
             .requiresTool()
             .strength(4.5F, 4.5F)
+            .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.DEEPSLATE));
 
-    public static final Block NETHER_IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
+    public static final Block NETHER_IGNEOUS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
             .requiresTool()
             .strength(3.0F, 3.0F)
+            .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.NETHER_ORE));
 
-    public static final Block EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
+    public static final Block EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
             .requiresTool()
             .strength(5.0F, 10.0F)
+            .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.STONE));
 
-    public static final Block DEEPSLATE_EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
+    public static final Block DEEPSLATE_EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
             .requiresTool()
             .strength(6.0F, 12.5F)
             .sounds(BlockSoundGroup.DEEPSLATE));
 
-    public static final Block NETHER_EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.of(Material.STONE)
+    public static final Block NETHER_EXPERIENCE_ORE = new ExperienceDroppingBlock(FabricBlockSettings.create()
             .requiresTool()
             .strength(3.0F, 3.0F)
+            .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.NETHER_ORE));
-    public static final Block DOOM_STONE = new DoomBlock.Default(FabricBlockSettings.of(Material.STONE)
+
+    public static final Block DOOM_STONE = new DoomBlock.Default(FabricBlockSettings.create()
             .requiresTool()
             .strength(1.5F, 3600000.0F)
+            .instrument(Instrument.BASEDRUM)
             .sounds(BlockSoundGroup.STONE));
 
-    public static final Block DOOM_LOG = new DoomBlock.Pillar(FabricBlockSettings.of(Material.WOOD)
+    public static final Block DOOM_LOG = new DoomBlock.Pillar(FabricBlockSettings.create()
             .strength(1.0F, 3600000.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block STRIPPED_DOOM_LOG = new DoomBlock.Pillar(FabricBlockSettings.of(Material.WOOD)
+    public static final Block STRIPPED_DOOM_LOG = new DoomBlock.Pillar(FabricBlockSettings.create()
             .strength(1.0F, 3600000.0F)
+            .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block DOOM_LEAVES = new DoomBlock.Leaves(FabricBlockSettings.of(Material.LEAVES)
+    public static final Block DOOM_LEAVES = new DoomBlock.Leaves(FabricBlockSettings.create()
             .strength(0.1F, 3600000.0F)
             .nonOpaque()
             .ticksRandomly()
             .suffocates(Blocks::never)
             .blockVision(Blocks::never)
+            .pistonBehavior(PistonBehavior.DESTROY)
+            .solidBlock(Blocks::never)
             .sounds(BlockSoundGroup.GRASS));
 
     /**

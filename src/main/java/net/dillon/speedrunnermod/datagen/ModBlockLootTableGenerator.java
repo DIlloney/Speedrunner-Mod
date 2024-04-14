@@ -23,8 +23,8 @@ import net.minecraft.loot.provider.number.UniformLootNumberProvider;
  * <p>Vanilla loot tables are modified separately, this is only used to generate the {@code speedrunner mod block loot tables.}</p>
  */
 public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
-    private static final float[] SPEEDRUNNER_SAPLING_DROP_CHANCE = new float[]{0.075F, 0.0800F, 0.093333336F, 0.15F};
-    private static final float[] SPEEDRUNNER_LEAVES_STICK_DROP_CHANCE = new float[]{0.65F,  0.06555558F, 0.70F, 0.075F, 0.1F};
+    private static final float[] NEW_SAPLING_DROP_CHANCE = new float[]{0.075F, 0.0800F, 0.093333336F, 0.15F};
+    private static final float[] NEW_LEAVES_STICK_DROP_CHANCE = new float[]{0.65F,  0.06555558F, 0.70F, 0.075F, 0.1F};
 
     protected ModBlockLootTableGenerator(FabricDataOutput dataOutput) {
         super(dataOutput);
@@ -33,8 +33,8 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         addDrop(ModBlocks.DEAD_SPEEDRUNNER_BUSH, (Block block) -> VanillaBlockLootTableGenerator.dropsWithShears(block, applyExplosionDecay(block, ItemEntry.builder(ModItems.SPEEDRUNNER_STICK).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3, 9))))));
-        addDrop(ModBlocks.SPEEDRUNNER_LEAVES, (Block block) -> speedrunnerLeavesDrops(block, ModBlocks.SPEEDRUNNER_SAPLING, SPEEDRUNNER_SAPLING_DROP_CHANCE));
-        addDrop(ModBlocks.DEAD_SPEEDRUNNER_LEAVES, (Block block) -> speedrunnerLeavesDrops(block, ModBlocks.SPEEDRUNNER_SAPLING, SPEEDRUNNER_SAPLING_DROP_CHANCE));
+        addDrop(ModBlocks.SPEEDRUNNER_LEAVES, (Block block) -> speedrunnerLeavesDrops(block, ModBlocks.SPEEDRUNNER_SAPLING, NEW_SAPLING_DROP_CHANCE));
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_LEAVES, (Block block) -> speedrunnerLeavesDrops(block, ModBlocks.SPEEDRUNNER_SAPLING, NEW_SAPLING_DROP_CHANCE));
 
         addPottedPlantDrops(ModBlocks.POTTED_DEAD_SPEEDRUNNER_BUSH);
         addPottedPlantDrops(ModBlocks.POTTED_SPEEDRUNNER_SAPLING);
@@ -49,8 +49,8 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SPEEDRUNNER_STAIRS);
         addDrop(ModBlocks.SPEEDRUNNERS_WORKBENCH);
 
-        addDrop(ModBlocks.SPEEDRUNNER_DOOR);
-        addDrop(ModBlocks.WOODEN_SPEEDRUNNER_DOOR);
+        addDrop(ModBlocks.SPEEDRUNNER_DOOR, this::doorDrops);
+        addDrop(ModBlocks.WOODEN_SPEEDRUNNER_DOOR, this::doorDrops);
         addDrop(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
         addDrop(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         addDrop(ModBlocks.SPEEDRUNNER_TRAPDOOR);
@@ -99,6 +99,6 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
     }
 
     private LootTable.Builder speedrunnerLeavesDrops(Block leaves, Block drop, float ... chance) {
-        return BlockLootTableGenerator.dropsWithSilkTouchOrShears(leaves, addSurvivesExplosionCondition(leaves, ItemEntry.builder(drop)).conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, chance))).pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f)).conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS).with(addSurvivesExplosionCondition(leaves, ItemEntry.builder(Items.APPLE))).conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, 0.50F, 0.05555558F, 0.35F, 0.07F, 0.1F)).with(applyExplosionDecay(leaves, ItemEntry.builder(ModItems.SPEEDRUNNER_STICK).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 2))))).conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, SPEEDRUNNER_LEAVES_STICK_DROP_CHANCE)));
+        return BlockLootTableGenerator.dropsWithSilkTouchOrShears(leaves, addSurvivesExplosionCondition(leaves, ItemEntry.builder(drop)).conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, chance))).pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f)).conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS).with(addSurvivesExplosionCondition(leaves, ItemEntry.builder(Items.APPLE))).conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, 0.50F, 0.05555558F, 0.35F, 0.07F, 0.1F)).with(applyExplosionDecay(leaves, ItemEntry.builder(ModItems.SPEEDRUNNER_STICK).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 2))))).conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, NEW_LEAVES_STICK_DROP_CHANCE)));
     }
 }

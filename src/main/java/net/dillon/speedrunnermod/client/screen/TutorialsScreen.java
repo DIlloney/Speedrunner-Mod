@@ -4,10 +4,10 @@ import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
@@ -65,32 +65,32 @@ public class TutorialsScreen extends AbstractModScreen {
     }
 
     @Override
-    protected void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.bastionRoutesButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.bastion_routes.tooltip"), 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.bastion_routes.tooltip"), 200), mouseX, mouseY);
         }
         if (this.netherFortressesButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.nether_fortresses.tooltip"), 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.nether_fortresses.tooltip"), 200), mouseX, mouseY);
         }
         if (this.microlensingButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.microlensing.tooltip"), 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.microlensing.tooltip"), 200), mouseX, mouseY);
         }
         if (this.blindTravelButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.blind_travel.tooltip"), 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.blind_travel.tooltip"), 200), mouseX, mouseY);
         }
         if (this.oneCyclingButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.one_cycling.tooltip"), 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.one_cycling.tooltip"), 200), mouseX, mouseY);
         }
         if (this.pieChartButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.pie_chart.tooltip"), 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.pie_chart.tooltip"), 200), mouseX, mouseY);
         }
         if (this.buriedTreasureButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.buried_treasure.tooltip"), 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.buried_treasure.tooltip"), 200), mouseX, mouseY);
         }
         if (this.otherUsefulTricksButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.other_useful_tricks.tooltip"), 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.other_useful_tricks.tooltip"), 200), mouseX, mouseY);
         }
-        super.renderTooltips(matrices, mouseX, mouseY);
+        super.renderTooltips(context, mouseX, mouseY);
     }
 
     @Override

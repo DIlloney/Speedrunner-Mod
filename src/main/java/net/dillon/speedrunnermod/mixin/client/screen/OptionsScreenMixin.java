@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.mixin.client.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.ModMenuScreen;
 import net.dillon.speedrunnermod.client.util.ModLinks;
@@ -8,12 +7,12 @@ import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ConfirmLinkScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 import org.spongepowered.asm.mixin.Final;
@@ -63,13 +62,11 @@ public class OptionsScreenMixin extends Screen {
     }
 
     @Inject(method = "render", at = @At("TAIL"))
-    private void renderTextures(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        RenderSystem.setShaderTexture(0, SpeedrunnerMod.DILLON8775_ICON);
-        drawTexture(matrices, this.width / 2 - 123, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+    private void renderTextures(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+        context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 - 123, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
         if (options().client.modButtonType == ModOptions.ModButtonType.LOGO) {
-            RenderSystem.setShaderTexture(0, SpeedrunnerMod.SPEEDRUNNER_MOD_ICON);
-            drawTexture(matrices, (this.width / 2) - 178, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 178, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
         }
     }
 }

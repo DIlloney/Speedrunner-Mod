@@ -79,7 +79,7 @@ public class ModListOptions {
     public static final SimpleOption<Boolean> KILL_GHAST_ON_FIREBALL = new SimpleOption<>("speedrunnermod.options.kill_ghast_on_fireball", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.kill_ghast_on_fireball.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.killGhastOnFireball, value -> options().main.killGhastOnFireball = value);
 
-    public static final SimpleOption<Boolean> BETTER_VILLAGER_TRADES = new SimpleOption<>("speedrunnermod.options.better_villager_trades", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.better_villager_trades")),
+    public static final SimpleOption<Boolean> BETTER_VILLAGER_TRADES = new SimpleOption<>("speedrunnermod.options.better_villager_trades", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.better_villager_trades.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.betterVillagerTrades, value -> options().main.betterVillagerTrades = value);
 
     public static final SimpleOption<Boolean> FIREPROOF_ITEMS = new SimpleOption<>("speedrunnermod.options.fireproof_items", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.fireproof_items.tooltip")),
@@ -189,7 +189,7 @@ public class ModListOptions {
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 3), 3, value -> SpeedrunnerMod.options().main.strongholdPortalRoomCount = value);
 
     public static final SimpleOption<Integer> STRONGHOLD_LIBRARY_COUNT =
-            new SimpleOption<>("speedrunnermod.options.stronghold_library_count", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_library_count")),
+            new SimpleOption<>("speedrunnermod.options.stronghold_library_count", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_library_count.tooltip")),
                     GameOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 8), 2, value -> SpeedrunnerMod.options().main.strongholdLibraryCount = value);
 

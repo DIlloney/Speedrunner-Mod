@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -9,9 +8,9 @@ import net.dillon.speedrunnermod.client.screen.features.miscellaneous.ResetKeySc
 import net.dillon.speedrunnermod.client.screen.features.tools_and_armor.SpeedrunnerArmorScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -35,12 +34,9 @@ public class FortressesBastionsAndStrongholdsScreen extends AbstractFeatureScree
     }
 
     @Override
-    protected void renderCustomImage(MatrixStack matrices) {
-        RenderSystem.setShaderTexture(0, new Identifier("speedrunnermod:textures/gui/screens/stronghold_gen.png"));
-        drawTexture(matrices, this.width / 2 - 260, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
-
-        RenderSystem.setShaderTexture(0, new Identifier("speedrunnermod:textures/gui/screens/nether_fortress_gen.png"));
-        drawTexture(matrices, this.width / 2 + 97, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+    protected void renderCustomImage(DrawContext context) {
+        context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/stronghold_gen.png"), this.width / 2 - 260, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/nether_fortress_gen.png"), this.width / 2 + 97, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

@@ -5,10 +5,10 @@ import net.dillon.speedrunnermod.option.Leaderboards;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 
 @Environment(EnvType.CLIENT)
 class LeaderboardsIneligibleOptionsScreen extends AbstractModScreen {
@@ -38,11 +38,11 @@ class LeaderboardsIneligibleOptionsScreen extends AbstractModScreen {
 
     @ChatGPT
     @Override
-    public void renderCustomText(MatrixStack matrices) {
+    public void renderCustomText(DrawContext context) {
         boolean longList = Leaderboards.ineligibleOptions.size() > 12;
         int textHeight = longList ? 35 : 50;
         for (int i = 0; i < Leaderboards.ineligibleOptions.size(); i++) {
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Leaderboards.ineligibleOptions.get(i), this.width / 2, textHeight, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Leaderboards.ineligibleOptions.get(i), this.width / 2, textHeight, 16777215);
             textHeight = longList ? textHeight + 10 : textHeight + 20;
         }
     }

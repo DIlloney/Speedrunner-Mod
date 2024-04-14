@@ -74,6 +74,7 @@ public class ModModelGenerator extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ModItems.SPEEDRUNNER_INGOT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_SPEEDRUNNER, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPEEDRUNNER_NUGGET, Models.GENERATED);
 

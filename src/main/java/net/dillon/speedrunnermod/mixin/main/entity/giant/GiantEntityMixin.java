@@ -93,8 +93,8 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
             this.setPathfindingPenalty(PathNodeType.LAVA, 8.0F);
             this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
             this.setPathfindingPenalty(PathNodeType.DAMAGE_FIRE, 0.0F);
-            this.waterNavigation = new SwimNavigation(this, world);
-            this.landNavigation = new MobNavigation(this, world);
+            this.waterNavigation = new SwimNavigation(this, this.getWorld());
+            this.landNavigation = new MobNavigation(this, this.getWorld());
         }
     }
 
@@ -136,11 +136,11 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
     @Override
     public void attemptTickInVoid() {
         if (DOOM_MODE) {
-            if (this.world instanceof ServerWorld && this.world.getRegistryKey() == World.END) {
-                if (this.getY() < (double)(this.world.getBottomY() - 64)) {
+            if (this.getWorld() instanceof ServerWorld && this.getWorld().getRegistryKey() == World.END) {
+                if (this.getY() < (double)(this.getWorld().getBottomY() - 64)) {
                     this.teleport(0, 96, 0, true);
                     if (!this.isSilent()) {
-                        this.world.playSound(null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.HOSTILE, 10.0F, 1.0F);
+                        this.getWorld().playSound(null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.HOSTILE, 10.0F, 1.0F);
                         this.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 10.0F, 1.0F);
                     }
                 }
@@ -157,7 +157,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
             this.onGiantDeath();
             if (!this.isSilent()) {
                 if (attackingPlayer != null && attackingPlayer instanceof ServerPlayerEntity) {
-                    ((ServerPlayerEntity)attackingPlayer).networkHandler.sendPacket(new PlaySoundS2CPacket(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, SoundCategory.BLOCKS, this.attackingPlayer.getX(), this.attackingPlayer.getY(), this.attackingPlayer.getZ(), 1.0F, 1.0F, this.world.getRandom().nextLong()));
+                    ((ServerPlayerEntity)attackingPlayer).networkHandler.sendPacket(new PlaySoundS2CPacket(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, SoundCategory.BLOCKS, this.attackingPlayer.getX(), this.attackingPlayer.getY(), this.attackingPlayer.getZ(), 1.0F, 1.0F, this.getWorld().getRandom().nextLong()));
                 }
             }
         }
@@ -208,7 +208,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
     @Override
     public boolean tryAttack(Entity target) {
         if (DOOM_MODE) {
-            this.world.sendEntityStatus(this, (byte)4);
+            this.getWorld().sendEntityStatus(this, (byte)4);
         }
         return DOOM_MODE ? Giant.tryAttack(this, (LivingEntity)target) : super.tryAttack(target);
     }
@@ -239,7 +239,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
     public void updateSwimming() {
         super.updateSwimming();
         if (DOOM_MODE) {
-            if (!this.world.isClient) {
+            if (!this.getWorld().isClient) {
                 if (this.canMoveVoluntarily() && this.isTouchingWater() && this.isTargetingUnderwater()) {
                     this.navigation = this.waterNavigation;
                     this.setSwimming(true);
@@ -254,7 +254,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
     @Override
     public void checkDespawn() {
         if (DOOM_MODE) {
-            if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
+            if (this.getWorld().getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
                 this.discard();
             } else {
                 this.despawnCounter = 0;
@@ -391,13 +391,13 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
     @Unique
     private void onGiantDamage() {
         for (int i = 0; i < 4; i++) {
-            TntEntity tnt = EntityType.TNT.create(this.world);
+            TntEntity tnt = EntityType.TNT.create(this.getWorld());
             tnt.setFuse(100);
             int x = i == 0 || i == 2 ? 5 : -5;
             int z = i == 0 || i == 1 ? 5 : -5;
             tnt.refreshPositionAndAngles(this.getX() + x, this.getY() + 25, this.getZ() + z, 0.0F, 0.0F);
-            this.world.playSound(null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.AMBIENT, 5.0F, 1.0F);
-            this.world.spawnEntity(tnt);
+            this.getWorld().playSound(null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.AMBIENT, 5.0F, 1.0F);
+            this.getWorld().spawnEntity(tnt);
         }
     }
 
@@ -406,59 +406,59 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
      */
     @Unique
     private void onGiantDeath() {
-        TntEntity tntEntity = EntityType.TNT.create(this.world);
+        TntEntity tntEntity = EntityType.TNT.create(this.getWorld());
         tntEntity.setInvulnerable(true);
         tntEntity.setFuse(100);
         tntEntity.refreshPositionAndAngles(this.getX() + 5, this.getY() + 25, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity1 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity1 = EntityType.TNT.create(this.getWorld());
         tntEntity1.setFuse(100);
         tntEntity1.refreshPositionAndAngles(this.getX() - 5, this.getY() + 25, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity2 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity2 = EntityType.TNT.create(this.getWorld());
         tntEntity2.setFuse(100);
         tntEntity2.refreshPositionAndAngles(this.getX() + 5, this.getY() + 25, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity3 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity3 = EntityType.TNT.create(this.getWorld());
         tntEntity3.setFuse(100);
         tntEntity3.refreshPositionAndAngles(this.getX() - 5, this.getY() + 25, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity4 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity4 = EntityType.TNT.create(this.getWorld());
         tntEntity4.setFuse(100);
         tntEntity4.refreshPositionAndAngles(this.getX() + 5, this.getY() + 50, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity5 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity5 = EntityType.TNT.create(this.getWorld());
         tntEntity5.setFuse(100);
         tntEntity5.refreshPositionAndAngles(this.getX() - 5, this.getY() + 50, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity6 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity6 = EntityType.TNT.create(this.getWorld());
         tntEntity6.setFuse(100);
         tntEntity6.refreshPositionAndAngles(this.getX() + 5, this.getY() + 50, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity7 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity7 = EntityType.TNT.create(this.getWorld());
         tntEntity7.setFuse(100);
         tntEntity7.refreshPositionAndAngles(this.getX() - 5, this.getY() + 50, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity8 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity8 = EntityType.TNT.create(this.getWorld());
         tntEntity8.setFuse(120);
         tntEntity8.refreshPositionAndAngles(this.getX() + 5, this.getY() + 75, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity9 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity9 = EntityType.TNT.create(this.getWorld());
         tntEntity9.setFuse(120);
         tntEntity9.refreshPositionAndAngles(this.getX() - 5, this.getY() + 75, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity10 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity10 = EntityType.TNT.create(this.getWorld());
         tntEntity10.setFuse(120);
         tntEntity10.refreshPositionAndAngles(this.getX() + 5, this.getY() + 75, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity11 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity11 = EntityType.TNT.create(this.getWorld());
         tntEntity11.setFuse(120);
         tntEntity11.refreshPositionAndAngles(this.getX() - 5, this.getY() + 75, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity12 = EntityType.TNT.create(this.world);
+        TntEntity tntEntity12 = EntityType.TNT.create(this.getWorld());
         tntEntity12.setFuse(140);
         tntEntity12.refreshPositionAndAngles(this.getX(), this.getY() + 100, this.getZ(), 0.0F, 0.0F);
-        this.world.playSound(null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.AMBIENT, 5.0F, 1.0F);
-        this.world.spawnEntity(tntEntity);
-        this.world.spawnEntity(tntEntity1);
-        this.world.spawnEntity(tntEntity2);
-        this.world.spawnEntity(tntEntity3);
-        this.world.spawnEntity(tntEntity4);
-        this.world.spawnEntity(tntEntity5);
-        this.world.spawnEntity(tntEntity6);
-        this.world.spawnEntity(tntEntity7);
-        this.world.spawnEntity(tntEntity8);
-        this.world.spawnEntity(tntEntity9);
-        this.world.spawnEntity(tntEntity10);
-        this.world.spawnEntity(tntEntity11);
-        this.world.spawnEntity(tntEntity12);
+        this.getWorld().playSound(null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.AMBIENT, 5.0F, 1.0F);
+        this.getWorld().spawnEntity(tntEntity);
+        this.getWorld().spawnEntity(tntEntity1);
+        this.getWorld().spawnEntity(tntEntity2);
+        this.getWorld().spawnEntity(tntEntity3);
+        this.getWorld().spawnEntity(tntEntity4);
+        this.getWorld().spawnEntity(tntEntity5);
+        this.getWorld().spawnEntity(tntEntity6);
+        this.getWorld().spawnEntity(tntEntity7);
+        this.getWorld().spawnEntity(tntEntity8);
+        this.getWorld().spawnEntity(tntEntity9);
+        this.getWorld().spawnEntity(tntEntity10);
+        this.getWorld().spawnEntity(tntEntity11);
+        this.getWorld().spawnEntity(tntEntity12);
     }
 }

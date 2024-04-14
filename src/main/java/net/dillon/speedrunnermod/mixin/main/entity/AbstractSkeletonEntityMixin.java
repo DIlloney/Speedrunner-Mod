@@ -37,7 +37,7 @@ public class AbstractSkeletonEntityMixin extends HostileEntity {
     @ModifyVariable(method = "updateAttackType", at = @At("STORE"), ordinal = 0)
     private int updateAttackType(int x) {
         int i = DOOM_MODE ? 5 : 20;
-        if (this.world.getDifficulty() != Difficulty.HARD) {
+        if (this.getWorld().getDifficulty() != Difficulty.HARD) {
             i = DOOM_MODE ? 10 : 20;
         }
         return i;

@@ -71,7 +71,7 @@ public class Fog {
             if (entity instanceof ClientPlayerEntity) {
                 ClientPlayerEntity clientPlayerEntity = (ClientPlayerEntity)entity;
                 g *= Math.max(0.25F, clientPlayerEntity.getUnderwaterVisibility());
-                RegistryEntry<Biome> registryEntry = clientPlayerEntity.world.getBiome(clientPlayerEntity.getBlockPos());
+                RegistryEntry<Biome> registryEntry = clientPlayerEntity.getWorld().getBiome(clientPlayerEntity.getBlockPos());
                 if (registryEntry.isIn(BiomeTags.HAS_CLOSER_WATER_FOG)) {
                     g *= 0.85F;
                 }

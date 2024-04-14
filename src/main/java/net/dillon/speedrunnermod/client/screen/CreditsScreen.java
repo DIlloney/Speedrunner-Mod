@@ -1,12 +1,11 @@
 package net.dillon.speedrunnermod.client.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
@@ -17,9 +16,8 @@ public class CreditsScreen extends AbstractModScreen {
     }
 
     @Override
-    public void renderCustomObjects(MatrixStack matrices) {
-        RenderSystem.setShaderTexture(0, new Identifier("speedrunnermod:textures/gui/credits.png"));
-        drawTexture(matrices, this.width / 2 - 159, this.height / 6 + 18, 0.0F, 0.0F, 320, 180, 320, 180);
+    public void renderCustomObjects(DrawContext context) {
+        context.drawTexture(new Identifier("speedrunnermod:textures/gui/credits.png"), this.width / 2 - 159, this.height / 6 + 18, 0.0F, 0.0F, 320, 180, 320, 180);
     }
 
     @Override

@@ -4,11 +4,11 @@ import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
@@ -44,10 +44,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
-        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line1"), this.width / 2, 110, 16777215);
-        super.render(matrices, mouseX, mouseY, delta);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context);
+        context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line1"), this.width / 2, 110, 16777215);
+        super.render(context, mouseX, mouseY, delta);
     }
 
     protected static class ScreenTwo extends GameOptionsScreen {
@@ -81,10 +81,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
-        public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            this.renderBackground(matrices);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line2"), this.width / 2, 110, 16777215);
-            super.render(matrices, mouseX, mouseY, delta);
+        public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+            this.renderBackground(context);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line2"), this.width / 2, 110, 16777215);
+            super.render(context, mouseX, mouseY, delta);
         }
     }
 
@@ -119,10 +119,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
-        public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            this.renderBackground(matrices);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line3"), this.width / 2, 110, 16777215);
-            super.render(matrices, mouseX, mouseY, delta);
+        public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+            this.renderBackground(context);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line3"), this.width / 2, 110, 16777215);
+            super.render(context, mouseX, mouseY, delta);
         }
     }
 
@@ -153,13 +153,13 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
-        public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            this.renderBackground(matrices);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.title, this.width / 2, 15, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line4"), this.width / 2, 90, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line5"), this.width / 2, 110, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line6"), this.width / 2, 130, 16777215);
-            super.render(matrices, mouseX, mouseY, delta);
+        public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+            this.renderBackground(context);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line4"), this.width / 2, 90, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line5"), this.width / 2, 110, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line6"), this.width / 2, 130, 16777215);
+            super.render(context, mouseX, mouseY, delta);
         }
     }
 
@@ -194,10 +194,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
-        public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            this.renderBackground(matrices);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line7"), this.width / 2, 110, 16777215);
-            super.render(matrices, mouseX, mouseY, delta);
+        public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+            this.renderBackground(context);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line7"), this.width / 2, 110, 16777215);
+            super.render(context, mouseX, mouseY, delta);
         }
     }
 
@@ -232,10 +232,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
-        public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            this.renderBackground(matrices);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line8"), this.width / 2, 110, 16777215);
-            super.render(matrices, mouseX, mouseY, delta);
+        public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+            this.renderBackground(context);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line8"), this.width / 2, 110, 16777215);
+            super.render(context, mouseX, mouseY, delta);
         }
     }
 
@@ -265,10 +265,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
-        public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            this.renderBackground(matrices);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line9"), this.width / 2, 110, 16777215);
-            super.render(matrices, mouseX, mouseY, delta);
+        public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+            this.renderBackground(context);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line9"), this.width / 2, 110, 16777215);
+            super.render(context, mouseX, mouseY, delta);
         }
     }
 
@@ -298,13 +298,13 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
-        public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            this.renderBackground(matrices);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line10"), this.width / 2, 60, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line11"), this.width / 2, 90, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line12"), this.width / 2, 110, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line13"), this.width / 2, 130, 16777215);
-            super.render(matrices, mouseX, mouseY, delta);
+        public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+            this.renderBackground(context);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line10"), this.width / 2, 60, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line11"), this.width / 2, 90, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line12"), this.width / 2, 110, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line13"), this.width / 2, 130, 16777215);
+            super.render(context, mouseX, mouseY, delta);
         }
     }
 
@@ -335,10 +335,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
-        public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            this.renderBackground(matrices);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line14"), this.width / 2, 110, 16777215);
-            super.render(matrices, mouseX, mouseY, delta);
+        public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+            this.renderBackground(context);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line14"), this.width / 2, 110, 16777215);
+            super.render(context, mouseX, mouseY, delta);
         }
     }
 }

@@ -6,6 +6,15 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "speedrunnermod:golden_speedrunner_upgrade_smithing_template"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "minecraft:flint_and_steel"
         }
       ]

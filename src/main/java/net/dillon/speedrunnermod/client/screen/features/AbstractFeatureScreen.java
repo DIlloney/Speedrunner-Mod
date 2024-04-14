@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.*;
 import net.dillon.speedrunnermod.client.screen.features.doom_mode.*;
 import net.dillon.speedrunnermod.client.screen.features.miscellaneous.*;
@@ -10,12 +9,12 @@ import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ConfirmLinkScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -127,48 +126,46 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
-        drawCenteredTextWithShadow(matrices, this.textRenderer, this.title, this.width / 2, 15, 16777215);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context);
+        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 16777215);
 
         if (this.getScreenLines() == 2) {
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 100, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 120, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getFirstLineText(), this.width / 2, 100, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getSecondLineText(), this.width / 2, 120, 16777215);
         } else if (this.getScreenLines() == 3) {
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 90, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 110, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getThirdLineText(), this.width / 2, 130, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getFirstLineText(), this.width / 2, 90, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getSecondLineText(), this.width / 2, 110, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getThirdLineText(), this.width / 2, 130, 16777215);
         } else if (this.getScreenLines() == 4) {
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 80, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 100, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getThirdLineText(), this.width / 2, 120, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFourthLineText(), this.width / 2, 140, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getFirstLineText(), this.width / 2, 80, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getSecondLineText(), this.width / 2, 100, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getThirdLineText(), this.width / 2, 120, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getFourthLineText(), this.width / 2, 140, 16777215);
         } else if (this.getScreenLines() == 5) {
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFirstLineText(), this.width / 2, 70, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getSecondLineText(), this.width / 2, 90, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getThirdLineText(), this.width / 2, 110, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFourthLineText(), this.width / 2, 130, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.getFifthLineText(), this.width / 2, 150, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getFirstLineText(), this.width / 2, 70, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getSecondLineText(), this.width / 2, 90, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getThirdLineText(), this.width / 2, 110, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getFourthLineText(), this.width / 2, 130, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.getFifthLineText(), this.width / 2, 150, 16777215);
         }
 
         int leftSide = this.width / 2 - 155;
         int rightSide = leftSide + 160;
         int farRightSide = rightSide + 273;
         int height = this.height - 24;
-        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.literal("§lPage:§r " + this.pageNumber + "/" + this.getMaxPages()), farRightSide, height, 16777215);
+        context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("§lPage:§r " + this.pageNumber + "/" + this.getMaxPages()), farRightSide, height, 16777215);
 
         if (renderImage) {
-            RenderSystem.setShaderTexture(0, this.getImage());
-            drawTexture(matrices, this.getImageX(), this.getImageY(), 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+            context.drawTexture(this.getImage(), this.getImageX(), this.getImageY(), 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
         }
 
         if (renderCraftingRecipe) {
-            RenderSystem.setShaderTexture(0, this.getCraftingRecipeImage());
-            drawTexture(matrices, this.getCraftingRecipeImageX(), this.getCraftingRecipeImageY(), 0.0F, 0.0F, this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight(), this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight());
+            context.drawTexture(this.getCraftingRecipeImage(), this.getCraftingRecipeImageX(), this.getCraftingRecipeImageY(), 0.0F, 0.0F, this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight(), this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight());
         }
 
-        this.renderCustomImage(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
+        this.renderCustomImage(context);
+        super.render(context, mouseX, mouseY, delta);
     }
 
     /**
@@ -313,7 +310,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
 
     /**
      * Gets the buttons width on the screen.
-     * <p>You should only {@link Override} this method if you use {@link AbstractFeatureScreen#renderCustomImage(MatrixStack)}.</p>
+     * <p>You should only {@link Override} this method if you use {@link AbstractFeatureScreen#renderCustomImage(DrawContext)}.</p>
      */
     protected int getButtonsWidth() {
         return this.renderCraftingRecipe ? this.width / 2 - 175 : this.width / 2 - 75;
@@ -375,7 +372,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
     /**
      * Render a custom image on a feature screen.
      */
-    protected void renderCustomImage(MatrixStack matrices) {
+    protected void renderCustomImage(DrawContext context) {
     }
 
     /**

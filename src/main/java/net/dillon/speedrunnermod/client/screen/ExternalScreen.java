@@ -4,10 +4,10 @@ import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 
 @Environment(EnvType.CLIENT)
 public class ExternalScreen extends AbstractModScreen {
@@ -53,14 +53,14 @@ public class ExternalScreen extends AbstractModScreen {
     }
 
     @Override
-    protected void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.discordButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.DISCORD_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.DISCORD_TOOLTIP, 200), mouseX, mouseY);
         }
         if (this.webpageButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.WEBPAGE_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.WEBPAGE_TOOLTIP, 200), mouseX, mouseY);
         }
-        super.renderTooltips(matrices, mouseX, mouseY);
+        super.renderTooltips(context, mouseX, mouseY);
     }
 
     @Override

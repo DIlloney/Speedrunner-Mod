@@ -3,12 +3,12 @@ package net.dillon.speedrunnermod.mixin.client.screen;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.DeathScreen;
 import net.minecraft.client.gui.screen.MessageScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -52,9 +52,9 @@ public class DeathScreenMixin extends Screen {
      * Displays the players death coordinates on the death screen.
      */
     @Inject(method = "render", at = @At("TAIL"))
-    private void displayDeathCords(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+    private void displayDeathCords(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if (options().client.showDeathCords) {
-            drawCenteredTextWithShadow(matrices, this.textRenderer, SpeedrunnerMod.deathCords(this.client.player.getX(), this.client.player.getY(), this.client.player.getZ()), this.width / 2, 115, 0xFFFFFF);
+            context.drawCenteredTextWithShadow(this.textRenderer, SpeedrunnerMod.deathCords(this.client.player.getX(), this.client.player.getY(), this.client.player.getZ()), this.width / 2, 115, 0xFFFFFF);
         }
     }
 }

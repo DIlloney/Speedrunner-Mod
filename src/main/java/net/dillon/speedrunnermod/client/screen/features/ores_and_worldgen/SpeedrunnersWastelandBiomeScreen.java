@@ -1,14 +1,13 @@
 package net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -27,9 +26,8 @@ public class SpeedrunnersWastelandBiomeScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected void renderCustomImage(MatrixStack matrices) {
-        RenderSystem.setShaderTexture(0, new Identifier("speedrunnermod:textures/gui/screens/speedrunners_wasteland_biome.png"));
-        drawTexture(matrices, this.width / 2, 170, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+    protected void renderCustomImage(DrawContext context) {
+        context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/speedrunners_wasteland_biome.png"), this.width / 2, 170, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

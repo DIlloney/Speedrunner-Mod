@@ -40,18 +40,18 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
         boolean ifb = EnchantmentHelper.getLevel(Enchantments.INFINITY, super.getItem()) > 0;
 
         for(int i = 0; i < 32; ++i) {
-            this.world.addParticle(ParticleTypes.PORTAL, this.getX(), this.getY() + this.random.nextDouble() * 2.0D, this.getZ(), this.random.nextGaussian(), 0.0D, this.random.nextGaussian());
+            this.getWorld().addParticle(ParticleTypes.PORTAL, this.getX(), this.getY() + this.random.nextDouble() * 2.0D, this.getZ(), this.random.nextGaussian(), 0.0D, this.random.nextGaussian());
         }
 
-        if (!this.world.isClient && !this.isRemoved()) {
+        if (!this.getWorld().isClient && !this.isRemoved()) {
             Entity entity = this.getOwner();
             if (entity instanceof ServerPlayerEntity) {
                 ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity;
-                if (serverPlayerEntity.networkHandler.isConnectionOpen() && serverPlayerEntity.world == this.world && !serverPlayerEntity.isSleeping()) {
-                    if (!ifb && this.random.nextFloat() < 0.05F && this.world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
-                        EndermiteEntity endermiteEntity = EntityType.ENDERMITE.create(this.world);
+                if (serverPlayerEntity.networkHandler.isConnectionOpen() && serverPlayerEntity.getWorld() == this.getWorld() && !serverPlayerEntity.isSleeping()) {
+                    if (!ifb && this.random.nextFloat() < 0.05F && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
+                        EndermiteEntity endermiteEntity = EntityType.ENDERMITE.create(this.getWorld());
                         endermiteEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), entity.getPitch());
-                        this.world.spawnEntity(endermiteEntity);
+                        this.getWorld().spawnEntity(endermiteEntity);
                     }
 
                     if (entity.hasVehicle()) {

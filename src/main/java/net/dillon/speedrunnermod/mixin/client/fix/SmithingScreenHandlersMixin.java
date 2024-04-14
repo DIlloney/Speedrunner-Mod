@@ -4,7 +4,6 @@ import net.dillon.speedrunnermod.tag.ModBlockTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
-import net.minecraft.screen.LegacySmithingScreenHandler;
 import net.minecraft.screen.SmithingScreenHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Environment(EnvType.CLIENT)
-@Mixin(value = {SmithingScreenHandler.class, LegacySmithingScreenHandler.class})
+@Mixin(SmithingScreenHandler.class)
 public class SmithingScreenHandlersMixin {
 
     /**

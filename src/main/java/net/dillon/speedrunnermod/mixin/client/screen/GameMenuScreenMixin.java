@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.mixin.client.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.ModMenuScreen;
 import net.dillon.speedrunnermod.client.util.ModLinks;
@@ -8,13 +7,13 @@ import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ConfirmLinkScreen;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.MessageScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -108,27 +107,20 @@ public class GameMenuScreenMixin extends Screen {
      * Renders additional textures on the pause menu screen.
      */
     @Inject(method = "render", at = @At("TAIL"))
-    private void renderTextures(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+    private void renderTextures(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if (showMenu) {
-            RenderSystem.setShaderTexture(0, new Identifier("speedrunnermod:textures/gui/speedrunner_mod.png"));
-            drawTexture(matrices, this.width / 2 - 4 - 58 - 2, this.height / 4 - 26 + 2, 0.0F, 0.0F, 129, 16, 129, 16);
+            context.drawTexture(new Identifier("speedrunnermod:textures/gui/speedrunner_mod.png"), this.width / 2 - 4 - 58 - 2, this.height / 4 - 26 + 2, 0.0F, 0.0F, 129, 16, 129, 16);
 
             if (options().advanced.showResetButton) {
-                RenderSystem.setShaderTexture(0, new Identifier("speedrunnermod:textures/item/speedrunner_boots.png"));
-                drawTexture(matrices, this.width / 2 - 4 - 118 - 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+                context.drawTexture(new Identifier("speedrunnermod:textures/item/speedrunner_boots.png"), this.width / 2 - 4 - 118 - 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
             }
 
-            RenderSystem.setShaderTexture(0, SpeedrunnerMod.SPEEDRUNNER_MOD_ICON);
-            drawTexture(matrices, this.width / 2 - 4 - 119 - 2, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON, this.width / 2 - 4 - 119 - 2, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
             if (options().client.socialButtons) {
-                RenderSystem.setShaderTexture(0, SpeedrunnerMod.DILLON8775_ICON);
-                drawTexture(matrices, this.width / 2 - 4 - 119 - 2, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
-                RenderSystem.setShaderTexture(0, SpeedrunnerMod.DISCORD_ICON);
-                drawTexture(matrices, this.width / 2 - 4 + 114 - 2, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
-
-                RenderSystem.setShaderTexture(0, SpeedrunnerMod.WEBPAGE_ICON);
-                drawTexture(matrices, this.width / 2 - 4 + 114 - 2, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+                context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 - 4 - 119 - 2, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+                context.drawTexture(SpeedrunnerMod.DISCORD_ICON, this.width / 2 - 4 + 114 - 2, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+                context.drawTexture(SpeedrunnerMod.WEBPAGE_ICON, this.width / 2 - 4 + 114 - 2, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
             }
         }
     }

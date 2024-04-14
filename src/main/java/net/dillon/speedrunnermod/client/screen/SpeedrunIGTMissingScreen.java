@@ -5,10 +5,10 @@ import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.Leaderboards;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
@@ -39,14 +39,14 @@ public class SpeedrunIGTMissingScreen extends AbstractModScreen {
     }
 
     @Override
-    protected void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.leftButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.download_and_install.tooltip"), 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.download_and_install.tooltip"), 200), mouseX, mouseY);
         }
         if (this.middleButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.disable_leaderboards_mode_and_restart.tooltip"), 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.disable_leaderboards_mode_and_restart.tooltip"), 200), mouseX, mouseY);
         }
-        super.renderTooltips(matrices, mouseX, mouseY);
+        super.renderTooltips(context, mouseX, mouseY);
     }
 
     @Override
@@ -55,10 +55,10 @@ public class SpeedrunIGTMissingScreen extends AbstractModScreen {
     }
 
     @Override
-    public void renderCustomText(MatrixStack matrices) {
-        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line1"), this.width / 2, 90, 16777215);
-        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line2"), this.width / 2, 110, 16777215);
-        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line3"), this.width / 2, 130, 16777215);
+    public void renderCustomText(DrawContext context) {
+        context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line1"), this.width / 2, 90, 16777215);
+        context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line2"), this.width / 2, 110, 16777215);
+        context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.speedrun_igt_missing.line3"), this.width / 2, 130, 16777215);
     }
 
     @Override

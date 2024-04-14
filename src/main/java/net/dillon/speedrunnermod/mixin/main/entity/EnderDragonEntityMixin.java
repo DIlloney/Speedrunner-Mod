@@ -80,7 +80,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
      */
     @Inject(method = "updatePostDeath", at = @At("TAIL"))
     public void killAllHostiles(CallbackInfo ci) {
-        if (options().advanced.dragonKillsNearbyHostileEntities && this.world instanceof ServerWorld) {
+        if (options().advanced.dragonKillsNearbyHostileEntities && this.getWorld() instanceof ServerWorld) {
             EnderDragonEntity dragon = (EnderDragonEntity)(Object)this;
             World world = ((Entity)(Object)this).getEntityWorld();
 
@@ -155,9 +155,9 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
     @Unique
     private boolean isGiantOrWitherAlive() {
         EnderDragonEntity dragon = (EnderDragonEntity)(Object)this;
-        List<GiantEntity> giants = world.getEntitiesByClass(GiantEntity.class,
+        List<GiantEntity> giants = this.getWorld().getEntitiesByClass(GiantEntity.class,
                 dragon.getBoundingBox().expand(options().advanced.dragonImmunityDetectionDistanceForGiant[0], options().advanced.dragonImmunityDetectionDistanceForGiant[1], options().advanced.dragonImmunityDetectionDistanceForGiant[2]), entity -> true);
-        List<WitherEntity> withers = world.getEntitiesByClass(WitherEntity.class,
+        List<WitherEntity> withers = this.getWorld().getEntitiesByClass(WitherEntity.class,
                 dragon.getBoundingBox().expand(options().advanced.dragonImmunityDetectionDistanceForWither[0], options().advanced.dragonImmunityDetectionDistanceForWither[1], options().advanced.dragonImmunityDetectionDistanceForWither[2]), entity -> true);
 
         for (GiantEntity giant : giants) {

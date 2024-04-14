@@ -38,6 +38,8 @@ accessible method net/minecraft/entity/SpawnRestriction register (Lnet/minecraft
 accessible method net/minecraft/item/PickaxeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/item/AxeItem <init> (Lnet/minecraft/item/ToolMaterial;FFLnet/minecraft/item/Item$Settings;)V
 accessible method net/minecraft/item/HoeItem <init> (Lnet/minecraft/item/ToolMaterial;IFLnet/minecraft/item/Item$Settings;)V
+accessible method net/minecraft/item/SmithingTemplateItem getNetheriteUpgradeEmptyBaseSlotTextures ()Ljava/util/List;
+accessible method net/minecraft/item/SmithingTemplateItem getNetheriteUpgradeEmptyAdditionsSlotTextures ()Ljava/util/List;
 accessible method net/minecraft/block/entity/AbstractFurnaceBlockEntity isNonFlammableWood (Lnet/minecraft/item/Item;)Z
 accessible method net/minecraft/block/SaplingBlock <init> (Lnet/minecraft/block/sapling/SaplingGenerator;Lnet/minecraft/block/AbstractBlock$Settings;)V
 accessible method net/minecraft/block/StairsBlock <init> (Lnet/minecraft/block/BlockState;Lnet/minecraft/block/AbstractBlock$Settings;)V
@@ -53,3 +55,4 @@ accessible field net/minecraft/entity/mob/MobEntity handItems Lnet/minecraft/uti
 accessible field net/minecraft/entity/mob/BlazeEntity$ShootFireballGoal fireballCooldown I
 accessible field net/minecraft/item/CrossbowItem charged Z
 accessible field net/minecraft/item/CrossbowItem loaded Z
+accessible field net/minecraft/data/server/loottable/BlockLootTableGenerator WITHOUT_SILK_TOUCH_NOR_SHEARS Lnet/minecraft/loot/condition/LootCondition$Builder;

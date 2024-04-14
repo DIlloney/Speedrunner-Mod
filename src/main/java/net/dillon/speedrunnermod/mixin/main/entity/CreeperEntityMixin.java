@@ -66,12 +66,12 @@ public abstract class CreeperEntityMixin extends HostileEntity implements SkinOv
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(Lnet/minecraft/entity/player/PlayerEntity;DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FF)V"))
     private void explode(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
-        World.ExplosionSourceType explosionSourceType = this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) ? World.ExplosionSourceType.MOB : World.ExplosionSourceType.NONE;
+        World.ExplosionSourceType explosionSourceType = this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) ? World.ExplosionSourceType.MOB : World.ExplosionSourceType.NONE;
         float o = this.shouldRenderOverlay() ? 2.0F : 1.0F;
-        if (!this.world.isClient && DOOM_MODE) {
+        if (!this.getWorld().isClient && DOOM_MODE) {
             this.discard();
-            this.world.createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius * o, explosionSourceType);
-            this.world.playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ITEM_BREAK, this.getSoundCategory(), 1.5F, this.random.nextFloat() * 0.4F + 0.8F);
+            this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius * o, explosionSourceType);
+            this.getWorld().playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ITEM_BREAK, this.getSoundCategory(), 1.5F, this.random.nextFloat() * 0.4F + 0.8F);
             itemStack.damage(1, player, (playerx) -> {
                 playerx.sendToolBreakStatus(hand);
             });

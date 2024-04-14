@@ -46,7 +46,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
      */
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void sendCords(DamageSource source, CallbackInfo ci) {
-        if (options().client.showDeathCords && this.world.getGameRules().getBoolean(GameRules.SHOW_DEATH_MESSAGES)) {
+        if (options().client.showDeathCords && this.getWorld().getGameRules().getBoolean(GameRules.SHOW_DEATH_MESSAGES)) {
             this.sendMessage(SpeedrunnerMod.deathCords(this.getX(), this.getY(), this.getZ()), false);
         }
     }

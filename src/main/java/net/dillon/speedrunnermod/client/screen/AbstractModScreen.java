@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
@@ -10,6 +9,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ConfirmLinkScreen;
 import net.minecraft.client.gui.screen.MessageScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -17,7 +17,6 @@ import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -113,12 +112,12 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
-        this.renderCustomText(matrices);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context);
+        this.renderCustomText(context);
 
         if (this.isOptionsScreen()) {
-            this.list.render(matrices, mouseX, mouseY, delta);
+            this.list.render(context, mouseX, mouseY, delta);
         }
 
         if (this.shouldRenderVersionText()) {
@@ -126,32 +125,31 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
             int rightSide = leftSide + 160;
             int farRightSide = rightSide + 267;
             int height = this.height - 24;
-            drawCenteredTextWithShadow(matrices, this.textRenderer, SpeedrunnerMod.VERSION, farRightSide, height, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, SpeedrunnerMod.VERSION, farRightSide, height, 16777215);
         }
 
         if (this.shouldRenderTitleText()) {
-            drawCenteredTextWithShadow(matrices, this.textRenderer, this.title, this.width / 2, 15, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 16777215);
         }
 
-        super.render(matrices, mouseX, mouseY, delta);
+        super.render(context, mouseX, mouseY, delta);
         if (isOptionsScreen()) {
-            RenderSystem.setShaderTexture(0, new Identifier("speedrunnermod:textures/gui/question_mark.png"));
-            drawTexture(matrices, this.getButtonsRightSide() + 106, this.helpButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(new Identifier("speedrunnermod:textures/gui/question_mark.png"), this.getButtonsRightSide() + 106, this.helpButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         }
-        this.renderCustomObjects(matrices);
-        this.renderTooltips(matrices, mouseX, mouseY);
+        this.renderCustomObjects(context);
+        this.renderTooltips(context, mouseX, mouseY);
     }
 
     /**
      * Renders tooltips on certain buttons.
      */
-    protected void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.isOptionsScreen()) {
             if (this.helpButton.isHovered()) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.help"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.help"), 200), mouseX, mouseY);
             }
             if (this.openOptionsDirectoryButton.isHovered()) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.directory"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.directory"), 200), mouseX, mouseY);
             }
         }
     }
@@ -238,13 +236,13 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
      * Render custom text on a mod screen.
      * <p>NEVER {@link Override} the render method, use this method instead.</p>
      */
-    protected void renderCustomText(MatrixStack matrices) {
+    protected void renderCustomText(DrawContext context) {
     }
 
     /**
      * Render custom objects on a mod screen.
      */
-    protected void renderCustomObjects(MatrixStack matrices) {
+    protected void renderCustomObjects(DrawContext context) {
     }
 
     /**

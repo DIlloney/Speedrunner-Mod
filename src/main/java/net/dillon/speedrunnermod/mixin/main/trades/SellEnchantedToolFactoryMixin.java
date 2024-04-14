@@ -27,7 +27,7 @@ public class SellEnchantedToolFactoryMixin {
 
     @Overwrite
     public TradeOffer create(Entity entity, Random random) {
-        int i = 30 + random.nextInt(33);
+        int i = random.nextInt(4) + 30;
         ItemStack itemStack = EnchantmentHelper.enchant(random, new ItemStack(this.tool.getItem()), i, false);
         int j = Math.min(this.basePrice, 12);
         ItemStack itemStack2 = new ItemStack(Items.EMERALD, j);

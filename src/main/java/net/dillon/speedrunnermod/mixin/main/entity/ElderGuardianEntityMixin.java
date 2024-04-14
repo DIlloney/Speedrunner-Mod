@@ -63,7 +63,7 @@ public class ElderGuardianEntityMixin extends GuardianEntity {
         final int i = DOOM_MODE ? 600 : 6000;
         if ((this.age + this.getId()) % i == 0) {
             StatusEffect statusEffect = StatusEffects.MINING_FATIGUE;
-            List<ServerPlayerEntity> list = ((ServerWorld)this.world).getPlayers((serverPlayerEntityx) -> {
+            List<ServerPlayerEntity> list = ((ServerWorld)this.getWorld()).getPlayers((serverPlayerEntityx) -> {
                 final double d = DOOM_MODE ? 3000.0D : 1250.0D;
                 return this.squaredDistanceTo(serverPlayerEntityx) < d && serverPlayerEntityx.interactionManager.isSurvivalLike();
             });

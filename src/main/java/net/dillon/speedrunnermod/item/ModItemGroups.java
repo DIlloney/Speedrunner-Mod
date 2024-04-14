@@ -6,6 +6,9 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -14,131 +17,125 @@ import net.minecraft.util.Identifier;
  */
 public class ModItemGroups {
 
-    public static ItemGroup SPEEDRUNNER_MOD = FabricItemGroup.builder(new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_mod_item_group"))
-            .displayName(Text.literal("Speedrunner Mod"))
-            .icon(() -> new ItemStack(ModBlockItems.SPEEDRUNNER_BLOCK)).build();
+    public static ItemGroup SPEEDRUNNER_MOD = Registry.register(Registries.ITEM_GROUP, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_mod_item_group"),
+            FabricItemGroup.builder()
+                    .displayName(Text.literal("Speedrunner Mod"))
+                    .icon(() -> new ItemStack(ModBlockItems.SPEEDRUNNER_BLOCK)).entries((displayContext, entries) -> {
+                        entries.add(ModItems.SPEEDRUNNER_INGOT);
+                        entries.add(ModItems.SPEEDRUNNER_NUGGET);
+                        entries.add(ModBlockItems.SPEEDRUNNER_BLOCK);
+                        entries.add(ModItems.RAW_SPEEDRUNNER);
+                        entries.add(ModBlockItems.RAW_SPEEDRUNNER_BLOCK);
+                        entries.add(ModBlockItems.SPEEDRUNNER_ORE);
+                        entries.add(ModBlockItems.DEEPSLATE_SPEEDRUNNER_ORE);
+                        entries.add(ModBlockItems.NETHER_SPEEDRUNNER_ORE);
+                        entries.add(ModBlockItems.SPEEDRUNNER_LOG);
+                        entries.add(ModBlockItems.STRIPPED_SPEEDRUNNER_LOG);
+                        entries.add(ModBlockItems.SPEEDRUNNER_WOOD);
+                        entries.add(ModBlockItems.STRIPPED_SPEEDRUNNER_WOOD);
+                        entries.add(ModBlockItems.SPEEDRUNNER_LEAVES);
+                        entries.add(ModBlockItems.SPEEDRUNNER_SAPLING);
+                        entries.add(ModBlockItems.DEAD_SPEEDRUNNER_LOG);
+                        entries.add(ModBlockItems.DEAD_STRIPPED_SPEEDRUNNER_LOG);
+                        entries.add(ModBlockItems.DEAD_SPEEDRUNNER_WOOD);
+                        entries.add(ModBlockItems.DEAD_STRIPPED_SPEEDRUNNER_WOOD);
+                        entries.add(ModBlockItems.DEAD_SPEEDRUNNER_LEAVES);
+                        entries.add(ModBlockItems.DEAD_SPEEDRUNNER_BUSH);
+                        entries.add(ModBlockItems.SPEEDRUNNER_PLANKS);
+                        entries.add(ModItems.SPEEDRUNNER_STICK);
+                        entries.add(ModBlockItems.SPEEDRUNNER_SLAB);
+                        entries.add(ModBlockItems.SPEEDRUNNER_STAIRS);
+                        entries.add(ModBlockItems.SPEEDRUNNER_FENCE);
+                        entries.add(ModBlockItems.SPEEDRUNNER_FENCE_GATE);
+                        entries.add(ModBlockItems.WOODEN_SPEEDRUNNER_TRAPDOOR);
+                        entries.add(ModBlockItems.SPEEDRUNNER_TRAPDOOR);
+                        entries.add(ModBlockItems.WOODEN_SPEEDRUNNER_BUTTON);
+                        entries.add(ModBlockItems.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
+                        entries.add(ModBlockItems.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
+                        entries.add(ModBlockItems.WOODEN_SPEEDRUNNER_DOOR);
+                        entries.add(ModBlockItems.SPEEDRUNNER_DOOR);
+                        entries.add(ModBlockItems.SPEEDRUNNER_SIGN);
+                        entries.add(ModBlockItems.SPEEDRUNNER_HANGING_SIGN);
+                        entries.add(ModBlockItems.SPEEDRUNNERS_WORKBENCH);
+                        entries.add(ModItems.SPEEDRUNNER_SWORD);
+                        entries.add(ModItems.SPEEDRUNNER_SHOVEL);
+                        entries.add(ModItems.SPEEDRUNNER_PICKAXE);
+                        entries.add(ModItems.SPEEDRUNNER_AXE);
+                        entries.add(ModItems.SPEEDRUNNER_HOE);
+                        entries.add(ModItems.SPEEDRUNNER_HELMET);
+                        entries.add(ModItems.SPEEDRUNNER_CHESTPLATE);
+                        entries.add(ModItems.SPEEDRUNNER_LEGGINGS);
+                        entries.add(ModItems.SPEEDRUNNER_BOOTS);
+                        entries.add(ModItems.GOLDEN_SPEEDRUNNER_SWORD);
+                        entries.add(ModItems.GOLDEN_SPEEDRUNNER_SHOVEL);
+                        entries.add(ModItems.GOLDEN_SPEEDRUNNER_PICKAXE);
+                        entries.add(ModItems.GOLDEN_SPEEDRUNNER_AXE);
+                        entries.add(ModItems.GOLDEN_SPEEDRUNNER_HOE);
+                        entries.add(ModItems.GOLDEN_SPEEDRUNNER_HELMET);
+                        entries.add(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE);
+                        entries.add(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS);
+                        entries.add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
+                        entries.add(ModItems.GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE);
+                        entries.add(ModItems.SPEEDRUNNER_BOW);
+                        entries.add(ModItems.SPEEDRUNNER_CROSSBOW);
+                        entries.add(ModItems.SPEEDRUNNER_SHEARS);
+                        entries.add(ModItems.SPEEDRUNNER_FLINT_AND_STEEL);
+                        entries.add(ModItems.SPEEDRUNNER_SHIELD);
+                        entries.add(ModItems.SPEEDRUNNERS_EYE);
+                        entries.add(ModItems.ENDER_THRUSTER);
+                        entries.add(ModBlockItems.THRUSTER_BLOCK);
+                        entries.add(ModItems.INFERNO_EYE);
+                        entries.add(ModItems.PIGLIN_AWAKENER);
+                        entries.add(ModItems.BLAZE_SPOTTER);
+                        entries.add(ModItems.RAID_ERADICATOR);
+                        entries.add(ModItems.ANNUL_EYE);
+                        entries.add(ModItems.DRAGONS_PEARL);
+                        entries.add(ModItems.DRAGONS_SWORD);
+                        entries.add(ModItems.WITHER_SWORD);
+                        entries.add(ModItems.WITHER_BONE);
+                        entries.add(ModItems.SPEEDRUNNER_BOAT);
+                        entries.add(ModItems.SPEEDRUNNER_CHEST_BOAT);
+                        entries.add(ModItems.CRIMSON_BOAT);
+                        entries.add(ModItems.CRIMSON_CHEST_BOAT);
+                        entries.add(ModItems.WARPED_BOAT);
+                        entries.add(ModItems.WARPED_CHEST_BOAT);
+                        for (int i = 1; i < 7; i++) {
+                            entries.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(i >= 4 ? ModEnchantments.COOLDOWN : ModEnchantments.DASH, i >= 4 ? i - 3 : i)));
+                        }
+                        entries.add(ModItems.IGNEOUS_ROCK);
+                        entries.add(ModBlockItems.IGNEOUS_ORE);
+                        entries.add(ModBlockItems.DEEPSLATE_IGNEOUS_ORE);
+                        entries.add(ModBlockItems.NETHER_IGNEOUS_ORE);
+                        entries.add(ModBlockItems.EXPERIENCE_ORE);
+                        entries.add(ModBlockItems.DEEPSLATE_EXPERIENCE_ORE);
+                        entries.add(ModBlockItems.NETHER_EXPERIENCE_ORE);
+                        entries.add(ModBlockItems.DOOM_STONE);
+                        entries.add(ModBlockItems.DOOM_LOG);
+                        entries.add(ModBlockItems.STRIPPED_DOOM_LOG);
+                        entries.add(ModBlockItems.DOOM_LEAVES);
+                        entries.add(ModItems.PIGLIN_PORK);
+                        entries.add(ModItems.COOKED_PIGLIN_PORK);
+                        entries.add(ModItems.GOLDEN_PIGLIN_PORK);
+                        entries.add(ModItems.GOLDEN_BEEF);
+                        entries.add(ModItems.GOLDEN_PORKCHOP);
+                        entries.add(ModItems.GOLDEN_MUTTON);
+                        entries.add(ModItems.GOLDEN_CHICKEN);
+                        entries.add(ModItems.GOLDEN_RABBIT);
+                        entries.add(ModItems.GOLDEN_COD);
+                        entries.add(ModItems.GOLDEN_SALMON);
+                        entries.add(ModItems.GOLDEN_BREAD);
+                        entries.add(ModItems.GOLDEN_POTATO);
+                        entries.add(ModItems.GOLDEN_BEETROOT);
+                        entries.add(ModItems.SPEEDRUNNER_BULK);
+                        entries.add(ModItems.ROTTEN_SPEEDRUNNER_BULK);
+                        entries.add(ModItems.COOKED_FLESH);
+                    }).build());
 
-    private static void addToItemGroup(Item item) {
-        ItemGroupEvents.modifyEntriesEvent(SPEEDRUNNER_MOD).register(entries -> entries.add(item));
-    }
-
-    private static void addToItemGroup(ItemStack stack) {
-        ItemGroupEvents.modifyEntriesEvent(SPEEDRUNNER_MOD).register(entries -> entries.add(stack));
-    }
-
-    private static void addToItemGroup(ItemGroup group, Item item) {
+    private static void addToItemGroup(RegistryKey<ItemGroup> group, Item item) {
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
     }
 
     public static void init() {
-        addToItemGroup(ModItems.SPEEDRUNNER_INGOT);
-        addToItemGroup(ModItems.SPEEDRUNNER_NUGGET);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_BLOCK);
-        addToItemGroup(ModItems.RAW_SPEEDRUNNER);
-        addToItemGroup(ModBlockItems.RAW_SPEEDRUNNER_BLOCK);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_ORE);
-        addToItemGroup(ModBlockItems.DEEPSLATE_SPEEDRUNNER_ORE);
-        addToItemGroup(ModBlockItems.NETHER_SPEEDRUNNER_ORE);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_LOG);
-        addToItemGroup(ModBlockItems.STRIPPED_SPEEDRUNNER_LOG);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_WOOD);
-        addToItemGroup(ModBlockItems.STRIPPED_SPEEDRUNNER_WOOD);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_LEAVES);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_SAPLING);
-        addToItemGroup(ModBlockItems.DEAD_SPEEDRUNNER_LOG);
-        addToItemGroup(ModBlockItems.DEAD_STRIPPED_SPEEDRUNNER_LOG);
-        addToItemGroup(ModBlockItems.DEAD_SPEEDRUNNER_WOOD);
-        addToItemGroup(ModBlockItems.DEAD_STRIPPED_SPEEDRUNNER_WOOD);
-        addToItemGroup(ModBlockItems.DEAD_SPEEDRUNNER_LEAVES);
-        addToItemGroup(ModBlockItems.DEAD_SPEEDRUNNER_BUSH);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_PLANKS);
-        addToItemGroup(ModItems.SPEEDRUNNER_STICK);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_SLAB);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_STAIRS);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_FENCE);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_FENCE_GATE);
-        addToItemGroup(ModBlockItems.WOODEN_SPEEDRUNNER_TRAPDOOR);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_TRAPDOOR);
-        addToItemGroup(ModBlockItems.WOODEN_SPEEDRUNNER_BUTTON);
-        addToItemGroup(ModBlockItems.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
-        addToItemGroup(ModBlockItems.WOODEN_SPEEDRUNNER_DOOR);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_DOOR);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_SIGN);
-        addToItemGroup(ModBlockItems.SPEEDRUNNER_HANGING_SIGN);
-        addToItemGroup(ModBlockItems.SPEEDRUNNERS_WORKBENCH);
-        addToItemGroup(ModItems.SPEEDRUNNER_SWORD);
-        addToItemGroup(ModItems.SPEEDRUNNER_SHOVEL);
-        addToItemGroup(ModItems.SPEEDRUNNER_PICKAXE);
-        addToItemGroup(ModItems.SPEEDRUNNER_AXE);
-        addToItemGroup(ModItems.SPEEDRUNNER_HOE);
-        addToItemGroup(ModItems.SPEEDRUNNER_HELMET);
-        addToItemGroup(ModItems.SPEEDRUNNER_CHESTPLATE);
-        addToItemGroup(ModItems.SPEEDRUNNER_LEGGINGS);
-        addToItemGroup(ModItems.SPEEDRUNNER_BOOTS);
-        addToItemGroup(ModItems.GOLDEN_SPEEDRUNNER_SWORD);
-        addToItemGroup(ModItems.GOLDEN_SPEEDRUNNER_SHOVEL);
-        addToItemGroup(ModItems.GOLDEN_SPEEDRUNNER_PICKAXE);
-        addToItemGroup(ModItems.GOLDEN_SPEEDRUNNER_AXE);
-        addToItemGroup(ModItems.GOLDEN_SPEEDRUNNER_HOE);
-        addToItemGroup(ModItems.GOLDEN_SPEEDRUNNER_HELMET);
-        addToItemGroup(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE);
-        addToItemGroup(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS);
-        addToItemGroup(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
-        addToItemGroup(ModItems.SPEEDRUNNER_BOW);
-        addToItemGroup(ModItems.SPEEDRUNNER_CROSSBOW);
-        addToItemGroup(ModItems.SPEEDRUNNER_SHEARS);
-        addToItemGroup(ModItems.SPEEDRUNNER_FLINT_AND_STEEL);
-        addToItemGroup(ModItems.SPEEDRUNNER_SHIELD);
-        addToItemGroup(ModItems.SPEEDRUNNERS_EYE);
-        addToItemGroup(ModItems.ENDER_THRUSTER);
-        addToItemGroup(ModBlockItems.THRUSTER_BLOCK);
-        addToItemGroup(ModItems.INFERNO_EYE);
-        addToItemGroup(ModItems.PIGLIN_AWAKENER);
-        addToItemGroup(ModItems.BLAZE_SPOTTER);
-        addToItemGroup(ModItems.RAID_ERADICATOR);
-        addToItemGroup(ModItems.ANNUL_EYE);
-        addToItemGroup(ModItems.DRAGONS_PEARL);
-        addToItemGroup(ModItems.DRAGONS_SWORD);
-        addToItemGroup(ModItems.WITHER_SWORD);
-        addToItemGroup(ModItems.WITHER_BONE);
-        addToItemGroup(ModItems.SPEEDRUNNER_BOAT);
-        addToItemGroup(ModItems.SPEEDRUNNER_CHEST_BOAT);
-        addToItemGroup(ModItems.CRIMSON_BOAT);
-        addToItemGroup(ModItems.CRIMSON_CHEST_BOAT);
-        addToItemGroup(ModItems.WARPED_BOAT);
-        addToItemGroup(ModItems.WARPED_CHEST_BOAT);
-        for (int i = 1; i < 7; i++) {
-            addToItemGroup(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(i >= 4 ? ModEnchantments.COOLDOWN : ModEnchantments.DASH, i >= 4 ? i - 3 : i)));
-        }
-        addToItemGroup(ModItems.IGNEOUS_ROCK);
-        addToItemGroup(ModBlockItems.IGNEOUS_ORE);
-        addToItemGroup(ModBlockItems.DEEPSLATE_IGNEOUS_ORE);
-        addToItemGroup(ModBlockItems.NETHER_IGNEOUS_ORE);
-        addToItemGroup(ModBlockItems.EXPERIENCE_ORE);
-        addToItemGroup(ModBlockItems.DEEPSLATE_EXPERIENCE_ORE);
-        addToItemGroup(ModBlockItems.NETHER_EXPERIENCE_ORE);
-        addToItemGroup(ModBlockItems.DOOM_STONE);
-        addToItemGroup(ModBlockItems.DOOM_LOG);
-        addToItemGroup(ModBlockItems.STRIPPED_DOOM_LOG);
-        addToItemGroup(ModBlockItems.DOOM_LEAVES);
-        addToItemGroup(ModItems.PIGLIN_PORK);
-        addToItemGroup(ModItems.COOKED_PIGLIN_PORK);
-        addToItemGroup(ModItems.GOLDEN_PIGLIN_PORK);
-        addToItemGroup(ModItems.GOLDEN_BEEF);
-        addToItemGroup(ModItems.GOLDEN_PORKCHOP);
-        addToItemGroup(ModItems.GOLDEN_MUTTON);
-        addToItemGroup(ModItems.GOLDEN_CHICKEN);
-        addToItemGroup(ModItems.GOLDEN_RABBIT);
-        addToItemGroup(ModItems.GOLDEN_COD);
-        addToItemGroup(ModItems.GOLDEN_SALMON);
-        addToItemGroup(ModItems.GOLDEN_BREAD);
-        addToItemGroup(ModItems.GOLDEN_POTATO);
-        addToItemGroup(ModItems.GOLDEN_BEETROOT);
-        addToItemGroup(ModItems.SPEEDRUNNER_BULK);
-        addToItemGroup(ModItems.ROTTEN_SPEEDRUNNER_BULK);
-        addToItemGroup(ModItems.COOKED_FLESH);
-
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.SPEEDRUNNER_INGOT);
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.SPEEDRUNNER_NUGGET);
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.RAW_SPEEDRUNNER);
@@ -165,6 +162,7 @@ public class ModItemGroups {
         addToItemGroup(ItemGroups.COMBAT, ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE);
         addToItemGroup(ItemGroups.COMBAT, ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS);
         addToItemGroup(ItemGroups.COMBAT, ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
+        addToItemGroup(ItemGroups.INGREDIENTS, ModItems.GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE);
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, ModItems.SPEEDRUNNER_BULK);
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, ModItems.ROTTEN_SPEEDRUNNER_BULK);
         addToItemGroup(ItemGroups.FOOD_AND_DRINK, ModItems.COOKED_FLESH);

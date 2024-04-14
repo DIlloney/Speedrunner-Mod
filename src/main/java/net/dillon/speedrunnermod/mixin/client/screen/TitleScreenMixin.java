@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.mixin.client.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.ModMenuScreen;
 import net.dillon.speedrunnermod.client.screen.features.FeaturesScreen;
@@ -10,12 +9,12 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.CubeMapRenderer;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ConfirmLinkScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -154,72 +153,65 @@ public class TitleScreenMixin extends Screen {
      * Adds additional textures to the title screen.
      */
     @Inject(method = "render", at = @At("TAIL"))
-    private void renderButtons(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+    private void renderButtons(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if (options().advanced.showResetButton) {
-            RenderSystem.setShaderTexture(0, new Identifier("speedrunnermod:textures/item/speedrunner_boots.png"));
-            drawTexture(matrices, this.width / 2 - 122, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(new Identifier("speedrunnermod:textures/item/speedrunner_boots.png"), this.width / 2 - 122, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         }
 
-        RenderSystem.setShaderTexture(0, SpeedrunnerMod.SPEEDRUNNER_MOD_ICON);
-        drawTexture(matrices, (this.width / 2) - 123, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+        context.drawTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 123, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
         if (options().client.socialButtons) {
-            RenderSystem.setShaderTexture(0, SpeedrunnerMod.DILLON8775_ICON);
-            drawTexture(matrices, this.width / 2 - 123, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 - 123, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-            RenderSystem.setShaderTexture(0, SpeedrunnerMod.DISCORD_ICON);
-            drawTexture(matrices, this.width / 2 + 106, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(SpeedrunnerMod.DISCORD_ICON, this.width / 2 + 106, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
-            RenderSystem.setShaderTexture(0, SpeedrunnerMod.WEBPAGE_ICON);
-            drawTexture(matrices, this.width / 2 + 106, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(SpeedrunnerMod.WEBPAGE_ICON, this.width / 2 + 106, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
-            RenderSystem.setShaderTexture(0, SpeedrunnerMod.NUZLAND_ICON);
-            drawTexture(matrices, this.width / 2 + 129, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture( SpeedrunnerMod.NUZLAND_ICON, this.width / 2 + 129, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-            RenderSystem.setShaderTexture(0, SpeedrunnerMod.MANNYQUESO_ICON);
-            drawTexture(matrices, this.width / 2 + 129, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(SpeedrunnerMod.MANNYQUESO_ICON, this.width / 2 + 129, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
         }
 
-        this.renderTooltips(matrices, mouseX, mouseY);
+        this.renderTooltips(context, mouseX, mouseY);
 
         float f = this.doBackgroundFade ? (float)(Util.getMeasuringTimeMs() - this.backgroundFadeStart) / 1000.0F : 1.0F;
         float g = this.doBackgroundFade ? MathHelper.clamp(f - 1.0F, 0.0F, 1.0F) : 1.0F;
         int l = MathHelper.ceil(g * 255.0F) << 24;
-        drawTextWithShadow(matrices, this.textRenderer, SpeedrunnerMod.THE_SPEEDRUNNER_MOD_STRING + " " + SpeedrunnerMod.MOD_VERSION, 2, this.height - 20, 16777215 | l);
+        context.drawTextWithShadow(this.textRenderer, SpeedrunnerMod.THE_SPEEDRUNNER_MOD_STRING + " " + SpeedrunnerMod.MOD_VERSION, 2, this.height - 20, 16777215 | l);
     }
 
     /**
      * Renders the tooltips on the title screen buttons.
      */
     @Unique
-    private void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+    private void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (options().advanced.showResetButton && createWorldButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(options().client.fastWorldCreation ? CREATE_WORLD_BUTTON_TOOLTIP : CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(options().client.fastWorldCreation ? CREATE_WORLD_BUTTON_TOOLTIP : CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
         }
 
         if (optionsButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(OPTIONS_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(OPTIONS_TOOLTIP, 200), mouseX, mouseY);
         }
 
         if (options().client.socialButtons) {
             if (dillon8775YouTubeButton.isHovered()) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
 
             if (discordButton.isHovered()) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(DISCORD_TOOLTIP, 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(DISCORD_TOOLTIP, 200), mouseX, mouseY);
             }
 
             if (webpageButton.isHovered()) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(WEBPAGE_TOOLTIP, 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(WEBPAGE_TOOLTIP, 200), mouseX, mouseY);
             }
 
             if (nuzlandYouTubeButton.isHovered()) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(NUZLAND_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(NUZLAND_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
 
             if (mannyQuesoYouTubeButton.isHovered()) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(MANNYQUESO_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(MANNYQUESO_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
         }
     }

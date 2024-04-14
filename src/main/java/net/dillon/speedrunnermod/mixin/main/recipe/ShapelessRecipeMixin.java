@@ -1,6 +1,6 @@
 package net.dillon.speedrunnermod.mixin.main.recipe;
 
-import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.util.Identifier;
@@ -20,8 +20,8 @@ public class ShapelessRecipeMixin {
     /**
      * Disables {@code Infini Pearl ender pearls} from being able to craft certain items.
      */
-    @Inject(method = "matches(Lnet/minecraft/inventory/CraftingInventory;Lnet/minecraft/world/World;)Z", at = @At("HEAD"), cancellable = true)
-    private void matches(CraftingInventory craftingInventory, World world, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "matches(Lnet/minecraft/inventory/RecipeInputInventory;Lnet/minecraft/world/World;)Z", at = @At("HEAD"), cancellable = true)
+    private void matches(RecipeInputInventory recipeInputInventory, World world, CallbackInfoReturnable<Boolean> cir) {
         if (id.toString().equals("minecraft:ender_eye") ||
                 id.toString().equals("speedrunnermod:inferno_eye") ||
                 id.toString().equals("speedrunnermod:annul_eye") ||
@@ -30,8 +30,8 @@ public class ShapelessRecipeMixin {
                 id.toString().equals("speedrunnermod:ender_thruster") ||
                 id.toString().equals("speedrunnermod:blaze_spotter") ||
                 id.toString().equals("speedrunnermod:raid_eradicator")) {
-            for (int i = 0; i < craftingInventory.size(); i++) {
-                ItemStack itemStack = craftingInventory.getStack(i);
+            for (int i = 0; i < recipeInputInventory.size(); i++) {
+                ItemStack itemStack = recipeInputInventory.getStack(i);
                 if (itemStack.hasEnchantments()) {
                     cir.setReturnValue(false);
                 }

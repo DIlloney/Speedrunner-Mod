@@ -668,6 +668,34 @@
           ]
         }
       ]
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 9
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_upgrade_smithing_template"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "name": "speedrunnermod:golden_speedrunner_upgrade_smithing_template"
+        }
+      ],
+      "rolls": 1.0
     }
   ]
 }

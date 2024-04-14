@@ -1,16 +1,15 @@
 package net.dillon.speedrunnermod.client.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.dillon.speedrunnermod.client.screen.features.FeaturesScreen;
 import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.Leaderboards;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -74,34 +73,33 @@ public class ModMenuScreen extends AbstractModScreen {
     }
 
     @Override
-    protected void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.optionsButton.isHovered()) {
             if (options().main.leaderboardsMode) {
                 if (!Leaderboards.isEligibleForLeaderboardRuns()) {
-                    this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_ACTION_NEEDED, 200), mouseX, mouseY);
+                    context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_ACTION_NEEDED, 200), mouseX, mouseY);
                 } else {
-                    this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_SAFE, 200), mouseX, mouseY);
+                    context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_SAFE, 200), mouseX, mouseY);
                 }
             }
         }
         if (this.featuresButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.MENU_FEATURES_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MENU_FEATURES_TOOLTIP, 200), mouseX, mouseY);
         }
         if (this.resourcesButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.MENU_RESOURCES_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MENU_RESOURCES_TOOLTIP, 200), mouseX, mouseY);
         }
         if (this.easierSpeedrunningModButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.EASIER_SPEEDRUNNING_MOD_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.EASIER_SPEEDRUNNING_MOD_TOOLTIP, 200), mouseX, mouseY);
         }
-        super.renderTooltips(matrices, mouseX, mouseY);
+        super.renderTooltips(context, mouseX, mouseY);
     }
 
     @Override
-    protected void renderCustomObjects(MatrixStack matrices) {
+    protected void renderCustomObjects(DrawContext context) {
         int middle = this.width / 2 - 69;
         int height = 15;
-        RenderSystem.setShaderTexture(0, new Identifier("speedrunnermod:textures/gui/speedrunner_mod.png"));
-        drawTexture(matrices, middle, height, 0.0F, 0.0F, 129, 16, 129, 16);
+        context.drawTexture(new Identifier("speedrunnermod:textures/gui/speedrunner_mod.png"), middle, height, 0.0F, 0.0F, 129, 16, 129, 16);
     }
 
     /**

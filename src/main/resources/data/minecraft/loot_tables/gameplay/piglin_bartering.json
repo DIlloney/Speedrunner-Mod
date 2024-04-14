@@ -330,6 +330,21 @@
               }
             }
           ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "speedrunnermod:golden_speedrunner_upgrade_smithing_template",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
         }
       ]
     }

@@ -12,7 +12,7 @@ public interface Giant {
 
     static boolean tryAttack(LivingEntity attacker, LivingEntity target) {
         float f = (float)attacker.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-        float g = !attacker.isBaby() && (int)f > 0 ? f / 2.0f + (float)attacker.world.random.nextInt((int)f) : f;
+        float g = !attacker.isBaby() && (int)f > 0 ? f / 2.0f + (float)attacker.getWorld().random.nextInt((int)f) : f;
         boolean bl = target.damage(attacker.getDamageSources().mobAttack(attacker), g);
         if (bl) {
             attacker.applyDamageEffects(attacker, target);
@@ -32,10 +32,10 @@ public interface Giant {
         }
         double g = target.getX() - attacker.getX();
         double h = target.getZ() - attacker.getZ();
-        float i = attacker.world.random.nextInt(21) - 10;
-        double j = f * (double)(attacker.world.random.nextFloat() * 0.5f + 0.2f);
+        float i = attacker.getWorld().random.nextInt(21) - 10;
+        double j = f * (double)(attacker.getWorld().random.nextFloat() * 0.5f + 0.2f);
         Vec3d vec3d = new Vec3d(g, 0.0, h).normalize().multiply(j).rotateY(i);
-        double k = f * (double)attacker.world.random.nextFloat() * 0.5;
+        double k = f * (double)attacker.getWorld().random.nextFloat() * 0.5;
         target.addVelocity(vec3d.x, k, vec3d.z);
         target.velocityModified = true;
     }

@@ -4,10 +4,10 @@ import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
@@ -59,9 +59,9 @@ public class RestartRequiredScreen extends AbstractModScreen {
     }
 
     @Override
-    public void renderCustomText(MatrixStack matrices) {
-        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.restart_required.line1"), this.width / 2, 110, 16777215);
-        drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.restart_required.line2"), this.width / 2, 130, 16777215);
+    public void renderCustomText(DrawContext context) {
+        context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.restart_required.line1"), this.width / 2, 110, 16777215);
+        context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.restart_required.line2"), this.width / 2, 130, 16777215);
     }
 
     @Override

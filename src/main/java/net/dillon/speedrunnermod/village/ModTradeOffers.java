@@ -41,6 +41,9 @@ public class ModTradeOffers {
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 2, factories -> {
             factories.add(new MaxedEnchantBookFactory(3, 24, 6, 0.0F));
         });
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 2, factories -> {
+            factories.add(new ModTradeOffers.SellItemFactorySpeedrunnerIngot(ModItems.GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE, 2, 1, 9, 6));
+        });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 3, factories -> {
             factories.add(new TradeOffers.SellPotionHoldingItemFactory(Items.WATER_BUCKET, 1, Items.SPLASH_POTION, 1, 1, 12, 9));
         });
@@ -59,13 +62,15 @@ public class ModTradeOffers {
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 4, factories -> {
             factories.add(new TradeOffers.SellItemFactory(ModItems.DRAGONS_PEARL, 3, 1, 12, 25));
         });
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 4, factories -> {
+            factories.add(new TradeOffers.SellItemFactory(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 3, 1, 9, 25));
+        });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 5, factories -> {
             factories.add(new MaxedEnchantBookFactory(3, 32, 24, 0.0F));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 5, factories -> {
-            factories.add(new TradeOffers.SellEnchantedToolFactory(Items.NETHERITE_CHESTPLATE, 24, 1, 100, 2));
+            factories.add(new ModTradeOffers.SellMaxedEnchantedToolFactory(Items.NETHERITE_CHESTPLATE, 24, 1, 100, 2));
         });
-
 
         info("Registered the Retired Speedrunner villager trades.");
     }
@@ -189,7 +194,7 @@ public class ModTradeOffers {
 
         @Override
         public TradeOffer create(Entity entity, Random random) {
-            int i = 30 + random.nextInt(33);
+            int i = random.nextInt(4) + 30;
             ItemStack itemStack = EnchantmentHelper.enchant(random, new ItemStack(this.tool.getItem()), i, true);
             return new TradeOffer(new ItemStack(Items.EMERALD, this.price), itemStack, this.maxUses, this.experience, this.multiplier);
         }

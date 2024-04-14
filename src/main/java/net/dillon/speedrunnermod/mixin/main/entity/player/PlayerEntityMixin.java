@@ -81,7 +81,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                 this.getItemCooldownManager().set(Items.SHIELD, shieldCooldown);
                 this.getItemCooldownManager().set(ModItems.SPEEDRUNNER_SHIELD, speedrunnerShieldCooldown);
                 this.clearActiveItem();
-                this.world.sendEntityStatus(this, (byte)30);
+                this.getWorld().sendEntityStatus(this, (byte)30);
             }
         }
     }
@@ -92,7 +92,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Inject(method = "tick", at = @At("TAIL"))
     private void addDragonsSwordParticles(CallbackInfo ci) {
         if (this.getMainHandStack().isOf(ModItems.DRAGONS_SWORD) || this.getOffHandStack().isOf(ModItems.DRAGONS_SWORD)) {
-            world.addParticle(ParticleTypes.PORTAL, this.getParticleX(0.5D), this.getRandomBodyY() - 0.25D, this.getParticleZ(0.5D), (world.random.nextDouble() - 0.5D) * 2.0D, -world.random.nextDouble(), (world.random.nextDouble() - 0.5D) * 2.0D);
+            this.getWorld().addParticle(ParticleTypes.PORTAL, this.getParticleX(0.5D), this.getRandomBodyY() - 0.25D, this.getParticleZ(0.5D), (this.getWorld().random.nextDouble() - 0.5D) * 2.0D, -this.getWorld().random.nextDouble(), (this.getWorld().random.nextDouble() - 0.5D) * 2.0D);
         }
     }
 
@@ -122,17 +122,17 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Override
     public void attemptTickInVoid() {
         if (this.getMainHandStack().isOf(Items.TOTEM_OF_UNDYING) || this.getOffHandStack().isOf(Items.TOTEM_OF_UNDYING)) {
-            if (this.getY() < (double)(this.world.getBottomY() - 64)) {
-                int y = this.world.getTopY(Heightmap.Type.MOTION_BLOCKING, 0, 0);
+            if (this.getY() < (double)(this.getWorld().getBottomY() - 64)) {
+                int y = this.getWorld().getTopY(Heightmap.Type.MOTION_BLOCKING, 0, 0);
                 BlockPos pos = new BlockPos(0, y - 1, 0);
-                if (this.world.getBlockState(pos).isOf(Blocks.WATER)) {
-                    this.world.setBlockState(pos, Blocks.FROSTED_ICE.getDefaultState());
-                } else if (this.world.getBlockState(pos).isOf(Blocks.LAVA)) {
-                    this.world.setBlockState(pos, Blocks.LAVA.getDefaultState());
+                if (this.getWorld().getBlockState(pos).isOf(Blocks.WATER)) {
+                    this.getWorld().setBlockState(pos, Blocks.FROSTED_ICE.getDefaultState());
+                } else if (this.getWorld().getBlockState(pos).isOf(Blocks.LAVA)) {
+                    this.getWorld().setBlockState(pos, Blocks.LAVA.getDefaultState());
                 }
                 this.teleport(0.5, y, 0.5, true);
                 this.damage(this.getDamageSources().generic(), 1000000.0F);
-                this.world.playSound(null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 10.0F, 1.0F);
+                this.getWorld().playSound(null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 10.0F, 1.0F);
             }
         } else {
             super.attemptTickInVoid();

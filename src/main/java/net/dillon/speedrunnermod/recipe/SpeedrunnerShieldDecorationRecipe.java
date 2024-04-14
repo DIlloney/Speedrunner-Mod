@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.recipe;
 
 import net.dillon.speedrunnermod.item.ModItems;
-import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.BannerItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -21,12 +21,12 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
     }
 
     @Override
-    public boolean matches(CraftingInventory craftingInventory, World world) {
+    public boolean matches(RecipeInputInventory recipeInputInventory, World world) {
         ItemStack itemStack = ItemStack.EMPTY;
         ItemStack itemStack2 = ItemStack.EMPTY;
 
-        for(int i = 0; i < craftingInventory.size(); ++i) {
-            ItemStack itemStack3 = craftingInventory.getStack(i);
+        for(int i = 0; i < recipeInputInventory.size(); ++i) {
+            ItemStack itemStack3 = recipeInputInventory.getStack(i);
             if (!itemStack3.isEmpty()) {
                 if (itemStack3.getItem() instanceof BannerItem) {
                     if (!itemStack2.isEmpty()) {
@@ -56,12 +56,12 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
     }
 
     @Override
-    public ItemStack craft(CraftingInventory inventory, DynamicRegistryManager registryManager) {
+    public ItemStack craft(RecipeInputInventory recipeInputInventory, DynamicRegistryManager registryManager) {
         ItemStack itemStack = ItemStack.EMPTY;
         ItemStack itemStack2 = ItemStack.EMPTY;
 
-        for(int i = 0; i < inventory.size(); ++i) {
-            ItemStack itemStack3 = inventory.getStack(i);
+        for(int i = 0; i < recipeInputInventory.size(); ++i) {
+            ItemStack itemStack3 = recipeInputInventory.getStack(i);
             if (!itemStack3.isEmpty()) {
                 if (itemStack3.getItem() instanceof BannerItem) {
                     itemStack = itemStack3;

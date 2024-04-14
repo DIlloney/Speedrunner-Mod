@@ -6,11 +6,11 @@ import net.dillon.speedrunnermod.option.Leaderboards;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ConfirmLinkScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 
@@ -77,30 +77,30 @@ public class LeaderboardsIneligibleScreen extends AbstractModScreen {
     }
 
     @Override
-    public void renderCustomText(MatrixStack matrices) {
+    public void renderCustomText(DrawContext context) {
         if (needsRestartFromEnablingLeaderboardsMode) {
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart_required.line1"), this.width / 2, 110, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart_required.line2"), this.width / 2, 130, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart_required.line1"), this.width / 2, 110, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart_required.line2"), this.width / 2, 130, 16777215);
         } else if (Leaderboards.noOptionsWereChanged()) {
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line1"), this.width / 2, 80, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line2"), this.width / 2, 100, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line3"), this.width / 2, 120, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line1"), this.width / 2, 80, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line2"), this.width / 2, 100, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.leaderboards.restart.line3"), this.width / 2, 120, 16777215);
         } else {
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible.line1"), this.width / 2, 80, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible.line2"), this.width / 2, 100, 16777215);
-            drawCenteredTextWithShadow(matrices, this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible_options.line3"), this.width / 2, 120, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible.line1"), this.width / 2, 80, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible.line2"), this.width / 2, 100, 16777215);
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.leaderboards.ineligible_options.line3"), this.width / 2, 120, 16777215);
         }
     }
 
     @Override
-    protected void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.leftButton.isHovered()) {
             if (needsRestartFromEnablingLeaderboardsMode) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.restart_now.tooltip"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.restart_now.tooltip"), 200), mouseX, mouseY);
             } else if (Leaderboards.noOptionsWereChanged()) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.fix_and_restart.tooltip"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.fix_and_restart.tooltip"), 200), mouseX, mouseY);
             } else {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.revert_changes.tooltip"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.revert_changes.tooltip"), 200), mouseX, mouseY);
             }
         }
         if (this.middleButton.isHovered()) {
@@ -114,12 +114,12 @@ public class LeaderboardsIneligibleScreen extends AbstractModScreen {
         }
         if (this.rightButton.isHovered()) {
             if (!needsRestartFromEnablingLeaderboardsMode) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.ignore.tooltip"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.ignore.tooltip"), 200), mouseX, mouseY);
             } else {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.ignore_restart.tooltip"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.ignore_restart.tooltip"), 200), mouseX, mouseY);
             }
         }
-        super.renderTooltips(matrices, mouseX, mouseY);
+        super.renderTooltips(context, mouseX, mouseY);
     }
 
     private void revertChanges() {

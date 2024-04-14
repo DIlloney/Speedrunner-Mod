@@ -5,10 +5,10 @@ import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.ScreenTexts;
 
 @Environment(EnvType.CLIENT)
@@ -56,29 +56,29 @@ public class ModsScreen extends AbstractModScreen {
     }
 
     @Override
-    protected void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.sodiumButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.SODIUM_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.SODIUM_TOOLTIP, 200), mouseX, mouseY);
         }
         if (this.lithiumButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.LITHIUM_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.LITHIUM_TOOLTIP, 200), mouseX, mouseY);
         }
         if (this.phosphorButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.PHOSPHOR_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.PHOSPHOR_TOOLTIP, 200), mouseX, mouseY);
         }
         if (this.speedrunIGTButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.SPEEDRUN_IGT_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.SPEEDRUN_IGT_TOOLTIP, 200), mouseX, mouseY);
         }
         if (this.lazyDFUButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.LAZYDFU_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.LAZYDFU_TOOLTIP, 200), mouseX, mouseY);
         }
         if (this.kryptonButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.KRYPTON_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.KRYPTON_TOOLTIP, 200), mouseX, mouseY);
         }
         if (this.optiFineButton.isHovered()) {
-            this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(ModTexts.OPTIFINE_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.OPTIFINE_TOOLTIP, 200), mouseX, mouseY);
         }
-        super.renderTooltips(matrices, mouseX, mouseY);
+        super.renderTooltips(context, mouseX, mouseY);
     }
 
     @Override

@@ -5,10 +5,10 @@ import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.Leaderboards;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -43,17 +43,17 @@ public class LeaderboardsScreen extends AbstractModScreen {
     }
 
     @Override
-    protected void renderTooltips(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.submitSpeedrunButton.isHovered()) {
             if (!options().main.leaderboardsMode) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.leaderboards_mode_disabled.tooltip"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.leaderboards_mode_disabled.tooltip"), 200), mouseX, mouseY);
             } else if (!Leaderboards.isEligibleForLeaderboardRuns()) {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.cannot_submit_speedrun.tooltip"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.cannot_submit_speedrun.tooltip"), 200), mouseX, mouseY);
             } else {
-                this.renderOrderedTooltip(matrices, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.submit_speedrun.tooltip"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.submit_speedrun.tooltip"), 200), mouseX, mouseY);
             }
         }
-        super.renderTooltips(matrices, mouseX, mouseY);
+        super.renderTooltips(context, mouseX, mouseY);
     }
 
     /**
