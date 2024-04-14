@@ -1,0 +1,8 @@
+{
+  "entity.boat.paddle_lava": {
+    "subtitle": "speedrunnermod.entity_boat_paddle_lava",
+    "sounds": [
+      "speedrunnermod:entity_boat_paddle_lava"
+    ]
+  }
+}

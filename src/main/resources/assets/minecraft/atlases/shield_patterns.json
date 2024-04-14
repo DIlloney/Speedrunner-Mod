@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "sources": [
+    {
+      "type": "single",
+      "resource": "entity/speedrunner_shield_base"
+    },
+    {
+      "type": "single",
+      "resource": "entity/speedrunner_shield_base_no_pattern"
+    }
+  ]
+}
