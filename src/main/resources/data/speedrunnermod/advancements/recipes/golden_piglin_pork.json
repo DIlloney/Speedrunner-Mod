@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_piglin_pork": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "speedrunnermod:cooked_piglin_pork"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "speedrunnermod:golden_piglin_pork"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_piglin_pork",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "speedrunnermod:golden_piglin_pork"
+    ]
+  }
+}
