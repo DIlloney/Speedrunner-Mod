@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "speedrunnermod:speedrunner_planks"
+    "speedrunnermod:speedrunner_planks",
+    "speedrunnermod:dead_speedrunner_planks"
   ]
 }

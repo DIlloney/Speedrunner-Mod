@@ -19,21 +19,26 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 public class ModBoats {
     public static final Identifier SPEEDRUNNER_BOAT_ID = new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_boat");
     public static final Identifier SPEEDRUNNER_CHEST_BOAT_ID = new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_chest_boat");
+    public static final Identifier DEAD_SPEEDRUNNER_BOAT_ID = new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_boat");
+    public static final Identifier DEAD_SPEEDRUNNER_CHEST_BOAT_ID = new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_chest_boat");
     public static final Identifier CRIMSON_BOAT_ID = new Identifier(SpeedrunnerMod.MOD_ID, "crimson_boat");
     public static final Identifier CRIMSON_CHEST_BOAT_ID = new Identifier(SpeedrunnerMod.MOD_ID, "crimson_chest_boat");
     public static final Identifier WARPED_BOAT_ID = new Identifier(SpeedrunnerMod.MOD_ID, "warped_boat");
     public static final Identifier WARPED_CHEST_BOAT_ID = new Identifier(SpeedrunnerMod.MOD_ID, "warped_chest_boat");
 
     public static final RegistryKey<TerraformBoatType> SPEEDRUNNER_BOAT_KEY = TerraformBoatTypeRegistry.createKey(SPEEDRUNNER_BOAT_ID);
+    public static final RegistryKey<TerraformBoatType> DEAD_SPEEDRUNNER_BOAT_KEY = TerraformBoatTypeRegistry.createKey(DEAD_SPEEDRUNNER_BOAT_ID);
     public static final RegistryKey<TerraformBoatType> CRIMSON_BOAT_KEY = TerraformBoatTypeRegistry.createKey(CRIMSON_BOAT_ID);
     public static final RegistryKey<TerraformBoatType> WARPED_BOAT_KEY = TerraformBoatTypeRegistry.createKey(WARPED_BOAT_ID);
 
     public static final TerraformBoatType SPEEDRUNNER_BOAT = new TerraformBoatType.Builder().item(ModItems.SPEEDRUNNER_BOAT).chestItem(ModItems.SPEEDRUNNER_CHEST_BOAT).planks(ModBlocks.SPEEDRUNNER_PLANKS.asItem()).build();
+    public static final TerraformBoatType DEAD_SPEEDRUNNER_BOAT = new TerraformBoatType.Builder().item(ModItems.DEAD_SPEEDRUNNER_BOAT).chestItem(ModItems.DEAD_SPEEDRUNNER_CHEST_BOAT).planks(ModBlocks.DEAD_SPEEDRUNNER_PLANKS.asItem()).build();
     public static final TerraformBoatType CRIMSON_BOAT = new TerraformBoatType.Builder().item(ModItems.CRIMSON_BOAT).chestItem(ModItems.CRIMSON_CHEST_BOAT).planks(Blocks.CRIMSON_PLANKS.asItem()).build();
     public static final TerraformBoatType WARPED_BOAT = new TerraformBoatType.Builder().item(ModItems.WARPED_BOAT).chestItem(ModItems.WARPED_CHEST_BOAT).planks(Blocks.WARPED_PLANKS.asItem()).build();
 
     public static void init() {
         Registry.register(TerraformBoatTypeRegistry.INSTANCE, SPEEDRUNNER_BOAT_KEY, SPEEDRUNNER_BOAT);
+        Registry.register(TerraformBoatTypeRegistry.INSTANCE, DEAD_SPEEDRUNNER_BOAT_KEY, DEAD_SPEEDRUNNER_BOAT);
         Registry.register(TerraformBoatTypeRegistry.INSTANCE, CRIMSON_BOAT_KEY, CRIMSON_BOAT);
         Registry.register(TerraformBoatTypeRegistry.INSTANCE, WARPED_BOAT_KEY, WARPED_BOAT);
 

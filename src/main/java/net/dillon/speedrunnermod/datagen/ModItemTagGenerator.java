@@ -59,10 +59,12 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .forceAddTag(ModItemTags.SPEEDRUNNER_TOOLS);
 
         getOrCreateTagBuilder(ModItemTags.FASTER_BOATS)
-                .add(ModItems.SPEEDRUNNER_BOAT);
+                .add(ModItems.SPEEDRUNNER_BOAT)
+                .add(ModItems.DEAD_SPEEDRUNNER_BOAT);
 
         getOrCreateTagBuilder(ModItemTags.FASTER_CHEST_BOATS)
-                .add(ModItems.SPEEDRUNNER_CHEST_BOAT);
+                .add(ModItems.SPEEDRUNNER_CHEST_BOAT)
+                .add(ModItems.DEAD_SPEEDRUNNER_CHEST_BOAT);
 
         getOrCreateTagBuilder(ModItemTags.FIREPROOF_BOATS)
                 .add(ModItems.SPEEDRUNNER_BOAT)
@@ -238,7 +240,15 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ModItemTags.Block.SPEEDRUNNER_SIGNS)
                 .add(ModBlockItems.SPEEDRUNNER_SIGN)
-                .add(ModBlockItems.SPEEDRUNNER_HANGING_SIGN);
+                .add(ModBlockItems.SPEEDRUNNER_HANGING_SIGN)
+                .add(ModBlockItems.DEAD_SPEEDRUNNER_SIGN)
+                .add(ModBlockItems.DEAD_SPEEDRUNNER_HANGING_SIGN);
+
+        getOrCreateTagBuilder(ModItemTags.Block.TEXTURE_CREATOR_MANNYQUESO)
+                .add(ModBlockItems.THRUSTER_BLOCK);
+
+        getOrCreateTagBuilder(ModItemTags.Block.TEXTURE_CREATOR_KREVIKUS)
+                .forceAddTag(ModItemTags.Block.EXPERIENCE_ORES);
 
         getOrCreateTagBuilder(ItemTags.BOATS)
                 .add(ModItems.SPEEDRUNNER_BOAT)
@@ -254,13 +264,16 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlockItems.SPEEDRUNNER_DOOR);
 
         getOrCreateTagBuilder(ItemTags.WOODEN_DOORS)
-                .add(ModBlockItems.WOODEN_SPEEDRUNNER_DOOR);
+                .add(ModBlockItems.WOODEN_SPEEDRUNNER_DOOR)
+                .add(ModBlockItems.DEAD_WOODEN_SPEEDRUNNER_DOOR);
 
         getOrCreateTagBuilder(ItemTags.FENCE_GATES)
-                .add(ModBlockItems.SPEEDRUNNER_FENCE_GATE);
+                .add(ModBlockItems.SPEEDRUNNER_FENCE_GATE)
+                .add(ModBlockItems.DEAD_SPEEDRUNNER_FENCE_GATE);
 
         getOrCreateTagBuilder(ItemTags.WOODEN_FENCES)
-                .add(ModBlockItems.SPEEDRUNNER_FENCE);
+                .add(ModBlockItems.SPEEDRUNNER_FENCE)
+                .add(ModBlockItems.DEAD_SPEEDRUNNER_FENCE);
 
         getOrCreateTagBuilder(ItemTags.LEAVES)
                 .add(ModBlockItems.SPEEDRUNNER_LEAVES)
@@ -277,10 +290,12 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.GOLDEN_PIGLIN_PORK);
 
         getOrCreateTagBuilder(ItemTags.PLANKS)
-                .add(ModBlockItems.SPEEDRUNNER_PLANKS);
+                .add(ModBlockItems.SPEEDRUNNER_PLANKS)
+                .add(ModBlockItems.DEAD_SPEEDRUNNER_PLANKS);
 
         getOrCreateTagBuilder(ItemTags.SAPLINGS)
-                .add(ModBlockItems.SPEEDRUNNER_SAPLING);
+                .add(ModBlockItems.SPEEDRUNNER_SAPLING)
+                .add(ModBlockItems.DEAD_SPEEDRUNNER_SAPLING);
 
         getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS)
                 .add(Items.ANDESITE)
@@ -290,24 +305,30 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(Items.END_STONE);
 
         getOrCreateTagBuilder(ItemTags.TRAPDOORS)
-                .add(ModBlockItems.SPEEDRUNNER_TRAPDOOR);
+                .add(ModBlockItems.SPEEDRUNNER_TRAPDOOR)
+                .add(ModBlockItems.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
 
         getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
                 .forceAddTag(ModItemTags.SPEEDRUNNER_ARMOR);
 
         getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS)
-                .add(ModBlockItems.WOODEN_SPEEDRUNNER_BUTTON);
+                .add(ModBlockItems.WOODEN_SPEEDRUNNER_BUTTON)
+                .add(ModBlockItems.DEAD_WOODEN_SPEEDRUNNER_BUTTON);
 
         getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES)
-                .add(ModBlockItems.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
+                .add(ModBlockItems.WOODEN_SPEEDRUNNER_PRESSURE_PLATE)
+                .add(ModBlockItems.DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
 
         getOrCreateTagBuilder(ItemTags.WOODEN_SLABS)
-                .add(ModBlockItems.SPEEDRUNNER_SLAB);
+                .add(ModBlockItems.SPEEDRUNNER_SLAB)
+                .add(ModBlockItems.DEAD_SPEEDRUNNER_SLAB);
 
         getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS)
-                .add(ModBlockItems.SPEEDRUNNER_STAIRS);
+                .add(ModBlockItems.SPEEDRUNNER_STAIRS)
+                .add(ModBlockItems.DEAD_SPEEDRUNNER_STAIRS);
 
         getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS)
-                .add(ModBlockItems.WOODEN_SPEEDRUNNER_TRAPDOOR);
+                .add(ModBlockItems.WOODEN_SPEEDRUNNER_TRAPDOOR)
+                .add(ModBlockItems.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
     }
 }

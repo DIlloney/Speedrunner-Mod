@@ -271,6 +271,8 @@
   "advancements.speedrunnermod.the_end_is_near.description": "Obtain an Eye of Annul",
   "advancements.speedrunnermod.goliath.title": "Goliath",
   "advancements.speedrunnermod.goliath.description": "Conquer doom mode, and kill the all-powerful giant.",
+  "advancements.speedrunnermod.deep_dark.title": "Deep Dark",
+  "advancements.speedrunnermod.deep_dark.description": "Slay Minecraft's most difficult boss, the warden.",
   "advancements.speedrunnermod.yes_the_end.title": "Yes, The End.",
   "advancements.speedrunnermod.yes_the_end.description": "Complete a speedrun",
   "advancements.speedrunnermod.quicker_pick.title": "Quicker Pick",
@@ -892,6 +894,9 @@
   "speedrunnermod.player_death_cords": "You died at X: %.2f, Y = %.2f, Z = %.2f",
 
   "speedrunnermod.entity_boat_paddle_lava": "Rowing",
+
+  "speedrunnermod.texture_creator.mannyqueso": "§7Texture created by §eMannyQUESO.",
+  "speedrunnermod.texture_creator.krevikus": "§7Texture created by §akrevikus.",
 
   "deathScreen.title": "Dead run!",
   "deathScreen.titleScreen": "Quit",

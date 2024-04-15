@@ -156,11 +156,11 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
         int height = this.height - 24;
         context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("§lPage:§r " + this.pageNumber + "/" + this.getMaxPages()), farRightSide, height, 16777215);
 
-        if (renderImage) {
+        if (this.renderImage) {
             context.drawTexture(this.getImage(), this.getImageX(), this.getImageY(), 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
         }
 
-        if (renderCraftingRecipe) {
+        if (this.renderCraftingRecipe) {
             context.drawTexture(this.getCraftingRecipeImage(), this.getCraftingRecipeImageX(), this.getCraftingRecipeImageY(), 0.0F, 0.0F, this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight(), this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight());
         }
 

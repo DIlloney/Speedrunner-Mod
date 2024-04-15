@@ -214,6 +214,8 @@ public class ModItems {
 
     public static final Item SPEEDRUNNER_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.SPEEDRUNNER_BOAT_ID, ModBoats.SPEEDRUNNER_BOAT_KEY, false, new Item.Settings().maxCount(1).fireproof());
     public static final Item SPEEDRUNNER_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.SPEEDRUNNER_CHEST_BOAT_ID, ModBoats.SPEEDRUNNER_BOAT_KEY, true, new Item.Settings().maxCount(1).fireproof());
+    public static final Item DEAD_SPEEDRUNNER_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.DEAD_SPEEDRUNNER_BOAT_ID, ModBoats.DEAD_SPEEDRUNNER_BOAT_KEY, false, new Item.Settings().maxCount(1).fireproof());
+    public static final Item DEAD_SPEEDRUNNER_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.DEAD_SPEEDRUNNER_CHEST_BOAT_ID, ModBoats.DEAD_SPEEDRUNNER_BOAT_KEY, true, new Item.Settings().maxCount(1).fireproof());
     public static final Item CRIMSON_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.CRIMSON_BOAT_ID, ModBoats.CRIMSON_BOAT_KEY, false, new Item.Settings().maxCount(1).fireproof());
     public static final Item CRIMSON_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.CRIMSON_CHEST_BOAT_ID, ModBoats.CRIMSON_BOAT_KEY, true, new Item.Settings().maxCount(1).fireproof());
     public static final Item WARPED_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.WARPED_BOAT_ID, ModBoats.WARPED_BOAT_KEY, false, new Item.Settings().maxCount(1).fireproof());

@@ -27,6 +27,7 @@ public class ExperienceOreItem extends BlockItem {
         if (options().client.itemTooltips) {
             tooltip.add(Text.translatable("block.speedrunnermod.experience_ore.tooltip.line1").formatted(Formatting.GRAY));
             tooltip.add(Text.translatable("block.speedrunnermod.experience_ore.tooltip.line2").formatted(Formatting.GRAY));
+            tooltip.add(Text.translatable("speedrunnermod.texture_creator.krevikus"));
         }
     }
 }

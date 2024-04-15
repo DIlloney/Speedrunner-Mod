@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "speedrunnermod:speedrunner_fence_gate"
+    "speedrunnermod:speedrunner_fence_gate",
+    "speedrunnermod:dead_speedrunner_fence_gate"
   ]
 }

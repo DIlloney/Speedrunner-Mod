@@ -33,22 +33,7 @@ public class ModBlockItems {
     public static final BlockItem STRIPPED_SPEEDRUNNER_WOOD = new BlockItem(ModBlocks.STRIPPED_SPEEDRUNNER_WOOD,
             new Item.Settings());
 
-    public static final BlockItem DEAD_SPEEDRUNNER_LOG = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_LOG,
-            new Item.Settings());
-
-    public static final BlockItem DEAD_STRIPPED_SPEEDRUNNER_LOG = new BlockItem(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_LOG,
-            new Item.Settings());
-
-    public static final BlockItem DEAD_SPEEDRUNNER_WOOD = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_WOOD,
-            new Item.Settings());
-
-    public static final BlockItem DEAD_STRIPPED_SPEEDRUNNER_WOOD = new BlockItem(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_WOOD,
-            new Item.Settings());
-
     public static final BlockItem SPEEDRUNNER_LEAVES = new BlockItem(ModBlocks.SPEEDRUNNER_LEAVES,
-            new Item.Settings());
-
-    public static final BlockItem DEAD_SPEEDRUNNER_LEAVES = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_LEAVES,
             new Item.Settings());
 
     public static final BlockItem SPEEDRUNNER_SAPLING = new BlockItem(ModBlocks.SPEEDRUNNER_SAPLING,
@@ -72,22 +57,13 @@ public class ModBlockItems {
     public static final BlockItem WOODEN_SPEEDRUNNER_TRAPDOOR = new BlockItem(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR,
             new Item.Settings());
 
-    public static final BlockItem SPEEDRUNNER_TRAPDOOR = new BlockItem(ModBlocks.SPEEDRUNNER_TRAPDOOR,
-            new Item.Settings());
-
     public static final BlockItem WOODEN_SPEEDRUNNER_BUTTON = new BlockItem(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON,
             new Item.Settings());
 
     public static final BlockItem WOODEN_SPEEDRUNNER_PRESSURE_PLATE = new BlockItem(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE,
             new Item.Settings());
 
-    public static final BlockItem SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE = new BlockItem(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE,
-            new Item.Settings());
-
     public static final BlockItem WOODEN_SPEEDRUNNER_DOOR = new TallBlockItem(ModBlocks.WOODEN_SPEEDRUNNER_DOOR,
-            new Item.Settings());
-
-    public static final BlockItem SPEEDRUNNER_DOOR = new BlockItem(ModBlocks.SPEEDRUNNER_DOOR,
             new Item.Settings());
 
     public static final BlockItem SPEEDRUNNER_SIGN = new SignItem(
@@ -95,6 +71,66 @@ public class ModBlockItems {
 
     public static final BlockItem SPEEDRUNNER_HANGING_SIGN = new HangingSignItem(
             ModBlocks.SPEEDRUNNER_HANGING_SIGN, ModBlocks.SPEEDRUNNER_HANGING_WALL_SIGN, new Item.Settings().maxCount(16));
+
+    public static final BlockItem DEAD_SPEEDRUNNER_LOG = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_LOG,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_STRIPPED_SPEEDRUNNER_LOG = new BlockItem(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_LOG,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_SPEEDRUNNER_WOOD = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_WOOD,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_STRIPPED_SPEEDRUNNER_WOOD = new BlockItem(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_WOOD,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_SPEEDRUNNER_LEAVES = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_LEAVES,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_SPEEDRUNNER_SAPLING = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_SAPLING,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_SPEEDRUNNER_PLANKS = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_SPEEDRUNNER_SLAB = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_SLAB,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_SPEEDRUNNER_STAIRS = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_STAIRS,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_SPEEDRUNNER_FENCE = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_FENCE,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_SPEEDRUNNER_FENCE_GATE = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_FENCE_GATE,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR = new BlockItem(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_WOODEN_SPEEDRUNNER_BUTTON = new BlockItem(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_BUTTON,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE = new BlockItem(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_WOODEN_SPEEDRUNNER_DOOR = new TallBlockItem(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_DOOR,
+            new Item.Settings());
+
+    public static final BlockItem DEAD_SPEEDRUNNER_SIGN = new SignItem(
+            new Item.Settings().maxCount(16), ModBlocks.DEAD_SPEEDRUNNER_SIGN, ModBlocks.DEAD_SPEEDRUNNER_WALL_SIGN);
+
+    public static final BlockItem DEAD_SPEEDRUNNER_HANGING_SIGN = new HangingSignItem(
+            ModBlocks.DEAD_SPEEDRUNNER_HANGING_SIGN, ModBlocks.DEAD_SPEEDRUNNER_HANGING_WALL_SIGN, new Item.Settings().maxCount(16));
+
+    public static final BlockItem SPEEDRUNNER_TRAPDOOR = new BlockItem(ModBlocks.SPEEDRUNNER_TRAPDOOR,
+            new Item.Settings());
+
+    public static final BlockItem SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE = new BlockItem(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE,
+            new Item.Settings());
+
+    public static final BlockItem SPEEDRUNNER_DOOR = new BlockItem(ModBlocks.SPEEDRUNNER_DOOR,
+            new Item.Settings());
 
     public static final BlockItem DEAD_SPEEDRUNNER_BUSH = new BlockItem(ModBlocks.DEAD_SPEEDRUNNER_BUSH,
             new Item.Settings());
@@ -161,12 +197,7 @@ public class ModBlockItems {
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "stripped_speedrunner_log"), STRIPPED_SPEEDRUNNER_LOG);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_wood"), SPEEDRUNNER_WOOD);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "stripped_speedrunner_wood"), STRIPPED_SPEEDRUNNER_WOOD);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_log"), DEAD_SPEEDRUNNER_LOG);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_stripped_speedrunner_log"), DEAD_STRIPPED_SPEEDRUNNER_LOG);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_wood"), DEAD_SPEEDRUNNER_WOOD);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_stripped_speedrunner_wood"), DEAD_STRIPPED_SPEEDRUNNER_WOOD);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_leaves"), SPEEDRUNNER_LEAVES);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_leaves"), DEAD_SPEEDRUNNER_LEAVES);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_sapling"), SPEEDRUNNER_SAPLING);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_planks"), SPEEDRUNNER_PLANKS);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_slab"), SPEEDRUNNER_SLAB);
@@ -174,14 +205,31 @@ public class ModBlockItems {
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_fence"), SPEEDRUNNER_FENCE);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_fence_gate"), SPEEDRUNNER_FENCE_GATE);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_trapdoor"), WOODEN_SPEEDRUNNER_TRAPDOOR);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_trapdoor"), SPEEDRUNNER_TRAPDOOR);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_button"), WOODEN_SPEEDRUNNER_BUTTON);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_pressure_plate"), WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_weighted_pressure_plate"), SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_door"), WOODEN_SPEEDRUNNER_DOOR);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_door"), SPEEDRUNNER_DOOR);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_sign"), SPEEDRUNNER_SIGN);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_hanging_sign"), SPEEDRUNNER_HANGING_SIGN);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_log"), DEAD_SPEEDRUNNER_LOG);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_stripped_speedrunner_log"), DEAD_STRIPPED_SPEEDRUNNER_LOG);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_wood"), DEAD_SPEEDRUNNER_WOOD);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_stripped_speedrunner_wood"), DEAD_STRIPPED_SPEEDRUNNER_WOOD);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_leaves"), DEAD_SPEEDRUNNER_LEAVES);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_sapling"), DEAD_SPEEDRUNNER_SAPLING);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_planks"), DEAD_SPEEDRUNNER_PLANKS);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_slab"), DEAD_SPEEDRUNNER_SLAB);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_stairs"), DEAD_SPEEDRUNNER_STAIRS);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_fence"), DEAD_SPEEDRUNNER_FENCE);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_fence_gate"), DEAD_SPEEDRUNNER_FENCE_GATE);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_wooden_speedrunner_trapdoor"), DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_wooden_speedrunner_button"), DEAD_WOODEN_SPEEDRUNNER_BUTTON);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_wooden_speedrunner_pressure_plate"), DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_wooden_speedrunner_door"), DEAD_WOODEN_SPEEDRUNNER_DOOR);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_sign"), DEAD_SPEEDRUNNER_SIGN);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_hanging_sign"), DEAD_SPEEDRUNNER_HANGING_SIGN);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_trapdoor"), SPEEDRUNNER_TRAPDOOR);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_weighted_pressure_plate"), SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
+        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_door"), SPEEDRUNNER_DOOR);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_bush"), DEAD_SPEEDRUNNER_BUSH);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunners_workbench"), SPEEDRUNNERS_WORKBENCH);
         Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_block"), SPEEDRUNNER_BLOCK);

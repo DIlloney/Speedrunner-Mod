@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "speedrunnermod:speedrunner_boat"
+    "speedrunnermod:speedrunner_boat",
+    "speedrunnermod:dead_speedrunner_boat"
   ]
 }

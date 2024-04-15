@@ -86,6 +86,7 @@ public class ModRenderers {
      */
     private static void initializeOtherRenderers() {
         TerraformBoatClientHelper.registerModelLayers(ModBoats.SPEEDRUNNER_BOAT_ID, false);
+        TerraformBoatClientHelper.registerModelLayers(ModBoats.DEAD_SPEEDRUNNER_BOAT_ID, false);
         TerraformBoatClientHelper.registerModelLayers(ModBoats.CRIMSON_BOAT_ID, false);
         TerraformBoatClientHelper.registerModelLayers(ModBoats.WARPED_BOAT_ID, false);
 

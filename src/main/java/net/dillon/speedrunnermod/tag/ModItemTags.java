@@ -52,6 +52,8 @@ public class ModItemTags {
         public static TagKey<Item> SPEEDRUNNER_ORES = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_ores"));
         public static TagKey<Item> SPEEDRUNNER_SAPLING_PLACEABLES = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_sapling_placeables"));
         public static TagKey<Item> SPEEDRUNNER_SIGNS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_signs"));
+        public static TagKey<Item> TEXTURE_CREATOR_MANNYQUESO = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "texture_creator_mannyqueso"));
+        public static TagKey<Item> TEXTURE_CREATOR_KREVIKUS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "texture_creator_krevikus"));
     }
 
     public static void init() {

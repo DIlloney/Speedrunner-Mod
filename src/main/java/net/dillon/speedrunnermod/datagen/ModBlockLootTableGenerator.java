@@ -41,20 +41,31 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.RAW_SPEEDRUNNER_BLOCK);
         addDrop(ModBlocks.SPEEDRUNNER_BLOCK);
-        addDrop(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON);
         addDrop(ModBlocks.SPEEDRUNNER_FENCE);
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_FENCE);
         addDrop(ModBlocks.SPEEDRUNNER_FENCE_GATE);
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_FENCE_GATE);
         addDrop(ModBlocks.SPEEDRUNNER_SAPLING);
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_SAPLING);
         addDrop(ModBlocks.SPEEDRUNNER_SLAB, this::slabDrops);
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_SLAB, this::slabDrops);
         addDrop(ModBlocks.SPEEDRUNNER_STAIRS);
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_STAIRS);
+        addDrop(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON);
+        addDrop(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_BUTTON);
+
         addDrop(ModBlocks.SPEEDRUNNERS_WORKBENCH);
 
-        addDrop(ModBlocks.SPEEDRUNNER_DOOR, this::doorDrops);
         addDrop(ModBlocks.WOODEN_SPEEDRUNNER_DOOR, this::doorDrops);
-        addDrop(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
+        addDrop(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_DOOR, this::doorDrops);
         addDrop(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
-        addDrop(ModBlocks.SPEEDRUNNER_TRAPDOOR);
+        addDrop(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         addDrop(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR);
+        addDrop(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
+
+        addDrop(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
+        addDrop(ModBlocks.SPEEDRUNNER_TRAPDOOR);
+        addDrop(ModBlocks.SPEEDRUNNER_DOOR, this::doorDrops);
 
         addOreDrops();
         addWoodDrops();
@@ -76,15 +87,17 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
     }
 
     private void addWoodDrops() {
-        addDrop(ModBlocks.DEAD_SPEEDRUNNER_LOG);
-        addDrop(ModBlocks.DEAD_SPEEDRUNNER_WOOD);
-        addDrop(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_LOG);
-        addDrop(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_WOOD);
         addDrop(ModBlocks.SPEEDRUNNER_LOG);
         addDrop(ModBlocks.STRIPPED_SPEEDRUNNER_LOG);
         addDrop(ModBlocks.SPEEDRUNNER_WOOD);
         addDrop(ModBlocks.STRIPPED_SPEEDRUNNER_WOOD);
         addDrop(ModBlocks.SPEEDRUNNER_PLANKS);
+
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_LOG);
+        addDrop(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_LOG);
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_WOOD);
+        addDrop(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_WOOD);
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_PLANKS);
     }
 
     private void addSignDrops() {
@@ -92,6 +105,11 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SPEEDRUNNER_WALL_SIGN);
         addDrop(ModBlocks.SPEEDRUNNER_HANGING_SIGN);
         addDrop(ModBlocks.SPEEDRUNNER_HANGING_WALL_SIGN);
+
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_SIGN);
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_WALL_SIGN);
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_HANGING_SIGN);
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_HANGING_WALL_SIGN);
     }
 
     private LootTable.Builder igneousOreDrops(Block dropWithSilkTouch, int min) {

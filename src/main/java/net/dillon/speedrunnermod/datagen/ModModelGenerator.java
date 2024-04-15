@@ -34,6 +34,7 @@ public class ModModelGenerator extends FabricModelProvider {
         blockStateModelGenerator.registerSingleton(ModBlocks.DOOM_LEAVES, TexturedModel.LEAVES);
 
         blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.SPEEDRUNNER_SAPLING, ModBlocks.POTTED_SPEEDRUNNER_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.DEAD_SPEEDRUNNER_SAPLING, ModBlocks.DEAD_POTTED_SPEEDRUNNER_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.DEAD_SPEEDRUNNER_BUSH, ModBlocks.POTTED_DEAD_SPEEDRUNNER_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED);
 
         BlockStateModelGenerator.BlockTexturePool speedrunnerPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.SPEEDRUNNER_PLANKS);
@@ -45,13 +46,25 @@ public class ModModelGenerator extends FabricModelProvider {
         speedrunnerPool.pressurePlate(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         blockStateModelGenerator.registerWeightedPressurePlate(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE, ModBlocks.SPEEDRUNNER_BLOCK);
 
+        BlockStateModelGenerator.BlockTexturePool deadSpeedrunnerPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.DEAD_SPEEDRUNNER_PLANKS);
+        deadSpeedrunnerPool.slab(ModBlocks.DEAD_SPEEDRUNNER_SLAB);
+        deadSpeedrunnerPool.stairs(ModBlocks.DEAD_SPEEDRUNNER_STAIRS);
+        deadSpeedrunnerPool.fence(ModBlocks.DEAD_SPEEDRUNNER_FENCE);
+        deadSpeedrunnerPool.fenceGate(ModBlocks.DEAD_SPEEDRUNNER_FENCE_GATE);
+        deadSpeedrunnerPool.button(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_BUTTON);
+        deadSpeedrunnerPool.pressurePlate(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
+
         speedrunnerPool.family(ModBlockFamilies.SPEEDRUNNER_FAMILY);
+        speedrunnerPool.family(ModBlockFamilies.DEAD_SPEEDRUNNER_FAMILY);
         blockStateModelGenerator.registerHangingSign(ModBlocks.STRIPPED_SPEEDRUNNER_LOG, ModBlocks.SPEEDRUNNER_HANGING_SIGN, ModBlocks.SPEEDRUNNER_HANGING_WALL_SIGN);
+        blockStateModelGenerator.registerHangingSign(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_LOG, ModBlocks.DEAD_SPEEDRUNNER_HANGING_SIGN, ModBlocks.DEAD_SPEEDRUNNER_HANGING_WALL_SIGN);
 
         blockStateModelGenerator.registerTrapdoor(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR);
+        blockStateModelGenerator.registerTrapdoor(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
         blockStateModelGenerator.registerTrapdoor(ModBlocks.SPEEDRUNNER_TRAPDOOR);
 
         blockStateModelGenerator.registerDoor(ModBlocks.WOODEN_SPEEDRUNNER_DOOR);
+        blockStateModelGenerator.registerDoor(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_DOOR);
         blockStateModelGenerator.registerDoor(ModBlocks.SPEEDRUNNER_DOOR);
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SPEEDRUNNER_BLOCK);
@@ -109,6 +122,8 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.IGNEOUS_ROCK, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPEEDRUNNER_BOAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPEEDRUNNER_CHEST_BOAT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.DEAD_SPEEDRUNNER_BOAT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.DEAD_SPEEDRUNNER_CHEST_BOAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.CRIMSON_BOAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.CRIMSON_CHEST_BOAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.WARPED_BOAT, Models.GENERATED);

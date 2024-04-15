@@ -85,21 +85,40 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.SPEEDRUNNER_SIGN)
                 .add(ModBlocks.SPEEDRUNNER_WALL_SIGN)
                 .add(ModBlocks.SPEEDRUNNER_HANGING_SIGN)
-                .add(ModBlocks.SPEEDRUNNER_HANGING_WALL_SIGN);
+                .add(ModBlocks.SPEEDRUNNER_HANGING_WALL_SIGN)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_SIGN)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_WALL_SIGN)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_HANGING_SIGN)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_HANGING_WALL_SIGN);
+
+        getOrCreateTagBuilder(ModBlockTags.TEXTURE_CREATOR_MANNYQUESO)
+                .add(ModBlocks.THRUSTER_BLOCK);
+
+        getOrCreateTagBuilder(ModBlockTags.TEXTURE_CREATOR_KREVIKUS)
+                .forceAddTag(ModBlockTags.EXPERIENCE_ORES);
 
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .forceAddTag(ModBlockTags.SPEEDRUNNER_LOGS)
                 .forceAddTag(ModBlockTags.DOOM_LOGS)
                 .forceAddTag(ModBlockTags.SPEEDRUNNER_SIGNS)
                 .add(ModBlocks.SPEEDRUNNER_PLANKS)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_PLANKS)
                 .add(ModBlocks.SPEEDRUNNER_SLAB)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_SLAB)
                 .add(ModBlocks.SPEEDRUNNER_STAIRS)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_STAIRS)
                 .add(ModBlocks.SPEEDRUNNER_FENCE)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_FENCE)
                 .add(ModBlocks.SPEEDRUNNER_FENCE_GATE)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_FENCE_GATE)
                 .add(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR)
+                .add(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR)
                 .add(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON)
+                .add(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_BUTTON)
                 .add(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE)
+                .add(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE)
                 .add(ModBlocks.WOODEN_SPEEDRUNNER_DOOR)
+                .add(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_DOOR)
                 .add(ModBlocks.SPEEDRUNNERS_WORKBENCH);
 
         getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
@@ -126,16 +145,19 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.SPEEDRUNNER_DOOR);
 
         getOrCreateTagBuilder(BlockTags.WOODEN_DOORS)
-                .add(ModBlocks.WOODEN_SPEEDRUNNER_DOOR);
+                .add(ModBlocks.WOODEN_SPEEDRUNNER_DOOR)
+                .add(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_DOOR);
 
         getOrCreateTagBuilder(BlockTags.DRAGON_IMMUNE)
                 .add(ModBlocks.DOOM_STONE);
 
         getOrCreateTagBuilder(BlockTags.FENCE_GATES)
-                .add(ModBlocks.SPEEDRUNNER_FENCE_GATE);
+                .add(ModBlocks.SPEEDRUNNER_FENCE_GATE)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_FENCE_GATE);
 
         getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
-                .add(ModBlocks.SPEEDRUNNER_FENCE);
+                .add(ModBlocks.SPEEDRUNNER_FENCE)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_FENCE);
 
         getOrCreateTagBuilder(BlockTags.LEAVES)
                 .add(ModBlocks.SPEEDRUNNER_LEAVES)
@@ -160,39 +182,50 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.DEEPSLATE_EXPERIENCE_ORE);
 
         getOrCreateTagBuilder(BlockTags.PLANKS)
-                .add(ModBlocks.SPEEDRUNNER_PLANKS);
+                .add(ModBlocks.SPEEDRUNNER_PLANKS)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_PLANKS);
 
         getOrCreateTagBuilder(BlockTags.SAPLINGS)
-                .add(ModBlocks.SPEEDRUNNER_SAPLING);
+                .add(ModBlocks.SPEEDRUNNER_SAPLING)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_SAPLING);
 
         getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
-                .add(ModBlocks.SPEEDRUNNER_SIGN);
+                .add(ModBlocks.SPEEDRUNNER_SIGN)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_SIGN);
 
         getOrCreateTagBuilder(BlockTags.WALL_SIGNS)
-                .add(ModBlocks.SPEEDRUNNER_WALL_SIGN);
+                .add(ModBlocks.SPEEDRUNNER_WALL_SIGN)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_WALL_SIGN);
 
         getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS)
-                .add(ModBlocks.SPEEDRUNNER_HANGING_SIGN);
+                .add(ModBlocks.SPEEDRUNNER_HANGING_SIGN)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_HANGING_SIGN);
 
         getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS)
-                .add(ModBlocks.SPEEDRUNNER_HANGING_WALL_SIGN);
+                .add(ModBlocks.SPEEDRUNNER_HANGING_WALL_SIGN)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_HANGING_WALL_SIGN);
 
         getOrCreateTagBuilder(BlockTags.TRAPDOORS)
                 .add(ModBlocks.SPEEDRUNNER_TRAPDOOR);
 
         getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS)
-                .add(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON);
+                .add(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON)
+                .add(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_BUTTON);
 
         getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES)
-                .add(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
+                .add(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE)
+                        .add(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
 
         getOrCreateTagBuilder(BlockTags.WOODEN_SLABS)
-                .add(ModBlocks.SPEEDRUNNER_SLAB);
+                .add(ModBlocks.SPEEDRUNNER_SLAB)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_SLAB);
 
         getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS)
-                .add(ModBlocks.SPEEDRUNNER_STAIRS);
+                .add(ModBlocks.SPEEDRUNNER_STAIRS)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_STAIRS);
 
         getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS)
-                .add(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR);
+                .add(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR)
+                .add(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
     }
 }
