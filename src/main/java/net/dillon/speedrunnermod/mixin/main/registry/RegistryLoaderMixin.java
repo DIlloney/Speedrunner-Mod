@@ -87,6 +87,10 @@ public abstract class RegistryLoaderMixin {
             }
 
             if (fileName.equals("worldgen/biome/basalt_deltas.json")) {
+                JsonObject basaltDeltasEffects = jsonElement.getAsJsonObject().getAsJsonObject("effects");
+                basaltDeltasEffects.addProperty("water_color", 0xCACFD2);
+                basaltDeltasEffects.addProperty("water_fog_color", 0xD5DBDB);
+
                 JsonObject basaltDeltasSpawners = jsonElement.getAsJsonObject().getAsJsonObject("spawners");
                 JsonArray basaltDeltasMonsters = new JsonArray();
 
@@ -127,6 +131,10 @@ public abstract class RegistryLoaderMixin {
             }
 
             if (fileName.equals("worldgen/biome/crimson_forest.json")) {
+                JsonObject crimsonForestEffects = jsonElement.getAsJsonObject().getAsJsonObject("effects");
+                crimsonForestEffects.addProperty("water_color", 0xCD6155);
+                crimsonForestEffects.addProperty("water_fog_color", 0xE6B0AA);
+
                 JsonObject crimsonForestSpawners = jsonElement.getAsJsonObject().getAsJsonObject("spawners");
                 JsonArray crimsonForestMonsters = new JsonArray();
 
@@ -173,7 +181,11 @@ public abstract class RegistryLoaderMixin {
                 debug("Created crimson forest.");
             }
 
-            if (fileName.equals("worldben/biome/nether_wastes.json")) {
+            if (fileName.equals("worldgen/biome/nether_wastes.json")) {
+                JsonObject netherWastesEffects = jsonElement.getAsJsonObject().getAsJsonObject("effects");
+                netherWastesEffects.addProperty("water_color", 0xD98880);
+                netherWastesEffects.addProperty("water_fog_color", 0xE6B0AA);
+
                 JsonObject netherWastesSpawners = jsonElement.getAsJsonObject().getAsJsonObject("spawners");
                 JsonArray netherWastesMonsters = new JsonArray();
 
@@ -235,6 +247,10 @@ public abstract class RegistryLoaderMixin {
             }
 
             if (fileName.equals("worldgen/biome/soul_sand_valley.json")) {
+                JsonObject soulSandValleyEffects = jsonElement.getAsJsonObject().getAsJsonObject("effects");
+                soulSandValleyEffects.addProperty("water_color", 0xD98880);
+                soulSandValleyEffects.addProperty("water_fog_color", 0xE6B0AA);
+
                 JsonObject soulSandValleySpawners = jsonElement.getAsJsonObject().getAsJsonObject("spawners");
                 JsonArray soulSandValleyMonsters = new JsonArray();
 
@@ -341,6 +357,10 @@ public abstract class RegistryLoaderMixin {
             }
 
             if (fileName.equals("worldgen/biome/warped_forest.json")) {
+                JsonObject crimsonForestEffects = jsonElement.getAsJsonObject().getAsJsonObject("effects");
+                crimsonForestEffects.addProperty("water_color", 0x167E86);
+                crimsonForestEffects.addProperty("water_fog_color", 0x14B485);
+
                 JsonObject warpedForestSpawners = jsonElement.getAsJsonObject().getAsJsonObject("spawners");
                 JsonArray warpedForestMonsters = new JsonArray();
 

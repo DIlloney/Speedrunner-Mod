@@ -84,6 +84,7 @@
     "main.item.FirechargeItemMixin",
     "main.item.FireproofItems",
     "main.item.ItemMixin",
+    "main.item.TerraformBoatItemMixin",
     "main.entity.player.ServerPlayerEntityMixin",
     "main.nether.nether_portal.AllowNetherPortalBaseBlocks",
     "main.nether.nether_portal.NetherPortalBaseBlocks",

@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.client.render.ModRenderers;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -91,7 +92,7 @@ public class SpeedrunnerBowItem extends BowItem {
     }
 
     /**
-     * See {@link BowItem} and {@link ModItems#clinit()} for more.
+     * See {@link BowItem} and {@link ModRenderers#init()} for more.
      */
     public static float getPullProgress(int useTicks) {
         float f = (float)useTicks / 15.0F;

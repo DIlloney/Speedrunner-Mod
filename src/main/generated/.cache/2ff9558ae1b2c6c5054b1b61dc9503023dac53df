@@ -1,4 +1,4 @@
-// 1.20.4	2024-04-14T15:52:38.2807693	Speedrunner Mod/Tags for minecraft:block
+// 1.20.4	2024-04-14T23:30:01.0858467	Speedrunner Mod/Tags for minecraft:block
 0fe2ea89ae39c0769635614a4d44c9f831d5bf8f data\minecraft\tags\blocks\doors.json
 7fe02b6bf714963bc22b3f3708b0a44533dbfb4d data\minecraft\tags\blocks\wall_signs.json
 dce578ecec843739645a3b55143465cfa953bdb5 data\speedrunnermod\tags\blocks\iron_blocks.json
@@ -21,8 +21,8 @@ a0c0e7ba251aa92f29ea9d777ac41a5f1914c4dc data\minecraft\tags\blocks\wooden_trapd
 f53ed9298cdd24e7e9fd91e8ff69439fa7e75196 data\speedrunnermod\tags\blocks\igneous_ores.json
 63de5e5849090634d5220819a56b86726f06785b data\speedrunnermod\tags\blocks\smithing_tables.json
 0c20af3c7d177d0fc95df17d965357dd14825133 data\minecraft\tags\blocks\fence_gates.json
-9ad4bc9378d63478182195092352160cf7010a87 data\minecraft\tags\blocks\mineable\axe.json
 574b63fe62424ecd0f4b73f4bd7d8caa66648836 data\minecraft\tags\blocks\mineable\hoe.json
+9ad4bc9378d63478182195092352160cf7010a87 data\minecraft\tags\blocks\mineable\axe.json
 90b0d575036dee7c53ecd8bb546039990a700c33 data\minecraft\tags\blocks\wooden_buttons.json
 7a65d29987486bce9c4b475e0a3662462adfec9c data\minecraft\tags\blocks\mineable\shovel.json
 9afa7a918ce98c1ff29120aae8205639d04f3528 data\minecraft\tags\blocks\needs_stone_tool.json
