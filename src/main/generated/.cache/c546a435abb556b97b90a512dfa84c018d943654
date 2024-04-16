@@ -1,4 +1,4 @@
-// 1.20.4	2024-04-16T12:07:04.332245	Speedrunner Mod/Tags for minecraft:item
+// 1.20.4	2024-04-16T13:56:16.0005362	Speedrunner Mod/Tags for minecraft:item
 580fc0e097f7475027cb617b3e15996e64a7933d data\minecraft\tags\items\wooden_buttons.json
 0ea0e41b5fd47d0a511a8b51506d2d5bd6d71769 data\minecraft\tags\items\wooden_doors.json
 f4c1eda4292c8621da824c982d7d9ff65b0e7a9f data\speedrunnermod\tags\items\speedrunner_ores.json
@@ -10,8 +10,8 @@ e74efa4309cf1e59585bcd0b439c137b5f4389f7 data\minecraft\tags\items\wooden_stairs
 acf17d4397f9f257f57e004d5bb391edf8bc1706 data\speedrunnermod\tags\items\experience_ores.json
 cfa9fcee854d1581c3e68fb71d7db711ab5bb12f data\speedrunnermod\tags\items\flint_and_steels.json
 2f32ed27206f7abba9c18be8e7630bbe61020667 data\minecraft\tags\items\trapdoors.json
-e535052a1c275d9c5da99cc66cafb5139fe8ccb3 data\minecraft\tags\items\boats.json
 760a2b3e3b64fc91f0ba42c26682bdb42344461b data\speedrunnermod\tags\items\sculk_sensor_safe_boots.json
+e535052a1c275d9c5da99cc66cafb5139fe8ccb3 data\minecraft\tags\items\boats.json
 fa86bd78a2e9c312ea9720a4523ad39802d74227 data\speedrunnermod\tags\items\speedrunner_planks.json
 6cd234681b6cf66acacacb589fa8c553143ac803 data\speedrunnermod\tags\items\shields.json
 9fe901c6da2b2ecdf53334f57ca44fd4e9ed0a3d data\minecraft\tags\items\saplings.json
@@ -28,8 +28,8 @@ dce578ecec843739645a3b55143465cfa953bdb5 data\speedrunnermod\tags\items\iron_blo
 ee5752b0743a793e27348130c276b4bfa261ce50 data\speedrunnermod\tags\items\stack_to_64.json
 b16587a5720c186da3104216a30d74b5adb0d834 data\speedrunnermod\tags\items\bows.json
 108601dfe25e5149e996428bc1f46c51fe0adc8b data\minecraft\tags\items\stone_crafting_materials.json
-d85552119bc52698ca4470b7173b323500d88bf4 data\speedrunnermod\tags\items\iron_ingots.json
 ed2260cbfac16b5c7f89b3513a86ddb8e65aecbe data\speedrunnermod\tags\items\crossbows.json
+d85552119bc52698ca4470b7173b323500d88bf4 data\speedrunnermod\tags\items\iron_ingots.json
 9eaf8bcd1646b211da878af414cf78f70f3ef9d0 data\minecraft\tags\items\wooden_slabs.json
 784a0b8dd369a9f1ddb4fe8bbdcc3618046d0818 data\speedrunnermod\tags\items\speedrunner_tools.json
 eebf2e570846d666cbc982caf74e7661b3d016ee data\speedrunnermod\tags\items\nether_portal_base_blocks.json
@@ -49,11 +49,11 @@ a0dcf1c58bfb677212d8ef77660585b2d9945cc8 data\speedrunnermod\tags\items\doom_sto
 43f2e4f501680827a422eb4c227ee3c35cf4f948 data\speedrunnermod\tags\items\sticks.json
 a414fad44880d5cb592374612310b66bea1dbcf6 data\minecraft\tags\items\wooden_fences.json
 e25108eaf7c72e0b5365c0cdcbdbb4701f658686 data\minecraft\tags\items\logs.json
-43aa571ef6be697346c93d9dbda911d0e98a4f7a data\speedrunnermod\tags\items\iron_nuggets.json
 f53ed9298cdd24e7e9fd91e8ff69439fa7e75196 data\speedrunnermod\tags\items\igneous_ores.json
+43aa571ef6be697346c93d9dbda911d0e98a4f7a data\speedrunnermod\tags\items\iron_nuggets.json
 1f1a5222a2deaf7c6ad6796e2a5e6a35688eb4ee data\minecraft\tags\items\chest_boats.json
 97f3d1af45579830fd96bd6c82e659c0d428a02f data\speedrunnermod\tags\items\fireproof_items.json
-3f6189487bb926ef7134482ef7f13993ed1e94fc data\speedrunnermod\tags\items\golden_food_items.json
 7a65d29987486bce9c4b475e0a3662462adfec9c data\speedrunnermod\tags\items\texture_creator_mannyqueso.json
-2922e8db7269ad133c605a6cc1b055ce42dc335c data\speedrunnermod\tags\items\shears.json
+3f6189487bb926ef7134482ef7f13993ed1e94fc data\speedrunnermod\tags\items\golden_food_items.json
 98a6426c0a3df878a4d183ab9be763806186c2e9 data\speedrunnermod\tags\items\piglin_safe_armor.json
+2922e8db7269ad133c605a6cc1b055ce42dc335c data\speedrunnermod\tags\items\shears.json

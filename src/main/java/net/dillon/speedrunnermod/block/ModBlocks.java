@@ -66,7 +66,7 @@ public class ModBlocks {
             .noCollision()
             .sounds(BlockSoundGroup.GRASS));
 
-    public static final Block POTTED_SPEEDRUNNER_SAPLING = new FlowerPotBlock(SPEEDRUNNER_SAPLING, FabricBlockSettings.create()
+    public static final Block POTTED_SPEEDRUNNER_SAPLING = new FlowerPotBlock(ModBlocks.SPEEDRUNNER_SAPLING, FabricBlockSettings.create()
             .breakInstantly()
             .nonOpaque()
             .pistonBehavior(PistonBehavior.DESTROY));
@@ -81,7 +81,7 @@ public class ModBlocks {
             .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_STAIRS = new StairsBlock(SPEEDRUNNER_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(ModBlocks.SPEEDRUNNER_PLANKS));
+    public static final Block SPEEDRUNNER_STAIRS = new StairsBlock(ModBlocks.SPEEDRUNNER_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(ModBlocks.SPEEDRUNNER_PLANKS));
 
     public static final Block SPEEDRUNNER_FENCE = new FenceBlock(FabricBlockSettings.create()
             .strength(1.0F)
@@ -120,25 +120,25 @@ public class ModBlocks {
             .pistonBehavior(PistonBehavior.DESTROY)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_SIGN = new TerraformSignBlock(SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.create()
+    public static final Block SPEEDRUNNER_SIGN = new TerraformSignBlock(ModBlocks.SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.create()
             .strength(1.0F)
             .noCollision()
             .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_WALL_SIGN = new TerraformWallSignBlock(SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.create()
+    public static final Block SPEEDRUNNER_WALL_SIGN = new TerraformWallSignBlock(ModBlocks.SPEEDRUNNER_SIGN_TEXTURE, FabricBlockSettings.create()
             .strength(1.0F)
             .noCollision()
             .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.WOOD));
 
-    public static final Block SPEEDRUNNER_HANGING_SIGN = new TerraformHangingSignBlock(SPEEDRUNNER_HANGING_SIGN_TEXTURE, SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.create()
+    public static final Block SPEEDRUNNER_HANGING_SIGN = new TerraformHangingSignBlock(ModBlocks.SPEEDRUNNER_HANGING_SIGN_TEXTURE, ModBlocks.SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.create()
             .strength(1.0F)
             .noCollision()
             .instrument(Instrument.BASS)
             .sounds(BlockSoundGroup.HANGING_SIGN));
 
-    public static final Block SPEEDRUNNER_HANGING_WALL_SIGN = new TerraformWallHangingSignBlock(SPEEDRUNNER_HANGING_SIGN_TEXTURE, SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.create()
+    public static final Block SPEEDRUNNER_HANGING_WALL_SIGN = new TerraformWallHangingSignBlock(ModBlocks.SPEEDRUNNER_HANGING_SIGN_TEXTURE, ModBlocks.SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.create()
             .strength(1.0F)
             .noCollision()
             .instrument(Instrument.BASS)

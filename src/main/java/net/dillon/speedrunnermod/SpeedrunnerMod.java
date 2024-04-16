@@ -110,15 +110,15 @@ public class SpeedrunnerMod implements ModInitializer {
      * Initalizes all the main mod features.
      */
     private static void initialize() {
-        ModWorldGen.init();
-
-        ModBoats.init();
-
-        ModItems.init();
         ModBlocks.init();
+        ModItems.init();
         ModBlockItems.init();
         ModBlockFamilies.init();
         ModItemGroups.init();
+
+        ModBoats.init();
+
+        ModWorldGen.init();
 
         ModStructureTags.init();
         ModBlockTags.init();

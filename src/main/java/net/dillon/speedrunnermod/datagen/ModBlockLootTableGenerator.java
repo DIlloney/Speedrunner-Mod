@@ -41,6 +41,8 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.RAW_SPEEDRUNNER_BLOCK);
         addDrop(ModBlocks.SPEEDRUNNER_BLOCK);
+        addDrop(ModBlocks.SPEEDRUNNER_PLANKS);
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_PLANKS);
         addDrop(ModBlocks.SPEEDRUNNER_FENCE);
         addDrop(ModBlocks.DEAD_SPEEDRUNNER_FENCE);
         addDrop(ModBlocks.SPEEDRUNNER_FENCE_GATE);
@@ -91,13 +93,11 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.STRIPPED_SPEEDRUNNER_LOG);
         addDrop(ModBlocks.SPEEDRUNNER_WOOD);
         addDrop(ModBlocks.STRIPPED_SPEEDRUNNER_WOOD);
-        addDrop(ModBlocks.SPEEDRUNNER_PLANKS);
 
         addDrop(ModBlocks.DEAD_SPEEDRUNNER_LOG);
         addDrop(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_LOG);
         addDrop(ModBlocks.DEAD_SPEEDRUNNER_WOOD);
         addDrop(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_WOOD);
-        addDrop(ModBlocks.DEAD_SPEEDRUNNER_PLANKS);
     }
 
     private void addSignDrops() {

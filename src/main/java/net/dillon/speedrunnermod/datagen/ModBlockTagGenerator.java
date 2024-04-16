@@ -105,6 +105,7 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
 
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .forceAddTag(ModBlockTags.SPEEDRUNNER_LOGS)
+                .forceAddTag(ModBlockTags.DEAD_SPEEDRUNNER_LOGS)
                 .forceAddTag(ModBlockTags.DOOM_LOGS)
                 .forceAddTag(ModBlockTags.SPEEDRUNNER_SIGNS)
                 .add(ModBlocks.SPEEDRUNNER_PLANKS)
