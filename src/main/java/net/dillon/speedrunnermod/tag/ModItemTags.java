@@ -41,6 +41,7 @@ public class ModItemTags {
      * Item tags that also have a block tag.
      */
     public static class Block {
+        public static TagKey<Item> DEAD_SPEEDRUNNER_LOGS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_logs"));
         public static TagKey<Item> DOOM_LOGS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "doom_logs"));
         public static TagKey<Item> EXPERIENCE_ORES = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "experience_ores"));
         public static TagKey<Item> IGNEOUS_ORES = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "igneous_ores"));
@@ -50,6 +51,7 @@ public class ModItemTags {
         public static TagKey<Item> SPEEDRUNNER_FUELS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_fuels"));
         public static TagKey<Item> SPEEDRUNNER_LOGS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_logs"));
         public static TagKey<Item> SPEEDRUNNER_ORES = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_ores"));
+        public static TagKey<Item> SPEEDRUNNER_PLANKS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_planks"));
         public static TagKey<Item> SPEEDRUNNER_SAPLING_PLACEABLES = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_sapling_placeables"));
         public static TagKey<Item> SPEEDRUNNER_SIGNS = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_signs"));
         public static TagKey<Item> TEXTURE_CREATOR_MANNYQUESO = TagKey.of(RegistryKeys.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "texture_creator_mannyqueso"));

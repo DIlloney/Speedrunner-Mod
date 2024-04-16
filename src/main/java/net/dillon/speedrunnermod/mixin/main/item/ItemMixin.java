@@ -45,6 +45,8 @@ public class ItemMixin {
             if (stack.isIn(ModItemTags.PIGLIN_AWAKENER_CRAFTABLES)) {
                 tooltip.add(Text.translatable("item.speedrunnermod.piglin_awakener_craftable").formatted(Formatting.GOLD));
             }
+        }
+        if (options().client.textureTooltips) {
             if (stack.isIn(ModItemTags.Block.TEXTURE_CREATOR_MANNYQUESO)) {
                 tooltip.add(Text.translatable("speedrunnermod.texture_creator.mannyqueso"));
             }

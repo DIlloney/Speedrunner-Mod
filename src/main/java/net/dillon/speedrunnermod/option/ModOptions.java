@@ -96,6 +96,7 @@ public class ModOptions {
         public boolean fog = true;
         public boolean fullBright = false;
         public boolean itemTooltips = true;
+        public boolean textureTooltips = false;
         @RequiresRestart
         public Panorama panorama = Panorama.SPEEDRUNNER_MOD;
         public ItemMessages itemMessages = ItemMessages.ACTIONBAR;

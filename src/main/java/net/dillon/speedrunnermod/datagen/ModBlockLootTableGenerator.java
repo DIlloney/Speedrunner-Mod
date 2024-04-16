@@ -34,7 +34,7 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
     public void generate() {
         addDrop(ModBlocks.DEAD_SPEEDRUNNER_BUSH, (Block block) -> VanillaBlockLootTableGenerator.dropsWithShears(block, applyExplosionDecay(block, ItemEntry.builder(ModItems.SPEEDRUNNER_STICK).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3, 9))))));
         addDrop(ModBlocks.SPEEDRUNNER_LEAVES, (Block block) -> speedrunnerLeavesDrops(block, ModBlocks.SPEEDRUNNER_SAPLING, NEW_SAPLING_DROP_CHANCE));
-        addDrop(ModBlocks.DEAD_SPEEDRUNNER_LEAVES, (Block block) -> speedrunnerLeavesDrops(block, ModBlocks.SPEEDRUNNER_SAPLING, NEW_SAPLING_DROP_CHANCE));
+        addDrop(ModBlocks.DEAD_SPEEDRUNNER_LEAVES, (Block block) -> speedrunnerLeavesDrops(block, ModBlocks.DEAD_SPEEDRUNNER_SAPLING, NEW_SAPLING_DROP_CHANCE));
 
         addPottedPlantDrops(ModBlocks.POTTED_DEAD_SPEEDRUNNER_BUSH);
         addPottedPlantDrops(ModBlocks.POTTED_SPEEDRUNNER_SAPLING);

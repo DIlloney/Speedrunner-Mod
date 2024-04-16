@@ -73,6 +73,9 @@ public class ModListOptions {
     public static final SimpleOption<Boolean> ITEM_TOOLTIPS = new SimpleOption<>("speedrunnermod.options.item_tooltips", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.item_tooltips.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.itemTooltips, value -> options().client.itemTooltips = value);
 
+    public static final SimpleOption<Boolean> TEXTURE_TOOLTIPS = new SimpleOption<>("speedrunnermod.options.texture_tooltips", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.texture_tooltips.tooltip")),
+            (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.textureTooltips, value -> options().client.textureTooltips = value);
+
     public static final SimpleOption<Boolean> DOOM_MODE = new SimpleOption<>("speedrunnermod.options.doom_mode", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.doom_mode.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.doomMode, value -> options().main.doomMode = value);
 

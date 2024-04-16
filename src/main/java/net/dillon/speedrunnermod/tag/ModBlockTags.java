@@ -12,6 +12,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
  * {@link SpeedrunnerMod} block tags. Useful for many things in some mixins.
  */
 public class ModBlockTags {
+    public static TagKey<Block> DEAD_SPEEDRUNNER_LOGS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "dead_speedrunner_logs"));
     public static TagKey<Block> DOOM_LOGS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "doom_logs"));
     public static TagKey<Block> EXPERIENCE_ORES = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "experience_ores"));
     public static TagKey<Block> IGNEOUS_ORES = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "igneous_ores"));
@@ -21,6 +22,7 @@ public class ModBlockTags {
     public static TagKey<Block> SPEEDRUNNER_FUELS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_fuels"));
     public static TagKey<Block> SPEEDRUNNER_LOGS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_logs"));
     public static TagKey<Block> SPEEDRUNNER_ORES = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_ores"));
+    public static TagKey<Block> SPEEDRUNNER_PLANKS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_planks"));
     public static TagKey<Block> SPEEDRUNNER_SAPLING_PLACEABLES = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_sapling_placeables"));
     public static TagKey<Block> SPEEDRUNNER_SIGNS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_signs"));
     public static TagKey<Block> TEXTURE_CREATOR_MANNYQUESO = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "texture_creator_mannyqueso"));

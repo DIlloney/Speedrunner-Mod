@@ -113,9 +113,6 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        if (!this.isOptionsScreen()) {
-            this.renderBackground(context, mouseX, mouseY, delta);
-        }
         this.renderCustomText(context);
 
         if (this.shouldRenderVersionText()) {

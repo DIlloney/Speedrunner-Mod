@@ -127,7 +127,6 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context, mouseX, mouseY, delta);
         context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 16777215);
 
         if (this.getScreenLines() == 2) {
@@ -156,6 +155,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
         int height = this.height - 24;
         context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("§lPage:§r " + this.pageNumber + "/" + this.getMaxPages()), farRightSide, height, 16777215);
 
+        super.render(context, mouseX, mouseY, delta);
         if (this.renderImage) {
             context.drawTexture(this.getImage(), this.getImageX(), this.getImageY(), 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
         }
@@ -165,7 +165,6 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
         }
 
         this.renderCustomImage(context);
-        super.render(context, mouseX, mouseY, delta);
     }
 
     /**

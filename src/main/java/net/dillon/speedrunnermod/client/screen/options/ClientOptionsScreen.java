@@ -29,6 +29,7 @@ public class ClientOptionsScreen extends AbstractModScreen {
                 ModListOptions.FOG,
                 gameOptions.getGamma(),
                 ModListOptions.ITEM_TOOLTIPS,
+                ModListOptions.TEXTURE_TOOLTIPS,
                 ModListOptions.ITEM_MESSAGES,
                 ModListOptions.SHOW_DEATH_CORDS,
                 ModListOptions.CONFIRM_MESSAGES,

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "speedrunnermod:dead_speedrunner_planks"
+    }
+  ],
+  "result": {
+    "item": "speedrunnermod:dead_wooden_speedrunner_button"
+  }
+}

@@ -197,6 +197,8 @@ public class ModItemGroups {
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.SPEEDRUNNER_STICK);
         addToItemGroup(ItemGroups.TOOLS, ModItems.SPEEDRUNNER_BOAT);
         addToItemGroup(ItemGroups.TOOLS, ModItems.SPEEDRUNNER_CHEST_BOAT);
+        addToItemGroup(ItemGroups.TOOLS, ModItems.DEAD_SPEEDRUNNER_BOAT);
+        addToItemGroup(ItemGroups.TOOLS, ModItems.DEAD_SPEEDRUNNER_CHEST_BOAT);
         addToItemGroup(ItemGroups.TOOLS, ModItems.CRIMSON_BOAT);
         addToItemGroup(ItemGroups.TOOLS, ModItems.CRIMSON_CHEST_BOAT);
         addToItemGroup(ItemGroups.TOOLS, ModItems.WARPED_BOAT);

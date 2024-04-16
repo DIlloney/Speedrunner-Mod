@@ -209,11 +209,17 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlockItems.SPEEDRUNNER_LOG)
                 .add(ModBlockItems.STRIPPED_SPEEDRUNNER_LOG)
                 .add(ModBlockItems.SPEEDRUNNER_WOOD)
-                .add(ModBlockItems.STRIPPED_SPEEDRUNNER_WOOD)
+                .add(ModBlockItems.STRIPPED_SPEEDRUNNER_WOOD);
+
+        getOrCreateTagBuilder(ModItemTags.Block.DEAD_SPEEDRUNNER_LOGS)
                 .add(ModBlockItems.DEAD_SPEEDRUNNER_LOG)
                 .add(ModBlockItems.DEAD_STRIPPED_SPEEDRUNNER_LOG)
                 .add(ModBlockItems.DEAD_SPEEDRUNNER_WOOD)
                 .add(ModBlockItems.DEAD_STRIPPED_SPEEDRUNNER_WOOD);
+
+        getOrCreateTagBuilder(ModItemTags.Block.SPEEDRUNNER_PLANKS)
+                .add(ModBlockItems.SPEEDRUNNER_PLANKS)
+                .add(ModBlockItems.DEAD_SPEEDRUNNER_PLANKS);
 
         getOrCreateTagBuilder(ModItemTags.Block.SPEEDRUNNER_FUELS)
                 .forceAddTag(ModItemTags.Block.SPEEDRUNNER_LOGS)
@@ -252,11 +258,13 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.BOATS)
                 .add(ModItems.SPEEDRUNNER_BOAT)
+                .add(ModItems.DEAD_SPEEDRUNNER_BOAT)
                 .add(ModItems.CRIMSON_BOAT)
                 .add(ModItems.WARPED_BOAT);
 
         getOrCreateTagBuilder(ItemTags.CHEST_BOATS)
                 .add(ModItems.SPEEDRUNNER_CHEST_BOAT)
+                .add(ModItems.DEAD_SPEEDRUNNER_CHEST_BOAT)
                 .add(ModItems.CRIMSON_CHEST_BOAT)
                 .add(ModItems.WARPED_CHEST_BOAT);
 

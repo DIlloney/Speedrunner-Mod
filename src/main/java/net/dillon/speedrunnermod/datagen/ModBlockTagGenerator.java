@@ -51,11 +51,17 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.SPEEDRUNNER_LOG)
                 .add(ModBlocks.STRIPPED_SPEEDRUNNER_LOG)
                 .add(ModBlocks.SPEEDRUNNER_WOOD)
-                .add(ModBlocks.STRIPPED_SPEEDRUNNER_WOOD)
+                .add(ModBlocks.STRIPPED_SPEEDRUNNER_WOOD);
+
+        getOrCreateTagBuilder(ModBlockTags.DEAD_SPEEDRUNNER_LOGS)
                 .add(ModBlocks.DEAD_SPEEDRUNNER_LOG)
                 .add(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_LOG)
                 .add(ModBlocks.DEAD_SPEEDRUNNER_WOOD)
                 .add(ModBlocks.DEAD_STRIPPED_SPEEDRUNNER_WOOD);
+
+        getOrCreateTagBuilder(ModBlockTags.SPEEDRUNNER_PLANKS)
+                .add(ModBlocks.SPEEDRUNNER_PLANKS)
+                .add(ModBlocks.DEAD_SPEEDRUNNER_PLANKS);
 
         getOrCreateTagBuilder(ModBlockTags.SPEEDRUNNER_FUELS)
                 .forceAddTag(ModBlockTags.SPEEDRUNNER_LOGS)

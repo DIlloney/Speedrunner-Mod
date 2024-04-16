@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "speedrunnermod:dead_speedrunner_log",
+    "speedrunnermod:dead_stripped_speedrunner_log",
+    "speedrunnermod:dead_speedrunner_wood",
+    "speedrunnermod:dead_stripped_speedrunner_wood"
+  ]
+}
