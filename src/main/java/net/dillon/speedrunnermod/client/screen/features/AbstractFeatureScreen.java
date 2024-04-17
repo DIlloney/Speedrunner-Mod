@@ -136,7 +136,6 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
         List<OrderedText> screenText = this.client.textRenderer.wrapLines(this.textToDisplay(), 396);
         int textHeight = 100 - (screenText.size() - 2) * 10;
         textHeight = Math.max(textHeight, 70);
-        SpeedrunnerMod.error(String.valueOf(textHeight));
         for (OrderedText text : screenText) {
             context.drawCenteredTextWithShadow(this.textRenderer, text, this.width / 2, textHeight, 16777215);
             textHeight += 20;
