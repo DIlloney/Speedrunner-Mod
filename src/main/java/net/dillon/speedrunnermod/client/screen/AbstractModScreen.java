@@ -78,7 +78,7 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
                 this.buttonList.addAll(this.buttons);
                 this.addSelectableChild(this.buttonList);
             }
-            this.doneButton = this.addDrawableChild(ButtonWidget.builder(this.getDoneText(), (button) -> this.doneButtonFunction()).dimensions(this.width / 2 - 100, this.height - 29, 200, 20).build());
+            this.doneButton = this.addDrawableChild(ButtonWidget.builder(this.getDoneText(), (button) -> this.doneButtonFunction()).dimensions(this.width / 2 - 100, this.getDoneButtonsHeight(), 200, 20).build());
         }
     }
 

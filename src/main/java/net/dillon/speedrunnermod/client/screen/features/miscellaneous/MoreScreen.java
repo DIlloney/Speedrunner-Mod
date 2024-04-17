@@ -2,7 +2,7 @@ package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.SpeedrunnerIngotsScreen;
 import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.SpeedrunnersWastelandBiomeScreen;
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 public class MoreScreen extends AbstractFeatureScreen {
 
     public MoreScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.more").formatted(Formatting.AQUA), 10, false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.more").formatted(Formatting.AQUA), false, false);
     }
 
     @Override
@@ -66,6 +66,11 @@ public class MoreScreen extends AbstractFeatureScreen {
     }
 
     @Override
+    protected int getPageNumber() {
+        return 10;
+    }
+
+    @Override
     protected Identifier getImage() {
         return null;
     }
@@ -86,8 +91,8 @@ public class MoreScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.MISCELLANEOUS;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.MISCELLANEOUS;
     }
 
     @Override

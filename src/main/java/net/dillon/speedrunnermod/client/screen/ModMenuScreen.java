@@ -98,7 +98,7 @@ public class ModMenuScreen extends AbstractModScreen {
     @Override
     protected void renderCustomObjects(DrawContext context) {
         int middle = this.width / 2 - 69;
-        int height = 15;
+        int height = this.getButtonsHeight() - 36;
         context.drawTexture(new Identifier("speedrunnermod:textures/gui/speedrunner_mod.png"), middle, height, 0.0F, 0.0F, 129, 16, 129, 16);
     }
 

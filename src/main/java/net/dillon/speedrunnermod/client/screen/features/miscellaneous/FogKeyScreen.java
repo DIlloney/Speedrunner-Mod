@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,12 +16,17 @@ import org.jetbrains.annotations.NotNull;
 public class FogKeyScreen extends AbstractFeatureScreen {
 
     public FogKeyScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.fog_key").formatted(Formatting.AQUA), 2, false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.fog_key").formatted(Formatting.AQUA), false, false);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "fog_key";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 2;
     }
 
     @Override
@@ -45,8 +50,8 @@ public class FogKeyScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.MISCELLANEOUS;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.MISCELLANEOUS;
     }
 
     @Override

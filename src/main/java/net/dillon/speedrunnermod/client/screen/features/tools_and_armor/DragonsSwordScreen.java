@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.tools_and_armor;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,12 +16,17 @@ import org.jetbrains.annotations.NotNull;
 public class DragonsSwordScreen extends AbstractFeatureScreen {
 
     public DragonsSwordScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.dragons_sword").formatted(Formatting.LIGHT_PURPLE), 3, true, true);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.dragons_sword").formatted(Formatting.LIGHT_PURPLE), true, true);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "dragons_sword";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 3;
     }
 
     @Override
@@ -45,8 +50,8 @@ public class DragonsSwordScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.TOOLS_AND_ARMOR;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.TOOLS_AND_ARMOR;
     }
 
     @Override

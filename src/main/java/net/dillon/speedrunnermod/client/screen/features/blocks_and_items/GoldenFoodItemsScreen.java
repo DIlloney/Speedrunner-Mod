@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.blocks_and_items;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.dillon.speedrunnermod.client.screen.features.miscellaneous.ResetKeyScreen;
 import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.SpeedrunnersWastelandBiomeScreen;
@@ -19,12 +19,17 @@ import org.jetbrains.annotations.NotNull;
 public class GoldenFoodItemsScreen extends AbstractFeatureScreen {
 
     public GoldenFoodItemsScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.golden_food_items").formatted(Formatting.GOLD), 18, true, true, new SpeedrunnerArmorScreen(parent, options), Text.translatable("speedrunnermod.menu.features.tools_and_armor"), new SpeedrunnersWastelandBiomeScreen(parent, options), Text.translatable("speedrunnermod.menu.features.ores_and_worldgen"), new ResetKeyScreen(parent, options), Text.translatable("speedrunnermod.menu.features.miscellaneous"), false, null, null);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.golden_food_items").formatted(Formatting.GOLD), true, true, new SpeedrunnerArmorScreen(parent, options), Text.translatable("speedrunnermod.menu.features.tools_and_armor"), new SpeedrunnersWastelandBiomeScreen(parent, options), Text.translatable("speedrunnermod.menu.features.ores_and_worldgen"), new ResetKeyScreen(parent, options), Text.translatable("speedrunnermod.menu.features.miscellaneous"), false, null, null);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "golden_food_items";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 18;
     }
 
     @Override
@@ -48,8 +53,8 @@ public class GoldenFoodItemsScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.BLOCKS_AND_ITEMS;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 
     @Override

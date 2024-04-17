@@ -1,6 +1,6 @@
 package net.dillon.speedrunnermod.client.util;
 
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.text.Text;
@@ -105,7 +105,7 @@ public class ModTexts {
     public static final Text VIEW_INELIGIBLE_OPTIONS = Text.translatable("speedrunnermod.view_ineligible_options");
     public static final Text VISIT_SUBMISSION_PAGE = Text.translatable("speedrunnermod.visit_submission_page");
 
-    public static Text featureTitleText(ScreenCategories category, String lang) {
+    public static Text featureTitleText(ScreenCategory category, String lang) {
         return Text.translatable("speedrunnermod.title.features." + category.toString().toLowerCase() + "." + lang);
     }
 }

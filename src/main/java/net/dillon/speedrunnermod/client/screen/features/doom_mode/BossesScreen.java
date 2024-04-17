@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.doom_mode;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,12 +16,17 @@ import org.jetbrains.annotations.NotNull;
 public class BossesScreen extends AbstractFeatureScreen {
 
     public BossesScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.doom_mode.bosses").formatted(Formatting.LIGHT_PURPLE), 2, false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.doom_mode.bosses").formatted(Formatting.LIGHT_PURPLE), false, false);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "bosses";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 2;
     }
 
     @Override
@@ -45,8 +50,8 @@ public class BossesScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.DOOM_MODE;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.DOOM_MODE;
     }
 
     @Override

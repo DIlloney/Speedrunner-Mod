@@ -25,21 +25,21 @@ public class DoomModeScreen extends AbstractModScreen {
 
         this.clearButtons();
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "basics").copy().formatted(Formatting.RED), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.DOOM_MODE, "basics").copy().formatted(Formatting.RED), (button) -> {
             this.client.setScreen(new BasicsScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "bosses").copy().formatted(Formatting.LIGHT_PURPLE), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.DOOM_MODE, "bosses").copy().formatted(Formatting.LIGHT_PURPLE), (button) -> {
             this.client.setScreen(new BossesScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "giant").copy().formatted(Formatting.GREEN).copy().formatted(Formatting.BOLD), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.DOOM_MODE, "giant").copy().formatted(Formatting.GREEN).copy().formatted(Formatting.BOLD), (button) -> {
             this.client.setScreen(new GiantScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "doom_blocks").copy().formatted(Formatting.RED), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.DOOM_MODE, "doom_blocks").copy().formatted(Formatting.RED), (button) -> {
             this.client.setScreen(new DoomBlocksScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "other_things_to_know"), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.DOOM_MODE, "other_things_to_know"), (button) -> {
             this.client.setScreen(new OtherThingsToKnowScreen(this.parent, this.options));
         }).build());
 

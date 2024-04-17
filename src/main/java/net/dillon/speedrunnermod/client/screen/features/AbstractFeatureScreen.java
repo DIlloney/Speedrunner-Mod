@@ -1,6 +1,12 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
+import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.*;
+import net.dillon.speedrunnermod.client.screen.features.doom_mode.*;
+import net.dillon.speedrunnermod.client.screen.features.miscellaneous.*;
+import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.*;
+import net.dillon.speedrunnermod.client.screen.features.tools_and_armor.*;
 import net.dillon.speedrunnermod.client.util.ModTexts;
+import net.dillon.speedrunnermod.util.ChatGPT;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -18,7 +24,6 @@ import net.minecraft.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,8 +31,8 @@ import java.util.List;
  */
 @Environment(EnvType.CLIENT)
 public abstract class AbstractFeatureScreen extends GameOptionsScreen {
+    protected GameOptions options = MinecraftClient.getInstance().options;
     protected final Screen parent;
-    protected final int pageNumber;
     private final boolean renderImage;
     private final boolean renderCraftingRecipe;
     private Screen category1Screen;
@@ -41,20 +46,17 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
     private Screen category4Screen;
     @Nullable
     private Text category4Text;
-    protected List<Screen> blocksAndItemsCategoryScreens, toolsAndArmorCategoryScreens, oresAndWorldgenCategoryScreens, miscellaneousCategoryScreens, doomModeCategoryScreens = new ArrayList<>();
 
-    protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, int pageNumber, boolean renderImage, boolean renderCraftingRecipe) {
+    protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderImage, boolean renderCraftingRecipe) {
         super(parent, options, title);
         this.parent = parent;
-        this.pageNumber = pageNumber;
         this.renderImage = renderImage;
         this.renderCraftingRecipe = renderCraftingRecipe;
     }
 
-    protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, int pageNumber, boolean renderImage, boolean renderCraftingRecipe, Screen category1Screen, Text category1Text, Screen category2Screen, Text category2Text, Screen category3Screen, Text category3Text, boolean hasFourthCategory, @Nullable Screen category4Screen, @Nullable Text category4Text) {
+    protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderImage, boolean renderCraftingRecipe, Screen category1Screen, Text category1Text, Screen category2Screen, Text category2Text, Screen category3Screen, Text category3Text, boolean hasFourthCategory, @Nullable Screen category4Screen, @Nullable Text category4Text) {
         super(parent, options, title);
         this.parent = parent;
-        this.pageNumber = pageNumber;
         this.renderImage = renderImage;
         this.renderCraftingRecipe = renderCraftingRecipe;
         this.category1Screen = category1Screen;
@@ -110,15 +112,15 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
 
     @Override
     public void close() {
-        if (this.getScreenCategory() == ScreenCategories.BLOCKS_AND_ITEMS) {
+        if (this.getScreenCategory() == ScreenCategory.BLOCKS_AND_ITEMS) {
             this.client.setScreen(new BlocksAndItemsScreen(this.parent, MinecraftClient.getInstance().options));
-        } else if (this.getScreenCategory() == ScreenCategories.TOOLS_AND_ARMOR) {
+        } else if (this.getScreenCategory() == ScreenCategory.TOOLS_AND_ARMOR) {
             this.client.setScreen(new ToolsAndArmorScreen(this.parent, MinecraftClient.getInstance().options));
-        } else if (this.getScreenCategory() == ScreenCategories.ORES_AND_WORLDGEN) {
+        } else if (this.getScreenCategory() == ScreenCategory.ORES_AND_WORLDGEN) {
             this.client.setScreen(new OresAndWorldgenScreen(this.parent, MinecraftClient.getInstance().options));
-        } else if (this.getScreenCategory() == ScreenCategories.MISCELLANEOUS) {
+        } else if (this.getScreenCategory() == ScreenCategory.MISCELLANEOUS) {
             this.client.setScreen(new MiscellaneousScreen(this.parent, MinecraftClient.getInstance().options));
-        } else if (this.getScreenCategory() == ScreenCategories.DOOM_MODE) {
+        } else if (this.getScreenCategory() == ScreenCategory.DOOM_MODE) {
             this.client.setScreen(new DoomModeScreen(this.parent, MinecraftClient.getInstance().options));
         } else {
             this.client.setScreen(new FeaturesScreen(this.parent, MinecraftClient.getInstance().options));
@@ -141,7 +143,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
         int rightSide = leftSide + 160;
         int farRightSide = rightSide + 273;
         int height = this.height - 24;
-        context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("§lPage:§r " + this.pageNumber + "/" + this.getMaxPages()), farRightSide, height, 16777215);
+        context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("§lPage:§r " + this.getPageNumber() + "/" + this.getMaxPages()), farRightSide, height, 16777215);
 
         super.render(context, mouseX, mouseY, delta);
         if (this.renderImage) {
@@ -175,16 +177,25 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
      * Gets the maximum amount of pages for each category.
      */
     private int getMaxPages() {
-        if (this.getScreenCategory() == ScreenCategories.BLOCKS_AND_ITEMS) {
-            return 18;
-        } else if (this.getScreenCategory() == ScreenCategories.TOOLS_AND_ARMOR) {
-            return 6;
-        } else if (this.getScreenCategory() == ScreenCategories.ORES_AND_WORLDGEN) {
-            return 7;
-        } else if (this.getScreenCategory() == ScreenCategories.DOOM_MODE) {
-            return 5;
-        } else {
-            return 10;
+        switch (this.getScreenCategory()) {
+            case BLOCKS_AND_ITEMS -> {
+                return calculateMaxPages(ScreenCategory.BLOCKS_AND_ITEMS);
+            }
+            case TOOLS_AND_ARMOR -> {
+                return calculateMaxPages(ScreenCategory.TOOLS_AND_ARMOR);
+            }
+            case ORES_AND_WORLDGEN -> {
+                return calculateMaxPages(ScreenCategory.ORES_AND_WORLDGEN);
+            }
+            case MISCELLANEOUS -> {
+                return calculateMaxPages(ScreenCategory.MISCELLANEOUS);
+            }
+            case DOOM_MODE -> {
+                return calculateMaxPages(ScreenCategory.DOOM_MODE);
+            }
+            default -> {
+                return 0;
+            }
         }
     }
 
@@ -192,42 +203,117 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
      * Gets the page number of feature screens.
      */
     private Screen page(int pageNumber) {
-        GameOptions options = MinecraftClient.getInstance().options;
-        Screen screen;
-
         switch (this.getScreenCategory()) {
-            case BLOCKS_AND_ITEMS -> screen = selectScreen(pageNumber, this.blocksAndItemsCategoryScreens);
-            case TOOLS_AND_ARMOR -> screen = selectScreen(pageNumber, this.toolsAndArmorCategoryScreens);
-            case ORES_AND_WORLDGEN -> screen = selectScreen(pageNumber, this.oresAndWorldgenCategoryScreens);
-            case MISCELLANEOUS -> screen = selectScreen(pageNumber, this.miscellaneousCategoryScreens);
-            case DOOM_MODE -> screen = selectScreen(pageNumber, this.doomModeCategoryScreens);
-            default -> screen = new FeaturesScreen(this.parent, options);
+            case BLOCKS_AND_ITEMS -> {
+                return determineScreen(pageNumber, ScreenCategory.BLOCKS_AND_ITEMS);
+            }
+            case TOOLS_AND_ARMOR -> {
+                return determineScreen(pageNumber, ScreenCategory.TOOLS_AND_ARMOR);
+            }
+            case ORES_AND_WORLDGEN -> {
+                return determineScreen(pageNumber, ScreenCategory.ORES_AND_WORLDGEN);
+            }
+            case MISCELLANEOUS -> {
+                return determineScreen(pageNumber, ScreenCategory.MISCELLANEOUS);
+            }
+            case DOOM_MODE -> {
+                return determineScreen(pageNumber, ScreenCategory.DOOM_MODE);
+            }
+            default -> {
+                return new FeaturesScreen(this.parent, this.options);
+            }
         }
-        return screen;
     }
 
     /**
      * Determine the screen to go to, based on the page number.
      */
-    private Screen selectScreen(int pageNumber, List<Screen> screens) {
-        if (pageNumber >= 1 && pageNumber <= screens.size()) {
-            return screens.get(pageNumber - 1);
-        } else {
-            return new FeaturesScreen(this.parent, MinecraftClient.getInstance().options);
+    @ChatGPT
+    private Screen determineScreen(int pageNumber, ScreenCategory category) {
+        for (AbstractFeatureScreen screen : allFeatureScreens()) {
+            if (screen.getPageNumber() == pageNumber && screen.getScreenCategory() == category) {
+                return screen;
+            }
         }
+        return new FeaturesScreen(this.parent, this.options);
+    }
+
+    /**
+     * Calculates the total amount of pages that are in a {@link ScreenCategory}.
+     */
+    private int calculateMaxPages(ScreenCategory category) {
+        int i = 0;
+        for (AbstractFeatureScreen screen : allFeatureScreens()) {
+            if (screen.getScreenCategory() == category) {
+                i++;
+            }
+        }
+        return i;
+    }
+
+    protected List<AbstractFeatureScreen> allFeatureScreens() {
+        return List.of(new BlazeSpotterScreen(parent, options),
+                new DragonsPearlScreen(parent, options),
+                new EnderThrusterScreen(parent, options),
+                new EyeOfAnnulScreen(parent, options),
+                new EyeOfInfernoScreen(parent, options),
+                new GoldenFoodItemsScreen(parent, options),
+                new IgneousRocksScreen(parent, options),
+                new MoreBoatsScreen(parent, options),
+                new PiglinAwakenerScreen(parent, options),
+                new RaidEradicatorScreen(parent, options),
+                new RetiredSpeedrunnerScreen(parent, options),
+                new SpeedrunnerBlocksScreen(parent, options),
+                new SpeedrunnerBulkScreen(parent, options),
+                new SpeedrunnerIngotsScreen(parent, options),
+                new SpeedrunnerNuggetsScreen(parent, options),
+                new SpeedrunnersEyeScreen(parent, options),
+                new SpeedrunnersWorkbenchScreen(parent, options),
+                new SpeedrunnerWoodScreen(parent, options),
+
+                new BasicsScreen(parent, options),
+                new BossesScreen(parent, options),
+                new DoomBlocksScreen(parent, options),
+                new GiantScreen(parent, options),
+                new OtherThingsToKnowScreen(parent, options),
+
+                new FasterBlockBreakingScreen(parent, options),
+                new FogKeyScreen(parent, options),
+                new ICarusModeScreen(parent, options),
+                new InfiniPearlModeScreen(parent, options),
+                new MoreScreen(parent, options),
+                new NoMorePiglinBrutesScreen(parent, options),
+                new PiglinBarteringScreen(parent, options),
+                new PiglinPorkScreen(parent, options),
+                new ResetKeyScreen(parent, options),
+                new TripledDropsScreen(parent, options),
+                new CommonOresScreen(parent, options),
+                new ExperienceOresScreen(parent, options),
+                new FortressesBastionsAndStrongholdsScreen(parent, options),
+                new IgneousOresScreen(parent, options),
+                new SpeedrunnerOresScreen(parent, options),
+                new SpeedrunnersWastelandBiomeScreen(parent, options),
+                new StructuresScreen(parent, options),
+
+                new CooldownEnchantmentScreen(parent, options),
+                new DashEnchantmentScreen(parent, options),
+                new DragonsSwordScreen(parent, options),
+                new GoldenSpeedrunnerArmorScreen(parent, options),
+                new SpeedrunnerArmorScreen(parent, options),
+                new WitherSwordScreen(parent, options));
     }
 
     /**
      * Gets the category to display on the feature screen.
      */
     private String linesCategory() {
-        if (this.getScreenCategory() == ScreenCategories.BLOCKS_AND_ITEMS) {
+        if (this.getScreenCategory() == ScreenCategory.BLOCKS_AND_ITEMS) {
             return ".blocks_and_items.";
-        } else if (this.getScreenCategory() == ScreenCategories.TOOLS_AND_ARMOR) {
+        } else if (this.getScreenCategory() == ScreenCategory.TOOLS_AND_ARMOR) {
             return ".tools_and_armor.";
-        } else if (this.getScreenCategory() == ScreenCategories.ORES_AND_WORLDGEN) {
+        } else if (this.getScreenCategory() == ScreenCategory.ORES_AND_WORLDGEN) {
             return ".ores_and_worldgen.";
-        } else if (this.getScreenCategory() == ScreenCategories.DOOM_MODE) {
+        } else if (this.getScreenCategory() == ScreenCategory.DOOM_MODE) {
             return ".doom_mode.";
         } else {
             return ".miscellaneous.";
@@ -313,7 +399,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
      */
     @Nullable
     protected Screen getNextScreen() {
-        return this.page(this.pageNumber + 1);
+        return this.page(this.getPageNumber() + 1);
     }
 
     /**
@@ -322,7 +408,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
      */
     @Nullable
     protected Screen getPreviousScreen() {
-        return this.page(this.pageNumber - 1);
+        return this.page(this.getPageNumber() - 1);
     }
 
     /**
@@ -330,6 +416,11 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
      */
     @NotNull
     protected abstract String linesKey();
+
+    /**
+     * Returns the page number of an {@link AbstractFeatureScreen}.
+     */
+    protected abstract int getPageNumber();
 
     /**
      * Displays an image of the item on the screen.
@@ -355,15 +446,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
      * Gets the category that the feature screen is in.
      */
     @NotNull
-    protected abstract ScreenCategories getScreenCategory();
-
-    /**
-     * <p>Used to add the feature screen to the list of category screens.
-     * <pre>{@code this.screenCategoryList.add(this.pageNumber, this)}</pre>
-     */
-    protected void addScreenToCategory() {
-
-    };
+    protected abstract ScreenCategory getScreenCategory();
 
     /**
      * Gets the type of feature screen.

@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -17,12 +17,17 @@ import org.jetbrains.annotations.NotNull;
 public class CommonOresScreen extends AbstractFeatureScreen {
 
     public CommonOresScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.ores_and_worldgen.common_ores").formatted(Formatting.AQUA), 5, false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.ores_and_worldgen.common_ores").formatted(Formatting.AQUA), false, false);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "common_ores";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 5;
     }
 
     @Override
@@ -56,8 +61,8 @@ public class CommonOresScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.ORES_AND_WORLDGEN;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.ORES_AND_WORLDGEN;
     }
 
     @Override

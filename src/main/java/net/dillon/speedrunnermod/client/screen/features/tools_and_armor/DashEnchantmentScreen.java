@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.tools_and_armor;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,12 +16,17 @@ import org.jetbrains.annotations.NotNull;
 public class DashEnchantmentScreen extends AbstractFeatureScreen {
 
     public DashEnchantmentScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.dash_enchantment").formatted(Formatting.AQUA), 4, true, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.dash_enchantment").formatted(Formatting.AQUA), true, false);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "dash_enchantment";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 4;
     }
 
     @Override
@@ -45,8 +50,8 @@ public class DashEnchantmentScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.TOOLS_AND_ARMOR;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.TOOLS_AND_ARMOR;
     }
 
     @Override

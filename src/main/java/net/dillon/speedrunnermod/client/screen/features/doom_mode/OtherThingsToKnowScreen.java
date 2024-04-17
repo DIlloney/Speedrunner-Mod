@@ -3,7 +3,7 @@ package net.dillon.speedrunnermod.client.screen.features.doom_mode;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.RestartRequiredScreen;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
@@ -23,7 +23,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 public class OtherThingsToKnowScreen extends AbstractFeatureScreen {
 
     public OtherThingsToKnowScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.doom_mode.other_things_to_know").formatted(Formatting.RED), 5, false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.doom_mode.other_things_to_know").formatted(Formatting.RED), false, false);
     }
 
     @Override
@@ -47,6 +47,11 @@ public class OtherThingsToKnowScreen extends AbstractFeatureScreen {
     }
 
     @Override
+    protected int getPageNumber() {
+        return 5;
+    }
+
+    @Override
     protected Identifier getImage() {
         return null;
     }
@@ -67,8 +72,8 @@ public class OtherThingsToKnowScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.DOOM_MODE;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.DOOM_MODE;
     }
 
     @Override

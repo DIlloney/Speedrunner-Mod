@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.SpeedrunnerIngotsScreen;
 import net.dillon.speedrunnermod.client.screen.features.miscellaneous.ResetKeyScreen;
@@ -20,12 +20,17 @@ import org.jetbrains.annotations.NotNull;
 public class FortressesBastionsAndStrongholdsScreen extends AbstractFeatureScreen {
 
     public FortressesBastionsAndStrongholdsScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.ores_and_worldgen.fortresses_bastions_and_strongholds").formatted(Formatting.RED), 7, false, false, new ResetKeyScreen(parent, options), Text.translatable("speedrunnermod.menu.features.miscellaneous"), new SpeedrunnerIngotsScreen(parent, options), Text.translatable("speedrunnermod.menu.features.blocks_and_items"), new SpeedrunnerArmorScreen(parent, options), Text.translatable("speedrunnermod.menu.features.tools_and_armor"), false, null, null);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.ores_and_worldgen.fortresses_bastions_and_strongholds").formatted(Formatting.RED), false, false, new ResetKeyScreen(parent, options), Text.translatable("speedrunnermod.menu.features.miscellaneous"), new SpeedrunnerIngotsScreen(parent, options), Text.translatable("speedrunnermod.menu.features.blocks_and_items"), new SpeedrunnerArmorScreen(parent, options), Text.translatable("speedrunnermod.menu.features.tools_and_armor"), false, null, null);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "fortresses_bastions_and_strongholds";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 7;
     }
 
     @Override
@@ -55,8 +60,8 @@ public class FortressesBastionsAndStrongholdsScreen extends AbstractFeatureScree
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.ORES_AND_WORLDGEN;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.ORES_AND_WORLDGEN;
     }
 
     @Override

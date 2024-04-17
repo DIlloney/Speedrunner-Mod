@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,12 +16,17 @@ import org.jetbrains.annotations.NotNull;
 public class ICarusModeScreen extends AbstractFeatureScreen {
 
     public ICarusModeScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.icarus_mode").formatted(Formatting.GRAY), 4, true, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.icarus_mode").formatted(Formatting.GRAY), true, false);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "icarus_mode";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 4;
     }
 
     @Override
@@ -45,8 +50,8 @@ public class ICarusModeScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.MISCELLANEOUS;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.MISCELLANEOUS;
     }
 
     @Override

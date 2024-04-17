@@ -18,7 +18,7 @@ public class FeaturesScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        int height = this.height / 6 - 12;
+        int height = this.getButtonsHeight();
 
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.blocks_and_items"), (buttonWidget) -> {
             this.client.setScreen(new BlocksAndItemsScreen(this.parent, this.options));

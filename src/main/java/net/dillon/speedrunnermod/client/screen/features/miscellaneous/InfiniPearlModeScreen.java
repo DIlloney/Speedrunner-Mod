@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,12 +16,17 @@ import org.jetbrains.annotations.NotNull;
 public class InfiniPearlModeScreen extends AbstractFeatureScreen {
 
     public InfiniPearlModeScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.infini_pearl_mode").formatted(Formatting.BLUE), 5, true, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.infini_pearl_mode").formatted(Formatting.BLUE), true, false);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "infini_pearl_mode";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 5;
     }
 
     @Override
@@ -45,8 +50,8 @@ public class InfiniPearlModeScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.MISCELLANEOUS;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.MISCELLANEOUS;
     }
 
     @Override

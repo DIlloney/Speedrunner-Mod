@@ -45,6 +45,13 @@ public class LeaderboardsIneligibleScreen extends AbstractModScreen {
             }
         }).dimensions(this.getButtonsLeftSide(), this.getButtonsHeight(), 100, 20).build());
         this.middleButton = this.addDrawableChild(ButtonWidget.builder(needsRestartFromEnablingLeaderboardsMode ? ModTexts.REVERT_CHANGES : ModTexts.DISABLE_LEADERBOARDS_MODE_AND_RESTART, (buttonWidget) -> {
+            if (needsRestartFromEnablingLeaderboardsMode) {
+                this.revertChanges();
+            } else {
+                this.quitWorld();
+                Leaderboards.disableLeaderboardsMode();
+                this.client.scheduleStop();
+            }
         }).dimensions(this.getButtonsMiddle(), this.getButtonsHeight(), 100, 20
 
         ).build());
@@ -101,15 +108,6 @@ public class LeaderboardsIneligibleScreen extends AbstractModScreen {
                 context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.fix_and_restart.tooltip"), 200), mouseX, mouseY);
             } else {
                 context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.revert_changes.tooltip"), 200), mouseX, mouseY);
-            }
-        }
-        if (this.middleButton.isHovered()) {
-            if (needsRestartFromEnablingLeaderboardsMode) {
-                this.revertChanges();
-            } else {
-                this.quitWorld();
-                Leaderboards.disableLeaderboardsMode();
-                this.client.scheduleStop();
             }
         }
         if (this.rightButton.isHovered()) {

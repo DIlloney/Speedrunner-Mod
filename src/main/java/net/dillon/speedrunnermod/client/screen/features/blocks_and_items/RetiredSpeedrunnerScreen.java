@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.blocks_and_items;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -17,12 +17,17 @@ import org.jetbrains.annotations.NotNull;
 public class RetiredSpeedrunnerScreen extends AbstractFeatureScreen {
 
     public RetiredSpeedrunnerScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.retired_speedrunner").formatted(Formatting.AQUA), 17, false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.retired_speedrunner").formatted(Formatting.AQUA), false, false);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "retired_speedrunner";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 17;
     }
 
     @Override
@@ -56,8 +61,8 @@ public class RetiredSpeedrunnerScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.BLOCKS_AND_ITEMS;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 
     @Override

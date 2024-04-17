@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.doom_mode;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -17,12 +17,17 @@ import org.jetbrains.annotations.NotNull;
 public class GiantScreen extends AbstractFeatureScreen {
 
     public GiantScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.doom_mode.giant").formatted(Formatting.GREEN), 3, false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.doom_mode.giant").formatted(Formatting.GREEN), false, false);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "giant";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 3;
     }
 
     @Override
@@ -56,8 +61,8 @@ public class GiantScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.DOOM_MODE;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.DOOM_MODE;
     }
 
     @Override

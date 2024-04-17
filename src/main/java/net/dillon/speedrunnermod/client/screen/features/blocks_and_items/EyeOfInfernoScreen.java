@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.blocks_and_items;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,12 +16,17 @@ import org.jetbrains.annotations.NotNull;
 public class EyeOfInfernoScreen extends AbstractFeatureScreen {
 
     public EyeOfInfernoScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.eye_of_inferno").formatted(Formatting.RED), 7, true, true);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.eye_of_inferno").formatted(Formatting.RED), true, true);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "eye_of_inferno";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 7;
     }
 
     @Override
@@ -45,8 +50,8 @@ public class EyeOfInfernoScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.BLOCKS_AND_ITEMS;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 
     @Override

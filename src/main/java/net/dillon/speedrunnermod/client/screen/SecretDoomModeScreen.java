@@ -45,7 +45,6 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context, mouseX, mouseY, delta);
         context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line1"), this.width / 2, 110, 16777215);
         super.render(context, mouseX, mouseY, delta);
     }
@@ -82,7 +81,6 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-            this.renderBackground(context, mouseX, mouseY, delta);
             context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line2"), this.width / 2, 110, 16777215);
             super.render(context, mouseX, mouseY, delta);
         }
@@ -120,7 +118,6 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-            this.renderBackground(context, mouseX, mouseY, delta);
             context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line3"), this.width / 2, 110, 16777215);
             super.render(context, mouseX, mouseY, delta);
         }
@@ -154,7 +151,6 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-            this.renderBackground(context, mouseX, mouseY, delta);
             context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 16777215);
             context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line4"), this.width / 2, 90, 16777215);
             context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line5"), this.width / 2, 110, 16777215);
@@ -195,7 +191,6 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-            this.renderBackground(context, mouseX, mouseY, delta);
             context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line7"), this.width / 2, 110, 16777215);
             super.render(context, mouseX, mouseY, delta);
         }
@@ -233,7 +228,6 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-            this.renderBackground(context, mouseX, mouseY, delta);
             context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line8"), this.width / 2, 110, 16777215);
             super.render(context, mouseX, mouseY, delta);
         }
@@ -266,7 +260,6 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-            this.renderBackground(context, mouseX, mouseY, delta);
             context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line9"), this.width / 2, 110, 16777215);
             super.render(context, mouseX, mouseY, delta);
         }
@@ -299,7 +292,6 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-            this.renderBackground(context, mouseX, mouseY, delta);
             context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line10"), this.width / 2, 60, 16777215);
             context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line11"), this.width / 2, 90, 16777215);
             context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line12"), this.width / 2, 110, 16777215);
@@ -336,7 +328,6 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-            this.renderBackground(context, mouseX, mouseY, delta);
             context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("speedrunnermod.doom_mode_screen.line14"), this.width / 2, 110, 16777215);
             super.render(context, mouseX, mouseY, delta);
         }

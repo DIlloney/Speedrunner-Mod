@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.tools_and_armor;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.SpeedrunnerIngotsScreen;
 import net.dillon.speedrunnermod.client.screen.features.miscellaneous.ResetKeyScreen;
@@ -19,12 +19,17 @@ import org.jetbrains.annotations.NotNull;
 public class WitherSwordScreen extends AbstractFeatureScreen {
 
     public WitherSwordScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.wither_sword").formatted(Formatting.GRAY), 6, true, true, new SpeedrunnersWastelandBiomeScreen(parent, options), Text.translatable("speedrunnermod.menu.features.ores_and_worldgen"), new ResetKeyScreen(parent, options), Text.translatable("speedrunnermod.menu.features.miscellaneous"), new SpeedrunnerIngotsScreen(parent, options), Text.translatable("speedrunnermod.menu.features.blocks_and_items"), false, null, null);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.wither_sword").formatted(Formatting.GRAY), true, true, new SpeedrunnersWastelandBiomeScreen(parent, options), Text.translatable("speedrunnermod.menu.features.ores_and_worldgen"), new ResetKeyScreen(parent, options), Text.translatable("speedrunnermod.menu.features.miscellaneous"), new SpeedrunnerIngotsScreen(parent, options), Text.translatable("speedrunnermod.menu.features.blocks_and_items"), false, null, null);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "wither_sword";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 6;
     }
 
     @Override
@@ -48,8 +53,8 @@ public class WitherSwordScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.TOOLS_AND_ARMOR;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.TOOLS_AND_ARMOR;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,12 +16,17 @@ import org.jetbrains.annotations.NotNull;
 public class TripledDropsScreen extends AbstractFeatureScreen {
 
     public TripledDropsScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.tripled_drops").formatted(Formatting.YELLOW), 9, false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.tripled_drops").formatted(Formatting.YELLOW), false, false);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "tripled_drops";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 9;
     }
 
     @Override
@@ -45,8 +50,8 @@ public class TripledDropsScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.MISCELLANEOUS;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.MISCELLANEOUS;
     }
 
     @Override

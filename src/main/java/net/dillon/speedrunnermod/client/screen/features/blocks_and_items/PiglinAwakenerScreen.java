@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features.blocks_and_items;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,12 +16,17 @@ import org.jetbrains.annotations.NotNull;
 public class PiglinAwakenerScreen extends AbstractFeatureScreen {
 
     public PiglinAwakenerScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.piglin_awakener").formatted(Formatting.GOLD), 11, true, true);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.piglin_awakener").formatted(Formatting.GOLD), true, true);
     }
 
     @Override
     protected @NotNull String linesKey() {
         return "piglin_awakener";
+    }
+
+    @Override
+    protected int getPageNumber() {
+        return 11;
     }
 
     @Override
@@ -45,8 +50,8 @@ public class PiglinAwakenerScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategories getScreenCategory() {
-        return ScreenCategories.BLOCKS_AND_ITEMS;
+    protected @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 
     @Override

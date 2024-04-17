@@ -25,21 +25,21 @@ public class OresAndWorldgenScreen extends AbstractModScreen {
 
         this.clearButtons();
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "speedrunners_wasteland").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.ORES_AND_WORLDGEN, "speedrunners_wasteland").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new SpeedrunnersWastelandBiomeScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "speedrunner_ores").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.ORES_AND_WORLDGEN, "speedrunner_ores").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new SpeedrunnerOresScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "experience_ores").copy().formatted(Formatting.GREEN), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.ORES_AND_WORLDGEN, "experience_ores").copy().formatted(Formatting.GREEN), (button) -> {
             this.client.setScreen(new ExperienceOresScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "igneous_ores").copy().formatted(Formatting.DARK_GRAY), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.ORES_AND_WORLDGEN, "igneous_ores").copy().formatted(Formatting.DARK_GRAY), (button) -> {
             this.client.setScreen(new IgneousOresScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "common_ores").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.ORES_AND_WORLDGEN, "common_ores").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new CommonOresScreen(this.parent, this.options));
         }).build());
         this.buttons.add(ButtonWidget.builder(Text.literal("Structure Spawn Rates!").copy().formatted(Formatting.GREEN), (button) -> {

@@ -25,66 +25,66 @@ public class BlocksAndItemsScreen extends AbstractModScreen {
 
         this.clearButtons();
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "speedrunner_ingots").copy().formatted(Formatting.AQUA), button -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "speedrunner_ingots").copy().formatted(Formatting.AQUA), button -> {
             this.client.setScreen(new SpeedrunnerIngotsScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "speedrunner_nuggets").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "speedrunner_nuggets").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new SpeedrunnerNuggetsScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "speedrunner_blocks").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "speedrunner_blocks").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new SpeedrunnerBlocksScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "speedrunner_wood").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "speedrunner_wood").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new SpeedrunnerWoodScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "more_boats").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "more_boats").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new MoreBoatsScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "igneous_rocks").copy().formatted(Formatting.DARK_GRAY), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "igneous_rocks").copy().formatted(Formatting.DARK_GRAY), (button) -> {
             this.client.setScreen(new IgneousRocksScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "eye_of_inferno").copy().formatted(Formatting.RED), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "eye_of_inferno").copy().formatted(Formatting.RED), (button) -> {
             this.client.setScreen(new EyeOfInfernoScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "eye_of_annul").copy().formatted(Formatting.LIGHT_PURPLE), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "eye_of_annul").copy().formatted(Formatting.LIGHT_PURPLE), (button) -> {
             this.client.setScreen(new EyeOfAnnulScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "speedrunners_eye").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "speedrunners_eye").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new SpeedrunnersEyeScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "dragons_pearl").copy().formatted(Formatting.LIGHT_PURPLE), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "dragons_pearl").copy().formatted(Formatting.LIGHT_PURPLE), (button) -> {
             this.client.setScreen(new DragonsPearlScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "piglin_awakener").copy().formatted(Formatting.GOLD), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "piglin_awakener").copy().formatted(Formatting.GOLD), (button) -> {
             this.client.setScreen(new PiglinAwakenerScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "blaze_spotter").copy().formatted(Formatting.GOLD), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "blaze_spotter").copy().formatted(Formatting.GOLD), (button) -> {
             this.client.setScreen(new BlazeSpotterScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "raid_eradicator").copy().formatted(Formatting.DARK_GRAY), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "raid_eradicator").copy().formatted(Formatting.DARK_GRAY), (button) -> {
             this.client.setScreen(new RaidEradicatorScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "ender_thruster").copy().formatted(Formatting.BLUE), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "ender_thruster").copy().formatted(Formatting.BLUE), (button) -> {
             this.client.setScreen(new EnderThrusterScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "speedrunner_bulk").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "speedrunner_bulk").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new SpeedrunnerBulkScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "speedrunners_workbench").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "speedrunners_workbench").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new SpeedrunnersWorkbenchScreen(this.parent, this.options));
         }).build());
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "retired_speedrunner").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "retired_speedrunner").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new RetiredSpeedrunnerScreen(this.parent, this.options));
         }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.BLOCKS_AND_ITEMS, "golden_food_items").copy().copy().formatted(Formatting.GOLD), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.BLOCKS_AND_ITEMS, "golden_food_items").copy().copy().formatted(Formatting.GOLD), (button) -> {
             this.client.setScreen(new GoldenFoodItemsScreen(this.parent, this.options));
         }).build());
 
