@@ -78,7 +78,7 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
                 this.buttonList.addAll(this.buttons);
                 this.addSelectableChild(this.buttonList);
             }
-            this.doneButton = this.addDrawableChild(ButtonWidget.builder(this.getDoneText(), (button) -> this.client.setScreen(this.parent)).dimensions(this.width / 2 - 100, this.height - 29, 200, 20).build());
+            this.doneButton = this.addDrawableChild(ButtonWidget.builder(this.getDoneText(), (button) -> this.doneButtonFunction()).dimensions(this.width / 2 - 100, this.height - 29, 200, 20).build());
         }
     }
 
@@ -149,7 +149,7 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
 
     @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
-        if (this.isOptionsScreen()) {
+        if (this.isOptionsScreen() || this.buttonList != null) {
             this.renderBackgroundTexture(context);
         } else {
             super.renderBackground(context, mouseX, mouseY, delta);
@@ -183,13 +183,6 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
     }
 
     /**
-     * Prevents the buttons from being duplicated onto the screen.
-     */
-    protected void clearButtons() {
-        this.buttons.clear();
-    }
-
-    /**
      * Quits a world.
      */
     protected void quitWorld() {
@@ -199,6 +192,20 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
         } else {
             this.client.disconnect();
         }
+    }
+
+    /**
+     * The function for the {@code "done"} button.
+     */
+    protected void doneButtonFunction() {
+        this.client.setScreen(this.parent);
+    }
+
+    /**
+     * Prevents the buttons from being duplicated onto the screen.
+     */
+    protected void clearButtons() {
+        this.buttons.clear();
     }
 
     /**

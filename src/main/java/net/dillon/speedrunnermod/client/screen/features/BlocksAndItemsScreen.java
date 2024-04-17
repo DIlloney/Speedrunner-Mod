@@ -92,6 +92,11 @@ public class BlocksAndItemsScreen extends AbstractModScreen {
     }
 
     @Override
+    protected void doneButtonFunction() {
+        this.close();
+    }
+
+    @Override
     public void close() {
         this.client.setScreen(new FeaturesScreen(this.parent, this.options));
     }

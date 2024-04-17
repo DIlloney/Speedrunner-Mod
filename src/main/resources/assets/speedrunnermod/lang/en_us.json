@@ -544,10 +544,10 @@
   "speedrunnermod.features.blocks_and_items.speedrunner_ingots.text": "These can be obtained from the §bSpeedrunner Ores§r that generate around the world, and from loot chests as well. They can be used to craft a variety of different things, and they can also be used to craft anything that you can craft with §liron ingots.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunner_nuggets": "Speedrunner Nuggets",
-  "speedrunnermod.features.blocks_and_items.speedrunner_nuggets.text": "Also found in loot chests, these can be obtained from §b9 speedrunner ingots, and can also be used to craft anything that §liron nuggets§r can.",
+  "speedrunnermod.features.blocks_and_items.speedrunner_nuggets.text": "Also found in loot chests, these can be obtained from §b9 speedrunner ingots,§r and can also be used to craft anything that §liron nuggets§r can.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunner_blocks": "Speedrunner Blocks",
-  "speedrunnermod.features.blocks_and_items.speedrunner_blocks.text": "These can only be obtained from crafting by using §b9 speedrunner ingots, and can also be used to craft anything that you can craft with §liron blocks.",
+  "speedrunnermod.features.blocks_and_items.speedrunner_blocks.text": "These can only be obtained from crafting by using §b9 speedrunner ingots,§r and can also be used to craft anything that you can craft with §liron blocks.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunner_wood": "Speedrunner Wood",
   "speedrunnermod.features.blocks_and_items.speedrunner_wood.text": "Found in the §l§bSpeedrunner's Wasteland§r biome, as well as in other parts of the world, the speedrunner wood can be used to craft anything that normal wood could. It can also be used as a §lfuel source,§r but §6cannot burn from lava.",
@@ -556,7 +556,7 @@
   "speedrunnermod.features.blocks_and_items.more_boats.text": "Along with the §bspeedrunner boat,§r there are now also §ccrimson§r and §9warped§r boats. They can be crafted just like any ordinary boat, and can also be used in lava.",
 
   "speedrunnermod.title.features.blocks_and_items.igneous_rocks": "Igneous Rocks",
-  "speedrunnermod.features.blocks_and_items.igneous_rocks.text": "These can only be obtained from the §lIgneous Ores§r that generate around the world, and can only be used for one thing: §ocrafting obsidian. If you're ever having trouble obtaining obsidian, just look for these ores around the world, and you can get some obsidian just like that.",
+  "speedrunnermod.features.blocks_and_items.igneous_rocks.text": "These can only be obtained from the §lIgneous Ores§r that generate around the world, and can only be used for one thing: §ocrafting obsidian.§r If you're ever having trouble obtaining obsidian, just look for these ores around the world, and you can get some obsidian just like that.",
 
   "speedrunnermod.title.features.blocks_and_items.eye_of_inferno": "Eye of Inferno",
   "speedrunnermod.features.blocks_and_items.eye_of_inferno.text": "The §ceye of inferno§r acts like an §aeye of ender,§r but different. Instead of locating the nearest stronghold, it locates the nearest §cnether fortress,§r or §7bastion,§r it's your choice. Just shift and right-click to swap between the two structures.",
@@ -565,7 +565,7 @@
   "speedrunnermod.features.blocks_and_items.eye_of_annul.text": "The §deye of annul§r also acts just like an §aeye of ender,§r but in addition, it tells you the §oexact distance§r of the nearest stronghold, in blocks. If you §lshift + right click,§r you can teleport directly to the closest stronghold portal room.",
 
   "speedrunnermod.title.features.blocks_and_items.dragons_pearl": "Dragon's Pearl",
-  "speedrunnermod.features.blocks_and_items.dragons_pearl.text": "The §ddragon's pearl§r can be used to §lforce the ender dragon§r to §linstantly perch, in case you miss the §ldragon perch time§r perch. Makes the end fight much faster!",
+  "speedrunnermod.features.blocks_and_items.dragons_pearl.text": "The §ddragon's pearl§r can be used to §lforce the ender dragon§r to §linstantly perch,§r in case you miss the §ldragon perch time§r perch. Makes the end fight much faster!",
 
   "speedrunnermod.title.features.blocks_and_items.piglin_awakener": "Piglin Awakener",
   "speedrunnermod.features.blocks_and_items.piglin_awakener.text": "The §6piglin awakener§r is an interesting one. Have you ever been in the nether, and you just can't find any piglin? Well, this item solves this. Upon §lright-clicking,§r nearby piglin will be §lteleported,§r or awakened, to the player. You can craft this item with 8 gold ingots surrounding an §9ender pearl,§r §6golden apple,§r or §eblaze powder.",
@@ -574,13 +574,13 @@
   "speedrunnermod.features.blocks_and_items.blaze_spotter.text": "The §6blaze spotter§r is a goofy item that will teleport the player to the nearest blaze spawner. It will also check for air blocks §labove§r the blaze spawner, to ensure that the player is safe to teleport. If it isn't air, the game will replace those blocks with air.",
 
   "speedrunnermod.title.features.blocks_and_items.ender_thruster": "Ender Thruster",
-  "speedrunnermod.features.blocks_and_items.ender_thruster.text": "The §9ender thruster§r item can be used to §lteleport to the surface. This can be especially useful when underground, or coming out of the nether and spawning in a cave.",
+  "speedrunnermod.features.blocks_and_items.ender_thruster.text": "The §9ender thruster§r item can be used to §lteleport to the surface.§r This can be especially useful when underground, or coming out of the nether and spawning in a cave.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunners_eye": "Speedrunner's Eye",
   "speedrunnermod.features.blocks_and_items.speedrunners_eye.text": "Acts just like an §aeye of ender,§r but only locates overworld structures such as §6villages,§r §druined portals,§r §eshipwrecks,§r §9ocean monuments,§r §6woodland mansions§r and §6desert temples.",
 
   "speedrunnermod.title.features.blocks_and_items.raid_eradicator": "Raid Eradicator",
-  "speedrunnermod.features.blocks_and_items.raid_eradicator.text": "With this item, you can kill all nearby raider entities in just one click. Witches will not be killed, but instead teleported to the player. However, this comes at the cost of a totem of undying, a long with the player's maximum health. Upon use, the player will be deducted their aximum health (can be reduced with protection), and use their totem. The item will not work if the player does not have a totem equipped.",
+  "speedrunnermod.features.blocks_and_items.raid_eradicator.text": "With this item, you can kill all nearby raider entities in just one click. Witches will not be killed, but instead teleported to the player. However, this comes at the cost of a totem of undying, a long with the player's maximum health. Upon use, the player will be deducted their maximum health (can be reduced with protection), and use their totem. The item will not work if the player does not have a totem equipped.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunner_bulk": "Speedrunner Bulk",
   "speedrunnermod.features.blocks_and_items.speedrunner_bulk.text": "Found only in loot chests, the §bspeedrunner bulk§r is a very powerful food item that gives §6fire resistance§r and §9water breathing,§r and also has a chance to give §bspeed, §ehaste,§r and §cregeneration§r when eaten.",
@@ -619,73 +619,43 @@
   "speedrunnermod.title.features.ores_and_worldgen": "Ores and Worldgen",
 
   "speedrunnermod.title.features.ores_and_worldgen.speedrunners_wasteland": "Speedrunner's Wasteland Biome",
-  "speedrunnermod.features.ores_and_worldgen.speedrunners_wasteland.line1": "This biome will generate commonly throughout the overworld,",
-  "speedrunnermod.features.ores_and_worldgen.speedrunners_wasteland.line2": "a great place for speedrunning, because mobs spawn less (except for enderman),",
-  "speedrunnermod.features.ores_and_worldgen.speedrunners_wasteland.line3": "diamonds generate more commonly, and of course, this is where you find the §bspeedrunner trees.",
-  "speedrunnermod.features.ores_and_worldgen.speedrunners_wasteland.line4": "If you ever want to feel safe while speedrunning, this is the perfect place to go.",
+  "speedrunnermod.features.ores_and_worldgen.speedrunners_wasteland.text": "This biome will generate commonly throughout the overworld, a great place for speedrunning, because mobs spawn less (except for enderman), diamonds generate more commonly, and of course, this is where you find the §bspeedrunner trees.§r If you ever want to feel safe while speedrunning, this is the perfect place to go.",
 
   "speedrunnermod.title.features.ores_and_worldgen.speedrunner_ores": "Speedrunner Ores",
-  "speedrunnermod.features.ores_and_worldgen.speedrunner_ores.line1": "Found across all biomes in the overworld and the nether, the §bspeedrunner ores§r can be used to craft",
-  "speedrunnermod.features.ores_and_worldgen.speedrunner_ores.line2": "all of the speedrunner tools, blocks, and armor, and can also be found more commonly",
-  "speedrunnermod.features.ores_and_worldgen.speedrunner_ores.line3": "in the §bSpeedrunner's Wasteland§r biome. Ingots and nuggets can also be found in loot chests.",
+  "speedrunnermod.features.ores_and_worldgen.speedrunner_ores.text": "Found across all biomes in the overworld and the nether, the §bspeedrunner ores§r can be used to craft all of the speedrunner tools, blocks, and armor, and can also be found more commonly in the §bSpeedrunner's Wasteland§r biome. Ingots and nuggets can also be found in loot chests.",
 
   "speedrunnermod.title.features.ores_and_worldgen.experience_ores": "Experience Ores",
-  "speedrunnermod.features.ores_and_worldgen.experience_ores.line1": "Found across all bioems in the overworld and the nether, the §aexperience ores§r will drop",
-  "speedrunnermod.features.ores_and_worldgen.experience_ores.line2": "a §lbunch of experience§r when mined, allowing the player to enchant items with ease.",
+  "speedrunnermod.features.ores_and_worldgen.experience_ores.text": "Found across all biomes in the overworld and the nether, the §aexperience ores§r will drop a §lbunch of experience§r when mined, allowing the player to enchant items with ease.",
 
   "speedrunnermod.title.features.ores_and_worldgen.igneous_ores": "Igneous Ores",
-  "speedrunnermod.features.ores_and_worldgen.igneous_ores.line1": "Found across all biomes in the overworld and the nether, §7igneous ores§r drop §7igneous rocks,",
-  "speedrunnermod.features.ores_and_worldgen.igneous_ores.line2": "which you already know can be used to craft obsidian, making getting to the nether much easier!",
+  "speedrunnermod.features.ores_and_worldgen.igneous_ores.text": "Found across all biomes in the overworld and the nether, §7igneous ores§r drop §7igneous rocks,§r which you already know can be used to craft obsidian, making getting to the nether much easier!",
 
   "speedrunnermod.title.features.ores_and_worldgen.common_ores": "Ores are More Common!",
-  "speedrunnermod.features.ores_and_worldgen.common_ores.line1": "That's right, §lores of all types generate more commonly throughout the world.",
-  "speedrunnermod.features.ores_and_worldgen.common_ores.line2": "This includes iron, diamonds, speedrunner ores, redstone, lapis, and everything else!",
-  "speedrunnermod.features.ores_and_worldgen.common_ores.line3": "Now you can get stacked items, in just a few minutes!",
+  "speedrunnermod.features.ores_and_worldgen.common_ores.text": "That's right, §lores of all types generate more commonly throughout the world.§r This includes iron, diamonds, speedrunner ores, redstone, lapis, and everything else! Now you can get stacked items, in just a few minutes!",
 
   "speedrunnermod.title.features.ores_and_worldgen.structures": "Structures are More Common!",
-  "speedrunnermod.features.ores_and_worldgen.structures.line1": "Structures of almost all types will generate more commonly!",
-  "speedrunnermod.features.ores_and_worldgen.structures.line2": "No more searching for the buried bastions and far away nether fortresses.",
-  "speedrunnermod.features.ores_and_worldgen.structures.line3": "§o(This can be disabled in the §b§ospeedrunner mod options menu).",
+  "speedrunnermod.features.ores_and_worldgen.structures.text": "Structures of almost all types will generate more commonly! No more searching for the buried bastions and far away nether fortresses. §o(This can be disabled in the §b§ospeedrunner mod options menu).",
 
   "speedrunnermod.title.features.ores_and_worldgen.fortresses_bastions_and_strongholds": "Nether Fortresses, Bastions and Strongholds",
-  "speedrunnermod.features.ores_and_worldgen.fortresses_bastions_and_strongholds.line1": "These so important structures have been changed with this mod, to make navigating them much easier.",
-  "speedrunnermod.features.ores_and_worldgen.fortresses_bastions_and_strongholds.line2": "Nether fortresses are much smaller now, and contain more than 2 blaze spawners per fortress.",
-  "speedrunnermod.features.ores_and_worldgen.fortresses_bastions_and_strongholds.line3": "Treasure bastions will now generate with a §6blaze spawner§r at the bottom, instead of magma cubes.",
-  "speedrunnermod.features.ores_and_worldgen.fortresses_bastions_and_strongholds.line4": "Finally, strongholds are much smaller, each containing more than 1 portal room.",
+  "speedrunnermod.features.ores_and_worldgen.fortresses_bastions_and_strongholds.text": "These so important structures have been changed with this mod, to make navigating them much easier. Nether fortresses are much smaller now, and contain more than 2 blaze spawners per fortress. Treasure bastions will now generate with a §6blaze spawner§r at the bottom, instead of magma cubes. Finally, strongholds are much smaller, each containing more than 1 portal room.",
 
   "speedrunnermod.menu.features.doom_mode": "§cDoom Mode...",
   "speedrunnermod.title.features.doom_mode": "§cDoom Mode",
 
   "speedrunnermod.title.features.doom_mode.basics": "Basics",
-  "speedrunnermod.features.doom_mode.basics.line1": "Doom mode is a special hard-coded mode, which makes the game extremely difficult to beat.",
-  "speedrunnermod.features.doom_mode.basics.line2": "Mobs have more health, speed, and do more damage. §lEverything else§r does basically double damage,",
-  "speedrunnermod.features.doom_mode.basics.line3": "and upon entering the end, not only will an §dEnder Dragon§r spawn, but along with a §7wither§r and a §agiant.",
+  "speedrunnermod.features.doom_mode.basics.text": "Doom mode is a special hard-coded mode, which makes the game extremely difficult to beat. Mobs have more health, speed, and do more damage. §lEverything else§r does basically double damage, and upon entering the end, not only will an §dEnder Dragon§r spawn, but along with a §7wither§r and a §agiant.",
 
   "speedrunnermod.title.features.doom_mode.bosses": "Bosses",
-  "speedrunnermod.features.doom_mode.bosses.line1": "When the end fight begins, the §dender dragon§r will spawn like normal, but with §cquintuple§r the amount of health.",
-  "speedrunnermod.features.doom_mode.bosses.line2": "A §7wither§r will also spawn, with almost double the amount of health. All withers also regenerate extremely fast.",
-  "speedrunnermod.features.doom_mode.bosses.line3": "And finally, a §a§lgiant§r will spawn. In vanilla Minecraft, the §agiant§r does not have any AI.",
-  "speedrunnermod.features.doom_mode.bosses.line4": "However, this mode §lgives it§r a function.",
+  "speedrunnermod.features.doom_mode.bosses.text": "When the end fight begins, the §dender dragon§r will spawn like normal, but with §cquintuple§r the amount of health. A §7wither§r will also spawn, with almost double the amount of health. All withers also regenerate extremely fast. And finally, a §a§lgiant§r will spawn. In vanilla Minecraft, the §agiant§r does not have any AI. However, this mode §lgives it§r a function.",
 
   "speedrunnermod.title.features.doom_mode.giant": "The Giant",
-  "speedrunnermod.features.doom_mode.giant.line1": "The §a§lGiant§r will target anything in it's path, and slowly regenerate at all times. It cannot be killed from the void.",
-  "speedrunnermod.features.doom_mode.giant.line2": "If it gets knocked into the void, it will simply teleport back to the middle of the end island.",
-  "speedrunnermod.features.doom_mode.giant.line3": "Once the giant reaches half health, ranged weapons are no good. The giant will also randomly spawn §c§lTNT§r",
-  "speedrunnermod.features.doom_mode.giant.line4": "around itself when taking damage, so watch out for that. The giant is completely immune to explosives, fall damage,",
-  "speedrunnermod.features.doom_mode.giant.line5": "fire and lava damage. Good luck with this boss. §a>:)",
+  "speedrunnermod.features.doom_mode.giant.text": "The §a§lGiant§r will target anything in it's path, and slowly regenerate at all times. It cannot be killed from the void. If it gets knocked into the void, it will simply teleport back to the middle of the end island. Once the giant reaches half health, ranged weapons are no good. The giant will also randomly spawn §c§lTNT§r around itself when taking damage, so watch out for that. The giant is completely immune to explosives, fall damage, fire and lava damage. Good luck with this boss. §a>:)",
 
   "speedrunnermod.title.features.doom_mode.doom_blocks": "Doom Blocks",
-  "speedrunnermod.features.doom_mode.doom_blocks.line1": "The doom blocks will generate in the end, and if broken, they will spawn various hostile mobs, along with some lava.",
-  "speedrunnermod.features.doom_mode.doom_blocks.line2": "You can avoid these things if you break these blocks with a speedrunner or golden speedrunner tool.",
-  "speedrunnermod.features.doom_mode.doom_blocks.line3": "However, they will also drop a variety of helpful items to make the end fight a little bit easier,",
-  "speedrunnermod.features.doom_mode.doom_blocks.line4": "including armor, crossbows, etc.",
+  "speedrunnermod.features.doom_mode.doom_blocks.text": "The doom blocks will generate in the end, and if broken, they will spawn various hostile mobs, along with some lava. You can avoid these things if you break these blocks with a speedrunner or golden speedrunner tool. However, they will also drop a variety of helpful items to make the end fight a little bit easier, including armor, crossbows, etc.",
 
   "speedrunnermod.title.features.doom_mode.other_things_to_know": "Other Things To Know",
-  "speedrunnermod.features.doom_mode.other_things_to_know.line1": "§cHostile mobs§r inflict the player with §7slowness§r when attacking, and skeletons shoot §9slowness arrows.",
-  "speedrunnermod.features.doom_mode.other_things_to_know.line2": "Ghasts shoot §9fireballs§r at an extremely fast rate, right-clicking a §acreeper§r with a flint and steel",
-  "speedrunnermod.features.doom_mode.other_things_to_know.line3": "will make it §linstantly explode,§r end crystals do more damage, §9ender pearls§r give §lblindness§r upon use,",
-  "speedrunnermod.features.doom_mode.other_things_to_know.line4": "§aender eyes§r will always break, §lstrongholds are extremely large,§r and generate close to the bottom of the world.",
-  "speedrunnermod.features.doom_mode.other_things_to_know.line5": "§c§oIf you're up for the challenge, I wish you luck.",
+  "speedrunnermod.features.doom_mode.other_things_to_know.text": "§cHostile mobs§r inflict the player with §7slowness§r when attacking, and skeletons shoot §9slowness arrows. Ghasts shoot §9fireballs§r at an extremely fast rate, right-clicking a §acreeper§r with a flint and steel will make it §linstantly explode,§r end crystals do more damage, §9ender pearls§r give §lblindness§r upon use, §aender eyes§r will always break, §lstrongholds are extremely large,§r and generate close to the bottom of the world. §c§oIf you're up for the challenge, I wish you luck.",
   "speedrunnermod.doom_mode.enable": "Enable Doom Mode",
   "speedrunnermod.doom_mode.already_enabled": "Doom mode is already enabled!",
 
@@ -693,48 +663,34 @@
   "speedrunnermod.title.features.miscellaneous": "Miscellaneous",
 
   "speedrunnermod.title.features.miscellaneous.reset_key": "Reset Key",
-  "speedrunnermod.features.miscellaneous.reset_key.line1": "Automatically create a new world in the press of a button,",
-  "speedrunnermod.features.miscellaneous.reset_key.line2": "the default key is §l\"R\".",
-  "speedrunnermod.features.miscellaneous.reset_key.line3": "You can set this to whatever you'd like in the §l\"Controls\"§r menu.",
+  "speedrunnermod.features.miscellaneous.reset_key.text": "Automatically create a new world in the press of a button, the default key is §l\"R\".§r You can set this to whatever you'd like in the §l\"Controls\"§r menu.",
 
   "speedrunnermod.title.features.miscellaneous.fog_key": "Fog Key",
-  "speedrunnermod.features.miscellaneous.fog_key.line1": "Automatically enable/disable Minecraft's distant fog in the press of a button,",
-  "speedrunnermod.features.miscellaneous.fog_key.line2": "default key is §l\"H\".",
-  "speedrunnermod.features.miscellaneous.fog_key.line3": "You can also change this to whatever you'd like in the §l\"Controls\" menu.",
+  "speedrunnermod.features.miscellaneous.fog_key.text": "Automatically enable/disable Minecraft's distant fog in the press of a button, default key is §l\"H\".§r You can also change this to whatever you'd like in the §l\"Controls\" menu.",
 
   "speedrunnermod.title.features.miscellaneous.faster_block_breaking": "Faster Block Breaking",
-  "speedrunnermod.features.miscellaneous.faster_block_breaking.line1": "Certain blocks can be broken at a much faster rate,",
-  "speedrunnermod.features.miscellaneous.faster_block_breaking.line2": "including wood, stone, ores, netherrack, end stone, and much more!",
-  "speedrunnermod.features.miscellaneous.faster_block_breaking.line3": "§o(This can be disabled in the §b§ospeedrunner mod options menu).",
+  "speedrunnermod.features.miscellaneous.faster_block_breaking.text": "Certain blocks can be broken at a much faster rate, including wood, stone, ores, netherrack, end stone, and much more! §o(This can be disabled in the §b§ospeedrunner mod options menu).",
 
   "speedrunnermod.title.features.miscellaneous.icarus_mode": "iCarus Mode",
-  "speedrunnermod.features.miscellaneous.icarus_mode.line1": "Give yourself a head start with an §lunbreakable elytra§r and a §lstack§r of §lfirework rockets!",
-  "speedrunnermod.features.miscellaneous.icarus_mode.line2": "You can enable this feature through the §bspeedrunner mod options menu.",
+  "speedrunnermod.features.miscellaneous.icarus_mode.text": "Give yourself a head start with an §lunbreakable elytra§r and a §lstack§r of §lfirework rockets!§r You can enable this feature through the §bspeedrunner mod options menu.",
 
   "speedrunnermod.title.features.miscellaneous.infini_pearl_mode": "Infini Pearl Mode",
-  "speedrunnermod.features.miscellaneous.infini_pearl_mode.line1": "Give yourself an ender pearl that causes no damage and lasts forever",
-  "speedrunnermod.features.miscellaneous.infini_pearl_mode.line2": "everytime you create a new world.",
-  "speedrunnermod.features.miscellaneous.infini_pearl_mode.line3": "You can enable this feature through the §bspeedrunner mod options menu.",
+  "speedrunnermod.features.miscellaneous.infini_pearl_mode.text": "Give yourself an ender pearl that causes no damage and lasts forever everytime you create a new world. You can enable this feature through the §bspeedrunner mod options menu.",
 
   "speedrunnermod.title.features.miscellaneous.piglin_bartering": "Better Piglin Bartering",
-  "speedrunnermod.features.miscellaneous.piglin_bartering.line1": "Piglin bartering is §lEXTREMELY overpowered.§r Ender pearls are much more common,",
-  "speedrunnermod.features.miscellaneous.piglin_bartering.line2": "along with some other useful items, and they can even give you golden apples! :0",
+  "speedrunnermod.features.miscellaneous.piglin_bartering.text": "Piglin bartering is §lEXTREMELY overpowered.§r Ender pearls are much more common, along with some other useful items, and they can even give you golden apples! :0",
 
   "speedrunnermod.title.features.miscellaneous.piglin_pork": "Piglin Pork",
-  "speedrunnermod.features.miscellaneous.piglin_pork.line1": "Minecraft left the piglins out, so I took care of that.",
-  "speedrunnermod.features.miscellaneous.piglin_pork.line2": "Upon death, piglins will drop piglin pork, which is basically an alternative for porkchop.",
+  "speedrunnermod.features.miscellaneous.piglin_pork.text": "Minecraft left the piglins out, so I took care of that. Upon death, piglins will drop piglin pork, which is basically an alternative for porkchop.",
 
   "speedrunnermod.title.features.miscellaneous.no_more_piglin_brutes": "No More Piglin Brutes!",
-  "speedrunnermod.features.miscellaneous.no_more_piglin_brutes.line1": "Screw these guys...",
-  "speedrunnermod.features.miscellaneous.no_more_piglin_brutes.line2": "§o§cUnless you're on doom mode...",
+  "speedrunnermod.features.miscellaneous.no_more_piglin_brutes.text": "Screw these guys... §o§cUnless you're on doom mode...",
 
   "speedrunnermod.title.features.miscellaneous.tripled_drops": "Tripled Drops",
-  "speedrunnermod.features.miscellaneous.tripled_drops.line1": "Everything drops x3 more than it would normally drop.",
-  "speedrunnermod.features.miscellaneous.tripled_drops.line2": "This includes ore experience, mob experience, mob drops, and more!",
+  "speedrunnermod.features.miscellaneous.tripled_drops.text": "Everything drops x3 more than it would normally drop. This includes ore experience, mob experience, mob drops, and more!",
 
   "speedrunnermod.title.features.miscellaneous.more": "And More!",
-  "speedrunnermod.features.miscellaneous.more.line1": "This in-game menu only scratches the surface of what this mod has to offer,",
-  "speedrunnermod.features.miscellaneous.more.line2": "So if you want to view a list of §oALL§r of the features, refer to the button below!",
+  "speedrunnermod.features.miscellaneous.more.text": "This in-game menu only scratches the surface of what this mod has to offer, So if you want to view a list of §oALL§r of the features, refer to the button below!",
 
   "speedrunnermod.menu.resources": "Resources...",
   "speedrunnermod.menu.resources.tooltip": "Mods, tutorials, and more!",

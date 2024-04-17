@@ -20,11 +20,6 @@ public class RaidEradicatorScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected int getImageY() {
-        return 165;
-    }
-
-    @Override
     protected @NotNull String linesKey() {
         return "raid_eradicator";
     }

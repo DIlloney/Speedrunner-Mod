@@ -9,7 +9,6 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.screen.ScreenTexts;
 
 @Environment(EnvType.CLIENT)
 public class ModsScreen extends AbstractModScreen {
@@ -50,9 +49,12 @@ public class ModsScreen extends AbstractModScreen {
         this.optiFineButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.OPTIFINE, (buttonWidget) -> {}).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
         optiFineButton.active = false;
 
-        this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
-            this.close();
-        }).dimensions(this.width / 2 - 100, this.height - 29, 200, 20).build());
+        super.init();
+    }
+
+    @Override
+    protected void doneButtonFunction() {
+        this.close();
     }
 
     @Override

@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.*;
 import net.dillon.speedrunnermod.client.screen.features.doom_mode.*;
 import net.dillon.speedrunnermod.client.screen.features.miscellaneous.*;
@@ -138,7 +137,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
         textHeight = Math.max(textHeight, 70);
         for (OrderedText text : screenText) {
             context.drawCenteredTextWithShadow(this.textRenderer, text, this.width / 2, textHeight, 16777215);
-            textHeight += 20;
+            textHeight += 15;
         }
 
         int leftSide = this.width / 2 - 155;
@@ -149,7 +148,11 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
 
         super.render(context, mouseX, mouseY, delta);
         if (this.renderImage) {
-            context.drawTexture(this.getImage(), this.getImageX(), this.getImageY(), 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+            if (screenText.size() <= 8) {
+                context.drawTexture(this.getImage(), this.getImageX(), this.getImageY(), 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+            } else {
+                throw new IllegalArgumentException();
+            }
         }
 
         if (this.renderCraftingRecipe) {
@@ -191,7 +194,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
     /**
      * Gets the page number of every screen.
      */
-    private Screen getPageNumbers(int pageNumber) {
+    private Screen page(int pageNumber) {
         GameOptions options = MinecraftClient.getInstance().options;
         if (this.getScreenCategory() == ScreenCategories.BLOCKS_AND_ITEMS) {
             return switch (pageNumber) {
@@ -358,16 +361,16 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
      */
     @Nullable
     protected Screen getNextScreen() {
-        return this.getPageNumbers(this.pageNumber + 1);
+        return this.page(this.pageNumber + 1);
     }
 
     /**
-     * Gets the {@code previous screen}, which goes back to the screen displayed before.
-     * <p><i>On {@link ScreenType#STARTER} pages, there may not be a previous screen.</i></p>
+     * <p>Gets the {@code previous screen}, which goes back to the screen displayed before.</p>
+     * <i>On {@link ScreenType#STARTER} pages, there may not be a previous screen.</i>
      */
     @Nullable
     protected Screen getPreviousScreen() {
-        return this.getPageNumbers(this.pageNumber - 1);
+        return this.page(this.pageNumber - 1);
     }
 
     /**

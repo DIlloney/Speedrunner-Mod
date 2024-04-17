@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features.tools_and_armor;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategories;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -8,6 +9,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;

@@ -9,7 +9,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -33,7 +32,6 @@ public class OresAndWorldgenScreen extends AbstractModScreen {
             this.client.setScreen(new SpeedrunnerOresScreen(this.parent, this.options));
         }).build());
 
-        height += 24;
         this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "experience_ores").copy().formatted(Formatting.GREEN), (button) -> {
             this.client.setScreen(new ExperienceOresScreen(this.parent, this.options));
         }).build());
@@ -41,7 +39,6 @@ public class OresAndWorldgenScreen extends AbstractModScreen {
             this.client.setScreen(new IgneousOresScreen(this.parent, this.options));
         }).build());
 
-        height += 24;
         this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "common_ores").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new CommonOresScreen(this.parent, this.options));
         }).build());
@@ -49,12 +46,16 @@ public class OresAndWorldgenScreen extends AbstractModScreen {
             this.client.setScreen(new StructuresScreen(this.parent, this.options));
         }).build());
 
-        height += 24;
         this.buttons.add(ButtonWidget.builder(Text.literal("Structure Generation").copy().formatted(Formatting.RED), (button) -> {
             this.client.setScreen(new FortressesBastionsAndStrongholdsScreen(this.parent, this.options));
         }).build());
 
         super.init();
+    }
+
+    @Override
+    protected void doneButtonFunction() {
+        this.close();
     }
 
     @Override

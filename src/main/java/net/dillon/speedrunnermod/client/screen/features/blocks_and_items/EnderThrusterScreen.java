@@ -49,6 +49,7 @@ public class EnderThrusterScreen extends AbstractFeatureScreen {
         return ScreenCategories.BLOCKS_AND_ITEMS;
     }
 
+
     @Override
     protected @NotNull ScreenType getScreenType() {
         return ScreenType.NORMAL;
