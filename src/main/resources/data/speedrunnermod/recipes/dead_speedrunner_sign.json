@@ -11,7 +11,7 @@
       "item": "speedrunnermod:dead_speedrunner_planks"
     },
     "X": {
-      "item": "speedrunnermod:speedrunner_stick"
+      "tag": "speedrunnermod:sticks"
     }
   },
   "result": {

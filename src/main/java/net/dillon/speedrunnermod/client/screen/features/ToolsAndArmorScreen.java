@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
 import net.dillon.speedrunnermod.client.screen.AbstractModScreen;
+import net.dillon.speedrunnermod.client.screen.CustomButtonListWidget;
 import net.dillon.speedrunnermod.client.screen.features.tools_and_armor.*;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
@@ -21,34 +22,32 @@ public class ToolsAndArmorScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        int height = this.getButtonsHeight();
+        this.buttonList = this.addDrawableChild(new CustomButtonListWidget(this.client, this.width, this.height - 64, 32, 25));
 
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "speedrunner_armor").copy().formatted(Formatting.AQUA), (button) -> {
+        this.clearButtons();
+
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "speedrunner_armor").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new SpeedrunnerArmorScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "golden_speedrunner_armor").copy().formatted(Formatting.GOLD), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "golden_speedrunner_armor").copy().formatted(Formatting.GOLD), (button) -> {
             this.client.setScreen(new GoldenSpeedrunnerArmorScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "dash_enchantment").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "dash_enchantment").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new DashEnchantmentScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "cooldown_enchantment").copy().formatted(Formatting.AQUA), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "cooldown_enchantment").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new CooldownEnchantmentScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "dragons_sword").copy().formatted(Formatting.LIGHT_PURPLE), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "dragons_sword").copy().formatted(Formatting.LIGHT_PURPLE), (button) -> {
             this.client.setScreen(new DragonsSwordScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "wither_sword").copy().formatted(Formatting.DARK_GRAY), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.TOOLS_AND_ARMOR, "wither_sword").copy().formatted(Formatting.DARK_GRAY), (button) -> {
             this.client.setScreen(new WitherSwordScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
-            this.close();
-        }).dimensions(this.getButtonsMiddle(), this.getDoneButtonsHeight(), 200, 20).build());
+        super.init();
     }
 
     @Override

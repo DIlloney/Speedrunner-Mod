@@ -30,9 +30,9 @@ public class FastWorldCreationOptionsScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        this.list = this.addDrawableChild(new OptionListWidget(this.client, this.width, this.height - 64, 32, 25));
-        this.list.addAll(fwcOptions());
-        this.addSelectableChild(this.list);
+        this.optionList = this.addDrawableChild(new OptionListWidget(this.client, this.width, this.height - 64, 32, 25));
+        this.optionList.addAll(fwcOptions());
+        this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);
 
         super.init();

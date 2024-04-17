@@ -9,9 +9,9 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class CreditsScreen extends AbstractModScreen {
+public class ModCreditsScreen extends AbstractModScreen {
 
-    public CreditsScreen(Screen parent, GameOptions options) {
+    public ModCreditsScreen(Screen parent, GameOptions options) {
         super(parent, options, ModTexts.TITLE_CREDITS);
     }
 

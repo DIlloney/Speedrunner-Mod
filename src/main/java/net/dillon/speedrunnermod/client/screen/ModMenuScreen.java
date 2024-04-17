@@ -50,7 +50,7 @@ public class ModMenuScreen extends AbstractModScreen {
 
         height += 24;
         this.creditsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_CREDITS, (button) -> {
-            this.client.setScreen(new CreditsScreen(this, options));
+            this.client.setScreen(new ModCreditsScreen(this, options));
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
         this.leaderboardsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_LEADERBOARDS, (button) -> {
             this.client.setScreen(new LeaderboardsScreen(this, this.options));

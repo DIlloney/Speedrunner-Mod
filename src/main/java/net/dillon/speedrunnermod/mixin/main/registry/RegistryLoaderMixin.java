@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
+import static net.dillon.speedrunnermod.util.JsonIdentifiers.*;
 
 @Mixin(RegistryLoader.class)
 public abstract class RegistryLoaderMixin {
@@ -76,7 +77,7 @@ public abstract class RegistryLoaderMixin {
                 }
             }
 
-            if (fileName.equals("worldgen/biome/warm_ocean.json")) {
+            if (fileName.equals(WARM_OCEAN)) {
                 Map<String, Integer[]> waterCreatureSpawns = new HashMap<>();
                 waterCreatureSpawns.put("minecraft:dolphin", createSpawnSettings(15, 1, 1, 2, 1));
                 waterCreatureSpawns.put("minecraft:tropical_fish", createSpawnSettings(10, 1, 4, 8, 4));
@@ -86,7 +87,7 @@ public abstract class RegistryLoaderMixin {
                 debug("Modified water creature spawns for warm ocean biome.");
             }
 
-            if (fileName.equals("worldgen/biome/basalt_deltas.json")) {
+            if (fileName.equals(BASALT_DELTAS)) {
                 JsonObject basaltDeltasEffects = jsonElement.getAsJsonObject().getAsJsonObject("effects");
                 basaltDeltasEffects.addProperty("water_color", 0xCACFD2);
                 basaltDeltasEffects.addProperty("water_fog_color", 0xD5DBDB);
@@ -130,7 +131,7 @@ public abstract class RegistryLoaderMixin {
                 debug("Created basalt deltas.");
             }
 
-            if (fileName.equals("worldgen/biome/crimson_forest.json")) {
+            if (fileName.equals(CRIMSON_FOREST)) {
                 JsonObject crimsonForestEffects = jsonElement.getAsJsonObject().getAsJsonObject("effects");
                 crimsonForestEffects.addProperty("water_color", 0xCD6155);
                 crimsonForestEffects.addProperty("water_fog_color", 0xE6B0AA);
@@ -181,7 +182,7 @@ public abstract class RegistryLoaderMixin {
                 debug("Created crimson forest.");
             }
 
-            if (fileName.equals("worldgen/biome/nether_wastes.json")) {
+            if (fileName.equals(NETHER_WASTES)) {
                 JsonObject netherWastesEffects = jsonElement.getAsJsonObject().getAsJsonObject("effects");
                 netherWastesEffects.addProperty("water_color", 0xD98880);
                 netherWastesEffects.addProperty("water_fog_color", 0xE6B0AA);
@@ -246,7 +247,7 @@ public abstract class RegistryLoaderMixin {
                 debug("Created nether wastes.");
             }
 
-            if (fileName.equals("worldgen/biome/soul_sand_valley.json")) {
+            if (fileName.equals(SOUL_SAND_VALLEY)) {
                 JsonObject soulSandValleyEffects = jsonElement.getAsJsonObject().getAsJsonObject("effects");
                 soulSandValleyEffects.addProperty("water_color", 0xD98880);
                 soulSandValleyEffects.addProperty("water_fog_color", 0xE6B0AA);
@@ -290,7 +291,7 @@ public abstract class RegistryLoaderMixin {
                 debug("Created soul sand valley.");
             }
 
-            if (fileName.equals("worldgen/biome/the_end.json")) {
+            if (fileName.equals(THE_END)) {
                 JsonObject theEndSpawners = jsonElement.getAsJsonObject().getAsJsonObject("spawners");
                 JsonArray theEndMonsters = new JsonArray();
 
@@ -356,7 +357,7 @@ public abstract class RegistryLoaderMixin {
                 debug("Created the end.");
             }
 
-            if (fileName.equals("worldgen/biome/warped_forest.json")) {
+            if (fileName.equals(WARPED_FOREST)) {
                 JsonObject crimsonForestEffects = jsonElement.getAsJsonObject().getAsJsonObject("effects");
                 crimsonForestEffects.addProperty("water_color", 0x167E86);
                 crimsonForestEffects.addProperty("water_fog_color", 0x14B485);
@@ -407,8 +408,8 @@ public abstract class RegistryLoaderMixin {
                 debug("Created warped forest.");
             }
 
-            String monsterRoom = "worldgen/placed_feature/monster_room.json";
-            if (fileName.equals(monsterRoom) || fileName.equals("worldgen/placed_feature/monster_room_deep.json")) {
+            String monsterRoom = MONSTER_ROOM;
+            if (fileName.equals(monsterRoom) || fileName.equals(MONSTER_ROOM_DEEP)) {
                 JsonArray placement = jsonElement.getAsJsonObject().getAsJsonArray("placement");
 
                 for (JsonElement element : placement) {
@@ -423,8 +424,8 @@ public abstract class RegistryLoaderMixin {
             }
 
             if (options().main.commonOres) {
-                String oreDiamond = "worldgen/placed_feature/ore_diamond.json";
-                if (fileName.equals(oreDiamond) || fileName.equals("worldgen/placed_feature/ore_diamond_buried.json")) {
+                String oreDiamond = ORE_DIAMOND;
+                if (fileName.equals(oreDiamond) || fileName.equals(ORE_DIAMOND_BURIED)) {
                     JsonArray placement = jsonElement.getAsJsonObject().getAsJsonArray("placement");
 
                     for (JsonElement element : placement) {
@@ -438,7 +439,7 @@ public abstract class RegistryLoaderMixin {
                     debug(fileName.equals(oreDiamond) ? "Created diamond ore feature." : "Created diamond ore buried feature.");
                 }
 
-                if (fileName.equals("worldgen/placed_feature/ore_diamond_large.json")) {
+                if (fileName.equals(ORE_DIAMOND_LARGE)) {
                     JsonArray placement = jsonElement.getAsJsonObject().getAsJsonArray("placement");
 
                     for (JsonElement element : placement) {
@@ -458,8 +459,8 @@ public abstract class RegistryLoaderMixin {
                     debug("Created diamond ore large feature.");
                 }
 
-                String oreLapis = "worldgen/placed_feature/ore_lapis.json";
-                if (fileName.equals(oreLapis) || fileName.equals("worldgen/placed_feature/ore_lapis_buried.json")) {
+                String oreLapis = ORE_LAPIS;
+                if (fileName.equals(oreLapis) || fileName.equals(ORE_LAPIS_BURIED)) {
                     JsonArray placement = jsonElement.getAsJsonObject().getAsJsonArray("placement");
 
                     for (JsonElement element : placement) {
@@ -475,7 +476,7 @@ public abstract class RegistryLoaderMixin {
             }
 
             if (options().main.customBiomesAndCustomBiomeFeatures) {
-                if (fileName.equals("worldgen/placed_feature/trees_plains.json")) {
+                if (fileName.equals(TREES_PLAINS)) {
                     JsonArray placement = jsonElement.getAsJsonObject().getAsJsonArray("placement");
 
                     for (JsonElement element : placement) {
@@ -492,68 +493,68 @@ public abstract class RegistryLoaderMixin {
             }
 
             if (!options().main.structureSpawnRates.equals(ModOptions.StructureSpawnRates.DISABLED)) {
-                if (fileName.equals("worldgen/structure_set/ancient_cities.json")) {
+                if (fileName.equals(ANCIENT_CITIES)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getAncientCitySpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getAncientCitySeparation());
                     logChange("ancient cities");
                 }
 
-                if (fileName.equals("worldgen/structure_set/desert_pyramids.json")) {
+                if (fileName.equals(DESERT_PYRAMIDS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getDesertPyramidSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getDesertPyramidSeparation());
                     logChange("desert pyramids");
                 }
 
-                if (fileName.equals("worldgen/structure_set/end_cities.json")) {
+                if (fileName.equals(END_CITIES)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getEndCitySpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getEndCitySeparation());
                     logChange("end cities");
                 }
 
-                if (fileName.equals("worldgen/structure_set/jungle_temples.json")) {
+                if (fileName.equals(JUNGLE_TEMPLES)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getJungleTempleSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getJungleTempleSeparation());
                     logChange("jungle temples");
                 }
 
-                if (fileName.equals("worldgen/structure_set/nether_complexes.json")) {
+                if (fileName.equals(NETHER_COMPLEXES)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getNetherComplexesSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getNetherComplexesSeparation());
                     logChange("nether complexes");
                 }
 
-                if (fileName.equals("worldgen/structure_set/pillager_outposts.json")) {
+                if (fileName.equals(PILLAGER_OUTPOSTS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getPillagerOutpostSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getPillagerOutpostSeparation());
                     logChange("pillager outposts");
                 }
 
-                if (fileName.equals("worldgen/structure_set/ruined_portals.json")) {
+                if (fileName.equals(RUINED_PORTALS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getRuinedPortalSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getRuinedPortalSeparation());
                     logChange("ruined portals");
                 }
 
-                if (fileName.equals("worldgen/structure_set/shipwrecks.json")) {
+                if (fileName.equals(SHIPWRECKS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getShipwreckSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getShipwreckSeparation());
                     logChange("shipwrecks");
                 }
 
-                if (fileName.equals("worldgen/structure_set/strongholds.json")) {
+                if (fileName.equals(STRONGHOLDS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("distance", options().main.strongholdDistance);
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spread", options().main.strongholdSpread);
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("count", options().main.strongholdCount);
                     logChange("strongholds");
                 }
 
-                if (fileName.equals("worldgen/structure_set/villages.json")) {
+                if (fileName.equals(VILLAGES)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getVillageSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getVillageSeparation());
                     logChange("villages");
                 }
 
-                if (fileName.equals("worldgen/structure_set/woodland_mansions.json")) {
+                if (fileName.equals(WOODLAND_MANSIONS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getWoodlandMansionSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getWoodlandMansionSeparation());
                     logChange("woodland mansions");
@@ -562,7 +563,7 @@ public abstract class RegistryLoaderMixin {
                 debug("Structure Spawn Rates is disabled. No changes were made to structures rarity.");
             }
 
-            if (fileName.equals("worldgen/noise_settings/end.json")) {
+            if (fileName.equals(END)) {
                 String stone = DOOM_MODE ? "speedrunnermod:doom_stone" : "minecraft:end_stone";
                 JsonObject defaultBlock = jsonElement.getAsJsonObject().getAsJsonObject("default_block");
                 defaultBlock.addProperty("Name", stone);

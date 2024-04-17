@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
 import net.dillon.speedrunnermod.client.screen.AbstractModScreen;
+import net.dillon.speedrunnermod.client.screen.CustomButtonListWidget;
 import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.*;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
@@ -21,39 +22,39 @@ public class OresAndWorldgenScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        int height = this.getButtonsHeight();
+        this.buttonList = this.addDrawableChild(new CustomButtonListWidget(this.client, this.width, this.height - 64, 32, 25));
 
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.fText(ModTexts.fBfL + "SPR.'s." + ModTexts.fR + ModTexts.fB + " Wasteland Biome"), (button) -> {
+        this.clearButtons();
+
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "speedrunners_wasteland").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new SpeedrunnersWastelandBiomeScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "speedrunner_ores").copy().formatted(Formatting.AQUA), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "speedrunner_ores").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new SpeedrunnerOresScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
         height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "experience_ores").copy().formatted(Formatting.GREEN), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "experience_ores").copy().formatted(Formatting.GREEN), (button) -> {
             this.client.setScreen(new ExperienceOresScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "igneous_ores").copy().formatted(Formatting.DARK_GRAY), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "igneous_ores").copy().formatted(Formatting.DARK_GRAY), (button) -> {
             this.client.setScreen(new IgneousOresScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
         height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "common_ores").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.ORES_AND_WORLDGEN, "common_ores").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new CommonOresScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Structure Spawn Rates!").copy().formatted(Formatting.GREEN), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(Text.literal("Structure Spawn Rates!").copy().formatted(Formatting.GREEN), (button) -> {
             this.client.setScreen(new StructuresScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
         height += 24;
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Structure Generation").copy().formatted(Formatting.RED), (button) -> {
+        this.buttons.add(ButtonWidget.builder(Text.literal("Structure Generation").copy().formatted(Formatting.RED), (button) -> {
             this.client.setScreen(new FortressesBastionsAndStrongholdsScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
-            this.close();
-        }).dimensions(this.getButtonsMiddle(), this.getDoneButtonsHeight(), 200, 20).build());
+        super.init();
     }
 
     @Override

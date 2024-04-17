@@ -50,11 +50,6 @@ public class PiglinAwakenerScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected int getScreenLines() {
-        return 4;
-    }
-
-    @Override
     protected @NotNull ScreenType getScreenType() {
         return ScreenType.NORMAL;
     }

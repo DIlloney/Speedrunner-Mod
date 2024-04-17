@@ -45,13 +45,13 @@ public class WastelandPlacedFeatures {
         PlacedFeatures.register(context, PATCH_RAW_SPEEDRUNNER_BLOCK_PLACED, registryEntryLookup.getOrThrow(WastelandConfiguredFeatures.PATCH_RAW_SPEEDRUNNER_BLOCK),
                 RarityFilterPlacementModifier.of(200), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         PlacedFeatures.register(context, ORE_SPEEDRUNNER_UPPER, registryEntryLookup.getOrThrow(WastelandConfiguredFeatures.ORE_SPEEDRUNNER),
-                modifiersWithCount(64, HeightRangePlacementModifier.trapezoid(YOffset.fixed(80), YOffset.fixed(384))));
+                modifiersWithCount(48, HeightRangePlacementModifier.trapezoid(YOffset.fixed(80), YOffset.fixed(384))));
         PlacedFeatures.register(context, ORE_SPEEDRUNNER_MIDDLE, registryEntryLookup.getOrThrow(WastelandConfiguredFeatures.ORE_SPEEDRUNNER),
-                modifiersWithCount(9, HeightRangePlacementModifier.trapezoid(YOffset.fixed(-24), YOffset.fixed(56))));
+                modifiersWithCount(8, HeightRangePlacementModifier.trapezoid(YOffset.fixed(-24), YOffset.fixed(56))));
         PlacedFeatures.register(context, ORE_SPEEDRUNNER_SMALL, registryEntryLookup.getOrThrow(WastelandConfiguredFeatures.ORE_SPEEDRUNNER_SMALL),
-                modifiersWithCount(8, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(72))));
+                modifiersWithCount(7, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(72))));
         PlacedFeatures.register(context, ORE_EXPERIENCE, registryEntryLookup.getOrThrow(WastelandConfiguredFeatures.ORE_EXPERIENCE),
-                modifiersWithCount(20, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(62))));
+                modifiersWithCount(18, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(62))));
         PlacedFeatures.register(context, ORE_DIAMOND, registryEntryLookup.getOrThrow(WastelandConfiguredFeatures.ORE_DIAMOND),
                 modifiersWithCount(SpeedrunnerMod.getOreDiamondChance() - 1, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.aboveBottom(80))));
         PlacedFeatures.register(context, ORE_DIAMOND_BURIED, registryEntryLookup.getOrThrow(WastelandConfiguredFeatures.ORE_DIAMOND_BURIED),

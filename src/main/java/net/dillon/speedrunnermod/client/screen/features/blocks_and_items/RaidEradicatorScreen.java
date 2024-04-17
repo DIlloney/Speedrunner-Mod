@@ -55,11 +55,6 @@ public class RaidEradicatorScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected int getScreenLines() {
-        return 5;
-    }
-
-    @Override
     protected @NotNull ScreenType getScreenType() {
         return ScreenType.NORMAL;
     }

@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
 import net.dillon.speedrunnermod.client.screen.AbstractModScreen;
+import net.dillon.speedrunnermod.client.screen.CustomButtonListWidget;
 import net.dillon.speedrunnermod.client.screen.features.miscellaneous.*;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
@@ -21,50 +22,46 @@ public class MiscellaneousScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        int height = this.getButtonsHeight();
+        this.buttonList = this.addDrawable(new CustomButtonListWidget(this.client, this.width, this.height - 64, 32, 25));
 
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "reset_key").copy().formatted(Formatting.AQUA), (button) -> {
+        this.clearButtons();
+
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "reset_key").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new ResetKeyScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "fog_key").copy().formatted(Formatting.AQUA), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "fog_key").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new FogKeyScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "faster_block_breaking").copy().formatted(Formatting.AQUA), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "faster_block_breaking").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new FasterBlockBreakingScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "icarus_mode").copy().formatted(Formatting.DARK_GRAY), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "icarus_mode").copy().formatted(Formatting.DARK_GRAY), (button) -> {
             this.client.setScreen(new ICarusModeScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "infini_pearl_mode").copy().formatted(Formatting.BLUE), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "infini_pearl_mode").copy().formatted(Formatting.BLUE), (button) -> {
             this.client.setScreen(new InfiniPearlModeScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "piglin_bartering").copy().formatted(Formatting.GOLD), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "piglin_bartering").copy().formatted(Formatting.GOLD), (button) -> {
             this.client.setScreen(new PiglinBarteringScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "piglin_pork").copy().formatted(Formatting.GOLD), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "piglin_pork").copy().formatted(Formatting.GOLD), (button) -> {
             this.client.setScreen(new PiglinPorkScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "no_more_piglin_brutes").copy().formatted(Formatting.GOLD), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "no_more_piglin_brutes").copy().formatted(Formatting.GOLD), (button) -> {
             this.client.setScreen(new NoMorePiglinBrutesScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "tripled_drops").copy().formatted(Formatting.YELLOW), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "tripled_drops").copy().formatted(Formatting.YELLOW), (button) -> {
             this.client.setScreen(new TripledDropsScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "more").copy().formatted(Formatting.AQUA), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.MISCELLANEOUS, "more").copy().formatted(Formatting.AQUA), (button) -> {
             this.client.setScreen(new MoreScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
-            this.close();
-        }).dimensions(this.getButtonsMiddle(), this.getDoneButtonsHeight(), 200, 20).build());
+        super.init();
     }
 
     @Override

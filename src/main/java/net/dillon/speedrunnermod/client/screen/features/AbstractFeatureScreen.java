@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.*;
 import net.dillon.speedrunnermod.client.screen.features.doom_mode.*;
 import net.dillon.speedrunnermod.client.screen.features.miscellaneous.*;
@@ -16,11 +17,14 @@ import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.screen.ScreenTexts;
+import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * Used to create {@link net.dillon.speedrunnermod.SpeedrunnerMod} features screens.
@@ -129,24 +133,13 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 16777215);
 
-        if (this.getScreenLines() == 2) {
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getFirstLineText(), this.width / 2, 100, 16777215);
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getSecondLineText(), this.width / 2, 120, 16777215);
-        } else if (this.getScreenLines() == 3) {
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getFirstLineText(), this.width / 2, 90, 16777215);
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getSecondLineText(), this.width / 2, 110, 16777215);
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getThirdLineText(), this.width / 2, 130, 16777215);
-        } else if (this.getScreenLines() == 4) {
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getFirstLineText(), this.width / 2, 80, 16777215);
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getSecondLineText(), this.width / 2, 100, 16777215);
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getThirdLineText(), this.width / 2, 120, 16777215);
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getFourthLineText(), this.width / 2, 140, 16777215);
-        } else if (this.getScreenLines() == 5) {
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getFirstLineText(), this.width / 2, 70, 16777215);
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getSecondLineText(), this.width / 2, 90, 16777215);
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getThirdLineText(), this.width / 2, 110, 16777215);
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getFourthLineText(), this.width / 2, 130, 16777215);
-            context.drawCenteredTextWithShadow(this.textRenderer, this.getFifthLineText(), this.width / 2, 150, 16777215);
+        List<OrderedText> screenText = this.client.textRenderer.wrapLines(this.textToDisplay(), 396);
+        int textHeight = 100 - (screenText.size() - 2) * 10;
+        textHeight = Math.max(textHeight, 70);
+        SpeedrunnerMod.error(String.valueOf(textHeight));
+        for (OrderedText text : screenText) {
+            context.drawCenteredTextWithShadow(this.textRenderer, text, this.width / 2, textHeight, 16777215);
+            textHeight += 20;
         }
 
         int leftSide = this.width / 2 - 155;
@@ -287,24 +280,11 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
         }
     }
 
-    private Text getFirstLineText() {
-        return Text.translatable("speedrunnermod.features" + this.linesCategory() + this.linesKey() + ".line1");
-    }
-
-    private Text getSecondLineText() {
-        return Text.translatable("speedrunnermod.features" + this.linesCategory() + this.linesKey() + ".line2");
-    }
-
-    private Text getThirdLineText() {
-        return Text.translatable("speedrunnermod.features" + this.linesCategory() + this.linesKey() + ".line3");
-    }
-
-    private Text getFourthLineText() {
-        return Text.translatable("speedrunnermod.features" + this.linesCategory() + this.linesKey() + ".line4");
-    }
-
-    private Text getFifthLineText() {
-        return Text.translatable("speedrunnermod.features" + this.linesCategory() + linesKey() + ".line5");
+    /**
+     * Returns the text to display on the feature screen.
+     */
+    private Text textToDisplay() {
+        return Text.translatable("speedrunnermod.features" + this.linesCategory() + this.linesKey() + ".text");
     }
 
     /**
@@ -422,11 +402,6 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
      */
     @NotNull
     protected abstract ScreenCategories getScreenCategory();
-
-    /**
-     * Determines how many lines will be displayed on a screen.
-     */
-    protected abstract int getScreenLines();
 
     /**
      * Gets the type of feature screen.

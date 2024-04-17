@@ -105,14 +105,6 @@ public class ModTexts {
     public static final Text VIEW_INELIGIBLE_OPTIONS = Text.translatable("speedrunnermod.view_ineligible_options");
     public static final Text VISIT_SUBMISSION_PAGE = Text.translatable("speedrunnermod.visit_submission_page");
 
-    public static final String fB = "§b";
-    public static final String fBfL = "§b§l";
-    public static final String fR = "§r";
-
-    public static Text fText(String formattedText) {
-        return Text.literal(formattedText);
-    }
-
     public static Text featureTitleText(ScreenCategories category, String lang) {
         return Text.translatable("speedrunnermod.title.features." + category.toString().toLowerCase() + "." + lang);
     }

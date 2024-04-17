@@ -61,11 +61,6 @@ public class SpeedrunnerArmorScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected int getScreenLines() {
-        return 3;
-    }
-
-    @Override
     protected @NotNull ScreenType getScreenType() {
         return ScreenType.STARTER;
     }

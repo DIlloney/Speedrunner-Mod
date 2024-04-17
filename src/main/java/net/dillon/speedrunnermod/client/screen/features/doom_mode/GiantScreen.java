@@ -61,11 +61,6 @@ public class GiantScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected int getScreenLines() {
-        return 5;
-    }
-
-    @Override
     protected @NotNull ScreenType getScreenType() {
         return ScreenType.NORMAL;
     }

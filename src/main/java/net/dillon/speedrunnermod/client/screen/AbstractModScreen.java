@@ -15,6 +15,7 @@ import net.minecraft.client.gui.screen.MessageScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.screen.ScreenTexts;
@@ -23,6 +24,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
@@ -38,7 +41,9 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
     protected final GameOptions options = MinecraftClient.getInstance().options;
     protected final Screen parent;
     protected ButtonWidget helpButton, saveButton, openOptionsFileButton, resetOptionsButton, openOptionsDirectoryButton, doneButton;
-    protected OptionListWidget list;
+    protected OptionListWidget optionList;
+    protected CustomButtonListWidget buttonList;
+    protected final List<ClickableWidget> buttons = new ArrayList<>();
 
     public AbstractModScreen(Screen parent, GameOptions options, Text title) {
         super(parent, options, title);
@@ -69,6 +74,10 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
                 Util.getOperatingSystem().open(this.configDirectory);
             }).dimensions(this.getButtonsRightSide() + 128, this.getDoneButtonsHeight(), 20, 20).build());
         } else {
+            if (this.buttonList != null) {
+                this.buttonList.addAll(this.buttons);
+                this.addSelectableChild(this.buttonList);
+            }
             this.doneButton = this.addDrawableChild(ButtonWidget.builder(this.getDoneText(), (button) -> this.client.setScreen(this.parent)).dimensions(this.width / 2 - 100, this.height - 29, 200, 20).build());
         }
     }
@@ -129,8 +138,10 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
 
         super.render(context, mouseX, mouseY, delta);
         if (this.isOptionsScreen()) {
-            this.list.render(context, mouseX, mouseY, delta);
+            this.optionList.render(context, mouseX, mouseY, delta);
             context.drawTexture(new Identifier("speedrunnermod:textures/gui/question_mark.png"), this.getButtonsRightSide() + 106, this.helpButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        } else if (buttonList != null) {
+            this.buttonList.render(context, mouseX, mouseY, delta);
         }
         this.renderCustomObjects(context);
         this.renderTooltips(context, mouseX, mouseY);
@@ -169,6 +180,13 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
             }
             this.client.setScreen(this);
         }, link, trusted));
+    }
+
+    /**
+     * Prevents the buttons from being duplicated onto the screen.
+     */
+    protected void clearButtons() {
+        this.buttons.clear();
     }
 
     /**

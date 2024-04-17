@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
 import net.dillon.speedrunnermod.client.screen.AbstractModScreen;
+import net.dillon.speedrunnermod.client.screen.CustomButtonListWidget;
 import net.dillon.speedrunnermod.client.screen.features.doom_mode.*;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
@@ -21,31 +22,29 @@ public class DoomModeScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        int height = this.getButtonsHeight();
+        this.buttonList = this.addDrawableChild(new CustomButtonListWidget(this.client, this.width, this.height - 64, 32, 25));
 
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "basics").copy().formatted(Formatting.RED), (button) -> {
+        this.clearButtons();
+
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "basics").copy().formatted(Formatting.RED), (button) -> {
             this.client.setScreen(new BasicsScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "bosses").copy().formatted(Formatting.LIGHT_PURPLE), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "bosses").copy().formatted(Formatting.LIGHT_PURPLE), (button) -> {
             this.client.setScreen(new BossesScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "giant").copy().formatted(Formatting.GREEN).copy().formatted(Formatting.BOLD), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "giant").copy().formatted(Formatting.GREEN).copy().formatted(Formatting.BOLD), (button) -> {
             this.client.setScreen(new GiantScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "doom_blocks").copy().formatted(Formatting.RED), (button) -> {
+        }).build());
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "doom_blocks").copy().formatted(Formatting.RED), (button) -> {
             this.client.setScreen(new DoomBlocksScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsRightSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "other_things_to_know"), (button) -> {
+        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategories.DOOM_MODE, "other_things_to_know"), (button) -> {
             this.client.setScreen(new OtherThingsToKnowScreen(this.parent, this.options));
-        }).dimensions(this.getButtonsLeftSide(), height, this.getButtonsWidth(), 20).build());
+        }).build());
 
-        this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
-            this.close();
-        }).dimensions(this.getButtonsMiddle(), this.getDoneButtonsHeight(), 200, 20).build());
+        super.init();
     }
 
     @Override
