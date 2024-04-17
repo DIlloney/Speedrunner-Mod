@@ -1,10 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
-import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.*;
-import net.dillon.speedrunnermod.client.screen.features.doom_mode.*;
-import net.dillon.speedrunnermod.client.screen.features.miscellaneous.*;
-import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.*;
-import net.dillon.speedrunnermod.client.screen.features.tools_and_armor.*;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -23,6 +18,7 @@ import net.minecraft.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +27,7 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 public abstract class AbstractFeatureScreen extends GameOptionsScreen {
     protected final Screen parent;
-    private final int pageNumber;
+    protected final int pageNumber;
     private final boolean renderImage;
     private final boolean renderCraftingRecipe;
     private Screen category1Screen;
@@ -45,6 +41,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
     private Screen category4Screen;
     @Nullable
     private Text category4Text;
+    protected List<Screen> blocksAndItemsCategoryScreens, toolsAndArmorCategoryScreens, oresAndWorldgenCategoryScreens, miscellaneousCategoryScreens, doomModeCategoryScreens = new ArrayList<>();
 
     protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, int pageNumber, boolean renderImage, boolean renderCraftingRecipe) {
         super(parent, options, title);
@@ -192,76 +189,31 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
     }
 
     /**
-     * Gets the page number of every screen.
+     * Gets the page number of feature screens.
      */
     private Screen page(int pageNumber) {
         GameOptions options = MinecraftClient.getInstance().options;
-        if (this.getScreenCategory() == ScreenCategories.BLOCKS_AND_ITEMS) {
-            return switch (pageNumber) {
-                case 1 -> new SpeedrunnerIngotsScreen(this.parent, options);
-                case 2 -> new SpeedrunnerNuggetsScreen(this.parent, options);
-                case 3 -> new SpeedrunnerBlocksScreen(this.parent, options);
-                case 4 -> new SpeedrunnerWoodScreen(this.parent, options);
-                case 5 -> new MoreBoatsScreen(this.parent, options);
-                case 6 -> new IgneousRocksScreen(this.parent, options);
-                case 7 -> new EyeOfInfernoScreen(this.parent, options);
-                case 8 -> new EyeOfAnnulScreen(this.parent, options);
-                case 9 -> new SpeedrunnersEyeScreen(this.parent, options);
-                case 10 -> new DragonsPearlScreen(this.parent, options);
-                case 11 -> new PiglinAwakenerScreen(this.parent, options);
-                case 12 -> new BlazeSpotterScreen(this.parent, options);
-                case 13 -> new EnderThrusterScreen(this.parent, options);
-                case 14 -> new RaidEradicatorScreen(this.parent, options);
-                case 15 -> new SpeedrunnerBulkScreen(this.parent, options);
-                case 16 -> new SpeedrunnersWorkbenchScreen(this.parent, options);
-                case 17 -> new RetiredSpeedrunnerScreen(this.parent, options);
-                case 18 -> new GoldenFoodItemsScreen(this.parent, options);
-                default -> new FeaturesScreen(this.parent, options);
-            };
-        } else if (this.getScreenCategory() == ScreenCategories.TOOLS_AND_ARMOR) {
-            return switch (pageNumber) {
-                case 1 -> new SpeedrunnerArmorScreen(this.parent, options);
-                case 2 -> new GoldenSpeedrunnerArmorScreen(this.parent, options);
-                case 3 -> new DragonsSwordScreen(this.parent, options);
-                case 4 -> new DashEnchantmentScreen(this.parent, options);
-                case 5 -> new CooldownEnchantmentScreen(this.parent, options);
-                case 6 -> new WitherSwordScreen(this.parent, options);
-                default -> new FeaturesScreen(this.parent, options);
-            };
-        } else if (this.getScreenCategory() == ScreenCategories.ORES_AND_WORLDGEN) {
-            return switch (pageNumber) {
-                case 1 -> new SpeedrunnersWastelandBiomeScreen(this.parent, options);
-                case 2 -> new SpeedrunnerOresScreen(this.parent, options);
-                case 3 -> new ExperienceOresScreen(this.parent, options);
-                case 4 -> new IgneousOresScreen(this.parent, options);
-                case 5 -> new CommonOresScreen(this.parent, options);
-                case 6 -> new StructuresScreen(this.parent, options);
-                case 7 -> new FortressesBastionsAndStrongholdsScreen(this.parent, options);
-                default -> new FeaturesScreen(this.parent, options);
-            };
-        } else if (this.getScreenCategory() == ScreenCategories.DOOM_MODE) {
-            return switch (pageNumber) {
-                case 1 -> new BasicsScreen(this.parent, options);
-                case 2 -> new BossesScreen(this.parent, options);
-                case 3 -> new GiantScreen(this.parent, options);
-                case 4 -> new DoomBlocksScreen(this.parent, options);
-                case 5 -> new OtherThingsToKnowScreen(this.parent, options);
-                default -> new FeaturesScreen(this.parent, options);
-            };
+        Screen screen;
+
+        switch (this.getScreenCategory()) {
+            case BLOCKS_AND_ITEMS -> screen = selectScreen(pageNumber, this.blocksAndItemsCategoryScreens);
+            case TOOLS_AND_ARMOR -> screen = selectScreen(pageNumber, this.toolsAndArmorCategoryScreens);
+            case ORES_AND_WORLDGEN -> screen = selectScreen(pageNumber, this.oresAndWorldgenCategoryScreens);
+            case MISCELLANEOUS -> screen = selectScreen(pageNumber, this.miscellaneousCategoryScreens);
+            case DOOM_MODE -> screen = selectScreen(pageNumber, this.doomModeCategoryScreens);
+            default -> screen = new FeaturesScreen(this.parent, options);
+        }
+        return screen;
+    }
+
+    /**
+     * Determine the screen to go to, based on the page number.
+     */
+    private Screen selectScreen(int pageNumber, List<Screen> screens) {
+        if (pageNumber >= 1 && pageNumber <= screens.size()) {
+            return screens.get(pageNumber - 1);
         } else {
-            return switch (pageNumber) {
-                case 1 -> new ResetKeyScreen(this.parent, options);
-                case 2 -> new FogKeyScreen(this.parent, options);
-                case 3 -> new FasterBlockBreakingScreen(this.parent, options);
-                case 4 -> new ICarusModeScreen(this.parent, options);
-                case 5 -> new InfiniPearlModeScreen(this.parent, options);
-                case 6 -> new PiglinBarteringScreen(this.parent, options);
-                case 7 -> new PiglinPorkScreen(this.parent, options);
-                case 8 -> new NoMorePiglinBrutesScreen(this.parent, options);
-                case 9 -> new TripledDropsScreen(this.parent, options);
-                case 10 -> new MoreScreen(this.parent, options);
-                default -> new FeaturesScreen(this.parent, options);
-            };
+            return new FeaturesScreen(this.parent, MinecraftClient.getInstance().options);
         }
     }
 
@@ -404,6 +356,14 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
      */
     @NotNull
     protected abstract ScreenCategories getScreenCategory();
+
+    /**
+     * <p>Used to add the feature screen to the list of category screens.
+     * <pre>{@code this.screenCategoryList.add(this.pageNumber, this)}</pre>
+     */
+    protected void addScreenToCategory() {
+
+    };
 
     /**
      * Gets the type of feature screen.
