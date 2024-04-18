@@ -9,7 +9,6 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class RetiredSpeedrunnerScreen extends AbstractFeatureScreen {
 
     public RetiredSpeedrunnerScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.retired_speedrunner").formatted(Formatting.AQUA), false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.retired_speedrunner"), false, false);
     }
 
     @Override

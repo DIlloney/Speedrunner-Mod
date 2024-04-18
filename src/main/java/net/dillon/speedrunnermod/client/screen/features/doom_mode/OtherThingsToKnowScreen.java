@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features.doom_mode;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.RestartRequiredScreen;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
@@ -13,17 +12,16 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
+import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Environment(EnvType.CLIENT)
 public class OtherThingsToKnowScreen extends AbstractFeatureScreen {
 
     public OtherThingsToKnowScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.doom_mode.other_things_to_know").formatted(Formatting.RED), false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.doom_mode.other_things_to_know"), false, false);
     }
 
     @Override
@@ -33,12 +31,13 @@ public class OtherThingsToKnowScreen extends AbstractFeatureScreen {
         this.addDrawableChild(ButtonWidget.builder(ModTexts.OK, button -> this.close()).dimensions(this.getButtonsWidth(), height, 150, 20).build());
 
         height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.ENABLE_DOOM_MODE, button -> {
-            if (!DOOM_MODE) {
+        ButtonWidget enableDoomMode = this.addDrawableChild(ButtonWidget.builder(ModTexts.ENABLE_DOOM_MODE, button -> {
+            if (!options().main.doomMode) {
                 this.client.setScreen(new RestartRequiredScreen(this.parent, MinecraftClient.getInstance().options));
             }
-            SpeedrunnerMod.options().main.doomMode = true;
+            options().main.doomMode = true;
         }).dimensions(this.getButtonsWidth(), height, 150, 20).build());
+        enableDoomMode.active = !options().main.doomMode;
     }
 
     @Override

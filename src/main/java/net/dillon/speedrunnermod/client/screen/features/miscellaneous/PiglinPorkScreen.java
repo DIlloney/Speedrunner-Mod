@@ -8,7 +8,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
@@ -16,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public class PiglinPorkScreen extends AbstractFeatureScreen {
 
     public PiglinPorkScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.piglin_pork").formatted(Formatting.GOLD), true, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.piglin_pork"), true, false);
     }
 
     @Override

@@ -8,7 +8,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
@@ -16,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public class BossesScreen extends AbstractFeatureScreen {
 
     public BossesScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.doom_mode.bosses").formatted(Formatting.LIGHT_PURPLE), false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.doom_mode.bosses"), false, false);
     }
 
     @Override

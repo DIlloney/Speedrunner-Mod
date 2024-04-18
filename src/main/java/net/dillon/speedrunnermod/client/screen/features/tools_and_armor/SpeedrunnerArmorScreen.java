@@ -9,7 +9,6 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class SpeedrunnerArmorScreen extends AbstractFeatureScreen {
 
     public SpeedrunnerArmorScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.speedrunner_armor").formatted(Formatting.AQUA), true, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.speedrunner_armor"), true, false);
     }
 
     @Override

@@ -9,7 +9,6 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class StructuresScreen extends AbstractFeatureScreen {
 
     public StructuresScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.ores_and_worldgen.structures").formatted(Formatting.GREEN), false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.ores_and_worldgen.structures"), false, false);
     }
 
     @Override
