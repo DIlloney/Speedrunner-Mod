@@ -20,17 +20,18 @@ public class IgneousRocksScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "igneous_rocks";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 6;
+    public int getPageNumber() {
+        return 7;
     }
 
     @Override
-    protected @NotNull Identifier getImage() {
+    protected Identifier getImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/igneous_rock.png");
     }
 
@@ -45,12 +46,13 @@ public class IgneousRocksScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull Identifier getCraftingRecipeImage() {
+    protected Identifier getCraftingRecipeImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/igneous_rock_crafting.png");
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 

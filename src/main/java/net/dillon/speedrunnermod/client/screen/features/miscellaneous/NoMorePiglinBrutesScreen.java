@@ -21,13 +21,14 @@ public class NoMorePiglinBrutesScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "no_more_piglin_brutes";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 8;
+    public int getPageNumber() {
+        return 9;
     }
 
     @Override
@@ -66,7 +67,8 @@ public class NoMorePiglinBrutesScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.MISCELLANEOUS;
     }
 

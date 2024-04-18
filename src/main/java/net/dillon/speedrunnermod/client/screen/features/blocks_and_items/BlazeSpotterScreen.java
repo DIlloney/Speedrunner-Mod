@@ -20,13 +20,14 @@ public class BlazeSpotterScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "blaze_spotter";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 12;
+    public int getPageNumber() {
+        return 13;
     }
 
     @Override
@@ -50,7 +51,8 @@ public class BlazeSpotterScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 

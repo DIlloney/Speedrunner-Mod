@@ -20,12 +20,13 @@ public class ResetKeyScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "reset_key";
     }
 
     @Override
-    protected int getPageNumber() {
+    public int getPageNumber() {
         return 1;
     }
 
@@ -35,22 +36,13 @@ public class ResetKeyScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected int getImageWidth() {
-        return 0;
-    }
-
-    @Override
-    protected int getImageHeight() {
-        return 0;
-    }
-
-    @Override
     protected Identifier getCraftingRecipeImage() {
         return null;
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.MISCELLANEOUS;
     }
 

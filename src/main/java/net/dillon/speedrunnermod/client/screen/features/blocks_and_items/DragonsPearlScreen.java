@@ -20,17 +20,18 @@ public class DragonsPearlScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "dragons_pearl";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 10;
+    public int getPageNumber() {
+        return 11;
     }
 
     @Override
-    protected @NotNull Identifier getImage() {
+    protected Identifier getImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/dragons_pearl.png");
     }
 
@@ -45,12 +46,13 @@ public class DragonsPearlScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull Identifier getCraftingRecipeImage() {
+    protected Identifier getCraftingRecipeImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/dragons_pearl_crafting_recipe.png");
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 

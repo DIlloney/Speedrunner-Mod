@@ -21,12 +21,13 @@ public class CommonOresScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "common_ores";
     }
 
     @Override
-    protected int getPageNumber() {
+    public int getPageNumber() {
         return 5;
     }
 
@@ -41,7 +42,7 @@ public class CommonOresScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull Identifier getImage() {
+    protected Identifier getImage() {
         return null;
     }
 
@@ -56,12 +57,13 @@ public class CommonOresScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull Identifier getCraftingRecipeImage() {
+    protected Identifier getCraftingRecipeImage() {
         return null;
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.ORES_AND_WORLDGEN;
     }
 

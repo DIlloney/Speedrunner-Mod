@@ -2,15 +2,11 @@ package net.dillon.speedrunnermod.client.screen.features;
 
 import net.dillon.speedrunnermod.client.screen.AbstractModScreen;
 import net.dillon.speedrunnermod.client.screen.CustomButtonListWidget;
-import net.dillon.speedrunnermod.client.screen.features.doom_mode.*;
-import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 
 @Environment(EnvType.CLIENT)
 public class DoomModeScreen extends AbstractModScreen {
@@ -25,23 +21,7 @@ public class DoomModeScreen extends AbstractModScreen {
 
         this.clearButtons();
 
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.DOOM_MODE, "basics").copy().formatted(Formatting.RED), (button) -> {
-            this.client.setScreen(new BasicsScreen(this.parent, this.options));
-        }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.DOOM_MODE, "bosses").copy().formatted(Formatting.LIGHT_PURPLE), (button) -> {
-            this.client.setScreen(new BossesScreen(this.parent, this.options));
-        }).build());
-
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.DOOM_MODE, "giant").copy().formatted(Formatting.GREEN).copy().formatted(Formatting.BOLD), (button) -> {
-            this.client.setScreen(new GiantScreen(this.parent, this.options));
-        }).build());
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.DOOM_MODE, "doom_blocks").copy().formatted(Formatting.RED), (button) -> {
-            this.client.setScreen(new DoomBlocksScreen(this.parent, this.options));
-        }).build());
-
-        this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(ScreenCategory.DOOM_MODE, "other_things_to_know"), (button) -> {
-            this.client.setScreen(new OtherThingsToKnowScreen(this.parent, this.options));
-        }).build());
+        this.iterate(ScreenCategory.DOOM_MODE);
 
         super.init();
     }

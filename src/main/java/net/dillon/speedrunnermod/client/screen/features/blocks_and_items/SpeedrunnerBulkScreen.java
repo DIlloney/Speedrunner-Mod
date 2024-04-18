@@ -20,17 +20,18 @@ public class SpeedrunnerBulkScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "speedrunner_bulk";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 15;
+    public int getPageNumber() {
+        return 16;
     }
 
     @Override
-    protected @NotNull Identifier getImage() {
+    protected Identifier getImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/speedrunner_bulk.png");
     }
 
@@ -45,12 +46,13 @@ public class SpeedrunnerBulkScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull Identifier getCraftingRecipeImage() {
+    protected Identifier getCraftingRecipeImage() {
         return null;
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 

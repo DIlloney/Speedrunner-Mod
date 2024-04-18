@@ -110,6 +110,11 @@ public class LeaderboardsIneligibleScreen extends AbstractModScreen {
                 context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.revert_changes.tooltip"), 200), mouseX, mouseY);
             }
         }
+        if (this.middleButton.isHovered()) {
+            if (!needsRestartFromEnablingLeaderboardsMode) {
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.disable_leaderboards_mode_and_restart.tooltip"), 200), mouseX, mouseY);
+            }
+        }
         if (this.rightButton.isHovered()) {
             if (!needsRestartFromEnablingLeaderboardsMode) {
                 context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.ignore.tooltip"), 200), mouseX, mouseY);

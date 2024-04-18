@@ -13,5 +13,6 @@ import net.fabricmc.api.Environment;
 public enum ScreenType {
     STARTER,
     NORMAL,
-    FINAL
+    FINAL,
+    END
 }

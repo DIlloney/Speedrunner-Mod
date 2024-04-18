@@ -20,13 +20,14 @@ public class RaidEradicatorScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "raid_eradicator";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 14;
+    public int getPageNumber() {
+        return 15;
     }
 
     @Override
@@ -50,7 +51,8 @@ public class RaidEradicatorScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 

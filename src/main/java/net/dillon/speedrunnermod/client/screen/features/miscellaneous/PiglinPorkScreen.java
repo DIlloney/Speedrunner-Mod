@@ -20,13 +20,14 @@ public class PiglinPorkScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "piglin_pork";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 7;
+    public int getPageNumber() {
+        return 8;
     }
 
     @Override
@@ -50,7 +51,8 @@ public class PiglinPorkScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.MISCELLANEOUS;
     }
 

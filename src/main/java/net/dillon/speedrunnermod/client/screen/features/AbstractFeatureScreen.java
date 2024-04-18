@@ -1,28 +1,27 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
-import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.*;
-import net.dillon.speedrunnermod.client.screen.features.doom_mode.*;
-import net.dillon.speedrunnermod.client.screen.features.miscellaneous.*;
-import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.*;
-import net.dillon.speedrunnermod.client.screen.features.tools_and_armor.*;
+import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.client.screen.BaseModScreen;
+import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.SpeedrunnerIngotsScreen;
+import net.dillon.speedrunnermod.client.screen.features.miscellaneous.TripledDropsScreen;
+import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.SpeedrunnersWastelandBiomeScreen;
+import net.dillon.speedrunnermod.client.screen.features.tools_and_armor.SpeedrunnerArmorScreen;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.ConfirmLinkScreen;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
 
@@ -30,8 +29,7 @@ import java.util.List;
  * Used to create {@link net.dillon.speedrunnermod.SpeedrunnerMod} features screens.
  */
 @Environment(EnvType.CLIENT)
-public abstract class AbstractFeatureScreen extends GameOptionsScreen {
-    protected GameOptions options = MinecraftClient.getInstance().options;
+public abstract class AbstractFeatureScreen extends BaseModScreen {
     protected final Screen parent;
     private final boolean renderImage;
     private final boolean renderCraftingRecipe;
@@ -107,6 +105,35 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
 
             height += 24;
             this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, button -> this.close()).dimensions(width, height, 150, 20).build());
+        } else if (this.getScreenType() == ScreenType.END) {
+            height = this.height / 6 + 115;
+            int middle = this.width / 2 - 75;
+            this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.more"), button -> {
+                this.openLink(SpeedrunnerMod.WIKI_LINK, true);
+            }).dimensions(middle, height, 150, 20).build());
+
+            height += 24;
+            this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.blocks_and_items"), button -> {
+                this.client.setScreen(new SpeedrunnerIngotsScreen(this.parent, MinecraftClient.getInstance().options));
+            }).dimensions(middle, height, 150, 20).build());
+
+            height += 24;
+            this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.tools_and_armor"), button -> {
+                this.client.setScreen(new SpeedrunnerArmorScreen(this.parent, MinecraftClient.getInstance().options));
+            }).dimensions(middle, height, 150, 20).build());
+
+            height += 24;
+            this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.ores_and_worldgen"), button -> {
+                this.client.setScreen(new SpeedrunnersWastelandBiomeScreen(this.parent, MinecraftClient.getInstance().options));
+            }).dimensions(middle, height, 150, 20).build());
+
+            height += 24;
+            this.addDrawableChild(ButtonWidget.builder(ModTexts.PREVIOUS, button -> {
+                this.client.setScreen(new TripledDropsScreen(this.parent, MinecraftClient.getInstance().options));
+            }).dimensions(middle, height, 150, 20).build());
+
+            height += 24;
+            this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, button -> this.close()).dimensions(middle, height, 150, 20).build());
         }
     }
 
@@ -161,22 +188,22 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
         this.renderCustomImage(context);
     }
 
-    /**
-     * An easier way to open a link in a mod screen.
-     */
-    protected void openLink(String link, boolean trusted) {
-        this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
-            if (openInBrowser) {
-                Util.getOperatingSystem().open(link);
-            }
-            this.client.setScreen(this);
-        }, link, trusted));
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (keyCode == GLFW.GLFW_KEY_LEFT) {
+            this.client.setScreen(this.getPreviousScreen());
+            return true;
+        } else if (keyCode == GLFW.GLFW_KEY_RIGHT) {
+            this.client.setScreen(this.getNextScreen());
+            return true;
+        }
+        return super.keyPressed(keyCode, scanCode, modifiers);
     }
 
     /**
      * Gets the maximum amount of pages for each category.
      */
-    private int getMaxPages() {
+    protected int getMaxPages() {
         switch (this.getScreenCategory()) {
             case BLOCKS_AND_ITEMS -> {
                 return calculateMaxPages(ScreenCategory.BLOCKS_AND_ITEMS);
@@ -230,7 +257,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
      */
     @ChatGPT
     private Screen determineScreen(int pageNumber, ScreenCategory category) {
-        for (AbstractFeatureScreen screen : allFeatureScreens()) {
+        for (AbstractFeatureScreen screen : this.allFeatureScreens()) {
             if (screen.getPageNumber() == pageNumber && screen.getScreenCategory() == category) {
                 return screen;
             }
@@ -241,69 +268,14 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
     /**
      * Calculates the total amount of pages that are in a {@link ScreenCategory}.
      */
-    private int calculateMaxPages(ScreenCategory category) {
+    protected int calculateMaxPages(ScreenCategory category) {
         int i = 0;
-        for (AbstractFeatureScreen screen : allFeatureScreens()) {
+        for (AbstractFeatureScreen screen : this.allFeatureScreens()) {
             if (screen.getScreenCategory() == category) {
                 i++;
             }
         }
         return i;
-    }
-
-    /**
-     * The list of all feature screens.
-     */
-    protected List<AbstractFeatureScreen> allFeatureScreens() {
-        return List.of(new BlazeSpotterScreen(parent, options),
-                new DragonsPearlScreen(parent, options),
-                new EnderThrusterScreen(parent, options),
-                new EyeOfAnnulScreen(parent, options),
-                new EyeOfInfernoScreen(parent, options),
-                new GoldenFoodItemsScreen(parent, options),
-                new IgneousRocksScreen(parent, options),
-                new MoreBoatsScreen(parent, options),
-                new PiglinAwakenerScreen(parent, options),
-                new RaidEradicatorScreen(parent, options),
-                new RetiredSpeedrunnerScreen(parent, options),
-                new SpeedrunnerBlocksScreen(parent, options),
-                new SpeedrunnerBulkScreen(parent, options),
-                new SpeedrunnerIngotsScreen(parent, options),
-                new SpeedrunnerNuggetsScreen(parent, options),
-                new SpeedrunnersEyeScreen(parent, options),
-                new SpeedrunnersWorkbenchScreen(parent, options),
-                new SpeedrunnerWoodScreen(parent, options),
-
-                new BasicsScreen(parent, options),
-                new BossesScreen(parent, options),
-                new DoomBlocksScreen(parent, options),
-                new GiantScreen(parent, options),
-                new OtherThingsToKnowScreen(parent, options),
-
-                new FasterBlockBreakingScreen(parent, options),
-                new FogKeyScreen(parent, options),
-                new ICarusModeScreen(parent, options),
-                new InfiniPearlModeScreen(parent, options),
-                new MoreScreen(parent, options),
-                new NoMorePiglinBrutesScreen(parent, options),
-                new PiglinBarteringScreen(parent, options),
-                new PiglinPorkScreen(parent, options),
-                new ResetKeyScreen(parent, options),
-                new TripledDropsScreen(parent, options),
-                new CommonOresScreen(parent, options),
-                new ExperienceOresScreen(parent, options),
-                new FortressesBastionsAndStrongholdsScreen(parent, options),
-                new IgneousOresScreen(parent, options),
-                new SpeedrunnerOresScreen(parent, options),
-                new SpeedrunnersWastelandBiomeScreen(parent, options),
-                new StructuresScreen(parent, options),
-
-                new CooldownEnchantmentScreen(parent, options),
-                new DashEnchantmentScreen(parent, options),
-                new DragonsSwordScreen(parent, options),
-                new GoldenSpeedrunnerArmorScreen(parent, options),
-                new SpeedrunnerArmorScreen(parent, options),
-                new WitherSwordScreen(parent, options));
     }
 
     /**
@@ -415,30 +387,34 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
     }
 
     /**
+     * Gets the {@code width} of the rendered image.
+     */
+    protected int getImageWidth() {
+        return 0;
+    }
+
+    /**
+     * Gets the {@code height} of the rendered image.
+     */
+    protected int getImageHeight() {
+        return 0;
+    }
+
+    /**
      * Gets the key of the main feature on the feature screen.
      */
     @NotNull
-    protected abstract String linesKey();
+    public abstract String linesKey();
 
     /**
      * Returns the page number of an {@link AbstractFeatureScreen}.
      */
-    protected abstract int getPageNumber();
+    public abstract int getPageNumber();
 
     /**
      * Displays an image of the item on the screen.
      */
     protected abstract Identifier getImage();
-
-    /**
-     * Gets the {@code width} of the rendered image.
-     */
-    protected abstract int getImageWidth();
-
-    /**
-     * Gets the {@code height} of the rendered image.
-     */
-    protected abstract int getImageHeight();
 
     /**
      * Displays a {@code crafting recipe} of the item on the screen.
@@ -449,7 +425,7 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
      * Gets the category that the feature screen is in.
      */
     @NotNull
-    protected abstract ScreenCategory getScreenCategory();
+    public abstract ScreenCategory getScreenCategory();
 
     /**
      * Gets the type of feature screen.

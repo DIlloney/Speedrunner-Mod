@@ -21,12 +21,13 @@ public class GoldenSpeedrunnerArmorScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "golden_speedrunner_armor";
     }
 
     @Override
-    protected int getPageNumber() {
+    public int getPageNumber() {
         return 2;
     }
 
@@ -61,7 +62,8 @@ public class GoldenSpeedrunnerArmorScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.TOOLS_AND_ARMOR;
     }
 

@@ -21,13 +21,14 @@ public class RetiredSpeedrunnerScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "retired_speedrunner";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 17;
+    public int getPageNumber() {
+        return 18;
     }
 
     @Override
@@ -61,7 +62,8 @@ public class RetiredSpeedrunnerScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 

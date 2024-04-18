@@ -21,12 +21,13 @@ public class GiantScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "giant";
     }
 
     @Override
-    protected int getPageNumber() {
+    public int getPageNumber() {
         return 3;
     }
 
@@ -61,7 +62,8 @@ public class GiantScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.DOOM_MODE;
     }
 

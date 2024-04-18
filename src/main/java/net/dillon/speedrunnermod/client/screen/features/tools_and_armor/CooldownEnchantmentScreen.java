@@ -20,13 +20,14 @@ public class CooldownEnchantmentScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "cooldown_enchantment";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 5;
+    public int getPageNumber() {
+        return 6;
     }
 
     @Override
@@ -50,7 +51,8 @@ public class CooldownEnchantmentScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.TOOLS_AND_ARMOR;
     }
 

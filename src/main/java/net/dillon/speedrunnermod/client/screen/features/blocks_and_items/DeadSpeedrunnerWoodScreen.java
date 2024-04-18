@@ -8,31 +8,30 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class EnderThrusterScreen extends AbstractFeatureScreen {
+public class DeadSpeedrunnerWoodScreen extends AbstractFeatureScreen {
 
-    public EnderThrusterScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.ender_thruster").formatted(Formatting.BLUE), true, true);
+    public DeadSpeedrunnerWoodScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.dead_speedrunner_wood"), true, false);
     }
 
     @Override
     @NotNull
     public String linesKey() {
-        return "ender_thruster";
+        return "dead_speedrunner_wood";
     }
 
     @Override
     public int getPageNumber() {
-        return 14;
+        return 5;
     }
 
     @Override
     protected Identifier getImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/ender_thruster.png");
+        return new Identifier("speedrunnermod:textures/gui/screens/dead_speedrunner_wood.png");
     }
 
     @Override
@@ -47,7 +46,7 @@ public class EnderThrusterScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/ender_thruster_crafting_recipe.png");
+        return null;
     }
 
     @Override
@@ -55,7 +54,6 @@ public class EnderThrusterScreen extends AbstractFeatureScreen {
     public ScreenCategory getScreenCategory() {
         return ScreenCategory.BLOCKS_AND_ITEMS;
     }
-
 
     @Override
     protected @NotNull ScreenType getScreenType() {

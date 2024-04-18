@@ -24,17 +24,18 @@ public class FortressesBastionsAndStrongholdsScreen extends AbstractFeatureScree
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "fortresses_bastions_and_strongholds";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 7;
+    public int getPageNumber() {
+        return this.getMaxPages();
     }
 
     @Override
-    protected @NotNull Identifier getImage() {
+    protected Identifier getImage() {
         return null;
     }
 
@@ -55,12 +56,13 @@ public class FortressesBastionsAndStrongholdsScreen extends AbstractFeatureScree
     }
 
     @Override
-    protected @NotNull Identifier getCraftingRecipeImage() {
+    protected Identifier getCraftingRecipeImage() {
         return null;
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.ORES_AND_WORLDGEN;
     }
 

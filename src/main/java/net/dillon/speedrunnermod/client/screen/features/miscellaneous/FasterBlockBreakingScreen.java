@@ -20,37 +20,29 @@ public class FasterBlockBreakingScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "faster_block_breaking";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 3;
+    public int getPageNumber() {
+        return 4;
     }
 
     @Override
-    protected @NotNull Identifier getImage() {
+    protected Identifier getImage() {
         return null;
     }
 
     @Override
-    protected int getImageWidth() {
-        return 0;
-    }
-
-    @Override
-    protected int getImageHeight() {
-        return 0;
-    }
-
-    @Override
-    protected @NotNull Identifier getCraftingRecipeImage() {
+    protected Identifier getCraftingRecipeImage() {
         return null;
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.MISCELLANEOUS;
     }
 

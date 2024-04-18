@@ -1,19 +1,19 @@
 package net.dillon.speedrunnermod.client.screen;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
+import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.Leaderboards;
 import net.dillon.speedrunnermod.option.ModOptions;
+import net.dillon.speedrunnermod.util.ChatGPT;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.ConfirmLinkScreen;
-import net.minecraft.client.gui.screen.MessageScreen;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.OptionListWidget;
@@ -34,11 +34,10 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * Used to create basic {@link net.dillon.speedrunnermod.SpeedrunnerMod} screens.
  */
 @Environment(EnvType.CLIENT)
-public abstract class AbstractModScreen extends GameOptionsScreen {
+public abstract class AbstractModScreen extends BaseModScreen {
     protected boolean alreadySettingToIneligibleScreen = false;
     protected File configFile;
     protected final File configDirectory = new File(FabricLoader.getInstance().getConfigDir().toUri());
-    protected final GameOptions options = MinecraftClient.getInstance().options;
     protected final Screen parent;
     protected ButtonWidget helpButton, saveButton, openOptionsFileButton, resetOptionsButton, openOptionsDirectoryButton, doneButton;
     protected OptionListWidget optionList;
@@ -171,26 +170,24 @@ public abstract class AbstractModScreen extends GameOptionsScreen {
     }
 
     /**
-     * An easier way to open a link in a mod screen.
+     * Iterate through all {@link AbstractFeatureScreen}s to add to the main feature screen lists.
      */
-    protected void openLink(String link, boolean trusted) {
-        this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
-            if (openInBrowser) {
-                Util.getOperatingSystem().open(link);
-            }
-            this.client.setScreen(this);
-        }, link, trusted));
-    }
+    @ChatGPT
+    protected void iterate(ScreenCategory screenCategory) {
+        int maxPageNumber = this.allFeatureScreens().stream()
+                .filter(screen -> screen.getScreenCategory() == screenCategory)
+                .mapToInt(AbstractFeatureScreen::getPageNumber)
+                .max()
+                .orElse(0);
 
-    /**
-     * Quits a world.
-     */
-    protected void quitWorld() {
-        if (this.client.isInSingleplayer()) {
-            this.client.world.disconnect();
-            this.client.disconnect(new MessageScreen(Text.translatable("menu.savingLevel")));
-        } else {
-            this.client.disconnect();
+        for (int pageNum = 1; pageNum <= maxPageNumber; pageNum++) {
+            for (AbstractFeatureScreen screen : this.allFeatureScreens()) {
+                if (screen.getScreenCategory() == screenCategory && screen.getPageNumber() == pageNum) {
+                    this.buttons.add(ButtonWidget.builder(ModTexts.featureTitleText(screenCategory, screen.linesKey()), button -> {
+                        this.client.setScreen(screen);
+                    }).build());
+                }
+            }
         }
     }
 

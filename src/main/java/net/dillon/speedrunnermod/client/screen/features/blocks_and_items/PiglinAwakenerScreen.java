@@ -20,17 +20,18 @@ public class PiglinAwakenerScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "piglin_awakener";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 11;
+    public int getPageNumber() {
+        return 12;
     }
 
     @Override
-    protected @NotNull Identifier getImage() {
+    protected Identifier getImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/piglin_awakener.png");
     }
 
@@ -45,12 +46,13 @@ public class PiglinAwakenerScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull Identifier getCraftingRecipeImage() {
+    protected Identifier getCraftingRecipeImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/piglin_awakener_crafting_recipe.png");
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 

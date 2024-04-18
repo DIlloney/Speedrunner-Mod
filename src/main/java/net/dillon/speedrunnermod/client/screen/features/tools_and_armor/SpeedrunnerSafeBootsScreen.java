@@ -1,61 +1,70 @@
-package net.dillon.speedrunnermod.client.screen.features.blocks_and_items;
+package net.dillon.speedrunnermod.client.screen.features.tools_and_armor;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class EnderThrusterScreen extends AbstractFeatureScreen {
+public class SpeedrunnerSafeBootsScreen extends AbstractFeatureScreen {
 
-    public EnderThrusterScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.ender_thruster").formatted(Formatting.BLUE), true, true);
+    public SpeedrunnerSafeBootsScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.speedrunner_safe_boots"), false, false);
     }
 
     @Override
     @NotNull
     public String linesKey() {
-        return "ender_thruster";
+        return "speedrunner_safe_boots";
     }
 
     @Override
     public int getPageNumber() {
-        return 14;
+        return 3;
+    }
+
+    @Override
+    protected void renderCustomImage(DrawContext context) {
+        context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/speedrunner_safe_boots.png"), this.width / 2, 170, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+    }
+
+    @Override
+    protected int getButtonsWidth() {
+        return this.width / 2 - 175;
     }
 
     @Override
     protected Identifier getImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/ender_thruster.png");
+        return null;
     }
 
     @Override
     protected int getImageWidth() {
-        return 32;
+        return 240;
     }
 
     @Override
     protected int getImageHeight() {
-        return 32;
+        return 135;
     }
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/ender_thruster_crafting_recipe.png");
+        return null;
     }
 
     @Override
     @NotNull
     public ScreenCategory getScreenCategory() {
-        return ScreenCategory.BLOCKS_AND_ITEMS;
+        return ScreenCategory.TOOLS_AND_ARMOR;
     }
-
 
     @Override
     protected @NotNull ScreenType getScreenType() {

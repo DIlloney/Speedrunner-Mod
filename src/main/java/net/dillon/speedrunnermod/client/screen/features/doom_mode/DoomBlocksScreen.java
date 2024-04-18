@@ -20,12 +20,13 @@ public class DoomBlocksScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "doom_blocks";
     }
 
     @Override
-    protected int getPageNumber() {
+    public int getPageNumber() {
         return 4;
     }
 
@@ -50,7 +51,8 @@ public class DoomBlocksScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.DOOM_MODE;
     }
 

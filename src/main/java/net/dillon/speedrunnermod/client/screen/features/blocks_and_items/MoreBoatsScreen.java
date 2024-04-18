@@ -21,13 +21,14 @@ public class MoreBoatsScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "more_boats";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 5;
+    public int getPageNumber() {
+        return 6;
     }
 
     @Override
@@ -41,7 +42,7 @@ public class MoreBoatsScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull Identifier getImage() {
+    protected Identifier getImage() {
         return null;
     }
 
@@ -56,12 +57,13 @@ public class MoreBoatsScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull Identifier getCraftingRecipeImage() {
+    protected Identifier getCraftingRecipeImage() {
         return null;
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 

@@ -20,13 +20,14 @@ public class DashEnchantmentScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "dash_enchantment";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 4;
+    public int getPageNumber() {
+        return 5;
     }
 
     @Override
@@ -50,7 +51,8 @@ public class DashEnchantmentScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.TOOLS_AND_ARMOR;
     }
 

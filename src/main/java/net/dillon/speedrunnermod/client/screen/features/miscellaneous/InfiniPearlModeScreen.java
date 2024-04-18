@@ -20,13 +20,14 @@ public class InfiniPearlModeScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "infini_pearl_mode";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 5;
+    public int getPageNumber() {
+        return 6;
     }
 
     @Override
@@ -50,7 +51,8 @@ public class InfiniPearlModeScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.MISCELLANEOUS;
     }
 

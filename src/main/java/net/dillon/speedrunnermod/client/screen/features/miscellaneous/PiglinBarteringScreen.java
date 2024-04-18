@@ -20,13 +20,14 @@ public class PiglinBarteringScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "piglin_bartering";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 6;
+    public int getPageNumber() {
+        return 7;
     }
 
     @Override
@@ -35,22 +36,13 @@ public class PiglinBarteringScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected int getImageWidth() {
-        return 0;
-    }
-
-    @Override
-    protected int getImageHeight() {
-        return 0;
-    }
-
-    @Override
     protected Identifier getCraftingRecipeImage() {
         return null;
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.MISCELLANEOUS;
     }
 

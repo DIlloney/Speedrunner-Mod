@@ -20,17 +20,18 @@ public class ExperienceOresScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "experience_ores";
     }
 
     @Override
-    protected int getPageNumber() {
+    public int getPageNumber() {
         return 3;
     }
 
     @Override
-    protected @NotNull Identifier getImage() {
+    protected Identifier getImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/experience_ores.png");
     }
 
@@ -45,12 +46,13 @@ public class ExperienceOresScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull Identifier getCraftingRecipeImage() {
+    protected Identifier getCraftingRecipeImage() {
         return null;
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.ORES_AND_WORLDGEN;
     }
 

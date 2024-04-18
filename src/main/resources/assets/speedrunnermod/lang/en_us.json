@@ -552,6 +552,9 @@
   "speedrunnermod.title.features.blocks_and_items.speedrunner_wood": "Speedrunner Wood",
   "speedrunnermod.features.blocks_and_items.speedrunner_wood.text": "Found in the §l§bSpeedrunner's Wasteland§r biome, as well as in other parts of the world, the speedrunner wood can be used to craft anything that normal wood could. It can also be used as a §lfuel source,§r but §6cannot burn from lava.",
 
+  "speedrunnermod.title.features.blocks_and_items.dead_speedrunner_wood": "Dead Speedrunner Wood",
+  "speedrunnermod.features.blocks_and_items.dead_speedrunner_wood.text": "Found deserts, badlands, and soul sand valleys, the §bdead speedrunner wood§r acts pretty much like normal wood. Used to craft normal sticks, burns longer than the normal speedrunner wood in a furnace, and has a different style.",
+
   "speedrunnermod.title.features.blocks_and_items.more_boats": "More Boats",
   "speedrunnermod.features.blocks_and_items.more_boats.text": "Along with the §bspeedrunner boat,§r there are now also §ccrimson§r and §9warped§r boats. They can be crafted just like any ordinary boat, and can also be used in lava.",
 
@@ -565,7 +568,7 @@
   "speedrunnermod.features.blocks_and_items.eye_of_annul.text": "The §deye of annul§r also acts just like an §aeye of ender,§r but in addition, it tells you the §oexact distance§r of the nearest stronghold, in blocks. If you §lshift + right click,§r you can teleport directly to the closest stronghold portal room.",
 
   "speedrunnermod.title.features.blocks_and_items.dragons_pearl": "Dragon's Pearl",
-  "speedrunnermod.features.blocks_and_items.dragons_pearl.text": "The §ddragon's pearl§r can be used to §lforce the ender dragon§r to §linstantly perch,§r in case you miss the §ldragon perch time§r perch. Makes the end fight much faster!",
+  "speedrunnermod.features.blocks_and_items.dragons_pearl.text": "The §ddragon's pearl§r can be used to §lforce the ender dragon§r to instantly perch, in case you miss the §ldragon perch time§r perch. Makes the end fight much faster!",
 
   "speedrunnermod.title.features.blocks_and_items.piglin_awakener": "Piglin Awakener",
   "speedrunnermod.features.blocks_and_items.piglin_awakener.text": "The §6piglin awakener§r is an interesting one. Have you ever been in the nether, and you just can't find any piglin? Well, this item solves this. Upon §lright-clicking,§r nearby piglin will be §lteleported,§r or awakened, to the player. You can craft this item with 8 gold ingots surrounding an §9ender pearl,§r §6golden apple,§r or §eblaze powder.",
@@ -586,7 +589,7 @@
   "speedrunnermod.features.blocks_and_items.speedrunner_bulk.text": "Found only in loot chests, the §bspeedrunner bulk§r is a very powerful food item that gives §6fire resistance§r and §9water breathing,§r and also has a chance to give §bspeed, §ehaste,§r and §cregeneration§r when eaten.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunners_workbench": "Speedrunner's Workbench",
-  "speedrunnermod.features.blocks_and_items.speedrunners_workbench.text": "Crafted with §b2 speedrunner ingots§r and §b4 speedrunner planks, the §bSpeedrunner Workbench§r acts just like a smithing table, but is also the job site block for a §rRetired Speedrunner villager. You can also use this block to transfer enchantments to other items!",
+  "speedrunnermod.features.blocks_and_items.speedrunners_workbench.text": "Crafted with §b2 speedrunner ingots§r and §b4 speedrunner planks,§r the §bSpeedrunner Workbench§r acts just like a smithing table, but is also the job site block for a §rRetired Speedrunner villager. You can also use this block to transfer enchantments to other items!",
 
   "speedrunnermod.title.features.blocks_and_items.retired_speedrunner": "Retired Speedrunner",
   "speedrunnermod.features.blocks_and_items.retired_speedrunner.text": "The §b§lRetired Speedrunner§r is a new villager profession, whom offers some very good trades, for very cheap prices. It will sell things like ender pearls, overpowered enchanted books, and other and other helpful combat items, to make speedrunning the game easier.",
@@ -602,6 +605,9 @@
 
   "speedrunnermod.title.features.tools_and_armor.golden_speedrunner_armor": "Golden Speedrunner Armor",
   "speedrunnermod.features.tools_and_armor.golden_speedrunner_armor.text": "This is basically an upgrade for the normal §6golden armor.§r It has more durability than normal gold, it's faster than normal gold, and it can §lkeep you safe from piglin.",
+
+  "speedrunnermod.title.features.tools_and_armor.speedrunner_safe_boots": "Speedrunner Safe Boots",
+  "speedrunnermod.features.tools_and_armor.speedrunner_safe_boots.text": "§bSpeedrunner boots§r (or §6golden speedrunner boots)§r can be worn by the player, giving infinite speed, and protects the player from sensing off §bsculk sensor blocks.",
 
   "speedrunnermod.title.features.tools_and_armor.dragons_sword": "Dragon's Sword",
   "speedrunnermod.features.tools_and_armor.dragons_sword.text": "The dragon's sword,§r crafted with a §bspeedrunner sword§r and a §ddragon's pearl,§r this weapon can be used to instantly kill the ender dragon in just one hit. cIf you're on§r §l§cdoom mode,§r §cthen good luck with that.",
@@ -622,16 +628,16 @@
   "speedrunnermod.features.ores_and_worldgen.speedrunners_wasteland.text": "This biome will generate commonly throughout the overworld, a great place for speedrunning, because mobs spawn less (except for enderman), diamonds generate more commonly, and of course, this is where you find the §bspeedrunner trees.§r If you ever want to feel safe while speedrunning, this is the perfect place to go.",
 
   "speedrunnermod.title.features.ores_and_worldgen.speedrunner_ores": "Speedrunner Ores",
-  "speedrunnermod.features.ores_and_worldgen.speedrunner_ores.text": "Found across all biomes in the overworld and the nether, the §bspeedrunner ores§r can be used to craft all of the speedrunner tools, blocks, and armor, and can also be found more commonly in the §bSpeedrunner's Wasteland§r biome. Ingots and nuggets can also be found in loot chests.",
+  "speedrunnermod.features.ores_and_worldgen.speedrunner_ores.text": "Found across all biomes in the overworld and the nether, the speedrunner ores can be used to craft all of the speedrunner tools, blocks, and armor, and can also be found more commonly in the §bSpeedrunner's Wasteland§r biome. Ingots and nuggets can also be found in loot chests.",
 
   "speedrunnermod.title.features.ores_and_worldgen.experience_ores": "Experience Ores",
-  "speedrunnermod.features.ores_and_worldgen.experience_ores.text": "Found across all biomes in the overworld and the nether, the §aexperience ores§r will drop a §lbunch of experience§r when mined, allowing the player to enchant items with ease.",
+  "speedrunnermod.features.ores_and_worldgen.experience_ores.text": "Found across all biomes in the overworld and the nether, the experience ores will drop a §lbunch of experience§r when mined, allowing the player to enchant items with ease.",
 
   "speedrunnermod.title.features.ores_and_worldgen.igneous_ores": "Igneous Ores",
   "speedrunnermod.features.ores_and_worldgen.igneous_ores.text": "Found across all biomes in the overworld and the nether, §7igneous ores§r drop §7igneous rocks,§r which you already know can be used to craft obsidian, making getting to the nether much easier!",
 
   "speedrunnermod.title.features.ores_and_worldgen.common_ores": "Ores are More Common!",
-  "speedrunnermod.features.ores_and_worldgen.common_ores.text": "That's right, §lores of all types generate more commonly throughout the world.§r This includes iron, diamonds, speedrunner ores, redstone, lapis, and everything else! Now you can get stacked items, in just a few minutes!",
+  "speedrunnermod.features.ores_and_worldgen.common_ores.text": "That's right, ores of all types generate more commonly throughout the world. This includes iron, diamonds, speedrunner ores, redstone, lapis, and everything else! Now you can get stacked items, in just a few minutes!",
 
   "speedrunnermod.title.features.ores_and_worldgen.structures": "Structures are More Common!",
   "speedrunnermod.features.ores_and_worldgen.structures.text": "Structures of almost all types will generate more commonly! No more searching for the buried bastions and far away nether fortresses. §o(This can be disabled in the §b§ospeedrunner mod options menu).",
@@ -666,7 +672,10 @@
   "speedrunnermod.features.miscellaneous.reset_key.text": "Automatically create a new world in the press of a button, the default key is §l\"R\".§r You can set this to whatever you'd like in the §l\"Controls\"§r menu.",
 
   "speedrunnermod.title.features.miscellaneous.fog_key": "Fog Key",
-  "speedrunnermod.features.miscellaneous.fog_key.text": "Automatically enable/disable Minecraft's distant fog in the press of a button, default key is §l\"H\".§r You can also change this to whatever you'd like in the §l\"Controls\" menu.",
+  "speedrunnermod.features.miscellaneous.fog_key.text": "Automatically enable/disable Minecraft's distant fog in the press of a button, default key is §l\"H\".§r You can also change this to whatever you'd like in the §l\"Controls\"§r menu.",
+
+  "speedrunnermod.title.features.miscellaneous.fullbright_key": "Fullbright Key",
+  "speedrunnermod.features.miscellaneous.fullbright_key.text": "Instantly set your brightness to 1000% to see in the dark caves, especially useful when trying to spot things in dark areas. Default key is §l\"O\".§r You can change this to whatever you'd like in the §l\"Controls\"§r menu.",
 
   "speedrunnermod.title.features.miscellaneous.faster_block_breaking": "Faster Block Breaking",
   "speedrunnermod.features.miscellaneous.faster_block_breaking.text": "Certain blocks can be broken at a much faster rate, including wood, stone, ores, netherrack, end stone, and much more! §o(This can be disabled in the §b§ospeedrunner mod options menu).",

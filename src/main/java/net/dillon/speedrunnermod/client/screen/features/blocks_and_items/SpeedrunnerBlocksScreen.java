@@ -20,17 +20,18 @@ public class SpeedrunnerBlocksScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "speedrunner_blocks";
     }
 
     @Override
-    protected int getPageNumber() {
+    public int getPageNumber() {
         return 3;
     }
 
     @Override
-    protected @NotNull Identifier getImage() {
+    protected Identifier getImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/speedrunner_block.png");
     }
 
@@ -45,12 +46,13 @@ public class SpeedrunnerBlocksScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull Identifier getCraftingRecipeImage() {
+    protected Identifier getCraftingRecipeImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/speedrunner_block_crafting_recipe.png");
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 

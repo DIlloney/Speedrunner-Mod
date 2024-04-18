@@ -20,17 +20,18 @@ public class EyeOfInfernoScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "eye_of_inferno";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 7;
+    public int getPageNumber() {
+        return 8;
     }
 
     @Override
-    protected @NotNull Identifier getImage() {
+    protected Identifier getImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/eye_of_inferno.png");
     }
 
@@ -45,12 +46,13 @@ public class EyeOfInfernoScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull Identifier getCraftingRecipeImage() {
+    protected Identifier getCraftingRecipeImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/eye_of_inferno_crafting_recipe.png");
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.BLOCKS_AND_ITEMS;
     }
 

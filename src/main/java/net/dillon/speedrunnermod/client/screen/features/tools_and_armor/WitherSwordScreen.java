@@ -23,13 +23,14 @@ public class WitherSwordScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull String linesKey() {
+    @NotNull
+    public String linesKey() {
         return "wither_sword";
     }
 
     @Override
-    protected int getPageNumber() {
-        return 6;
+    public int getPageNumber() {
+        return this.getMaxPages();
     }
 
     @Override
@@ -53,7 +54,8 @@ public class WitherSwordScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected @NotNull ScreenCategory getScreenCategory() {
+    @NotNull
+    public ScreenCategory getScreenCategory() {
         return ScreenCategory.TOOLS_AND_ARMOR;
     }
 
