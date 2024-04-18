@@ -251,6 +251,9 @@ public abstract class AbstractFeatureScreen extends GameOptionsScreen {
         return i;
     }
 
+    /**
+     * The list of all feature screens.
+     */
     protected List<AbstractFeatureScreen> allFeatureScreens() {
         return List.of(new BlazeSpotterScreen(parent, options),
                 new DragonsPearlScreen(parent, options),
