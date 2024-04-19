@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class NoMorePiglinBrutesScreen extends AbstractFeatureScreen {
 
     public NoMorePiglinBrutesScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.no_more_piglin_brutes"), false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.no_more_piglin_brutes"), false, false, true);
     }
 
     @Override

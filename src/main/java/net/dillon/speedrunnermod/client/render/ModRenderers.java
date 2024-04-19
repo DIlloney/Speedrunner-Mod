@@ -96,5 +96,7 @@ public class ModRenderers {
 
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ModBlocks.SPEEDRUNNER_SIGN_TEXTURE));
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ModBlocks.SPEEDRUNNER_HANGING_SIGN_TEXTURE));
+
+        info("Initialized custom renderers.");
     }
 }

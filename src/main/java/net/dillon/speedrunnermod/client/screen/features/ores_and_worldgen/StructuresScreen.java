@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class StructuresScreen extends AbstractFeatureScreen {
 
     public StructuresScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.ores_and_worldgen.structures"), false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.ores_and_worldgen.structures"), false, false, true);
     }
 
     @Override
@@ -31,13 +31,8 @@ public class StructuresScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/structures.png"), this.width / 2, 170, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
-    }
-
-    @Override
-    protected int getButtonsWidth() {
-        return this.width / 2 - 175;
+    protected Identifier getDownscaledImage() {
+        return new Identifier("speedrunnermod:textures/gui/screens/structures.png");
     }
 
     @Override

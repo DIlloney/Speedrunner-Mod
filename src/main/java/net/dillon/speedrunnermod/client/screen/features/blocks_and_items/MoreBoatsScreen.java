@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class MoreBoatsScreen extends AbstractFeatureScreen {
 
     public MoreBoatsScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.more_boats"), false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.more_boats"), false, false, true);
     }
 
     @Override
@@ -33,11 +33,6 @@ public class MoreBoatsScreen extends AbstractFeatureScreen {
     @Override
     protected void renderCustomImage(DrawContext context) {
         context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/more_boats.png"), this.width / 2, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
-    }
-
-    @Override
-    protected int getButtonsWidth() {
-        return this.width / 2 - 175;
     }
 
     @Override

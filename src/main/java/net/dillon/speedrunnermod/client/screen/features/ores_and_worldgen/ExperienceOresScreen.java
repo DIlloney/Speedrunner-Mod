@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public class ExperienceOresScreen extends AbstractFeatureScreen {
 
     public ExperienceOresScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.ores_and_worldgen.experience_ores"), true, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.ores_and_worldgen.experience_ores"), false, false, true);
     }
 
     @Override
@@ -30,18 +30,13 @@ public class ExperienceOresScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    protected Identifier getImage() {
+    protected Identifier getDownscaledImage() {
         return new Identifier("speedrunnermod:textures/gui/screens/experience_ores.png");
     }
 
     @Override
-    protected int getImageWidth() {
-        return 32;
-    }
-
-    @Override
-    protected int getImageHeight() {
-        return 32;
+    protected Identifier getImage() {
+        return null;
     }
 
     @Override

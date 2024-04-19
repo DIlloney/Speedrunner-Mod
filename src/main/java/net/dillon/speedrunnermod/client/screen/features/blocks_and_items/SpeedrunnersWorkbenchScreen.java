@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public class SpeedrunnersWorkbenchScreen extends AbstractFeatureScreen {
 
     public SpeedrunnersWorkbenchScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.speedrunners_workbench"), true, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.speedrunners_workbench"), true, true);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class SpeedrunnersWorkbenchScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return null;
+        return new Identifier("speedrunnermod:textures/gui/screens/speedrunners_workbench_crafting_recipe.png");
     }
 
     @Override

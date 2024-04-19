@@ -33,6 +33,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
     protected final Screen parent;
     private final boolean renderImage;
     private final boolean renderCraftingRecipe;
+    private boolean renderCustomImage = false;
     private Screen category1Screen;
     private Screen category2Screen;
     private Screen category3Screen;
@@ -52,11 +53,36 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         this.renderCraftingRecipe = renderCraftingRecipe;
     }
 
+    protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderImage, boolean renderCraftingRecipe, boolean renderCustomImage) {
+        super(parent, options, title);
+        this.parent = parent;
+        this.renderImage = renderImage;
+        this.renderCraftingRecipe = renderCraftingRecipe;
+        this.renderCustomImage = renderCustomImage;
+    }
+
     protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderImage, boolean renderCraftingRecipe, Screen category1Screen, Text category1Text, Screen category2Screen, Text category2Text, Screen category3Screen, Text category3Text, boolean hasFourthCategory, @Nullable Screen category4Screen, @Nullable Text category4Text) {
         super(parent, options, title);
         this.parent = parent;
         this.renderImage = renderImage;
         this.renderCraftingRecipe = renderCraftingRecipe;
+        this.category1Screen = category1Screen;
+        this.category2Screen = category2Screen;
+        this.category3Screen = category3Screen;
+        this.category1Text = category1Text;
+        this.category2Text = category2Text;
+        this.category3Text = category3Text;
+        this.hasFourthCategory = hasFourthCategory;
+        this.category4Screen = category4Screen;
+        this.category4Text = category4Text;
+    }
+
+    protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderImage, boolean renderCraftingRecipe, boolean renderCustomImage, Screen category1Screen, Text category1Text, Screen category2Screen, Text category2Text, Screen category3Screen, Text category3Text, boolean hasFourthCategory, @Nullable Screen category4Screen, @Nullable Text category4Text) {
+        super(parent, options, title);
+        this.parent = parent;
+        this.renderImage = renderImage;
+        this.renderCraftingRecipe = renderCraftingRecipe;
+        this.renderCustomImage = renderCustomImage;
         this.category1Screen = category1Screen;
         this.category2Screen = category2Screen;
         this.category3Screen = category3Screen;
@@ -185,13 +211,16 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
             context.drawTexture(this.getCraftingRecipeImage(), this.getCraftingRecipeImageX(), this.getCraftingRecipeImageY(), 0.0F, 0.0F, this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight(), this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight());
         }
 
+        if (this.getDownscaledImage() != null) {
+            this.renderFullResolutionDownscaledImage(context);
+        }
         this.renderCustomImage(context);
     }
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if (keyCode == GLFW.GLFW_KEY_LEFT) {
-            this.client.setScreen(this.getPreviousScreen());
+            this.client.setScreen(this.getPreviousScreen());  
             return true;
         } else if (keyCode == GLFW.GLFW_KEY_RIGHT) {
             this.client.setScreen(this.getNextScreen());
@@ -307,7 +336,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
      * <p>You should only {@link Override} this method if you use {@link AbstractFeatureScreen#renderCustomImage(DrawContext)}.</p>
      */
     protected int getButtonsWidth() {
-        return this.renderCraftingRecipe ? this.width / 2 - 175 : this.width / 2 - 75;
+        return this.renderCraftingRecipe || this.renderCustomImage ? this.width / 2 - 175 : this.width / 2 - 75;
     }
 
     /**
@@ -361,6 +390,21 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
      */
     protected int getCraftingRecipeImageHeight() {
         return 78;
+    }
+
+    /**
+     * Renders a 1920x1080 image cut down to 240x135 on the screen.
+     */
+    protected void renderFullResolutionDownscaledImage(DrawContext context) {
+        context.drawTexture(this.getDownscaledImage(), this.width / 2, 170, 0.0F, 0.0F, 240, 135, 240, 135);
+    }
+
+    /**
+     * <p>Gets the downscaled image location.</p>
+     * As long as this returns {@code null}, the image will not be rendered on the screen.
+     */
+    protected Identifier getDownscaledImage() {
+        return null;
     }
 
     /**

@@ -582,19 +582,19 @@
   "speedrunnermod.features.blocks_and_items.ender_thruster.text": "Upon right-clicking, this item will §lteleport the player§r to the §9surface of the§f §9world§r§o (or the highest available air block near or on the surface).§r\nEspecially useful when underground or in caves with no exit.",
 
   "speedrunnermod.title.features.blocks_and_items.raid_eradicator": "§7Raid Eradicator",
-  "speedrunnermod.features.blocks_and_items.raid_eradicator.text": "A §lvery powerful§r item, especially when playing on §c§lDoom Mode.§r\nUpon right-clicking, all nearby §7raider entities§f (vindicators, evokers, ravagers, pillagers, etc.) within a §l300 block radius§r will be killed, and all §9witches§r will be §lteleported directly towards the player.§rUpon use, the player will be deducted their §cmaximum health, With this item, you can kill all nearby raider entities in just one click. Witches will not be killed, but instead teleported to the player. However, this comes at the cost of a totem of undying, a long with the player's maximum health. Upon use, the player will be deducted their maximum health (can be reduced with protection), and use their totem. The item will not work if the player does not have a totem equipped.",
+  "speedrunnermod.features.blocks_and_items.raid_eradicator.text": "A §lvery powerful§r item, especially when playing on §c§lDoom Mode.§r\nUpon right-clicking, all nearby §7raider entities§f (vindicators, evokers, ravagers, pillagers, etc.) within a §l300 block radius§r will be killed, and all §9witches§r will be §lteleported directly towards the player.§r\nTo use this item, you must be holding a §etotem of undying,§f and upon use, the player will be deducted their §c§lmaximum health.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunner_bulk": "§bSpeedrunner Bulk",
   "speedrunnermod.features.blocks_and_items.speedrunner_bulk.text": "Found only in loot chests, the §bspeedrunner bulk§r is a very powerful food item that gives §6fire resistance§r and §9water breathing,§r and also has a chance to give §bspeed, §ehaste,§r and §cregeneration§r when eaten.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunners_workbench": "§bSpeedrunner's Workbench",
-  "speedrunnermod.features.blocks_and_items.speedrunners_workbench.text": "Crafted with §b2 speedrunner ingots§r and §b4 speedrunner planks,§r the §bSpeedrunner Workbench§r acts just like a smithing table, but is also the job site block for a §rRetired Speedrunner villager. You can also use this block to transfer enchantments to other items!",
+  "speedrunnermod.features.blocks_and_items.speedrunners_workbench.text": "Crafted with §b2 speedrunner ingots§r and §b4 speedrunner planks,§r the §b§lSpeedrunner's Workbench§r acts just like a smithing table, but is also the block that the §bRetired Speedrunner villager profession§f uses.\nYou can also use this block to §5transfer enchantments§f to other items!",
 
   "speedrunnermod.title.features.blocks_and_items.retired_speedrunner": "§bRetired Speedrunner",
-  "speedrunnermod.features.blocks_and_items.retired_speedrunner.text": "The §b§lRetired Speedrunner§r is a new villager profession, whom offers some very good trades, for very cheap prices. It will sell things like ender pearls, overpowered enchanted books, and other and other helpful combat items, to make speedrunning the game easier.",
+  "speedrunnermod.features.blocks_and_items.retired_speedrunner.text": "The §b§lRetired Speedrunner§r is a new villager profession, whom offers some very overpowered trades, for very cheap prices, such as §5over-maxed out enchanted books,§e golden apples,§b speedrunner mod items,§f and more!",
 
   "speedrunnermod.title.features.blocks_and_items.golden_food_items": "§6Golden Food Items",
-  "speedrunnermod.features.blocks_and_items.golden_food_items.text": "Crafted from §68 gold nuggets§r and the respective food item, these powerful foods give the player §lmore saturation§r and §lhunger§r than the original food would. To read about more features, refer to the buttons below.",
+  "speedrunnermod.features.blocks_and_items.golden_food_items.text": "Crafted from §68 gold nuggets§r and the respective food item, these powerful foods give the player §lmore saturation§r and §lhunger§r than it's respective parent food would.\nTo read about more features, refer to the buttons below.",
 
   "speedrunnermod.menu.features.tools_and_armor": "Tools and Armor...",
   "speedrunnermod.title.features.tools_and_armor": "Tools and Armor",
@@ -609,40 +609,40 @@
   "speedrunnermod.features.tools_and_armor.speedrunner_safe_boots.text": "§bSpeedrunner boots§r (or §6golden speedrunner boots)§r can be worn by the player, giving infinite speed, and protects the player from sensing off §bsculk sensor blocks.",
 
   "speedrunnermod.title.features.tools_and_armor.dragons_sword": "§dDragon's Sword",
-  "speedrunnermod.features.tools_and_armor.dragons_sword.text": "The dragon's sword,§r crafted with a §bspeedrunner sword§r and a §ddragon's pearl,§r this weapon can be used to instantly kill the ender dragon in just one hit. cIf you're on§r §l§cdoom mode,§r §cthen good luck with that.",
+  "speedrunnermod.features.tools_and_armor.dragons_sword.text": "A §overy powerful weapon,§r used against the §d§lender dragon,§r which will instantly kill it in §lone hit.§r\n§oDon't try it on §c§oDoom Mode,§r§o though...",
 
   "speedrunnermod.title.features.tools_and_armor.dash_enchantment": "§bDash Enchantment",
-  "speedrunnermod.features.tools_and_armor.dash_enchantment.text": "A new modded enchantment, which can be found in various loot chests, and through piglin bartering, the §bDash§r enchantment drastically increases the players speed, by giving them the speed effect. This enchantment can only be applied to boots.",
+  "speedrunnermod.features.tools_and_armor.dash_enchantment.text": "A new enchantment, which can be found in various different §bloot chests§f and via §6piglin bartering,§r this enchantment will give the player the §b§lSpeed effect,§r with it's amplifier being multiplied for each level of the enchantment (max level = §l3,§r only applicable on boots).",
 
   "speedrunnermod.title.features.tools_and_armor.cooldown_enchantment": "§bCooldown Enchantment",
-  "speedrunnermod.features.tools_and_armor.cooldown_enchantment.text": "This enchantment decreases the cooldown on certain items, such as ender pearls, shields, and chorus fruit. Can be found via various loot chests.",
+  "speedrunnermod.features.tools_and_armor.cooldown_enchantment.text": "A new enchantment, which can also be found in various different §bloot chests,§r this enchantment decreases the cooldown time on certain items, such as §9ender pearls,§d chorus fruit,§f and§7 shields.",
 
   "speedrunnermod.title.features.tools_and_armor.wither_sword": "§7Wither Sword",
-  "speedrunnermod.features.tools_and_armor.wither_sword.text": "Crafted with §ltwo wither bones§r and a §bspeedrunner stick,§r this weapon can one-shot wither skeletons, and will make them §lalways§r drop a wither skeleton skull. §l§7Wither bones§r can be §lcrafted§r with §ltwo bones§r and §ltwo pieces of coal.§r",
+  "speedrunnermod.features.tools_and_armor.wither_sword.text": "A new weapon that can §lone-shot§r§7 wither skeletons,§f and will give them a §l100%§r §lchance§r to drop a §7wither skeleton skull§f upon §cdeath.§r\nTo craft §7wither bones,§r you will need two §lnormal bones§r and two pieces of §7coal.",
 
   "speedrunnermod.menu.features.ores_and_worldgen": "Ores and Worldgen...",
   "speedrunnermod.title.features.ores_and_worldgen": "Ores and Worldgen",
 
-  "speedrunnermod.title.features.ores_and_worldgen.speedrunners_wasteland": "§bSpeedrunner's Wasteland Biome",
-  "speedrunnermod.features.ores_and_worldgen.speedrunners_wasteland.text": "This biome will generate commonly throughout the overworld, a great place for speedrunning, because mobs spawn less (except for enderman), diamonds generate more commonly, and of course, this is where you find the §bspeedrunner trees.§r If you ever want to feel safe while speedrunning, this is the perfect place to go.",
+  "speedrunnermod.title.features.ores_and_worldgen.speedrunners_wasteland": "§bThe §b§lSpeedrunner's Wasteland Biome",
+  "speedrunnermod.features.ores_and_worldgen.speedrunners_wasteland.text": "A new §abiome,§f which will will generate pretty commonly throughout the overworld. A §lgreat place§r for §bspeedrunning,§r because mobs spawn less (except for §denderman),§f §bdiamonds§f and §9lapis§f generate more commonly, and big amounts of §bspeedrunner trees§r generate.",
 
   "speedrunnermod.title.features.ores_and_worldgen.speedrunner_ores": "§bSpeedrunner Ores",
-  "speedrunnermod.features.ores_and_worldgen.speedrunner_ores.text": "Found across all biomes in the overworld and the nether, the speedrunner ores can be used to craft all of the speedrunner tools, blocks, and armor, and can also be found more commonly in the §bSpeedrunner's Wasteland§r biome. Ingots and nuggets can also be found in loot chests.",
+  "speedrunnermod.features.ores_and_worldgen.speedrunner_ores.text": "Found across §lall biomes§r in the §aoverworld§f and in §cthe nether,§f the §bspeedrunner ores§f will drop §bspeedrunner ingots,§r which can be used to craft all of the speedrunner tools, blocks, and armor, and can be found more commonly in the §b§lSpeedrunner's Wasteland§r biome.",
 
   "speedrunnermod.title.features.ores_and_worldgen.experience_ores": "§aExperience Ores",
-  "speedrunnermod.features.ores_and_worldgen.experience_ores.text": "Found across all biomes in the overworld and the nether, the experience ores will drop a §lbunch of experience§r when mined, allowing the player to enchant items with ease.",
+  "speedrunnermod.features.ores_and_worldgen.experience_ores.text": "Found across §lall biomes§r in the §aoverworld§f and in §cthe nether,§f the §aexperience ores§f will simply drop a §lbunch of experience§r when mined.\nThe §aamount of experience dropped§f can be increased with the §5fortune enchantment.",
 
   "speedrunnermod.title.features.ores_and_worldgen.igneous_ores": "§7Igneous Ores",
-  "speedrunnermod.features.ores_and_worldgen.igneous_ores.text": "Found across all biomes in the overworld and the nether, §7igneous ores§r drop §7igneous rocks,§r which you already know can be used to craft obsidian, making getting to the nether much easier!",
+  "speedrunnermod.features.ores_and_worldgen.igneous_ores.text": "Found in the §b§lSpeedrunner's Wasteland biome§r and in §cthe nether,§r the §7igneous ores§r will drop §l2-5§r§7 igneous rocks,§r which can be used to craft obsidian.",
 
   "speedrunnermod.title.features.ores_and_worldgen.common_ores": "§bOres are More Common!",
-  "speedrunnermod.features.ores_and_worldgen.common_ores.text": "That's right, ores of all types generate more commonly throughout the world. This includes iron, diamonds, speedrunner ores, redstone, lapis, and everything else! Now you can get stacked items, in just a few minutes!",
+  "speedrunnermod.features.ores_and_worldgen.common_ores.text": "Certain ores, including §bdiamonds§f and §9lapis§f will generate more commonly all throughout the overworld.\n§bSpeedrunner ores, diamond ores, §aexperience ores§f and §9lapis§r will all generate even §omore§r commonly in the §b§lSpeedrunner's Wasteland biome.",
 
   "speedrunnermod.title.features.ores_and_worldgen.structures": "§aStructures are More Common!",
-  "speedrunnermod.features.ores_and_worldgen.structures.text": "Structures of almost all types will generate more commonly! No more searching for the buried bastions and far away nether fortresses. §o(This can be disabled in the §b§ospeedrunner mod options menu).",
+  "speedrunnermod.features.ores_and_worldgen.structures.text": "Structures of almost all types, including §6villages, §cnether fortresses, §7bastions, §6buried treasures, §1shipwrecks, §cruined portals, §dend cities, §6desert pyramids, §7pillager outposts, §ajungle temples §fand §6woodland mansions§f will generate more commonly!\n§o The spawn rate of these structures can be configured in the §b§ospeedrunner mod options menu.",
 
-  "speedrunnermod.title.features.ores_and_worldgen.fortresses_bastions_and_strongholds": "Nether Fortresses, Bastions and Strongholds",
-  "speedrunnermod.features.ores_and_worldgen.fortresses_bastions_and_strongholds.text": "These so important structures have been changed with this mod, to make navigating them much easier. Nether fortresses are much smaller now, and contain more than 2 blaze spawners per fortress. Treasure bastions will now generate with a §6blaze spawner§r at the bottom, instead of magma cubes. Finally, strongholds are much smaller, each containing more than 1 portal room.",
+  "speedrunnermod.title.features.ores_and_worldgen.fortresses_bastions_and_strongholds": "§cNether Fortresses, §7Bastions§r and §bStrongholds",
+  "speedrunnermod.features.ores_and_worldgen.fortresses_bastions_and_strongholds.text": "§cNether fortresses§f are much smaller now, and contain more than §e§l2 §eblaze spawners§f per fortress.\n§7Treasure bastions§f will now generate with a §eblaze spawner§r at the bottom, instead of a §6magma cube§f spawner.\nAdditionally, §bstrongholds§r are much smaller, each containing more than §l1 portal room§r per stronghold.\nThis should make navigating these structures much easier!",
 
   "speedrunnermod.menu.features.doom_mode": "§cDoom Mode...",
   "speedrunnermod.title.features.doom_mode": "§cDoom Mode",

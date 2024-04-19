@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class GoldenSpeedrunnerArmorScreen extends AbstractFeatureScreen {
 
     public GoldenSpeedrunnerArmorScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.golden_speedrunner_armor"), true, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.golden_speedrunner_armor"), true, false, true);
     }
 
     @Override
@@ -33,11 +33,6 @@ public class GoldenSpeedrunnerArmorScreen extends AbstractFeatureScreen {
     @Override
     protected void renderCustomImage(DrawContext context) {
         context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/golden_speedrunner_armor.png"), this.width / 2 + 65, 160, 0.0F, 0.0F, 83, 151, 83, 151);
-    }
-
-    @Override
-    protected int getButtonsWidth() {
-        return this.width / 2 - 175;
     }
 
     @Override

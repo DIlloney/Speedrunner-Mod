@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class RetiredSpeedrunnerScreen extends AbstractFeatureScreen {
 
     public RetiredSpeedrunnerScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.retired_speedrunner"), false, false);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.retired_speedrunner"), false, false, true);
     }
 
     @Override
@@ -33,11 +33,6 @@ public class RetiredSpeedrunnerScreen extends AbstractFeatureScreen {
     @Override
     protected void renderCustomImage(DrawContext context) {
         context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/retired_speedrunner.png"), this.width / 2 + 60, 180, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
-    }
-
-    @Override
-    protected int getButtonsWidth() {
-        return this.width / 2 - 150;
     }
 
     @Override
