@@ -576,7 +576,7 @@
   "speedrunnermod.features.blocks_and_items.piglin_awakener.text": "A very... interesting, but useful item for §bspeedrunning.§f\nUpon right-clicking §c§o(in the nether),§r all nearby piglin within a §l100 block§r §lradius §r(excluding named and baby piglin) will be teleported §ltowards the§r §lplayer§r (directly if the player is shifting).\nI know, it sounds stupid, but §ltrust me...§r when you can't find any §6piglin,§f§o this item can be very useful.",
 
   "speedrunnermod.title.features.blocks_and_items.blaze_spotter": "§eBlaze Spotter",
-  "speedrunnermod.features.blocks_and_items.blaze_spotter.text": "Another goofy, but useful item for §bspeedrunning.§f\nUpon right-clicking §c§o(in the nether),§r this item will §lteleport the player§r to the §6nearest blaze spawner,§r completely getting rid of the need to locate a §cnether fortress.",
+  "speedrunnermod.features.blocks_and_items.blaze_spotter.text": "Another goofy, but useful item for §bspeedrunning.§f\nUpon right-clicking §c§o(in the nether),§r this item will §lteleport the player§r to the §enearest blaze spawner,§r completely getting rid of the need to locate a §cnether fortress.",
 
   "speedrunnermod.title.features.blocks_and_items.ender_thruster": "§9Ender Thruster",
   "speedrunnermod.features.blocks_and_items.ender_thruster.text": "Upon right-clicking, this item will §lteleport the player§r to the §9surface of the§f §9world§r§o (or the highest available air block near or on the surface).§r\nEspecially useful when underground or in caves with no exit.",
@@ -668,7 +668,7 @@
   "speedrunnermod.title.features.miscellaneous": "Miscellaneous",
 
   "speedrunnermod.title.features.miscellaneous.reset_key": "§bReset Key",
-  "speedrunnermod.features.miscellaneous.reset_key.text": "Automatically create a new world in the press of a button, the default key is §l\"R\".§r You can set this to whatever you'd like in the §l\"Controls\"§r menu.",
+  "speedrunnermod.features.miscellaneous.reset_key.text": "Automatically create a new world, on the easiest difficulty, within the press of a button!\nDefault key = §lR.§r\nYou can set this to whatever you'd like in the §l\"Controls\"§r options menu, and configure the §bfast world creation settings§r in the §bspeedrunner mod options menu.",
 
   "speedrunnermod.title.features.miscellaneous.fog_key": "§bFog Key",
   "speedrunnermod.features.miscellaneous.fog_key.text": "Automatically enable/disable Minecraft's distant fog in the press of a button, default key is §l\"H\".§r You can also change this to whatever you'd like in the §l\"Controls\"§r menu.",
