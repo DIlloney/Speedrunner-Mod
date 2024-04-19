@@ -540,49 +540,49 @@
   "speedrunnermod.title.features.blocks_and_items": "Blocks and Items",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunner_ingots": "§bSpeedrunner Ingots",
-  "speedrunnermod.features.blocks_and_items.speedrunner_ingots.text": "Obtained from §bspeedrunner ores§f that generate around the world, and loot chests. This can be used to craft the §bspeedrunner armor, tools and weapons,§f and also acts as an §liron ingot§r§f in any crafting recipe.",
+  "speedrunnermod.features.blocks_and_items.speedrunner_ingots.text": "Obtained from §bspeedrunner ores§f that generate around the world, and loot chests.Can be used to craft the §bspeedrunner armor, tools and weapons,§f and also acts as an §liron ingot§r§f in any crafting recipe.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunner_nuggets": "§bSpeedrunner Nuggets",
-  "speedrunnermod.features.blocks_and_items.speedrunner_nuggets.text": "Found in loot chests and from §cnether speedrunner ores.§f These can be crafted using §b9 speedrunner ingots,§f and also acts as an §liron nugget§r§f in any crafting recipe.",
+  "speedrunnermod.features.blocks_and_items.speedrunner_nuggets.text": "Found in loot chests and from §cnether speedrunner ores.§f\nCrafted using §b9 speedrunner ingots,§f and also acts as an §liron nugget§r§f in any crafting recipe.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunner_blocks": "§bSpeedrunner Blocks",
-  "speedrunnermod.features.blocks_and_items.speedrunner_blocks.text": "Found in bastion chests and crafted using §b9 speedrunner ingots.§f Acts as an §liron block§r§f in all crafting recipes.",
+  "speedrunnermod.features.blocks_and_items.speedrunner_blocks.text": "Found in bastion chests and crafted using §b9 speedrunner ingots.§f\nActs as an §liron block§r§f in all crafting recipes.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunner_wood": "§bSpeedrunner Wood",
-  "speedrunnermod.features.blocks_and_items.speedrunner_wood.text": "A new type of wood, which can be found across all biomes in the overworld, as well as in the newly added biome, the §b§lSpeedrunner's Wasteland.§r§f The §bspeedrunner wood§f acts like any other type of wood, like being able to be used as a §lfuel source,§r but it §6doesn't burn from fire or lava.",
+  "speedrunnermod.features.blocks_and_items.speedrunner_wood.text": "A new type of wood, which can be found across §lall biomes§r in the §loverworld,§r as well as in the §onewly added biome,§r the §b§lSpeedrunner's Wasteland.§r§f The §bspeedrunner wood§f acts like any other type of wood, like being able to be used as a §lfuel source,§r but it §6doesn't burn from fire or lava.",
 
   "speedrunnermod.title.features.blocks_and_items.dead_speedrunner_wood": "§3Dead Speedrunner Wood",
-  "speedrunnermod.features.blocks_and_items.dead_speedrunner_wood.text": "Found deserts, badlands, and soul sand valleys, the §bdead speedrunner wood§r acts pretty much like normal wood. Used to craft normal sticks, burns longer than the normal speedrunner wood in a furnace, and has a different style.",
+  "speedrunnermod.features.blocks_and_items.dead_speedrunner_wood.text": "Found §6deserts, §cbadlands, §fand §7soul sand valleys,§f the §3dead speedrunner wood§r acts pretty much like normal wood. Unlike the §bspeedrunner wood,§f however, it does burn from §6fire and lava,§f and can only craft normal sticks.",
 
   "speedrunnermod.title.features.blocks_and_items.more_boats": "§bMore Boats",
-  "speedrunnermod.features.blocks_and_items.more_boats.text": "Along with the §bspeedrunner boat,§r there are now also §ccrimson§r and §9warped§r boats. They can be crafted just like any ordinary boat, and can also be used in lava.",
+  "speedrunnermod.features.blocks_and_items.more_boats.text": "Along with the §bspeedrunner boat,§r there are now also §ccrimson§r and §9warped§r boats. They can be crafted just like any ordinary boat, and can §6ride in lava. §f(excluding the §3dead speedrunner boat§f).",
 
   "speedrunnermod.title.features.blocks_and_items.igneous_rocks": "§7Igneous Rocks",
-  "speedrunnermod.features.blocks_and_items.igneous_rocks.text": "These can only be obtained from the §lIgneous Ores§r that generate around the world, and can only be used for one thing: §ocrafting obsidian.§r If you're ever having trouble obtaining obsidian, just look for these ores around the world, and you can get some obsidian just like that.",
+  "speedrunnermod.features.blocks_and_items.igneous_rocks.text": "A rock obtained from the §7igneous ores§f that generate throughout the world.\nIt only has one use: §lcrafting obsidian,§r that's it.",
 
   "speedrunnermod.title.features.blocks_and_items.eye_of_inferno": "§cEye of Inferno",
-  "speedrunnermod.features.blocks_and_items.eye_of_inferno.text": "The §ceye of inferno§r acts like an §aeye of ender,§r but different. Instead of locating the nearest stronghold, it locates the nearest §cnether fortress,§r or §7bastion,§r it's your choice. Just shift and right-click to swap between the two structures.",
+  "speedrunnermod.features.blocks_and_items.eye_of_inferno.text": "Similar to the §aeye of ender,§f but with a different purpose.\nInstead of locating the nearest stronghold, it locates the nearest §cnether fortress,§f or §7bastion,§f you get to choose which one it locates, just shift + right-click to swap between the two structures.",
 
   "speedrunnermod.title.features.blocks_and_items.eye_of_annul": "§dEye of Annul",
-  "speedrunnermod.features.blocks_and_items.eye_of_annul.text": "The §deye of annul§r also acts just like an §aeye of ender,§r but in addition, it tells you the §oexact distance§r of the nearest stronghold, in blocks. If you §lshift + right click,§r you can teleport directly to the closest stronghold portal room.",
-
-  "speedrunnermod.title.features.blocks_and_items.dragons_pearl": "§dDragon's Pearl",
-  "speedrunnermod.features.blocks_and_items.dragons_pearl.text": "The §ddragon's pearl§r can be used to §lforce the ender dragon§r to instantly perch, in case you miss the §ldragon perch time§r perch. Makes the end fight much faster!",
-
-  "speedrunnermod.title.features.blocks_and_items.piglin_awakener": "§6Piglin Awakener",
-  "speedrunnermod.features.blocks_and_items.piglin_awakener.text": "The §6piglin awakener§r is an interesting one. Have you ever been in the nether, and you just can't find any piglin? Well, this item solves this. Upon §lright-clicking,§r nearby piglin will be §lteleported,§r or awakened, to the player. You can craft this item with 8 gold ingots surrounding an §9ender pearl,§r §6golden apple,§r or §eblaze powder.",
-
-  "speedrunnermod.title.features.blocks_and_items.blaze_spotter": "§eBlaze Spotter",
-  "speedrunnermod.features.blocks_and_items.blaze_spotter.text": "The §6blaze spotter§r is a goofy item that will teleport the player to the nearest blaze spawner. It will also check for air blocks §labove§r the blaze spawner, to ensure that the player is safe to teleport. If it isn't air, the game will replace those blocks with air.",
-
-  "speedrunnermod.title.features.blocks_and_items.ender_thruster": "§9Ender Thruster",
-  "speedrunnermod.features.blocks_and_items.ender_thruster.text": "The §9ender thruster§r item can be used to §lteleport to the surface.§r This can be especially useful when underground, or coming out of the nether and spawning in a cave.",
+  "speedrunnermod.features.blocks_and_items.eye_of_annul.text": "The §deye of annul§f also acts just like an §aeye of ender,§f but in addition, it tells you the §oexact distance§r of the nearest stronghold, in blocks.\nAdditionally, if you §lshift + right click,§r you can teleport §odirectly§r to the nearest §lstronghold portal room.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunners_eye": "§bSpeedrunner's Eye",
-  "speedrunnermod.features.blocks_and_items.speedrunners_eye.text": "Acts just like an §aeye of ender,§r but only locates overworld structures such as §6villages,§r §druined portals,§r §eshipwrecks,§r §9ocean monuments,§r §6woodland mansions§r and §6desert temples.",
+  "speedrunnermod.features.blocks_and_items.speedrunners_eye.text": "Acts just like an §aeye of ender,§f but only locates overworld structures, including §6villages,§f §druined portals,§f §eshipwrecks,§f §9ocean monuments,§f §6woodland mansions§f and §6desert temples.",
+
+  "speedrunnermod.title.features.blocks_and_items.dragons_pearl": "§dDragon's Pearl",
+  "speedrunnermod.features.blocks_and_items.dragons_pearl.text": "A §overy overpowered§r and useful item for §bspeedrunning.§f\nUpon right-clicking §o(in the end),§r you can §lforce§r the §dender dragon§f to §linstantly perch,§r no matter where the dragon is, removing those long last few minutes in every average speedrun.",
+
+  "speedrunnermod.title.features.blocks_and_items.piglin_awakener": "§6Piglin Awakener",
+  "speedrunnermod.features.blocks_and_items.piglin_awakener.text": "A very... interesting, but useful item for §bspeedrunning.§f\nUpon right-clicking §c§o(in the nether),§r all nearby piglin within a §l100 block§r §lradius §r(excluding named and baby piglin) will be teleported §ltowards the§r §lplayer§r (directly if the player is shifting).\nI know, it sounds stupid, but §ltrust me...§r when you can't find any §6piglin,§f§o this item can be very useful.",
+
+  "speedrunnermod.title.features.blocks_and_items.blaze_spotter": "§eBlaze Spotter",
+  "speedrunnermod.features.blocks_and_items.blaze_spotter.text": "Another goofy, but useful item for §bspeedrunning.§f\nUpon right-clicking §c§o(in the nether),§r this item will §lteleport the player§r to the §6nearest blaze spawner,§r completely getting rid of the need to locate a §cnether fortress.",
+
+  "speedrunnermod.title.features.blocks_and_items.ender_thruster": "§9Ender Thruster",
+  "speedrunnermod.features.blocks_and_items.ender_thruster.text": "Upon right-clicking, this item will §lteleport the player§r to the §9surface of the§f §9world§r§o (or the highest available air block near or on the surface).§r\nEspecially useful when underground or in caves with no exit.",
 
   "speedrunnermod.title.features.blocks_and_items.raid_eradicator": "§7Raid Eradicator",
-  "speedrunnermod.features.blocks_and_items.raid_eradicator.text": "With this item, you can kill all nearby raider entities in just one click. Witches will not be killed, but instead teleported to the player. However, this comes at the cost of a totem of undying, a long with the player's maximum health. Upon use, the player will be deducted their maximum health (can be reduced with protection), and use their totem. The item will not work if the player does not have a totem equipped.",
+  "speedrunnermod.features.blocks_and_items.raid_eradicator.text": "A §lvery powerful§r item, especially when playing on §c§lDoom Mode.§r\nUpon right-clicking, all nearby §7raider entities§f (vindicators, evokers, ravagers, pillagers, etc.) within a §l300 block radius§r will be killed, and all §9witches§r will be §lteleported directly towards the player.§rUpon use, the player will be deducted their §cmaximum health, With this item, you can kill all nearby raider entities in just one click. Witches will not be killed, but instead teleported to the player. However, this comes at the cost of a totem of undying, a long with the player's maximum health. Upon use, the player will be deducted their maximum health (can be reduced with protection), and use their totem. The item will not work if the player does not have a totem equipped.",
 
   "speedrunnermod.title.features.blocks_and_items.speedrunner_bulk": "§bSpeedrunner Bulk",
   "speedrunnermod.features.blocks_and_items.speedrunner_bulk.text": "Found only in loot chests, the §bspeedrunner bulk§r is a very powerful food item that gives §6fire resistance§r and §9water breathing,§r and also has a chance to give §bspeed, §ehaste,§r and §cregeneration§r when eaten.",
@@ -653,7 +653,7 @@
   "speedrunnermod.title.features.doom_mode.bosses": "§cBosses",
   "speedrunnermod.features.doom_mode.bosses.text": "When the end fight begins, the §dender dragon§r will spawn like normal, but with §cquintuple§r the amount of health. A §7wither§r will also spawn, with almost double the amount of health. All withers also regenerate extremely fast. And finally, a §a§lgiant§r will spawn. In vanilla Minecraft, the §agiant§r does not have any AI. However, this mode §lgives it§r a function.",
 
-  "speedrunnermod.title.features.doom_mode.giant": "§l§aThe Giant",
+  "speedrunnermod.title.features.doom_mode.giant": "§a§lThe Giant",
   "speedrunnermod.features.doom_mode.giant.text": "The §a§lGiant§r will target anything in it's path, and slowly regenerate at all times. It cannot be killed from the void. If it gets knocked into the void, it will simply teleport back to the middle of the end island. Once the giant reaches half health, ranged weapons are no good. The giant will also randomly spawn §c§lTNT§r around itself when taking damage, so watch out for that. The giant is completely immune to explosives, fall damage, fire and lava damage. Good luck with this boss. §a>:)",
 
   "speedrunnermod.title.features.doom_mode.doom_blocks": "§cDoom Blocks",
