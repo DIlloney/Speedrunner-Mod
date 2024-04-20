@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
+package net.dillon.speedrunnermod.client.screen.features.more;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
@@ -12,36 +12,30 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class PiglinPorkScreen extends AbstractFeatureScreen {
+public class FireproofItemsScreen extends AbstractFeatureScreen {
 
-    public PiglinPorkScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.piglin_pork"), true, false);
+    public FireproofItemsScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.fireproof_items"), false, false, true);
     }
 
     @Override
-    @NotNull
-    public String linesKey() {
-        return "piglin_pork";
+    public @NotNull String linesKey() {
+        return "fireproof_items";
     }
 
     @Override
     public int getPageNumber() {
-        return 8;
+        return 13;
+    }
+
+    @Override
+    protected Identifier getDownscaledImage() {
+        return new Identifier("speedrunnermod:textures/gui/screens/fireproof_items.png");
     }
 
     @Override
     protected Identifier getImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/piglin_pork.png");
-    }
-
-    @Override
-    protected int getImageWidth() {
-        return 32;
-    }
-
-    @Override
-    protected int getImageHeight() {
-        return 30;
+        return null;
     }
 
     @Override
@@ -50,9 +44,8 @@ public class PiglinPorkScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    @NotNull
-    public ScreenCategory getScreenCategory() {
-        return ScreenCategory.MISCELLANEOUS;
+    public @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.MORE;
     }
 
     @Override

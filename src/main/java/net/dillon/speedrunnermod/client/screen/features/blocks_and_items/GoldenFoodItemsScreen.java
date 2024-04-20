@@ -3,7 +3,7 @@ package net.dillon.speedrunnermod.client.screen.features.blocks_and_items;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
-import net.dillon.speedrunnermod.client.screen.features.miscellaneous.ResetKeyScreen;
+import net.dillon.speedrunnermod.client.screen.features.more.ResetKeyScreen;
 import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.SpeedrunnersWastelandBiomeScreen;
 import net.dillon.speedrunnermod.client.screen.features.tools_and_armor.SpeedrunnerArmorScreen;
 import net.fabricmc.api.EnvType;
@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 public class GoldenFoodItemsScreen extends AbstractFeatureScreen {
 
     public GoldenFoodItemsScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.golden_food_items"), true, true, new SpeedrunnerArmorScreen(parent, options), Text.translatable("speedrunnermod.menu.features.tools_and_armor"), new SpeedrunnersWastelandBiomeScreen(parent, options), Text.translatable("speedrunnermod.menu.features.ores_and_worldgen"), new ResetKeyScreen(parent, options), Text.translatable("speedrunnermod.menu.features.miscellaneous"), false, null, null);
+        super(parent, options, Text.translatable("speedrunnermod.title.features.blocks_and_items.golden_food_items"), true, true, new SpeedrunnerArmorScreen(parent, options), Text.translatable("speedrunnermod.menu.features.tools_and_armor"), new SpeedrunnersWastelandBiomeScreen(parent, options), Text.translatable("speedrunnermod.menu.features.ores_and_worldgen"), new ResetKeyScreen(parent, options), Text.translatable("speedrunnermod.menu.features.more"), false, null, null);
     }
 
     @Override

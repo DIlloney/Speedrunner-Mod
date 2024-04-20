@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
+package net.dillon.speedrunnermod.client.screen.features.more;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
@@ -12,36 +12,46 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class ICarusModeScreen extends AbstractFeatureScreen {
+public class FogKeyScreen extends AbstractFeatureScreen {
 
-    public ICarusModeScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.icarus_mode"), true, false);
+    public FogKeyScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.fog_key"), true, false);
     }
 
     @Override
     @NotNull
     public String linesKey() {
-        return "icarus_mode";
+        return "fog_key";
     }
 
     @Override
     public int getPageNumber() {
-        return 5;
+        return 2;
     }
 
     @Override
     protected Identifier getImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/icarus_elytra.png");
+        return new Identifier("speedrunnermod:textures/gui/screens/toggle_fog_keybind.png");
+    }
+
+    @Override
+    protected int getImageX() {
+        return this.width / 2 - 125;
+    }
+
+    @Override
+    protected int getImageY() {
+        return 170;
     }
 
     @Override
     protected int getImageWidth() {
-        return 32;
+        return 256;
     }
 
     @Override
     protected int getImageHeight() {
-        return 27;
+        return 21;
     }
 
     @Override
@@ -52,7 +62,7 @@ public class ICarusModeScreen extends AbstractFeatureScreen {
     @Override
     @NotNull
     public ScreenCategory getScreenCategory() {
-        return ScreenCategory.MISCELLANEOUS;
+        return ScreenCategory.MORE;
     }
 
     @Override

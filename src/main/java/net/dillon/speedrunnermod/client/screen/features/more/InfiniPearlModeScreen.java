@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
+package net.dillon.speedrunnermod.client.screen.features.more;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
@@ -12,26 +12,36 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class FullbrightKeyScreen extends AbstractFeatureScreen {
+public class InfiniPearlModeScreen extends AbstractFeatureScreen {
 
-    public FullbrightKeyScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.fullbright_key"), false, false);
+    public InfiniPearlModeScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.infini_pearl_mode"), true, false);
     }
 
     @Override
     @NotNull
     public String linesKey() {
-        return "fullbright_key";
+        return "infini_pearl_mode";
     }
 
     @Override
     public int getPageNumber() {
-        return 3;
+        return 6;
     }
 
     @Override
     protected Identifier getImage() {
-        return null;
+        return new Identifier("speedrunnermod:textures/gui/screens/infini_pearl.png");
+    }
+
+    @Override
+    protected int getImageWidth() {
+        return 32;
+    }
+
+    @Override
+    protected int getImageHeight() {
+        return 32;
     }
 
     @Override
@@ -42,7 +52,7 @@ public class FullbrightKeyScreen extends AbstractFeatureScreen {
     @Override
     @NotNull
     public ScreenCategory getScreenCategory() {
-        return ScreenCategory.MISCELLANEOUS;
+        return ScreenCategory.MORE;
     }
 
     @Override

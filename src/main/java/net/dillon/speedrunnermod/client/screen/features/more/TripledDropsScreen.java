@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
+package net.dillon.speedrunnermod.client.screen.features.more;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
@@ -12,36 +12,31 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class InfiniPearlModeScreen extends AbstractFeatureScreen {
+public class TripledDropsScreen extends AbstractFeatureScreen {
 
-    public InfiniPearlModeScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.infini_pearl_mode"), true, false);
+    public TripledDropsScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.tripled_drops"), false, false, true);
     }
 
     @Override
     @NotNull
     public String linesKey() {
-        return "infini_pearl_mode";
+        return "tripled_drops";
     }
 
     @Override
     public int getPageNumber() {
-        return 6;
+        return 10;
+    }
+
+    @Override
+    protected Identifier getDownscaledImage() {
+        return new Identifier("speedrunnermod:textures/gui/screens/tripled_drops.png");
     }
 
     @Override
     protected Identifier getImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/infini_pearl.png");
-    }
-
-    @Override
-    protected int getImageWidth() {
-        return 32;
-    }
-
-    @Override
-    protected int getImageHeight() {
-        return 32;
+        return null;
     }
 
     @Override
@@ -52,7 +47,7 @@ public class InfiniPearlModeScreen extends AbstractFeatureScreen {
     @Override
     @NotNull
     public ScreenCategory getScreenCategory() {
-        return ScreenCategory.MISCELLANEOUS;
+        return ScreenCategory.MORE;
     }
 
     @Override

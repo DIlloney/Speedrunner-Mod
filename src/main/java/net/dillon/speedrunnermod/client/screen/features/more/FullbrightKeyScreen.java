@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
+package net.dillon.speedrunnermod.client.screen.features.more;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
@@ -12,26 +12,46 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class ResetKeyScreen extends AbstractFeatureScreen {
+public class FullbrightKeyScreen extends AbstractFeatureScreen {
 
-    public ResetKeyScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.reset_key"), false, false);
+    public FullbrightKeyScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.fullbright_key"), true, false);
     }
 
     @Override
     @NotNull
     public String linesKey() {
-        return "reset_key";
+        return "fullbright_key";
     }
 
     @Override
     public int getPageNumber() {
-        return 1;
+        return 3;
     }
 
     @Override
     protected Identifier getImage() {
-        return null;
+        return new Identifier("speedrunnermod:textures/gui/screens/toggle_fullbright_keybind.png");
+    }
+
+    @Override
+    protected int getImageX() {
+        return this.width / 2 - 125;
+    }
+
+    @Override
+    protected int getImageY() {
+        return 170;
+    }
+
+    @Override
+    protected int getImageWidth() {
+        return 256;
+    }
+
+    @Override
+    protected int getImageHeight() {
+        return 21;
     }
 
     @Override
@@ -42,11 +62,11 @@ public class ResetKeyScreen extends AbstractFeatureScreen {
     @Override
     @NotNull
     public ScreenCategory getScreenCategory() {
-        return ScreenCategory.MISCELLANEOUS;
+        return ScreenCategory.MORE;
     }
 
     @Override
     protected @NotNull ScreenType getScreenType() {
-        return ScreenType.STARTER;
+        return ScreenType.NORMAL;
     }
 }

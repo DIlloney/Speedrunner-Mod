@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
+package net.dillon.speedrunnermod.client.screen.features.more;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
@@ -12,26 +12,36 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class PiglinBarteringScreen extends AbstractFeatureScreen {
+public class PiglinPorkScreen extends AbstractFeatureScreen {
 
-    public PiglinBarteringScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.piglin_bartering"), false, false);
+    public PiglinPorkScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.piglin_pork"), true, false);
     }
 
     @Override
     @NotNull
     public String linesKey() {
-        return "piglin_bartering";
+        return "piglin_pork";
     }
 
     @Override
     public int getPageNumber() {
-        return 7;
+        return 8;
     }
 
     @Override
     protected Identifier getImage() {
-        return null;
+        return new Identifier("speedrunnermod:textures/gui/screens/piglin_pork.png");
+    }
+
+    @Override
+    protected int getImageWidth() {
+        return 32;
+    }
+
+    @Override
+    protected int getImageHeight() {
+        return 30;
     }
 
     @Override
@@ -42,7 +52,7 @@ public class PiglinBarteringScreen extends AbstractFeatureScreen {
     @Override
     @NotNull
     public ScreenCategory getScreenCategory() {
-        return ScreenCategory.MISCELLANEOUS;
+        return ScreenCategory.MORE;
     }
 
     @Override

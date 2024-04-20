@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
+package net.dillon.speedrunnermod.client.screen.features.more;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
@@ -12,21 +12,26 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class MoreScreen extends AbstractFeatureScreen {
+public class BetterPiglinBarteringScreen extends AbstractFeatureScreen {
 
-    public MoreScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.more"), false, false);
+    public BetterPiglinBarteringScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.piglin_bartering"), false, false, true);
     }
 
     @Override
     @NotNull
     public String linesKey() {
-        return "more";
+        return "piglin_bartering";
     }
 
     @Override
     public int getPageNumber() {
-        return this.getMaxPages();
+        return 7;
+    }
+
+    @Override
+    protected Identifier getDownscaledImage() {
+        return new Identifier("speedrunnermod:textures/gui/screens/better_piglin_bartering.png");
     }
 
     @Override
@@ -42,11 +47,11 @@ public class MoreScreen extends AbstractFeatureScreen {
     @Override
     @NotNull
     public ScreenCategory getScreenCategory() {
-        return ScreenCategory.MISCELLANEOUS;
+        return ScreenCategory.MORE;
     }
 
     @Override
     protected @NotNull ScreenType getScreenType() {
-        return ScreenType.END;
+        return ScreenType.NORMAL;
     }
 }

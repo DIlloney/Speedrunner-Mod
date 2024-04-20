@@ -41,7 +41,7 @@ public class SpeedrunnerMod implements ModInitializer {
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
     public static final String WIKI_LINK = "https://sites.google.com/view/dillon8775/the-speedrunner-mod";
     public static boolean DOOM_MODE = SpeedrunnerMod.options().main.doomMode;
-    public static final Identifier SPEEDRUNNER_MOD_ICON = new Identifier("speedrunnermod:icon.png");
+    public static final Identifier SPEEDRUNNER_MOD_ICON = new Identifier("speedrunnermod:textures/mod_icon.png");
     public static final Identifier DISCORD_ICON = new Identifier("dillon8775:textures/discord.png");
     public static final Identifier WEBPAGE_ICON = new Identifier("dillon8775:textures/webpage.png");
     public static final Identifier DILLON8775_ICON = new Identifier("dillon8775:textures/dillon8775.png");

@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.client.screen.features.tools_and_armor;
+package net.dillon.speedrunnermod.client.screen.features.more;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
@@ -12,26 +12,26 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class SpeedrunnerSafeBootsScreen extends AbstractFeatureScreen {
+public class FasterBlockBreakingScreen extends AbstractFeatureScreen {
 
-    public SpeedrunnerSafeBootsScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.tools_and_armor.speedrunner_safe_boots"), false, false, true);
+    public FasterBlockBreakingScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.faster_block_breaking"), false, false, true);
     }
 
     @Override
     @NotNull
     public String linesKey() {
-        return "speedrunner_safe_boots";
+        return "faster_block_breaking";
     }
 
     @Override
     public int getPageNumber() {
-        return 3;
+        return 4;
     }
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/speedrunner_safe_boots.png");
+        return new Identifier("speedrunnermod:textures/gui/screens/faster_block_breaking.png");
     }
 
     @Override
@@ -47,7 +47,7 @@ public class SpeedrunnerSafeBootsScreen extends AbstractFeatureScreen {
     @Override
     @NotNull
     public ScreenCategory getScreenCategory() {
-        return ScreenCategory.TOOLS_AND_ARMOR;
+        return ScreenCategory.MORE;
     }
 
     @Override

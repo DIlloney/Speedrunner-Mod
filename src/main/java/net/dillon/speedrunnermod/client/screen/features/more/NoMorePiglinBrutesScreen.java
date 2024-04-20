@@ -1,10 +1,11 @@
-package net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen;
+package net.dillon.speedrunnermod.client.screen.features.more;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
@@ -12,26 +13,36 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class StructuresScreen extends AbstractFeatureScreen {
+public class NoMorePiglinBrutesScreen extends AbstractFeatureScreen {
 
-    public StructuresScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.ores_and_worldgen.structures"), false, false, true);
+    public NoMorePiglinBrutesScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.no_more_piglin_brutes"), false, false, true);
     }
 
     @Override
     @NotNull
     public String linesKey() {
-        return "structures";
+        return "no_more_piglin_brutes";
     }
 
     @Override
     public int getPageNumber() {
-        return 6;
+        return 9;
     }
 
     @Override
-    protected Identifier getDownscaledImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/structures.png");
+    protected void renderCustomImage(DrawContext context) {
+        context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/piglin_brute.png"), this.width / 2 + 60, 160, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+    }
+
+    @Override
+    protected int getButtonsWidth() {
+        return this.width / 2 - 130;
+    }
+
+    @Override
+    protected int getButtonsHeight() {
+        return this.height / 6 + 135;
     }
 
     @Override
@@ -41,12 +52,12 @@ public class StructuresScreen extends AbstractFeatureScreen {
 
     @Override
     protected int getImageWidth() {
-        return 240;
+        return 50;
     }
 
     @Override
     protected int getImageHeight() {
-        return 135;
+        return 123;
     }
 
     @Override
@@ -57,7 +68,7 @@ public class StructuresScreen extends AbstractFeatureScreen {
     @Override
     @NotNull
     public ScreenCategory getScreenCategory() {
-        return ScreenCategory.ORES_AND_WORLDGEN;
+        return ScreenCategory.MORE;
     }
 
     @Override

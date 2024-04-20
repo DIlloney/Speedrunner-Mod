@@ -227,17 +227,6 @@ public abstract class AbstractModScreen extends BaseModScreen {
     }
 
     /**
-     * Gets the width of the buttons on a screen.
-     */
-    protected int getButtonsWidth() {
-        if (this.columns() == 2) {
-            return 150;
-        } else {
-            return 100;
-        }
-    }
-
-    /**
      * Gets the height of buttons on a screen.
      * <p>To add another row of buttons, add 24 to this variable.</p>
      */

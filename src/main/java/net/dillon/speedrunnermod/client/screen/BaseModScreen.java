@@ -3,7 +3,7 @@ package net.dillon.speedrunnermod.client.screen;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.*;
 import net.dillon.speedrunnermod.client.screen.features.doom_mode.*;
-import net.dillon.speedrunnermod.client.screen.features.miscellaneous.*;
+import net.dillon.speedrunnermod.client.screen.features.more.*;
 import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.*;
 import net.dillon.speedrunnermod.client.screen.features.tools_and_armor.*;
 import net.fabricmc.api.EnvType;
@@ -87,9 +87,9 @@ public class BaseModScreen extends GameOptionsScreen {
                 new FogKeyScreen(parent, options),
                 new ICarusModeScreen(parent, options),
                 new InfiniPearlModeScreen(parent, options),
-                new MoreScreen(parent, options),
+                new EndScreen(parent, options),
                 new NoMorePiglinBrutesScreen(parent, options),
-                new PiglinBarteringScreen(parent, options),
+                new BetterPiglinBarteringScreen(parent, options),
                 new PiglinPorkScreen(parent, options),
                 new ResetKeyScreen(parent, options),
                 new TripledDropsScreen(parent, options),
@@ -109,6 +109,9 @@ public class BaseModScreen extends GameOptionsScreen {
                 new WitherSwordScreen(parent, options),
                 new FullbrightKeyScreen(parent, options),
                 new SpeedrunnerSafeBootsScreen(parent, options),
-                new DeadSpeedrunnerWoodScreen(parent, options));
+                new DeadSpeedrunnerWoodScreen(parent, options),
+                new NetherPortalsScreen(parent, options),
+                new CookedFleshScreen(parent, options),
+                new FireproofItemsScreen(parent, options));
     }
 }

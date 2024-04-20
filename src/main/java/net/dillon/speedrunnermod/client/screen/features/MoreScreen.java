@@ -9,10 +9,10 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
-public class MiscellaneousScreen extends AbstractModScreen {
+public class MoreScreen extends AbstractModScreen {
 
-    public MiscellaneousScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous"));
+    public MoreScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more"));
     }
 
     @Override
@@ -20,7 +20,7 @@ public class MiscellaneousScreen extends AbstractModScreen {
         this.buttonList = this.addDrawable(new CustomButtonListWidget(this.client, this.width, this.height - 64, 32, 25));
 
         this.clearButtons();
-        this.iterate(ScreenCategory.MISCELLANEOUS);
+        this.iterate(ScreenCategory.MORE);
 
         super.init();
     }

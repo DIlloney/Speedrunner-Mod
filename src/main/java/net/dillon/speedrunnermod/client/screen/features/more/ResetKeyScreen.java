@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
+package net.dillon.speedrunnermod.client.screen.features.more;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
@@ -12,26 +12,46 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class FasterBlockBreakingScreen extends AbstractFeatureScreen {
+public class ResetKeyScreen extends AbstractFeatureScreen {
 
-    public FasterBlockBreakingScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.faster_block_breaking"), false, false);
+    public ResetKeyScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.reset_key"), true, false);
     }
 
     @Override
     @NotNull
     public String linesKey() {
-        return "faster_block_breaking";
+        return "reset_key";
     }
 
     @Override
     public int getPageNumber() {
-        return 4;
+        return 1;
     }
 
     @Override
     protected Identifier getImage() {
-        return null;
+        return new Identifier("speedrunnermod:textures/gui/screens/fast_world_creation_keybind.png");
+    }
+
+    @Override
+    protected int getImageX() {
+        return this.width / 2 - 125;
+    }
+
+    @Override
+    protected int getImageY() {
+        return 170;
+    }
+
+    @Override
+    protected int getImageWidth() {
+        return 256;
+    }
+
+    @Override
+    protected int getImageHeight() {
+        return 21;
     }
 
     @Override
@@ -42,11 +62,11 @@ public class FasterBlockBreakingScreen extends AbstractFeatureScreen {
     @Override
     @NotNull
     public ScreenCategory getScreenCategory() {
-        return ScreenCategory.MISCELLANEOUS;
+        return ScreenCategory.MORE;
     }
 
     @Override
     protected @NotNull ScreenType getScreenType() {
-        return ScreenType.NORMAL;
+        return ScreenType.STARTER;
     }
 }

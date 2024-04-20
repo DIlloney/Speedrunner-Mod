@@ -36,8 +36,8 @@ public class FeaturesScreen extends AbstractModScreen {
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
 
         height += 24;
-        this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.miscellaneous"), (buttonWidget) -> {
-            this.client.setScreen(new MiscellaneousScreen(this.parent, this.options));
+        this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.more"), (buttonWidget) -> {
+            this.client.setScreen(new MoreScreen(this.parent, this.options));
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
 
         super.init();

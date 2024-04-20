@@ -533,7 +533,7 @@
 
   "speedrunnermod.menu.features": "Features...",
   "speedrunnermod.menu.features.tooltip": "View a list of multiple pages, containing a bunch of features that this mod includes!",
-  "speedrunnermod.menu.features.more": "More Features...",
+  "speedrunnermod.menu.features.learn_more": "Learn More...",
   "speedrunnermod.title.features": "Features",
 
   "speedrunnermod.menu.features.blocks_and_items": "Blocks and Items...",
@@ -664,41 +664,50 @@
   "speedrunnermod.doom_mode.enable": "Enable Doom Mode",
   "speedrunnermod.doom_mode.already_enabled": "Doom mode is already enabled!",
 
-  "speedrunnermod.menu.features.miscellaneous": "Miscellaneous...",
-  "speedrunnermod.title.features.miscellaneous": "Miscellaneous",
+  "speedrunnermod.menu.features.more": "More...",
+  "speedrunnermod.title.features.more": "More",
 
-  "speedrunnermod.title.features.miscellaneous.reset_key": "§bReset Key",
-  "speedrunnermod.features.miscellaneous.reset_key.text": "Automatically create a new world, on the easiest difficulty, within the press of a button!\nDefault key = §lR.§r\nYou can set this to whatever you'd like in the §l\"Controls\"§r options menu, and configure the §bfast world creation settings§r in the §bspeedrunner mod options menu.",
+  "speedrunnermod.title.features.more.reset_key": "§bReset Key",
+  "speedrunnermod.features.more.reset_key.text": "Automatically create a new world, on the easiest difficulty, within the press of a button!\nDefault key = §lR.§r\nYou can set this to whatever you'd like in the §l\"Controls\"§r options menu, and configure the §bfast world creation settings§r in the §bspeedrunner mod options menu.",
 
-  "speedrunnermod.title.features.miscellaneous.fog_key": "§bFog Key",
-  "speedrunnermod.features.miscellaneous.fog_key.text": "Automatically enable/disable Minecraft's distant fog in the press of a button, default key is §l\"H\".§r You can also change this to whatever you'd like in the §l\"Controls\"§r menu.",
+  "speedrunnermod.title.features.more.fog_key": "§bFog Key",
+  "speedrunnermod.features.more.fog_key.text": "Automatically enable/disable §a§lMinecraft's fog§r with the press of a button!\nDefault key = §lH.§r\nYou can change this to whatever you'd like in the §l\"Controls\"§r menu.",
 
-  "speedrunnermod.title.features.miscellaneous.fullbright_key": "§bFullbright Key",
-  "speedrunnermod.features.miscellaneous.fullbright_key.text": "Instantly set your brightness to 1000% to see in the dark caves, especially useful when trying to spot things in dark areas. Default key is §l\"O\".§r You can change this to whatever you'd like in the §l\"Controls\"§r menu.",
+  "speedrunnermod.title.features.more.fullbright_key": "§bFullbright Key",
+  "speedrunnermod.features.more.fullbright_key.text": "Instantly set your brightness to 1000% to see in the dark areas.\nDefault key is §lO.§r\nYou can change this to whatever you'd like in the §l\"Controls\"§r menu.",
 
-  "speedrunnermod.title.features.miscellaneous.faster_block_breaking": "§bFaster Block Breaking",
-  "speedrunnermod.features.miscellaneous.faster_block_breaking.text": "Certain blocks can be broken at a much faster rate, including wood, stone, ores, netherrack, end stone, and much more! §o(This can be disabled in the §b§ospeedrunner mod options menu).",
+  "speedrunnermod.title.features.more.faster_block_breaking": "§bFaster Block Breaking",
+  "speedrunnermod.features.more.faster_block_breaking.text": "A §lbunch of blocks§r can be broken faster now, including §6wood, §7stone, §bores, §cnetherrack, §7end stone,§f and §lmuch more!§r\n§oThis can be disabled or increased in the §b§ospeedrunner mod options menu.",
 
-  "speedrunnermod.title.features.miscellaneous.icarus_mode": "§7iCarus Mode",
-  "speedrunnermod.features.miscellaneous.icarus_mode.text": "Give yourself a head start with an §lunbreakable elytra§r and a §lstack§r of §lfirework rockets!§r You can enable this feature through the §bspeedrunner mod options menu.",
+  "speedrunnermod.title.features.more.icarus_mode": "§7iCarus Mode",
+  "speedrunnermod.features.more.icarus_mode.text": "Give yourself a §ahead start§f in §bevery speedrun§f with an §7§lunbreakable elytra§r and a §lstack§r of §c§lfirework rockets!§r\nYou can enable this mode in the §bspeedrunner mod options menu.",
 
-  "speedrunnermod.title.features.miscellaneous.infini_pearl_mode": "§9Infini Pearl Mode",
-  "speedrunnermod.features.miscellaneous.infini_pearl_mode.text": "Give yourself an ender pearl that causes no damage and lasts forever everytime you create a new world. You can enable this feature through the §bspeedrunner mod options menu.",
+  "speedrunnermod.title.features.more.infini_pearl_mode": "§9Infini Pearl Mode",
+  "speedrunnermod.features.more.infini_pearl_mode.text": "Give yourself an §9ender pearl§f that does §lno damage§r and §blasts forever.§r\nYou can enable this mode in the §bspeedrunner mod options menu.",
 
-  "speedrunnermod.title.features.miscellaneous.piglin_bartering": "§6Better Piglin Bartering",
-  "speedrunnermod.features.miscellaneous.piglin_bartering.text": "Piglin bartering is §lEXTREMELY overpowered.§r Ender pearls are much more common, along with some other useful items, and they can even give you golden apples! :0",
+  "speedrunnermod.title.features.more.piglin_bartering": "§6Better Piglin Bartering",
+  "speedrunnermod.features.more.piglin_bartering.text": "§6Piglin bartering§f is now §lEXTREMELY overpowered.§r\n§9 Ender pearls§r are much more common, along with string, §egolden apples, §bspeedrunner ingots, §6wood,§f and much more!",
 
-  "speedrunnermod.title.features.miscellaneous.piglin_pork": "§6Piglin Pork",
-  "speedrunnermod.features.miscellaneous.piglin_pork.text": "Minecraft left the piglins out, so I took care of that. Upon death, piglins will drop piglin pork, which is basically an alternative for porkchop.",
+  "speedrunnermod.title.features.more.piglin_pork": "§6Piglin Pork",
+  "speedrunnermod.features.more.piglin_pork.text": "When §6piglin§f (or §6piglin brutes)§r are killed, they will drop a §enew food item,§f called §6§l\"Piglin Pork\"!§r\nIt's basically just an alternative for §eporkchop...",
 
-  "speedrunnermod.title.features.miscellaneous.no_more_piglin_brutes": "§6No More Piglin Brutes!",
-  "speedrunnermod.features.miscellaneous.no_more_piglin_brutes.text": "Screw these guys... §o§cUnless you're on doom mode...",
+  "speedrunnermod.title.features.more.no_more_piglin_brutes": "§6No More Piglin Brutes!",
+  "speedrunnermod.features.more.no_more_piglin_brutes.text": "Screw these guys...\n§6Piglin brutes§f will §lno longer spawn§r in §7bastions!§r\n§c§oUnless you're on doom mode...",
 
-  "speedrunnermod.title.features.miscellaneous.tripled_drops": "§eTripled Drops",
-  "speedrunnermod.features.miscellaneous.tripled_drops.text": "Everything drops x3 more than it would normally drop. This includes ore experience, mob experience, mob drops, and more!",
+  "speedrunnermod.title.features.more.tripled_drops": "§eTripled Drops",
+  "speedrunnermod.features.more.tripled_drops.text": "Basically §aeverything§f drops §lx3 more§r of what it would normally drop.\nThis includes §aexperience from ores and mobs,§f §1mob drops,§f and more!",
 
-  "speedrunnermod.title.features.miscellaneous.more": "§bAnd More!",
-  "speedrunnermod.features.miscellaneous.more.text": "This in-game menu only scratches the surface of what this mod has to offer, So if you want to view a list of §oALL§r of the features, refer to the button below!",
+  "speedrunnermod.title.features.more.nether_portals": "§dNether Portals",
+  "speedrunnermod.features.more.nether_portals.text": "§dNether portals§f can now be built with §7obsidian§f§o and §5crying obsidian!",
+
+  "speedrunnermod.title.features.more.cooked_flesh": "§eCooked Flesh",
+  "speedrunnermod.features.more.cooked_flesh.text": "§6Rotten flesh§f can now be cooked into §ecooked flesh,§f which restores §lway more hunger§r than §6rotten flesh§f does, and doesn't give the §2hunger effect.",
+
+  "speedrunnermod.title.features.more.fireproof_items": "§6Fireproof Items",
+  "speedrunnermod.features.more.fireproof_items.text": "Certain items are now §6fireproof!§f\nBy default, this includes §eblaze rods, blaze powder,§f and §6fire charges.",
+
+  "speedrunnermod.title.features.more.more": "§bAnd More!",
+  "speedrunnermod.features.more.more.text": "§a§lCongratulations!§r You are now an official §bSpeedrunner Mod pro,§r and you know about all of it's §amain features!§r\nFor more info, refer to §l\"Learn More...\"§r button below, or go back and re-read some things if you didn't fully understand everything!",
 
   "speedrunnermod.menu.resources": "Resources...",
   "speedrunnermod.menu.resources.tooltip": "Mods, tutorials, and more!",

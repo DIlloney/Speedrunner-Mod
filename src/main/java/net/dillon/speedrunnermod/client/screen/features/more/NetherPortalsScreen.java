@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.client.screen.features.miscellaneous;
+package net.dillon.speedrunnermod.client.screen.features.more;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
@@ -12,21 +12,25 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class TripledDropsScreen extends AbstractFeatureScreen {
+public class NetherPortalsScreen extends AbstractFeatureScreen {
 
-    public TripledDropsScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.miscellaneous.tripled_drops"), false, false);
+    public NetherPortalsScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.nether_portals"), false, false, true);
     }
 
     @Override
-    @NotNull
-    public String linesKey() {
-        return "tripled_drops";
+    public @NotNull String linesKey() {
+        return "nether_portals";
     }
 
     @Override
     public int getPageNumber() {
-        return 10;
+        return 11;
+    }
+
+    @Override
+    protected Identifier getDownscaledImage() {
+        return new Identifier("speedrunnermod:textures/gui/screens/nether_portals.png");
     }
 
     @Override
@@ -40,9 +44,8 @@ public class TripledDropsScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    @NotNull
-    public ScreenCategory getScreenCategory() {
-        return ScreenCategory.MISCELLANEOUS;
+    public @NotNull ScreenCategory getScreenCategory() {
+        return ScreenCategory.MORE;
     }
 
     @Override

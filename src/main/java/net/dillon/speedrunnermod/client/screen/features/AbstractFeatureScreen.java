@@ -3,7 +3,7 @@ package net.dillon.speedrunnermod.client.screen.features;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.BaseModScreen;
 import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.SpeedrunnerIngotsScreen;
-import net.dillon.speedrunnermod.client.screen.features.miscellaneous.TripledDropsScreen;
+import net.dillon.speedrunnermod.client.screen.features.more.TripledDropsScreen;
 import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.SpeedrunnersWastelandBiomeScreen;
 import net.dillon.speedrunnermod.client.screen.features.tools_and_armor.SpeedrunnerArmorScreen;
 import net.dillon.speedrunnermod.client.util.ModTexts;
@@ -15,7 +15,6 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.option.KeyBinding;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
@@ -27,14 +26,14 @@ import org.lwjgl.glfw.GLFW;
 import java.util.List;
 
 /**
- * Used to create {@link net.dillon.speedrunnermod.SpeedrunnerMod} features screens.
+ * Used to create various different screens, for the soul purpose of showing off the Speedrunner Mod's main features.
  */
 @Environment(EnvType.CLIENT)
 public abstract class AbstractFeatureScreen extends BaseModScreen {
     protected final Screen parent;
-    private final boolean renderImage;
+    private final boolean renderBaseImage;
     private final boolean renderCraftingRecipe;
-    private boolean renderCustomImage = false;
+    private boolean moveButtons = false;
     private Screen category1Screen;
     private Screen category2Screen;
     private Screen category3Screen;
@@ -47,25 +46,25 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
     @Nullable
     private Text category4Text;
 
-    protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderImage, boolean renderCraftingRecipe) {
+    public AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderBaseImage, boolean renderCraftingRecipe) {
         super(parent, options, title);
         this.parent = parent;
-        this.renderImage = renderImage;
+        this.renderBaseImage = renderBaseImage;
         this.renderCraftingRecipe = renderCraftingRecipe;
     }
 
-    protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderImage, boolean renderCraftingRecipe, boolean renderCustomImage) {
+    public AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderBaseImage, boolean renderCraftingRecipe, boolean moveButtons) {
         super(parent, options, title);
         this.parent = parent;
-        this.renderImage = renderImage;
+        this.renderBaseImage = renderBaseImage;
         this.renderCraftingRecipe = renderCraftingRecipe;
-        this.renderCustomImage = renderCustomImage;
+        this.moveButtons = moveButtons;
     }
 
-    protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderImage, boolean renderCraftingRecipe, Screen category1Screen, Text category1Text, Screen category2Screen, Text category2Text, Screen category3Screen, Text category3Text, boolean hasFourthCategory, @Nullable Screen category4Screen, @Nullable Text category4Text) {
+    public AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderBaseImage, boolean renderCraftingRecipe, Screen category1Screen, Text category1Text, Screen category2Screen, Text category2Text, Screen category3Screen, Text category3Text, boolean hasFourthCategory, @Nullable Screen category4Screen, @Nullable Text category4Text) {
         super(parent, options, title);
         this.parent = parent;
-        this.renderImage = renderImage;
+        this.renderBaseImage = renderBaseImage;
         this.renderCraftingRecipe = renderCraftingRecipe;
         this.category1Screen = category1Screen;
         this.category2Screen = category2Screen;
@@ -78,12 +77,12 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         this.category4Text = category4Text;
     }
 
-    protected AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderImage, boolean renderCraftingRecipe, boolean renderCustomImage, Screen category1Screen, Text category1Text, Screen category2Screen, Text category2Text, Screen category3Screen, Text category3Text, boolean hasFourthCategory, @Nullable Screen category4Screen, @Nullable Text category4Text) {
+    public AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderBaseImage, boolean renderCraftingRecipe, boolean moveButtons, Screen category1Screen, Text category1Text, Screen category2Screen, Text category2Text, Screen category3Screen, Text category3Text, boolean hasFourthCategory, @Nullable Screen category4Screen, @Nullable Text category4Text) {
         super(parent, options, title);
         this.parent = parent;
-        this.renderImage = renderImage;
+        this.renderBaseImage = renderBaseImage;
         this.renderCraftingRecipe = renderCraftingRecipe;
-        this.renderCustomImage = renderCustomImage;
+        this.moveButtons = moveButtons;
         this.category1Screen = category1Screen;
         this.category2Screen = category2Screen;
         this.category3Screen = category3Screen;
@@ -134,33 +133,32 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
             this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, button -> this.close()).dimensions(width, height, 150, 20).build());
         } else if (this.getScreenType() == ScreenType.END) {
             height = this.height / 6 + 115;
-            int middle = this.width / 2 - 75;
-            this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.more"), button -> {
+            this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.learn_more"), button -> {
                 this.openLink(SpeedrunnerMod.WIKI_LINK, true);
-            }).dimensions(middle, height, 150, 20).build());
+            }).dimensions(this.getButtonsWidth(), height, 150, 20).build());
 
             height += 24;
             this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.blocks_and_items"), button -> {
                 this.client.setScreen(new SpeedrunnerIngotsScreen(this.parent, MinecraftClient.getInstance().options));
-            }).dimensions(middle, height, 150, 20).build());
+            }).dimensions(this.getButtonsWidth(), height, 150, 20).build());
 
             height += 24;
             this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.tools_and_armor"), button -> {
                 this.client.setScreen(new SpeedrunnerArmorScreen(this.parent, MinecraftClient.getInstance().options));
-            }).dimensions(middle, height, 150, 20).build());
+            }).dimensions(this.getButtonsWidth(), height, 150, 20).build());
 
             height += 24;
             this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.ores_and_worldgen"), button -> {
                 this.client.setScreen(new SpeedrunnersWastelandBiomeScreen(this.parent, MinecraftClient.getInstance().options));
-            }).dimensions(middle, height, 150, 20).build());
+            }).dimensions(this.getButtonsWidth(), height, 150, 20).build());
 
             height += 24;
             this.addDrawableChild(ButtonWidget.builder(ModTexts.PREVIOUS, button -> {
                 this.client.setScreen(new TripledDropsScreen(this.parent, MinecraftClient.getInstance().options));
-            }).dimensions(middle, height, 150, 20).build());
+            }).dimensions(this.getButtonsWidth(), height, 150, 20).build());
 
             height += 24;
-            this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, button -> this.close()).dimensions(middle, height, 150, 20).build());
+            this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, button -> this.close()).dimensions(this.getButtonsWidth(), height, 150, 20).build());
         }
     }
 
@@ -172,8 +170,8 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
             this.client.setScreen(new ToolsAndArmorScreen(this.parent, MinecraftClient.getInstance().options));
         } else if (this.getScreenCategory() == ScreenCategory.ORES_AND_WORLDGEN) {
             this.client.setScreen(new OresAndWorldgenScreen(this.parent, MinecraftClient.getInstance().options));
-        } else if (this.getScreenCategory() == ScreenCategory.MISCELLANEOUS) {
-            this.client.setScreen(new MiscellaneousScreen(this.parent, MinecraftClient.getInstance().options));
+        } else if (this.getScreenCategory() == ScreenCategory.MORE) {
+            this.client.setScreen(new MoreScreen(this.parent, MinecraftClient.getInstance().options));
         } else if (this.getScreenCategory() == ScreenCategory.DOOM_MODE) {
             this.client.setScreen(new DoomModeScreen(this.parent, MinecraftClient.getInstance().options));
         } else {
@@ -200,7 +198,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("§lPage:§r " + this.getPageNumber() + "/" + this.getMaxPages()), farRightSide, height, 16777215);
 
         super.render(context, mouseX, mouseY, delta);
-        if (this.renderImage) {
+        if (this.renderBaseImage) {
             if (screenText.size() <= 8) {
                 context.drawTexture(this.getImage(), this.getImageX(), this.getImageY(), 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
             } else {
@@ -244,8 +242,8 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
             case ORES_AND_WORLDGEN -> {
                 return calculateMaxPages(ScreenCategory.ORES_AND_WORLDGEN);
             }
-            case MISCELLANEOUS -> {
-                return calculateMaxPages(ScreenCategory.MISCELLANEOUS);
+            case MORE -> {
+                return calculateMaxPages(ScreenCategory.MORE);
             }
             case DOOM_MODE -> {
                 return calculateMaxPages(ScreenCategory.DOOM_MODE);
@@ -270,8 +268,8 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
             case ORES_AND_WORLDGEN -> {
                 return determineScreen(pageNumber, ScreenCategory.ORES_AND_WORLDGEN);
             }
-            case MISCELLANEOUS -> {
-                return determineScreen(pageNumber, ScreenCategory.MISCELLANEOUS);
+            case MORE -> {
+                return determineScreen(pageNumber, ScreenCategory.MORE);
             }
             case DOOM_MODE -> {
                 return determineScreen(pageNumber, ScreenCategory.DOOM_MODE);
@@ -321,7 +319,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         } else if (this.getScreenCategory() == ScreenCategory.DOOM_MODE) {
             return ".doom_mode.";
         } else {
-            return ".miscellaneous.";
+            return ".more.";
         }
     }
 
@@ -337,7 +335,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
      * <p>You should only {@link Override} this method if you use {@link AbstractFeatureScreen#renderCustomImage(DrawContext)}.</p>
      */
     protected int getButtonsWidth() {
-        return this.renderCraftingRecipe || this.renderCustomImage ? this.width / 2 - 175 : this.width / 2 - 75;
+        return this.renderCraftingRecipe || this.moveButtons ? this.width / 2 - 175 : this.width / 2 - 75;
     }
 
     /**

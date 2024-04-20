@@ -11,6 +11,6 @@ public enum ScreenCategory {
     BLOCKS_AND_ITEMS,
     TOOLS_AND_ARMOR,
     ORES_AND_WORLDGEN,
-    MISCELLANEOUS,
+    MORE,
     DOOM_MODE
 }
