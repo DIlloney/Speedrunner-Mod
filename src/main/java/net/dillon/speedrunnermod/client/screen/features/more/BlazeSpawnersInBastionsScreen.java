@@ -5,7 +5,6 @@ import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
@@ -13,36 +12,25 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class BetterPiglinBarteringScreen extends AbstractFeatureScreen {
+public class BlazeSpawnersInBastionsScreen extends AbstractFeatureScreen {
 
-    public BetterPiglinBarteringScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.more.piglin_bartering"), false, false, true);
+    public BlazeSpawnersInBastionsScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.blaze_spawners_in_bastions"), false, false, true);
     }
 
     @Override
-    @NotNull
-    public String linesKey() {
-        return "piglin_bartering";
+    public @NotNull String linesKey() {
+        return "blaze_spawners_in_bastions";
     }
 
     @Override
     public int getPageNumber() {
-        return 7;
+        return 15;
     }
 
     @Override
-    protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/better_piglin_bartering.png"), this.width / 2, 190, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
-    }
-
-    @Override
-    protected int getImageWidth() {
-        return 238;
-    }
-
-    @Override
-    protected int getImageHeight() {
-        return 114;
+    protected Identifier getDownscaledImage() {
+        return new Identifier("speedrunnermod:textures/gui/screens/blaze_spawners_in_bastions.png");
     }
 
     @Override
@@ -56,8 +44,7 @@ public class BetterPiglinBarteringScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    @NotNull
-    public ScreenCategory getScreenCategory() {
+    public @NotNull ScreenCategory getScreenCategory() {
         return ScreenCategory.MORE;
     }
 

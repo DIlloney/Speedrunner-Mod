@@ -13,26 +13,25 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class BetterPiglinBarteringScreen extends AbstractFeatureScreen {
+public class BuffedLootTablesScreen extends AbstractFeatureScreen {
 
-    public BetterPiglinBarteringScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.more.piglin_bartering"), false, false, true);
+    public BuffedLootTablesScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.buffed_loot_tables"), false, false, true);
     }
 
     @Override
-    @NotNull
-    public String linesKey() {
-        return "piglin_bartering";
+    public @NotNull String linesKey() {
+        return "buffed_loot_tables";
     }
 
     @Override
     public int getPageNumber() {
-        return 7;
+        return 14;
     }
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/better_piglin_bartering.png"), this.width / 2, 190, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/buffed_loot_tables.png"), this.width / 2, 190, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override
@@ -42,7 +41,7 @@ public class BetterPiglinBarteringScreen extends AbstractFeatureScreen {
 
     @Override
     protected int getImageHeight() {
-        return 114;
+        return 100;
     }
 
     @Override
@@ -56,8 +55,7 @@ public class BetterPiglinBarteringScreen extends AbstractFeatureScreen {
     }
 
     @Override
-    @NotNull
-    public ScreenCategory getScreenCategory() {
+    public @NotNull ScreenCategory getScreenCategory() {
         return ScreenCategory.MORE;
     }
 

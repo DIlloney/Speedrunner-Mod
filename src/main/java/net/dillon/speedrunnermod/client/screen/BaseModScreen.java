@@ -55,7 +55,8 @@ public class BaseModScreen extends GameOptionsScreen {
     }
 
     /**
-     * The list of all feature screens.
+     * <p>The list of all feature screens.</p>
+     * These are not in order.
      */
     protected List<AbstractFeatureScreen> allFeatureScreens() {
         return List.of(new BlazeSpotterScreen(parent, options),
@@ -76,13 +77,11 @@ public class BaseModScreen extends GameOptionsScreen {
                 new SpeedrunnersEyeScreen(parent, options),
                 new SpeedrunnersWorkbenchScreen(parent, options),
                 new SpeedrunnerWoodScreen(parent, options),
-
                 new BasicsScreen(parent, options),
                 new BossesScreen(parent, options),
                 new DoomBlocksScreen(parent, options),
                 new GiantScreen(parent, options),
                 new OtherThingsToKnowScreen(parent, options),
-
                 new FasterBlockBreakingScreen(parent, options),
                 new FogKeyScreen(parent, options),
                 new ICarusModeScreen(parent, options),
@@ -100,7 +99,6 @@ public class BaseModScreen extends GameOptionsScreen {
                 new SpeedrunnerOresScreen(parent, options),
                 new SpeedrunnersWastelandBiomeScreen(parent, options),
                 new StructuresScreen(parent, options),
-
                 new CooldownEnchantmentScreen(parent, options),
                 new DashEnchantmentScreen(parent, options),
                 new DragonsSwordScreen(parent, options),
@@ -112,6 +110,9 @@ public class BaseModScreen extends GameOptionsScreen {
                 new DeadSpeedrunnerWoodScreen(parent, options),
                 new NetherPortalsScreen(parent, options),
                 new CookedFleshScreen(parent, options),
-                new FireproofItemsScreen(parent, options));
+                new FireproofItemsScreen(parent, options),
+                new BuffedLootTablesScreen(parent, options),
+                new BlazeSpawnersInBastionsScreen(parent, options),
+                new BlazesDropGoldScreen(parent, options));
     }
 }

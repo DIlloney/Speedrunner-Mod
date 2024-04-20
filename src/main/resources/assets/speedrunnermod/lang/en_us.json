@@ -706,6 +706,15 @@
   "speedrunnermod.title.features.more.fireproof_items": "§6Fireproof Items",
   "speedrunnermod.features.more.fireproof_items.text": "Certain items are now §6fireproof!§f\nBy default, this includes §eblaze rods, blaze powder,§f and §6fire charges.",
 
+  "speedrunnermod.title.features.more.buffed_loot_tables": "§bBuffed Loot Tables",
+  "speedrunnermod.features.more.buffed_loot_tables.text": "Almost §lall loot tables§r have been buffed to be §lextremely overpowered§r.\nThis includes §7bastion chests, §6village chests, §cnether fortress chests, §bburied treasures, §fand §lmuch more!",
+
+  "speedrunnermod.title.features.more.blaze_spawners_in_bastions": "§eBlaze Spawners §fin §7Bastions",
+  "speedrunnermod.features.more.blaze_spawners_in_bastions.text": "§6Magma cube spawners §fin bastions have been replaced with §eblaze spawners, §fbecause how are §6magma cubes §fgoing to benefit you in §bspeedrunning?",
+
+  "speedrunnermod.title.features.more.blazes_drop_gold": "§eBlazes Drop Gold",
+  "speedrunnermod.features.more.blazes_drop_gold.text": "When a §eblaze §fdies, they will have a chance to drop a few §egold blocks, §fand/or §6fire charges.",
+
   "speedrunnermod.title.features.more.more": "§bAnd More!",
   "speedrunnermod.features.more.more.text": "§a§lCongratulations!§r You are now an official §bSpeedrunner Mod pro,§r and you know about all of it's §amain features!§r\nFor more info, refer to §l\"Learn More...\"§r button below, or go back and re-read some things if you didn't fully understand everything!",
 
