@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features.blocks_and_items;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -31,7 +32,7 @@ public class RaidEradicatorScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/raid_eradicator.png");
+        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/raid_eradicator.png");
     }
 
     @Override
@@ -46,7 +47,7 @@ public class RaidEradicatorScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/raid_eradicator_crafting_recipe.png");
+        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/raid_eradicator_crafting_recipe.png");
     }
 
     @Override

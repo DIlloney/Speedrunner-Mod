@@ -168,7 +168,7 @@ public class SpeedrunnerMod implements ModInitializer {
         options().main.fasterSpawners = true;
         options().main.netherPortalCooldown = 2;
         options().main.throwableFireballs = true;
-        options().main.arrowsDestroyBeds = false;
+        options().main.arrowsDestroyBeds = true;
         options().main.globalNetherPortals = true;
         options().main.betterAnvil = true;
         options().main.anvilCostLimit = 10;

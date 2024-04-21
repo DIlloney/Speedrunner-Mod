@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features.more;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -31,7 +32,7 @@ public class InfiniPearlModeScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/infini_pearl.png");
+        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/infini_pearl.png");
     }
 
     @Override

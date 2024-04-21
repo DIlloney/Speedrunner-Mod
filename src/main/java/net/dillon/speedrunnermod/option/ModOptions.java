@@ -78,7 +78,7 @@ public class ModOptions {
         public MobSpawningRate mobSpawningRate = MobSpawningRate.HIGH;
         public int netherPortalCooldown = 2;
         public boolean throwableFireballs = true;
-        public boolean arrowsDestroyBeds = false;
+        public boolean arrowsDestroyBeds = true;
         public boolean globalNetherPortals = true;
         public boolean betterAnvil = true;
         public int anvilCostLimit = 10;

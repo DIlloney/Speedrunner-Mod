@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features.blocks_and_items;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -34,7 +35,7 @@ public class GoldenFoodItemsScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/golden_food_item.png");
+        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/golden_food_item.png");
     }
 
     @Override
@@ -49,7 +50,7 @@ public class GoldenFoodItemsScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/golden_food_item_crafting_recipe.png");
+        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/golden_food_item_crafting_recipe.png");
     }
 
     @Override

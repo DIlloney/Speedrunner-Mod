@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features.tools_and_armor;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -31,7 +32,7 @@ public class SpeedrunnerSafeBootsScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/speedrunner_safe_boots.png");
+        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/speedrunner_safe_boots.png");
     }
 
     @Override

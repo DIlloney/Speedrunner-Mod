@@ -20,7 +20,7 @@ import net.minecraft.util.Util;
 import java.util.List;
 
 /**
- * The base screen for any {@link net.dillon.speedrunnermod.SpeedrunnerMod} screen.
+ * The base screen for any {@code Speedrunner Mod} screen.
  */
 @Environment(EnvType.CLIENT)
 public class BaseModScreen extends GameOptionsScreen {
@@ -59,7 +59,8 @@ public class BaseModScreen extends GameOptionsScreen {
      * These are not in order.
      */
     protected List<AbstractFeatureScreen> allFeatureScreens() {
-        return List.of(new BlazeSpotterScreen(parent, options),
+        return List.of(
+                new BlazeSpotterScreen(parent, options),
                 new DragonsPearlScreen(parent, options),
                 new EnderThrusterScreen(parent, options),
                 new EyeOfAnnulScreen(parent, options),
@@ -113,6 +114,19 @@ public class BaseModScreen extends GameOptionsScreen {
                 new FireproofItemsScreen(parent, options),
                 new BuffedLootTablesScreen(parent, options),
                 new BlazeSpawnersInBastionsScreen(parent, options),
-                new BlazesDropGoldScreen(parent, options));
+                new BlazesDropGoldScreen(parent, options),
+                new BetterVillagerTradesScreen(parent, options),
+                new ThrowableFireballsScreen(parent, options),
+                new BetterDeathScreen(parent, options),
+                new BetterAnvilsScreen(parent, options),
+                new TotemsWorkInVoidScreen(parent, options),
+                new NeverBreakingEnderEyesScreen(parent, options),
+                new ReverseCraftingScreen(parent, options),
+                new LessFallDamageScreen(parent, options),
+                new BetterHotkeysScreen(parent, options),
+                new ArrowsExplodeBedsScreen(parent, options),
+                new SpeedrunnerEditionScreen(parent, options),
+                new MoreExperienceScreen(parent, options),
+                new MorePanoramasScreen(parent, options));
     }
 }

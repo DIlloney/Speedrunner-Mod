@@ -219,5 +219,5 @@ public class ModListOptions {
                         } else {
                             return GameOptions.getGenericValueText(optionText, Text.literal(value + " levels"));
                         }},
-                    new SimpleOption.ValidatingIntSliderCallbacks(1, 50), 1, value -> SpeedrunnerMod.options().main.anvilCostLimit = value);
+                    new SimpleOption.ValidatingIntSliderCallbacks(1, 50), 10, value -> SpeedrunnerMod.options().main.anvilCostLimit = value);
 }

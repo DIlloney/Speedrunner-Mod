@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features.blocks_and_items;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -32,7 +33,7 @@ public class MoreBoatsScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/more_boats.png"), this.width / 2, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/other/more_boats.png"), this.width / 2, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

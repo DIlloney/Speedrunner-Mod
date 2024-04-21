@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features.more;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -31,7 +32,7 @@ public class BuffedLootTablesScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier("speedrunnermod:textures/gui/screens/buffed_loot_tables.png"), this.width / 2, 190, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/buffed_loot_tables.png"), this.width / 2, 190, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

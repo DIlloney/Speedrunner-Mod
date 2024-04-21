@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features.blocks_and_items;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -31,7 +32,7 @@ public class SpeedrunnerWoodScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/speedrunner_wood.png");
+        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/blocks/speedrunner_wood.png");
     }
 
     @Override

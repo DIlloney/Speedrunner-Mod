@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features.tools_and_armor;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -31,7 +32,7 @@ public class DragonsSwordScreen extends AbstractFeatureScreen {
 
     @Override
     protected @NotNull Identifier getImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/dragons_sword.png");
+        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/dragons_sword.png");
     }
 
     @Override
@@ -46,7 +47,7 @@ public class DragonsSwordScreen extends AbstractFeatureScreen {
 
     @Override
     protected @NotNull Identifier getCraftingRecipeImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/dragons_sword_crafting_recipe.png");
+        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/dragons_sword_crafting_recipe.png");
     }
 
     @Override

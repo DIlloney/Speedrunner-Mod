@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features.more;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -25,7 +26,7 @@ public class BlazesDropGoldScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier("speedrunnermod:textures/gui/screens/blazes_drop_gold.png");
+        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/blazes_drop_gold.png");
     }
 
     @Override

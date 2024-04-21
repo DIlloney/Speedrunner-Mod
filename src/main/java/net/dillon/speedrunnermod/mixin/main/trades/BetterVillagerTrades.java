@@ -28,7 +28,6 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * <p>---</p>
  * {@link net.minecraft.village.TradeOffers.TypeAwareBuyForOneEmeraldFactory} wasn't working correctly, so I had to cast the {@link ImmutableMap#builder()} to a default {@link Map} in order for it to work.
  */
-@Deprecated
 @Mixin(TradeOffers.class)
 public class BetterVillagerTrades {
     @Shadow
