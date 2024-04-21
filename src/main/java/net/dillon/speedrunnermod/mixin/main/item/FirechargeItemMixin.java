@@ -34,7 +34,7 @@ public class FirechargeItemMixin extends Item {
                 Vec3d lookVec = player.getRotationVec(1.0F);
                 double speed = 1.5;
                 FireballEntity fireball = new FireballEntity(world, player, lookVec.x * speed, lookVec.y * speed, lookVec.z * speed, options().advanced.throwableFireballsExplosionPower);
-                fireball.updatePosition(player.getX(), player.getEyeY(), player.getZ());
+                fireball.updatePosition(player.getX(), player.getEyeY() - 0.235, player.getZ());
                 fireball.setOwner(player);
                 world.spawnEntity(fireball);
                 world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
