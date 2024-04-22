@@ -1,4 +1,4 @@
-// 1.20.4	2024-04-16T16:59:40.3401219	Speedrunner Mod/Tags for minecraft:item
+// 1.20.4	2024-04-22T19:12:32.2762273	Speedrunner Mod/Tags for minecraft:item
 cfa9fcee854d1581c3e68fb71d7db711ab5bb12f data\speedrunnermod\tags\items\flint_and_steels.json
 8fe1552e2e09f6daffd2f6b2f1b0862b66a07d34 data\speedrunnermod\tags\items\ignitables.json
 e74efa4309cf1e59585bcd0b439c137b5f4389f7 data\minecraft\tags\items\wooden_stairs.json
@@ -12,8 +12,8 @@ e5e9a298d99861e40a7bad6610cd8a336657db38 data\speedrunnermod\tags\items\speedrun
 1305759d704b007ab559103afb457354da23ba62 data\minecraft\tags\items\wooden_pressure_plates.json
 f20799c3efcd3264bd70251e48054f3b102c0efd data\speedrunnermod\tags\items\speed_boots.json
 99ff4574ed966f6535897fcd6055f0fddf3eade7 data\speedrunnermod\tags\items\faster_boats.json
-591cf44e85eb9e355a307d6b11680bf5e726b3cc data\speedrunnermod\tags\items\faster_chest_boats.json
 a0dcf1c58bfb677212d8ef77660585b2d9945cc8 data\speedrunnermod\tags\items\doom_stone_safe_tools.json
+591cf44e85eb9e355a307d6b11680bf5e726b3cc data\speedrunnermod\tags\items\faster_chest_boats.json
 0ea0e41b5fd47d0a511a8b51506d2d5bd6d71769 data\minecraft\tags\items\wooden_doors.json
 63de5e5849090634d5220819a56b86726f06785b data\speedrunnermod\tags\items\smithing_tables.json
 7a65d29987486bce9c4b475e0a3662462adfec9c data\speedrunnermod\tags\items\texture_creator_mannyqueso.json
@@ -55,5 +55,5 @@ eebf2e570846d666cbc982caf74e7661b3d016ee data\speedrunnermod\tags\items\nether_p
 2922e8db7269ad133c605a6cc1b055ce42dc335c data\speedrunnermod\tags\items\shears.json
 1f2b996582c8a4968bfc8d9c7496184642891ac2 data\speedrunnermod\tags\items\piglin_awakener_craftables.json
 3f6189487bb926ef7134482ef7f13993ed1e94fc data\speedrunnermod\tags\items\golden_food_items.json
-98a6426c0a3df878a4d183ab9be763806186c2e9 data\speedrunnermod\tags\items\piglin_safe_armor.json
+93de5047579cd21d294938c49c066ec74c0def4f data\speedrunnermod\tags\items\piglin_safe_armor.json
 e535052a1c275d9c5da99cc66cafb5139fe8ccb3 data\minecraft\tags\items\boats.json
