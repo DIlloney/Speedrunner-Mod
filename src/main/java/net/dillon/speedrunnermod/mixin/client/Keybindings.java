@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.mixin.client;
 
+import net.dillon.speedrunnermod.SpeedrunnerModClient;
 import net.dillon.speedrunnermod.client.keybind.ModKeybindings;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.ModOptions;
@@ -82,7 +83,7 @@ public abstract class Keybindings {
         while (ModKeybindings.fullbrightKey.wasPressed()) {
             options().client.fullBright = !options().client.fullBright;
             ModOptions.saveConfig();
-            MinecraftClient.getInstance().options.getGamma().setValue(options().client.fullBright ? 10.0D : 1.0D);
+            MinecraftClient.getInstance().options.getGamma().setValue(options().client.fullBright ? SpeedrunnerModClient.getMaxBrightness() : 1.0D);
             debugWarnSpeedrunnerMod(options().client.fullBright ? "speedrunnermod.toggle_fullbright.on" : "speedrunnermod.toggle_fullbright.off");
         }
 
