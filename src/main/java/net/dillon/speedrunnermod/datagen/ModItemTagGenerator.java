@@ -122,6 +122,7 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(Items.GOLDEN_HELMET)
                 .add(Items.GOLDEN_CHESTPLATE)
                 .add(Items.GOLDEN_LEGGINGS)
+                .add(Items.GOLDEN_BOOTS)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_HELMET)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS)
