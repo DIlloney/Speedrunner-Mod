@@ -32,6 +32,7 @@ public class ModBlockTags {
         public static TagKey<Block> ZERO_HARDNESS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "block_hardness/0_hardness"));
         public static TagKey<Block> ZERO_ONE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "block_hardness/0-1_hardness"));
         public static TagKey<Block> ZERO_TWO_HARDNESS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "block_hardness/0-2_hardness"));
+        public static TagKey<Block> ZERO_THREE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "block_hardness/0-3_hardness"));
         public static TagKey<Block> ZERO_THREEFIVE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "block_hardness/0-35_hardness"));
         public static TagKey<Block> ZERO_THREESEVEN_HARDNESS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "block_hardness/0-37_hardness"));
         public static TagKey<Block> ZERO_FOUR_HARDNESS = TagKey.of(RegistryKeys.BLOCK, new Identifier(SpeedrunnerMod.MOD_ID, "block_hardness/0-4_hardness"));

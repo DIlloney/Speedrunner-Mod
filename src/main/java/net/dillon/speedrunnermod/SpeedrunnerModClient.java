@@ -105,6 +105,6 @@ public class SpeedrunnerModClient implements ClientModInitializer {
      * Gets the maximum brightness amount for the speedrunner mod.
      */
     public static double getMaxBrightness() {
-        return 10.0D;
+        return 12.0D;
     }
 }

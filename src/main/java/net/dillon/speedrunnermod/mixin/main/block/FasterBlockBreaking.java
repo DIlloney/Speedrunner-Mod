@@ -38,6 +38,10 @@ public class FasterBlockBreaking {
                 cir.setReturnValue(0.2F / options().main.blockBreakingMultiplier);
             }
 
+            if (world.getBlockState(pos).isIn(ModBlockTags.BlockHardness.ZERO_THREE_HARDNESS)) {
+                cir.setReturnValue(0.3F / options().main.blockBreakingMultiplier);
+            }
+
             if (world.getBlockState(pos).isIn(ModBlockTags.BlockHardness.ZERO_THREEFIVE_HARDNESS)) {
                 cir.setReturnValue(0.35F / options().main.blockBreakingMultiplier);
             }

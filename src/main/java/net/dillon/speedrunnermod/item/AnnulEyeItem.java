@@ -82,18 +82,20 @@ public class AnnulEyeItem extends Item {
                     boolean isEnabled = !options().advanced.disableEyeOfAnnulPortalRoomTeleporter;
                     if (isEnabled) {
                         if (!DOOM_MODE || options().advanced.enableEyeOfAnnulPortalRoomTeleporterOnDoomMode) {
-                            BlockPos endPortalFrameBlock = findPortalRoom(world, player.getBlockPos());
                             ItemStack enderEye = new ItemStack(Items.ENDER_EYE);
                             ItemStack enderPearl = new ItemStack(Items.ENDER_PEARL);
                             boolean hasEnderEye = player.getInventory().contains(enderEye);
                             boolean hasEnderPearl = player.getInventory().contains(enderPearl);
                             boolean hasRequiredItems = hasEnderEye && hasEnderPearl;
+
                             if (player.getAbilities().creativeMode) {
                                 hasRequiredItems = true;
                             }
 
-                            if (endPortalFrameBlock != null) {
-                                if (hasRequiredItems) {
+                            if (hasRequiredItems) {
+                                BlockPos endPortalFrameBlock = findPortalRoom(world, player.getBlockPos());
+
+                                if (endPortalFrameBlock != null) {
                                     if (confirm) {
                                         player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.teleporting").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                                         player.teleport(endPortalFrameBlock.getX() + 0.5F, endPortalFrameBlock.getY() + 1.0F, endPortalFrameBlock.getZ() + 0.5F, true);
@@ -131,18 +133,18 @@ public class AnnulEyeItem extends Item {
                                     player.swingHand(hand, true);
                                     return TypedActionResult.success(itemStack);
                                 } else {
-                                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 5.0F);
-                                    player.swingHand(hand, true);
-                                    if (!hasEnderEye && !hasEnderPearl) {
-                                        player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.has_none").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
-                                    } else if (!hasEnderEye) {
-                                        player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.no_ender_eye").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
-                                    } else {
-                                        player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.no_ender_pearl").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
-                                    }
+                                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.couldnt_find_portal_room").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                                 }
                             } else {
-                                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.couldnt_find_portal_room").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 5.0F);
+                                player.swingHand(hand, true);
+                                if (!hasEnderEye && !hasEnderPearl) {
+                                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.has_none").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                } else if (!hasEnderEye) {
+                                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.no_ender_eye").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                } else {
+                                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.no_ender_pearl").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                }
                             }
                         } else {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 5.0F);

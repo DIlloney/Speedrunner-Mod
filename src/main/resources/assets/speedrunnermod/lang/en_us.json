@@ -165,7 +165,7 @@
   "item.speedrunnermod.eye_of_annul.wrong_dimension": "You must be in the overworld to use this item!",
   "item.speedrunnermod.eye_of_annul.no_ender_eye": "The gatekeeper requests an ender eye.",
   "item.speedrunnermod.eye_of_annul.no_ender_pearl": "The gatekeeper requests an ender pearl.",
-  "item.speedrunnermod.eye_of_annul.has_none": "The gatekeeper says... bring me what I need, and I will let you through.",
+  "item.speedrunnermod.eye_of_annul.has_none": "The gatekeeper says... bring me an eye and a pearl, and I will let you through.",
 
   "item.speedrunnermod.eye_of_inferno.looking_for": "Eye of Inferno is now looking for a %s!",
   "item.speedrunnermod.eye_of_inferno.looking_for.tooltip": "Currently Locating: %s",
