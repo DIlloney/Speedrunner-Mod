@@ -7,11 +7,11 @@ import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.dillon.speedrunnermod.util.TimeCalculator;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -56,11 +56,8 @@ public class PiglinAwakenerItem extends Item {
                         if (player.getAbilities().creativeMode) {
                             hasGold = true;
                         }
-                        for (ItemStack armorItems : player.getArmorItems()) {
-                            Item item = armorItems.getItem();
-                            if (item instanceof ArmorItem armorItem && armorItem.getDefaultStack().isIn(ModItemTags.PIGLIN_SAFE_ARMOR)) {
-                                isSafe = true;
-                            }
+                        if (player.getEquippedStack(EquipmentSlot.HEAD).isIn(ModItemTags.PIGLIN_SAFE_ARMOR) || player.getEquippedStack(EquipmentSlot.CHEST).isIn(ModItemTags.PIGLIN_SAFE_ARMOR) || player.getEquippedStack(EquipmentSlot.LEGS).isIn(ModItemTags.PIGLIN_SAFE_ARMOR) || player.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.PIGLIN_SAFE_ARMOR)) {
+                            isSafe = true;
                         }
 
                         if (isSafe) {
