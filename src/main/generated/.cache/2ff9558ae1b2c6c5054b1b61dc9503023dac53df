@@ -1,4 +1,4 @@
-// 1.20.4	2024-04-22T19:12:32.2702276	Speedrunner Mod/Tags for minecraft:block
+// 1.20.4	2024-04-22T19:19:23.8956792	Speedrunner Mod/Tags for minecraft:block
 0fe2ea89ae39c0769635614a4d44c9f831d5bf8f data\minecraft\tags\blocks\doors.json
 a50e04c5e2cbc4ffda638745e9f7ff4576fb9687 data\minecraft\tags\blocks\wall_signs.json
 dce578ecec843739645a3b55143465cfa953bdb5 data\speedrunnermod\tags\blocks\iron_blocks.json
@@ -6,8 +6,8 @@ c2a79812815331b68eaa0c1af6a074dfad37d8d7 data\minecraft\tags\blocks\wall_hanging
 06a7f7652f00ecbfe78bd74858aeac49383ebc74 data\speedrunnermod\tags\blocks\speedrunner_sapling_placeables.json
 9fe901c6da2b2ecdf53334f57ca44fd4e9ed0a3d data\minecraft\tags\blocks\saplings.json
 7d9547db0e077e402e92587d8eba9e839a598985 data\minecraft\tags\blocks\dragon_immune.json
-fa86bd78a2e9c312ea9720a4523ad39802d74227 data\speedrunnermod\tags\blocks\speedrunner_planks.json
 29908f7f87339112c7200396efb59db131164665 data\minecraft\tags\blocks\mineable\pickaxe.json
+fa86bd78a2e9c312ea9720a4523ad39802d74227 data\speedrunnermod\tags\blocks\speedrunner_planks.json
 e083265c93fa1d416a9104b2dc18d268009e421a data\minecraft\tags\blocks\trapdoors.json
 574b63fe62424ecd0f4b73f4bd7d8caa66648836 data\minecraft\tags\blocks\leaves.json
 6af087465fdaa0d3d5fd40f0789cc486326d20d3 data\minecraft\tags\blocks\ceiling_hanging_signs.json

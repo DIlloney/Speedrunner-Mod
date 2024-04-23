@@ -1,4 +1,4 @@
-// 1.20.4	2024-04-22T19:12:32.2762273	Speedrunner Mod/Tags for minecraft:item
+// 1.20.4	2024-04-22T19:19:23.90168	Speedrunner Mod/Tags for minecraft:item
 cfa9fcee854d1581c3e68fb71d7db711ab5bb12f data\speedrunnermod\tags\items\flint_and_steels.json
 8fe1552e2e09f6daffd2f6b2f1b0862b66a07d34 data\speedrunnermod\tags\items\ignitables.json
 e74efa4309cf1e59585bcd0b439c137b5f4389f7 data\minecraft\tags\items\wooden_stairs.json
@@ -27,9 +27,9 @@ f4c1eda4292c8621da824c982d7d9ff65b0e7a9f data\speedrunnermod\tags\items\speedrun
 725785c658a4a6ee6b802d7729f39af2b60304e8 data\speedrunnermod\tags\items\speedrunner_sapling_placeables.json
 108601dfe25e5149e996428bc1f46c51fe0adc8b data\minecraft\tags\items\stone_crafting_materials.json
 574b63fe62424ecd0f4b73f4bd7d8caa66648836 data\minecraft\tags\items\leaves.json
-ed2260cbfac16b5c7f89b3513a86ddb8e65aecbe data\speedrunnermod\tags\items\crossbows.json
 1fd6e4821c072061c87cde69757b866121548420 data\speedrunnermod\tags\items\cooldown_enchantment_items.json
 1f1a5222a2deaf7c6ad6796e2a5e6a35688eb4ee data\minecraft\tags\items\chest_boats.json
+ed2260cbfac16b5c7f89b3513a86ddb8e65aecbe data\speedrunnermod\tags\items\crossbows.json
 e25108eaf7c72e0b5365c0cdcbdbb4701f658686 data\minecraft\tags\items\logs.json
 43aa571ef6be697346c93d9dbda911d0e98a4f7a data\speedrunnermod\tags\items\iron_nuggets.json
 0ea2f44d6de61a59cf4cf10daeafb5a54a6f70ef data\speedrunnermod\tags\items\speedrunner_fuels.json
@@ -50,8 +50,8 @@ f53ed9298cdd24e7e9fd91e8ff69439fa7e75196 data\speedrunnermod\tags\items\igneous_
 3c27ad13a63f809507a0e170125c8fd521179a00 data\speedrunnermod\tags\items\fireproof_chest_boats.json
 a414fad44880d5cb592374612310b66bea1dbcf6 data\minecraft\tags\items\wooden_fences.json
 9eaf8bcd1646b211da878af414cf78f70f3ef9d0 data\minecraft\tags\items\wooden_slabs.json
-d85552119bc52698ca4470b7173b323500d88bf4 data\speedrunnermod\tags\items\iron_ingots.json
 eebf2e570846d666cbc982caf74e7661b3d016ee data\speedrunnermod\tags\items\nether_portal_base_blocks.json
+d85552119bc52698ca4470b7173b323500d88bf4 data\speedrunnermod\tags\items\iron_ingots.json
 2922e8db7269ad133c605a6cc1b055ce42dc335c data\speedrunnermod\tags\items\shears.json
 1f2b996582c8a4968bfc8d9c7496184642891ac2 data\speedrunnermod\tags\items\piglin_awakener_craftables.json
 3f6189487bb926ef7134482ef7f13993ed1e94fc data\speedrunnermod\tags\items\golden_food_items.json
