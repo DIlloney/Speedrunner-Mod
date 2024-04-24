@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Mixin(DimensionType.class)
-public class AllowWaterInNether {
+public class DimensionTypeMixin {
     @Shadow @Final
     private boolean ultrawarm;
 

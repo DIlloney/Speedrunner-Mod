@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Mixin(ItemEntity.class)
-public class FireproofItems {
+public class ItemEntityMixin {
 
     /**
      * Makes all items in the {@code Fireproof Items} tag, fireproof.

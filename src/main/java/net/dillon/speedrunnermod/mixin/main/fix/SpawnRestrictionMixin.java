@@ -18,11 +18,11 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
  * Prevents and fixes piglin brutes from spawning in the air.
  */
 @Mixin(SpawnRestriction.class)
-public class PiglinBruteSpawnConditions {
+public class SpawnRestrictionMixin {
 
     static {
         if (DOOM_MODE) {
-            SpawnRestriction.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PiglinBruteSpawnConditions::canPiglinBruteSpawn);
+            SpawnRestriction.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SpawnRestrictionMixin::canPiglinBruteSpawn);
         }
     }
 

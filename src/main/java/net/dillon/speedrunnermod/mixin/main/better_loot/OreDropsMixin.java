@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(ApplyBonusLootFunction.OreDrops.class)
-public class BetterLoot {
+public class OreDropsMixin {
 
     /**
      * Applies better loot drops from ores.

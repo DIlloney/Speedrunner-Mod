@@ -14,9 +14,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(SpawnerBlock.class)
-public abstract class MoreBlockXPSpawner extends BlockWithEntity {
+public abstract class SpawnerBlockMixin extends BlockWithEntity {
 
-    public MoreBlockXPSpawner(Settings settings) {
+    public SpawnerBlockMixin(Settings settings) {
         super(settings);
     }
 

@@ -10,7 +10,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * Changes the spawn delay for mobs to spawn.
  */
 @Mixin(value = MobSpawnerLogic.class, priority = 999)
-public class FasterSpawners {
+public class MobSpawnerLogicMixin {
     @Shadow
     private int maxSpawnDelay = options().main.fasterSpawners ? 400 : 800;
 }

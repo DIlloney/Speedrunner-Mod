@@ -12,12 +12,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Enchantment.class)
-public class AllowEnchantmentsOnAxe {
+public class EnchantmentMixin {
 
     /**
      * Allows the {@code Fire Aspect, Knockback and Looting} enchantment to be applied to axes.
      */
-    @Inject(method = "isAcceptableItem", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "isAcceptableItem", at = @At("RETURN"), cancellable = true)
     private void allowEnchantmentsOnAxe(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Enchantment enchantment = (Enchantment)(Object)this;
         if (stack.getItem() instanceof AxeItem) {

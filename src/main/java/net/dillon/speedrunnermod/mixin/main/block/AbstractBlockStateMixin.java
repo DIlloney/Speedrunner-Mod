@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Mixin(AbstractBlock.AbstractBlockState.class)
-public class FasterBlockBreaking {
+public class AbstractBlockStateMixin {
     @Shadow @Final
     private float hardness;
 

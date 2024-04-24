@@ -4,18 +4,20 @@
   "package": "net.dillon.speedrunnermod.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "main.better_loot.BetterLoot",
+    "main.better_loot.OreDropsMixin",
+
+    "main.block.AbstractBlockStateMixin",
     "main.block.BedBlockMixin",
     "main.block.BlockMixin",
-    "main.block.FasterBlockBreaking",
-    "main.block.FasterSpawners",
-    "main.block.FluidBlockMixin",
-    "main.block.MoreBlockXPRedstone",
-    "main.block.MoreBlockXPSpawner",
     "main.block.ExperienceDroppingBlockMixin",
-    "main.enchantment.AllowEnchantmentsOnAxe",
-    "main.enchantment.HigherEnchantmentLevels",
-    "main.enchantment.RemoveTooExpensiveFeature",
+    "main.block.FluidBlockMixin",
+    "main.block.MobSpawnerLogicMixin",
+    "main.block.RedstoneOreBlockMixin",
+    "main.block.SpawnerBlockMixin",
+
+    "main.enchantment.AnvilScreenHandlerMixin",
+    "main.enchantment.EnchantmentMixin",
+
     "main.entity.basic.EntityMixin",
     "main.entity.boat.BoatEntityMixin",
     "main.entity.boat.TerraformBoatEntityMixin",
@@ -23,6 +25,7 @@
     "main.entity.giant.GiantEntityMixin",
     "main.entity.living.LivingEntityMixin",
     "main.entity.player.PlayerEntityMixin",
+    "main.entity.player.ServerPlayerEntityMixin",
     "main.entity.AbstractSkeletonEntityMixin",
     "main.entity.ArrowEntitiesMixin",
     "main.entity.BlazeEntityMixin",
@@ -68,31 +71,37 @@
     "main.entity.ZoglinEntityMixin",
     "main.entity.ZombieEntityMixin",
     "main.entity.ZombifiedPiglinEntityMixin",
+
     "main.fix.BeehiveBlockMixin",
     "main.fix.BlockEntityTypeMixin",
     "main.fix.EfficiencyEnchantmentMixin",
     "main.fix.ItemPredicateMixin",
-    "main.fix.PiglinBruteSpawnConditions",
     "main.fix.PumpkinBlockMixin",
     "main.fix.SnowGolemEntityMixin",
+    "main.fix.SpawnRestrictionMixin",
     "main.fix.TntBlockMixin",
     "main.fix.TripwireBlockMixin",
-    "main.item.BetterFoods",
+
     "main.item.ChorusFruitItemMixin",
     "main.item.EnchantedBookItemMixin",
     "main.item.EnderPearlItemMixin",
     "main.item.FirechargeItemMixin",
-    "main.item.FireproofItems",
+    "main.item.FoodComponentsMixin",
+    "main.item.ItemEntityMixin",
     "main.item.ItemMixin",
     "main.item.TerraformBoatItemMixin",
-    "main.entity.player.ServerPlayerEntityMixin",
-    "main.nether.nether_portal.AllowNetherPortalBaseBlocks",
-    "main.nether.nether_portal.NetherPortalBaseBlocks",
-    "main.nether.AllowWaterInNether",
+
+    "main.nether.nether_portal.AbstractFireBlockMixin",
+    "main.nether.nether_portal.NetherPortalMixin",
+    "main.nether.DimensionTypeMixin",
+
     "main.recipe.ShapelessRecipeMixin",
+
     "main.registry.RegistryLoaderMixin",
-    "main.trades.BetterVillagerTrades",
+
     "main.trades.SellEnchantedToolFactoryMixin",
+    "main.trades.TradeOffersMixin",
+
     "main.world.EndGatewayBlockEntityMixin",
     "main.world.EndIslandFeatureMixin",
     "main.world.EndPortalFeatureMixin",
@@ -107,13 +116,17 @@
   ],
   "client": [
     "client.enchantment.RemoveTooExpensiveText",
+
     "client.fix.AbstractClientPlayerEntityMixin",
     "client.fix.HeldItemRendererMixin",
     "client.fix.PlayerEntityRendererMixin",
     "client.fix.RenderLayersMixin",
     "client.fix.SmithingScreenHandlersMixin",
+
     "client.hud.DebugModText",
+
     "client.render.CustomWorldEvents",
+
     "client.screen.CreateWorldScreenMixin",
     "client.screen.DeathScreenMixin",
     "client.screen.GameMenuScreenMixin",
@@ -121,6 +134,7 @@
     "client.screen.MinecraftClientMixin",
     "client.screen.OptionsScreenMixin",
     "client.screen.TitleScreenMixin",
+
     "client.Fog",
     "client.IncreasedBrightness",
     "client.Keybindings"

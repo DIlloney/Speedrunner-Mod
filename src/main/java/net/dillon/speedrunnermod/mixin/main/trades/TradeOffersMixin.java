@@ -29,7 +29,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * {@link net.minecraft.village.TradeOffers.TypeAwareBuyForOneEmeraldFactory} wasn't working correctly, so I had to cast the {@link ImmutableMap#builder()} to a default {@link Map} in order for it to work.
  */
 @Mixin(TradeOffers.class)
-public class BetterVillagerTrades {
+public class TradeOffersMixin {
     @Shadow
     public static final Map<VillagerProfession, Int2ObjectMap<TradeOffers.Factory[]>> PROFESSION_TO_LEVELED_TRADE = options().main.betterVillagerTrades ? Util.make(Maps.newHashMap(), map -> {
         map.put(VillagerProfession.FARMER, TradeOffers.copyToFastUtilMap(

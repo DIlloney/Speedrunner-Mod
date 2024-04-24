@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(NetherPortal.class)
-public class NetherPortalBaseBlocks {
+public class NetherPortalMixin {
     /**
      * Allows nether portals to be built with any block in the {@code "nether_portal_base_blocks"} tag.
      */

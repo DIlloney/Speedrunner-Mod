@@ -16,9 +16,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RedstoneOreBlock.class)
-public class MoreBlockXPRedstone extends Block {
+public class RedstoneOreBlockMixin extends Block {
 
-    public MoreBlockXPRedstone(Settings settings) {
+    public RedstoneOreBlockMixin(Settings settings) {
         super(settings);
     }
 
