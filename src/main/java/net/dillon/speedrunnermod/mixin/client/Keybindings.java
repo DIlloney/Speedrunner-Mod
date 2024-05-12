@@ -27,6 +27,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.debug;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
+import static net.dillon.speedrunnermod.SpeedrunnerModClient.isSimpleKeybindsLoaded;
 
 @Environment(EnvType.CLIENT)
 @Mixin(MinecraftClient.class)
@@ -45,10 +46,8 @@ public abstract class Keybindings {
     public abstract boolean isIntegratedServerRunning();
     @Shadow @Nullable
     public abstract IntegratedServer getServer();
-
-    @Shadow @Final public GameOptions options;
-
-    @Shadow public abstract void openGameMenu(boolean pauseOnly);
+    @Shadow @Final
+    public GameOptions options;
 
     /**
      * Applies the {@code speedrunner mod keybinds} to the game.
@@ -66,10 +65,10 @@ public abstract class Keybindings {
                     this.disconnect(new MessageScreen(Text.translatable("menu.savingLevel")));
                     CreateWorldScreen.create(MinecraftClient.getInstance(), null);
                 } else {
-                    debugWarnSpeedrunnerMod("\"Fast World Creation\" is OFF, please enable to use this feature.");
+                    debugWarn("\"Fast World Creation\" is OFF, please enable to use this feature.");
                 }
             } else {
-                debugWarnSpeedrunnerMod("You must be in singleplayer to create new worlds.");
+                debugWarn("You must be in singleplayer to create new worlds.");
             }
         }
 
@@ -77,39 +76,36 @@ public abstract class Keybindings {
             options().client.fog = !options().client.fog;
             ModOptions.saveConfig();
             MinecraftClient.getInstance().worldRenderer.reload();
-            debugWarnSpeedrunnerMod(options().client.fog ? "speedrunnermod.toggle_fog.on" : "speedrunnermod.toggle_fog.off");
+            debugWarn(options().client.fog ? "speedrunnermod.toggle_fog.on" : "speedrunnermod.toggle_fog.off");
         }
 
         while (ModKeybindings.fullbrightKey.wasPressed()) {
             options().client.fullBright = !options().client.fullBright;
             ModOptions.saveConfig();
             MinecraftClient.getInstance().options.getGamma().setValue(options().client.fullBright ? SpeedrunnerModClient.getMaxBrightness() : 1.0D);
-            debugWarnSpeedrunnerMod(options().client.fullBright ? "speedrunnermod.toggle_fullbright.on" : "speedrunnermod.toggle_fullbright.off");
+            debugWarn(options().client.fullBright ? "speedrunnermod.toggle_fullbright.on" : "speedrunnermod.toggle_fullbright.off");
         }
 
-        while (ModKeybindings.hitboxesKey.wasPressed()) {
-            boolean bl = !MinecraftClient.getInstance().getEntityRenderDispatcher().shouldRenderHitboxes();
-            String hitboxes = bl ? "ON" : "OFF";
-            MinecraftClient.getInstance().getEntityRenderDispatcher().setRenderHitboxes(bl);
-            debugWarn(bl ? "debug.show_hitboxes.on" : "debug.show_hitboxes.off");
-            debug("Toggled hitboxes " + hitboxes);
-        }
+        if (isSimpleKeybindsLoaded()) {
+            while (ModKeybindings.hitboxesKey.wasPressed()) {
+                boolean bl = !MinecraftClient.getInstance().getEntityRenderDispatcher().shouldRenderHitboxes();
+                String hitboxes = bl ? "ON" : "OFF";
+                MinecraftClient.getInstance().getEntityRenderDispatcher().setRenderHitboxes(bl);
+                debugWarn(bl ? "debug.show_hitboxes.on" : "debug.show_hitboxes.off");
+                debug("Toggled hitboxes " + hitboxes);
+            }
 
-        while (ModKeybindings.chunkBordersKey.wasPressed()) {
-            boolean bl = MinecraftClient.getInstance().debugRenderer.toggleShowChunkBorder();
-            String chunkBorders = bl ? "ON" : "OFF";
-            debugWarn(bl ? "debug.chunk_boundaries.on" : "debug.chunk_boundaries.off");
-            debug("Toggled chunk borders " + chunkBorders);
+            while (ModKeybindings.chunkBordersKey.wasPressed()) {
+                boolean bl = MinecraftClient.getInstance().debugRenderer.toggleShowChunkBorder();
+                String chunkBorders = bl ? "ON" : "OFF";
+                debugWarn(bl ? "debug.chunk_boundaries.on" : "debug.chunk_boundaries.off");
+                debug("Toggled chunk borders " + chunkBorders);
+            }
         }
     }
 
     @Unique
     private void debugWarn(String string, Object... objects) {
         this.inGameHud.getChatHud().addMessage((ModTexts.BLANK).copy().append((Text.translatable("debug.prefix")).formatted(Formatting.YELLOW, Formatting.BOLD)).append(" ").append(Text.translatable(string, objects)));
-    }
-
-    @Unique
-    private void debugWarnSpeedrunnerMod(String string, Object... objects) {
-        this.inGameHud.getChatHud().addMessage((ModTexts.BLANK).copy().append((Text.translatable("speedrunnermod.debug.prefix")).formatted(Formatting.AQUA, Formatting.BOLD)).append(" ").append(Text.translatable(string, objects)));
     }
 }

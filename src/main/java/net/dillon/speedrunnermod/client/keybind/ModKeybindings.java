@@ -8,6 +8,7 @@ import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
+import static net.dillon.speedrunnermod.SpeedrunnerModClient.isSimpleKeybindsLoaded;
 
 /**
  * All of the {@code Speedrunner mod} keybinds.
@@ -23,5 +24,8 @@ public class ModKeybindings {
 
     public static void clinit() {
         info("Initialized keybinds.");
+        if (isSimpleKeybindsLoaded()) {
+            info("Simple Keybinds mod is loaded, compatibility has been added.");
+        }
     }
 }

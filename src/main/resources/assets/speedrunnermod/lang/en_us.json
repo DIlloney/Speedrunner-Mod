@@ -862,14 +862,13 @@
   "speedrunnermod.doom_mode_screen.line14": "Oh yeah, ender eyes always break and ender pearls give blindness.",
 
   "speedrunnermod.keybinds": "Speedrunner Mod",
-  "speedrunnermod.debug.prefix": "[Speedrunner Mod]:",
   "speedrunnermod.create_new_world": "Create New World",
   "speedrunnermod.toggle_fog": "Toggle Fog",
-  "speedrunnermod.toggle_fog.on": "Fog: §lON",
-  "speedrunnermod.toggle_fog.off": "Fog: §lOFF",
+  "speedrunnermod.toggle_fog.on": "Fog: on",
+  "speedrunnermod.toggle_fog.off": "Fog: off",
   "speedrunnermod.toggle_fullbright": "Toggle Fullbright",
-  "speedrunnermod.toggle_fullbright.on": "Fullbright: §lON",
-  "speedrunnermod.toggle_fullbright.off": "Fullbright: §lOFF",
+  "speedrunnermod.toggle_fullbright.on": "Fullbright: on",
+  "speedrunnermod.toggle_fullbright.off": "Fullbright: off",
   "speedrunnermod.toggle_hitboxes": "Toggle Hitboxes",
   "speedrunnermod.toggle_chunk_borders": "Toggle Chunk Borders",
 

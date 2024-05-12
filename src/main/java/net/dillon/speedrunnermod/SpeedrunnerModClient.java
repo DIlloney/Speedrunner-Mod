@@ -43,6 +43,13 @@ public class SpeedrunnerModClient implements ClientModInitializer {
     }
 
     /**
+     * Checks if the {@code Simple Keybinds} mod is loaded.
+     */
+    public static boolean isSimpleKeybindsLoaded() {
+        return FabricLoader.getInstance().isModLoaded("simplekeybinds");
+    }
+
+    /**
      * Fixes broken speedrunner mod options.
      * <p>See {@link net.dillon.speedrunnermod.client.screen.SafeBootScreen} for more.</p>
      */
