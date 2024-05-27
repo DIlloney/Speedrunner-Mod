@@ -51,8 +51,6 @@ public class ModOptions {
         @RequiresRestart
         public boolean doomMode = false;
         public int dragonPerchTime = 8;
-        @RequiresRestart
-        public boolean leaderboardsMode = false;
         public boolean killGhastOnFireball = false;
         @RequiresRestart
         public boolean betterVillagerTrades = true;
@@ -86,6 +84,9 @@ public class ModOptions {
         public boolean stackUnstackables = false;
         public boolean fasterSpawners = true;
         public boolean customDataGeneration = true;
+
+        @RequiresRestart @Deprecated
+        public boolean leaderboardsMode = false;
     }
 
     /**
