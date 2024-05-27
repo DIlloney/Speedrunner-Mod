@@ -36,6 +36,7 @@ public class ModMenuScreen extends AbstractModScreen {
             }
             this.client.setScreen(new ModOptionsScreen(this, options));
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+
         this.featuresButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_FEATURES, (button) -> {
             this.client.setScreen(new FeaturesScreen(this, options));
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
@@ -44,6 +45,7 @@ public class ModMenuScreen extends AbstractModScreen {
         this.resourcesButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_RESOURCES, (button) -> {
             this.client.setScreen(new ResourcesScreen(this, options));
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+
         this.externalButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_EXTERNAL, (button) -> {
             this.client.setScreen(new ExternalScreen(this, options));
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
@@ -52,14 +54,17 @@ public class ModMenuScreen extends AbstractModScreen {
         this.creditsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_CREDITS, (button) -> {
             this.client.setScreen(new ModCreditsScreen(this, options));
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+
         this.leaderboardsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_LEADERBOARDS, (button) -> {
             this.client.setScreen(new LeaderboardsScreen(this, this.options));
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        this.leaderboardsButton.active = false;
 
         height += 24;
         this.easierSpeedrunningModButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.EASIER_SPEEDRUNNING_MOD, (button) -> {
             this.openLink(ModLinks.EASIER_SPEEDRUNNING_MOD_WIKI_LINK, true);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+
         this.doomModeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_DOOM_MODE, (button) -> {
             if (SecretDoomModeScreen.doomModeButtonAlreadyClicked > 0) {
                 this.client.setScreen(new SecretDoomModeScreen.ScreenFive(this, options));
@@ -88,6 +93,9 @@ public class ModMenuScreen extends AbstractModScreen {
         }
         if (this.resourcesButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MENU_RESOURCES_TOOLTIP, 200), mouseX, mouseY);
+        }
+        if (this.leaderboardsButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MENU_LEADERBOARDS_DISABLED, 200), mouseX, mouseY);
         }
         if (this.easierSpeedrunningModButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.EASIER_SPEEDRUNNING_MOD_TOOLTIP, 200), mouseX, mouseY);

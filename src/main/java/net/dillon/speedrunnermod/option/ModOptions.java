@@ -588,6 +588,12 @@ public class ModOptions {
         final String pertaining = "Pertaining to: ";
         final String related = space + pertaining;
 
+        if (options().main.leaderboardsMode) {
+            error("Leaderboards mode is ON, please disable, as the leaderboards have been deleted.");
+            isSafe(false);
+            BrokenModOptions.leaderboards = true;
+        }
+
         if (!options().main.structureSpawnRates.isSafe()) {
             error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.structureSpawnRates");
             isSafe(false);

@@ -12,9 +12,7 @@ public class ModLinks {
     public static final String EASIER_SPEEDRUNNING_MOD_WIKI_LINK = "https://sites.google.com/view/dillon8775/easier-speedrunning-mod";
     public static final String MODRINTH_LINK = "https://modrinth.com/mod/speedrunner-mod";
     public static final String GITHUB_LINK = "https://github.com/Dillon8775/Speedrunner-Mod";
-    public static final String DISCORD_LINK = "https://discord.gg/jvHXkdPRWJ";
-    public static final String WEBPAGE_LINK = "https://sites.google.com/view/dillon8775";
-    public static final String SPEEDRUNNER_MOD_WEBPAGE_LINK = "https://sites.google.com/view/dillon8775/the-speedrunner-mod";
+    public static final String WEBPAGE_LINK = "https://sites.google.com/view/dillon8775/the-speedrunner-mod";
     public static final String DILLON8775_YOUTUBE_CHANNEL_LINK = "https://www.youtube.com/@dillon8775";
     public static final String MANNYQUESO_YOUTUBE_CHANNEL_LINK = "https://www.youtube.com/@mannyqueso";
     public static final String NUZLAND_YOUTUBE_CHANNEL_LINK = "https://www.youtube.com/@chargeblader9305";

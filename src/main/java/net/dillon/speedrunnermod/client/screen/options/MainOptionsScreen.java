@@ -30,7 +30,6 @@ public class MainOptionsScreen extends AbstractModScreen {
                 ModListOptions.FASTER_BLOCK_BREAKING,
                 ModListOptions.BLOCK_BREAKING_MULTIPLIER,
                 ModListOptions.DRAGON_PERCH_TIME,
-                ModListOptions.LEADERBOARDS_MODE,
                 ModListOptions.DOOM_MODE,
                 ModListOptions.ICARUS_MODE,
                 ModListOptions.INFINI_PEARL_MODE,

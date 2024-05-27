@@ -67,6 +67,7 @@ public class ModListOptions {
     public static final SimpleOption<Boolean> INFINI_PEARL_MODE = new SimpleOption<>("speedrunnermod.options.infini_pearl_mode", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.infini_pearl_mode.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.infiniPearlMode, value -> options().main.infiniPearlMode = value);
 
+    @Deprecated
     public static final SimpleOption<Boolean> LEADERBOARDS_MODE = new SimpleOption<>("speedrunnermod.options.leaderboards_mode", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.leaderboards_mode.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.leaderboardsMode, value -> options().main.leaderboardsMode = value);
 

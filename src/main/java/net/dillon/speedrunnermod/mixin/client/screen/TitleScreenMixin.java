@@ -45,8 +45,6 @@ public class TitleScreenMixin extends Screen {
     @Unique
     private static final Text CREATE_WORLD_BUTTON_DISABLED_TOOLTIP = Text.translatable("speedrunnermod.create_world_button.disabled");
     @Unique
-    private static final Text DISCORD_TOOLTIP = Text.translatable("speedrunnermod.menu.external.discord.tooltip");
-    @Unique
     private static final Text WEBPAGE_TOOLTIP = Text.translatable("speedrunnermod.menu.title_screen.external.webpage.tooltip");
     @Unique
     private static final Text DILLON8775_YOUTUBE_TOOLTIP = Text.translatable("speedrunnermod.dillon8775_youtube.tooltip");
@@ -60,8 +58,6 @@ public class TitleScreenMixin extends Screen {
     private ButtonWidget createWorldButton;
     @Unique
     private ButtonWidget dillon8775YouTubeButton;
-    @Unique
-    private ButtonWidget discordButton;
     @Unique
     private ButtonWidget webpageButton;
     @Unique
@@ -91,10 +87,10 @@ public class TitleScreenMixin extends Screen {
         this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_WIKI, button -> {
             this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                 if (openInBrowser) {
-                    Util.getOperatingSystem().open(ModLinks.SPEEDRUNNER_MOD_WEBPAGE_LINK);
+                    Util.getOperatingSystem().open(ModLinks.WEBPAGE_LINK);
                 }
                 this.client.setScreen(this);
-            }, ModLinks.SPEEDRUNNER_MOD_WEBPAGE_LINK, true));
+            }, ModLinks.WEBPAGE_LINK, true));
         }).dimensions(this.width / 2 + 2, l + 72 + 36, 98, 20).build());
 
         optionsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
@@ -111,15 +107,6 @@ public class TitleScreenMixin extends Screen {
                 }, ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK, true));
             }).dimensions(this.width / 2 - 124, this.height / 4 + 48, 20, 20).build());
 
-            discordButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
-                this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
-                    if (openInBrowser) {
-                        Util.getOperatingSystem().open(ModLinks.DISCORD_LINK);
-                    }
-                    this.client.setScreen(this);
-                }, ModLinks.DISCORD_LINK, false));
-            }).dimensions(this.width / 2 + 104, this.height / 4 + 72, 20, 20).build());
-
             webpageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                     if (openInBrowser) {
@@ -127,7 +114,7 @@ public class TitleScreenMixin extends Screen {
                     }
                     this.client.setScreen(this);
                 }, ModLinks.WEBPAGE_LINK, true));
-            }).dimensions(this.width / 2 + 104, this.height / 4 + 96, 20, 20).build());
+            }).dimensions(this.width / 2 + 128, this.height / 4 + 96, 20, 20).build());
 
             nuzlandYouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
@@ -136,7 +123,7 @@ public class TitleScreenMixin extends Screen {
                     }
                     this.client.setScreen(this);
                 }, ModLinks.NUZLAND_YOUTUBE_CHANNEL_LINK, true));
-            }).dimensions(this.width / 2 + 128, this.height / 4 + 72, 20, 20).build());
+            }).dimensions(this.width / 2 + 104, this.height / 4 + 72, 20, 20).build());
 
             mannyQuesoYouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
@@ -145,7 +132,7 @@ public class TitleScreenMixin extends Screen {
                     }
                     this.client.setScreen(this);
                 }, ModLinks.MANNYQUESO_YOUTUBE_CHANNEL_LINK, true));
-            }).dimensions(this.width / 2 + 128, this.height / 4 + 96, 20, 20).build());
+            }).dimensions(this.width / 2 + 104, this.height / 4 + 96, 20, 20).build());
         }
     }
 
@@ -163,13 +150,11 @@ public class TitleScreenMixin extends Screen {
         if (options().client.socialButtons) {
             context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 - 123, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-            context.drawTexture(SpeedrunnerMod.DISCORD_ICON, this.width / 2 + 106, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(SpeedrunnerMod.WEBPAGE_ICON, this.width / 2 + 130, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
-            context.drawTexture(SpeedrunnerMod.WEBPAGE_ICON, this.width / 2 + 106, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(SpeedrunnerMod.NUZLAND_ICON, this.width / 2 + 105, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-            context.drawTexture( SpeedrunnerMod.NUZLAND_ICON, this.width / 2 + 129, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
-
-            context.drawTexture(SpeedrunnerMod.MANNYQUESO_ICON, this.width / 2 + 129, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(SpeedrunnerMod.MANNYQUESO_ICON, this.width / 2 + 105, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
         }
 
         this.renderTooltips(context, mouseX, mouseY);
@@ -196,10 +181,6 @@ public class TitleScreenMixin extends Screen {
         if (options().client.socialButtons) {
             if (dillon8775YouTubeButton.isHovered()) {
                 context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
-            }
-
-            if (discordButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(DISCORD_TOOLTIP, 200), mouseX, mouseY);
             }
 
             if (webpageButton.isHovered()) {

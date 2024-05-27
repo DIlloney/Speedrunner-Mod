@@ -59,15 +59,13 @@ public class ModTexts {
     public static final Text CURSEFORGE = Text.translatable("speedrunnermod.menu.external.curseforge").formatted(Formatting.GOLD);
     public static final Text MODRINTH = Text.translatable("speedrunnermod.menu.external.modrinth").formatted(Formatting.GREEN);
     public static final Text GITHUB = Text.translatable("speedrunnermod.menu.external.github").formatted(Formatting.GRAY);
-    public static final Text DISCORD = Text.translatable("speedrunnermod.menu.external.discord").formatted(Formatting.BLUE);
-    public static final Text DISCORD_TOOLTIP = Text.translatable("speedrunnermod.menu.external.discord.tooltip");
     public static final Text WEBPAGE = Text.translatable("speedrunnermod.menu.external.webpage").formatted(Formatting.LIGHT_PURPLE);
-    public static final Text WEBPAGE_TOOLTIP = Text.translatable("speedrunnermod.menu.external.webpage.tooltip");
     public static final Text YOUTUBE = Text.translatable("speedrunnermod.menu.external.youtube").formatted(Formatting.RED);
     public static final Text MOD_SHOWCASE_VIDEO = Text.translatable("speedrunnermod.menu.external.mod_showcase_video").formatted(Formatting.AQUA);
     public static final Text MENU_LEADERBOARDS = Text.translatable("speedrunnermod.menu.external.leaderboards").formatted(Formatting.GREEN);
-    public static final Text MENU_LEADERBOARD_VIEW = Text.translatable("speedrunnermod.menu.leaderboards.view");
-    public static final Text MENU_LEADERBOARD_SPREADSHEET = Text.translatable("speedrunnermod.menu.leaderboards.spreadsheet");
+    public static final Text MENU_LEADERBOARDS_DISABLED = Text.translatable("speedrunnermod.menu.leaderboards.disabled");
+    public static final Text MENU_LEADERBOARDS_VIEW = Text.translatable("speedrunnermod.menu.leaderboards.view");
+    public static final Text MENU_LEADERBOARDS_SPREADSHEET = Text.translatable("speedrunnermod.menu.leaderboards.spreadsheet");
     public static final Text TITLE_LEADERBOARDS = Text.translatable("speedrunnermod.title.leaderboards").formatted(Formatting.GREEN);
     public static final Text TITLE_INELIGIBLE_OPTIONS = Text.translatable("speedrunnermod.title.ineligible_options");
 

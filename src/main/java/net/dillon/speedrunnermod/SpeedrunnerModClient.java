@@ -78,6 +78,10 @@ public class SpeedrunnerModClient implements ClientModInitializer {
             options().main.mobSpawningRate = ModOptions.MobSpawningRate.HIGH;
         }
 
+        if (BrokenModOptions.leaderboards) {
+            options().main.leaderboardsMode = false;
+        }
+
         if (BrokenModOptions.panorama) {
             options().client.panorama = ModOptions.Panorama.SPEEDRUNNER_MOD;
         }

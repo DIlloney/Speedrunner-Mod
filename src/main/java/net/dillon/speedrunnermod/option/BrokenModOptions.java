@@ -6,6 +6,7 @@ public class BrokenModOptions {
     public static boolean strongholdPortalRoomCount = false;
     public static boolean strongholdLibraryCount = false;
     public static boolean mobSpawningRate = false;
+    public static boolean leaderboards = false;
     public static boolean panorama = false;
     public static boolean itemMessages = false;
     public static boolean modButtonType = false;

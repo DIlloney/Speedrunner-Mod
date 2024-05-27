@@ -36,17 +36,16 @@ import static net.dillon.speedrunnermod.option.ModOptions.createListOption;
  */
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.9.7.4";
+    public static final String MOD_VERSION = "v1.9.7.5";
     public static final String VERSION = "Version: " + MOD_VERSION;
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
     public static final String WIKI_LINK = "https://sites.google.com/view/dillon8775/the-speedrunner-mod";
     public static boolean DOOM_MODE = SpeedrunnerMod.options().main.doomMode;
-    public static final Identifier SPEEDRUNNER_MOD_ICON = new Identifier("speedrunnermod:textures/mod_icon.png");
-    public static final Identifier DISCORD_ICON = new Identifier("dillon8775:textures/discord.png");
-    public static final Identifier WEBPAGE_ICON = new Identifier("dillon8775:textures/webpage.png");
-    public static final Identifier DILLON8775_ICON = new Identifier("dillon8775:textures/dillon8775.png");
-    public static final Identifier MANNYQUESO_ICON = new Identifier("dillon8775:textures/mannyqueso.png");
-    public static final Identifier NUZLAND_ICON = new Identifier("dillon8775:textures/nuzland.png");
+    public static final Identifier SPEEDRUNNER_MOD_ICON = new Identifier(SpeedrunnerMod.MOD_ID, "textures/mod_icon.png");
+    public static final Identifier DILLON8775_ICON = new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/dillon8775.png");
+    public static final Identifier MANNYQUESO_ICON = new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/mannyqueso.png");
+    public static final Identifier NUZLAND_ICON = new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/nuzland.png");
+    public static final Identifier WEBPAGE_ICON = new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/webpage.png");
     public static final String OPTIONS_ERROR_MESSAGE = "Found error with speedrunner mod settings, launching in safe mode.";
     public static final String OPTIONS_WARNING_MESSAGE = "Found an unusual value in the speedrunner mod settings.";
     public static boolean safeBoot;

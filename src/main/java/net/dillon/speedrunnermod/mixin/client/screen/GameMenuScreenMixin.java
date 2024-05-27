@@ -33,21 +33,16 @@ public class GameMenuScreenMixin extends Screen {
     @Shadow @Final
     private boolean showMenu;
     @Unique
-    private final ButtonWidget constructorCreateWorldButton;
-    @Unique
     private ButtonWidget optionsButton;
     @Unique
     private ButtonWidget createWorldButton;
     @Unique
     private ButtonWidget dillon8775YouTubeButton;
     @Unique
-    private ButtonWidget discordButton;
-    @Unique
     private ButtonWidget webpageButton;
 
-    public GameMenuScreenMixin(Text title, ButtonWidget constructorCreateWorldButton) {
+    public GameMenuScreenMixin(Text title, ButtonWidget createWorldButton) {
         super(title);
-        this.constructorCreateWorldButton = constructorCreateWorldButton;
     }
 
     /**
@@ -82,22 +77,13 @@ public class GameMenuScreenMixin extends Screen {
                     }, ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK, true));
                 }).dimensions(this.width / 2 - 4 - 120 - 2, this.height / 4 + 48 - 16, 20, 20).build());
 
-                discordButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
-                    this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
-                        if (openInBrowser) {
-                            Util.getOperatingSystem().open(ModLinks.DISCORD_LINK);
-                        }
-                        this.client.setScreen(this);
-                    }, ModLinks.DISCORD_LINK, false));
-                }).dimensions(this.width / 2 + 106, this.height / 4 + 72 - 16, 20, 20).build());
-
                 webpageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                     this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                         if (openInBrowser) {
-                            Util.getOperatingSystem().open(ModLinks.SPEEDRUNNER_MOD_WEBPAGE_LINK);
+                            Util.getOperatingSystem().open(ModLinks.WEBPAGE_LINK);
                         }
                         this.client.setScreen(this);
-                    }, ModLinks.SPEEDRUNNER_MOD_WEBPAGE_LINK, true));
+                    }, ModLinks.WEBPAGE_LINK, true));
                 }).dimensions(this.width / 2 + 106, this.height / 4 + 96 - 16, 20, 20).build());
             }
         }
@@ -119,7 +105,6 @@ public class GameMenuScreenMixin extends Screen {
 
             if (options().client.socialButtons) {
                 context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 - 4 - 119 - 2, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
-                context.drawTexture(SpeedrunnerMod.DISCORD_ICON, this.width / 2 - 4 + 114 - 2, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
                 context.drawTexture(SpeedrunnerMod.WEBPAGE_ICON, this.width / 2 - 4 + 114 - 2, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
             }
         }
