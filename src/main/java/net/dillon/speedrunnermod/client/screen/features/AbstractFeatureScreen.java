@@ -2,10 +2,10 @@ package net.dillon.speedrunnermod.client.screen.features;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.BaseModScreen;
-import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.SpeedrunnerIngotsScreen;
+import net.dillon.speedrunnermod.client.screen.features.blocksanditems.SpeedrunnerIngotsScreen;
 import net.dillon.speedrunnermod.client.screen.features.more.TripledDropsScreen;
-import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.SpeedrunnersWastelandBiomeScreen;
-import net.dillon.speedrunnermod.client.screen.features.tools_and_armor.SpeedrunnerArmorScreen;
+import net.dillon.speedrunnermod.client.screen.features.oresandworldgen.SpeedrunnersWastelandBiomeScreen;
+import net.dillon.speedrunnermod.client.screen.features.toolsandarmor.SpeedrunnerArmorScreen;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.fabricmc.api.EnvType;

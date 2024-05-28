@@ -82,6 +82,8 @@ public class ModTexts {
     public static final Text LAZYDFU = Text.translatable("speedrunnermod.title.resources.mods.lazydfu").formatted(Formatting.BLUE);
     public static final Text LAZYDFU_TOOLTIP = Text.translatable("speedrunnermod.title.resources.mods.lazydfu.tooltip");
     public static final Text KRYPTON = Text.translatable("speedrunnermod.title.resources.mods.krypton").formatted(Formatting.GRAY);
+    public static final Text SIMPLE_KEYBINDS = Text.translatable("speedrunnermod.title.resources.mods.simple_keybinds").formatted(Formatting.GREEN);
+    public static final Text SIMPLE_KEYBINDS_TOOLTIP = Text.translatable("speedrunnermod.title.resources.mods.simple_keybinds.tooltip");
     public static final Text KRYPTON_TOOLTIP = Text.translatable("speedrunnermod.title.resources.mods.krypton.tooltip");
     public static final Text OPTIFINE = Text.translatable("speedrunnermod.title.resources.mods.optifine").formatted(Formatting.RED);
     public static final Text OPTIFINE_TOOLTIP = Text.translatable("speedrunnermod.title.resources.mods.optifine.tooltip");

@@ -12,7 +12,7 @@ import net.minecraft.client.option.GameOptions;
 
 @Environment(EnvType.CLIENT)
 public class ModsScreen extends AbstractModScreen {
-    protected ButtonWidget sodiumButton, lithiumButton, phosphorButton, speedrunIGTButton, lazyDFUButton, kryptonButton, optiFineButton;
+    protected ButtonWidget sodiumButton, lithiumButton, phosphorButton, speedrunIGTButton, lazyDFUButton, kryptonButton, simpleKeybindsButton, optiFineButton;
 
     public ModsScreen(Screen parent, GameOptions options) {
         super(parent, options, ModTexts.TITLE_MODS);
@@ -25,6 +25,7 @@ public class ModsScreen extends AbstractModScreen {
         this.sodiumButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.SODIUM, (buttonWidget) -> {
             this.openLink(ModLinks.SODIUM_MOD_LINK, false);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+
         this.lithiumButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.LITHIUM, (buttonWidget) -> {
             this.openLink(ModLinks.LITHIUM_MOD_LINK, false);
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
@@ -33,6 +34,7 @@ public class ModsScreen extends AbstractModScreen {
         this.phosphorButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.PHOSPHOR, (buttonWidget) -> {
             this.openLink(ModLinks.PHOSPHOR_MOD_LINK, false);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+
         this.speedrunIGTButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.SPEEDRUN_IGT, (buttonWidget) -> {
             this.openLink(ModLinks.SPEEDRUN_IGT_MOD_LINK, false);
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
@@ -41,12 +43,17 @@ public class ModsScreen extends AbstractModScreen {
         this.lazyDFUButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.LAZYDFU, (buttonWidget) -> {
             this.openLink(ModLinks.LAZYDFU_MOD_LINK, false);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+
         this.kryptonButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.KRYPTON, (buttonWidget) -> {
             this.openLink(ModLinks.KRYPTON_MOD_LINK, false);
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
 
         height += 24;
-        this.optiFineButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.OPTIFINE, (buttonWidget) -> {}).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+        this.simpleKeybindsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.SIMPLE_KEYBINDS, (buttonWidget) -> {
+            this.openLink(ModLinks.SIMPLE_KEYBINDS_MOD_LINK, false);
+        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+
+        this.optiFineButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.OPTIFINE, (buttonWidget) -> {}).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
         optiFineButton.active = false;
 
         super.init();
@@ -76,6 +83,9 @@ public class ModsScreen extends AbstractModScreen {
         }
         if (this.kryptonButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.KRYPTON_TOOLTIP, 200), mouseX, mouseY);
+        }
+        if (this.simpleKeybindsButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.SIMPLE_KEYBINDS_TOOLTIP, 200), mouseX, mouseY);
         }
         if (this.optiFineButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.OPTIFINE_TOOLTIP, 200), mouseX, mouseY);

@@ -1,11 +1,11 @@
 package net.dillon.speedrunnermod.client.screen;
 
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
-import net.dillon.speedrunnermod.client.screen.features.blocks_and_items.*;
-import net.dillon.speedrunnermod.client.screen.features.doom_mode.*;
+import net.dillon.speedrunnermod.client.screen.features.blocksanditems.*;
+import net.dillon.speedrunnermod.client.screen.features.doommode.*;
 import net.dillon.speedrunnermod.client.screen.features.more.*;
-import net.dillon.speedrunnermod.client.screen.features.ores_and_worldgen.*;
-import net.dillon.speedrunnermod.client.screen.features.tools_and_armor.*;
+import net.dillon.speedrunnermod.client.screen.features.oresandworldgen.*;
+import net.dillon.speedrunnermod.client.screen.features.toolsandarmor.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;

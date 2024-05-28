@@ -774,6 +774,8 @@
   "speedrunnermod.title.resources.mods.lazydfu.tooltip": "Another optimization mod.",
   "speedrunnermod.title.resources.mods.krypton": "Krypton...",
   "speedrunnermod.title.resources.mods.krypton.tooltip": "A mod that optimizes Minecraft's networking stack.",
+  "speedrunnermod.title.resources.mods.simple_keybinds": "Simple Keybinds...",
+  "speedrunnermod.title.resources.mods.simple_keybinds.tooltip": "A mod that adds various different keybinds to the game, often more simple to use than the vanilla ones.",
   "speedrunnermod.title.resources.mods.optifine": "OptiFine...",
   "speedrunnermod.title.resources.mods.optifine.tooltip": "This mod is §c§lNOT§r compatible with §lOptiFine.",
 
