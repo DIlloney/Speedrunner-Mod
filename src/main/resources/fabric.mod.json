@@ -14,7 +14,7 @@
     "sources": "https://github.com/Dillon8775/Speedrunner-Mod"
   },
   "license": "All Rights Reserved.",
-  "icon": "assets/speedrunnermod/textures/mod_icon.png",
+  "icon": "assets/speedrunnermod/textures/gui/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [

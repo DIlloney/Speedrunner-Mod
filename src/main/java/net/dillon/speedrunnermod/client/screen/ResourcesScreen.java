@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.client.screen;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -29,7 +30,7 @@ public class ResourcesScreen extends AbstractModScreen {
 
         height += 24;
         this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_WIKI, (button) -> {
-            this.openLink(SpeedrunnerMod.WIKI_LINK, true);
+            this.openLink(ModLinks.WIKI, true);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
 
         super.init();

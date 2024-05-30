@@ -26,7 +26,7 @@ public class SpeedrunIGTMissingScreen extends AbstractModScreen {
     protected void init() {
         int height = this.height / 6 + 126;
         this.leftButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.DOWNLOAD_AND_INSTALL, (buttonWidget) -> {
-            this.openLink(ModLinks.SPEEDRUN_IGT_MOD_LINK, false);
+            this.openLink(ModLinks.SPEEDRUNIGT, false);
         }).dimensions(this.getButtonsLeftSide(), height, 100, 20).build());
         this.middleButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.DISABLE_LEADERBOARDS_MODE_AND_RESTART, (buttonWidget) -> {
             Leaderboards.disableLeaderboardsMode();

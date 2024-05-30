@@ -59,7 +59,7 @@ public class ModTexts {
     public static final Text CURSEFORGE = Text.translatable("speedrunnermod.menu.external.curseforge").formatted(Formatting.GOLD);
     public static final Text MODRINTH = Text.translatable("speedrunnermod.menu.external.modrinth").formatted(Formatting.GREEN);
     public static final Text GITHUB = Text.translatable("speedrunnermod.menu.external.github").formatted(Formatting.GRAY);
-    public static final Text WEBPAGE = Text.translatable("speedrunnermod.menu.external.webpage").formatted(Formatting.LIGHT_PURPLE);
+    public static final Text WEBPAGE = Text.translatable("speedrunnermod.menu.external.wiki").formatted(Formatting.LIGHT_PURPLE);
     public static final Text YOUTUBE = Text.translatable("speedrunnermod.menu.external.youtube").formatted(Formatting.RED);
     public static final Text MOD_SHOWCASE_VIDEO = Text.translatable("speedrunnermod.menu.external.mod_showcase_video").formatted(Formatting.AQUA);
     public static final Text MENU_LEADERBOARDS = Text.translatable("speedrunnermod.menu.external.leaderboards").formatted(Formatting.GREEN);
@@ -104,6 +104,15 @@ public class ModTexts {
     public static final Text IGNORE = Text.translatable("speedrunnermod.ignore").formatted(Formatting.RED);
     public static final Text VIEW_INELIGIBLE_OPTIONS = Text.translatable("speedrunnermod.view_ineligible_options");
     public static final Text VISIT_SUBMISSION_PAGE = Text.translatable("speedrunnermod.visit_submission_page");
+
+    public static final Text FEATURES_TOOLTIP = Text.translatable("speedrunnermod.features.tooltip");
+    public static final Text CREATE_WORLD_BUTTON_TOOLTIP = Text.translatable("speedrunnermod.create_world_button.desc");
+    public static final Text CREATE_WORLD_BUTTON_DISABLED_TOOLTIP = Text.translatable("speedrunnermod.create_world_button.disabled");
+    public static final Text OPTIONS_TOOLTIP = Text.translatable("speedrunnermod.title.options.tooltip");
+    public static final Text DILLON8775_YOUTUBE_TOOLTIP = Text.translatable("speedrunnermod.dillon8775_youtube.tooltip");
+    public static final Text MANNYQUESO_YOUTUBE_TOOLTIP = Text.translatable("speedrunnermod.mannyqueso_youtube.tooltip");
+    public static final Text NUZLAND_YOUTUBE_TOOLTIP = Text.translatable("speedrunnermod.nuzland_youtube.tooltip");
+    public static final Text WIKI_TOOLTIP = Text.translatable("speedrunnermod.menu.title_screen.external.wiki.tooltip");
 
     public static Text featureTitleText(ScreenCategory category, String lang) {
         return Text.translatable("speedrunnermod.title.features." + category.toString().toLowerCase() + "." + lang);

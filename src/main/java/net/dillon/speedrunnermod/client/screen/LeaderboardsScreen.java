@@ -27,16 +27,16 @@ public class LeaderboardsScreen extends AbstractModScreen {
         int height = this.getButtonsHeight();
 
         this.submitSpeedrunButton = this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.leaderboards.submit").formatted(getSubmitSpeedrunColor()), (button) -> {
-            this.openLink(ModLinks.LEADERBOARDS_SUBMISSION_LINK, true);
+            this.openLink(ModLinks.LEADERBOARDS_SUBMISSION, true);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
         this.submitSpeedrunButton.active = options().main.leaderboardsMode && Leaderboards.isEligibleForLeaderboardRuns();
         this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_LEADERBOARDS_VIEW, (button) -> {
-            this.openLink(ModLinks.LEADERBOARDS_LINK, true);
+            this.openLink(ModLinks.LEADERBOARDS, true);
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
 
         height += 24;
         this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_LEADERBOARDS_SPREADSHEET, (button) -> {
-            this.openLink(ModLinks.LEADERBOARDS_SPREADSHEET_LINK, true);
+            this.openLink(ModLinks.LEADERBOARDS_SPREADSHEET, true);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
 
         super.init();

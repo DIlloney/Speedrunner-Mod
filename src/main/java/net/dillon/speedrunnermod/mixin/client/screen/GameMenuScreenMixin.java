@@ -71,19 +71,19 @@ public class GameMenuScreenMixin extends Screen {
                 this.dillon8775YouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                     this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                         if (openInBrowser) {
-                            Util.getOperatingSystem().open(ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK);
+                            Util.getOperatingSystem().open(ModLinks.DILLON8775_YOUTUBE);
                         }
                         this.client.setScreen(this);
-                    }, ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK, true));
+                    }, ModLinks.DILLON8775_YOUTUBE, true));
                 }).dimensions(this.width / 2 - 4 - 120 - 2, this.height / 4 + 48 - 16, 20, 20).build());
 
                 this.webpageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                     this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                         if (openInBrowser) {
-                            Util.getOperatingSystem().open(ModLinks.WEBPAGE_LINK);
+                            Util.getOperatingSystem().open(ModLinks.WIKI);
                         }
                         this.client.setScreen(this);
-                    }, ModLinks.WEBPAGE_LINK, true));
+                    }, ModLinks.WIKI, true));
                 }).dimensions(this.width / 2 + 106, this.height / 4 + 96 - 16, 20, 20).build());
             }
         }
@@ -105,7 +105,7 @@ public class GameMenuScreenMixin extends Screen {
 
             if (options().client.socialButtons) {
                 context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 - 4 - 119 - 2, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
-                context.drawTexture(SpeedrunnerMod.WEBPAGE_ICON, this.width / 2 - 4 + 114 - 2, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+                context.drawTexture(SpeedrunnerMod.WIKI_ICON, this.width / 2 - 4 + 114 - 2, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
             }
         }
     }

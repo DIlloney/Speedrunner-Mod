@@ -23,31 +23,31 @@ public class ModsScreen extends AbstractModScreen {
         this.clearButtons();
 
         this.buttons.add(0, ButtonWidget.builder(ModTexts.SODIUM, (buttonWidget) -> {
-            this.openLink(ModLinks.SODIUM_MOD_LINK, false);
+            this.openLink(ModLinks.SODIUM, false);
         }).build());
 
         this.buttons.add(1, ButtonWidget.builder(ModTexts.LITHIUM, (buttonWidget) -> {
-            this.openLink(ModLinks.LITHIUM_MOD_LINK, false);
+            this.openLink(ModLinks.LITHIUM, false);
         }).build());
 
         this.buttons.add(2, ButtonWidget.builder(ModTexts.PHOSPHOR, (buttonWidget) -> {
-            this.openLink(ModLinks.PHOSPHOR_MOD_LINK, false);
+            this.openLink(ModLinks.PHOSPHOR, false);
         }).build());
 
         this.buttons.add(3, ButtonWidget.builder(ModTexts.SPEEDRUN_IGT, (buttonWidget) -> {
-            this.openLink(ModLinks.SPEEDRUN_IGT_MOD_LINK, false);
+            this.openLink(ModLinks.SPEEDRUNIGT, false);
         }).build());
 
         this.buttons.add(4, ButtonWidget.builder(ModTexts.LAZYDFU, (buttonWidget) -> {
-            this.openLink(ModLinks.LAZYDFU_MOD_LINK, false);
+            this.openLink(ModLinks.LAZYDFU, false);
         }).build());
 
         this.buttons.add(5, ButtonWidget.builder(ModTexts.KRYPTON, (buttonWidget) -> {
-            this.openLink(ModLinks.KRYPTON_MOD_LINK, false);
+            this.openLink(ModLinks.KRYPTON, false);
         }).build());
 
         this.buttons.add(6, ButtonWidget.builder(ModTexts.SIMPLE_KEYBINDS, (buttonWidget) -> {
-            this.openLink(ModLinks.SIMPLE_KEYBINDS_MOD_LINK, false);
+            this.openLink(ModLinks.SIMPLE_KEYBINDS, false);
         }).build());
 
         this.buttons.add(7, ButtonWidget.builder(ModTexts.OPTIFINE, (buttonWidget) -> {}).build());

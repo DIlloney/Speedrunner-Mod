@@ -39,31 +39,8 @@ public class TitleScreenMixin extends Screen {
     @Shadow
     public static final CubeMapRenderer PANORAMA_CUBE_MAP;
     @Unique
-    private static final Text OPTIONS_TOOLTIP = Text.translatable("speedrunnermod.title.options.tooltip");
-    @Unique
-    private static final Text CREATE_WORLD_BUTTON_TOOLTIP = Text.translatable("speedrunnermod.create_world_button.desc");
-    @Unique
-    private static final Text CREATE_WORLD_BUTTON_DISABLED_TOOLTIP = Text.translatable("speedrunnermod.create_world_button.disabled");
-    @Unique
-    private static final Text WEBPAGE_TOOLTIP = Text.translatable("speedrunnermod.menu.title_screen.external.webpage.tooltip");
-    @Unique
-    private static final Text DILLON8775_YOUTUBE_TOOLTIP = Text.translatable("speedrunnermod.dillon8775_youtube.tooltip");
-    @Unique
-    private static final Text MANNYQUESO_YOUTUBE_TOOLTIP = Text.translatable("speedrunnermod.mannyqueso_youtube.tooltip");
-    @Unique
-    private static final Text NUZLAND_YOUTUBE_TOOLTIP = Text.translatable("speedrunnermod.nuzland_youtube.tooltip");
-    @Unique
-    private ButtonWidget optionsButton;
-    @Unique
-    private ButtonWidget createWorldButton;
-    @Unique
-    private ButtonWidget dillon8775YouTubeButton;
-    @Unique
-    private ButtonWidget webpageButton;
-    @Unique
-    private ButtonWidget nuzlandYouTubeButton;
-    @Unique
-    private ButtonWidget mannyQuesoYouTubeButton;
+    private ButtonWidget featuresButton, createWorldButton, optionsButton, wikiButton, dillon8775YouTubeButton, nuzlandYouTubeButton, mannyQuesoYouTubeButton;
+
     public TitleScreenMixin(Text title) {
         super(title);
     }
@@ -73,67 +50,58 @@ public class TitleScreenMixin extends Screen {
      */
     @Inject(method = "init", at = @At("TAIL"))
     private void addButtons(CallbackInfo ci) {
+        this.featuresButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+            this.client.setScreen(new FeaturesScreen(this, MinecraftClient.getInstance().options));
+        }).dimensions(this.width / 2 - 124, this.height / 4 + 48, 20, 20).build());
+
         if (options().advanced.showResetButton) {
-            createWorldButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+            this.createWorldButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 CreateWorldScreen.create(this.client, this);
             }).dimensions(this.width / 2 - 124, this.height / 4 + 72, 20, 20).build());
-            createWorldButton.active = options().client.fastWorldCreation;
+            this.createWorldButton.active = options().client.fastWorldCreation;
         }
-
-        int l = this.height / 4 + 48;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_FEATURES, button -> {
-            this.client.setScreen(new FeaturesScreen(this, MinecraftClient.getInstance().options));
-        }).dimensions(this.width / 2 - 100, l + 72 + 36, 98, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_WIKI, button -> {
-            this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
-                if (openInBrowser) {
-                    Util.getOperatingSystem().open(ModLinks.WEBPAGE_LINK);
-                }
-                this.client.setScreen(this);
-            }, ModLinks.WEBPAGE_LINK, true));
-        }).dimensions(this.width / 2 + 2, l + 72 + 36, 98, 20).build());
 
         this.optionsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
             this.client.setScreen(new MainScreen(this, MinecraftClient.getInstance().options));
-        }).dimensions(this.width / 2 - 124, this.height / 4 + 48 + 24 * 2, 20, 20).build());
+        }).dimensions(this.width / 2 - 124, this.height / 4 + 96, 20, 20).build());
 
         if (options().client.socialButtons) {
             this.dillon8775YouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                     if (openInBrowser) {
-                        Util.getOperatingSystem().open(ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK);
+                        Util.getOperatingSystem().open(ModLinks.DILLON8775_YOUTUBE);
                     }
                     this.client.setScreen(this);
-                }, ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK, true));
+                }, ModLinks.DILLON8775_YOUTUBE, true));
             }).dimensions(this.width / 2 + 104, this.height / 4 + 48, 20, 20).build());
 
             this.nuzlandYouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                     if (openInBrowser) {
-                        Util.getOperatingSystem().open(ModLinks.NUZLAND_YOUTUBE_CHANNEL_LINK);
+                        Util.getOperatingSystem().open(ModLinks.NUZLAND_YOUTUBE);
                     }
                     this.client.setScreen(this);
-                }, ModLinks.NUZLAND_YOUTUBE_CHANNEL_LINK, true));
+                }, ModLinks.NUZLAND_YOUTUBE, true));
             }).dimensions(this.width / 2 + 104, this.height / 4 + 72, 20, 20).build());
 
             this.mannyQuesoYouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                     if (openInBrowser) {
-                        Util.getOperatingSystem().open(ModLinks.MANNYQUESO_YOUTUBE_CHANNEL_LINK);
+                        Util.getOperatingSystem().open(ModLinks.MANNYQUESO_YOUTUBE);
                     }
                     this.client.setScreen(this);
-                }, ModLinks.MANNYQUESO_YOUTUBE_CHANNEL_LINK, true));
+                }, ModLinks.MANNYQUESO_YOUTUBE, true));
             }).dimensions(this.width / 2 + 104, this.height / 4 + 96, 20, 20).build());
-
-            this.webpageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
-                this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
-                    if (openInBrowser) {
-                        Util.getOperatingSystem().open(ModLinks.WEBPAGE_LINK);
-                    }
-                    this.client.setScreen(this);
-                }, ModLinks.WEBPAGE_LINK, true));
-            }).dimensions(this.width / 2 + 128, this.height / 4 + 96, 20, 20).build());
         }
+
+        this.wikiButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+            this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
+                if (openInBrowser) {
+                    Util.getOperatingSystem().open(ModLinks.WIKI);
+                }
+                this.client.setScreen(this);
+            }, ModLinks.WIKI, true));
+        }).dimensions(options().client.socialButtons ? this.width / 2 + 128 : this.width / 2 + 104, this.height / 4 + 96, 20, 20).build());
     }
 
     /**
@@ -141,8 +109,10 @@ public class TitleScreenMixin extends Screen {
      */
     @Inject(method = "render", at = @At("TAIL"))
     private void renderButtons(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/item/golden_speedrunner_upgrade_smithing_template.png"), this.width / 2 - 122, this.featuresButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+
         if (options().advanced.showResetButton) {
-            context.drawTexture(new Identifier("speedrunnermod:textures/item/speedrunner_boots.png"), this.width / 2 - 122, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/item/speedrunner_boots.png"), this.width / 2 - 122, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         }
 
         context.drawTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 123, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
@@ -153,9 +123,9 @@ public class TitleScreenMixin extends Screen {
             context.drawTexture(SpeedrunnerMod.NUZLAND_ICON, this.width / 2 + 105, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
             context.drawTexture(SpeedrunnerMod.MANNYQUESO_ICON, this.width / 2 + 105, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
-
-            context.drawTexture(SpeedrunnerMod.WEBPAGE_ICON, this.width / 2 + 130, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         }
+
+        context.drawTexture(SpeedrunnerMod.WIKI_ICON, options().client.socialButtons ? this.width / 2 + 130 : this.width / 2 + 106, wikiButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
         this.renderTooltips(context, mouseX, mouseY);
 
@@ -170,30 +140,34 @@ public class TitleScreenMixin extends Screen {
      */
     @Unique
     private void renderTooltips(DrawContext context, int mouseX, int mouseY) {
+        if (featuresButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.FEATURES_TOOLTIP, 200), mouseX, mouseY);
+        }
+
         if (options().advanced.showResetButton && createWorldButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(options().client.fastWorldCreation ? CREATE_WORLD_BUTTON_TOOLTIP : CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(options().client.fastWorldCreation ? ModTexts.CREATE_WORLD_BUTTON_TOOLTIP : ModTexts.CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
         }
 
         if (optionsButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(OPTIONS_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.OPTIONS_TOOLTIP, 200), mouseX, mouseY);
         }
 
         if (options().client.socialButtons) {
             if (dillon8775YouTubeButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
-            }
-
-            if (webpageButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(WEBPAGE_TOOLTIP, 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
 
             if (nuzlandYouTubeButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(NUZLAND_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.NUZLAND_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
 
             if (mannyQuesoYouTubeButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(MANNYQUESO_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MANNYQUESO_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
+        }
+
+        if (wikiButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.WIKI_TOOLTIP, 200), mouseX, mouseY);
         }
     }
 

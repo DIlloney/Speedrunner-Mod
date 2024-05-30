@@ -54,10 +54,10 @@ public class LeaderboardsSafeScreen extends AbstractModScreen {
         this.viewSubmissionPageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.VISIT_SUBMISSION_PAGE, (button) -> {
             this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                 if (openInBrowser) {
-                    Util.getOperatingSystem().open(ModLinks.LEADERBOARDS_SUBMISSION_LINK);
+                    Util.getOperatingSystem().open(ModLinks.LEADERBOARDS_SUBMISSION);
                 }
                 this.client.setScreen(this);
-            }, ModLinks.LEADERBOARDS_SUBMISSION_LINK, true));
+            }, ModLinks.LEADERBOARDS_SUBMISSION, true));
         }).dimensions(this.width / 2 - 100, this.height - 29, 200, 20).build());
     }
 

@@ -21,29 +21,29 @@ public class ExternalScreen extends AbstractModScreen {
         int height = this.getButtonsHeight();
 
         this.addDrawableChild(ButtonWidget.builder(ModTexts.CURSEFORGE, (buttonWidget) -> {
-            this.openLink(ModLinks.CURSEFORGE_LINK, false);
+            this.openLink(ModLinks.CURSEFORGE, false);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
 
         this.addDrawableChild(ButtonWidget.builder(ModTexts.MODRINTH, (buttonWidget) -> {
-            this.openLink(ModLinks.MODRINTH_LINK, false);
+            this.openLink(ModLinks.MODRINTH, false);
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
 
         height += 24;
         this.addDrawableChild(ButtonWidget.builder(ModTexts.GITHUB, (buttonWidget) -> {
-            this.openLink(ModLinks.GITHUB_LINK, false);
+            this.openLink(ModLinks.GITHUB, false);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
 
         this.webpageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.WEBPAGE, (buttonWidget) -> {
-            this.openLink(ModLinks.WEBPAGE_LINK, true);
+            this.openLink(ModLinks.WIKI, true);
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
 
         height += 24;
         this.addDrawableChild(ButtonWidget.builder(ModTexts.YOUTUBE, (buttonWidget) -> {
-            this.openLink(ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK, true);
+            this.openLink(ModLinks.DILLON8775_YOUTUBE, true);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
 
         this.addDrawableChild(ButtonWidget.builder(ModTexts.MOD_SHOWCASE_VIDEO, (buttonWidget) -> {
-            this.openLink(ModLinks.MOD_SHOWCASE_VIDEO_LINK, true);
+            this.openLink(ModLinks.MOD_SHOWCASE_VIDEO, true);
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
 
         super.init();

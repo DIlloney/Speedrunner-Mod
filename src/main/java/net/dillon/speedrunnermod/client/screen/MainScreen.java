@@ -62,7 +62,7 @@ public class MainScreen extends AbstractModScreen {
 
         height += 24;
         this.easierSpeedrunningModButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.EASIER_SPEEDRUNNING_MOD, (button) -> {
-            this.openLink(ModLinks.EASIER_SPEEDRUNNING_MOD_WIKI_LINK, true);
+            this.openLink(ModLinks.EASIER_SPEEDRUNNING_WIKI, true);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
 
         this.doomModeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_DOOM_MODE, (button) -> {

@@ -757,6 +757,8 @@
   "speedrunnermod.title.features.more.more": "§bAnd More!",
   "speedrunnermod.features.more.more.text": "§a§lCongratulations!§r You are now an official §bSpeedrunner Mod pro,§r and you know about all of it's §amain features!§r\nFor more info, refer to §l\"Learn More...\"§r button below, or go back and re-read some things if you didn't fully understand everything!",
 
+  "speedrunnermod.features.tooltip": "Learn everything that the mod has to offer!",
+
   "speedrunnermod.menu.resources": "Resources...",
   "speedrunnermod.menu.resources.tooltip": "Mods, tutorials, and more!",
   "speedrunnermod.title.resources": "Resources",
@@ -824,8 +826,8 @@
   "speedrunnermod.menu.external.curseforge": "CurseForge...",
   "speedrunnermod.menu.external.modrinth": "Modrinth...",
   "speedrunnermod.menu.external.github": "GitHub...",
-  "speedrunnermod.menu.external.webpage": "Webpage...",
-  "speedrunnermod.menu.title_screen.external.webpage.tooltip": "Learn some more about this mod.",
+  "speedrunnermod.menu.external.wiki": "Wiki...",
+  "speedrunnermod.menu.title_screen.external.wiki.tooltip": "Learn some more about this mod.",
   "speedrunnermod.menu.external.youtube": "YouTube...",
   "speedrunnermod.menu.external.mod_showcase_video": "Mod Showcase Video...",
   "speedrunnermod.menu.external.leaderboards": "Leaderboards...",

@@ -1,11 +1,11 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.BaseModScreen;
 import net.dillon.speedrunnermod.client.screen.features.blocksanditems.SpeedrunnerIngotsScreen;
 import net.dillon.speedrunnermod.client.screen.features.more.TripledDropsScreen;
 import net.dillon.speedrunnermod.client.screen.features.oresandworldgen.SpeedrunnersWastelandBiomeScreen;
 import net.dillon.speedrunnermod.client.screen.features.toolsandarmor.SpeedrunnerArmorScreen;
+import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.fabricmc.api.EnvType;
@@ -134,7 +134,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         } else if (this.getScreenType() == ScreenType.END) {
             height = this.height / 6 + 115;
             this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.learn_more"), button -> {
-                this.openLink(SpeedrunnerMod.WIKI_LINK, true);
+                this.openLink(ModLinks.WIKI, true);
             }).dimensions(this.getButtonsWidth(), height, 150, 20).build());
 
             height += 24;

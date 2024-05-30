@@ -44,10 +44,10 @@ public class OptionsScreenMixin extends Screen {
         dillon8775YouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (button) -> {
             this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                 if (openInBrowser) {
-                    Util.getOperatingSystem().open(ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK);
+                    Util.getOperatingSystem().open(ModLinks.DILLON8775_YOUTUBE);
                 }
                 this.client.setScreen(this);
-            }, ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK, true));
+            }, ModLinks.DILLON8775_YOUTUBE, true));
         }).dimensions(this.width / 2 - 124, this.height / 6 + 168, 20, 20).build());
 
         if (options().client.modButtonType == ModOptions.ModButtonType.LOGO) {

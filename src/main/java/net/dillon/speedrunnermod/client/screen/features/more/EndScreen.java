@@ -33,7 +33,7 @@ public class EndScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/mod_logo.png"), this.width / 2, 215, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/logo.png"), this.width / 2, 215, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override
