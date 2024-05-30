@@ -12,7 +12,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
 
 /**
- * The main class file for the client-side of the {@code The Speedrunner Mod}.
+ * The home initializer for the client-side of the Speedrunner Mod.
  */
 @Environment(EnvType.CLIENT)
 public class SpeedrunnerModClient implements ClientModInitializer {

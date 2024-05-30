@@ -13,7 +13,6 @@ import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
 public class TutorialsScreen extends AbstractModScreen {
-    protected ButtonWidget bastionRoutesButton, netherFortressesButton, microlensingButton, blindTravelButton, oneCyclingButton, pieChartButton, f3MenuButton, buriedTreasureButton, otherUsefulTricksButton;
 
     public TutorialsScreen(Screen parent, GameOptions options) {
         super(parent, options, ModTexts.TITLE_TUTORIALS);
@@ -21,73 +20,72 @@ public class TutorialsScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        int height = this.getButtonsHeight();
+        this.buttonList = this.addDrawableChild(new CustomButtonListWidget(this.client, this.width, this.height - 64, 32, 25));
+        this.clearButtons();
 
-        this.bastionRoutesButton = this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.bastion_routes"), (button) -> {
+        this.buttons.add(0, ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.bastion_routes"), (button) -> {
             this.client.setScreen(new BastionRoutesScreen(this.parent, MinecraftClient.getInstance().options));
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
-        this.netherFortressesButton = this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.nether_fortresses"), (button) -> {
+        }).build());
+
+        this.buttons.add(1, ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.nether_fortresses"), (button) -> {
             this.openLink("https://www.youtube.com/watch?v=pmx9LyUvLTk", false);
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).build());
 
-        height += 24;
-        this.microlensingButton = this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.microlensing"), (button) -> {
+        this.buttons.add(2, ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.microlensing"), (button) -> {
             this.client.setScreen(new MicrolensingScreen(this.parent, MinecraftClient.getInstance().options));
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
-        this.blindTravelButton = this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.blind_travel"), (button) -> {
+        }).build());
+
+        this.buttons.add(3, ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.blind_travel"), (button) -> {
             this.openLink("https://www.youtube.com/watch?v=Ou58P7e-ZY0", false);
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).build());
 
-        height += 24;
-        this.oneCyclingButton = this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.one_cycling"), (button) -> {
+        this.buttons.add(4, ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.one_cycling"), (button) -> {
             this.openLink("https://www.youtube.com/watch?v=JaVyuTyDxxs", false);
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
-        this.pieChartButton = this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.pie_chart"), (button) -> {
+        }).build());
+
+        this.buttons.add(5, ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.pie_chart"), (button) -> {
             this.openLink("https://www.youtube.com/watch?v=ENgEBHIifm8", false);
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).build());
 
-        height += 24;
-        this.f3MenuButton = this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.f3_menu"), (button) -> {
+        this.buttons.add(6, ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.f3_menu"), (button) -> {
             this.openLink("https://www.youtube.com/watch?v=-fSr7P5LQJY", false);
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
-        this.buriedTreasureButton = this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.buried_treasure"), (button) -> {
+        }).build());
+
+        this.buttons.add(7, ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.buried_treasure"), (button) -> {
             this.openLink("https://www.youtube.com/watch?v=_dyD8ZwagDg", false);
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).build());
 
-        height += 24;
-        this.otherUsefulTricksButton = this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.other_useful_tricks"), (button) -> {
+        this.buttons.add(8, ButtonWidget.builder(Text.translatable("speedrunnermod.menu.resources.tutorials.other_useful_tricks"), (button) -> {
             this.openLink("https://www.youtube.com/watch?v=TvvApbI6fis", false);
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+        }).build());
 
-        this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, (button) -> {
-            this.close();
-        }).dimensions(this.width / 2 - 100, this.height - 29, 200, 20).build());
+        super.init();
     }
 
     @Override
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
-        if (this.bastionRoutesButton.isHovered()) {
+        if (this.buttons.get(0).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.bastion_routes.tooltip"), 200), mouseX, mouseY);
         }
-        if (this.netherFortressesButton.isHovered()) {
+        if (this.buttons.get(1).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.nether_fortresses.tooltip"), 200), mouseX, mouseY);
         }
-        if (this.microlensingButton.isHovered()) {
+        if (this.buttons.get(2).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.microlensing.tooltip"), 200), mouseX, mouseY);
         }
-        if (this.blindTravelButton.isHovered()) {
+        if (this.buttons.get(3).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.blind_travel.tooltip"), 200), mouseX, mouseY);
         }
-        if (this.oneCyclingButton.isHovered()) {
+        if (this.buttons.get(4).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.one_cycling.tooltip"), 200), mouseX, mouseY);
         }
-        if (this.pieChartButton.isHovered()) {
+        if (this.buttons.get(5).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.pie_chart.tooltip"), 200), mouseX, mouseY);
         }
-        if (this.buriedTreasureButton.isHovered()) {
+        if (this.buttons.get(7).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.buried_treasure.tooltip"), 200), mouseX, mouseY);
         }
-        if (this.otherUsefulTricksButton.isHovered()) {
+        if (this.buttons.get(8).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.other_useful_tricks.tooltip"), 200), mouseX, mouseY);
         }
         super.renderTooltips(context, mouseX, mouseY);

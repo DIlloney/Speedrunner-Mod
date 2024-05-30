@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.mixin.client.screen;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.client.screen.ModMenuScreen;
+import net.dillon.speedrunnermod.client.screen.MainScreen;
 import net.dillon.speedrunnermod.client.screen.features.FeaturesScreen;
 import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
@@ -93,30 +93,21 @@ public class TitleScreenMixin extends Screen {
             }, ModLinks.WEBPAGE_LINK, true));
         }).dimensions(this.width / 2 + 2, l + 72 + 36, 98, 20).build());
 
-        optionsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
-            this.client.setScreen(new ModMenuScreen(this, MinecraftClient.getInstance().options));
+        this.optionsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+            this.client.setScreen(new MainScreen(this, MinecraftClient.getInstance().options));
         }).dimensions(this.width / 2 - 124, this.height / 4 + 48 + 24 * 2, 20, 20).build());
 
         if (options().client.socialButtons) {
-            dillon8775YouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+            this.dillon8775YouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                     if (openInBrowser) {
                         Util.getOperatingSystem().open(ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK);
                     }
                     this.client.setScreen(this);
                 }, ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK, true));
-            }).dimensions(this.width / 2 - 124, this.height / 4 + 48, 20, 20).build());
+            }).dimensions(this.width / 2 + 104, this.height / 4 + 48, 20, 20).build());
 
-            webpageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
-                this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
-                    if (openInBrowser) {
-                        Util.getOperatingSystem().open(ModLinks.WEBPAGE_LINK);
-                    }
-                    this.client.setScreen(this);
-                }, ModLinks.WEBPAGE_LINK, true));
-            }).dimensions(this.width / 2 + 128, this.height / 4 + 96, 20, 20).build());
-
-            nuzlandYouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+            this.nuzlandYouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                     if (openInBrowser) {
                         Util.getOperatingSystem().open(ModLinks.NUZLAND_YOUTUBE_CHANNEL_LINK);
@@ -125,7 +116,7 @@ public class TitleScreenMixin extends Screen {
                 }, ModLinks.NUZLAND_YOUTUBE_CHANNEL_LINK, true));
             }).dimensions(this.width / 2 + 104, this.height / 4 + 72, 20, 20).build());
 
-            mannyQuesoYouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+            this.mannyQuesoYouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                     if (openInBrowser) {
                         Util.getOperatingSystem().open(ModLinks.MANNYQUESO_YOUTUBE_CHANNEL_LINK);
@@ -133,6 +124,15 @@ public class TitleScreenMixin extends Screen {
                     this.client.setScreen(this);
                 }, ModLinks.MANNYQUESO_YOUTUBE_CHANNEL_LINK, true));
             }).dimensions(this.width / 2 + 104, this.height / 4 + 96, 20, 20).build());
+
+            this.webpageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+                this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
+                    if (openInBrowser) {
+                        Util.getOperatingSystem().open(ModLinks.WEBPAGE_LINK);
+                    }
+                    this.client.setScreen(this);
+                }, ModLinks.WEBPAGE_LINK, true));
+            }).dimensions(this.width / 2 + 128, this.height / 4 + 96, 20, 20).build());
         }
     }
 
@@ -148,13 +148,13 @@ public class TitleScreenMixin extends Screen {
         context.drawTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 123, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
         if (options().client.socialButtons) {
-            context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 - 123, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
-
-            context.drawTexture(SpeedrunnerMod.WEBPAGE_ICON, this.width / 2 + 130, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 + 105, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
             context.drawTexture(SpeedrunnerMod.NUZLAND_ICON, this.width / 2 + 105, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
             context.drawTexture(SpeedrunnerMod.MANNYQUESO_ICON, this.width / 2 + 105, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+
+            context.drawTexture(SpeedrunnerMod.WEBPAGE_ICON, this.width / 2 + 130, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         }
 
         this.renderTooltips(context, mouseX, mouseY);

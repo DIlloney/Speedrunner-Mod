@@ -32,7 +32,7 @@ import org.apache.logging.log4j.Logger;
 import static net.dillon.speedrunnermod.option.ModOptions.createListOption;
 
 /**
- * The main class file for {@code The Speedrunner Mod}.
+ * The home initializer for the Speedrunner Mod.
  */
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
@@ -53,11 +53,33 @@ public class SpeedrunnerMod implements ModInitializer {
     private static final Logger LOGGER = LogManager.getLogger("Speedrunner Mod");
 
     /**
-     * Initializes all {@code Speedrunner Mod} features, items, blocks, etc.
+     * Initializes all Speedrunner mod features, items, blocks, etc.
      */
     @Override
     public void onInitialize() {
-        initialize();
+        ModBoats.init();
+
+        ModWorldGen.init();
+
+        ModBlocks.init();
+        ModBlockFamilies.init();
+        ModBlockItems.init();
+        ModItems.init();
+        ModItemGroups.init();
+
+        ModStructureTags.init();
+        ModBlockTags.init();
+        ModItemTags.init();
+        ModFluidTags.init();
+
+        ModSoundEvents.init();
+
+        ModEnchantments.init();
+        ModRecipes.init();
+        ModFuels.init();
+
+        ModVillagers.init();
+        ModTradeOffers.init();
 
         safeBoot = false;
         ModOptions.loadConfig();
@@ -104,35 +126,6 @@ public class SpeedrunnerMod implements ModInitializer {
      * */
     public static ModOptions options() {
         return ModOptions.OPTIONS;
-    }
-
-    /**
-     * Initalizes all the main mod features.
-     */
-    private static void initialize() {
-        ModBoats.init();
-
-        ModWorldGen.init();
-
-        ModBlocks.init();
-        ModBlockFamilies.init();
-        ModBlockItems.init();
-        ModItems.init();
-        ModItemGroups.init();
-
-        ModStructureTags.init();
-        ModBlockTags.init();
-        ModItemTags.init();
-        ModFluidTags.init();
-
-        ModSoundEvents.init();
-
-        ModEnchantments.init();
-        ModRecipes.init();
-        ModFuels.init();
-
-        ModVillagers.init();
-        ModTradeOffers.init();
     }
 
     /**

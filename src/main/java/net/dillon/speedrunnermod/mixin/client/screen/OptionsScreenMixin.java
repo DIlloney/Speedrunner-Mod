@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.mixin.client.screen;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.client.screen.ModMenuScreen;
+import net.dillon.speedrunnermod.client.screen.MainScreen;
 import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.ModOptions;
@@ -52,11 +52,11 @@ public class OptionsScreenMixin extends Screen {
 
         if (options().client.modButtonType == ModOptions.ModButtonType.LOGO) {
             optionsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (button) -> {
-                this.client.setScreen(new ModMenuScreen(this, this.settings));
+                this.client.setScreen(new MainScreen(this, this.settings));
             }).dimensions(this.width / 2 - 179, this.height / 6 + 120 - 6, 20, 20).build());
         } else {
             optionsButton = this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.title"), (button) -> {
-                this.client.setScreen(new ModMenuScreen(this, this.settings));
+                this.client.setScreen(new MainScreen(this, this.settings));
             }).dimensions(this.width / 2 + 5, this.height / 6 + 144 - 6, 150, 20).build());
         }
     }

@@ -17,10 +17,10 @@ import net.minecraft.util.Identifier;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Environment(EnvType.CLIENT)
-public class ModMenuScreen extends AbstractModScreen {
+public class MainScreen extends AbstractModScreen {
     protected ButtonWidget optionsButton, featuresButton, resourcesButton, externalButton, creditsButton, leaderboardsButton, easierSpeedrunningModButton, doomModeButton;
 
-    public ModMenuScreen(Screen parent, GameOptions options) {
+    public MainScreen(Screen parent, GameOptions options) {
         super(parent, options, ModTexts.TITLE);
     }
 

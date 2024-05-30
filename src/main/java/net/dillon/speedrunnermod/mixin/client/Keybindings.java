@@ -86,7 +86,7 @@ public abstract class Keybindings {
             debugWarn(options().client.fullBright ? "speedrunnermod.toggle_fullbright.on" : "speedrunnermod.toggle_fullbright.off");
         }
 
-        if (isSimpleKeybindsLoaded()) {
+        if (!isSimpleKeybindsLoaded()) {
             while (ModKeybindings.hitboxesKey.wasPressed()) {
                 boolean bl = !MinecraftClient.getInstance().getEntityRenderDispatcher().shouldRenderHitboxes();
                 String hitboxes = bl ? "ON" : "OFF";

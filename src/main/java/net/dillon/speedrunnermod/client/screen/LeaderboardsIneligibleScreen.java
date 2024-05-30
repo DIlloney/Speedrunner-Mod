@@ -60,7 +60,7 @@ public class LeaderboardsIneligibleScreen extends AbstractModScreen {
             if (needsRestart && !needsRestartFromEnablingLeaderboardsMode) {
                 this.client.setScreen(new RestartRequiredScreen(this.parent, options));
             } else {
-                this.client.setScreen(new ModMenuScreen(this.parent, this.options));
+                this.client.setScreen(new MainScreen(this.parent, this.options));
             }
         }).dimensions(this.getButtonsRightSide(), this.getButtonsHeight(), 100, 20).build());
 

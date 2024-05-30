@@ -371,7 +371,7 @@
   "speedrunnermod.leaderboards.ineligible_options.stack_unstackables": "§lStack Unstackables§r = §c§lON§r, must be §aOFF.",
 
   "speedrunnermod.title.options": "Speedrunner Mod Options",
-  "speedrunnermod.title.options.tooltip": "Open the Speedrunner Mod's options page...",
+  "speedrunnermod.title.options.tooltip": "Speedrunner Mod options...",
   "speedrunnermod.menu.options.main": "Main Options...",
   "speedrunnermod.title.options.main": "Main Options",
   "speedrunnermod.options.structure_spawn_rates": "Structure Spawn Rate",
@@ -832,7 +832,7 @@
   "speedrunnermod.menu.leaderboards.disabled": "The leaderboards have been disabled.",
 
   "speedrunnermod.dillon8775_youtube.tooltip": "Check out the creator of this mod, §lDillon8775 §r(me)! :)",
-  "speedrunnermod.mannyqueso_youtube.tooltip": "Check out the creator of some of these textures, §6§lMannyQUESO! §r:)",
+  "speedrunnermod.mannyqueso_youtube.tooltip": "Check out the creator of some of the textures, §6§lMannyQUESO! §r:)",
   "speedrunnermod.nuzland_youtube.tooltip": "Check out my other friend's channel, §b§lNuzLand! §r:)",
 
   "speedrunnermod.menu.credits": "Credits...",

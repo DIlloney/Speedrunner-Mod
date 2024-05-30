@@ -40,7 +40,7 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
     @Override
     public void close() {
-        this.client.setScreen(new ModMenuScreen(this.parent, MinecraftClient.getInstance().options));
+        this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
     }
 
     @Override
@@ -76,7 +76,7 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void close() {
-            this.client.setScreen(new ModMenuScreen(this.parent, MinecraftClient.getInstance().options));
+            this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
 
         @Override
@@ -113,7 +113,7 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void close() {
-            this.client.setScreen(new ModMenuScreen(this.parent, MinecraftClient.getInstance().options));
+            this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
 
         @Override
@@ -146,7 +146,7 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void close() {
-            this.client.setScreen(new ModMenuScreen(this.parent, MinecraftClient.getInstance().options));
+            this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
 
         @Override
@@ -186,7 +186,7 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void close() {
-            this.client.setScreen(new ModMenuScreen(this.parent, MinecraftClient.getInstance().options));
+            this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
 
         @Override
@@ -223,7 +223,7 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void close() {
-            this.client.setScreen(new ModMenuScreen(this.parent, MinecraftClient.getInstance().options));
+            this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
 
         @Override
@@ -255,7 +255,7 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void close() {
-            this.client.setScreen(new ModMenuScreen(this.parent, MinecraftClient.getInstance().options));
+            this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
 
         @Override
@@ -287,7 +287,7 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void close() {
-            this.client.setScreen(new ModMenuScreen(this.parent, MinecraftClient.getInstance().options));
+            this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
 
         @Override
@@ -323,7 +323,7 @@ class SecretDoomModeScreen extends GameOptionsScreen {
 
         @Override
         public void close() {
-            this.client.setScreen(new ModMenuScreen(this.parent, MinecraftClient.getInstance().options));
+            this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
 
         @Override

@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.mixin.client.screen;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.client.screen.ModMenuScreen;
+import net.dillon.speedrunnermod.client.screen.MainScreen;
 import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
@@ -50,9 +50,9 @@ public class GameMenuScreenMixin extends Screen {
      */
     @Inject(method = "initWidgets", at = @At("TAIL"))
     private void addButtons(CallbackInfo ci) {
-        if (showMenu) {
+        if (this.showMenu) {
             if (options().advanced.showResetButton) {
-                createWorldButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+                this.createWorldButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                     if (this.client.inGameHud != null) {
                         this.client.inGameHud.getChatHud().clear(false);
                     }
@@ -60,15 +60,15 @@ public class GameMenuScreenMixin extends Screen {
                     this.client.disconnect(new MessageScreen(Text.translatable("menu.savingLevel")));
                     CreateWorldScreen.create(this.client, this);
                 }).dimensions(this.width / 2 - 4 - 120 - 2, this.height / 4 + 72 - 16, 20, 20).build());
-                createWorldButton.active = options().client.fastWorldCreation && this.client.isInSingleplayer() && this.client.isIntegratedServerRunning() && !this.client.getServer().isRemote();
+                this.createWorldButton.active = options().client.fastWorldCreation && this.client.isInSingleplayer() && this.client.isIntegratedServerRunning() && !this.client.getServer().isRemote();
             }
 
-            optionsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
-                this.client.setScreen(new ModMenuScreen(this, MinecraftClient.getInstance().options));
+            this.optionsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+                this.client.setScreen(new MainScreen(this, MinecraftClient.getInstance().options));
             }).dimensions(this.width / 2 - 4 - 120 - 2, this.height / 4 + 96 - 16, 20, 20).build());
 
             if (options().client.socialButtons) {
-                dillon8775YouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+                this.dillon8775YouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                     this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                         if (openInBrowser) {
                             Util.getOperatingSystem().open(ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK);
@@ -77,7 +77,7 @@ public class GameMenuScreenMixin extends Screen {
                     }, ModLinks.DILLON8775_YOUTUBE_CHANNEL_LINK, true));
                 }).dimensions(this.width / 2 - 4 - 120 - 2, this.height / 4 + 48 - 16, 20, 20).build());
 
-                webpageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+                this.webpageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                     this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                         if (openInBrowser) {
                             Util.getOperatingSystem().open(ModLinks.WEBPAGE_LINK);
@@ -94,7 +94,7 @@ public class GameMenuScreenMixin extends Screen {
      */
     @Inject(method = "render", at = @At("TAIL"))
     private void renderTextures(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        if (showMenu) {
+        if (this.showMenu) {
             context.drawTexture(new Identifier("speedrunnermod:textures/gui/speedrunner_mod.png"), this.width / 2 - 4 - 58 - 2, this.height / 4 - 26 + 2, 0.0F, 0.0F, 129, 16, 129, 16);
 
             if (options().advanced.showResetButton) {
