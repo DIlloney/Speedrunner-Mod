@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.dillon.speedrunnermod.util.TimeCalculator;
@@ -57,7 +56,6 @@ public class DragonsPearlItem extends Item {
                                 public void run() {
                                     enderDragon.getPhaseManager().setPhase(PhaseType.LANDING);
                                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.HOSTILE, 3.0F, 0.65F);
-                                    SpeedrunnerMod.debug("Perched ender dragon. (UUID = " + enderDragon.getUuidAsString());
                                 }
                             }, TimeCalculator.secondsToMilliseconds(2));
                             return TypedActionResult.success(itemStack);

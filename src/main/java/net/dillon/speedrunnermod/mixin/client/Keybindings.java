@@ -25,7 +25,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.debug;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 import static net.dillon.speedrunnermod.SpeedrunnerModClient.isSimpleKeybindsLoaded;
 
@@ -92,14 +91,12 @@ public abstract class Keybindings {
                 String hitboxes = bl ? "ON" : "OFF";
                 MinecraftClient.getInstance().getEntityRenderDispatcher().setRenderHitboxes(bl);
                 debugWarn(bl ? "debug.show_hitboxes.on" : "debug.show_hitboxes.off");
-                debug("Toggled hitboxes " + hitboxes);
             }
 
             while (ModKeybindings.chunkBordersKey.wasPressed()) {
                 boolean bl = MinecraftClient.getInstance().debugRenderer.toggleShowChunkBorder();
                 String chunkBorders = bl ? "ON" : "OFF";
                 debugWarn(bl ? "debug.chunk_boundaries.on" : "debug.chunk_boundaries.off");
-                debug("Toggled chunk borders " + chunkBorders);
             }
         }
     }

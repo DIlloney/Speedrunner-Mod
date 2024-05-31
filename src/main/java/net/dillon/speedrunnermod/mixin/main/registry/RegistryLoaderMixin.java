@@ -58,8 +58,6 @@ public abstract class RegistryLoaderMixin {
                     monsterSpawns.put("minecraft:creeper", createSpawnSettings(DOOM_MODE ? 1 : 2, 4));
 
                     modifyMonsterSpawns(jsonElement, customOrNoChangedWeightMonsterSpawns, true);
-
-                    debug("Modified monster spawns for " + biomesWithDefaultMonsters().get(i).replace("_", " ").replace("worldgen/biome/", "").replace(".json", "") + " biome.");
                 }
             }
 
@@ -72,8 +70,6 @@ public abstract class RegistryLoaderMixin {
                     creatureSpawns.put("minecraft:chicken", createSpawnSettings(8, 1, 4, 8, 4));
 
                     modifyCreatureSpawns(jsonElement, creatureSpawns, false);
-
-                    debug("Modified creature spawns for " + biomesWithFarmAnimals().get(i).replace("_", " ").replace("worldgen/biome/", "").replace(".json", "") + " biome.");
                 }
             }
 
@@ -83,8 +79,6 @@ public abstract class RegistryLoaderMixin {
                 waterCreatureSpawns.put("minecraft:tropical_fish", createSpawnSettings(10, 1, 4, 8, 4));
 
                 modifyCreatureSpawns(jsonElement, waterCreatureSpawns, true);
-
-                debug("Modified water creature spawns for warm ocean biome.");
             }
 
             if (fileName.equals(BASALT_DELTAS)) {
@@ -127,8 +121,6 @@ public abstract class RegistryLoaderMixin {
                 }
 
                 basaltDeltasSpawners.getAsJsonArray("monster").addAll(basaltDeltasMonsters);
-
-                debug("Created basalt deltas.");
             }
 
             if (fileName.equals(CRIMSON_FOREST)) {
@@ -178,8 +170,6 @@ public abstract class RegistryLoaderMixin {
                 }
 
                 crimsonForestSpawners.getAsJsonArray("monster").addAll(crimsonForestMonsters);
-
-                debug("Created crimson forest.");
             }
 
             if (fileName.equals(NETHER_WASTES)) {
@@ -243,8 +233,6 @@ public abstract class RegistryLoaderMixin {
                 }
 
                 netherWastesSpawners.getAsJsonArray("monster").addAll(netherWastesMonsters);
-
-                debug("Created nether wastes.");
             }
 
             if (fileName.equals(SOUL_SAND_VALLEY)) {
@@ -287,8 +275,6 @@ public abstract class RegistryLoaderMixin {
                 }
 
                 soulSandValleySpawners.getAsJsonArray("monster").addAll(soulSandValleyMonsters);
-
-                debug("Created soul sand valley.");
             }
 
             if (fileName.equals(THE_END)) {
@@ -353,8 +339,6 @@ public abstract class RegistryLoaderMixin {
                 if (DOOM_MODE) {
                     theEndEffects.add("particle", particleObject);
                 }
-
-                debug("Created the end.");
             }
 
             if (fileName.equals(WARPED_FOREST)) {
@@ -404,8 +388,6 @@ public abstract class RegistryLoaderMixin {
                 }
 
                 warpedForestSpawners.getAsJsonArray("monster").addAll(warpedForestMonsters);
-
-                debug("Created warped forest.");
             }
 
             String monsterRoom = MONSTER_ROOM;
@@ -419,8 +401,6 @@ public abstract class RegistryLoaderMixin {
                         break;
                     }
                 }
-
-                debug(fileName.equals(monsterRoom) ? "Created deep monster room feature." : "Created monster room feature.");
             }
 
             if (options().main.commonOres) {
@@ -435,8 +415,6 @@ public abstract class RegistryLoaderMixin {
                             break;
                         }
                     }
-
-                    debug(fileName.equals(oreDiamond) ? "Created diamond ore feature." : "Created diamond ore buried feature.");
                 }
 
                 if (fileName.equals(ORE_DIAMOND_LARGE)) {
@@ -455,8 +433,6 @@ public abstract class RegistryLoaderMixin {
                             break;
                         }
                     }
-
-                    debug("Created diamond ore large feature.");
                 }
 
                 String oreLapis = ORE_LAPIS;
@@ -470,8 +446,6 @@ public abstract class RegistryLoaderMixin {
                             break;
                         }
                     }
-
-                    debug(fileName.equals(oreLapis) ? "Created lapis ore feature." : "Created lapis ore buried feature.");
                 }
             }
 
@@ -496,71 +470,58 @@ public abstract class RegistryLoaderMixin {
                 if (fileName.equals(ANCIENT_CITIES)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getAncientCitySpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getAncientCitySeparation());
-                    logChange("ancient cities");
                 }
 
                 if (fileName.equals(DESERT_PYRAMIDS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getDesertPyramidSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getDesertPyramidSeparation());
-                    logChange("desert pyramids");
                 }
 
                 if (fileName.equals(END_CITIES)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getEndCitySpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getEndCitySeparation());
-                    logChange("end cities");
                 }
 
                 if (fileName.equals(JUNGLE_TEMPLES)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getJungleTempleSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getJungleTempleSeparation());
-                    logChange("jungle temples");
                 }
 
                 if (fileName.equals(NETHER_COMPLEXES)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getNetherComplexesSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getNetherComplexesSeparation());
-                    logChange("nether complexes");
                 }
 
                 if (fileName.equals(PILLAGER_OUTPOSTS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getPillagerOutpostSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getPillagerOutpostSeparation());
-                    logChange("pillager outposts");
                 }
 
                 if (fileName.equals(RUINED_PORTALS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getRuinedPortalSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getRuinedPortalSeparation());
-                    logChange("ruined portals");
                 }
 
                 if (fileName.equals(SHIPWRECKS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getShipwreckSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getShipwreckSeparation());
-                    logChange("shipwrecks");
                 }
 
                 if (fileName.equals(STRONGHOLDS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("distance", options().main.strongholdDistance);
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spread", options().main.strongholdSpread);
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("count", options().main.strongholdCount);
-                    logChange("strongholds");
                 }
 
                 if (fileName.equals(VILLAGES)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getVillageSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getVillageSeparation());
-                    logChange("villages");
                 }
 
                 if (fileName.equals(WOODLAND_MANSIONS)) {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getWoodlandMansionSpacing());
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getWoodlandMansionSeparation());
-                    logChange("woodland mansions");
                 }
-            } else {
-                debug("Structure Spawn Rates is disabled. No changes were made to structures rarity.");
             }
 
             if (fileName.equals(END)) {
@@ -571,8 +532,6 @@ public abstract class RegistryLoaderMixin {
                 JsonObject surfaceRule = jsonElement.getAsJsonObject().getAsJsonObject("surface_rule");
                 JsonObject resultState = surfaceRule.getAsJsonObject("result_state");
                 resultState.addProperty("Name", stone);
-
-                debug("Created end dimension.");
             }
         }
     }
@@ -734,13 +693,5 @@ public abstract class RegistryLoaderMixin {
     @Unique
     private static String biomeName(String biomeName) {
         return "worldgen/biome/" + biomeName + ".json";
-    }
-
-    /**
-     * Logs that the structure file was found, and logs which structure spawn rate the structure is generating on.
-     */
-    @Unique
-    private static void logChange(String structure) {
-        debug("Generating " + structure + " on StructureSpawnRates." + options().main.structureSpawnRates.toString().toLowerCase() + "() setting.");
     }
 }

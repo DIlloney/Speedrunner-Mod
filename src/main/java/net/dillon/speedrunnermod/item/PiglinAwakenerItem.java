@@ -85,7 +85,6 @@ public class PiglinAwakenerItem extends Item {
                                                     double z = !player.isSneaking() ? player.getZ() + world.random.nextInt(7) - 3 : player.getZ();
                                                     piglin.teleport(x, y, z);
                                                     maxNumberOfPiglin++;
-                                                    SpeedrunnerMod.debug("Teleported piglin (" + piglin.getUuidAsString() + ") to X = " + piglin.getX() + ", Y = " + piglin.getY() + ", Z = " + piglin.getZ() + ".");
                                                 }
                                                 if (maxNumberOfPiglin >= SpeedrunnerMod.getMaximumAmountOfPiglinAllowedViaPiglinAwakener()) {
                                                     break;
@@ -97,10 +96,6 @@ public class PiglinAwakenerItem extends Item {
                                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PIGLIN_AMBIENT, SoundCategory.HOSTILE, 3.0F, 1.0F);
                                     player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.got_piglins").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                                     player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.confirm"), false);
-                                    for (PiglinEntity piglin : piglins) {
-                                        String starter = piglin.isBaby() ? "Found baby piglin at: X = " : "Found piglin at: X = ";
-                                        SpeedrunnerMod.debug(starter + piglin.getX() + ", Y = " + piglin.getY() + ", Z = " + piglin.getZ() + ".");
-                                    }
                                 }
                                 if (options().client.confirmMessages) {
                                     confirm = !confirm;

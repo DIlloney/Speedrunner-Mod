@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
@@ -75,7 +74,6 @@ public class RaidEradicatorItem extends Item {
                                                 raider.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, TickCalculator.minutes(2), 0, false, true, false));
                                                 raider.teleport(player.getX() + world.random.nextInt(7) - 3, player.getY() + world.random.nextDouble() * (2.0 - 0.5) + 0.5, player.getZ() + world.random.nextInt(7) - 3);
                                             }
-                                            SpeedrunnerMod.debug("Killed raider entity, " + raider.getName().toString() + " (" + raider.getUuidAsString() + ").");
                                         }
                                     }
                                     player.damage(player.getDamageSources().generic(), player.getHealth());

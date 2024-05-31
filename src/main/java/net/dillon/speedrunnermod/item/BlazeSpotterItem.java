@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.dillon.speedrunnermod.util.ItemUtil;
@@ -59,7 +58,6 @@ public class BlazeSpotterItem extends Item {
                             if (!player.getAbilities().creativeMode) {
                                 itemStack.decrement(1);
                             }
-                            SpeedrunnerMod.debug("Teleported player" + player.getName().toString() + " (UUID: " + player.getUuidAsString() + ") to nearest blaze spawner, at X = " + player.getX() + ", Y = " + player.getY() + ", Z = " + player.getZ() + ".");
                         } else {
                             player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.found_blaze_spawner").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                             player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.confirm"), false);
@@ -105,7 +103,6 @@ public class BlazeSpotterItem extends Item {
                     MobSpawnerBlockEntity spawnerBlockEntity = (MobSpawnerBlockEntity) blockEntity;
                     if (spawnerBlockEntity.getLogic().getRenderedEntity(world, pos).getType() == EntityType.BLAZE) {
                         if (!world.getBlockState(pos.up()).isAir() || !world.getBlockState(pos.up(1)).isAir()) {
-                            SpeedrunnerMod.debug("Detected blocks above blaze spawner were not air, so setting to air.");
                             for (int i = 1; i < 3; i++) {
                                 world.setBlockState(pos.up(i), Blocks.AIR.getDefaultState(), 3);
                             }

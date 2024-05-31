@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.dillon.speedrunnermod.util.ItemUtil;
@@ -118,7 +117,6 @@ public class AnnulEyeItem extends Item {
                                                 }
                                             }
                                         }
-                                        SpeedrunnerMod.debug("Teleported player" + player.getName().toString() + " (UUID: " + player.getUuidAsString() + ") to portal room, at X = " + player.getX() + ", Y = " + player.getY() + ", Z = " + player.getZ() + ".");
                                     } else {
                                         player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.found_portal_room").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                                         player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.confirm"), false);

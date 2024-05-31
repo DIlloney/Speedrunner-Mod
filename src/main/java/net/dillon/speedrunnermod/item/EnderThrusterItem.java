@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.block.ModBlocks;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ItemUtil;
@@ -67,13 +66,11 @@ public class EnderThrusterItem extends Item {
                             if (!isAir) {
                                 for (int i = 1; i < 3; i++) {
                                     world.setBlockState(pos.up(i), Blocks.AIR.getDefaultState(), 3);
-                                    SpeedrunnerMod.debug("Removing non-air blocks for ender thruster. (" + player.getName().toString() + ", " + player.getUuidAsString() + ").");
                                 }
                             }
 
                             player.teleport(player.getX(), y, player.getZ(), true);
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                            SpeedrunnerMod.debug("Teleported player " + player.getName().toString() + " (" + player.getUuidAsString() + ") to X = " + player.getX() + ", Y = " + player.getY() + ", Z = " + player.getZ() + "with Ender Thruster.");
                         } else {
                             player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.confirm").formatted(Formatting.WHITE), false);
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDERMAN_AMBIENT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
