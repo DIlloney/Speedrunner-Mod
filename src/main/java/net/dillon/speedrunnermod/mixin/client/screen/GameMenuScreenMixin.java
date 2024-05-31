@@ -39,7 +39,7 @@ public class GameMenuScreenMixin extends Screen {
     @Unique
     private ButtonWidget dillon8775YouTubeButton;
     @Unique
-    private ButtonWidget webpageButton;
+    private ButtonWidget wikiButton;
 
     public GameMenuScreenMixin(Text title, ButtonWidget createWorldButton) {
         super(title);
@@ -75,17 +75,17 @@ public class GameMenuScreenMixin extends Screen {
                         }
                         this.client.setScreen(this);
                     }, ModLinks.DILLON8775_YOUTUBE, true));
-                }).dimensions(this.width / 2 - 4 - 120 - 2, this.height / 4 + 48 - 16, 20, 20).build());
-
-                this.webpageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
-                    this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
-                        if (openInBrowser) {
-                            Util.getOperatingSystem().open(ModLinks.WIKI);
-                        }
-                        this.client.setScreen(this);
-                    }, ModLinks.WIKI, true));
-                }).dimensions(this.width / 2 + 106, this.height / 4 + 96 - 16, 20, 20).build());
+                }).dimensions(this.width / 2 + 106, this.height / 4 + 72 - 16, 20, 20).build());
             }
+
+            this.wikiButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+                this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
+                    if (openInBrowser) {
+                        Util.getOperatingSystem().open(ModLinks.WIKI);
+                    }
+                    this.client.setScreen(this);
+                }, ModLinks.WIKI, true));
+            }).dimensions(this.width / 2 + 106, this.height / 4 + 96 - 16, 20, 20).build());
         }
     }
 
@@ -93,7 +93,7 @@ public class GameMenuScreenMixin extends Screen {
      * Renders additional textures on the pause menu screen.
      */
     @Inject(method = "render", at = @At("TAIL"))
-    private void renderTextures(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+    private void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if (this.showMenu) {
             context.drawTexture(new Identifier("speedrunnermod:textures/gui/speedrunner_mod.png"), this.width / 2 - 4 - 58 - 2, this.height / 4 - 26 + 2, 0.0F, 0.0F, 129, 16, 129, 16);
 
@@ -104,9 +104,36 @@ public class GameMenuScreenMixin extends Screen {
             context.drawTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON, this.width / 2 - 4 - 119 - 2, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
             if (options().client.socialButtons) {
-                context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 - 4 - 119 - 2, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
-                context.drawTexture(SpeedrunnerMod.WIKI_ICON, this.width / 2 - 4 + 114 - 2, webpageButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+                context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 - 4 + 114 - 3, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
             }
+
+            context.drawTexture(SpeedrunnerMod.WIKI_ICON, this.width / 2 - 4 + 114 - 2, wikiButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+
+            this.renderTooltips(context, mouseX, mouseY);
+        }
+    }
+
+    /**
+     * Renders tooltips on certain buttons.
+     */
+    @Unique
+    private void renderTooltips(DrawContext context, int mouseX, int mouseY) {
+        if (options().advanced.showResetButton && createWorldButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(options().client.fastWorldCreation ? ModTexts.CREATE_WORLD_BUTTON_TOOLTIP : ModTexts.CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
+        }
+
+        if (optionsButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.OPTIONS_TOOLTIP, 200), mouseX, mouseY);
+        }
+
+        if (options().client.socialButtons) {
+            if (dillon8775YouTubeButton.isHovered()) {
+                context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+            }
+        }
+
+        if (wikiButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.WIKI_TOOLTIP, 200), mouseX, mouseY);
         }
     }
 }

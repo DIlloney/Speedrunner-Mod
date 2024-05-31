@@ -108,7 +108,7 @@ public class TitleScreenMixin extends Screen {
      * Adds additional textures to the title screen.
      */
     @Inject(method = "render", at = @At("TAIL"))
-    private void renderButtons(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+    private void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/item/golden_speedrunner_upgrade_smithing_template.png"), this.width / 2 - 122, this.featuresButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
         if (options().advanced.showResetButton) {
@@ -141,33 +141,33 @@ public class TitleScreenMixin extends Screen {
     @Unique
     private void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (featuresButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.FEATURES_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.FEATURES_TOOLTIP, 200), mouseX, mouseY);
         }
 
         if (options().advanced.showResetButton && createWorldButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(options().client.fastWorldCreation ? ModTexts.CREATE_WORLD_BUTTON_TOOLTIP : ModTexts.CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(options().client.fastWorldCreation ? ModTexts.CREATE_WORLD_BUTTON_TOOLTIP : ModTexts.CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
         }
 
         if (optionsButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.OPTIONS_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.OPTIONS_TOOLTIP, 200), mouseX, mouseY);
         }
 
         if (options().client.socialButtons) {
             if (dillon8775YouTubeButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
 
             if (nuzlandYouTubeButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.NUZLAND_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.NUZLAND_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
 
             if (mannyQuesoYouTubeButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MANNYQUESO_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MANNYQUESO_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
         }
 
         if (wikiButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.WIKI_TOOLTIP, 200), mouseX, mouseY);
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.WIKI_TOOLTIP, 200), mouseX, mouseY);
         }
     }
 
