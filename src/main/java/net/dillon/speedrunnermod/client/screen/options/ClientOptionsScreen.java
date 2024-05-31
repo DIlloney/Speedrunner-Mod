@@ -34,7 +34,6 @@ public class ClientOptionsScreen extends AbstractModScreen {
                 ModListOptions.SHOW_DEATH_CORDS,
                 ModListOptions.CONFIRM_MESSAGES,
                 ModListOptions.PANORAMA,
-                ModListOptions.MOD_BUTTON_TYPE,
                 ModListOptions.SOCIAL_BUTTONS
         };
     }

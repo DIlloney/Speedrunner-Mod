@@ -10,8 +10,9 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
 
 /**
- * The main class for the leaderboards in the {@code Speedrunner Mod.}
+ * The main class for the leaderboards in the Speedrunner Mod.
  */
+@Deprecated
 public class Leaderboards {
     public static List<Text> ineligibleOptions = new ArrayList<>();
     private static final ModOptions.Main options = options().main;

@@ -166,7 +166,6 @@ public class SpeedrunnerMod implements ModInitializer {
         options().client.panorama = ModOptions.Panorama.SPEEDRUNNER_MOD;
         options().client.itemMessages = ModOptions.ItemMessages.ACTIONBAR;
         options().client.confirmMessages = false;
-        options().client.modButtonType = ModOptions.ModButtonType.LOGO;
         options().client.socialButtons = true;
         options().client.fastWorldCreation = true;
         options().client.gameMode = ModOptions.GameMode.SURVIVAL;

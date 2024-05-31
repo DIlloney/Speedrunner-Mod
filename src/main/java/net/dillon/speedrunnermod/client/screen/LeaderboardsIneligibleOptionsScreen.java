@@ -9,6 +9,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 
+@Deprecated
 @Environment(EnvType.CLIENT)
 class LeaderboardsIneligibleOptionsScreen extends AbstractModScreen {
     private final Screen parent;

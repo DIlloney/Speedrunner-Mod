@@ -24,9 +24,10 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.warn;
 public abstract class MinecraftClientMixin {
     @Shadow
     public abstract void setScreen(@Nullable Screen screen);
+
     /**
      * <p>Adds the {@code Safe Mode} feature.</p>
-     * <p>If the speedrunner mod detects broken options (see {@link ModOptions#safeCheck()}), then the game will load into the {@link SafeBootScreen}.</p>
+     * <p>If the speedrunner mod detects broken options, then the game will load into the {@link SafeBootScreen}.</p>
      */
     @Inject(method = "<init>", at = @At("TAIL"))
     private void safeBoot(RunArgs args, CallbackInfo ci) {

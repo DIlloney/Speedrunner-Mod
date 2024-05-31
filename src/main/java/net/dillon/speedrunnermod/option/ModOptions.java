@@ -23,7 +23,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
  * The main options for the {@code Speedrunner Mod}.
  * <p>When adding new options...</p>
  * <p>- Must add a check for restart required in {@link net.dillon.speedrunnermod.client.screen.RestartRequiredScreen}, only if necessary,</p>
- * <p>- Determine if it is leaderboard-eligible, and then implement that into {@link Leaderboards}.</p>
+ * <p>- Determine if it is leaderboard-eligible, and then implement into {@link Leaderboards}.</p>
  * <p>- An {@code "isBroken"} check {@link SafeBootScreen} and in {@link ModOptions#safeCheck()}</p>
  * <p>- A {@link ModListOptions},</p>
  * <p>- A reset option in {@link SpeedrunnerMod#resetOptions()}.</p>
@@ -103,7 +103,6 @@ public class ModOptions {
         public ItemMessages itemMessages = ItemMessages.ACTIONBAR;
         @RequiresRestart
         public boolean confirmMessages = false;
-        public ModButtonType modButtonType = ModButtonType.LOGO;
         public boolean socialButtons = true;
         public boolean fastWorldCreation = true;
         public GameMode gameMode = GameMode.SURVIVAL;
@@ -460,39 +459,6 @@ public class ModOptions {
         }
     }
 
-    public enum ModButtonType implements TranslatableOption {
-        LOGO(0, "speedrunnermod.options.mod_button_type.logo"),
-        BUTTON(1, "speedrunnermod.options.mod_button_type.button");
-
-        private static final ModButtonType[] VALUES = Arrays.stream(ModButtonType.values()).sorted(Comparator.comparingInt(ModButtonType::getId)).toArray(ModButtonType[]::new);
-        private final int id;
-        private final String translateKey;
-
-        ModButtonType(int id, String translationKey) {
-            this.id = id;
-            this.translateKey = Objects.requireNonNull(translationKey, "translateKey");
-        }
-
-        @Override
-        public int getId() {
-            return this.id;
-        }
-
-        @Override
-        public String getTranslationKey() {
-            return this.translateKey;
-        }
-
-        public static ModButtonType byId(int id) {
-            return VALUES[MathHelper.floorMod(id, VALUES.length)];
-        }
-
-        public boolean isSafe() {
-            return options().client.modButtonType.equals(LOGO) ||
-                    options().client.modButtonType.equals(BUTTON);
-        }
-    }
-
     public enum ItemMessages implements TranslatableOption {
         CHAT(0, "speedrunnermod.options.item_messages.chat"),
         ACTIONBAR(1, "speedrunnermod.options.item_messages.actionbar");
@@ -617,12 +583,6 @@ public class ModOptions {
             error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.itemMessages");
             isSafe(false);
             BrokenModOptions.itemMessages = true;
-        }
-
-        if (!options().client.modButtonType.isSafe()) {
-            error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.modButtonType");
-            isSafe(false);
-            BrokenModOptions.modButtonType = true;
         }
 
         if (!options().client.gameMode.isSafe()) {

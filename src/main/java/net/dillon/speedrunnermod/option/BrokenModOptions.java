@@ -9,7 +9,6 @@ public class BrokenModOptions {
     public static boolean leaderboards = false;
     public static boolean panorama = false;
     public static boolean itemMessages = false;
-    public static boolean modButtonType = false;
     public static boolean netherPortalCooldown = false;
     public static boolean gameMode = false;
     public static boolean difficulty = false;

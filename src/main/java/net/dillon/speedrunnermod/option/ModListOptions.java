@@ -37,11 +37,6 @@ public class ModListOptions {
                     new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(ModOptions.MobSpawningRate.values()), Codec.INT.xmap(ModOptions.MobSpawningRate::byId, ModOptions.MobSpawningRate::getId)),
                     options().main.mobSpawningRate, value -> options().main.mobSpawningRate = value);
 
-    public static final SimpleOption<ModOptions.ModButtonType> MOD_BUTTON_TYPE =
-            new SimpleOption<>("speedrunnermod.options.mod_button_type", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.mod_button_type.tooltip")), SimpleOption.enumValueText(),
-                    new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(ModOptions.ModButtonType.values()), Codec.INT.xmap(ModOptions.ModButtonType::byId, ModOptions.ModButtonType::getId)),
-                    options().client.modButtonType, value -> options().client.modButtonType = value);
-
     public static final SimpleOption<ModOptions.GameMode> GAMEMODE =
             new SimpleOption<>("speedrunnermod.options.gamemode", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.gamemode.tooltip")), SimpleOption.enumValueText(),
                     new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(ModOptions.GameMode.values()), Codec.INT.xmap(ModOptions.GameMode::byId, ModOptions.GameMode::getId)),

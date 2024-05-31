@@ -90,10 +90,6 @@ public class SpeedrunnerModClient implements ClientModInitializer {
             options().client.itemMessages = ModOptions.ItemMessages.CHAT;
         }
 
-        if (BrokenModOptions.modButtonType) {
-            options().client.modButtonType = ModOptions.ModButtonType.LOGO;
-        }
-
         if (BrokenModOptions.gameMode) {
             options().client.gameMode = ModOptions.GameMode.SURVIVAL;
         }

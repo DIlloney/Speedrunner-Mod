@@ -17,6 +17,7 @@ import net.minecraft.util.Util;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.warn;
 
+@Deprecated
 @Environment(EnvType.CLIENT)
 public class LeaderboardsIneligibleScreen extends AbstractModScreen {
     public static boolean needsRestart = false;

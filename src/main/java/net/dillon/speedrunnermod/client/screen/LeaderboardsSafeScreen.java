@@ -19,6 +19,7 @@ import net.minecraft.util.Util;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.warn;
 
+@Deprecated
 @Environment(EnvType.CLIENT)
 public class LeaderboardsSafeScreen extends AbstractModScreen {
     protected ButtonWidget leftButton, middleButton, rightButton, viewIneligibleOptionsButton, viewSubmissionPageButton;

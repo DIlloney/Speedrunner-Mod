@@ -14,6 +14,7 @@ import net.minecraft.util.Formatting;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
+@Deprecated
 @Environment(EnvType.CLIENT)
 public class LeaderboardsScreen extends AbstractModScreen {
     protected ButtonWidget submitSpeedrunButton;
