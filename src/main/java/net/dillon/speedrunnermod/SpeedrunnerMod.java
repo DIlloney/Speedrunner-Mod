@@ -114,13 +114,6 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     /**
-     * Sends a {@code debug} message in console.
-     */
-    public static void debug(String debug) {
-        LOGGER.debug(debug);
-    }
-
-    /**
      * The {@code Speedrunner Mod} options method.
      * */
     public static ModOptions options() {
