@@ -6,7 +6,6 @@ import net.dillon.speedrunnermod.client.screen.LeaderboardsSafeScreen;
 import net.dillon.speedrunnermod.client.screen.SafeBootScreen;
 import net.dillon.speedrunnermod.client.screen.SpeedrunIGTMissingScreen;
 import net.dillon.speedrunnermod.option.Leaderboards;
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.RunArgs;
 import net.minecraft.client.gui.screen.Screen;

@@ -13,15 +13,15 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class MorePanoramasScreen extends AbstractFeatureScreen {
+public class CustomPanoramaScreen extends AbstractFeatureScreen {
 
-    public MorePanoramasScreen(Screen parent, GameOptions options) {
-        super(parent, options, Text.translatable("speedrunnermod.title.features.more.more_panoramas"), false, false, true);
+    public CustomPanoramaScreen(Screen parent, GameOptions options) {
+        super(parent, options, Text.translatable("speedrunnermod.title.features.more.custom_panorama"), false, false, true);
     }
 
     @Override
     public @NotNull String linesKey() {
-        return "more_panoramas";
+        return "custom_panorama";
     }
 
     @Override
@@ -31,7 +31,7 @@ public class MorePanoramasScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/more_panoramas.png");
+        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/custom_panorama.png");
     }
 
     @Override

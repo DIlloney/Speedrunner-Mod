@@ -163,7 +163,7 @@ public class SpeedrunnerMod implements ModInitializer {
 
         options().client.fog = true;
         options().client.itemTooltips = true;
-        options().client.panorama = ModOptions.Panorama.SPEEDRUNNER_MOD;
+        options().client.customPanorama = true;
         options().client.itemMessages = ModOptions.ItemMessages.ACTIONBAR;
         options().client.confirmMessages = false;
         options().client.socialButtons = true;

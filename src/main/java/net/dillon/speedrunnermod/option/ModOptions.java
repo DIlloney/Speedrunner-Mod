@@ -99,7 +99,7 @@ public class ModOptions {
         public boolean itemTooltips = true;
         public boolean textureTooltips = false;
         @RequiresRestart
-        public Panorama panorama = Panorama.SPEEDRUNNER_MOD;
+        public boolean customPanorama = true;
         public ItemMessages itemMessages = ItemMessages.ACTIONBAR;
         @RequiresRestart
         public boolean confirmMessages = false;
@@ -340,51 +340,6 @@ public class ModOptions {
         }
     }
 
-    public enum Panorama implements TranslatableOption {
-        SPEEDRUNNER_MOD(0, "speedrunnermod.options.panorama.speedrunner_mod"),
-        EASIER_SPEEDRUNNING(1, "speedrunnermod.options.panorama.easier_speedrunning"),
-        NIGHT(2, "speedrunnermod.options.panorama.night"),
-        CAVE(3, "speedrunnermod.options.panorama.cave"),
-        CLASSIC(4, "speedrunnermod.options.panorama.classic"),
-        EMPTY(5, "speedrunnermod.options.panorama.empty"),
-        OLD_SPEEDRUNNER_MOD(6, "speedrunnermod.options.panorama.old_speedrunner_mod"),
-        DEFAULT(7, "speedrunnermod.options.panorama.default");
-
-        private static final Panorama[] VALUES = Arrays.stream(Panorama.values()).sorted(Comparator.comparingInt(Panorama::getId)).toArray(Panorama[]::new);
-        private final int id;
-        private final String translateKey;
-
-        Panorama(int id, String translationKey) {
-            this.id = id;
-            this.translateKey = Objects.requireNonNull(translationKey, "translateKey");
-        }
-
-        @Override
-        public int getId() {
-            return this.id;
-        }
-
-        @Override
-        public String getTranslationKey() {
-            return this.translateKey;
-        }
-
-        public static Panorama byId(int id) {
-            return VALUES[MathHelper.floorMod(id, VALUES.length)];
-        }
-
-        public boolean isSafe() {
-            return options().client.panorama.equals(SPEEDRUNNER_MOD) ||
-                    options().client.panorama.equals(EASIER_SPEEDRUNNING) ||
-                    options().client.panorama.equals(NIGHT) ||
-                    options().client.panorama.equals(CAVE) ||
-                    options().client.panorama.equals(CLASSIC) ||
-                    options().client.panorama.equals(EMPTY) ||
-                    options().client.panorama.equals(OLD_SPEEDRUNNER_MOD) ||
-                    options().client.panorama.equals(DEFAULT);
-        }
-    }
-
     public enum GameMode implements TranslatableOption {
         SURVIVAL(0, "speedrunnermod.options.gamemode.survival"),
         CREATIVE(1, "speedrunnermod.options.gamemode.creative"),
@@ -571,12 +526,6 @@ public class ModOptions {
             error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.mobSpawningRate");
             isSafe(false);
             BrokenModOptions.mobSpawningRate = true;
-        }
-
-        if (!options().client.panorama.isSafe()) {
-            error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.panorama");
-            isSafe(false);
-            BrokenModOptions.panorama = true;
         }
 
         if (!options().client.itemMessages.isSafe()) {

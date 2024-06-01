@@ -22,11 +22,6 @@ public class ModListOptions {
                     new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(ModOptions.StructureSpawnRates.values()), Codec.INT.xmap(ModOptions.StructureSpawnRates::byId, ModOptions.StructureSpawnRates::getId)),
                     options().main.structureSpawnRates, value -> options().main.structureSpawnRates = value);
 
-    public static final SimpleOption<ModOptions.Panorama> PANORAMA =
-            new SimpleOption<>("speedrunnermod.options.panorama", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.panorama.tooltip")), SimpleOption.enumValueText(),
-                    new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(ModOptions.Panorama.values()), Codec.INT.xmap(ModOptions.Panorama::byId, ModOptions.Panorama::getId)),
-                    options().client.panorama, value -> options().client.panorama = value);
-
     public static final SimpleOption<ModOptions.ItemMessages> ITEM_MESSAGES =
             new SimpleOption<>("speedrunnermod.options.item_messages", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.item_messages.tooltip")), SimpleOption.enumValueText(),
                     new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(ModOptions.ItemMessages.values()), Codec.INT.xmap(ModOptions.ItemMessages::byId, ModOptions.ItemMessages::getId)),
@@ -146,6 +141,9 @@ public class ModListOptions {
 
     public static final SimpleOption<Boolean> ALLOW_CHEATS = new SimpleOption<>("speedrunnermod.options.allow_cheats", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.allow_cheats.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.allowCheats, value -> options().client.allowCheats = value);
+
+    public static final SimpleOption<Boolean> PANORAMA = new SimpleOption<>("speedrunnermod.options.custom_panorama", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.custom_panorama.tooltip")),
+            (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.customPanorama, value -> options().client.customPanorama = value);
 
     public static final SimpleOption<Integer> BLOCK_BREAKING_MULTIPLIER =
             new SimpleOption<>("speedrunnermod.options.block_breaking_multiplier", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.block_breaking_multiplier.tooltip")),

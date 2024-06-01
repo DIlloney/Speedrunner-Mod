@@ -7,7 +7,6 @@ public class BrokenModOptions {
     public static boolean strongholdLibraryCount = false;
     public static boolean mobSpawningRate = false;
     public static boolean leaderboards = false;
-    public static boolean panorama = false;
     public static boolean itemMessages = false;
     public static boolean netherPortalCooldown = false;
     public static boolean gameMode = false;

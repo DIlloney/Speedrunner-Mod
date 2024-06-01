@@ -25,7 +25,7 @@ public class RestartRequiredScreen extends AbstractModScreen {
     public static int currentStrongholdCount;
     public static int currentStrongholdPortalRoomCount;
     public static int currentStrongholdLibraryCount;
-    public static ModOptions.Panorama currentPanorama;
+    public static boolean currentPanorama;
     public static boolean currentConfirmMessages;
     public static boolean currentStackUnstackables;
 
@@ -100,7 +100,7 @@ public class RestartRequiredScreen extends AbstractModScreen {
         currentStrongholdCount = options().main.strongholdCount;
         currentStrongholdPortalRoomCount = options().main.strongholdPortalRoomCount;
         currentStrongholdLibraryCount = options().main.strongholdLibraryCount;
-        currentPanorama = options().client.panorama;
+        currentPanorama = options().client.customPanorama;
         currentConfirmMessages = options().client.confirmMessages;
         currentStackUnstackables = options().main.stackUnstackables;
     }
@@ -116,7 +116,7 @@ public class RestartRequiredScreen extends AbstractModScreen {
                 currentStrongholdCount != options().main.strongholdCount ||
                 currentStrongholdPortalRoomCount != options().main.strongholdPortalRoomCount ||
                 currentStrongholdLibraryCount != options().main.strongholdLibraryCount ||
-                currentPanorama != options().client.panorama ||
+                currentPanorama != options().client.customPanorama ||
                 currentConfirmMessages != options().client.confirmMessages ||
                 currentStackUnstackables != options().main.stackUnstackables;
     }
@@ -133,7 +133,7 @@ public class RestartRequiredScreen extends AbstractModScreen {
         options().main.strongholdPortalRoomCount = currentStrongholdPortalRoomCount;
         options().main.strongholdLibraryCount = currentStrongholdLibraryCount;
         options().main.stackUnstackables = currentStackUnstackables;
-        options().client.panorama = currentPanorama;
+        options().client.customPanorama = currentPanorama;
         options().client.confirmMessages = currentConfirmMessages;
     }
 }
