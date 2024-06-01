@@ -1,10 +1,7 @@
 package net.dillon.speedrunnermod.mixin.client.screen;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.gui.screen.world.WorldCreator;
 import net.minecraft.world.Difficulty;
@@ -24,14 +21,6 @@ public abstract class CreateWorldScreenMixin {
     WorldCreator worldCreator;
     @Shadow
     protected abstract void createLevel();
-
-    /**
-     * Logs current state of the {@code structure spawn rates} option when creating a new world.
-     */
-    @Inject(method = "create(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/gui/screen/Screen;)V", at = @At("TAIL"))
-    private static void structureSpawnRatesSetting(MinecraftClient client, Screen parent, CallbackInfo ci) {
-        SpeedrunnerMod.info("Generated default structures with \"" + options().main.structureSpawnRates.toString().toLowerCase() + "\" structure spawn rate parameters.");
-    }
 
     /**
      * Reworks how the create world button works, and allows the {@code fast world creation} feature to work accordingly.

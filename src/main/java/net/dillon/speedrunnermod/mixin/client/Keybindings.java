@@ -61,7 +61,7 @@ public abstract class Keybindings {
                     }
                     assert this.world != null;
                     this.world.disconnect();
-                    this.disconnect(new MessageScreen(Text.translatable("menu.savingLevel")));
+                    this.disconnect(new MessageScreen(Text.translatable("speedrunnermod.menu.generating_new_world")));
                     CreateWorldScreen.create(MinecraftClient.getInstance(), null);
                 } else {
                     debugWarn("\"Fast World Creation\" is OFF, please enable to use this feature.");
@@ -88,14 +88,12 @@ public abstract class Keybindings {
         if (!isSimpleKeybindsLoaded()) {
             while (ModKeybindings.hitboxesKey.wasPressed()) {
                 boolean bl = !MinecraftClient.getInstance().getEntityRenderDispatcher().shouldRenderHitboxes();
-                String hitboxes = bl ? "ON" : "OFF";
                 MinecraftClient.getInstance().getEntityRenderDispatcher().setRenderHitboxes(bl);
                 debugWarn(bl ? "debug.show_hitboxes.on" : "debug.show_hitboxes.off");
             }
 
             while (ModKeybindings.chunkBordersKey.wasPressed()) {
                 boolean bl = MinecraftClient.getInstance().debugRenderer.toggleShowChunkBorder();
-                String chunkBorders = bl ? "ON" : "OFF";
                 debugWarn(bl ? "debug.chunk_boundaries.on" : "debug.chunk_boundaries.off");
             }
         }

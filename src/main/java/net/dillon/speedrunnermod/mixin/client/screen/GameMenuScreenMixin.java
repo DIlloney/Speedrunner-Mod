@@ -57,7 +57,7 @@ public class GameMenuScreenMixin extends Screen {
                         this.client.inGameHud.getChatHud().clear(false);
                     }
                     this.client.world.disconnect();
-                    this.client.disconnect(new MessageScreen(Text.translatable("menu.savingLevel")));
+                    this.client.disconnect(new MessageScreen(Text.translatable("speedrunnermod.menu.generating_new_world")));
                     CreateWorldScreen.create(this.client, this);
                 }).dimensions(this.width / 2 - 4 - 120 - 2, this.height / 4 + 72 - 16, 20, 20).build());
                 this.createWorldButton.active = options().client.fastWorldCreation && this.client.isInSingleplayer() && this.client.isIntegratedServerRunning() && !this.client.getServer().isRemote();

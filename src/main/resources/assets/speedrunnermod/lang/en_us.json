@@ -862,6 +862,8 @@
   "speedrunnermod.toggle_hitboxes": "Toggle Hitboxes",
   "speedrunnermod.toggle_chunk_borders": "Toggle Chunk Borders",
 
+  "speedrunnermod.menu.generating_new_world": "Generating new world...",
+
   "speedrunnermod.create_world_button.desc": "Press to automatically create a new world!",
   "speedrunnermod.create_world_button.disabled": "Turn on \"§lFast World Creation§r\" to use this feature.",
 
