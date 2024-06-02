@@ -79,26 +79,28 @@ public class MainScreen extends AbstractModScreen {
 
     @Override
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
-        if (this.optionsButton.isHovered()) {
+        if (optionsButton.isHovered()) {
             if (options().main.leaderboardsMode) {
                 if (!Leaderboards.isEligibleForLeaderboardRuns()) {
-                    context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_ACTION_NEEDED, 200), mouseX, mouseY);
+                    context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_ACTION_NEEDED, 200), mouseX, mouseY);
                 } else {
-                    context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_SAFE, 200), mouseX, mouseY);
+                    context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_SAFE, 200), mouseX, mouseY);
                 }
+            } else {
+                context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_TOOLTIP, 200), mouseX, mouseY);
             }
         }
-        if (this.featuresButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MENU_FEATURES_TOOLTIP, 200), mouseX, mouseY);
+        if (featuresButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_FEATURES_TOOLTIP, 200), mouseX, mouseY);
         }
-        if (this.resourcesButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MENU_RESOURCES_TOOLTIP, 200), mouseX, mouseY);
+        if (resourcesButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_RESOURCES_TOOLTIP, 200), mouseX, mouseY);
         }
-        if (this.leaderboardsButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.MENU_LEADERBOARDS_DISABLED, 200), mouseX, mouseY);
+        if (leaderboardsButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_LEADERBOARDS_DISABLED, 200), mouseX, mouseY);
         }
-        if (this.easierSpeedrunningModButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.EASIER_SPEEDRUNNING_MOD_TOOLTIP, 200), mouseX, mouseY);
+        if (easierSpeedrunningModButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.EASIER_SPEEDRUNNING_MOD_TOOLTIP, 200), mouseX, mouseY);
         }
         super.renderTooltips(context, mouseX, mouseY);
     }

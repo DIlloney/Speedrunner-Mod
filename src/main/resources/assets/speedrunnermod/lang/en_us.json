@@ -372,7 +372,9 @@
 
   "speedrunnermod.title.options": "Speedrunner Mod Options",
   "speedrunnermod.title.options.tooltip": "Speedrunner Mod options...",
+  "speedrunnermod.menu.options.tooltip": "Configure the Speedrunner Mod!",
   "speedrunnermod.menu.options.main": "Main...",
+  "speedrunnermod.menu.options.main.tooltip": "Configure world gen, different modes, item and block functions, etc.",
   "speedrunnermod.title.options.main": "Main Options",
   "speedrunnermod.options.structure_spawn_rates": "Structure Spawn Rate",
   "speedrunnermod.options.structure_spawn_rates.everywhere": "§bEverywhere",
@@ -468,6 +470,7 @@
   "speedrunnermod.options.custom_data_generation.tooltip": "This allows all world modifications to be applied, which includes making structures more common, modifying mob/creature spawn rates, doom mode features, and more.\n\n§e§lRequires world reload.",
 
   "speedrunnermod.menu.options.fast_world_creation": "Fast World Creation...",
+  "speedrunnermod.menu.options.fast_world_creation.tooltip": "Automatic and instant world creation settings.",
   "speedrunnermod.title.options.fast_world_creation": "Fast World Creation",
   "speedrunnermod.options.fast_world_creation": "Fast World Creation",
   "speedrunnermod.options.fast_world_creation.tooltip": "Allows creation of worlds with just a single click.",
@@ -487,6 +490,7 @@
   "speedrunnermod.options.allow_cheats.tooltip": "Enable cheats when creating a world.",
 
   "speedrunnermod.menu.options.client": "Client...",
+  "speedrunnermod.menu.options.client.tooltip": "Item tooltips, fog, death coordinates, etc.",
   "speedrunnermod.title.options.client": "Client Options",
   "speedrunnermod.options.fog": "Fog",
   "speedrunnermod.options.fog.tooltip": "Get rid of that annoying fog!",
@@ -504,6 +508,7 @@
   "speedrunnermod.options.confirm_messages.tooltip": "Enable/disable the confirmation messages when using certain items (ex. eye of annul, ender thruster, piglin awakener, etc.).",
 
   "speedrunnermod.menu.options.reset": "Reset...",
+  "speedrunnermod.menu.options.reset.tooltip": "Reset the Speedrunner Mod options back to default.",
   "speedrunnermod.title.options.reset": "Reset Options",
   "speedrunnermod.reset": "Reset",
   "speedrunnermod.reset_confirm": "Yes, Reset Options",

@@ -19,6 +19,7 @@ accessible class net/minecraft/village/TradeOffers$SellItemFactory
 accessible class net/minecraft/village/TradeOffers$ProcessItemFactory
 accessible class net/minecraft/village/TradeOffers$SellPotionHoldingItemFactory
 accessible class net/minecraft/loot/function/ApplyBonusLootFunction$OreDrops
+accessible class net/minecraft/client/MinecraftClient$LoadingContext
 accessible class net/minecraft/client/option/SimpleOption$Callbacks
 extendable class net/minecraft/client/option/SimpleOption$SliderCallbacks
 

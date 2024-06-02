@@ -27,10 +27,15 @@ public class ModTexts {
     public static final Text TITLE_OPTIONS_CLIENT = Text.translatable("speedrunnermod.title.options.client");
     public static final Text MENU_OPTIONS_RESET = Text.translatable("speedrunnermod.menu.options.reset");
     public static final Text TITLE_OPTIONS_RESET = Text.translatable("speedrunnermod.title.options.reset");
-    public static final Text MENU_OPTIONS = Text.translatable("speedrunnermod.menu.options.main");
-    public static final Text MENU_OPTIONS_CLIENT = Text.translatable("speedrunnermod.menu.options.client");
+    public static final Text MENU_OPTIONS_TOOLTIP = Text.translatable("speedrunnermod.menu.options.tooltip");
+    public static final Text MENU_OPTIONS_MAIN = Text.translatable("speedrunnermod.menu.options.main");
+    public static final Text MENU_OPTIONS_MAIN_TOOLTIP = Text.translatable("speedrunnermod.menu.options.main.tooltip");
     public static final Text MENU_FAST_WORLD_CREATION = Text.translatable("speedrunnermod.menu.options.fast_world_creation");
+    public static final Text MENU_FAST_WORLD_CREATION_TOOLTIP = Text.translatable("speedrunnermod.menu.options.fast_world_creation.tooltip");
     public static final Text TITLE_FAST_WORLD_CREATION = Text.translatable("speedrunnermod.title.options.fast_world_creation");
+    public static final Text MENU_OPTIONS_CLIENT = Text.translatable("speedrunnermod.menu.options.client");
+    public static final Text MENU_OPTIONS_CLIENT_TOOLTIP = Text.translatable("speedrunnermod.menu.options.client.tooltip");
+    public static final Text MENU_OPTIONS_RESET_TOOLTIP = Text.translatable("speedrunnermod.menu.options.reset.tooltip");
     public static final Text MENU_CREDITS = Text.translatable("speedrunnermod.menu.credits");
     public static final Text TITLE_CREDITS = Text.translatable("speedrunnermod.title.credits");
     public static final Text MENU_EXTERNAL = Text.translatable("speedrunnermod.menu.external").formatted(Formatting.RED);
