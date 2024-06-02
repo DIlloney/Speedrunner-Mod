@@ -173,6 +173,7 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
 
         getOrCreateTagBuilder(BlockTags.LOGS)
                 .forceAddTag(ModBlockTags.SPEEDRUNNER_LOGS)
+                .forceAddTag(ModBlockTags.DEAD_SPEEDRUNNER_LOGS)
                 .forceAddTag(ModBlockTags.DOOM_LOGS);
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)

@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#speedrunnermod:speedrunner_logs",
+    "#speedrunnermod:dead_speedrunner_logs",
     "#speedrunnermod:doom_logs"
   ]
 }
