@@ -80,7 +80,7 @@ public class AnnulEyeItem extends Item {
                 } else {
                     boolean isEnabled = !options().advanced.disableEyeOfAnnulPortalRoomTeleporter;
                     if (isEnabled) {
-                        if (!DOOM_MODE || options().advanced.enableEyeOfAnnulPortalRoomTeleporterOnDoomMode) {
+                        if (!DOOM_MODE) {
                             ItemStack enderEye = new ItemStack(Items.ENDER_EYE);
                             ItemStack enderPearl = new ItemStack(Items.ENDER_PEARL);
                             boolean hasEnderEye = player.getInventory().contains(enderEye);

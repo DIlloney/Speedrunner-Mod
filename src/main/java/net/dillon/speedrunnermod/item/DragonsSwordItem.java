@@ -34,9 +34,7 @@ public class DragonsSwordItem extends SwordItem {
      */
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (options().advanced.disableDragonsSword) {
-            info("Entity " + attacker.getName().toString() + " (" + attacker.getUuidAsString() + ") tried to use Dragon's Sword, but is disabled!");
-        } else if (target instanceof EnderDragonEntity dragon) {
+        if (target instanceof EnderDragonEntity dragon && options().main.stateOfTheArtItems) {
             if (!DOOM_MODE) {
                 stack.damage(ModToolMaterials.DRAGONS_SWORD.getDurability(), attacker, (e) -> attacker.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
                 dragon.setHealth(0.0F);

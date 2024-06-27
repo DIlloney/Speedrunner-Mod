@@ -49,6 +49,8 @@ public class ModOptions {
         public boolean iCarusMode = false;
         public boolean infiniPearlMode = false;
         @RequiresRestart
+        public boolean stateOfTheArtItems = true;
+        @RequiresRestart
         public boolean doomMode = false;
         public int dragonPerchTime = 8;
         public boolean killGhastOnFireball = false;
@@ -116,17 +118,10 @@ public class ModOptions {
      * <p>Only accessible via the mod's configuration file.</p>
      */
     public static class Advanced {
-        public boolean disableDragonsPearl = false;
-        public boolean disableDragonsSword = false;
-        public boolean disableEnderThruster = false;
-        public boolean disablePiglinAwakener = false;
-        public boolean disableBlazeSpotter = false;
-        public boolean disableRaidEradicator = false;
         public boolean modifiedStrongholdGeneration = true;
         public boolean modifiedStrongholdYGeneration = true;
         public boolean modifiedNetherFortressGeneration = true;
         public boolean disableEyeOfAnnulPortalRoomTeleporter = false;
-        public boolean enableEyeOfAnnulPortalRoomTeleporterOnDoomMode = true;
         public boolean removeSilkTouchWhenRightClick = true;
         public boolean fixSpeedrunnerEditionTextOffset = true;
         public boolean showResetButton = true;

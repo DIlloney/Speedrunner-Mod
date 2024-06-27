@@ -36,7 +36,7 @@ import static net.dillon.speedrunnermod.option.ModOptions.createListOption;
  */
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.9.7.5";
+    public static final String MOD_VERSION = "v1.9.7.6";
     public static final String MC_VERSION = "1.20.4";
     public static final String VERSION = "Version: " + MOD_VERSION;
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
@@ -131,7 +131,7 @@ public class SpeedrunnerMod implements ModInitializer {
         options().main.betterBiomes = true;
         options().main.iCarusMode = false;
         options().main.infiniPearlMode = false;
-        options().main.leaderboardsMode = false;
+        options().main.stateOfTheArtItems = true;
         options().main.doomMode = false;
         options().main.dragonPerchTime = 8;
         options().main.killGhastOnFireball = false;
@@ -160,6 +160,7 @@ public class SpeedrunnerMod implements ModInitializer {
         options().main.higherEnchantmentLevels = true;
         options().main.stackUnstackables = false;
         options().main.customDataGeneration = true;
+        options().main.leaderboardsMode = false;
 
         options().client.fog = true;
         options().client.itemTooltips = true;
@@ -173,17 +174,10 @@ public class SpeedrunnerMod implements ModInitializer {
         options().client.allowCheats = false;
         options().client.showDeathCords = true;
 
-        options().advanced.disableDragonsPearl = false;
-        options().advanced.disableDragonsSword = false;
-        options().advanced.disableEnderThruster = false;
-        options().advanced.disablePiglinAwakener = false;
-        options().advanced.disableBlazeSpotter = false;
-        options().advanced.disableRaidEradicator = false;
         options().advanced.modifiedStrongholdGeneration = true;
         options().advanced.modifiedStrongholdYGeneration = true;
         options().advanced.modifiedNetherFortressGeneration = true;
         options().advanced.disableEyeOfAnnulPortalRoomTeleporter = false;
-        options().advanced.enableEyeOfAnnulPortalRoomTeleporterOnDoomMode = true;
         options().advanced.removeSilkTouchWhenRightClick = true;
         options().advanced.fixSpeedrunnerEditionTextOffset = true;
         options().advanced.showResetButton = true;
