@@ -42,6 +42,9 @@ public class ModListOptions {
                     new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(ModOptions.Difficulty.values()), Codec.INT.xmap(ModOptions.Difficulty::byId, ModOptions.Difficulty::getId)),
                     ModOptions.Difficulty.EASY, value -> options().client.difficulty = value);
 
+    public static final SimpleOption<Boolean> STATE_OF_THE_ART_ITEMS = new SimpleOption<>("speedrunnermod.options.state_of_the_art_items", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.state_of_the_art_items.tooltip")),
+            (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.stateOfTheArtItems, value -> options().main.stateOfTheArtItems = value);
+
     public static final SimpleOption<Boolean> FASTER_BLOCK_BREAKING = new SimpleOption<>("speedrunnermod.options.faster_block_breaking", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.faster_block_breaking.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.fasterBlockBreaking, value -> options().main.fasterBlockBreaking = value);
 

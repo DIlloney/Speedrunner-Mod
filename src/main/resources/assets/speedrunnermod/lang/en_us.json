@@ -398,6 +398,8 @@
   "speedrunnermod.options.infini_pearl_mode.tooltip": "Grants the player with an §9ender pearl§r that does not get consumed or inflict damage upon use.",
   "speedrunnermod.options.leaderboards_mode": "§aLeaderboards Mode",
   "speedrunnermod.options.leaderboards_mode.tooltip": "Enable this if you want to begin submitting speedruns to the speedrunner mod leaderboards.§r\n\nIf you don't, your runs will §lnot§r be eligible.",
+  "speedrunnermod.options.state_of_the_art_items": "State-Of-The-Art Items",
+  "speedrunnermod.options.state_of_the_art_items.tooltip": "Allows you to enable or disable the functions of so-called \"new\", or \"broken/OP/cracked\" Speedrunner Mod items, such as the Dragon's Pearl, Piglin Awakener, Raid Eradicator, etc.",
   "speedrunnermod.options.doom_mode": "§cDoom Mode",
   "speedrunnermod.options.doom_mode.tooltip": "§cBeware.\n\n§a§lRequires restart.",
   "speedrunnermod.options.faster_block_breaking": "Faster Block Breaking",

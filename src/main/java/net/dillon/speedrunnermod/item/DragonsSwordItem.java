@@ -19,7 +19,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
+import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
+import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
  * A weapon that can be used to instantly kill the ender dragon.
