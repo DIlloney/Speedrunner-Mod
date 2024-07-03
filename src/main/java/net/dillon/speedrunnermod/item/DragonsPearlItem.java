@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.option.ModOptions;
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.dillon.speedrunnermod.util.TimeCalculator;
 import net.minecraft.client.item.TooltipContext;
@@ -23,13 +24,12 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
  * An item that makes the ender dragon instantly perch upon use.
  */
-public class DragonsPearlItem extends Item {
+public class DragonsPearlItem extends Item implements StateOfTheArtItem {
 
     public DragonsPearlItem(Settings settings) {
         super(settings.maxCount(16).rarity(Rarity.EPIC));
@@ -81,8 +81,7 @@ public class DragonsPearlItem extends Item {
                 }
                 player.swingHand(hand, true);
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled"), false);
-                info("Player " + player.getName().toString() + " (" + player.getUuidAsString() + ") tried to use Dragon's Pearl, but is disabled!");
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.LIGHT_PURPLE, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
             }
         }
 
@@ -116,6 +115,7 @@ public class DragonsPearlItem extends Item {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (options().client.itemTooltips) {
             tooltip.add(Text.translatable("item.speedrunnermod.dragons_pearl.tooltip"));
+            ItemUtil.stateOfTheArtItem(tooltip);
         }
     }
 }

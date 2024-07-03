@@ -180,6 +180,10 @@
   "item.speedrunnermod.speedrunners_eye.blocks_away": "The nearest %s is %s blocks away. (may not be perfectly accurate)",
   "item.speedrunnermod.speedrunners_eye.wrong_dimension": "You must be in the overworld to use this item!",
 
+  "item.speedrunnermod.state_of_the_art.tooltip": "State-Of-The-Art item.",
+  "item.speedrunnermod.state_of_the_art.tooltip.enabled": "Functions for this item are enabled.",
+  "item.speedrunnermod.state_of_the_art.tooltip.disabled": "Functions for this item are disabled.",
+
   "block.speedrunnermod.speedrunners_workbench": "Speedrunner's Workbench",
   "block.speedrunnermod.speedrunner_log": "Speedrunner Log",
   "block.speedrunnermod.stripped_speedrunner_log": "Stripped Speedrunner Log",

@@ -30,7 +30,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
+import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
+import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
  * <p>An eye of ender that locates the exact distance of the stronghold, in meters/blocks, and tells it to the player.</p>
@@ -78,7 +79,7 @@ public class AnnulEyeItem extends Item {
                         return TypedActionResult.success(itemStack);
                     }
                 } else {
-                    boolean isEnabled = !options().advanced.disableEyeOfAnnulPortalRoomTeleporter;
+                    boolean isEnabled = options().main.stateOfTheArtItems;
                     if (isEnabled) {
                         if (!DOOM_MODE) {
                             ItemStack enderEye = new ItemStack(Items.ENDER_EYE);
@@ -150,8 +151,7 @@ public class AnnulEyeItem extends Item {
                             player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.doom_mode").formatted(Formatting.RED), ModOptions.ItemMessages.isActionbar());
                         }
                     } else {
-                        player.sendMessage(Text.translatable("item.speedrunnermod.function_disabled"), false);
-                        info("Player " + player.getName().toString() + " (" + player.getUuidAsString() + ") tried to use the Eye of Annul's portal room teleporter, but is disabled!");
+                        player.sendMessage(Text.translatable("item.speedrunnermod.function_disabled").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                     }
                 }
             } else {
@@ -169,6 +169,7 @@ public class AnnulEyeItem extends Item {
             tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line2").formatted(Formatting.GRAY));
             tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line3"));
             tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line4"));
+            tooltip.add(Text.translatable("item.speedrunnermod.state_of_the_art.tooltip").formatted(Formatting.RED));
         }
     }
 

@@ -28,13 +28,12 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
  * An item that teleports nearby piglin to the player upon right-clicking.
  */
-public class PiglinAwakenerItem extends Item {
+public class PiglinAwakenerItem extends Item implements StateOfTheArtItem {
     private boolean confirm = !options().client.confirmMessages;
 
     public PiglinAwakenerItem(Settings settings) {
@@ -117,8 +116,7 @@ public class PiglinAwakenerItem extends Item {
                     player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                 }
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled"), false);
-                info("Player " + player.getName().toString() + " (" + player.getUuidAsString() + ") tried to use Piglin Awakener, but is disabled!");
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
             }
         }
 
@@ -129,6 +127,7 @@ public class PiglinAwakenerItem extends Item {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (options().client.itemTooltips) {
             tooltip.add(Text.translatable("item.speedrunnermod.piglin_awakener.tooltip"));
+            ItemUtil.stateOfTheArtItem(tooltip);
         }
     }
 }

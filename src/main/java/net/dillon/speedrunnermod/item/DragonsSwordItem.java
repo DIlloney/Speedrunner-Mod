@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.item;
 
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.MathUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.minecraft.client.item.TooltipContext;
@@ -25,7 +26,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 /**
  * A weapon that can be used to instantly kill the ender dragon.
  */
-public class DragonsSwordItem extends SwordItem {
+public class DragonsSwordItem extends SwordItem implements StateOfTheArtItem {
     public DragonsSwordItem(Settings settings) {
         super(ModToolMaterials.DRAGONS_SWORD, 9, -2.4F, settings.rarity(Rarity.EPIC));
     }
@@ -66,6 +67,7 @@ public class DragonsSwordItem extends SwordItem {
             if (DOOM_MODE) {
                 tooltip.add(Text.translatable("item.speedrunnermod.dragons_sword.doom_mode").formatted(Formatting.RED));
             }
+            ItemUtil.stateOfTheArtItem(tooltip);
         }
     }
 }

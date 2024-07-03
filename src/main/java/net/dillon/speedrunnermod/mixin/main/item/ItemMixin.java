@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.mixin.main.item;
 
+import net.dillon.speedrunnermod.item.StateOfTheArtItem;
 import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
@@ -21,7 +22,7 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Mixin(Item.class)
-public class ItemMixin {
+public class ItemMixin implements StateOfTheArtItem {
     @Shadow @Final
     private int maxCount;
 

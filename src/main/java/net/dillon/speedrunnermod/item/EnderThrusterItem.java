@@ -23,13 +23,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
  * An item that can be used to teleport to the surface.
  */
-public class EnderThrusterItem extends Item {
+public class EnderThrusterItem extends Item implements StateOfTheArtItem {
     private boolean confirm = !options().client.confirmMessages;
 
     public EnderThrusterItem(Settings settings) {
@@ -87,8 +86,7 @@ public class EnderThrusterItem extends Item {
                     player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                 }
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled"), false);
-                info("Player " + player.getName().toString() + " (" + player.getUuidAsString() + ") tried to use Ender Thruster, but is disabled!");
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.BLUE, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
             }
         }
 
@@ -99,6 +97,7 @@ public class EnderThrusterItem extends Item {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (options().client.itemTooltips) {
             tooltip.add(Text.translatable("item.speedrunnermod.ender_thruster.tooltip"));
+            ItemUtil.stateOfTheArtItem(tooltip);
         }
     }
 }

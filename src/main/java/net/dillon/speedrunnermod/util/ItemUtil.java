@@ -8,11 +8,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.Structure;
+
+import java.util.List;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
  * Item util methods, used for other item classes.
@@ -38,6 +43,18 @@ public class ItemUtil {
         }
 
         world.syncWorldEvent(null, 1003, player.getBlockPos(), 0);
+    }
+
+    /**
+     * Adds the tooltips for a {@code State-Of-The-Art} item.
+     */
+    public static void stateOfTheArtItem(List<Text> tooltip) {
+        tooltip.add(Text.translatable("item.speedrunnermod.state_of_the_art.tooltip").formatted(Formatting.RED));
+        if (options().main.stateOfTheArtItems) {
+            tooltip.add(Text.translatable("item.speedrunnermod.state_of_the_art.tooltip.enabled").formatted(Formatting.GREEN).formatted(Formatting.ITALIC));
+        } else {
+            tooltip.add(Text.translatable("item.speedrunnermod.state_of_the_art.tooltip.disabled").formatted(Formatting.RED).formatted(Formatting.ITALIC));
+        }
     }
 
     @Author(Authors.KWPUGH)

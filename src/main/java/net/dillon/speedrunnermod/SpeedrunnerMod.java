@@ -167,7 +167,7 @@ public class SpeedrunnerMod implements ModInitializer {
         options().client.customPanorama = true;
         options().client.itemMessages = ModOptions.ItemMessages.ACTIONBAR;
         options().client.confirmMessages = false;
-        options().client.socialButtons = true;
+        options().client.socialButtons = false;
         options().client.fastWorldCreation = true;
         options().client.gameMode = ModOptions.GameMode.SURVIVAL;
         options().client.difficulty = ModOptions.Difficulty.EASY;
@@ -177,7 +177,6 @@ public class SpeedrunnerMod implements ModInitializer {
         options().advanced.modifiedStrongholdGeneration = true;
         options().advanced.modifiedStrongholdYGeneration = true;
         options().advanced.modifiedNetherFortressGeneration = true;
-        options().advanced.disableEyeOfAnnulPortalRoomTeleporter = false;
         options().advanced.removeSilkTouchWhenRightClick = true;
         options().advanced.fixSpeedrunnerEditionTextOffset = true;
         options().advanced.showResetButton = true;

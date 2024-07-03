@@ -105,7 +105,7 @@ public class ModOptions {
         public ItemMessages itemMessages = ItemMessages.ACTIONBAR;
         @RequiresRestart
         public boolean confirmMessages = false;
-        public boolean socialButtons = true;
+        public boolean socialButtons = false;
         public boolean fastWorldCreation = true;
         public GameMode gameMode = GameMode.SURVIVAL;
         public Difficulty difficulty = Difficulty.EASY;
@@ -121,7 +121,6 @@ public class ModOptions {
         public boolean modifiedStrongholdGeneration = true;
         public boolean modifiedStrongholdYGeneration = true;
         public boolean modifiedNetherFortressGeneration = true;
-        public boolean disableEyeOfAnnulPortalRoomTeleporter = false;
         public boolean removeSilkTouchWhenRightClick = true;
         public boolean fixSpeedrunnerEditionTextOffset = true;
         public boolean showResetButton = true;

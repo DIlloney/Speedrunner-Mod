@@ -27,13 +27,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
  * An item that teleports the player to the nearest blaze spawner.
  */
-public class BlazeSpotterItem extends Item {
+public class BlazeSpotterItem extends Item implements StateOfTheArtItem {
     private boolean confirm = !options().client.confirmMessages;
 
     public BlazeSpotterItem(Settings settings) {
@@ -77,7 +76,6 @@ public class BlazeSpotterItem extends Item {
                 }
             } else {
                 player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
-                info("Player " + player.getName().toString() + " (" + player.getUuidAsString() + ") tried to use Blaze Spotter, but is disabled!");
             }
         }
 
@@ -88,6 +86,7 @@ public class BlazeSpotterItem extends Item {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (options().client.itemTooltips) {
             tooltip.add(Text.translatable("item.speedrunnermod.blaze_spotter.tooltip"));
+            ItemUtil.stateOfTheArtItem(tooltip);
         }
     }
 

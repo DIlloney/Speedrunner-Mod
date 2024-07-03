@@ -27,13 +27,12 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
  * An item that kills all {@link net.minecraft.entity.raid.RaiderEntity}s.
  */
-public class RaidEradicatorItem extends Item {
+public class RaidEradicatorItem extends Item implements StateOfTheArtItem {
     private boolean confirm = !options().client.confirmMessages;
 
     public RaidEradicatorItem(Settings settings) {
@@ -98,8 +97,7 @@ public class RaidEradicatorItem extends Item {
                     player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.couldnt_find_raiders"), ModOptions.ItemMessages.isActionbar());
                 }
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled"), false);
-                info("Player " + player.getName().toString() + " (" + player.getUuidAsString() + ") tried to use Raid Eradicator, but is disabled!");
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GRAY, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
             }
         }
 
@@ -110,6 +108,7 @@ public class RaidEradicatorItem extends Item {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (options().client.itemTooltips) {
             tooltip.add(Text.translatable("item.speedrunnermod.raid_eradicator.tooltip"));
+            ItemUtil.stateOfTheArtItem(tooltip);
         }
     }
 }
