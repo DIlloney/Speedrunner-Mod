@@ -27,6 +27,9 @@ public class WastelandPlacedFeatures {
     public static final RegistryKey<PlacedFeature> ORE_DIAMOND = PlacedFeatures.of("speedrunnermod:wasteland_ore_diamond");
     public static final RegistryKey<PlacedFeature> ORE_DIAMOND_BURIED = PlacedFeatures.of("speedrunnermod:wasteland_ore_diamond_buried");
 
+    /**
+     * See {@link net.dillon.speedrunnermod.datagen.ModWorldGenerator} for more.
+     */
     public static void bootstrap(Registerable<PlacedFeature> context) {
         RegistryEntryLookup<ConfiguredFeature<?, ?>> registryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 

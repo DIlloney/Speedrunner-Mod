@@ -36,7 +36,7 @@ public class SpeedrunnerModClient implements ClientModInitializer {
     }
 
     /**
-     * Checks if {@code SpeedrunIGT} mod is loaded.
+     * Checks if the {@code SpeedrunIGT} mod is loaded.
      */
     private static boolean isSpeedrunIGTLoaded() {
         return FabricLoader.getInstance().isModLoaded("speedrunigt");
@@ -51,7 +51,6 @@ public class SpeedrunnerModClient implements ClientModInitializer {
 
     /**
      * Fixes broken speedrunner mod options.
-     * <p>See {@link net.dillon.speedrunnermod.client.screen.SafeBootScreen} for more.</p>
      */
     public static void fixOptions() {
         if (BrokenModOptions.structureSpawnRates) {
@@ -98,14 +97,14 @@ public class SpeedrunnerModClient implements ClientModInitializer {
     }
 
     /**
-     * Gets the minimum brightness amount for the speedrunner mod.
+     * Gets the minimum brightness value for the speedrunner mod.
      */
     public static double getMinBrightness() {
         return 0.5D;
     }
 
     /**
-     * Gets the maximum brightness amount for the speedrunner mod.
+     * Gets the maximum brightness value for the speedrunner mod.
      */
     public static double getMaxBrightness() {
         return 12.0D;

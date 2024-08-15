@@ -24,6 +24,9 @@ public class WastelandConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_DIAMOND = ConfiguredFeatures.of("speedrunnermod:wasteland_ore_diamond");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_DIAMOND_BURIED = ConfiguredFeatures.of("speedrunnermod:wasteland_ore_diamond_buried");
 
+    /**
+     * See {@link net.dillon.speedrunnermod.datagen.ModWorldGenerator} for more.
+     */
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         List<OreFeatureConfig.Target> speedrunnerOres = List.of(
                 OreFeatureConfig.createTarget(ModConfiguredFeatures.STONE_ORE_REPLACEABLES, ModBlocks.SPEEDRUNNER_ORE.getDefaultState()),

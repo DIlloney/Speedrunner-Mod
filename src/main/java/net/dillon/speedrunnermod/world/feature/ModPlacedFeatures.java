@@ -43,6 +43,9 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> PATCH_DEAD_SPEEDRUNNER_BUSH_DESERT = PlacedFeatures.of("speedrunnermod:patch_dead_speedrunner_bush_desert");
     public static final RegistryKey<PlacedFeature> PATCH_DEAD_SPEEDRUNNER_BUSH_BADLANDS = PlacedFeatures.of("speedrunnermod:patch_dead_speedrunner_bush_badlands");
 
+    /**
+     * See {@link net.dillon.speedrunnermod.datagen.ModWorldGenerator} for more.
+     */
     public static void bootstrap(Registerable<PlacedFeature> context) {
         RegistryEntryLookup<ConfiguredFeature<?, ?>> registryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 

@@ -22,7 +22,7 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 /**
- * {@link net.dillon.speedrunnermod.SpeedrunnerMod} villager trades.
+ * Contains the Retired Speedrunner's trades and offers.
  */
 public class ModTradeOffers {
 

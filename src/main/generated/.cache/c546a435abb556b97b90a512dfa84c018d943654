@@ -1,4 +1,4 @@
-// 1.20.4	2024-06-01T21:59:32.5280858	Speedrunner Mod/Tags for minecraft:item
+// 1.20.4	2024-08-14T20:35:56.3181306	Speedrunner Mod/Tags for minecraft:item
 3f6189487bb926ef7134482ef7f13993ed1e94fc data\speedrunnermod\tags\items\golden_food_items.json
 f53ed9298cdd24e7e9fd91e8ff69439fa7e75196 data\speedrunnermod\tags\items\igneous_ores.json
 0ea0e41b5fd47d0a511a8b51506d2d5bd6d71769 data\minecraft\tags\items\wooden_doors.json
@@ -23,6 +23,7 @@ a0dcf1c58bfb677212d8ef77660585b2d9945cc8 data\speedrunnermod\tags\items\doom_sto
 6cd234681b6cf66acacacb589fa8c553143ac803 data\speedrunnermod\tags\items\shields.json
 707f695134214076aa3ad5e41fffb8e11cb2adeb data\speedrunnermod\tags\items\speedrunner_armor.json
 97f3d1af45579830fd96bd6c82e659c0d428a02f data\speedrunnermod\tags\items\fireproof_items.json
+cfbec6c0715330e7aa33f8720506731fe729185f data\minecraft\tags\items\piglin_loved.json
 57822f7fe7c445fa93e6596de3037629e78ffd53 data\speedrunnermod\tags\items\texture_creator_krevikus.json
 99ff4574ed966f6535897fcd6055f0fddf3eade7 data\speedrunnermod\tags\items\faster_boats.json
 46dad846a11b0426bf29404bb0d2e52e4c9a11a3 data\minecraft\tags\items\piglin_food.json
@@ -53,7 +54,7 @@ fa86bd78a2e9c312ea9720a4523ad39802d74227 data\speedrunnermod\tags\items\speedrun
 f20799c3efcd3264bd70251e48054f3b102c0efd data\speedrunnermod\tags\items\speed_boots.json
 d85552119bc52698ca4470b7173b323500d88bf4 data\speedrunnermod\tags\items\iron_ingots.json
 ea85494699d5c4e9dfddac62d5e85acc9eef6993 data\minecraft\tags\items\wooden_trapdoors.json
-ee5752b0743a793e27348130c276b4bfa261ce50 data\speedrunnermod\tags\items\stack_to_64.json
 dce578ecec843739645a3b55143465cfa953bdb5 data\speedrunnermod\tags\items\iron_blocks.json
+ee5752b0743a793e27348130c276b4bfa261ce50 data\speedrunnermod\tags\items\stack_to_64.json
 b16587a5720c186da3104216a30d74b5adb0d834 data\speedrunnermod\tags\items\bows.json
 0ea2f44d6de61a59cf4cf10daeafb5a54a6f70ef data\speedrunnermod\tags\items\speedrunner_fuels.json

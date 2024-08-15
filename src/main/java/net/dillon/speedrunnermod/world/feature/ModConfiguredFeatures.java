@@ -47,6 +47,9 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_EXPERIENCE = ConfiguredFeatures.of("speedrunnermod:ore_experience");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_EXPERIENCE = ConfiguredFeatures.of("speedrunnermod:ore_nether_experience");
 
+    /**
+     * See {@link net.dillon.speedrunnermod.datagen.ModWorldGenerator} for more.
+     */
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         List<OreFeatureConfig.Target> speedrunnerOres = List.of(
                 OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, ModBlocks.SPEEDRUNNER_ORE.getDefaultState()),

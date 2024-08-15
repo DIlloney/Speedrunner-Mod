@@ -36,7 +36,7 @@ import static net.dillon.speedrunnermod.option.ModOptions.createListOption;
  */
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.9.7.6";
+    public static final String MOD_VERSION = "v1.9.7.7";
     public static final String MC_VERSION = "1.20.4";
     public static final String VERSION = "Version: " + MOD_VERSION;
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
@@ -121,7 +121,7 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     /**
-     * Resets all of the {@code speedrunner mod options} back to the default settings.
+     * Resets all of the {@code speedrunner mod options} back to factory default.
      */
     @Environment(EnvType.CLIENT)
     public static void resetOptions() {
@@ -209,8 +209,6 @@ public class SpeedrunnerMod implements ModInitializer {
 
     /**
      * See {@link ModWorldGen} for more.
-     * <p>Because of the new <i>1.19.3 code</i>, Minecraft generation is now done exclusively via <b>json</b> files, and there is no way to use a mixin on {@link net.minecraft.structure.StructureSets}.</p>
-     * <p>To work around this, we must use a direct json file writer to write the {@code spacing} and {@code separation} values manually, based on the {@link net.dillon.speedrunnermod.option.ModOptions.StructureSpawnRates} option.</p>
      */
     public static int getAncientCitySpacing() {
         if (options().main.structureSpawnRates.everywhere()) {

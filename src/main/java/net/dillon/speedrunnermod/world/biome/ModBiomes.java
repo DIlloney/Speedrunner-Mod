@@ -27,7 +27,7 @@ public class ModBiomes {
     public static final RegistryKey<Biome> SPEEDRUNNERS_WASTELAND_KEY = RegistryKey.of(RegistryKeys.BIOME, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunners_wasteland"));
 
     /**
-     * Calls and initializes the {@link ModBiomes} class.
+     * Initializes the {@link ModBiomes} class.
      */
     public static void init() {
         info("Initialized and registered the Speedrunner's Wasteland biome.");

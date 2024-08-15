@@ -298,6 +298,18 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.COOKED_PIGLIN_PORK)
                 .add(ModItems.GOLDEN_PIGLIN_PORK);
 
+        getOrCreateTagBuilder(ItemTags.PIGLIN_LOVED)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_SWORD)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_SHOVEL)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_PICKAXE)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_AXE)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_HOE)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_HELMET)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE);
+
         getOrCreateTagBuilder(ItemTags.PLANKS)
                 .add(ModBlockItems.SPEEDRUNNER_PLANKS)
                 .add(ModBlockItems.DEAD_SPEEDRUNNER_PLANKS);

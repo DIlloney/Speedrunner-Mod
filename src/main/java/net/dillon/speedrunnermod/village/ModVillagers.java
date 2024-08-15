@@ -16,6 +16,9 @@ import net.minecraft.world.poi.PointOfInterestType;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
+/**
+ * Creates the Retired Speedrunner.
+ */
 public class ModVillagers {
     protected static final PointOfInterestType RETIRED_SPEEDRUNNER_POI = registerPoi("speedrunner_poi", ModBlocks.SPEEDRUNNERS_WORKBENCH);
     public static final VillagerProfession RETIRED_SPEEDRUNNER = registerProfessions(RegistryKey.of(
