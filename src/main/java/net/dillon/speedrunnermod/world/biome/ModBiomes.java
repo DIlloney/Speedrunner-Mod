@@ -24,7 +24,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
  * See {@link VanillaBiomeParametersMixin} for structure generation and more.
  */
 public class ModBiomes {
-    public static final RegistryKey<Biome> SPEEDRUNNERS_WASTELAND_KEY = RegistryKey.of(RegistryKeys.BIOME, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunners_wasteland"));
+    public static final RegistryKey<Biome> SPEEDRUNNERS_WASTELAND_KEY = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunners_wasteland"));
 
     /**
      * Initializes the {@link ModBiomes} class.

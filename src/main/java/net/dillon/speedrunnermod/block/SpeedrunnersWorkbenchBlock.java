@@ -5,6 +5,7 @@ import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.MathUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SmithingTableBlock;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +15,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,12 +36,12 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient && player.getMainHandStack().hasEnchantments()) {
             ItemStack mainHandStack = player.getMainHandStack();
             ItemStack offHandStack = player.getOffHandStack();
-            Map<Enchantment, Integer> mainHandEnchantments = EnchantmentHelper.get(mainHandStack);
-            Map<Enchantment, Integer> offHandEnchantments = EnchantmentHelper.get(offHandStack);
+            ItemEnchantmentsComponent mainHandEnchantments = EnchantmentHelper.getEnchantments(mainHandStack);
+            ItemEnchantmentsComponent offHandEnchantments = EnchantmentHelper.getEnchantments(offHandStack);
 
             List<Enchantment> enchantmentsToRemove = new ArrayList<>();
             int totalTransferred = 0;
@@ -70,8 +70,8 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
             }
 
             if (totalTransferred != 0 && player.experienceLevel >= cost) {
-                EnchantmentHelper.set(mainHandEnchantments, mainHandStack);
-                EnchantmentHelper.set(offHandEnchantments, offHandStack);
+                EnchantmentHelper.set(mainHandStack, mainHandEnchantments);
+                EnchantmentHelper.set(offHandStack, offHandEnchantments);
                 player.sendMessage(Text.translatable("speedrunnermod.transferred_enchantments").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                 world.playSound(null, pos, SoundEvents.BLOCK_SMITHING_TABLE_USE, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
                 player.addExperienceLevels(-cost);
@@ -84,7 +84,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
             }
             return ActionResult.SUCCESS;
         } else {
-            return super.onUse(state, world, pos, player, hand, hit);
+            return super.onUse(state, world, pos, player, hit);
         }
     }
 }

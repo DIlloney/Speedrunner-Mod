@@ -41,11 +41,11 @@ public class SpeedrunnerMod implements ModInitializer {
     public static final String VERSION = "Version: " + MOD_VERSION;
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
     public static boolean DOOM_MODE = SpeedrunnerMod.options().main.doomMode;
-    public static final Identifier SPEEDRUNNER_MOD_ICON = new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/icon.png");
-    public static final Identifier DILLON8775_ICON = new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/dillon8775.png");
-    public static final Identifier MANNYQUESO_ICON = new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/mannyqueso.png");
-    public static final Identifier NUZLAND_ICON = new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/nuzland.png");
-    public static final Identifier WIKI_ICON = new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/wiki.png");
+    public static final Identifier SPEEDRUNNER_MOD_ICON = Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/icon.png");
+    public static final Identifier DILLON8775_ICON = Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/dillon8775.png");
+    public static final Identifier MANNYQUESO_ICON = Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/mannyqueso.png");
+    public static final Identifier NUZLAND_ICON = Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/nuzland.png");
+    public static final Identifier WIKI_ICON = Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/wiki.png");
     public static final String OPTIONS_ERROR_MESSAGE = "Found error with speedrunner mod settings, launching in safe mode.";
     public static final String OPTIONS_WARNING_MESSAGE = "Found an unusual value in the speedrunner mod settings.";
     public static boolean safeBoot;
