@@ -52,8 +52,9 @@ public class OptionsScreenMixin extends Screen {
         }).dimensions(this.width / 2 - 179, this.height / 6 + 120 - 6, 20, 20).build());
     }
 
-    @Inject(method = "render", at = @At("TAIL"))
-    private void renderTextures(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+    @Override
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        super.render(context, mouseX, mouseY, delta);
         context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 - 123, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
         context.drawTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 178, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);

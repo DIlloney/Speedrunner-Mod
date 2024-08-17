@@ -95,10 +95,10 @@ public class GameMenuScreenMixin extends Screen {
     @Inject(method = "render", at = @At("TAIL"))
     private void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         if (this.showMenu) {
-            context.drawTexture(new Identifier("speedrunnermod:textures/gui/speedrunner_mod.png"), this.width / 2 - 4 - 58 - 2, this.height / 4 - 26 + 2, 0.0F, 0.0F, 129, 16, 129, 16);
+            context.drawTexture(Identifier.of("speedrunnermod:textures/gui/speedrunner_mod.png"), this.width / 2 - 4 - 58 - 2, this.height / 4 - 26 + 2, 0.0F, 0.0F, 129, 16, 129, 16);
 
             if (options().advanced.showResetButton) {
-                context.drawTexture(new Identifier("speedrunnermod:textures/item/speedrunner_boots.png"), this.width / 2 - 4 - 118 - 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+                context.drawTexture(Identifier.of("speedrunnermod:textures/item/speedrunner_boots.png"), this.width / 2 - 4 - 118 - 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
             }
 
             context.drawTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON, this.width / 2 - 4 - 119 - 2, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);

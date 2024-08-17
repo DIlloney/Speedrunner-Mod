@@ -8,7 +8,6 @@ import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.CubeMapRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ConfirmLinkScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -36,8 +35,6 @@ public class TitleScreenMixin extends Screen {
     private boolean doBackgroundFade;
     @Shadow
     private long backgroundFadeStart;
-    @Shadow
-    public static final CubeMapRenderer PANORAMA_CUBE_MAP;
     @Unique
     private ButtonWidget featuresButton, createWorldButton, optionsButton, wikiButton, dillon8775YouTubeButton, nuzlandYouTubeButton, mannyQuesoYouTubeButton;
 
@@ -109,10 +106,10 @@ public class TitleScreenMixin extends Screen {
      */
     @Inject(method = "render", at = @At("TAIL"))
     private void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/item/golden_speedrunner_upgrade_smithing_template.png"), this.width / 2 - 122, this.featuresButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/item/golden_speedrunner_upgrade_smithing_template.png"), this.width / 2 - 122, this.featuresButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
         if (options().advanced.showResetButton) {
-            context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/item/speedrunner_boots.png"), this.width / 2 - 122, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/item/speedrunner_boots.png"), this.width / 2 - 122, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         }
 
         context.drawTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 123, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
@@ -168,14 +165,6 @@ public class TitleScreenMixin extends Screen {
 
         if (wikiButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.WIKI_TOOLTIP, 200), mouseX, mouseY);
-        }
-    }
-
-    static {
-        if (options().client.customPanorama) {
-            PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/panorama"));
-        } else {
-            PANORAMA_CUBE_MAP = new CubeMapRenderer(new Identifier("textures/gui/title/background/panorama"));
         }
     }
 }
