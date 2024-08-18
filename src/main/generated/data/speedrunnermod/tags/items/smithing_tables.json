@@ -1,7 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "minecraft:smithing_table",
-    "speedrunnermod:speedrunners_workbench"
-  ]
-}

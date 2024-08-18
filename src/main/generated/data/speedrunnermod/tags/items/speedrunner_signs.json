@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "speedrunnermod:speedrunner_sign",
-    "speedrunnermod:speedrunner_hanging_sign",
-    "speedrunnermod:dead_speedrunner_sign",
-    "speedrunnermod:dead_speedrunner_hanging_sign"
-  ]
-}
