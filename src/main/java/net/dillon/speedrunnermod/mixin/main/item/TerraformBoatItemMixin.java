@@ -2,7 +2,6 @@ package net.dillon.speedrunnermod.mixin.main.item;
 
 import com.terraformersmc.terraform.boat.impl.item.TerraformBoatItem;
 import net.dillon.speedrunnermod.tag.ModItemTags;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;

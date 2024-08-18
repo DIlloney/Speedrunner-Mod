@@ -83,7 +83,6 @@ public class ModOptions {
         public boolean betterAnvil = true;
         public int anvilCostLimit = 10;
         public boolean higherEnchantmentLevels = true;
-        public boolean stackUnstackables = false;
         public boolean fasterSpawners = true;
         public boolean customDataGeneration = true;
 

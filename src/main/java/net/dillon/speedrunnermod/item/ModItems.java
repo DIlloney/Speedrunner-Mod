@@ -3,8 +3,8 @@ package net.dillon.speedrunnermod.item;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.entity.ModBoats;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
@@ -12,8 +12,6 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.Util;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -24,17 +22,17 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * {@link SpeedrunnerMod} items.
  */
 public class ModItems {
-    private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", new Identifier(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.applies_to"))).formatted(Formatting.GOLD);
-    private static final Text GOLDEN_SPEEDRUNNER_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", new Identifier(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.ingredients"))).formatted(Formatting.AQUA);
-    private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_upgrade"))).formatted(Formatting.GRAY);
-    private static final Text GOLDEN_SPEEDRUNNER_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", new Identifier(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.base_slot_description")));
-    private static final Text GOLDEN_SPEEDRUNNER_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", new Identifier(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.additions_slot_description")));
+    private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.applies_to"))).formatted(Formatting.GOLD);
+    private static final Text GOLDEN_SPEEDRUNNER_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.ingredients"))).formatted(Formatting.AQUA);
+    private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_upgrade"))).formatted(Formatting.GRAY);
+    private static final Text GOLDEN_SPEEDRUNNER_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.base_slot_description")));
+    private static final Text GOLDEN_SPEEDRUNNER_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.additions_slot_description")));
 
     public static final Item SPEEDRUNNER_INGOT = new Item(
             new Item.Settings()) {
 
         @Override
-        public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             if (options().client.itemTooltips) {
                 tooltip.add(Text.translatable("item.speedrunnermod.speedrunner_ingot.tooltip.line1").formatted(Formatting.GRAY));
                 tooltip.add(Text.translatable("item.speedrunnermod.speedrunner_ingot.tooltip.line2").formatted(Formatting.GRAY));
@@ -96,7 +94,7 @@ public class ModItems {
     public static final Item SPEEDRUNNER_SHIELD = new SpeedrunnerShieldItem(new Item.Settings()) {
 
         @Override
-        public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             if (options().client.itemTooltips) {
                 tooltip.add(Text.translatable("item.speedrunnermod.speedrunner_shield.tooltip").formatted(Formatting.GRAY));
             }
@@ -144,7 +142,7 @@ public class ModItems {
             new Item.Settings().rarity(Rarity.RARE).food(ModFoodComponents.SPEEDRUNNER_BULK)) {
 
         @Override
-        public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             if (options().client.itemTooltips) {
                 tooltip.add(Text.translatable("item.speedrunnermod.speedrunner_bulk.tooltip.line1"));
                 tooltip.add(Text.translatable("item.speedrunnermod.speedrunner_bulk.tooltip.line2"));
@@ -202,7 +200,7 @@ public class ModItems {
             new Item.Settings()) {
 
         @Override
-        public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             if (options().client.itemTooltips) {
                 tooltip.add(Text.translatable("item.speedrunnermod.igneous_rock.tooltip").formatted(Formatting.GRAY));
             }
@@ -225,7 +223,7 @@ public class ModItems {
             new Item.Settings()) {
 
         @Override
-        public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             if (options().client.itemTooltips) {
                 tooltip.add(Text.translatable("item.speedrunnermod.wither_bone.tooltip").formatted(Formatting.GRAY));
             }
@@ -244,62 +242,62 @@ public class ModItems {
     public static final Item DRAGONS_PEARL = new DragonsPearlItem(new Item.Settings());
 
     public static void init() {
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_ingot"), SPEEDRUNNER_INGOT);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_nugget"), SPEEDRUNNER_NUGGET);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "raw_speedrunner"), RAW_SPEEDRUNNER);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_sword"), SPEEDRUNNER_SWORD);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_shovel"), SPEEDRUNNER_SHOVEL);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_pickaxe"), SPEEDRUNNER_PICKAXE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_axe"), SPEEDRUNNER_AXE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_hoe"), SPEEDRUNNER_HOE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_helmet"), SPEEDRUNNER_HELMET);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_chestplate"), SPEEDRUNNER_CHESTPLATE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_leggings"), SPEEDRUNNER_LEGGINGS);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_boots"), SPEEDRUNNER_BOOTS);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_bow"), SPEEDRUNNER_BOW);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_crossbow"), SPEEDRUNNER_CROSSBOW);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_shears"), SPEEDRUNNER_SHEARS);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_flint_and_steel"), SPEEDRUNNER_FLINT_AND_STEEL);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_shield"), SPEEDRUNNER_SHIELD);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_sword"), GOLDEN_SPEEDRUNNER_SWORD);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_shovel"), GOLDEN_SPEEDRUNNER_SHOVEL);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_pickaxe"), GOLDEN_SPEEDRUNNER_PICKAXE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_axe"), GOLDEN_SPEEDRUNNER_AXE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_hoe"), GOLDEN_SPEEDRUNNER_HOE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_helmet"), GOLDEN_SPEEDRUNNER_HELMET);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_chestplate"), GOLDEN_SPEEDRUNNER_CHESTPLATE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_leggings"), GOLDEN_SPEEDRUNNER_LEGGINGS);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_boots"), GOLDEN_SPEEDRUNNER_BOOTS);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_speedrunner_upgrade_smithing_template"), GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_bulk"), SPEEDRUNNER_BULK);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "rotten_speedrunner_bulk"), ROTTEN_SPEEDRUNNER_BULK);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "cooked_flesh"), COOKED_FLESH);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "piglin_pork"), PIGLIN_PORK);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "cooked_piglin_pork"), COOKED_PIGLIN_PORK);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_piglin_pork"), GOLDEN_PIGLIN_PORK);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_beef"), GOLDEN_BEEF);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_porkchop"), GOLDEN_PORKCHOP);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_mutton"), GOLDEN_MUTTON);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_chicken"), GOLDEN_CHICKEN);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_rabbit"), GOLDEN_RABBIT);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_cod"), GOLDEN_COD);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_salmon"), GOLDEN_SALMON);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_bread"), GOLDEN_BREAD);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_potato"), GOLDEN_POTATO);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "golden_beetroot"), GOLDEN_BEETROOT);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "igneous_rock"), IGNEOUS_ROCK);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_stick"), SPEEDRUNNER_STICK);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "wither_bone"), WITHER_BONE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "wither_sword"), WITHER_SWORD);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "annul_eye"), ANNUL_EYE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunners_eye"), SPEEDRUNNERS_EYE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "inferno_eye"), INFERNO_EYE);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "piglin_awakener"), PIGLIN_AWAKENER);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "blaze_spotter"), BLAZE_SPOTTER);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "raid_eradicator"), RAID_ERADICATOR);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "ender_thruster"), ENDER_THRUSTER);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dragons_sword"), DRAGONS_SWORD);
-        Registry.register(Registries.ITEM, new Identifier(SpeedrunnerMod.MOD_ID, "dragons_pearl"), DRAGONS_PEARL);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_ingot"), SPEEDRUNNER_INGOT);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_nugget"), SPEEDRUNNER_NUGGET);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "raw_speedrunner"), RAW_SPEEDRUNNER);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_sword"), SPEEDRUNNER_SWORD);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_shovel"), SPEEDRUNNER_SHOVEL);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_pickaxe"), SPEEDRUNNER_PICKAXE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_axe"), SPEEDRUNNER_AXE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_hoe"), SPEEDRUNNER_HOE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_helmet"), SPEEDRUNNER_HELMET);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_chestplate"), SPEEDRUNNER_CHESTPLATE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_leggings"), SPEEDRUNNER_LEGGINGS);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_boots"), SPEEDRUNNER_BOOTS);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_bow"), SPEEDRUNNER_BOW);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_crossbow"), SPEEDRUNNER_CROSSBOW);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_shears"), SPEEDRUNNER_SHEARS);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_flint_and_steel"), SPEEDRUNNER_FLINT_AND_STEEL);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_shield"), SPEEDRUNNER_SHIELD);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_sword"), GOLDEN_SPEEDRUNNER_SWORD);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_shovel"), GOLDEN_SPEEDRUNNER_SHOVEL);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_pickaxe"), GOLDEN_SPEEDRUNNER_PICKAXE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_axe"), GOLDEN_SPEEDRUNNER_AXE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_hoe"), GOLDEN_SPEEDRUNNER_HOE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_helmet"), GOLDEN_SPEEDRUNNER_HELMET);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_chestplate"), GOLDEN_SPEEDRUNNER_CHESTPLATE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_leggings"), GOLDEN_SPEEDRUNNER_LEGGINGS);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_boots"), GOLDEN_SPEEDRUNNER_BOOTS);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_upgrade_smithing_template"), GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_bulk"), SPEEDRUNNER_BULK);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "rotten_speedrunner_bulk"), ROTTEN_SPEEDRUNNER_BULK);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "cooked_flesh"), COOKED_FLESH);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "piglin_pork"), PIGLIN_PORK);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "cooked_piglin_pork"), COOKED_PIGLIN_PORK);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_piglin_pork"), GOLDEN_PIGLIN_PORK);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_beef"), GOLDEN_BEEF);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_porkchop"), GOLDEN_PORKCHOP);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_mutton"), GOLDEN_MUTTON);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_chicken"), GOLDEN_CHICKEN);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_rabbit"), GOLDEN_RABBIT);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_cod"), GOLDEN_COD);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_salmon"), GOLDEN_SALMON);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_bread"), GOLDEN_BREAD);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_potato"), GOLDEN_POTATO);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "golden_beetroot"), GOLDEN_BEETROOT);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "igneous_rock"), IGNEOUS_ROCK);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_stick"), SPEEDRUNNER_STICK);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "wither_bone"), WITHER_BONE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "wither_sword"), WITHER_SWORD);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "annul_eye"), ANNUL_EYE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunners_eye"), SPEEDRUNNERS_EYE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "inferno_eye"), INFERNO_EYE);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "piglin_awakener"), PIGLIN_AWAKENER);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "blaze_spotter"), BLAZE_SPOTTER);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "raid_eradicator"), RAID_ERADICATOR);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "ender_thruster"), ENDER_THRUSTER);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "dragons_sword"), DRAGONS_SWORD);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "dragons_pearl"), DRAGONS_PEARL);
 
         info("Initialized items.");
     }

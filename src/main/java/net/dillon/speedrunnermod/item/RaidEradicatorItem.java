@@ -4,7 +4,6 @@ import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.dillon.speedrunnermod.util.TimeCalculator;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.WitchEntity;
@@ -13,6 +12,7 @@ import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -21,7 +21,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Timer;
@@ -71,7 +70,7 @@ public class RaidEradicatorItem extends Item implements StateOfTheArtItem {
                                                 raider.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, TickCalculator.seconds(30), 2, false, true, false));
                                                 raider.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, TickCalculator.seconds(30), 1, false, true, false));
                                                 raider.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, TickCalculator.minutes(2), 0, false, true, false));
-                                                raider.teleport(player.getX() + world.random.nextInt(7) - 3, player.getY() + world.random.nextDouble() * (2.0 - 0.5) + 0.5, player.getZ() + world.random.nextInt(7) - 3);
+                                                raider.teleport(player.getX() + world.random.nextInt(7) - 3, player.getY() + world.random.nextDouble() * (2.0 - 0.5) + 0.5, player.getZ() + world.random.nextInt(7) - 3, false);
                                             }
                                         }
                                     }
@@ -105,7 +104,7 @@ public class RaidEradicatorItem extends Item implements StateOfTheArtItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         if (options().client.itemTooltips) {
             tooltip.add(Text.translatable("item.speedrunnermod.raid_eradicator.tooltip"));
             ItemUtil.stateOfTheArtItem(tooltip);

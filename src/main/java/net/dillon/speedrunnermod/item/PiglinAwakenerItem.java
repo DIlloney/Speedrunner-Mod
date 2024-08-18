@@ -6,7 +6,6 @@ import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.dillon.speedrunnermod.util.TimeCalculator;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.PiglinEntity;
@@ -15,6 +14,7 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -22,7 +22,6 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Timer;
@@ -37,7 +36,7 @@ public class PiglinAwakenerItem extends Item implements StateOfTheArtItem {
     private boolean confirm = !options().client.confirmMessages;
 
     public PiglinAwakenerItem(Settings settings) {
-        super(settings.maxCount(options().main.stackUnstackables ? 64 : 16));
+        super(settings.maxCount(16));
     }
 
     @Override
@@ -82,7 +81,7 @@ public class PiglinAwakenerItem extends Item implements StateOfTheArtItem {
                                                     double x = !player.isSneaking() ? player.getX() + world.random.nextInt(7) - 3 : player.getX();
                                                     double y = !player.isSneaking() ? player.getY() + world.random.nextDouble() * (2.0 - 0.5) + 0.5 : player.getY();
                                                     double z = !player.isSneaking() ? player.getZ() + world.random.nextInt(7) - 3 : player.getZ();
-                                                    piglin.teleport(x, y, z);
+                                                    piglin.teleport(x, y, z, false);
                                                     maxNumberOfPiglin++;
                                                 }
                                                 if (maxNumberOfPiglin >= SpeedrunnerMod.getMaximumAmountOfPiglinAllowedViaPiglinAwakener()) {
@@ -124,7 +123,7 @@ public class PiglinAwakenerItem extends Item implements StateOfTheArtItem {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         if (options().client.itemTooltips) {
             tooltip.add(Text.translatable("item.speedrunnermod.piglin_awakener.tooltip"));
             ItemUtil.stateOfTheArtItem(tooltip);
