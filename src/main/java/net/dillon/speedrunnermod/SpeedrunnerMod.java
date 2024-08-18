@@ -158,7 +158,6 @@ public class SpeedrunnerMod implements ModInitializer {
         options().main.betterAnvil = true;
         options().main.anvilCostLimit = 10;
         options().main.higherEnchantmentLevels = true;
-        options().main.stackUnstackables = false;
         options().main.customDataGeneration = true;
         options().main.leaderboardsMode = false;
 

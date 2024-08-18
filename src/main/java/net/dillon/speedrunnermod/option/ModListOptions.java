@@ -124,9 +124,6 @@ public class ModListOptions {
     public static final SimpleOption<Boolean> CONFIRM_MESSAGES = new SimpleOption<>("speedrunnermod.options.confirm_messages", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.confirm_messages.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.confirmMessages, value -> options().client.confirmMessages = value);
 
-    public static final SimpleOption<Boolean> STACK_UNSTACKABLES = new SimpleOption<>("speedrunnermod.options.stack_unstackables", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stack_unstackables.tooltip")),
-            (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.stackUnstackables, value -> options().main.stackUnstackables = value);
-
     public static final SimpleOption<Boolean> SHOW_DEATH_CORDS = new SimpleOption<>("speedrunnermod.options.show_death_cords", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.show_death_cords.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.showDeathCords, value -> options().client.showDeathCords = value);
 
