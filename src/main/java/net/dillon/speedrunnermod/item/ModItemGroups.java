@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier;
  */
 public class ModItemGroups {
 
-    public static ItemGroup SPEEDRUNNER_MOD = Registry.register(Registries.ITEM_GROUP, new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_mod_item_group"),
+    public static ItemGroup SPEEDRUNNER_MOD = Registry.register(Registries.ITEM_GROUP, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_mod_item_group"),
             FabricItemGroup.builder()
                     .displayName(Text.literal("Speedrunner Mod"))
                     .icon(() -> new ItemStack(ModBlockItems.SPEEDRUNNER_BLOCK)).entries((displayContext, entries) -> {

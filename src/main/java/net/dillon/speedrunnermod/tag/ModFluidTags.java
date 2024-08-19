@@ -12,7 +12,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
  * {@link SpeedrunnerMod} fluid tags.
  */
 public class ModFluidTags {
-    public static TagKey<Fluid> BOAT_SAFE_FLUIDS = TagKey.of(RegistryKeys.FLUID, new Identifier(SpeedrunnerMod.MOD_ID, "boat_safe_fluids"));
+    public static TagKey<Fluid> BOAT_SAFE_FLUIDS = TagKey.of(RegistryKeys.FLUID, Identifier.of(SpeedrunnerMod.MOD_ID, "boat_safe_fluids"));
 
     public static void init() {
         info("Registered fluid tags.");

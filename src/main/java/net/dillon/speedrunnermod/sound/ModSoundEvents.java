@@ -12,7 +12,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
  * The {@link SpeedrunnerMod} sound effects.
  */
 public class ModSoundEvents {
-    public static final SoundEvent ENTITY_BOAT_PADDLE_LAVA = Registry.register(Registries.SOUND_EVENT, "speedrunnermod:entity.boat.paddle_lava", SoundEvent.of(new Identifier(SpeedrunnerMod.MOD_ID, "entity.boat.paddle_lava")));
+    public static final SoundEvent ENTITY_BOAT_PADDLE_LAVA = Registry.register(Registries.SOUND_EVENT, "speedrunnermod:entity.boat.paddle_lava", SoundEvent.of(Identifier.of(SpeedrunnerMod.MOD_ID, "entity.boat.paddle_lava")));
 
     public static void init() {
         info("Initialized lava boat paddling sound.");

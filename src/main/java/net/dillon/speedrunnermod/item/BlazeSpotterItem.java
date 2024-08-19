@@ -35,7 +35,7 @@ public class BlazeSpotterItem extends Item implements StateOfTheArtItem {
     private boolean confirm = !options().client.confirmMessages;
 
     public BlazeSpotterItem(Settings settings) {
-        super(settings.maxCount(options().main.stackUnstackables ? 64 : 16));
+        super(settings.maxCount(16));
     }
 
     @Override
