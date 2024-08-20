@@ -9,6 +9,7 @@ import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.minecraft.registry.*;
+import net.minecraft.registry.entry.RegistryEntryInfo;
 import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceFinder;
 import net.minecraft.resource.ResourceManager;
@@ -38,8 +39,8 @@ public abstract class RegistryLoaderMixin {
      */
     @Author(Authors.MAXENCEDC)
     @ChatGPT
-    @Inject(method = "load(Lnet/minecraft/registry/RegistryOps$RegistryInfoGetter;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/registry/MutableRegistry;Lcom/mojang/serialization/Decoder;Ljava/util/Map;)V", at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;parse(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private static <E> void load(RegistryOps.RegistryInfoGetter registryInfoGetter, ResourceManager resourceManager, RegistryKey<? extends Registry<E>> registryRef, MutableRegistry<E> newRegistry, Decoder<E> decoder, Map<RegistryKey<?>, Exception> exceptions, CallbackInfo ci, String string, ResourceFinder resourceFinder, RegistryOps<?> registryOps, Iterator<?> var9, Map.Entry<?, ?> entry, Identifier identifier, RegistryKey<?> registryKey, Resource resource, Reader reader, JsonElement jsonElement) {
+    @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;parse(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), method = "loadFromResource(Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/registry/RegistryOps$RegistryInfoGetter;Lnet/minecraft/registry/MutableRegistry;Lcom/mojang/serialization/Decoder;Ljava/util/Map;)V", locals = LocalCapture.CAPTURE_FAILHARD)
+    private static <E> void load(MutableRegistry<E> registry, Decoder<E> decoder, RegistryOps<JsonElement> ops, RegistryKey<E> resourceKey, Resource resource, RegistryEntryInfo registrationInfo, CallbackInfo ci, Reader reader, JsonElement jsonElement) {
         String fileName = identifier.getPath();
 
         if (options().main.customDataGeneration) {
