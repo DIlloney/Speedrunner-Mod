@@ -32,7 +32,7 @@ public class ExperienceOresScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/experience_ores.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/experience_ores.png");
     }
 
     @Override

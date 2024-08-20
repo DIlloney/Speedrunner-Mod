@@ -32,7 +32,7 @@ public class CookedFleshScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/cooked_flesh_recipe.png"), this.width / 2, 190, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/cooked_flesh_recipe.png"), this.width / 2, 190, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

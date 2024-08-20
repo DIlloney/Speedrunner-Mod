@@ -32,8 +32,8 @@ public class BetterHotkeysScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/keybinds/toggle_chunk_borders_keybind.png"), this.width / 2 + 23, 190, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/keybinds/toggle_hitboxes_keybind.png"), this.width / 2 + 23, 210, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/keybinds/toggle_chunk_borders_keybind.png"), this.width / 2 + 23, 190, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/keybinds/toggle_hitboxes_keybind.png"), this.width / 2 + 23, 210, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

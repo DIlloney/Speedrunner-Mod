@@ -129,4 +129,8 @@ public class BaseModScreen extends GameOptionsScreen {
                 new MoreExperienceScreen(parent, options),
                 new CustomPanoramaScreen(parent, options));
     }
+
+    @Override
+    protected void addOptions() {
+    }
 }

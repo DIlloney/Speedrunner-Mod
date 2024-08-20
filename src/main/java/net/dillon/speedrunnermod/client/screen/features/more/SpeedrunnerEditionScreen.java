@@ -32,7 +32,7 @@ public class SpeedrunnerEditionScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/speedrunner_edition_text.png"), this.width / 2 + 10, 220, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/speedrunner_edition_text.png"), this.width / 2 + 10, 220, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

@@ -32,7 +32,7 @@ public class CooldownEnchantmentScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/enchanted_book.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/enchanted_book.png");
     }
 
     @Override

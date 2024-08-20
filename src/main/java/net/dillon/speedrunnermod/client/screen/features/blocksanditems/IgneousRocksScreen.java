@@ -32,7 +32,7 @@ public class IgneousRocksScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/igneous_rock.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/igneous_rock.png");
     }
 
     @Override
@@ -47,7 +47,7 @@ public class IgneousRocksScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/igneous_rock_crafting.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/igneous_rock_crafting.png");
     }
 
     @Override

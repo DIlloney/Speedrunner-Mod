@@ -32,7 +32,7 @@ public class DoomBlocksScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/blocks/doom_block.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/blocks/doom_block.png");
     }
 
     @Override

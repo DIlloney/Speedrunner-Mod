@@ -32,7 +32,7 @@ public class SpeedrunnerBlocksScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/blocks/speedrunner_block.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/blocks/speedrunner_block.png");
     }
 
     @Override
@@ -47,7 +47,7 @@ public class SpeedrunnerBlocksScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/speedrunner_block_crafting_recipe.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/speedrunner_block_crafting_recipe.png");
     }
 
     @Override

@@ -32,7 +32,7 @@ public class EnderThrusterScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/ender_thruster.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/ender_thruster.png");
     }
 
     @Override
@@ -47,7 +47,7 @@ public class EnderThrusterScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/ender_thruster_crafting_recipe.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/ender_thruster_crafting_recipe.png");
     }
 
     @Override

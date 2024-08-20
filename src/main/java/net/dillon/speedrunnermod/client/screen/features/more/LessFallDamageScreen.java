@@ -27,8 +27,8 @@ public class LessFallDamageScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/less_fall_damage.png"), this.width / 2 + 35, 165, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/less_fall_damage_shifting.png"), this.width / 2 + 35, 245, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/less_fall_damage.png"), this.width / 2 + 35, 165, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/less_fall_damage_shifting.png"), this.width / 2 + 35, 245, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

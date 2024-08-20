@@ -32,7 +32,7 @@ public class BetterVillagerTradesScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/better_villager_trades.png"), this.width / 2 + 35, 184, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/better_villager_trades.png"), this.width / 2 + 35, 184, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

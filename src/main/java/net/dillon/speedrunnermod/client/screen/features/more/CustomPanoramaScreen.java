@@ -31,7 +31,7 @@ public class CustomPanoramaScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/custom_panorama.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/custom_panorama.png");
     }
 
     @Override

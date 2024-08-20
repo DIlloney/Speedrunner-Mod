@@ -39,6 +39,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
     }
 
     @Override
+    protected void addOptions() {
+    }
+
+    @Override
     public void close() {
         this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
     }
@@ -72,6 +76,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
             this.addDrawableChild(ButtonWidget.builder(ModTexts.BACK, (button) -> {
                 this.close();
             }).dimensions(middle, height, 150, 20).build());
+        }
+
+        @Override
+        protected void addOptions() {
         }
 
         @Override
@@ -112,6 +120,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
+        protected void addOptions() {
+        }
+
+        @Override
         public void close() {
             this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
@@ -142,6 +154,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
                 this.close();
                 doomModeButtonAlreadyClicked = 1;
             }).dimensions(middle, height, 150, 20).build());
+        }
+
+        @Override
+        protected void addOptions() {
         }
 
         @Override
@@ -185,6 +201,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
+        protected void addOptions() {
+        }
+
+        @Override
         public void close() {
             this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
@@ -222,6 +242,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
+        protected void addOptions() {
+        }
+
+        @Override
         public void close() {
             this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
@@ -254,6 +278,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
         }
 
         @Override
+        protected void addOptions() {
+        }
+
+        @Override
         public void close() {
             this.client.setScreen(new MainScreen(this.parent, MinecraftClient.getInstance().options));
         }
@@ -283,6 +311,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
             this.addDrawableChild(ButtonWidget.builder(ModTexts.OK, (buttonWidget) -> {
                 this.client.setScreen(new ScreenNine(this.parent, MinecraftClient.getInstance().options));
             }).dimensions(middle, height, 150, 20).build());
+        }
+
+        @Override
+        protected void addOptions() {
         }
 
         @Override
@@ -319,6 +351,10 @@ class SecretDoomModeScreen extends GameOptionsScreen {
                 this.close();
                 doomModeButtonAlreadyClicked = 0;
             }).dimensions(middle, height, 150, 20).build());
+        }
+
+        @Override
+        protected void addOptions() {
         }
 
         @Override

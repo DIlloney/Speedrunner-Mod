@@ -31,7 +31,7 @@ public class TotemsWorkInVoidScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/totems_work_in_void.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/totems_work_in_void.png");
     }
 
     @Override

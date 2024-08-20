@@ -32,9 +32,9 @@ public class BetterAnvilsScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/anvil_cost_limit_option.png"), this.width / 2 - 68, 300, 0, 0, 136, 38, 136, 38);
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/no_more_too_expensive.png"), this.width / 2 - 278, 203, 0, 0, 178, 83, 178, 83);
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/break_enchantment_level_cap.png"), this.width / 2 + 100, 210, 0, 0, 198, 57, 198, 57);
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/anvil_cost_limit_option.png"), this.width / 2 - 68, 300, 0, 0, 136, 38, 136, 38);
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/no_more_too_expensive.png"), this.width / 2 - 278, 203, 0, 0, 178, 83, 178, 83);
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/gui/break_enchantment_level_cap.png"), this.width / 2 + 100, 210, 0, 0, 198, 57, 198, 57);
     }
 
     @Override

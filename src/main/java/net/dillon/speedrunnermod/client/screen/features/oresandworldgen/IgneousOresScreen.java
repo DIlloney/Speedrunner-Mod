@@ -32,7 +32,7 @@ public class IgneousOresScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/blocks/igneous_ores.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/blocks/igneous_ores.png");
     }
 
     @Override

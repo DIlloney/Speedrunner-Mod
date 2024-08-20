@@ -35,7 +35,7 @@ public class GoldenFoodItemsScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/golden_food_item.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/golden_food_item.png");
     }
 
     @Override
@@ -50,7 +50,7 @@ public class GoldenFoodItemsScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/golden_food_item_crafting_recipe.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/golden_food_item_crafting_recipe.png");
     }
 
     @Override

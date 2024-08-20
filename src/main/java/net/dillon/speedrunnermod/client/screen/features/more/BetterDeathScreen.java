@@ -26,7 +26,7 @@ public class BetterDeathScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/better_death_screen.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/better_death_screen.png");
     }
 
     @Override

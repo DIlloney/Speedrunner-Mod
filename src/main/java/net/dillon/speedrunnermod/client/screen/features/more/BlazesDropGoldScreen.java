@@ -26,7 +26,7 @@ public class BlazesDropGoldScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/blazes_drop_gold.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/blazes_drop_gold.png");
     }
 
     @Override

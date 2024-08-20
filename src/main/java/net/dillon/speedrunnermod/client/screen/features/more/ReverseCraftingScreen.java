@@ -32,8 +32,8 @@ public class ReverseCraftingScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/wool_to_string.png"), this.width / 2 + 35, 155, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/sticks_to_planks.png"), this.width / 2 + 35, 235, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/wool_to_string.png"), this.width / 2 + 35, 155, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/sticks_to_planks.png"), this.width / 2 + 35, 235, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

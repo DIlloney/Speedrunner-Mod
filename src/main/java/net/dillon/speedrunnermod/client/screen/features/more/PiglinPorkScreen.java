@@ -32,7 +32,7 @@ public class PiglinPorkScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/piglin_pork.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/piglin_pork.png");
     }
 
     @Override

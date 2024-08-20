@@ -138,21 +138,12 @@ public abstract class AbstractModScreen extends BaseModScreen {
         super.render(context, mouseX, mouseY, delta);
         if (this.isOptionsScreen()) {
             this.optionList.render(context, mouseX, mouseY, delta);
-            context.drawTexture(new Identifier("speedrunnermod:textures/gui/question_mark.png"), this.getButtonsRightSide() + 106, this.helpButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(Identifier.of("speedrunnermod:textures/gui/question_mark.png"), this.getButtonsRightSide() + 106, this.helpButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         } else if (buttonList != null) {
             this.buttonList.render(context, mouseX, mouseY, delta);
         }
         this.renderCustomObjects(context);
         this.renderTooltips(context, mouseX, mouseY);
-    }
-
-    @Override
-    public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
-        if (this.isOptionsScreen() || this.buttonList != null) {
-            this.renderBackgroundTexture(context);
-        } else {
-            super.renderBackground(context, mouseX, mouseY, delta);
-        }
     }
 
     /**

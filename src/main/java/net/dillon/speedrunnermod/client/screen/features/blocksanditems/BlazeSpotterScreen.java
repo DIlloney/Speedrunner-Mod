@@ -32,7 +32,7 @@ public class BlazeSpotterScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/blaze_spotter.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/blaze_spotter.png");
     }
 
     @Override
@@ -47,7 +47,7 @@ public class BlazeSpotterScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/blaze_spotter_crafting_recipe.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/blaze_spotter_crafting_recipe.png");
     }
 
     @Override

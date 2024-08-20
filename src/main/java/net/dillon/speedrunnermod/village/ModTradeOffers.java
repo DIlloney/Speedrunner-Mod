@@ -12,6 +12,7 @@ import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.village.TradeOffer;
@@ -156,8 +157,8 @@ public class ModTradeOffers {
         }
 
         public TradeOffer create(Entity entity, Random random) {
-            List<Enchantment> list = ModEnchantments.availableForRetiredSpeedrunnerTrades();
-            Enchantment enchantment = list.get(random.nextInt(list.size()));
+            List<RegistryKey<Enchantment>> list = ModEnchantments.availableForRetiredSpeedrunnerTrades();
+            RegistryKey<Enchantment> enchantment = list.get(random.nextInt(list.size()));
             int overMaxLevel = enchantment.getMaxLevel() == 1 ? 0 : 1 + random.nextInt(4);
             int maxLevel = MathHelper.nextInt(random, enchantment.getMaxLevel(), enchantment.getMaxLevel() + overMaxLevel);
             ItemStack itemStack = EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(enchantment, maxLevel));

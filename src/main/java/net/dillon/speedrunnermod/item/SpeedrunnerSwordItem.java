@@ -19,9 +19,11 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * Better than iron, worse than diamond, deals more damage to withers and giants.
  */
 public class SpeedrunnerSwordItem extends SwordItem {
+    private static int attackDamage;
 
     public SpeedrunnerSwordItem(int attackDamage, Settings settings) {
-        super(ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, attackDamage, -2.4F, settings);
+        super(ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, settings.attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, attackDamage, -2.4F)));
+        SpeedrunnerSwordItem.attackDamage = attackDamage;
     }
 
     /**
@@ -39,6 +41,10 @@ public class SpeedrunnerSwordItem extends SwordItem {
             }
         }
         return super.postHit(stack, target, attacker);
+    }
+
+    private int getAttackDamage() {
+        return SpeedrunnerSwordItem.attackDamage;
     }
 
     @Override

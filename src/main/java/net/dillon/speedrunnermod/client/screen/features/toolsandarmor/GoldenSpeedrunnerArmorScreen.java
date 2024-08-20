@@ -33,12 +33,12 @@ public class GoldenSpeedrunnerArmorScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/other/golden_speedrunner_armor.png"), this.width / 2 + 65, 160, 0.0F, 0.0F, 83, 151, 83, 151);
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/other/golden_speedrunner_armor.png"), this.width / 2 + 65, 160, 0.0F, 0.0F, 83, 151, 83, 151);
     }
 
     @Override
     protected @NotNull Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/golden_speedrunner_chestplate.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/golden_speedrunner_chestplate.png");
     }
 
     @Override

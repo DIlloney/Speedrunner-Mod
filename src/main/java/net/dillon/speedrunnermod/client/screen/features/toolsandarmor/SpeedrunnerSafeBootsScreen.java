@@ -32,7 +32,7 @@ public class SpeedrunnerSafeBootsScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/speedrunner_safe_boots.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/speedrunner_safe_boots.png");
     }
 
     @Override

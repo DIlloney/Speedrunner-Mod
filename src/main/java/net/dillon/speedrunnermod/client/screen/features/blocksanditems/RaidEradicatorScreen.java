@@ -32,7 +32,7 @@ public class RaidEradicatorScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/raid_eradicator.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/raid_eradicator.png");
     }
 
     @Override
@@ -47,7 +47,7 @@ public class RaidEradicatorScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/raid_eradicator_crafting_recipe.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/raid_eradicator_crafting_recipe.png");
     }
 
     @Override

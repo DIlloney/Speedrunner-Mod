@@ -40,7 +40,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
         if (!world.isClient && player.getMainHandStack().hasEnchantments()) {
             ItemStack mainHandStack = player.getMainHandStack();
             ItemStack offHandStack = player.getOffHandStack();
-            ItemEnchantmentsComponent mainHandEnchantments mainHandEnchantments = EnchantmentHelper.getEnchantments(mainHandStack);
+            ItemEnchantmentsComponent mainHandEnchantments = EnchantmentHelper.getEnchantments(mainHandStack);
             ItemEnchantmentsComponent offHandEnchantments = EnchantmentHelper.getEnchantments(offHandStack);
 
             List<Enchantment> enchantmentsToRemove = new ArrayList<>();

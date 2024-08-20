@@ -1,15 +1,16 @@
 package net.dillon.speedrunnermod.recipe;
 
 import net.dillon.speedrunnermod.item.ModItems;
-import net.minecraft.inventory.RecipeInputInventory;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.BannerPatternsComponent;
 import net.minecraft.item.BannerItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
-import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.recipe.input.CraftingRecipeInput;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
 
 public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
@@ -20,62 +21,54 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
     }
 
     @Override
-    public boolean matches(RecipeInputInventory recipeInputInventory, World world) {
+    public boolean matches(CraftingRecipeInput craftingRecipeInput, World world) {
         ItemStack itemStack = ItemStack.EMPTY;
         ItemStack itemStack2 = ItemStack.EMPTY;
-
-        for(int i = 0; i < recipeInputInventory.size(); ++i) {
-            ItemStack itemStack3 = recipeInputInventory.getStack(i);
-            if (!itemStack3.isEmpty()) {
-                if (itemStack3.getItem() instanceof BannerItem) {
-                    if (!itemStack2.isEmpty()) {
-                        return false;
-                    }
-
-                    itemStack2 = itemStack3;
-                } else {
-                    if (!itemStack3.isOf(ModItems.SPEEDRUNNER_SHIELD)) {
-                        return false;
-                    }
-
-                    if (!itemStack.isEmpty()) {
-                        return false;
-                    }
-
-                    if (itemStack3.getSubNbt("BlockEntityTag") != null) {
-                        return false;
-                    }
-
-                    itemStack = itemStack3;
+        for (int i = 0; i < craftingRecipeInput.getSize(); ++i) {
+            ItemStack itemStack3 = craftingRecipeInput.getStackInSlot(i);
+            if (itemStack3.isEmpty()) continue;
+            if (itemStack3.getItem() instanceof BannerItem) {
+                if (!itemStack2.isEmpty()) {
+                    return false;
                 }
+                itemStack2 = itemStack3;
+                continue;
             }
+            if (itemStack3.isOf(ModItems.SPEEDRUNNER_SHIELD)) {
+                if (!itemStack.isEmpty()) {
+                    return false;
+                }
+                BannerPatternsComponent bannerPatternsComponent = itemStack3.getOrDefault(DataComponentTypes.BANNER_PATTERNS, BannerPatternsComponent.DEFAULT);
+                if (!bannerPatternsComponent.layers().isEmpty()) {
+                    return false;
+                }
+                itemStack = itemStack3;
+                continue;
+            }
+            return false;
         }
-
         return !itemStack.isEmpty() && !itemStack2.isEmpty();
     }
 
     @Override
-    public ItemStack craft(RecipeInputInventory recipeInputInventory, DynamicRegistryManager registryManager) {
+    public ItemStack craft(CraftingRecipeInput craftingRecipeInput, RegistryWrapper.WrapperLookup wrapperLookup) {
         ItemStack itemStack = ItemStack.EMPTY;
         ItemStack itemStack2 = ItemStack.EMPTY;
-
-        for(int i = 0; i < recipeInputInventory.size(); ++i) {
-            ItemStack itemStack3 = recipeInputInventory.getStack(i);
-            if (!itemStack3.isEmpty()) {
-                if (itemStack3.getItem() instanceof BannerItem) {
-                    itemStack = itemStack3;
-                } else if (itemStack3.isOf(ModItems.SPEEDRUNNER_SHIELD)) {
-                    itemStack2 = itemStack3.copy();
-                }
+        for (int i = 0; i < craftingRecipeInput.getSize(); ++i) {
+            ItemStack itemStack3 = craftingRecipeInput.getStackInSlot(i);
+            if (itemStack3.isEmpty()) continue;
+            if (itemStack3.getItem() instanceof BannerItem) {
+                itemStack = itemStack3;
+                continue;
             }
+            if (!itemStack3.isOf(ModItems.SPEEDRUNNER_SHIELD)) continue;
+            itemStack2 = itemStack3.copy();
         }
-
-        if (!itemStack2.isEmpty()) {
-            NbtCompound nbtCompound = itemStack.getSubNbt("BlockEntityTag");
-            NbtCompound nbtCompound2 = nbtCompound == null ? new NbtCompound() : nbtCompound.copy();
-            nbtCompound2.putInt("Base", ((BannerItem) itemStack.getItem()).getColor().getId());
-            itemStack2.setSubNbt("BlockEntityTag", nbtCompound2);
+        if (itemStack2.isEmpty()) {
+            return itemStack2;
         }
+        itemStack2.set(DataComponentTypes.BANNER_PATTERNS, itemStack.get(DataComponentTypes.BANNER_PATTERNS));
+        itemStack2.set(DataComponentTypes.BASE_COLOR, ((BannerItem)itemStack.getItem()).getColor());
         return itemStack2;
     }
 

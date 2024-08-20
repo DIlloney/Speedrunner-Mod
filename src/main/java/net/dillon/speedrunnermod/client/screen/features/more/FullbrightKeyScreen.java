@@ -32,7 +32,7 @@ public class FullbrightKeyScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/keybinds/toggle_fullbright_keybind.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/keybinds/toggle_fullbright_keybind.png");
     }
 
     @Override

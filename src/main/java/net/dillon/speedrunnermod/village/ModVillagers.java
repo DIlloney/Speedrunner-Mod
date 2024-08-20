@@ -22,15 +22,15 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 public class ModVillagers {
     protected static final PointOfInterestType RETIRED_SPEEDRUNNER_POI = registerPoi("speedrunner_poi", ModBlocks.SPEEDRUNNERS_WORKBENCH);
     public static final VillagerProfession RETIRED_SPEEDRUNNER = registerProfessions(RegistryKey.of(
-            Registries.POINT_OF_INTEREST_TYPE.getKey(), new Identifier(SpeedrunnerMod.MOD_ID, "speedrunner_poi")));
+            Registries.POINT_OF_INTEREST_TYPE.getKey(), Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_poi")));
 
     public static VillagerProfession registerProfessions(RegistryKey<PointOfInterestType> type) {
-        return Registry.register(Registries.VILLAGER_PROFESSION, new Identifier("speedrunnermod", "retired_speedrunner"),
-                VillagerProfessionBuilder.create().id(new Identifier(SpeedrunnerMod.MOD_ID, "retired_speedrunner")).workstation(type).workSound(SoundEvents.ENTITY_VILLAGER_WORK_ARMORER).build());
+        return Registry.register(Registries.VILLAGER_PROFESSION, Identifier.of("speedrunnermod", "retired_speedrunner"),
+                VillagerProfessionBuilder.create().id(Identifier.of(SpeedrunnerMod.MOD_ID, "retired_speedrunner")).workstation(type).workSound(SoundEvents.ENTITY_VILLAGER_WORK_ARMORER).build());
     }
 
     public static PointOfInterestType registerPoi(String name, Block block) {
-        Identifier id = new Identifier(SpeedrunnerMod.MOD_ID, name);
+        Identifier id = Identifier.of(SpeedrunnerMod.MOD_ID, name);
         return PointOfInterestHelper.register(id, 3, 1, ImmutableSet.copyOf(block.getStateManager().getStates()));
     }
 

@@ -109,7 +109,7 @@ public class MainScreen extends AbstractModScreen {
     protected void renderCustomObjects(DrawContext context) {
         int middle = this.width / 2 - 69;
         int height = 15;
-        context.drawTexture(new Identifier("speedrunnermod:textures/gui/speedrunner_mod.png"), middle, height, 0.0F, 0.0F, 129, 16, 129, 16);
+        context.drawTexture(Identifier.of("speedrunnermod:textures/gui/speedrunner_mod.png"), middle, height, 0.0F, 0.0F, 129, 16, 129, 16);
     }
 
     /**

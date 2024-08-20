@@ -25,8 +25,9 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * A weapon that can be used to instantly kill the ender dragon.
  */
 public class DragonsSwordItem extends SwordItem implements StateOfTheArtItem {
+
     public DragonsSwordItem(Settings settings) {
-        super(ModToolMaterials.DRAGONS_SWORD, 9, -2.4F, settings.rarity(Rarity.EPIC));
+        super(ModToolMaterials.DRAGONS_SWORD, settings.rarity(Rarity.EPIC).attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.DRAGONS_SWORD, 9, -2.4F)));
     }
 
     /**
@@ -36,7 +37,7 @@ public class DragonsSwordItem extends SwordItem implements StateOfTheArtItem {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (target instanceof EnderDragonEntity dragon && options().main.stateOfTheArtItems) {
             if (!DOOM_MODE) {
-                stack.damage(ModToolMaterials.DRAGONS_SWORD.getDurability(), attacker, (e) -> attacker.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+                stack.damage(ModToolMaterials.DRAGONS_SWORD.getDurability(), attacker, EquipmentSlot.MAINHAND);
                 dragon.setHealth(0.0F);
             } else {
                 attacker.damage(attacker.getDamageSources().mobAttack(attacker), MathUtil.randomFloat(2.0F, 3.0F));

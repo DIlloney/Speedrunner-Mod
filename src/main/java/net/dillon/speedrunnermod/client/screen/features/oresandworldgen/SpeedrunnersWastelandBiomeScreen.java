@@ -32,7 +32,7 @@ public class SpeedrunnersWastelandBiomeScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/speedrunners_wasteland_biome.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/speedrunners_wasteland_biome.png");
     }
 
     @Override

@@ -32,7 +32,7 @@ public class EyeOfInfernoScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/eye_of_inferno.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/eye_of_inferno.png");
     }
 
     @Override
@@ -47,7 +47,7 @@ public class EyeOfInfernoScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/eye_of_inferno_crafting_recipe.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/eye_of_inferno_crafting_recipe.png");
     }
 
     @Override

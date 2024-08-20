@@ -38,7 +38,6 @@ public class MainOptionsScreen extends AbstractModScreen {
                 ModListOptions.BETTER_FOODS,
                 ModListOptions.BETTER_BIOMES,
                 ModListOptions.CUSTOM_BIOMES_AND_CUSTOM_BIOME_FEATURES,
-                ModListOptions.STACK_UNSTACKABLES,
                 ModListOptions.FIREPROOF_ITEMS,
                 ModListOptions.THROWABLE_FIREBALLS,
                 ModListOptions.FALL_DAMAGE,
@@ -66,7 +65,7 @@ public class MainOptionsScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        this.optionList = this.addDrawableChild(new OptionListWidget(this.client, this.width, this.height - 64, 32, 25));
+        this.optionList = this.addDrawableChild(new OptionListWidget(this.client, this.width, this));
         this.optionList.addAll(mainOptions());
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);

@@ -32,7 +32,7 @@ public class SpeedrunnerNuggetsScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/speedrunner_nugget.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/speedrunner_nugget.png");
     }
 
     @Override

@@ -32,7 +32,7 @@ public class DragonsSwordScreen extends AbstractFeatureScreen {
 
     @Override
     protected @NotNull Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/dragons_sword.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/dragons_sword.png");
     }
 
     @Override
@@ -47,7 +47,7 @@ public class DragonsSwordScreen extends AbstractFeatureScreen {
 
     @Override
     protected @NotNull Identifier getCraftingRecipeImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/dragons_sword_crafting_recipe.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/dragons_sword_crafting_recipe.png");
     }
 
     @Override

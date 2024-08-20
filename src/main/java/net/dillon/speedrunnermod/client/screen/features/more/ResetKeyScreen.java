@@ -32,7 +32,7 @@ public class ResetKeyScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/keybinds/fast_world_creation_keybind.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/keybinds/fast_world_creation_keybind.png");
     }
 
     @Override

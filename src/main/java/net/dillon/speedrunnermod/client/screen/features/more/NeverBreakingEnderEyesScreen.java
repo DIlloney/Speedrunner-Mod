@@ -31,7 +31,7 @@ public class NeverBreakingEnderEyesScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/never_breaking_ender_eyes.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/never_breaking_ender_eyes.png");
     }
 
     @Override

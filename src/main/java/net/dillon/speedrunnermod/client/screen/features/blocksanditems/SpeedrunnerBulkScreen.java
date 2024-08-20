@@ -32,7 +32,7 @@ public class SpeedrunnerBulkScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/speedrunner_bulk.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/speedrunner_bulk.png");
     }
 
     @Override

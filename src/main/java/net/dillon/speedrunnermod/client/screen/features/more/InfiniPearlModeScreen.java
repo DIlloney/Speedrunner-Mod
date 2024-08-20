@@ -32,7 +32,7 @@ public class InfiniPearlModeScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/infini_pearl.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/infini_pearl.png");
     }
 
     @Override

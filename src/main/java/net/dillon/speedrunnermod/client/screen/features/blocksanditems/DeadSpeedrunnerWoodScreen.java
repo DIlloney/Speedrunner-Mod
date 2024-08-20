@@ -32,7 +32,7 @@ public class DeadSpeedrunnerWoodScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/blocks/dead_speedrunner_wood.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/blocks/dead_speedrunner_wood.png");
     }
 
     @Override

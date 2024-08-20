@@ -31,7 +31,7 @@ public class BlazeSpawnersInBastionsScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/blaze_spawners_in_bastions.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/blaze_spawners_in_bastions.png");
     }
 
     @Override

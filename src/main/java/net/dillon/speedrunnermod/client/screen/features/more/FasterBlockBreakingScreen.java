@@ -32,7 +32,7 @@ public class FasterBlockBreakingScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/faster_block_breaking.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/faster_block_breaking.png");
     }
 
     @Override

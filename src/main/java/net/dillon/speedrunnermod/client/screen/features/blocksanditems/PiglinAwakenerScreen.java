@@ -32,7 +32,7 @@ public class PiglinAwakenerScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/piglin_awakener.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/piglin_awakener.png");
     }
 
     @Override
@@ -47,7 +47,7 @@ public class PiglinAwakenerScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/piglin_awakener_crafting_recipe.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/piglin_awakener_crafting_recipe.png");
     }
 
     @Override

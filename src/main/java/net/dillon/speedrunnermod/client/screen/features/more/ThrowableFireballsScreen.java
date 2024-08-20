@@ -31,7 +31,7 @@ public class ThrowableFireballsScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return new Identifier(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/throwable_fireballs.png");
+        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/throwable_fireballs.png");
     }
 
     @Override
