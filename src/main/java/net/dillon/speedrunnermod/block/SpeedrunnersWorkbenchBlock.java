@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.block;
 
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.MathUtil;
@@ -10,6 +11,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -40,11 +42,21 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
         if (!world.isClient && player.getMainHandStack().hasEnchantments()) {
             ItemStack mainHandStack = player.getMainHandStack();
             ItemStack offHandStack = player.getOffHandStack();
-            ItemEnchantmentsComponent mainHandEnchantments = EnchantmentHelper.getEnchantments(mainHandStack);
+            ItemEnchantmentsComponent mainHandEnchantments mainHandEnchantments = EnchantmentHelper.getEnchantments(mainHandStack);
             ItemEnchantmentsComponent offHandEnchantments = EnchantmentHelper.getEnchantments(offHandStack);
 
             List<Enchantment> enchantmentsToRemove = new ArrayList<>();
             int totalTransferred = 0;
+//            for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : mainHandEnchantments.getEnchantmentEntries()) {
+//                RegistryEntry<?> registryEntry = entry.getKey();
+//                Enchantment enchantment = (Enchantment)registryEntry.value();
+//                int level = entry.getIntValue();
+//
+//                if (enchantment.isAcceptableItem(offHandStack)) {
+//                    EnchantmentHelper.set(offHandStack, mainHandEnchantments);
+//                    enchantmentsToRemove.add(enchantment);
+//                }
+//            }
             for (Map.Entry<Enchantment, Integer> entry: mainHandEnchantments.entrySet()) {
                 Enchantment enchantment = entry.getKey();
                 int level = entry.getValue();
