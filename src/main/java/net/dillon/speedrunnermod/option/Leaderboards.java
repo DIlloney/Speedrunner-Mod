@@ -58,8 +58,7 @@ public class Leaderboards {
                 isFallDamageEligible() &&
                 isKineticDamageEligible() &&
                 isAllowCheatsEligible() &&
-                isKillGhastOnFireballEligible() &&
-                isStackUnstackablesEligible();
+                isKillGhastOnFireballEligible();
     }
 
     /**
@@ -155,11 +154,6 @@ public class Leaderboards {
         if (!isFasterSpawnersEligible()) {
             warnIneligible("Faster Spawners");
             addIneligible("faster_spawners");
-        }
-
-        if (!isStackUnstackablesEligible()) {
-            warnIneligible("Stack Unstackables");
-            addIneligible("stack_unstackables");
         }
     }
 
@@ -341,10 +335,6 @@ public class Leaderboards {
             options.kineticDamage = true;
         }
 
-        if (!isStackUnstackablesEligible()) {
-            options.stackUnstackables = false;
-        }
-
         if (!isAllowCheatsEligible()) {
             cloptions.allowCheats = false;
         }
@@ -473,9 +463,5 @@ public class Leaderboards {
 
     private static boolean isKillGhastOnFireballEligible() {
         return !options.killGhastOnFireball;
-    }
-
-    private static boolean isStackUnstackablesEligible() {
-        return !options.stackUnstackables;
     }
 }

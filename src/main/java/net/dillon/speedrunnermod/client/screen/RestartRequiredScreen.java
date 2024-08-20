@@ -102,7 +102,6 @@ public class RestartRequiredScreen extends AbstractModScreen {
         currentStrongholdLibraryCount = options().main.strongholdLibraryCount;
         currentPanorama = options().client.customPanorama;
         currentConfirmMessages = options().client.confirmMessages;
-        currentStackUnstackables = options().main.stackUnstackables;
     }
 
     public static boolean needsRestart() {
@@ -117,8 +116,7 @@ public class RestartRequiredScreen extends AbstractModScreen {
                 currentStrongholdPortalRoomCount != options().main.strongholdPortalRoomCount ||
                 currentStrongholdLibraryCount != options().main.strongholdLibraryCount ||
                 currentPanorama != options().client.customPanorama ||
-                currentConfirmMessages != options().client.confirmMessages ||
-                currentStackUnstackables != options().main.stackUnstackables;
+                currentConfirmMessages != options().client.confirmMessages;
     }
 
     private static void revertChanges() {
@@ -132,7 +130,6 @@ public class RestartRequiredScreen extends AbstractModScreen {
         options().main.strongholdCount = currentStrongholdCount;
         options().main.strongholdPortalRoomCount = currentStrongholdPortalRoomCount;
         options().main.strongholdLibraryCount = currentStrongholdLibraryCount;
-        options().main.stackUnstackables = currentStackUnstackables;
         options().client.customPanorama = currentPanorama;
         options().client.confirmMessages = currentConfirmMessages;
     }

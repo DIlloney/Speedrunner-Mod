@@ -4,10 +4,9 @@ import com.terraformersmc.terraform.boat.impl.item.TerraformBoatItem;
 import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.List;
@@ -21,11 +20,8 @@ public class TerraformBoatItemMixin extends Item {
         super(settings);
     }
 
-    /**
-     * Adds the corresponding tooltip to the speedrunner mod boats.
-     */
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         if (options().client.itemTooltips) {
             if (stack.isIn(ModItemTags.FIREPROOF_BOATS) || stack.isIn(ModItemTags.FIREPROOF_CHEST_BOATS)) {
                 tooltip.add(Text.translatable("item.speedrunnermod.boat.tooltip").formatted(Formatting.GRAY));
@@ -34,5 +30,6 @@ public class TerraformBoatItemMixin extends Item {
                 tooltip.add(Text.translatable("item.speedrunnermod.boat.tooltip.fast").formatted(Formatting.GRAY));
             }
         }
+        super.appendTooltip(stack, context, tooltip, type);
     }
 }

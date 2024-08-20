@@ -14,7 +14,7 @@ public class BeehiveBlockMixin {
     /**
      * Fixes speedrunner shears not working on beehives.
      */
-    @Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 0))
+    @Redirect(method = "onUseWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 0))
     private boolean onUse(ItemStack stack, Item item) {
         return stack.isIn(ModItemTags.SHEARS);
     }

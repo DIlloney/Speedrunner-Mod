@@ -1,19 +1,15 @@
 package net.dillon.speedrunnermod.mixin.main.item;
 
 import net.dillon.speedrunnermod.enchantment.ModEnchantments;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.EnchantedBookItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 import java.util.Map;
@@ -21,15 +17,16 @@ import java.util.Map;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Mixin(EnchantedBookItem.class)
-public class EnchantedBookItemMixin {
+public class EnchantedBookItemMixin extends Item {
 
-    /**
-     * Adds tooltips to the {@link net.dillon.speedrunnermod.enchantment.DashEnchantment} and {@link net.dillon.speedrunnermod.enchantment.CooldownEnchantment}.
-     */
-    @Inject(method = "appendTooltip", at = @At("TAIL"))
-    private void appendTooltipsForSpeedrunnerEnchantments(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
+    public EnchantedBookItemMixin(Settings settings) {
+        super(settings);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
         if (options().client.itemTooltips) {
-            Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(stack);
+            Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(stack);
             if (enchantments.containsKey(ModEnchantments.DASH)) {
                 tooltip.add(Text.translatable("enchantment.speedrunnermod.dash.tooltip").formatted(Formatting.GRAY));
             }
@@ -37,5 +34,6 @@ public class EnchantedBookItemMixin {
                 tooltip.add(Text.translatable("enchantment.speedrunnermod.cooldown.tooltip").formatted(Formatting.GRAY));
             }
         }
+        super.appendTooltip(stack, context, tooltip, type);
     }
 }

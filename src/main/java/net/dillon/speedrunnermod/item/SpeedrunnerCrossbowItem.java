@@ -2,16 +2,17 @@ package net.dillon.speedrunnermod.item;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class SpeedrunnerCrossbowItem extends CrossbowItem {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         if (isCharged(itemStack)) {
-            shootAll(world, user, hand, itemStack, /* Increased Speed */ getSpeed(itemStack), 1.0F);
+            shootAll(world, user, hand, itemStack, /* Increased Speed */ getSpeed(itemStack), 1.0F, null);
             setCharged(itemStack, false);
             return TypedActionResult.consume(itemStack);
         }
@@ -49,21 +50,22 @@ public class SpeedrunnerCrossbowItem extends CrossbowItem {
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack) {
-        return getPullTime(stack) + 3;
+    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+        return getPullTime(stack, user) + 3;
     }
 
     private static float getSpeed(ItemStack stack) {
         return hasProjectile(stack, Items.FIREWORK_ROCKET) ? 2.1F : 3.65F;
     }
 
-    public static int getPullTime(ItemStack stack) {
+    public static int getPullTime(ItemStack stack, LivingEntity user) {
         int i = EnchantmentHelper.getLevel(Enchantments.QUICK_CHARGE, stack);
         return i == 0 ? 20 : 20 - 5 * i;
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        super.appendTooltip(stack, context, tooltip, type);
         if (options().client.itemTooltips) {
             tooltip.add(Text.translatable("item.speedrunnermod.speedrunner_crossbow.tooltip").formatted(Formatting.GRAY));
         }

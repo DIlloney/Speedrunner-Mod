@@ -69,11 +69,6 @@ public class CustomButtonListWidget extends ElementListWidget<CustomButtonListWi
         return 400;
     }
 
-    @Override
-    protected int getScrollbarPositionX() {
-        return super.getScrollbarPositionX() + 32;
-    }
-
     @Environment(value= EnvType.CLIENT)
     protected static class ModWidgetEntry extends ElementListWidget.Entry<CustomButtonListWidget.ModWidgetEntry> {
         private final List<ClickableWidget> widgets;

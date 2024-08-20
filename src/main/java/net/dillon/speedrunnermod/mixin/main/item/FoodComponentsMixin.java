@@ -1,8 +1,8 @@
 package net.dillon.speedrunnermod.mixin.main.item;
 
 import net.dillon.speedrunnermod.item.ModFoodComponents;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.FoodComponents;
+import net.minecraft.component.type.FoodComponent;
+import net.minecraft.component.type.FoodComponents;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 

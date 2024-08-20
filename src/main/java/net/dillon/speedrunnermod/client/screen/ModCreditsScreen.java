@@ -17,7 +17,7 @@ public class ModCreditsScreen extends AbstractModScreen {
 
     @Override
     public void renderCustomObjects(DrawContext context) {
-        context.drawTexture(new Identifier("speedrunnermod:textures/gui/credits.png"), this.width / 2 - 159, this.height / 6 + 18, 0.0F, 0.0F, 320, 180, 320, 180);
+        context.drawTexture(Identifier.of("speedrunnermod:textures/gui/credits.png"), this.width / 2 - 159, this.height / 6 + 18, 0.0F, 0.0F, 320, 180, 320, 180);
     }
 
     @Override

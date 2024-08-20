@@ -2,6 +2,7 @@ package net.dillon.speedrunnermod.mixin.main.fix;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnLocationTypes;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.mob.PiglinBruteEntity;
@@ -22,7 +23,7 @@ public class SpawnRestrictionMixin {
 
     static {
         if (DOOM_MODE) {
-            SpawnRestriction.register(EntityType.PIGLIN_BRUTE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SpawnRestrictionMixin::canPiglinBruteSpawn);
+            SpawnRestriction.register(EntityType.PIGLIN_BRUTE, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SpawnRestrictionMixin::canPiglinBruteSpawn);
         }
     }
 

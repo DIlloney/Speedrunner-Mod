@@ -14,7 +14,7 @@ public class TntBlockMixin {
     /**
      * Fixes speedrunner flint and steels not working on tnt blocks.
      */
-    @Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+    @Redirect(method = "onUseWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean onUse(ItemStack stack, Item item) {
         return stack.isIn(ModItemTags.IGNITABLES);
     }
