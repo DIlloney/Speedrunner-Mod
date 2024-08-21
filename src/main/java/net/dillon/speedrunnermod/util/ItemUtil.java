@@ -2,9 +2,14 @@ package net.dillon.speedrunnermod.util;
 
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EyeOfEnderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -16,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.Structure;
 
 import java.util.List;
+import java.util.Optional;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
@@ -57,6 +63,17 @@ public class ItemUtil {
         }
     }
 
+    /**
+     * Returns an enchantment.
+     */
+    public static RegistryEntry<Enchantment> enchantment(Entity entity, RegistryKey<Enchantment> enchantment) {
+        Optional<RegistryEntry.Reference<Enchantment>> optional = entity.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(enchantment);
+        return optional.get();
+    }
+
+    /**
+     * See {@code ender eye items} for more.
+     */
     @Author(Authors.KWPUGH)
     public static float getDistance(int x1, int z1, int x2, int z2) {
         int i = x2 - x1;

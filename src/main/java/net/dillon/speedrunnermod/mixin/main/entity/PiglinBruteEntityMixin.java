@@ -1,6 +1,8 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.AbstractPiglinEntity;
 import net.minecraft.entity.mob.PiglinBruteEntity;
@@ -23,8 +25,8 @@ public abstract class PiglinBruteEntityMixin extends AbstractPiglinEntity {
      */
     @Override
     public int getXpToDrop() {
-        if (attackingPlayer != null) {
-            this.experiencePoints = 20 + EnchantmentHelper.getLooting(attackingPlayer) * 72;
+        if (this.attackingPlayer != null) {
+            this.experiencePoints = 20 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((PiglinBruteEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 72;
         }
         return super.getXpToDrop();
     }
@@ -32,7 +34,7 @@ public abstract class PiglinBruteEntityMixin extends AbstractPiglinEntity {
     /**
      * Modifies the piglin brute's maximum health.
      */
-    @ModifyArg(method = "createPiglinBruteAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;add(Lnet/minecraft/entity/attribute/EntityAttribute;D)Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", ordinal = 0), index = 1)
+    @ModifyArg(method = "createPiglinBruteAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/HostileEntity;createHostileAttributes()Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", ordinal = 0), index = 1)
     private static double genericMaxHealth(double baseValue) {
         return DOOM_MODE ? 25.0D : 50.0D;
     }

@@ -1,7 +1,9 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.HostileEntity;
@@ -22,8 +24,8 @@ public class WitherEntityMixin extends HostileEntity {
      */
     @Override
     public int getXpToDrop() {
-        if (attackingPlayer != null) {
-            this.experiencePoints = 50 + EnchantmentHelper.getLooting(attackingPlayer) * 150;
+        if (this.attackingPlayer != null) {
+            this.experiencePoints = 50 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((WitherEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 150;
         }
         return super.getXpToDrop();
     }
@@ -31,7 +33,7 @@ public class WitherEntityMixin extends HostileEntity {
     /**
      * Decreases the maximum health for withers.
      */
-    @ModifyArg(method = "createWitherAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;add(Lnet/minecraft/entity/attribute/EntityAttribute;D)Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", ordinal = 0), index = 1)
+    @ModifyArg(method = "createWitherAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/HostileEntity;createHostileAttributes()Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", ordinal = 0), index = 1)
     private static double genericMaxHealth(double baseValue) {
         return SpeedrunnerMod.getWitherMaxHealth();
     }

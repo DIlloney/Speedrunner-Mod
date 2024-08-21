@@ -1,6 +1,8 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -24,8 +26,8 @@ public abstract class SilverfishEntityMixin extends HostileEntity {
      */
     @Override
     public int getXpToDrop() {
-        if (attackingPlayer != null) {
-            this.experiencePoints = 5 + EnchantmentHelper.getLooting(attackingPlayer) * 16;
+        if (this.attackingPlayer != null) {
+            this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((SilverfishEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 16;
         }
         return super.getXpToDrop();
     }

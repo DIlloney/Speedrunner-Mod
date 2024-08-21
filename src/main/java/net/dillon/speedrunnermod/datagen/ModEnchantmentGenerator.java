@@ -17,6 +17,9 @@ import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Used to create the JSON files for the Speedrunner Mod enchantments.
+ */
 public class ModEnchantmentGenerator extends FabricDynamicRegistryProvider {
 
     public ModEnchantmentGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {

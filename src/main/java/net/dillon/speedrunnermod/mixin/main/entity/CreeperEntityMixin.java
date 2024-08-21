@@ -1,9 +1,11 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
 import net.dillon.speedrunnermod.tag.ModItemTags;
-import net.minecraft.client.render.entity.feature.SkinOverlayOwner;
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SkinOverlayOwner;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -38,8 +40,8 @@ public abstract class CreeperEntityMixin extends HostileEntity implements SkinOv
      */
     @Override
     public int getXpToDrop() {
-        if (attackingPlayer != null) {
-            this.experiencePoints = 5 + EnchantmentHelper.getLooting(attackingPlayer) * 32;
+        if (this.attackingPlayer != null) {
+            this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((CreeperEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 32;
         }
         return super.getXpToDrop();
     }
@@ -47,7 +49,7 @@ public abstract class CreeperEntityMixin extends HostileEntity implements SkinOv
     /**
      * Lowers the creeper's max health.
      */
-    @ModifyArg(method = "createCreeperAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;add(Lnet/minecraft/entity/attribute/EntityAttribute;D)Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;"), index = 1)
+    @ModifyArg(method = "createCreeperAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;add(Lnet/minecraft/registry/entry/RegistryEntry;D)Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;"), index = 1)
     private static double genericMovementSpeed(double baseValue) {
         return DOOM_MODE ? 0.3D : 0.25D;
     }
@@ -72,9 +74,7 @@ public abstract class CreeperEntityMixin extends HostileEntity implements SkinOv
             this.discard();
             this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius * o, explosionSourceType);
             this.getWorld().playSound(player, this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ITEM_BREAK, this.getSoundCategory(), 1.5F, this.random.nextFloat() * 0.4F + 0.8F);
-            itemStack.damage(1, player, (playerx) -> {
-                playerx.sendToolBreakStatus(hand);
-            });
+            itemStack.damage(1, player, CreeperEntity.getSlotForHand(hand));
         }
     }
 }

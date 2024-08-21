@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 /**
- * {@link SpeedrunnerMod} item tags.
+ * Speedrunner Mod item tags.
  */
 public class ModItemTags {
     public static TagKey<Item> BOWS = TagKey.of(RegistryKeys.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "bows"));

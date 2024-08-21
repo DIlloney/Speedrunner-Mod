@@ -4,7 +4,9 @@ import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.enchantment.ModEnchantments;
 import net.dillon.speedrunnermod.item.ModItems;
 import net.dillon.speedrunnermod.tag.ModItemTags;
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -18,6 +20,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -31,6 +35,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Optional;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
@@ -55,7 +61,9 @@ public abstract class PlayerEntityMixin extends LivingEntity {
      */
     @Inject(method = "disableShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getItemCooldownManager()Lnet/minecraft/entity/player/ItemCooldownManager;"))
     private void disableShield(CallbackInfo ci) {
-        int coolEnchantment = EnchantmentHelper.getEquipmentLevel(ModEnchantments.COOLDOWN, (PlayerEntity)(Object)this);
+        Optional<RegistryEntry.Reference<Enchantment>> optional = this.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(ModEnchantments.COOLDOWN);
+        RegistryEntry<Enchantment> registryEntry = optional.get();
+        int coolEnchantment = EnchantmentHelper.getEquipmentLevel(registryEntry, (PlayerEntity)(Object)this);
         int cooldown = coolEnchantment > 5 ? 0 : coolEnchantment == 5 ? 5 : coolEnchantment == 4 ? 10 : coolEnchantment == 3 ? 20 : coolEnchantment == 2 ? 40 : coolEnchantment == 1 ? 60 : 80;
         this.getItemCooldownManager().set(ModItems.SPEEDRUNNER_SHIELD, cooldown);
     }
@@ -75,7 +83,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     private void takeShieldHit(LivingEntity attacker, CallbackInfo ci) {
         if (DOOM_MODE) {
             if (attacker instanceof GiantEntity) {
-                int coolEnchantment = EnchantmentHelper.getEquipmentLevel(ModEnchantments.COOLDOWN, (PlayerEntity)(Object)this);
+                int coolEnchantment = EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((PlayerEntity)(Object)this, ModEnchantments.COOLDOWN), (PlayerEntity)(Object)this);
                 int shieldCooldown = coolEnchantment > 5 ? 0 : coolEnchantment == 5 ? 10 : coolEnchantment == 4 ? 25 : coolEnchantment == 3 ? 50 : coolEnchantment == 2 ? 100 : coolEnchantment == 1 ? 150 : 200;
                 int speedrunnerShieldCooldown = coolEnchantment > 5 ? 0 : coolEnchantment == 5 ? 5 : coolEnchantment == 4 ? 15 : coolEnchantment == 3 ? 25 : coolEnchantment == 2 ? 75 : coolEnchantment == 1 ? 150 : 180;
                 this.getItemCooldownManager().set(Items.SHIELD, shieldCooldown);
@@ -100,9 +108,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
      * Changes the default nether portal cooldown to whatever the user sets it to.
      */
     @Overwrite
-    public int getMaxNetherPortalTime() {
+    public int getDefaultPortalCooldown() {
         return this.abilities.invulnerable || options().main.netherPortalCooldown <= 0 ? 1 : options().main.netherPortalCooldown * 20;
     }
+
 
     /**
      * Allows player to hold their breath for a longer period of time while underwater.

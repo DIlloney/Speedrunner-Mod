@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.mixin.main.enchantment;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerInventory;
@@ -12,8 +13,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.Map;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
@@ -56,8 +55,8 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
         ItemStack itemStack = this.input.getStack(0);
         ItemStack itemStack2 = itemStack.copy();
         ItemStack itemStack3 = this.input.getStack(1);
-        Map<Enchantment, Integer> map = EnchantmentHelper.get(itemStack2);
-        Map<Enchantment, Integer> map2 = EnchantmentHelper.get(itemStack3);
+        ItemEnchantmentsComponent map = EnchantmentHelper.getEnchantments(itemStack2);
+        ItemEnchantmentsComponent map2 = EnchantmentHelper.getEnchantments(itemStack3);
         int q = map.getOrDefault(enchantment, 0);
         int getCurrentLevelAndAddOne = q == (getCurrentLevelAndAddOne = map2.get(enchantment)) ? getCurrentLevelAndAddOne + 1 : Math.max(getCurrentLevelAndAddOne, q);
         if (getCurrentLevelAndAddOne > 100) {

@@ -3,6 +3,7 @@ package net.dillon.speedrunnermod.mixin.main.entity;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -37,7 +38,7 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
     @Overwrite
     public void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
-        boolean ifb = EnchantmentHelper.getLevel(Enchantments.INFINITY, super.getItem()) > 0;
+        boolean ifb = EnchantmentHelper.getLevel(ItemUtil.enchantment((EnderPearlEntity)(Object)this, Enchantments.LOOTING), super.getStack()) > 0;
 
         for(int i = 0; i < 32; ++i) {
             this.getWorld().addParticle(ParticleTypes.PORTAL, this.getX(), this.getY() + this.random.nextDouble() * 2.0D, this.getZ(), this.random.nextGaussian(), 0.0D, this.random.nextGaussian());

@@ -1,6 +1,8 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.FlyingEntity;
 import net.minecraft.entity.mob.PhantomEntity;
@@ -19,8 +21,8 @@ public class PhantomEntityMixin extends FlyingEntity {
      */
     @Override
     public int getXpToDrop() {
-        if (attackingPlayer != null) {
-            this.experiencePoints = 5 + EnchantmentHelper.getLooting(attackingPlayer) * 32;
+        if (this.attackingPlayer != null) {
+            this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((PhantomEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 32;
         }
         return super.getXpToDrop();
     }

@@ -1,6 +1,8 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.mob.HostileEntity;
@@ -25,8 +27,8 @@ public class AbstractSkeletonEntityMixin extends HostileEntity {
      */
     @Override
     public int getXpToDrop() {
-        if (attackingPlayer != null) {
-            this.experiencePoints = 5 + EnchantmentHelper.getLooting(attackingPlayer) * 32;
+        if (this.attackingPlayer != null) {
+            this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((AbstractSkeletonEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 32;
         }
         return super.getXpToDrop();
     }
@@ -46,7 +48,7 @@ public class AbstractSkeletonEntityMixin extends HostileEntity {
     /**
      * Modifies the movement speed of skeleton entities.
      */
-    @ModifyArg(method = "createAbstractSkeletonAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;add(Lnet/minecraft/entity/attribute/EntityAttribute;D)Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;"), index = 1)
+    @ModifyArg(method = "createAbstractSkeletonAttributes", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;add(Lnet/minecraft/registry/entry/RegistryEntry;D)Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;"), index = 1)
     private static double genericMovementSpeed(double baseValue) {
         return DOOM_MODE ? 0.3D : 0.25D;
     }

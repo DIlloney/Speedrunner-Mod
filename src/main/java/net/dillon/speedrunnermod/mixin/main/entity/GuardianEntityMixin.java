@@ -1,6 +1,8 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -24,8 +26,8 @@ public class GuardianEntityMixin extends HostileEntity {
      */
     @Override
     public int getXpToDrop() {
-        if (attackingPlayer != null) {
-            this.experiencePoints = 10 + EnchantmentHelper.getLooting(attackingPlayer) * 36;
+        if (this.attackingPlayer != null) {
+            this.experiencePoints = 10 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((GuardianEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 36;
         }
         return super.getXpToDrop();
     }

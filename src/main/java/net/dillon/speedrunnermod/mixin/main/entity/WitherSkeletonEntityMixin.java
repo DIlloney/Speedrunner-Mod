@@ -1,8 +1,10 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -32,8 +34,8 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
      */
     @Override
     public int getXpToDrop() {
-        if (attackingPlayer != null) {
-            this.experiencePoints = 5 + EnchantmentHelper.getLooting(attackingPlayer) * 36;
+        if (this.attackingPlayer != null) {
+            this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((WitherSkeletonEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 36;
         }
         return super.getXpToDrop();
     }
@@ -49,7 +51,7 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
     /**
      * Decreases the amplifier of the wither effect when wither skeleton's attack.
      */
-    @ModifyArg(method = "tryAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/effect/StatusEffectInstance;<init>(Lnet/minecraft/entity/effect/StatusEffect;I)V"), index = 1)
+    @ModifyArg(method = "tryAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/effect/StatusEffectInstance;<init>(Lnet/minecraft/registry/entry/RegistryEntry;I)V"), index = 1)
     private int tryAttack(int x) {
         return SpeedrunnerMod.getWitherSkeletonWitherEffectDuration();
     }
@@ -58,7 +60,7 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
      * A thing for {@code doom mode.} >:)
      */
     @Inject(method = "tryAttack", at = @At("RETURN"))
-    private void tryAttack(Entity target, CallbackInfoReturnable cir) {
+    private void tryAttack(Entity target, CallbackInfoReturnable<?> cir) {
         if (DOOM_MODE && target instanceof PlayerEntity) {
             ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, TickCalculator.seconds(10), 0));
         }

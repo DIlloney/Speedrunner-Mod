@@ -3,9 +3,11 @@ package net.dillon.speedrunnermod.mixin.main.entity.giant;
 import net.dillon.speedrunnermod.entity.Giant;
 import net.dillon.speedrunnermod.entity.GiantAttackGoal;
 import net.dillon.speedrunnermod.item.ModItems;
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.MathUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.MobNavigation;
@@ -63,28 +65,24 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
 
     @Override
     public int getXpToDrop() {
-        int looting = attackingPlayer != null ? EnchantmentHelper.getLooting(attackingPlayer) * 150 : 0;
+        int looting = attackingPlayer != null ? EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((GiantEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 150 : 0;
         this.experiencePoints = 50 + looting;
-        if (this.experiencePoints > 0) {
-            int i = this.experiencePoints;
+        int i = this.experiencePoints;
 
-            int j;
-            for(j = 0; j < this.armorItems.size(); ++j) {
-                if (!this.armorItems.get(j).isEmpty() && this.armorDropChances[j] <= 1.0F) {
-                    i += 1 + this.random.nextInt(3);
-                }
+        int j;
+        for(j = 0; j < this.armorItems.size(); ++j) {
+            if (!this.armorItems.get(j).isEmpty() && this.armorDropChances[j] <= 1.0F) {
+                i += 1 + this.random.nextInt(3);
             }
-
-            for(j = 0; j < this.handItems.size(); ++j) {
-                if (!this.handItems.get(j).isEmpty() && this.handDropChances[j] <= 1.0F) {
-                    i += 1 + this.random.nextInt(3);
-                }
-            }
-
-            return i;
-        } else {
-            return this.experiencePoints;
         }
+
+        for(j = 0; j < this.handItems.size(); ++j) {
+            if (!this.handItems.get(j).isEmpty() && this.handDropChances[j] <= 1.0F) {
+                i += 1 + this.random.nextInt(3);
+            }
+        }
+
+        return i;
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))

@@ -24,6 +24,7 @@ public class SpeedrunnerModDataGenerator implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
         pack.addProvider(ModBlockTagGenerator::new);
         pack.addProvider(ModEnchantmentGenerator::new);
+        pack.addProvider(ModEnchantmentTagGenerator::new);
         pack.addProvider(ModItemTagGenerator::new);
         pack.addProvider(ModFluidTagGenerator::new);
         pack.addProvider(ModBlockLootTableGenerator::new);

@@ -2,6 +2,7 @@ package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.enchantment.ModEnchantments;
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
@@ -75,7 +76,7 @@ public class ModItemGroups {
                         entries.add(ModItems.WARPED_BOAT);
                         entries.add(ModItems.WARPED_CHEST_BOAT);
                         for (int i = 1; i < 7; i++) {
-                            entries.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(i >= 4 ? ModEnchantments.COOLDOWN : ModEnchantments.DASH, i >= 4 ? i - 3 : i)));
+                            entries.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(i >= 4 ? ItemUtil.enchantment(null, ModEnchantments.COOLDOWN) : ItemUtil.enchantment(null, ModEnchantments.DASH), i >= 4 ? i - 3 : i)));
                         }
                         entries.add(ModItems.IGNEOUS_ROCK);
                         entries.add(ModBlockItems.IGNEOUS_ORE);
