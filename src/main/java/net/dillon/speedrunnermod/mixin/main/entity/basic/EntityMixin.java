@@ -33,8 +33,8 @@ public abstract class EntityMixin {
     /**
      * Decreases time set on fire for from lava.
      */
-    @ModifyArg(method = "setOnFireFromLava", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;setOnFireFor(I)V"))
-    private int setOnFireFromLava(int x) {
+    @ModifyArg(method = "setOnFireFromLava", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;setOnFireFor(F)V"))
+    private float setOnFireFromLavaTime(float x) {
         return SpeedrunnerMod.getFireFromLavaTime();
     }
 
@@ -42,7 +42,7 @@ public abstract class EntityMixin {
      * Decreases damage from lava.
      */
     @ModifyArg(method = "setOnFireFromLava", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
-    private float setOnFireFromLava(float x) {
+    private float setOnFireFromLavaAmount(float x) {
         return SpeedrunnerMod.getLavaDamageAmount();
     }
 

@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.client.render;
 
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
-import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import net.dillon.speedrunnermod.block.ModBlocks;
 import net.dillon.speedrunnermod.entity.ModBoats;
 import net.dillon.speedrunnermod.item.ModItems;
@@ -11,8 +10,6 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.TexturedRenderLayers;
-import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ChargedProjectilesComponent;
 import net.minecraft.item.CrossbowItem;
@@ -98,9 +95,6 @@ public class ModRenderers {
         TerraformBoatClientHelper.registerModelLayers(ModBoats.DEAD_SPEEDRUNNER_BOAT_ID, false);
         TerraformBoatClientHelper.registerModelLayers(ModBoats.CRIMSON_BOAT_ID, false);
         TerraformBoatClientHelper.registerModelLayers(ModBoats.WARPED_BOAT_ID, false);
-
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ModBlocks.SPEEDRUNNER_SIGN_TEXTURE));
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, ModBlocks.SPEEDRUNNER_HANGING_SIGN_TEXTURE));
 
         info("Initialized custom renderers.");
     }

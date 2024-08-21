@@ -289,7 +289,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
     }
 
     @Override
-    public boolean canUsePortals() {
+    public boolean canUsePortals(boolean allowVehicles) {
         return !DOOM_MODE;
     }
 
@@ -315,11 +315,6 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         if (DOOM_MODE) {
             this.bossBar.removePlayer(player);
         }
-    }
-
-    @Override
-    public EntityGroup getGroup() {
-        return DOOM_MODE ? EntityGroup.UNDEAD : EntityGroup.DEFAULT;
     }
 
     @Override
