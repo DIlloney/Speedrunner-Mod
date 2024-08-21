@@ -59,7 +59,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
             }
 
             for (RegistryKey<Enchantment> enchantment : enchantmentsToRemove) {
-                mainHandEnchantments.remove(enchantment);
+//                mainHandEnchantments.remove(enchantment);
             }
 
             int cost = MathUtil.multiplyBySelf(enchantmentsToRemove.size());
