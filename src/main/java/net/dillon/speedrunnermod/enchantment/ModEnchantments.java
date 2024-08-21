@@ -3,9 +3,11 @@ package net.dillon.speedrunnermod.enchantment;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.item.Item;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -21,9 +23,6 @@ public class ModEnchantments {
 
     public static void init() {
         info("Initialized enchantments.");
-    }
-
-    public static void bootstrap(Registerable<Enchantment> registry) {
     }
 
     /**

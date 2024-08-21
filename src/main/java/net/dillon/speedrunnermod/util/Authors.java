@@ -10,5 +10,6 @@ public enum Authors {
     MAXENCEDC,
     KURAION,
     KWPUGH,
+    TURTYWURTY,
     UNKNOWN
 }
