@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 import static net.dillon.speedrunnermod.util.JsonIdentifiers.*;
 
 @Mixin(RegistryLoader.class)
@@ -401,7 +402,7 @@ public abstract class RegistryLoaderMixin {
                 }
             }
 
-            if (options().main.commonOres) {
+            if (z < 2) {
                 String oreDiamond = ORE_DIAMOND;
                 if (fileName.equals(oreDiamond) || fileName.equals(ORE_DIAMOND_BURIED)) {
                     JsonArray placement = jsonElement.getAsJsonObject().getAsJsonArray("placement");
@@ -409,7 +410,7 @@ public abstract class RegistryLoaderMixin {
                     for (JsonElement element : placement) {
                         JsonObject placementObj = element.getAsJsonObject();
                         if (placementObj.has("type") && placementObj.get("type").getAsString().equals("minecraft:count")) {
-                            placementObj.addProperty("count", fileName.equals(oreDiamond) ? getOreDiamondChance() : getOreDiamondBuriedChance());
+                            placementObj.addProperty("count", fileName.equals(oreDiamond) ? 5 : 3);
                             break;
                         }
                     }
