@@ -51,7 +51,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     }
 
     /**
-     * Makes sure that the speedrunner shield actually gets disabled when hit with an axe, and also lowers this cooldown from the {@link net.dillon.speedrunnermod.enchantment.DashEnchantment}.
+     * Makes sure that the speedrunner shield actually gets disabled when hit with an axe, and also lowers this cooldown from the {@code dash enchantment}.
      */
     @Inject(method = "disableShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getItemCooldownManager()Lnet/minecraft/entity/player/ItemCooldownManager;"))
     private void disableShield(CallbackInfo ci) {

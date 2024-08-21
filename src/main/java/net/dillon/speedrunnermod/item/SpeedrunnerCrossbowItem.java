@@ -1,7 +1,8 @@
 package net.dillon.speedrunnermod.item;
 
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ChargedProjectilesComponent;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.CrossbowItem;
@@ -12,6 +13,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -33,17 +35,15 @@ public class SpeedrunnerCrossbowItem extends CrossbowItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        if (isCharged(itemStack)) {
-            shootAll(world, user, hand, itemStack, /* Increased Speed */ getSpeed(itemStack), 1.0F, null);
-            setCharged(itemStack, false);
+        ChargedProjectilesComponent chargedProjectilesComponent = itemStack.get(DataComponentTypes.CHARGED_PROJECTILES);
+        if (chargedProjectilesComponent != null && !chargedProjectilesComponent.isEmpty()) {
+            this.shootAll(world, user, hand, itemStack, getSpeed(chargedProjectilesComponent), 1.0F, null);
             return TypedActionResult.consume(itemStack);
         }
         if (!user.getProjectileType(itemStack).isEmpty()) {
-            if (!isCharged(itemStack)) {
-                this.charged = false;
-                this.loaded = false;
-                user.setCurrentHand(hand);
-            }
+            this.charged = false;
+            this.loaded = false;
+            user.setCurrentHand(hand);
             return TypedActionResult.consume(itemStack);
         }
         return TypedActionResult.fail(itemStack);
@@ -54,13 +54,13 @@ public class SpeedrunnerCrossbowItem extends CrossbowItem {
         return getPullTime(stack, user) + 3;
     }
 
-    private static float getSpeed(ItemStack stack) {
-        return hasProjectile(stack, Items.FIREWORK_ROCKET) ? 2.1F : 3.65F;
+    private static float getSpeed(ChargedProjectilesComponent stack) {
+        return stack.contains(Items.FIREWORK_ROCKET) ? 2.1F : 3.65F;
     }
 
     public static int getPullTime(ItemStack stack, LivingEntity user) {
-        int i = EnchantmentHelper.getLevel(Enchantments.QUICK_CHARGE, stack);
-        return i == 0 ? 20 : 20 - 5 * i;
+        float f = EnchantmentHelper.getCrossbowChargeTime(stack, user, 1.00F);
+        return MathHelper.floor(f * 20.0F);
     }
 
     @Override
