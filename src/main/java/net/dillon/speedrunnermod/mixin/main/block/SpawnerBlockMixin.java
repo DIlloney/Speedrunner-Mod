@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.mixin.main.block;
 
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.SpawnerBlock;

@@ -5,13 +5,17 @@ import net.dillon.speedrunnermod.enchantment.ModEnchantments;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+
+import java.util.stream.IntStream;
 
 /**
  * The {@link SpeedrunnerMod} item group.
@@ -145,6 +149,10 @@ public class ModItemGroups {
                         entries.add(ModItems.ROTTEN_SPEEDRUNNER_BULK);
                         entries.add(ModItems.COOKED_FLESH);
                     }).build());
+
+    private static void addAllLevelEnchantedBooks(ItemGroup.Entries entries, RegistryWrapper<Enchantment> registryWrapper, ItemGroup.StackVisibility stackVisibility) {
+        registryWrapper.streamEntries().flatMap(enchantmentEntry -> IntStream.rangeClosed((enchantmentEntry.value()).getMinLevel(), (enchantmentEntry.value()).getMaxLevel()).mapToObj(level -> EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(enchantmentEntry, level)))).forEach(stack -> entries.add(stack, stackVisibility));
+    }
 
     private static void addToItemGroup(RegistryKey<ItemGroup> group, Item item) {
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));

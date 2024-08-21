@@ -3,6 +3,7 @@ package net.dillon.speedrunnermod.mixin.main.item;
 import net.dillon.speedrunnermod.enchantment.ModEnchantments;
 import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,15 +28,15 @@ public class EnderPearlItemMixin extends Item {
     }
 
     /**
-     * Allows ender pearls to work correctly when {@code Infini Pearl mode} is on, also adds the {@link CooldownEnchantment}
+     * Allows ender pearls to work correctly when {@code Infini Pearl mode} is on, also adds the {@code cooldown enchantment.}
      */
     @Author(Authors.DUNCANRUNS)
     @Overwrite
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-        boolean bl = EnchantmentHelper.getLevel(Enchantments.INFINITY, itemStack) > 0;
-        world.playSound((PlayerEntity) null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.random.nextFloat() * 0.4F + 0.8F));
-        int coolEnchantment = EnchantmentHelper.getEquipmentLevel(ModEnchantments.COOLDOWN, player);
+        boolean bl = EnchantmentHelper.getLevel(ItemUtil.enchantment(player, Enchantments.INFINITY), itemStack) > 0;
+        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.random.nextFloat() * 0.4F + 0.8F));
+        int coolEnchantment = EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment(player, ModEnchantments.COOLDOWN), player);
         int cooldown = coolEnchantment > 3 ? 0 : coolEnchantment == 3 ? 5 : coolEnchantment == 2 ? 10 : coolEnchantment == 1 ? 15 : 20;
         player.getItemCooldownManager().set(this, cooldown);
 

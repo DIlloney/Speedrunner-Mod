@@ -1,8 +1,10 @@
 package net.dillon.speedrunnermod.mixin.main.fix;
 
 import net.dillon.speedrunnermod.item.ModItems;
+import net.dillon.speedrunnermod.item.SpeedrunnerShearsItem;
 import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.predicate.item.ItemPredicate;
@@ -22,7 +24,7 @@ public class ItemPredicateMixin {
         if (stack.getItem().getDefaultStack().isOf(ModItems.SPEEDRUNNER_SHEARS)) {
             ItemStack itemStack = new ItemStack(Items.SHEARS);
             itemStack.setCount(stack.getCount());
-            itemStack.setNbt(stack.getOrCreateNbt());
+            itemStack.set(DataComponentTypes.TOOL, SpeedrunnerShearsItem.createSpeedrunnerShears());
             return itemStack;
         }
 

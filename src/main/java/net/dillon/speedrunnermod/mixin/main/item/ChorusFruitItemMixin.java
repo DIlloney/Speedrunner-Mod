@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.mixin.main.item;
 
 import net.dillon.speedrunnermod.enchantment.ModEnchantments;
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.FoxEntity;
@@ -25,7 +26,7 @@ public class ChorusFruitItemMixin extends Item {
     }
 
     /**
-     * Adds the cooldown for the {@link CooldownEnchantment}.
+     * Adds the cooldown for the {@code cooldown enchantment.}
      */
     @Overwrite
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
@@ -48,7 +49,7 @@ public class ChorusFruitItemMixin extends Item {
                 break;
             }
             if (user instanceof PlayerEntity) {
-                int coolEnchantment = EnchantmentHelper.getEquipmentLevel(ModEnchantments.COOLDOWN, user);
+                int coolEnchantment = EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment(user, ModEnchantments.COOLDOWN), user);
                 int cooldown = coolEnchantment > 3 ? 0 : coolEnchantment == 3 ? 5 : coolEnchantment == 2 ? 10 : coolEnchantment == 1 ? 15 : 20;
                 ((PlayerEntity)user).getItemCooldownManager().set(this, cooldown);
             }

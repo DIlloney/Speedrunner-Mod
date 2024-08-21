@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class SpeedrunnerShearsItem extends ShearsItem {
 
-    private static ToolComponent createSpeedrunnerShears() {
+    public static ToolComponent createSpeedrunnerShears() {
         return new ToolComponent(List.of(ToolComponent.Rule.ofAlwaysDropping(List.of(Blocks.COBWEB), 15.0F), ToolComponent.Rule.of(BlockTags.LEAVES, 15.0F), ToolComponent.Rule.of(BlockTags.WOOL, 7.5F), ToolComponent.Rule.of(List.of(Blocks.VINE, Blocks.GLOW_LICHEN), 2.0F)), 1.0F, 1);
     }
 
