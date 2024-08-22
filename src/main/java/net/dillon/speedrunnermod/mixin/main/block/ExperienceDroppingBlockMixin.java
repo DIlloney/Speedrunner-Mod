@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.mixin.main.block;
 
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.dillon.speedrunnermod.block.ModBlocks;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.world.biome.ModBiomes;
@@ -9,19 +8,18 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ExperienceDroppingBlock;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -43,25 +41,20 @@ public class ExperienceDroppingBlockMixin extends Block {
      * Removes the silk touch enchantment when right-clicking on an ore block.
      */
     @Override
-    public @Deprecated ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        ItemStack stack = player.getStackInHand(player.getActiveHand());
-        if (!world.isClient && player.getStackInHand(player.getActiveHand()).isSuitableFor(state) && EnchantmentHelper.getLevel(ItemUtil.enchantment(player, Enchantments.SILK_TOUCH), stack) > 0 && options().advanced.removeSilkTouchWhenRightClick) {
-            ItemEnchantmentsComponent itemEnchantmentsComponent = EnchantmentHelper.getEnchantments(stack);
-            for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : itemEnchantmentsComponent.getEnchantmentEntries()) {
-                if (entry.getKey().matchesKey(Enchantments.SILK_TOUCH)) {
-                    itemEnchantmentsComponent.getEnchantmentEntries().remove(entry);
-                }
-            }
-            EnchantmentHelper.set(stack, itemEnchantmentsComponent);
+    public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        ItemStack itemStack = player.getStackInHand(hand);
+        if (!world.isClient && itemStack.isSuitableFor(state) && EnchantmentHelper.getLevel(ItemUtil.enchantment(player, Enchantments.SILK_TOUCH), itemStack) > 0 && options().advanced.removeSilkTouchWhenRightClick) {
+            ItemEnchantmentsComponent itemEnchantmentsComponent = EnchantmentHelper.apply(itemStack, builder -> builder.remove(enchantmentRegistryEntry -> enchantmentRegistryEntry.matchesKey(Enchantments.SILK_TOUCH)));
+            EnchantmentHelper.set(itemStack, itemEnchantmentsComponent);
             world.playSound(null, pos, SoundEvents.ENTITY_WARDEN_HEARTBEAT, SoundCategory.BLOCKS, 1.0F, 1.0F);
             if (player instanceof ServerPlayerEntity) {
                 ((ServerPlayerEntity)player).networkHandler.sendPacket(new PlaySoundS2CPacket(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, SoundCategory.BLOCKS, pos.getX(), pos.getY(), pos.getZ(), 1.0F, 1.0F, world.getRandom().nextLong()));
             }
             player.sendMessage(Text.translatable("speedrunnermod.removed_silk_touch"), false);
-            player.setStackInHand(player.getActiveHand(), stack);
-            return ActionResult.SUCCESS;
+            player.setStackInHand(hand, itemStack);
+            return ItemActionResult.success(true);
         } else {
-            return super.onUse(state, world, pos, player, hit);
+            return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
         }
     }
 

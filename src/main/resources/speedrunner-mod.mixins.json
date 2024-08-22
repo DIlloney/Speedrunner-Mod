@@ -1,8 +1,7 @@
 {
   "required": true,
-  "minVersion": "0.8",
   "package": "net.dillon.speedrunnermod.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "main.better_loot.OreDropsMixin",
 
@@ -16,7 +15,6 @@
     "main.block.SpawnerBlockMixin",
 
     "main.enchantment.AnvilScreenHandlerMixin",
-    "main.enchantment.EnchantmentMixin",
 
     "main.entity.basic.EntityMixin",
     "main.entity.boat.BoatEntityMixin",
