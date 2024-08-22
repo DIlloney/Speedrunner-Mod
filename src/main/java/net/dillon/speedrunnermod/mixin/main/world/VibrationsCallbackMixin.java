@@ -4,6 +4,7 @@ import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.Vibrations;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,7 +19,7 @@ public interface VibrationsCallbackMixin {
      * Allows players to safely run by {@code sculk sensor blocks} if the player is wearing speedrunner boots.
      */
     @Inject(method = "canAccept", at = @At("RETURN"), cancellable = true)
-    private void isPlayerWearingSpeedrunnerBoots(GameEvent gameEvent, GameEvent.Emitter emitter, CallbackInfoReturnable<Boolean> cir) {
+    private void isPlayerWearingSpeedrunnerBoots(RegistryEntry<GameEvent> gameEvent, GameEvent.Emitter emitter, CallbackInfoReturnable<Boolean> cir) {
         Entity entity = emitter.sourceEntity();
         if (entity instanceof PlayerEntity player && player.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.SCULK_SENSOR_SAFE_BOOTS)) {
             cir.setReturnValue(false);

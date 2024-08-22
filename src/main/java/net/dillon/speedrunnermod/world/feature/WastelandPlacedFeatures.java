@@ -17,15 +17,15 @@ import net.minecraft.world.gen.placementmodifier.*;
 import static net.minecraft.world.gen.feature.OrePlacedFeatures.modifiersWithCount;
 
 public class WastelandPlacedFeatures {
-    public static final RegistryKey<PlacedFeature> DEFAULT_SPEEDRUNNER_PLACED = PlacedFeatures.of("speedrunnermod:wasteland_default_speedrunner_placed");
-    public static final RegistryKey<PlacedFeature> FANCY_SPEEDRUNNER_PLACED = PlacedFeatures.of("speedrunnermod:wasteland_fancy_speedrunner_placed");
-    public static final RegistryKey<PlacedFeature> PATCH_RAW_SPEEDRUNNER_BLOCK_PLACED = PlacedFeatures.of("speedrunnermod:patch_raw_speedrunner_block");
-    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_UPPER = PlacedFeatures.of("speedrunnermod:wasteland_ore_speedrunner_upper");
-    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_MIDDLE = PlacedFeatures.of("speedrunnermod:wasteland_ore_speedrunner_middle");
-    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_SMALL = PlacedFeatures.of("speedrunnermod:wasteland_ore_speedrunner_small");
-    public static final RegistryKey<PlacedFeature> ORE_EXPERIENCE = PlacedFeatures.of("speedrunnermod:wasteland_ore_experience");
-    public static final RegistryKey<PlacedFeature> ORE_DIAMOND = PlacedFeatures.of("speedrunnermod:wasteland_ore_diamond");
-    public static final RegistryKey<PlacedFeature> ORE_DIAMOND_BURIED = PlacedFeatures.of("speedrunnermod:wasteland_ore_diamond_buried");
+    public static final RegistryKey<PlacedFeature> DEFAULT_SPEEDRUNNER_PLACED = ModPlacedFeatures.of("speedrunnermod:wasteland_default_speedrunner_placed");
+    public static final RegistryKey<PlacedFeature> FANCY_SPEEDRUNNER_PLACED = ModPlacedFeatures.of("speedrunnermod:wasteland_fancy_speedrunner_placed");
+    public static final RegistryKey<PlacedFeature> PATCH_RAW_SPEEDRUNNER_BLOCK_PLACED = ModPlacedFeatures.of("speedrunnermod:patch_raw_speedrunner_block");
+    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_UPPER = ModPlacedFeatures.of("speedrunnermod:wasteland_ore_speedrunner_upper");
+    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_MIDDLE = ModPlacedFeatures.of("speedrunnermod:wasteland_ore_speedrunner_middle");
+    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_SMALL = ModPlacedFeatures.of("speedrunnermod:wasteland_ore_speedrunner_small");
+    public static final RegistryKey<PlacedFeature> ORE_EXPERIENCE = ModPlacedFeatures.of("speedrunnermod:wasteland_ore_experience");
+    public static final RegistryKey<PlacedFeature> ORE_DIAMOND = ModPlacedFeatures.of("speedrunnermod:wasteland_ore_diamond");
+    public static final RegistryKey<PlacedFeature> ORE_DIAMOND_BURIED = ModPlacedFeatures.of("speedrunnermod:wasteland_ore_diamond_buried");
 
     /**
      * See {@link net.dillon.speedrunnermod.datagen.ModWorldGenerator} for more.

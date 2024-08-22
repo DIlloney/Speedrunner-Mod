@@ -75,7 +75,7 @@ public class TradeOffersMixin {
                                 new TradeOffers.SellItemFactory(ModItems.SPEEDRUNNER_BULK, 9, 1, 8, 10)},
                         3, new TradeOffers.Factory[]{
                                 new TradeOffers.BuyItemFactory(Items.PORKCHOP, 2, 32, 20),
-                                new ModTradeOffers.SellMaxedEnchantedToolFactory(Items.FISHING_ROD, 4, 4, 16)},
+                                new ModTradeOffers.SellMaxedEnchantedToolFactory(Items.FISHING_ROD, 4, 4, 16, EnchantmentTags.TRADEABLE)},
                         4, new TradeOffers.Factory[]{
                                 new ModTradeOffers.SellItemFactorySpeedrunnerIngot(Items.EMERALD, 3, 24, 30)},
                         5, new TradeOffers.Factory[]{
@@ -214,19 +214,19 @@ public class TradeOffersMixin {
                 ImmutableMap.of(
                         1, new TradeOffers.Factory[]{
                                 new TradeOffers.BuyItemFactory(Items.PAPER, 3, 32, 2),
-                                new ModTradeOffers.MaxedEnchantBookFactory(2, 16, 4, 0.01F),
+                                new ModTradeOffers.MaxedEnchantBookFactory(2, 3, 0.01F, 12, EnchantmentTags.TRADEABLE),
                                 new TradeOffers.SellItemFactory(Blocks.BOOKSHELF, 3, 1, 24, 2)},
                         2, new TradeOffers.Factory[]{
                                 new TradeOffers.BuyItemFactory(Items.BOOK, 4, 32, 10),
-                                new ModTradeOffers.MaxedEnchantBookFactory(1, 16, 15, 0.01F),
+                                new ModTradeOffers.MaxedEnchantBookFactory(1, 12, 0.01F, 12, EnchantmentTags.TRADEABLE),
                                 new TradeOffers.SellItemFactory(Items.LANTERN, 1, 4, 24, 5)},
                         3, new TradeOffers.Factory[]{
                                 new TradeOffers.BuyItemFactory(Items.INK_SAC, 6, 24, 20),
-                                new ModTradeOffers.MaxedEnchantBookFactory(1, 24, 25, 0.01F),
+                                new ModTradeOffers.MaxedEnchantBookFactory(1, 20, 0.01F, 12, EnchantmentTags.TRADEABLE),
                                 new TradeOffers.SellItemFactory(Items.GLASS, 1, 4, 64,10)},
                         4, new TradeOffers.Factory[]{
                                 new TradeOffers.BuyItemFactory(Items.WRITABLE_BOOK, 1, 32, 30),
-                                new ModTradeOffers.MaxedEnchantBookFactory(1, 32, 35, 0.01F),
+                                new ModTradeOffers.MaxedEnchantBookFactory(1, 32, 0.01F, 12, EnchantmentTags.TRADEABLE),
                                 new TradeOffers.SellItemFactory(Items.CLOCK, 5, 1, 15),
                                 new TradeOffers.SellItemFactory(Items.COMPASS, 4, 1, 15)},
                         5, new TradeOffers.Factory[]{

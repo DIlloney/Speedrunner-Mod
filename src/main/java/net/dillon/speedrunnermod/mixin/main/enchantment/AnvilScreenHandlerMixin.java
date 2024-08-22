@@ -52,17 +52,18 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 
     @Redirect(method = "updateResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/Enchantment;getMaxLevel()I"))
     private int countOverMaxLevel(Enchantment enchantment) {
-        ItemStack itemStack = this.input.getStack(0);
-        ItemStack itemStack2 = itemStack.copy();
-        ItemStack itemStack3 = this.input.getStack(1);
-        ItemEnchantmentsComponent map = EnchantmentHelper.getEnchantments(itemStack2);
-        ItemEnchantmentsComponent map2 = EnchantmentHelper.getEnchantments(itemStack3);
-        int q = map.getOrDefault(enchantment, 0);
-        int getCurrentLevelAndAddOne = q == (getCurrentLevelAndAddOne = map2.get(enchantment)) ? getCurrentLevelAndAddOne + 1 : Math.max(getCurrentLevelAndAddOne, q);
-        if (getCurrentLevelAndAddOne > 100) {
-            getCurrentLevelAndAddOne = 100;
-        }
-        boolean isntOne = enchantment.getMaxLevel() != 1;
-        return options().main.higherEnchantmentLevels && isntOne ? getCurrentLevelAndAddOne : enchantment.getMaxLevel();
+//        ItemStack itemStack = this.input.getStack(0);
+//        ItemStack itemStack2 = itemStack.copy();
+//        ItemStack itemStack3 = this.input.getStack(1);
+//        ItemEnchantmentsComponent map = EnchantmentHelper.getEnchantments(itemStack2);
+//        ItemEnchantmentsComponent map2 = EnchantmentHelper.getEnchantments(itemStack3);
+//        int q = map.getOrDefault(enchantment, 0);
+//        int getCurrentLevelAndAddOne = q == (getCurrentLevelAndAddOne = map2.get(enchantment)) ? getCurrentLevelAndAddOne + 1 : Math.max(getCurrentLevelAndAddOne, q);
+//        if (getCurrentLevelAndAddOne > 100) {
+//            getCurrentLevelAndAddOne = 100;
+//        }
+//        boolean isntOne = enchantment.getMaxLevel() != 1;
+//        return options().main.higherEnchantmentLevels && isntOne ? getCurrentLevelAndAddOne : enchantment.getMaxLevel();
+        return 1;
     }
 }

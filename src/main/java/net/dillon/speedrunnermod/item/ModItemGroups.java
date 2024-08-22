@@ -79,9 +79,9 @@ public class ModItemGroups {
                         entries.add(ModItems.CRIMSON_CHEST_BOAT);
                         entries.add(ModItems.WARPED_BOAT);
                         entries.add(ModItems.WARPED_CHEST_BOAT);
-                        for (int i = 1; i < 7; i++) {
-                            entries.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(i >= 4 ? ItemUtil.enchantment(null, ModEnchantments.COOLDOWN) : ItemUtil.enchantment(null, ModEnchantments.DASH), i >= 4 ? i - 3 : i)));
-                        }
+//                        for (int i = 1; i < 7; i++) {
+//                            entries.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(i >= 4 ? ItemUtil.enchantment(null, ModEnchantments.COOLDOWN) : ItemUtil.enchantment(null, ModEnchantments.DASH), i >= 4 ? i - 3 : i)));
+//                        }
                         entries.add(ModItems.IGNEOUS_ROCK);
                         entries.add(ModBlockItems.IGNEOUS_ORE);
                         entries.add(ModBlockItems.DEEPSLATE_IGNEOUS_ORE);

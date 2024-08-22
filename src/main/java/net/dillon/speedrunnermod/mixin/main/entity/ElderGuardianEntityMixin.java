@@ -7,8 +7,8 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.ElderGuardianEntity;
 import net.minecraft.entity.mob.GuardianEntity;
@@ -19,7 +19,6 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-import java.util.Iterator;
 import java.util.List;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
@@ -64,30 +63,12 @@ public class ElderGuardianEntityMixin extends GuardianEntity {
         super.mobTick();
         final int i = DOOM_MODE ? 600 : 6000;
         if ((this.age + this.getId()) % i == 0) {
-            StatusEffect statusEffect = StatusEffects.MINING_FATIGUE;
-            List<ServerPlayerEntity> list = ((ServerWorld)this.getWorld()).getPlayers((serverPlayerEntityx) -> {
-                final double d = DOOM_MODE ? 3000.0D : 1250.0D;
-                return this.squaredDistanceTo(serverPlayerEntityx) < d && serverPlayerEntityx.interactionManager.isSurvivalLike();
-            });
-            Iterator<ServerPlayerEntity> var7 = list.iterator();
-
-            label33:
-            while(true) {
-                ServerPlayerEntity serverPlayerEntity;
-                do {
-                    if (!var7.hasNext()) {
-                        break label33;
-                    }
-
-                    serverPlayerEntity = var7.next();
-                } while(serverPlayerEntity.hasStatusEffect(statusEffect) && serverPlayerEntity.getStatusEffect(statusEffect).getAmplifier() >= 2 && serverPlayerEntity.getStatusEffect(statusEffect).getDuration() >= 1200);
-
-                serverPlayerEntity.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.ELDER_GUARDIAN_EFFECT, this.isSilent() ? 0.0F : 1.0F));
-                final int duration = DOOM_MODE ? TickCalculator.minutes(5) : TickCalculator.seconds(30);
-                serverPlayerEntity.addStatusEffect(new StatusEffectInstance(statusEffect, duration, 2));
-            }
+            final int duration = DOOM_MODE ? TickCalculator.minutes(5) : TickCalculator.seconds(30);
+            final double d = DOOM_MODE ? 55.0D : 25.0D;
+            StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.MINING_FATIGUE, duration, 2);
+            List<ServerPlayerEntity> list = StatusEffectUtil.addEffectToPlayersWithinDistance((ServerWorld)this.getWorld(), this, this.getPos(), d, statusEffectInstance, 1200);
+            list.forEach(serverPlayerEntity -> serverPlayerEntity.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.ELDER_GUARDIAN_EFFECT, this.isSilent() ? GameStateChangeS2CPacket.DEMO_OPEN_SCREEN : (int)1.0f)));
         }
-
         if (!this.hasPositionTarget()) {
             this.setPositionTarget(this.getBlockPos(), 16);
         }

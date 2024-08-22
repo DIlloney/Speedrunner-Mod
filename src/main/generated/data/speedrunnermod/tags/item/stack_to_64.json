@@ -1,0 +1,24 @@
+{
+  "values": [
+    "#minecraft:beds",
+    "#minecraft:boats",
+    "#minecraft:chest_boats",
+    "#minecraft:signs",
+    "#minecraft:banners",
+    "minecraft:potion",
+    "minecraft:splash_potion",
+    "minecraft:lingering_potion",
+    "minecraft:ender_pearl",
+    "minecraft:egg",
+    "minecraft:snowball",
+    "minecraft:armor_stand",
+    "minecraft:honey_bottle",
+    "minecraft:bucket",
+    "minecraft:totem_of_undying",
+    "speedrunnermod:dragons_pearl",
+    "speedrunnermod:piglin_awakener",
+    "speedrunnermod:ender_thruster",
+    "speedrunnermod:blaze_spotter",
+    "speedrunnermod:raid_eradicator"
+  ]
+}

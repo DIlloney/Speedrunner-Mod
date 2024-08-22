@@ -74,7 +74,6 @@
 
     "main.fix.BeehiveBlockMixin",
     "main.fix.BlockEntityTypeMixin",
-    "main.fix.EfficiencyEnchantmentMixin",
     "main.fix.ItemPredicateMixin",
     "main.fix.PumpkinBlockMixin",
     "main.fix.SnowGolemEntityMixin",

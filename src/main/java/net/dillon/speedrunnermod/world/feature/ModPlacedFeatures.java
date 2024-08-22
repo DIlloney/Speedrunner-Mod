@@ -5,6 +5,7 @@ import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
@@ -17,31 +18,31 @@ import net.minecraft.world.gen.placementmodifier.*;
 import static net.minecraft.world.gen.feature.OrePlacedFeatures.modifiersWithCount;
 
 public class ModPlacedFeatures {
-    public static final RegistryKey<PlacedFeature> DEFAULT_SPEEDRUNNER_PLACED = PlacedFeatures.of("speedrunnermod:default_speedrunner_placed");
-    public static final RegistryKey<PlacedFeature> DEFAULT_SPEEDRUNNER_PLACED_FOREST = PlacedFeatures.of("speedrunnermod:default_speedrunner_placed_forest");
-    public static final RegistryKey<PlacedFeature> DEAD_SPEEDRUNNER_PLACED = PlacedFeatures.of("speedrunnermod:dead_speedrunner_placed");
-    public static final RegistryKey<PlacedFeature> FANCY_SPEEDRUNNER_PLACED = PlacedFeatures.of("speedrunnermod:fancy_speedrunner_placed");
-    public static final RegistryKey<PlacedFeature> DEAD_FANCY_SPEEDRUNNER_PLACED = PlacedFeatures.of("speedrunnermod:dead_fancy_speedrunner_placed");
-    public static final RegistryKey<PlacedFeature> BIRCH_SPEEDRUNNER_PLACED = PlacedFeatures.of("speedrunnermod:birch_speedrunner_placed");
-    public static final RegistryKey<PlacedFeature> SAVANNA_SPEEDRUNNER_PLACED = PlacedFeatures.of("speedrunnermod:savanna_speedrunner_placed");
-    public static final RegistryKey<PlacedFeature> TAIGA_SPEEDRUNNER_PLACED = PlacedFeatures.of("speedrunnermod:taiga_speedrunner_placed");
-    public static final RegistryKey<PlacedFeature> MEGA_JUNGLE_SPEEDRUNNER_PLACED = PlacedFeatures.of("speedrunnermod:mega_jungle_speedrunner_placed");
-    public static final RegistryKey<PlacedFeature> BIG_SPEEDRUNNER_PLACED = PlacedFeatures.of("speedrunnermod:big_speedrunner_placed");
-    public static final RegistryKey<PlacedFeature> DOOM_TREE_PLACED = PlacedFeatures.of("speedrunnermod:doom_tree_placed");
-    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_UPPER = PlacedFeatures.of("speedrunnermod:ore_speedrunner_upper");
-    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_MIDDLE = PlacedFeatures.of("speedrunnermod:ore_speedrunner_middle");
-    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_SMALL = PlacedFeatures.of("speedrunnermod:ore_speedrunner_small");
-    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_DELTAS = PlacedFeatures.of("speedrunnermod:ore_speedrunner_deltas");
-    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_NETHER = PlacedFeatures.of("speedrunnermod:ore_speedrunner_nether");
-    public static final RegistryKey<PlacedFeature> ORE_IGNEOUS = PlacedFeatures.of("speedrunnermod:ore_igneous");
-    public static final RegistryKey<PlacedFeature> ORE_IGNEOUS_DELTAS = PlacedFeatures.of("speedrunnermod:ore_igneous_deltas");
-    public static final RegistryKey<PlacedFeature> ORE_IGNEOUS_NETHER = PlacedFeatures.of("speedrunnermod:ore_igneous_nether");
-    public static final RegistryKey<PlacedFeature> ORE_EXPERIENCE = PlacedFeatures.of("speedrunnermod:ore_experience");
-    public static final RegistryKey<PlacedFeature> ORE_EXPERIENCE_DELTAS = PlacedFeatures.of("speedrunnermod:ore_experience_deltas");
-    public static final RegistryKey<PlacedFeature> ORE_EXPERIENCE_NETHER = PlacedFeatures.of("speedrunnermod:ore_experience_nether");
-    public static final RegistryKey<PlacedFeature> PATCH_DEAD_SPEEDRUNNER_BUSH_SWAMP = PlacedFeatures.of("speedrunnermod:patch_dead_speedrunner_bush_swamp");
-    public static final RegistryKey<PlacedFeature> PATCH_DEAD_SPEEDRUNNER_BUSH_DESERT = PlacedFeatures.of("speedrunnermod:patch_dead_speedrunner_bush_desert");
-    public static final RegistryKey<PlacedFeature> PATCH_DEAD_SPEEDRUNNER_BUSH_BADLANDS = PlacedFeatures.of("speedrunnermod:patch_dead_speedrunner_bush_badlands");
+    public static final RegistryKey<PlacedFeature> DEFAULT_SPEEDRUNNER_PLACED = of("speedrunnermod:default_speedrunner_placed");
+    public static final RegistryKey<PlacedFeature> DEFAULT_SPEEDRUNNER_PLACED_FOREST = of("speedrunnermod:default_speedrunner_placed_forest");
+    public static final RegistryKey<PlacedFeature> DEAD_SPEEDRUNNER_PLACED = of("speedrunnermod:dead_speedrunner_placed");
+    public static final RegistryKey<PlacedFeature> FANCY_SPEEDRUNNER_PLACED = of("speedrunnermod:fancy_speedrunner_placed");
+    public static final RegistryKey<PlacedFeature> DEAD_FANCY_SPEEDRUNNER_PLACED = of("speedrunnermod:dead_fancy_speedrunner_placed");
+    public static final RegistryKey<PlacedFeature> BIRCH_SPEEDRUNNER_PLACED = of("speedrunnermod:birch_speedrunner_placed");
+    public static final RegistryKey<PlacedFeature> SAVANNA_SPEEDRUNNER_PLACED = of("speedrunnermod:savanna_speedrunner_placed");
+    public static final RegistryKey<PlacedFeature> TAIGA_SPEEDRUNNER_PLACED = of("speedrunnermod:taiga_speedrunner_placed");
+    public static final RegistryKey<PlacedFeature> MEGA_JUNGLE_SPEEDRUNNER_PLACED = of("speedrunnermod:mega_jungle_speedrunner_placed");
+    public static final RegistryKey<PlacedFeature> BIG_SPEEDRUNNER_PLACED = of("speedrunnermod:big_speedrunner_placed");
+    public static final RegistryKey<PlacedFeature> DOOM_TREE_PLACED = of("speedrunnermod:doom_tree_placed");
+    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_UPPER = of("speedrunnermod:ore_speedrunner_upper");
+    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_MIDDLE = of("speedrunnermod:ore_speedrunner_middle");
+    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_SMALL = of("speedrunnermod:ore_speedrunner_small");
+    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_DELTAS = of("speedrunnermod:ore_speedrunner_deltas");
+    public static final RegistryKey<PlacedFeature> ORE_SPEEDRUNNER_NETHER = of("speedrunnermod:ore_speedrunner_nether");
+    public static final RegistryKey<PlacedFeature> ORE_IGNEOUS = of("speedrunnermod:ore_igneous");
+    public static final RegistryKey<PlacedFeature> ORE_IGNEOUS_DELTAS = of("speedrunnermod:ore_igneous_deltas");
+    public static final RegistryKey<PlacedFeature> ORE_IGNEOUS_NETHER = of("speedrunnermod:ore_igneous_nether");
+    public static final RegistryKey<PlacedFeature> ORE_EXPERIENCE = of("speedrunnermod:ore_experience");
+    public static final RegistryKey<PlacedFeature> ORE_EXPERIENCE_DELTAS = of("speedrunnermod:ore_experience_deltas");
+    public static final RegistryKey<PlacedFeature> ORE_EXPERIENCE_NETHER = of("speedrunnermod:ore_experience_nether");
+    public static final RegistryKey<PlacedFeature> PATCH_DEAD_SPEEDRUNNER_BUSH_SWAMP = of("speedrunnermod:patch_dead_speedrunner_bush_swamp");
+    public static final RegistryKey<PlacedFeature> PATCH_DEAD_SPEEDRUNNER_BUSH_DESERT = of("speedrunnermod:patch_dead_speedrunner_bush_desert");
+    public static final RegistryKey<PlacedFeature> PATCH_DEAD_SPEEDRUNNER_BUSH_BADLANDS = of("speedrunnermod:patch_dead_speedrunner_bush_badlands");
 
     /**
      * See {@link net.dillon.speedrunnermod.datagen.ModWorldGenerator} for more.
@@ -136,5 +137,9 @@ public class ModPlacedFeatures {
                 VegetationPlacedFeatures.modifiers(2));
         PlacedFeatures.register(context, PATCH_DEAD_SPEEDRUNNER_BUSH_BADLANDS, registryEntryLookup.getOrThrow(ModConfiguredFeatures.PATCH_DEAD_SPEEDRUNNER_BUSH),
                 VegetationPlacedFeatures.modifiers(3));
+    }
+
+    protected static RegistryKey<PlacedFeature> of(String id) {
+        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(id));
     }
 }

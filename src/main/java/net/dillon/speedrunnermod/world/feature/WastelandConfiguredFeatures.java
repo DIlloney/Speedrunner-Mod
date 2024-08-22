@@ -15,14 +15,14 @@ import java.util.List;
 import java.util.OptionalInt;
 
 public class WastelandConfiguredFeatures {
-    public static final RegistryKey<ConfiguredFeature<?, ?>> DEFAULT_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:wasteland_default_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:wasteland_fancy_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_RAW_SPEEDRUNNER_BLOCK = ConfiguredFeatures.of("speedrunnermod:wasteland_patch_raw_speedrunner_block");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:wasteland_ore_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_SPEEDRUNNER_SMALL = ConfiguredFeatures.of("speedrunnermod:wasteland_ore_speedrunner_small");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_EXPERIENCE = ConfiguredFeatures.of("speedrunnermod:wasteland_ore_experience");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_DIAMOND = ConfiguredFeatures.of("speedrunnermod:wasteland_ore_diamond");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_DIAMOND_BURIED = ConfiguredFeatures.of("speedrunnermod:wasteland_ore_diamond_buried");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DEFAULT_SPEEDRUNNER = ModConfiguredFeatures.of("speedrunnermod:wasteland_default_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_SPEEDRUNNER = ModConfiguredFeatures.of("speedrunnermod:wasteland_fancy_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_RAW_SPEEDRUNNER_BLOCK = ModConfiguredFeatures.of("speedrunnermod:wasteland_patch_raw_speedrunner_block");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_SPEEDRUNNER = ModConfiguredFeatures.of("speedrunnermod:wasteland_ore_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_SPEEDRUNNER_SMALL = ModConfiguredFeatures.of("speedrunnermod:wasteland_ore_speedrunner_small");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_EXPERIENCE = ModConfiguredFeatures.of("speedrunnermod:wasteland_ore_experience");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_DIAMOND = ModConfiguredFeatures.of("speedrunnermod:wasteland_ore_diamond");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_DIAMOND_BURIED = ModConfiguredFeatures.of("speedrunnermod:wasteland_ore_diamond_buried");
 
     /**
      * See {@link net.dillon.speedrunnermod.datagen.ModWorldGenerator} for more.

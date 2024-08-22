@@ -1,9 +1,6 @@
 package net.dillon.speedrunnermod.mixin.main.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.FireAspectEnchantment;
-import net.minecraft.enchantment.KnockbackEnchantment;
-import net.minecraft.enchantment.LuckEnchantment;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;

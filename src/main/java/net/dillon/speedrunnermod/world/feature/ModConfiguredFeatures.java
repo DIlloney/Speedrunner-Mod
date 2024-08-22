@@ -6,10 +6,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.structure.rule.BlockMatchRuleTest;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.structure.rule.TagMatchRuleTest;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.feature.*;
@@ -28,24 +30,24 @@ public class ModConfiguredFeatures {
     protected static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
     protected static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchRuleTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
     protected static final RuleTest NETHERRACK = new BlockMatchRuleTest(Blocks.NETHERRACK);
-    public static final RegistryKey<ConfiguredFeature<?, ?>> DEFAULT_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:default_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> DEAD_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:dead_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:fancy_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> DEAD_FANCY_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:dead_fancy_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> BIRCH_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:birch_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> SAVANNA_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:savanna_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> TAIGA_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:taiga_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> MEGA_JUNGLE_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:mega_jungle_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> BIG_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:big_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> DOOM_TREE = ConfiguredFeatures.of("speedrunnermod:doom_tree");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_DEAD_SPEEDRUNNER_BUSH = ConfiguredFeatures.of("speedrunnermod:patch_dead_speedrunner_bush");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:ore_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_SPEEDRUNNER_SMALL = ConfiguredFeatures.of("speedrunnermod:ore_speedrunner_small");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_SPEEDRUNNER = ConfiguredFeatures.of("speedrunnermod:ore_nether_speedrunner");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_IGNEOUS = ConfiguredFeatures.of("speedrunnermod:ore_igneous");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_IGNEOUS = ConfiguredFeatures.of("speedrunnermod:ore_nether_igneous");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_EXPERIENCE = ConfiguredFeatures.of("speedrunnermod:ore_experience");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_EXPERIENCE = ConfiguredFeatures.of("speedrunnermod:ore_nether_experience");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DEFAULT_SPEEDRUNNER = of("speedrunnermod:default_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DEAD_SPEEDRUNNER = of("speedrunnermod:dead_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_SPEEDRUNNER = of("speedrunnermod:fancy_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DEAD_FANCY_SPEEDRUNNER = of("speedrunnermod:dead_fancy_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> BIRCH_SPEEDRUNNER = of("speedrunnermod:birch_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SAVANNA_SPEEDRUNNER = of("speedrunnermod:savanna_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> TAIGA_SPEEDRUNNER = of("speedrunnermod:taiga_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> MEGA_JUNGLE_SPEEDRUNNER = of("speedrunnermod:mega_jungle_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> BIG_SPEEDRUNNER = of("speedrunnermod:big_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DOOM_TREE = of("speedrunnermod:doom_tree");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_DEAD_SPEEDRUNNER_BUSH = of("speedrunnermod:patch_dead_speedrunner_bush");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_SPEEDRUNNER = of("speedrunnermod:ore_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_SPEEDRUNNER_SMALL = of("speedrunnermod:ore_speedrunner_small");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_SPEEDRUNNER = of("speedrunnermod:ore_nether_speedrunner");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_IGNEOUS = of("speedrunnermod:ore_igneous");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_IGNEOUS = of("speedrunnermod:ore_nether_igneous");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_EXPERIENCE = of("speedrunnermod:ore_experience");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_EXPERIENCE = of("speedrunnermod:ore_nether_experience");
 
     /**
      * See {@link net.dillon.speedrunnermod.datagen.ModWorldGenerator} for more.
@@ -149,5 +151,9 @@ public class ModConfiguredFeatures {
                 new LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
                 new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))
                 .ignoreVines();
+    }
+
+    protected static RegistryKey<ConfiguredFeature<?, ?>> of(String id) {
+        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(id));
     }
 }

@@ -690,7 +690,7 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     public static double getWitherMaxHealth() {
-        return DOOM_MODE ? 150.0 : 100.0;
+        return DOOM_MODE ? 150.0D : 100.0D;
     }
 
     public static int getWitherSkeletonWitherEffectDuration() {

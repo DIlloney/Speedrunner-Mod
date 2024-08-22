@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.datagen;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.enchantment.ModEnchantments;
 import net.dillon.speedrunnermod.world.biome.ModBiomes;
 import net.dillon.speedrunnermod.world.feature.ModConfiguredFeatures;
 import net.dillon.speedrunnermod.world.feature.ModPlacedFeatures;
@@ -36,7 +35,6 @@ public class SpeedrunnerModDataGenerator implements DataGeneratorEntrypoint {
 
     @Override
     public void buildRegistry(RegistryBuilder registryBuilder) {
-        registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, ModEnchantments::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, WastelandConfiguredFeatures::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
