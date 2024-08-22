@@ -26,7 +26,7 @@ public abstract class SpawnerBlockMixin extends BlockWithEntity {
      */
     @Inject(method = "onStacksDropped", at = @At("TAIL"))
     private void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, boolean dropExperience, CallbackInfo ci) {
-        int f = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) * 172;
+        int f = EnchantmentHelper.getLevel(ItemUtil.enchantment(world, Enchantments.FORTUNE), stack) * 172;
         int i = 512 + world.random.nextInt(524) + world.random.nextInt(128) + f;
         this.dropExperience(world, pos, i);
     }

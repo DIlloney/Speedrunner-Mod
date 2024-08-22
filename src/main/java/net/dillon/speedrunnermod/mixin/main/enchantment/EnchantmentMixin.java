@@ -21,13 +21,13 @@ public class EnchantmentMixin {
     private void allowEnchantmentsOnAxe(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Enchantment enchantment = (Enchantment)(Object)this;
         if (stack.getItem() instanceof AxeItem) {
-            if (enchantment instanceof FireAspectEnchantment) {
-                cir.setReturnValue(true);
-            } else if (enchantment instanceof KnockbackEnchantment) {
-                cir.setReturnValue(true);
-            } else if (enchantment instanceof LuckEnchantment) {
-                cir.setReturnValue(true);
-            }
+//            if (enchantment instanceof FireAspectEnchantment) {
+//                cir.setReturnValue(true);
+//            } else if (enchantment instanceof KnockbackEnchantment) {
+//                cir.setReturnValue(true);
+//            } else if (enchantment instanceof LuckEnchantment) {
+//                cir.setReturnValue(true);
+//            }
         }
     }
 }

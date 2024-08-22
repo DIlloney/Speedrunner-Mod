@@ -11,7 +11,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -21,9 +20,6 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
@@ -45,7 +41,8 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
             ItemEnchantmentsComponent mainHandEnchantments = EnchantmentHelper.getEnchantments(mainHandStack);
             ItemEnchantmentsComponent offHandEnchantments = EnchantmentHelper.getEnchantments(offHandStack);
 
-            List<RegistryKey<Enchantment>> enchantmentsToRemove = new ArrayList<>();
+            ItemEnchantmentsComponent enchantmentsToRemove = null;
+
             int totalTransferred = 0;
             for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : mainHandEnchantments.getEnchantmentEntries()) {
                 RegistryEntry<?> registryEntry = entry.getKey();
@@ -53,16 +50,20 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
 
                 if (enchantment.isAcceptableItem(offHandStack)) {
                     EnchantmentHelper.set(offHandStack, mainHandEnchantments);
-                    enchantmentsToRemove.add(enchantment);
+                    enchantmentsToRemove = EnchantmentHelper.getEnchantments(offHandStack);
                     totalTransferred++;
                 }
             }
 
-            for (RegistryKey<Enchantment> enchantment : enchantmentsToRemove) {
-//                mainHandEnchantments.remove(enchantment);
+            for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : enchantmentsToRemove.getEnchantmentEntries()) {
+                enchantmentsToRemove.getEnchantmentEntries().remove(entry);
             }
 
-            int cost = MathUtil.multiplyBySelf(enchantmentsToRemove.size());
+            if (enchantmentsToRemove != null) {
+                EnchantmentHelper.set(mainHandStack, enchantmentsToRemove);
+            }
+
+            int cost = MathUtil.multiplyBySelf(enchantmentsToRemove.getSize());
             if (cost > options().main.anvilCostLimit && options().main.anvilCostLimit != 50) {
                 cost = options().main.anvilCostLimit;
             }
