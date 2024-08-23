@@ -5,7 +5,6 @@ import com.mojang.serialization.Codec;
 import net.dillon.speedrunnermod.SpeedrunnerModClient;
 import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
-import net.dillon.speedrunnermod.util.Credit;
 import net.minecraft.client.option.SimpleOption;
 
 import java.util.Optional;

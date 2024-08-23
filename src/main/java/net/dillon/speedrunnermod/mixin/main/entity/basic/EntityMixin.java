@@ -6,7 +6,6 @@ import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.entity.ModBoats;
 import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
-import net.dillon.speedrunnermod.util.Credit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.world.World;
