@@ -3,6 +3,7 @@ package net.dillon.speedrunnermod.client.screen;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.Leaderboards;
 import net.dillon.speedrunnermod.util.ChatGPT;
+import net.dillon.speedrunnermod.util.Credit;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
@@ -34,8 +35,7 @@ class LeaderboardsIneligibleOptionsScreen extends AbstractModScreen {
         }
     }
 
-    @ChatGPT
-    @Override
+    @Override @ChatGPT(Credit.FULL_CREDIT)
     public void renderCustomText(DrawContext context) {
         boolean longList = Leaderboards.ineligibleOptions.size() > 12;
         int textHeight = longList ? 35 : 50;

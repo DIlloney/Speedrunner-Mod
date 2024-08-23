@@ -2,6 +2,7 @@ package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ChatGPT;
+import net.dillon.speedrunnermod.util.Credit;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.minecraft.block.Blocks;
@@ -92,7 +93,7 @@ public class BlazeSpotterItem extends Item implements StateOfTheArtItem {
     /**
      * Finds the nearest blaze spawner.
      */
-    @ChatGPT
+    @ChatGPT(Credit.FULL_CREDIT)
     private BlockPos findNearestBlazeSpawner(ServerWorld world, BlockPos fortressPos) {
         for (BlockPos pos : BlockPos.iterate(fortressPos.add(options().advanced.blazeSpotterDistanceXYZ[0], options().advanced.blazeSpotterDistanceXYZ[1], options().advanced.blazeSpotterDistanceXYZ[2]), fortressPos.add(options().advanced.blazeSpotterDistanceXYZ[3], options().advanced.blazeSpotterDistanceXYZ[4], options().advanced.blazeSpotterDistanceXYZ[5]))) {
             if (world.getBlockState(pos).getBlock() == Blocks.SPAWNER) {

@@ -6,6 +6,7 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.SpawnerBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -26,7 +27,8 @@ public abstract class SpawnerBlockMixin extends BlockWithEntity {
      */
     @Inject(method = "onStacksDropped", at = @At("TAIL"))
     private void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, boolean dropExperience, CallbackInfo ci) {
-        int f = EnchantmentHelper.getLevel(ItemUtil.enchantment(world, Enchantments.FORTUNE), stack) * 172;
+        PlayerEntity player = world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 20, true);
+        int f = player != null ? EnchantmentHelper.getLevel(ItemUtil.enchantment(player, Enchantments.FORTUNE), stack) * 172 : 1;
         int i = 512 + world.random.nextInt(524) + world.random.nextInt(128) + f;
         this.dropExperience(world, pos, i);
     }

@@ -245,6 +245,9 @@
   "speedrunnermod:speedrunners_wasteland": "Speedrunner's Wasteland",
 
   "speedrunnermod.transferred_enchantments": "Transferred enchantments!",
+  "speedrunnermod.enchantment_levels_upgraded": "Enchantment levels upgraded!",
+  "speedrunnermod.some_incompatible_enchantments_failed": "Some incompatible enchantments were not transferred.",
+  "speedrunnermod.incompatible_enchantments_failed": "Incompatible enchantments: no enchantments were transferred.",
   "speedrunnermod.no_enchantments_transferred": "No enchantments were transferred.",
   "speedrunnermod.levels_needed": "You need at least %s level(s) to perform this action.",
 

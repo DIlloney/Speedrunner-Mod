@@ -8,6 +8,7 @@ import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.Leaderboards;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ChatGPT;
+import net.dillon.speedrunnermod.util.Credit;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
@@ -163,7 +164,7 @@ public abstract class AbstractModScreen extends BaseModScreen {
     /**
      * Iterate through all {@link AbstractFeatureScreen}s to add to the main feature screen lists.
      */
-    @ChatGPT
+    @ChatGPT(Credit.FULL_CREDIT)
     protected void iterate(ScreenCategory screenCategory) {
         int maxPageNumber = this.allFeatureScreens().stream()
                 .filter(screen -> screen.getScreenCategory() == screenCategory)

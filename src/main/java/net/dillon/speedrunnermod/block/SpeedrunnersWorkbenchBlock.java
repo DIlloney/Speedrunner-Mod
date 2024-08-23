@@ -1,11 +1,15 @@
 package net.dillon.speedrunnermod.block;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.option.ModOptions;
+import net.dillon.speedrunnermod.util.ChatGPT;
+import net.dillon.speedrunnermod.util.Credit;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.MathUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SmithingTableBlock;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -33,35 +37,64 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
         super(settings);
     }
 
-    @Override
+    @Override @ChatGPT(Credit.PARTIAL_CREDIT)
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (!world.isClient && player.getMainHandStack().hasEnchantments()) {
+        if (!world.isClient && player.getMainHandStack().hasEnchantments() && !player.getOffHandStack().isEmpty()) {
             ItemStack mainHandStack = player.getMainHandStack();
             ItemStack offHandStack = player.getOffHandStack();
             ItemEnchantmentsComponent mainHandEnchantments = EnchantmentHelper.getEnchantments(mainHandStack);
             ItemEnchantmentsComponent offHandEnchantments = EnchantmentHelper.getEnchantments(offHandStack);
+            ItemEnchantmentsComponent.Builder mainHandBuilder = new ItemEnchantmentsComponent.Builder(mainHandEnchantments);
+            ItemEnchantmentsComponent.Builder offHandBuilder = new ItemEnchantmentsComponent.Builder(offHandEnchantments);
 
             ItemEnchantmentsComponent enchantmentsToRemove = null;
 
             int totalTransferred = 0;
             for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : mainHandEnchantments.getEnchantmentEntries()) {
-                RegistryEntry<?> registryEntry = entry.getKey();
-                Enchantment enchantment = (Enchantment)registryEntry.value();
+                RegistryEntry registryEntry = entry.getKey();
 
-                if (enchantment.isAcceptableItem(offHandStack)) {
+                boolean offhandHasEnchantments = EnchantmentHelper.hasEnchantments(offHandStack);
+                if (offhandHasEnchantments) {
+                    for (RegistryEntry<Enchantment> registryEntry2 : offHandBuilder.getEnchantments()) {
+                        boolean allIsCompatible = true;
+
+                        for (RegistryEntry<Enchantment> existingEnchantment : offHandBuilder.getEnchantments()) {
+                            if (!Enchantment.canBeCombined(existingEnchantment, registryEntry) && !existingEnchantment.equals(registryEntry)) {
+                                allIsCompatible = false;
+                                break;
+                            }
+                        }
+
+                        boolean canUpgrade = registryEntry2.equals(registryEntry) && offHandBuilder.getLevel(registryEntry2) < mainHandBuilder.getLevel(registryEntry);
+                        if (allIsCompatible && (Enchantment.canBeCombined(registryEntry, registryEntry2) || canUpgrade)) {
+                            EnchantmentHelper.apply(offHandStack, builder -> builder.add(entry.getKey(), mainHandBuilder.getLevel(entry.getKey())));
+                            player.sendMessage(Text.translatable("speedrunnermod.transferred_enchantments").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                            if (canUpgrade) {
+                                player.sendMessage(Text.translatable("speedrunnermod.enchantment_levels_upgraded"), false);
+                            }
+                            totalTransferred++;
+                        } else {
+                            if (!Enchantment.canBeCombined(registryEntry, registryEntry2)) {
+                                if (totalTransferred > 0) {
+                                    player.sendMessage(Text.translatable("speedrunnermod.some_incompatible_enchantments_failed"), false);
+                                } else {
+                                    player.sendMessage(Text.translatable("speedrunnermod.incompatible_enchantments_failed").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                }
+                            }
+                        }
+                    }
+                } else {
                     EnchantmentHelper.set(offHandStack, mainHandEnchantments);
-                    enchantmentsToRemove = EnchantmentHelper.getEnchantments(offHandStack);
-                    totalTransferred++;
                 }
             }
 
-            for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : enchantmentsToRemove.getEnchantmentEntries()) {
-                enchantmentsToRemove.getEnchantmentEntries().remove(entry);
-            }
-
-            if (enchantmentsToRemove != null) {
-                EnchantmentHelper.set(mainHandStack, enchantmentsToRemove);
-            }
+//            for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : enchantmentsToRemove.getEnchantmentEntries()) {
+//                enchantmentsToRemove.getEnchantmentEntries().remove(entry);
+//            }
+//
+//            if (enchantmentsToRemove != null) {
+//                EnchantmentHelper.set(mainHandStack, enchantmentsToRemove);
+//            }
 
             int cost = MathUtil.multiplyBySelf(enchantmentsToRemove.getSize());
             if (cost > options().main.anvilCostLimit && options().main.anvilCostLimit != 50) {
@@ -75,7 +108,6 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
             if (totalTransferred != 0 && player.experienceLevel >= cost) {
                 EnchantmentHelper.set(mainHandStack, mainHandEnchantments);
                 EnchantmentHelper.set(offHandStack, offHandEnchantments);
-                player.sendMessage(Text.translatable("speedrunnermod.transferred_enchantments").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                 world.playSound(null, pos, SoundEvents.BLOCK_SMITHING_TABLE_USE, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
                 player.addExperienceLevels(-cost);
                 player.setStackInHand(player.getActiveHand(), mainHandStack);

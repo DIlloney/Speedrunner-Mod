@@ -5,6 +5,7 @@ import net.dillon.speedrunnermod.sound.ModSoundEvents;
 import net.dillon.speedrunnermod.tag.ModFluidTags;
 import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
+import net.dillon.speedrunnermod.util.Credit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;

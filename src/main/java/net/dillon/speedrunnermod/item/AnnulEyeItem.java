@@ -2,6 +2,7 @@ package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ChatGPT;
+import net.dillon.speedrunnermod.util.Credit;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.minecraft.advancement.criterion.Criteria;
@@ -175,7 +176,7 @@ public class AnnulEyeItem extends Item {
     /**
      * Finds the nearest stronghold, to then find the closest end portal frame block inside of it.
      */
-    @ChatGPT
+    @ChatGPT(Credit.FULL_CREDIT)
     private BlockPos findPortalRoom(World world, BlockPos startPos) {
         BlockPos strongholdPos = ((ServerWorld)world).locateStructure(StructureTags.EYE_OF_ENDER_LOCATED, startPos, 100, false);
 
@@ -193,7 +194,7 @@ public class AnnulEyeItem extends Item {
     /**
      * Finds the nearest end portal frame block inside the stronghold.
      */
-    @ChatGPT
+    @ChatGPT(Credit.FULL_CREDIT)
     private BlockPos findEndPortalFrame(World world, BlockPos strongholdPos) {
         for (BlockPos pos : BlockPos.iterate(strongholdPos.add(options().advanced.annulEyePortalRoomDistanceXYZ[0], options().advanced.annulEyePortalRoomDistanceXYZ[1], options().advanced.annulEyePortalRoomDistanceXYZ[2]), strongholdPos.add(options().advanced.annulEyePortalRoomDistanceXYZ[3], options().advanced.annulEyePortalRoomDistanceXYZ[4], options().advanced.annulEyePortalRoomDistanceXYZ[5]))) {
             if (world.getBlockState(pos).getBlock().equals(Blocks.END_PORTAL_FRAME)) {

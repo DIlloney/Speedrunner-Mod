@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.client.screen;
 
 import net.dillon.speedrunnermod.util.ChatGPT;
+import net.dillon.speedrunnermod.util.Credit;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -17,7 +18,7 @@ import java.util.List;
 /**
  * Copied over from Minecraft's original {@link net.minecraft.client.gui.widget.OptionListWidget}, this allows you to create a list of buttons, that aren't options.
  */
-@ChatGPT
+@ChatGPT(Credit.FULL_CREDIT)
 @Environment(EnvType.CLIENT)
 public class CustomButtonListWidget extends ElementListWidget<CustomButtonListWidget.ModWidgetEntry> {
 

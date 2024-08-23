@@ -8,6 +8,7 @@ import net.dillon.speedrunnermod.client.screen.features.toolsandarmor.Speedrunne
 import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.util.ChatGPT;
+import net.dillon.speedrunnermod.util.Credit;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -283,7 +284,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
     /**
      * Determine the screen to go to, based on the page number.
      */
-    @ChatGPT
+    @ChatGPT(Credit.FULL_CREDIT)
     private Screen determineScreen(int pageNumber, ScreenCategory category) {
         for (AbstractFeatureScreen screen : this.allFeatureScreens()) {
             if (screen.getPageNumber() == pageNumber && screen.getScreenCategory() == category) {

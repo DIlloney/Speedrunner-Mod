@@ -8,6 +8,7 @@ import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
 import net.dillon.speedrunnermod.util.ChatGPT;
+import net.dillon.speedrunnermod.util.Credit;
 import net.minecraft.registry.MutableRegistry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryLoader;
@@ -37,7 +38,7 @@ public abstract class RegistryLoaderMixin {
      * Directly modifies json files to change world generation.
      */
     @Author(Authors.MAXENCEDC)
-    @ChatGPT
+    @ChatGPT(Credit.MOST_CREDIT)
     @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;parse(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), method = "parseAndAdd", locals = LocalCapture.CAPTURE_FAILHARD)
     private static <E> void load(MutableRegistry<E> registry, Decoder<E> decoder, RegistryOps<JsonElement> ops, RegistryKey<E> resourceKey, Resource resource, RegistryEntryInfo registrationInfo, CallbackInfo ci, Reader reader, JsonElement jsonElement) {
         String fileName = registry.getKey().getValue().getPath();
@@ -539,7 +540,7 @@ public abstract class RegistryLoaderMixin {
     /**
      * Modifies the creature spawn parameters in a given biome.
      */
-    @Unique @ChatGPT
+    @Unique @ChatGPT(Credit.FULL_CREDIT)
     private static void modifyCreatureSpawns(JsonElement jsonElement, Map<String, Integer[]> creatureValues, boolean waterCreature) {
         JsonArray spawnersArray = jsonElement.getAsJsonObject().getAsJsonObject("spawners").getAsJsonArray(waterCreature ? "water_creature" : "creature");
 
@@ -567,7 +568,7 @@ public abstract class RegistryLoaderMixin {
     /**
      * Modifies the monster spawn parameters in a given biome.
      */
-    @Unique @ChatGPT
+    @Unique @ChatGPT(Credit.FULL_CREDIT)
     private static void modifyMonsterSpawns(JsonElement jsonElement, Map<String, Integer[]> monsterValues, boolean customWeight) {
         JsonArray spawnersArray = jsonElement.getAsJsonObject().getAsJsonObject("spawners").getAsJsonArray("monster");
 
