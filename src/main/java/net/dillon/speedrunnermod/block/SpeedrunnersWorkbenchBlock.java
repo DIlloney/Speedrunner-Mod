@@ -101,8 +101,8 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                     cost = initializeCost(player, totalTransferred);
                     if (totalTransferred != 0 && player.experienceLevel >= cost) {
                         successWithNoEnchantments = true;
-                        applyEnchantments(enchantment, offHandStack, mainHandBuilder, entry);
                         SpeedrunnerMod.error("NO enchantment transfer type");
+                        applyEnchantments(enchantment, offHandStack, mainHandBuilder, entry);
                     } else {
                         fail = true;
                     }
@@ -135,11 +135,11 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
     }
 
     /**
-     * Applies the transferred enchantments to the items.
+     * Applies the transferred enchantments to the item.
      */
-    private static void applyEnchantments(Enchantment enchantment, ItemStack offHandStack, ItemEnchantmentsComponent.Builder mainHandStack, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry) {
+    private static void applyEnchantments(Enchantment enchantment, ItemStack offHandStack, ItemEnchantmentsComponent.Builder mainHandBuilder, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry) {
         if (enchantment.isAcceptableItem(offHandStack)) {
-            EnchantmentHelper.apply(offHandStack, builder -> builder.add(entry.getKey(), builder.getLevel(entry.getKey())));
+            EnchantmentHelper.apply(offHandStack, builder -> builder.add(entry.getKey(), mainHandBuilder.getLevel(entry.getKey())));
         } else {
             EnchantmentHelper.apply(offHandStack, builder -> builder.remove(enchantmentRegistryEntry -> !enchantmentRegistryEntry.value().isAcceptableItem(offHandStack)));
         }
