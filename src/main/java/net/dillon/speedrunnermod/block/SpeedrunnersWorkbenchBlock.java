@@ -9,7 +9,6 @@ import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.MathUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SmithingTableBlock;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -47,16 +46,22 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
             ItemEnchantmentsComponent.Builder mainHandBuilder = new ItemEnchantmentsComponent.Builder(mainHandEnchantments);
             ItemEnchantmentsComponent.Builder offHandBuilder = new ItemEnchantmentsComponent.Builder(offHandEnchantments);
 
-            ItemEnchantmentsComponent enchantmentsToRemove = null;
-
             int totalTransferred = 0;
+            int cost = 0;
+            boolean successWithEnchantments = false;
+            boolean successWithNoEnchantments = false;
+            boolean fail = false;
+            boolean wasUpgraded = false;
+            boolean someIncFailed = false;
+            boolean incompatibleEnchantmentsFailed = false;
             for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : mainHandEnchantments.getEnchantmentEntries()) {
                 RegistryEntry registryEntry = entry.getKey();
+                Enchantment enchantment = (Enchantment)registryEntry.value();
 
                 boolean offhandHasEnchantments = EnchantmentHelper.hasEnchantments(offHandStack);
+                boolean allIsCompatible = true;
                 if (offhandHasEnchantments) {
                     for (RegistryEntry<Enchantment> registryEntry2 : offHandBuilder.getEnchantments()) {
-                        boolean allIsCompatible = true;
 
                         for (RegistryEntry<Enchantment> existingEnchantment : offHandBuilder.getEnchantments()) {
                             if (!Enchantment.canBeCombined(existingEnchantment, registryEntry) && !existingEnchantment.equals(registryEntry)) {
@@ -67,59 +72,112 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
 
                         boolean canUpgrade = registryEntry2.equals(registryEntry) && offHandBuilder.getLevel(registryEntry2) < mainHandBuilder.getLevel(registryEntry);
                         if (allIsCompatible && (Enchantment.canBeCombined(registryEntry, registryEntry2) || canUpgrade)) {
-                            EnchantmentHelper.apply(offHandStack, builder -> builder.add(entry.getKey(), mainHandBuilder.getLevel(entry.getKey())));
-                            player.sendMessage(Text.translatable("speedrunnermod.transferred_enchantments").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
-                            if (canUpgrade) {
-                                player.sendMessage(Text.translatable("speedrunnermod.enchantment_levels_upgraded"), false);
-                            }
+
                             totalTransferred++;
+                            cost = initializeCost(player, totalTransferred);
+
+                            if (totalTransferred != 0 && player.experienceLevel >= cost) {
+                                successWithEnchantments = true;
+                                if (canUpgrade) {
+                                    wasUpgraded = true;
+                                }
+                                applyEnchantments(enchantment, offHandStack, mainHandBuilder, entry);
+                                SpeedrunnerMod.error("HAS enchantment transfer type");
+                            } else {
+                                fail = true;
+                            }
                         } else {
                             if (!Enchantment.canBeCombined(registryEntry, registryEntry2)) {
                                 if (totalTransferred > 0) {
-                                    player.sendMessage(Text.translatable("speedrunnermod.some_incompatible_enchantments_failed"), false);
+                                    someIncFailed = true;
                                 } else {
-                                    player.sendMessage(Text.translatable("speedrunnermod.incompatible_enchantments_failed").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                    incompatibleEnchantmentsFailed = true;
                                 }
                             }
                         }
                     }
                 } else {
-                    EnchantmentHelper.set(offHandStack, mainHandEnchantments);
+                    totalTransferred++;
+                    cost = initializeCost(player, totalTransferred);
+                    if (totalTransferred != 0 && player.experienceLevel >= cost) {
+                        successWithNoEnchantments = true;
+                        applyEnchantments(enchantment, offHandStack, mainHandBuilder, entry);
+                        SpeedrunnerMod.error("NO enchantment transfer type");
+                    } else {
+                        fail = true;
+                    }
                 }
             }
 
-//            for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : enchantmentsToRemove.getEnchantmentEntries()) {
-//                enchantmentsToRemove.getEnchantmentEntries().remove(entry);
-//            }
-//
-//            if (enchantmentsToRemove != null) {
-//                EnchantmentHelper.set(mainHandStack, enchantmentsToRemove);
-//            }
-
-            int cost = MathUtil.multiplyBySelf(enchantmentsToRemove.getSize());
-            if (cost > options().main.anvilCostLimit && options().main.anvilCostLimit != 50) {
-                cost = options().main.anvilCostLimit;
-            }
-
-            if (player.getAbilities().creativeMode) {
-                cost = 0;
-            }
-
-            if (totalTransferred != 0 && player.experienceLevel >= cost) {
-                EnchantmentHelper.set(mainHandStack, mainHandEnchantments);
-                EnchantmentHelper.set(offHandStack, offHandEnchantments);
-                world.playSound(null, pos, SoundEvents.BLOCK_SMITHING_TABLE_USE, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
-                player.addExperienceLevels(-cost);
-                player.setStackInHand(player.getActiveHand(), mainHandStack);
-            } else {
-                player.sendMessage(Text.translatable("speedrunnermod.no_enchantments_transferred").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
-                if (!(player.experienceLevel >= cost)) {
-                    player.sendMessage(Text.translatable("speedrunnermod.levels_needed", cost), false);
+            if (successWithEnchantments) {
+                player.sendMessage(Text.translatable("speedrunnermod.transferred_enchantments").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                if (wasUpgraded) {
+                    player.sendMessage(Text.translatable("speedrunnermod.enchantment_levels_upgraded"), false);
                 }
+                success(world, pos, player, mainHandStack, cost);
+            } else if (successWithNoEnchantments) {
+                success(world, pos, player, mainHandStack, cost);
+            } else if (fail) {
+                fail(player, cost);
             }
-            return ActionResult.SUCCESS;
+
+            if (someIncFailed) {
+                player.sendMessage(Text.translatable("speedrunnermod.some_incompatible_enchantments_failed"), false);
+            }
+            if (incompatibleEnchantmentsFailed) {
+                player.sendMessage(Text.translatable("speedrunnermod.incompatible_enchantments_failed").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+            }
+
+            return ActionResult.success(true);
         } else {
             return super.onUse(state, world, pos, player, hit);
+        }
+    }
+
+    /**
+     * Applies the transferred enchantments to the items.
+     */
+    private static void applyEnchantments(Enchantment enchantment, ItemStack offHandStack, ItemEnchantmentsComponent.Builder mainHandStack, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry) {
+        if (enchantment.isAcceptableItem(offHandStack)) {
+            EnchantmentHelper.apply(offHandStack, builder -> builder.add(entry.getKey(), builder.getLevel(entry.getKey())));
+        } else {
+            EnchantmentHelper.apply(offHandStack, builder -> builder.remove(enchantmentRegistryEntry -> !enchantmentRegistryEntry.value().isAcceptableItem(offHandStack)));
+        }
+    }
+
+    /**
+     * Corrects the {@code cost} variable to equal the total amount of enchantments transferred multiplied by itself.
+     */
+    private static int initializeCost(PlayerEntity player, int totalTransferred) {
+        int cost = MathUtil.multiplyBySelf(totalTransferred);
+
+        if (cost > options().main.anvilCostLimit && options().main.anvilCostLimit != 50) {
+            cost = options().main.anvilCostLimit;
+        }
+
+        if (player.getAbilities().creativeMode) {
+            cost = 0;
+        }
+
+        return cost;
+    }
+
+    /**
+     * A successful enchantment transfer.
+     */
+    private static void success(World world, BlockPos pos, PlayerEntity player, ItemStack mainHandStack, int cost) {
+        world.playSound(null, pos, SoundEvents.BLOCK_SMITHING_TABLE_USE, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
+        player.addExperienceLevels(-cost);
+        player.setStackInHand(player.getActiveHand(), mainHandStack);
+    }
+
+    /**
+     * Failed to transfer any enchantments.
+     */
+    private static void fail(PlayerEntity player, int cost) {
+        player.sendMessage(Text.translatable("speedrunnermod.no_enchantments_transferred").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+        if (!(player.experienceLevel >= cost)) {
+            player.sendMessage(Text.translatable("speedrunnermod.levels_needed", cost), false);
         }
     }
 }
