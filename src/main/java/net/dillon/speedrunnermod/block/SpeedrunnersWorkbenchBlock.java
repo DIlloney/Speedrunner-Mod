@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.block;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.dillon.speedrunnermod.util.Credit;
@@ -54,13 +53,23 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
             boolean wasUpgraded = false;
             boolean someIncFailed = false;
             boolean incompatibleEnchantmentsFailed = false;
+            boolean offhandHasEnchantments = EnchantmentHelper.hasEnchantments(offHandStack);
+
             for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : mainHandEnchantments.getEnchantmentEntries()) {
                 RegistryEntry registryEntry = entry.getKey();
                 Enchantment enchantment = (Enchantment)registryEntry.value();
 
-                boolean offhandHasEnchantments = EnchantmentHelper.hasEnchantments(offHandStack);
-                boolean allIsCompatible = true;
-                if (offhandHasEnchantments) {
+                if (!offhandHasEnchantments) {
+                    totalTransferred++;
+                    cost = initializeCost(player, totalTransferred);
+                    if (totalTransferred != 0 && player.experienceLevel >= cost) {
+                        successWithNoEnchantments = true;
+                        transferEnchantments(enchantment, mainHandStack, offHandStack, mainHandBuilder, entry);
+                    } else {
+                        fail = true;
+                    }
+                } else {
+                    boolean allIsCompatible = true;
                     for (RegistryEntry<Enchantment> registryEntry2 : offHandBuilder.getEnchantments()) {
 
                         for (RegistryEntry<Enchantment> existingEnchantment : offHandBuilder.getEnchantments()) {
@@ -81,8 +90,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                                 if (canUpgrade) {
                                     wasUpgraded = true;
                                 }
-                                applyEnchantments(enchantment, offHandStack, mainHandBuilder, entry);
-                                SpeedrunnerMod.error("HAS enchantment transfer type");
+                                transferEnchantments(enchantment, mainHandStack, offHandStack, mainHandBuilder, entry);
                             } else {
                                 fail = true;
                             }
@@ -96,29 +104,18 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                             }
                         }
                     }
-                } else {
-                    totalTransferred++;
-                    cost = initializeCost(player, totalTransferred);
-                    if (totalTransferred != 0 && player.experienceLevel >= cost) {
-                        successWithNoEnchantments = true;
-                        SpeedrunnerMod.error("NO enchantment transfer type");
-                        applyEnchantments(enchantment, offHandStack, mainHandBuilder, entry);
-                    } else {
-                        fail = true;
-                    }
                 }
             }
 
             if (successWithEnchantments) {
-                player.sendMessage(Text.translatable("speedrunnermod.transferred_enchantments").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                 if (wasUpgraded) {
                     player.sendMessage(Text.translatable("speedrunnermod.enchantment_levels_upgraded"), false);
                 }
                 success(world, pos, player, mainHandStack, cost);
-            } else if (successWithNoEnchantments) {
+            }
+
+            if (successWithNoEnchantments) {
                 success(world, pos, player, mainHandStack, cost);
-            } else if (fail) {
-                fail(player, cost);
             }
 
             if (someIncFailed) {
@@ -126,6 +123,10 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
             }
             if (incompatibleEnchantmentsFailed) {
                 player.sendMessage(Text.translatable("speedrunnermod.incompatible_enchantments_failed").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+            }
+
+            if (fail) {
+                fail(player, cost);
             }
 
             return ActionResult.success(true);
@@ -137,9 +138,10 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
     /**
      * Applies the transferred enchantments to the item.
      */
-    private static void applyEnchantments(Enchantment enchantment, ItemStack offHandStack, ItemEnchantmentsComponent.Builder mainHandBuilder, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry) {
+    private static void transferEnchantments(Enchantment enchantment, ItemStack mainHandStack, ItemStack offHandStack, ItemEnchantmentsComponent.Builder mainHandBuilder, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry) {
         if (enchantment.isAcceptableItem(offHandStack)) {
             EnchantmentHelper.apply(offHandStack, builder -> builder.add(entry.getKey(), mainHandBuilder.getLevel(entry.getKey())));
+            EnchantmentHelper.apply(mainHandStack, builder -> builder.remove(enchantmentRegistryEntry -> enchantmentRegistryEntry.value().isAcceptableItem(offHandStack)));
         } else {
             EnchantmentHelper.apply(offHandStack, builder -> builder.remove(enchantmentRegistryEntry -> !enchantmentRegistryEntry.value().isAcceptableItem(offHandStack)));
         }
@@ -166,6 +168,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
      * A successful enchantment transfer.
      */
     private static void success(World world, BlockPos pos, PlayerEntity player, ItemStack mainHandStack, int cost) {
+        player.sendMessage(Text.translatable("speedrunnermod.transferred_enchantments").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
         world.playSound(null, pos, SoundEvents.BLOCK_SMITHING_TABLE_USE, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
         player.addExperienceLevels(-cost);
         player.setStackInHand(player.getActiveHand(), mainHandStack);
