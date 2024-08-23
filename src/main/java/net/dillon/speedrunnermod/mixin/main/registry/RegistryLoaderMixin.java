@@ -32,7 +32,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
 import static net.dillon.speedrunnermod.util.JsonIdentifiers.*;
 
 @Mixin(RegistryLoader.class)
-public abstract class RegistryLoaderMixin {
+public class RegistryLoaderMixin {
 
     /**
      * Directly modifies json files to change world generation.
@@ -41,7 +41,8 @@ public abstract class RegistryLoaderMixin {
     @ChatGPT(Credit.MOST_CREDIT)
     @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;parse(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), method = "parseAndAdd", locals = LocalCapture.CAPTURE_FAILHARD)
     private static <E> void load(MutableRegistry<E> registry, Decoder<E> decoder, RegistryOps<JsonElement> ops, RegistryKey<E> resourceKey, Resource resource, RegistryEntryInfo registrationInfo, CallbackInfo ci, Reader reader, JsonElement jsonElement) {
-        String fileName = registry.getKey().getValue().getPath();
+        String path = registry.getKey().getValue().getPath();
+        String fileName = path + "/" + resourceKey.getValue().getPath() + ".json";
 
         if (options().main.customDataGeneration) {
             for (int i = 0; i < biomesWithDefaultMonsters().size(); i++) {

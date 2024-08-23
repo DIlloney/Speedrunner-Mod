@@ -1,15 +1,13 @@
 package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.enchantment.ModEnchantments;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.*;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -77,9 +75,10 @@ public class ModItemGroups {
                         entries.add(ModItems.CRIMSON_CHEST_BOAT);
                         entries.add(ModItems.WARPED_BOAT);
                         entries.add(ModItems.WARPED_CHEST_BOAT);
-//                        for (int i = 1; i < 7; i++) {
-//                            entries.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(i >= 4 ? ItemUtil.enchantment(null, ModEnchantments.COOLDOWN) : ItemUtil.enchantment(null, ModEnchantments.DASH), i >= 4 ? i - 3 : i)));
-//                        }
+                        displayContext.lookup().getOptionalWrapper(RegistryKeys.ENCHANTMENT).ifPresent(registryWrapper -> {
+                            addAllLevelEnchantedBook(entries, registryWrapper, ItemGroup.StackVisibility.PARENT_TAB_ONLY, ModEnchantments.DASH);
+                            addAllLevelEnchantedBook(entries, registryWrapper, ItemGroup.StackVisibility.PARENT_TAB_ONLY, ModEnchantments.COOLDOWN);
+                        });
                         entries.add(ModItems.IGNEOUS_ROCK);
                         entries.add(ModBlockItems.IGNEOUS_ORE);
                         entries.add(ModBlockItems.DEEPSLATE_IGNEOUS_ORE);
@@ -148,10 +147,16 @@ public class ModItemGroups {
                         entries.add(ModItems.COOKED_FLESH);
                     }).build());
 
-    private static void addAllLevelEnchantedBooks(ItemGroup.Entries entries, RegistryWrapper<Enchantment> registryWrapper, ItemGroup.StackVisibility stackVisibility) {
-        registryWrapper.streamEntries().flatMap(enchantmentEntry -> IntStream.rangeClosed((enchantmentEntry.value()).getMinLevel(), (enchantmentEntry.value()).getMaxLevel()).mapToObj(level -> EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(enchantmentEntry, level)))).forEach(stack -> entries.add(stack, stackVisibility));
+    /**
+     * Adds all the levels of the inputted enchanted book to the item group.
+     */
+    private static void addAllLevelEnchantedBook(ItemGroup.Entries entries, RegistryWrapper<Enchantment> registryWrapper, ItemGroup.StackVisibility stackVisibility, RegistryKey<Enchantment> enchantment) {
+        registryWrapper.streamEntries().filter(enchantmentReference -> enchantmentReference.matchesKey(enchantment)).flatMap(enchantmentEntry -> IntStream.rangeClosed((enchantmentEntry.value()).getMinLevel(), enchantmentEntry.value().getMaxLevel()).mapToObj(level -> EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(enchantmentEntry, level)))).forEach(stack -> entries.add(stack, stackVisibility));
     }
 
+    /**
+     * Adds an item to an item group.
+     */
     private static void addToItemGroup(RegistryKey<ItemGroup> group, Item item) {
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
     }

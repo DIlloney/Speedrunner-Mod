@@ -5,6 +5,7 @@ import net.dillon.speedrunnermod.item.ModItems;
 import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
@@ -351,5 +352,46 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS)
                 .add(ModBlockItems.WOODEN_SPEEDRUNNER_TRAPDOOR)
                 .add(ModBlockItems.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
+
+        getOrCreateTagBuilder(ItemTags.SWORDS)
+                .add(ModItems.SPEEDRUNNER_SWORD)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_SWORD)
+                .add(ModItems.DRAGONS_SWORD)
+                .add(ModItems.WITHER_SWORD);
+
+        getOrCreateTagBuilder(ItemTags.SHOVELS)
+                .add(ModItems.SPEEDRUNNER_SHOVEL)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_SHOVEL);
+
+        getOrCreateTagBuilder(ItemTags.PICKAXES)
+                .add(ModItems.SPEEDRUNNER_PICKAXE)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_PICKAXE);
+
+        getOrCreateTagBuilder(ItemTags.AXES)
+                .add(ModItems.SPEEDRUNNER_AXE)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_AXE);
+
+        getOrCreateTagBuilder(ItemTags.HOES)
+                .add(ModItems.SPEEDRUNNER_HOE)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_HOE);
+
+        getOrCreateTagBuilder(ConventionalItemTags.SHEAR_TOOLS)
+                .add(ModItems.SPEEDRUNNER_SHEARS);
+
+        getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
+                .add(ModItems.SPEEDRUNNER_HELMET)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_HELMET);
+
+        getOrCreateTagBuilder(ItemTags.CHEST_ARMOR)
+                .add(ModItems.SPEEDRUNNER_CHESTPLATE)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE);
+
+        getOrCreateTagBuilder(ItemTags.LEG_ARMOR)
+                .add(ModItems.SPEEDRUNNER_LEGGINGS)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS);
+
+        getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
+                .add(ModItems.SPEEDRUNNER_BOOTS)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
     }
 }
