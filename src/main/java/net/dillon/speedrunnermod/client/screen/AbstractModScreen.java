@@ -132,11 +132,12 @@ public abstract class AbstractModScreen extends BaseModScreen {
             context.drawCenteredTextWithShadow(this.textRenderer, SpeedrunnerMod.VERSION, farRightSide, height, 16777215);
         }
 
+        super.render(context, mouseX, mouseY, delta);
+
         if (this.shouldRenderTitleText()) {
             context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 16777215);
         }
 
-        super.render(context, mouseX, mouseY, delta);
         if (this.isOptionsScreen()) {
             this.optionList.render(context, mouseX, mouseY, delta);
             context.drawTexture(Identifier.of("speedrunnermod:textures/gui/question_mark.png"), this.getButtonsRightSide() + 106, this.helpButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);

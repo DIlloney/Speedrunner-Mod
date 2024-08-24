@@ -182,6 +182,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        super.render(context, mouseX, mouseY, delta);
         context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 16777215);
 
         List<OrderedText> screenText = this.client.textRenderer.wrapLines(this.textToDisplay(), 396);
@@ -198,7 +199,6 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         int height = this.height - 24;
         context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("§lPage:§r " + this.getPageNumber() + "/" + this.getMaxPages()), farRightSide, height, 16777215);
 
-        super.render(context, mouseX, mouseY, delta);
         if (this.renderBaseImage) {
             if (screenText.size() <= 8) {
                 context.drawTexture(this.getImage(), this.getImageX(), this.getImageY(), 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
