@@ -11,12 +11,12 @@ import net.minecraft.registry.tag.BlockTags;
 import java.util.List;
 
 /**
- * The {@link net.dillon.speedrunnermod.SpeedrunnerMod} shears, which can mine certain blocks faster.
+ * The speedrunner shears, which can mine certain blocks faster.
  */
 public class SpeedrunnerShearsItem extends ShearsItem {
 
     public static ToolComponent createSpeedrunnerShears() {
-        return new ToolComponent(List.of(ToolComponent.Rule.ofAlwaysDropping(List.of(Blocks.COBWEB), 15.0F), ToolComponent.Rule.of(BlockTags.LEAVES, 15.0F), ToolComponent.Rule.of(BlockTags.WOOL, 7.5F), ToolComponent.Rule.of(List.of(Blocks.VINE, Blocks.GLOW_LICHEN), 2.0F)), 1.0F, 1);
+        return new ToolComponent(List.of(ToolComponent.Rule.ofAlwaysDropping(List.of(Blocks.COBWEB), 17.0F), ToolComponent.Rule.of(BlockTags.LEAVES, 17.0F), ToolComponent.Rule.of(BlockTags.WOOL, 7.5F), ToolComponent.Rule.of(List.of(Blocks.VINE, Blocks.GLOW_LICHEN), 2.0F)), 1.0F, 1);
     }
 
     public SpeedrunnerShearsItem(Settings settings) {

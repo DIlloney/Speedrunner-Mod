@@ -353,6 +353,28 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlockItems.WOODEN_SPEEDRUNNER_TRAPDOOR)
                 .add(ModBlockItems.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
 
+        getOrCreateTagBuilder(ItemTags.SWORD_ENCHANTABLE)
+                .forceAddTag(ItemTags.AXES);
+
+        getOrCreateTagBuilder(ConventionalItemTags.SHEAR_TOOLS)
+                .add(ModItems.SPEEDRUNNER_SHEARS);
+
+        getOrCreateTagBuilder(ItemTags.MINING_ENCHANTABLE)
+                .add(ModItems.SPEEDRUNNER_SHEARS);
+
+        getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)
+                .add(ModItems.SPEEDRUNNER_SHEARS)
+                .add(ModItems.SPEEDRUNNER_FLINT_AND_STEEL)
+                .add(ModItems.SPEEDRUNNER_BOW)
+                .add(ModItems.SPEEDRUNNER_CROSSBOW)
+                .add(ModItems.SPEEDRUNNER_SHIELD);
+
+        getOrCreateTagBuilder(ItemTags.BOW_ENCHANTABLE)
+                .add(ModItems.SPEEDRUNNER_BOW);
+
+        getOrCreateTagBuilder(ItemTags.CROSSBOW_ENCHANTABLE)
+                .add(ModItems.SPEEDRUNNER_CROSSBOW);
+
         getOrCreateTagBuilder(ItemTags.SWORDS)
                 .add(ModItems.SPEEDRUNNER_SWORD)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_SWORD)
@@ -374,9 +396,6 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ItemTags.HOES)
                 .add(ModItems.SPEEDRUNNER_HOE)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_HOE);
-
-        getOrCreateTagBuilder(ConventionalItemTags.SHEAR_TOOLS)
-                .add(ModItems.SPEEDRUNNER_SHEARS);
 
         getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
                 .add(ModItems.SPEEDRUNNER_HELMET)

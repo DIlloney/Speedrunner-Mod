@@ -4,8 +4,9 @@ import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.render.ModRenderers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BowItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -33,10 +34,9 @@ public class SpeedrunnerBowItem extends BowItem {
      */
     @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-        if (!(user instanceof PlayerEntity)) {
+        if (!(user instanceof PlayerEntity playerEntity)) {
             return;
         }
-        PlayerEntity playerEntity = (PlayerEntity)user;
         ItemStack itemStack = playerEntity.getProjectileType(stack);
         if (itemStack.isEmpty()) {
             return;
@@ -47,14 +47,25 @@ public class SpeedrunnerBowItem extends BowItem {
             return;
         }
         List<ItemStack> list = BowItem.load(stack, itemStack, playerEntity);
-        if (world instanceof ServerWorld) {
-            ServerWorld serverWorld = (ServerWorld)world;
+        if (world instanceof ServerWorld serverWorld) {
             if (!list.isEmpty()) {
-                this.shootAll(serverWorld, playerEntity, playerEntity.getActiveHand(), stack, list, f * 3.0f, 1.0f, f == 1.0f, null);
+                this.shootAll(serverWorld, playerEntity, playerEntity.getActiveHand(), stack, list, f * 3.5F /* In the BowItem class, this value is set to 3.0. Now it's 3.5, which increases the speed */, 1.0F, f == 1.0F, null);
             }
         }
-        world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0f, 1.0f / (world.getRandom().nextFloat() * 0.4f + 1.2f) + f * 0.5f);
+        world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
         playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
+    }
+
+    @Override
+    protected ProjectileEntity createArrowEntity(World world, LivingEntity shooter, ItemStack weaponStack, ItemStack projectileStack, boolean critical) {
+        Item item = projectileStack.getItem();
+        ArrowItem arrowItem2 = item instanceof ArrowItem ? (ArrowItem)item : (ArrowItem) Items.ARROW;
+        PersistentProjectileEntity persistentProjectileEntity = arrowItem2.createArrow(world, projectileStack, shooter, weaponStack);
+        persistentProjectileEntity.applyDamageModifier(1.1F); // Added to increase the power of the bow slightly
+        if (critical) {
+            persistentProjectileEntity.setCritical(true);
+        }
+        return persistentProjectileEntity;
     }
 
     /**

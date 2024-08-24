@@ -193,15 +193,17 @@ public class ModListOptions {
                     GameOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 8), 2, value -> SpeedrunnerMod.options().main.strongholdLibraryCount = value);
 
-    public static final SimpleOption<Integer> NETHER_PORTAL_COOLDOWN =
-            new SimpleOption<>("speedrunnermod.options.nether_portal_cooldown", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.nether_portal_cooldown.tooltip")),
+    public static final SimpleOption<Integer> NETHER_PORTAL_DELAY =
+            new SimpleOption<>("speedrunnermod.options.nether_portal_delay", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.nether_portal_delay.tooltip")),
                     (optionText, value) -> {
-                        if (value == 0) {
+                        if (value == -1) {
+                            return GameOptions.getGenericValueText(optionText, Text.literal("Go by Gamerule"));
+                        } else if (value == 0) {
                             return GameOptions.getGenericValueText(optionText, Text.literal("None"));
                         } else {
                             return GameOptions.getGenericValueText(optionText, Text.literal(value + "s"));
                         }},
-                    new SimpleOption.ValidatingIntSliderCallbacks(0, 20), 2, value -> SpeedrunnerMod.options().main.netherPortalCooldown = value);
+                    new SimpleOption.ValidatingIntSliderCallbacks(-1, 20), 2, value -> SpeedrunnerMod.options().main.netherPortalDelay = value);
 
     public static final SimpleOption<Integer> ANVIL_COST_LIMIT =
             new SimpleOption<>("speedrunnermod.options.anvil_cost_limit", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.anvil_cost_limit.tooltip")),

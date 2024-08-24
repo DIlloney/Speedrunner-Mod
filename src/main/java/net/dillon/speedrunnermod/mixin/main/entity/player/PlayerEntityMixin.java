@@ -29,7 +29,6 @@ import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -103,15 +102,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             this.getWorld().addParticle(ParticleTypes.PORTAL, this.getParticleX(0.5D), this.getRandomBodyY() - 0.25D, this.getParticleZ(0.5D), (this.getWorld().random.nextDouble() - 0.5D) * 2.0D, -this.getWorld().random.nextDouble(), (this.getWorld().random.nextDouble() - 0.5D) * 2.0D);
         }
     }
-
-    /**
-     * Changes the default nether portal cooldown to whatever the user sets it to.
-     */
-    @Overwrite
-    public int getDefaultPortalCooldown() {
-        return this.abilities.invulnerable || options().main.netherPortalCooldown <= 0 ? 1 : options().main.netherPortalCooldown * 20;
-    }
-
 
     /**
      * Allows player to hold their breath for a longer period of time while underwater.

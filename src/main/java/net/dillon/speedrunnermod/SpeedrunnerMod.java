@@ -151,7 +151,7 @@ public class SpeedrunnerMod implements ModInitializer {
         options().main.strongholdLibraryCount = 2;
         options().main.mobSpawningRate = ModOptions.MobSpawningRate.HIGH;
         options().main.fasterSpawners = true;
-        options().main.netherPortalCooldown = 2;
+        options().main.netherPortalDelay = 2;
         options().main.throwableFireballs = true;
         options().main.arrowsDestroyBeds = true;
         options().main.globalNetherPortals = true;

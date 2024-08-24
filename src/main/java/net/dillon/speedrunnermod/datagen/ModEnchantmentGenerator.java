@@ -32,29 +32,23 @@ public class ModEnchantmentGenerator extends FabricDynamicRegistryProvider {
 
         register(entries, ModEnchantments.DASH, Enchantment.builder(
                 Enchantment.definition(
-                        itemLookup.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
-                        11, // probability of appearing in the enchantment table
-                        3, // max enchantment level
-                        Enchantment.leveledCost(1, 1), // cost per level (base)
-                        Enchantment.leveledCost(1, 3), // cost per level (maximum)
-                        7, // anvil applying cost
-                        AttributeModifierSlot.FEET))
-                /* .addEffect(EnchantmentEffectComponentTypes.ATTRIBUTES,
-                        new AttributeEnchantmentEffect(Identifier.of(SpeedrunnerMod.MOD_ID, "enchantment.dash"),
-                                EntityAttributes.GENERIC_MOVEMENT_SPEED, EnchantmentLevelBasedValue.linear(0.15F), EntityAttributeModifier.Operation.ADD_VALUE)) */);
+                        itemLookup.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE), // The items that this enchantment can be applied to
+                        11, // Probability of appearing in the enchantment table
+                        3, // Maximum enchantment level
+                        Enchantment.leveledCost(1, 1), // Cost per level (base)
+                        Enchantment.leveledCost(1, 3), // Cost per level (maximum)
+                        7, // Anvil applying cost
+                        AttributeModifierSlot.FEET)));
 
         register(entries, ModEnchantments.COOLDOWN, Enchantment.builder(
                         Enchantment.definition(
                                 itemLookup.getOrThrow(ModItemTags.COOLDOWN_ENCHANTMENT_ITEMS),
-                                10, // probability of appearing in the enchantment table
-                                3, // max enchantment level
-                                Enchantment.leveledCost(1, 1), // cost per level (base)
-                                Enchantment.leveledCost(1, 3), // cost per level (maximum)
-                                5, // anvil applying cost
-                                AttributeModifierSlot.HAND))
-                /* .addEffect(EnchantmentEffectComponentTypes.ATTRIBUTES,
-                        new AttributeEnchantmentEffect(Identifier.of(SpeedrunnerMod.MOD_ID, "enchantment.dash"),
-                                EntityAttributes.GENERIC_MOVEMENT_SPEED, EnchantmentLevelBasedValue.linear(0.15F), EntityAttributeModifier.Operation.ADD_VALUE)) */);
+                                10,
+                                3,
+                                Enchantment.leveledCost(1, 1),
+                                Enchantment.leveledCost(1, 3),
+                                5,
+                                AttributeModifierSlot.HAND)));
     }
 
     @Author(Authors.TURTYWURTY)

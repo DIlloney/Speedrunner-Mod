@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-21T20:45:29.7274987	Speedrunner Mod/Tags for minecraft:block
+// 1.21.1	2024-08-23T23:30:58.2293876	Speedrunner Mod/Tags for minecraft:block
 5cb4e6d2ce4a6c05f88731fbefdc26720eb0a618 data\minecraft\tags\block\leaves.json
 b3c894c868d480afaa768255eeec5cf305aec96a data\minecraft\tags\block\saplings.json
 ebcb6df97718314913387058d6107ba954896c77 data\minecraft\tags\block\wooden_fences.json
@@ -7,14 +7,14 @@ a1a439e4b7dde8962382d6b643658545ae59e5c5 data\speedrunnermod\tags\block\doom_log
 3bddc8546af7693c5bd325b12af064b53b5277fe data\minecraft\tags\block\wooden_slabs.json
 74a24da4555d2f344b6355f1aa3ced5be049f537 data\speedrunnermod\tags\block\speedrunner_planks.json
 12eb4eee9d57cf967c97b5c8a7dce7a44799fc75 data\minecraft\tags\block\trapdoors.json
-0bfbff94bd17424bae1c0c9dc2ec2fd4c65674eb data\speedrunnermod\tags\block\experience_ores.json
 986504d53c29cdf82d3995494666ca4c18f17799 data\minecraft\tags\block\doors.json
+0bfbff94bd17424bae1c0c9dc2ec2fd4c65674eb data\speedrunnermod\tags\block\experience_ores.json
 7c28bc1c74491957939c885e65547be2fe978222 data\speedrunnermod\tags\block\texture_creator_krevikus.json
 ccac9c96189386e48ab1cb1a3e96a7f5ff7b52be data\speedrunnermod\tags\block\igneous_ores.json
 f835774514532d85f95cc176011fd40ae642771d data\speedrunnermod\tags\block\speedrunner_logs.json
-d9d027d6dffe4c8a075345c59e9d09bea46914ef data\minecraft\tags\block\mineable\axe.json
 5cb4e6d2ce4a6c05f88731fbefdc26720eb0a618 data\minecraft\tags\block\mineable\hoe.json
 9db4a56bd43c9e8101a19cd6dd62e5c06b9b1b12 data\minecraft\tags\block\mineable\shovel.json
+d9d027d6dffe4c8a075345c59e9d09bea46914ef data\minecraft\tags\block\mineable\axe.json
 7c7170cc938f0292a03b08e7bb2d1c94e4f1807f data\speedrunnermod\tags\block\speedrunner_ores.json
 4259aa86b55f0f410c2aff0ec2f277f563a43317 data\minecraft\tags\block\logs.json
 be89e38c14619d40d4e51dc0413f97f2e5174307 data\speedrunnermod\tags\block\smithing_tables.json

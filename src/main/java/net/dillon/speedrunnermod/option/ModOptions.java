@@ -76,7 +76,7 @@ public class ModOptions {
         @RequiresRestart
         public int strongholdLibraryCount = 2;
         public MobSpawningRate mobSpawningRate = MobSpawningRate.HIGH;
-        public int netherPortalCooldown = 2;
+        public int netherPortalDelay = 2;
         public boolean throwableFireballs = true;
         public boolean arrowsDestroyBeds = true;
         public boolean globalNetherPortals = true;
@@ -202,7 +202,7 @@ public class ModOptions {
     }
 
     public boolean isNetherPortalCooldownValid() {
-        return this.inBounds(main.netherPortalCooldown, 0, 20);
+        return this.inBounds(main.netherPortalDelay, 0, 20);
     }
 
     public boolean isEyeOfEnderBreakingCooldownValid() {
@@ -539,7 +539,7 @@ public class ModOptions {
             BrokenModOptions.difficulty = true;
         }
 
-        if (options().main.netherPortalCooldown < 0) {
+        if (options().main.netherPortalDelay < 0) {
             error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.netherPortalCooldown");
             isSafe(false);
             BrokenModOptions.netherPortalCooldown = true;

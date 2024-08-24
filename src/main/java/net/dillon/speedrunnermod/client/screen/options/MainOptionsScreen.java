@@ -47,7 +47,7 @@ public class MainOptionsScreen extends AbstractModScreen {
                 ModListOptions.STRONGHOLD_SPREAD,
                 ModListOptions.STRONGHOLD_PORTAL_ROOM_COUNT,
                 ModListOptions.STRONGHOLD_LIBRARY_COUNT,
-                ModListOptions.NETHER_PORTAL_COOLDOWN,
+                ModListOptions.NETHER_PORTAL_DELAY,
                 ModListOptions.GLOBAL_NETHER_PORTALS,
                 ModListOptions.LAVA_BOATS,
                 ModListOptions.NETHER_WATER,

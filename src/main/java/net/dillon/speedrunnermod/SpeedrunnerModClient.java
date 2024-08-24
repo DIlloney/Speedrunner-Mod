@@ -70,7 +70,7 @@ public class SpeedrunnerModClient implements ClientModInitializer {
         }
 
         if (BrokenModOptions.netherPortalCooldown) {
-            options().main.netherPortalCooldown = 2;
+            options().main.netherPortalDelay = 2;
         }
 
         if (BrokenModOptions.mobSpawningRate) {

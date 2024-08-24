@@ -51,6 +51,7 @@
     "main.entity.PiglinBrainMixin",
     "main.entity.PiglinBruteEntityMixin",
     "main.entity.PillagerEntityMixin",
+    "main.entity.ProjectileUtilMixin",
     "main.entity.RavagerEntityMixin",
     "main.entity.SheepEntityMixin",
     "main.entity.ShulkerEntityMixin",
@@ -87,9 +88,9 @@
     "main.item.ItemEntityMixin",
     "main.item.ItemMixin",
     "main.item.TerraformBoatItemMixin",
-
-    "main.nether.nether_portal.AbstractFireBlockMixin",
-    "main.nether.nether_portal.NetherPortalMixin",
+    "main.nether.portal.AbstractFireBlockMixin",
+    "main.nether.portal.NetherPortalBlockMixin",
+    "main.nether.portal.NetherPortalMixin",
     "main.nether.DimensionTypeMixin",
 
     "main.recipe.ShapelessRecipeMixin",

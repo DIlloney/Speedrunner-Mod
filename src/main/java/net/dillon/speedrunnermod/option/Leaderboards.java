@@ -118,7 +118,7 @@ public class Leaderboards {
 
         if (!isNetherPortalCooldownEligible()) {
             warnIneligible("Nether Portal Cooldown");
-            addIneligible("nether_portal_cooldown", withFormatting(options.netherPortalCooldown, Formatting.RED, Formatting.BOLD));
+            addIneligible("nether_portal_cooldown", withFormatting(options.netherPortalDelay, Formatting.RED, Formatting.BOLD));
         }
 
         if (!isIcarusModeEligible()) {
@@ -171,7 +171,7 @@ public class Leaderboards {
         currentStrongholdPortalRoomCount = options.strongholdPortalRoomCount;
         currentStrongholdLibrariesCount = options.strongholdLibraryCount;
         currentAnvilCostLimit = options.anvilCostLimit;
-        currentNetherPortalCooldown = options.netherPortalCooldown;
+        currentNetherPortalCooldown = options.netherPortalDelay;
     }
 
     /**
@@ -202,7 +202,7 @@ public class Leaderboards {
                 currentStrongholdPortalRoomCount == options.strongholdPortalRoomCount &&
                 currentStrongholdLibrariesCount == options.strongholdLibraryCount &&
                 currentAnvilCostLimit == options.anvilCostLimit &&
-                currentNetherPortalCooldown == options.netherPortalCooldown;
+                currentNetherPortalCooldown == options.netherPortalDelay;
     }
 
     /**
@@ -250,7 +250,7 @@ public class Leaderboards {
         }
 
         if (!isNetherPortalCooldownEligible()) {
-            options.netherPortalCooldown = 2;
+            options.netherPortalDelay = 2;
         }
 
         if (!isFasterSpawnersEligible()) {
@@ -309,7 +309,7 @@ public class Leaderboards {
         }
 
         if (!isNetherPortalCooldownEligible()) {
-            options.netherPortalCooldown = currentNetherPortalCooldown;
+            options.netherPortalDelay = currentNetherPortalCooldown;
         }
 
         fixBooleanOptions();
@@ -434,7 +434,7 @@ public class Leaderboards {
     }
 
     private static boolean isNetherPortalCooldownEligible() {
-        return options().inBounds(options.netherPortalCooldown, 1, 20);
+        return options().inBounds(options.netherPortalDelay, 1, 20);
     }
 
     private static boolean isFasterSpawnersEligible() {

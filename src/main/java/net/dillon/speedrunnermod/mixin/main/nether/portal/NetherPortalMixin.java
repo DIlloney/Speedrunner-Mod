@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.mixin.main.nether.nether_portal;
+package net.dillon.speedrunnermod.mixin.main.nether.portal;
 
 import net.dillon.speedrunnermod.tag.ModBlockTags;
 import net.minecraft.block.AbstractBlock;
