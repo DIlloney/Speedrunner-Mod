@@ -38,7 +38,7 @@ public class OptionsScreenMixin extends Screen {
 
     @Inject(method = "init", at = @At("TAIL"))
     private void addButtons(CallbackInfo ci) {
-        dillon8775YouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (button) -> {
+        this.dillon8775YouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (button) -> {
             this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                 if (openInBrowser) {
                     Util.getOperatingSystem().open(ModLinks.DILLON8775_YOUTUBE);
@@ -49,7 +49,7 @@ public class OptionsScreenMixin extends Screen {
 
         this.optionsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (button) -> {
             this.client.setScreen(new MainScreen(this, this.settings));
-        }).dimensions(this.width / 2 - 179, this.height / 6 + 120 - 6, 20, 20).build());
+        }).dimensions(this.width / 2 - 179, this.height / 6 + 128 - 6, 20, 20).build());
     }
 
     @Override
