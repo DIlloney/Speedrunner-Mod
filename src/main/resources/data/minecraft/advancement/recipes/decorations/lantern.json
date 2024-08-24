@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "speedrunnermod:iron_nuggets"
+            "items": "#speedrunnermod:iron_nuggets"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "speedrunnermod:iron_ingots"
+            "items": "#speedrunnermod:iron_ingots"
           }
         ]
       }

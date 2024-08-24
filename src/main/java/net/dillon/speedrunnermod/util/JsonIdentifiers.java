@@ -30,6 +30,7 @@ public final class JsonIdentifiers {
     public static final String RUINED_PORTALS = structure("ruined_portals");
     public static final String SHIPWRECKS = structure("shipwrecks");
     public static final String STRONGHOLDS = structure("strongholds");
+    public static final String TRAIL_CHAMBERS = structure("trail_chambers");
     public static final String VILLAGES = structure("villages");
     public static final String WOODLAND_MANSIONS = structure("woodland_mansions");
 

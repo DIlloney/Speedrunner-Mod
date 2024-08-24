@@ -5,10 +5,10 @@
       "id": "speedrunnermod:speedrunner_pickaxe"
     },
     "title": {
-      "translate": "advancements.speedrunnermod.quicker_pick.title"
+      "translate": "advancements.speedrunnermod.the_quicker_picker_upper.title"
     },
     "description": {
-      "translate": "advancements.speedrunnermod.quicker_pick.description"
+      "translate": "advancements.speedrunnermod.the_quicker_picker_upper.description"
     },
     "frame": "task",
     "show_toast": true,

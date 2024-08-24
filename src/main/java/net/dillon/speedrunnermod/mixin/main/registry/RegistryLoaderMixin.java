@@ -293,31 +293,37 @@ public class RegistryLoaderMixin {
                 skeleton.addProperty("type", "minecraft:skeleton");
                 skeleton.addProperty("maxCount", 4);
                 skeleton.addProperty("minCount", 1);
-                skeleton.addProperty("weight", 75);
+                skeleton.addProperty("weight", 70);
 
                 JsonObject vindicator = new JsonObject();
                 vindicator.addProperty("type", "minecraft:vindicator");
                 vindicator.addProperty("maxCount", 2);
                 vindicator.addProperty("minCount", 1);
-                vindicator.addProperty("weight", 75);
-
-                JsonObject ravager = new JsonObject();
-                ravager.addProperty("type", "minecraft:ravager");
-                ravager.addProperty("maxCount", 1);
-                ravager.addProperty("minCount", 1);
-                ravager.addProperty("weight", 50);
-
-                JsonObject evoker = new JsonObject();
-                evoker.addProperty("type", "minecraft:evoker");
-                evoker.addProperty("maxCount", 1);
-                evoker.addProperty("minCount", 1);
-                evoker.addProperty("weight", 50);
+                vindicator.addProperty("weight", 65);
 
                 JsonObject zombie = new JsonObject();
                 zombie.addProperty("type", "minecraft:zombie");
                 zombie.addProperty("maxCount", 1);
                 zombie.addProperty("minCount", 1);
-                zombie.addProperty("weight", 25);
+                zombie.addProperty("weight", 50);
+
+                JsonObject ravager = new JsonObject();
+                ravager.addProperty("type", "minecraft:ravager");
+                ravager.addProperty("maxCount", 1);
+                ravager.addProperty("minCount", 1);
+                ravager.addProperty("weight", 40);
+
+                JsonObject evoker = new JsonObject();
+                evoker.addProperty("type", "minecraft:evoker");
+                evoker.addProperty("maxCount", 1);
+                evoker.addProperty("minCount", 1);
+                evoker.addProperty("weight", 25);
+
+                JsonObject breeze = new JsonObject();
+                breeze.addProperty("type", "minecraft:breeze");
+                breeze.addProperty("maxCount", 1);
+                breeze.addProperty("minCount", 1);
+                breeze.addProperty("weight", 25);
 
                 theEndMonsters.add(enderman);
                 if (DOOM_MODE) {
@@ -326,6 +332,7 @@ public class RegistryLoaderMixin {
                     theEndMonsters.add(ravager);
                     theEndMonsters.add(evoker);
                     theEndMonsters.add(zombie);
+                    theEndMonsters.add(breeze);
                 }
 
                 theEndSpawners.getAsJsonArray("monster").addAll(theEndMonsters);
@@ -513,6 +520,11 @@ public class RegistryLoaderMixin {
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("distance", options().main.strongholdDistance);
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spread", options().main.strongholdSpread);
                     jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("count", options().main.strongholdCount);
+                }
+
+                if (fileName.equals(TRAIL_CHAMBERS)) {
+                    jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("spacing", getTrailChambersSpacing());
+                    jsonElement.getAsJsonObject().getAsJsonObject("placement").addProperty("separation", getTrailChambersSeparation());
                 }
 
                 if (fileName.equals(VILLAGES)) {

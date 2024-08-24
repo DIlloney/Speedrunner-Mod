@@ -6,7 +6,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "speedrunnermod:iron_ingots"
+            "items": "#speedrunnermod:iron_ingots"
           }
         ]
       }

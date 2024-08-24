@@ -4,9 +4,8 @@ import com.mojang.authlib.GameProfile;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
+import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.FireworksComponent;
-import net.minecraft.component.type.UnbreakableComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.damage.DamageSource;
@@ -29,7 +28,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.List;
 import java.util.Optional;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
@@ -68,11 +66,8 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         if (this.statHandler.getStat(Stats.CUSTOM.getOrCreateStat(Stats.PLAY_TIME)) == 0) {
             ItemStack item;
             if (options().main.iCarusMode) {
-                item = new ItemStack(Items.ELYTRA, 1);
-                item.set(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(true));
-
-                ItemStack fireworks = new ItemStack(Items.FIREWORK_ROCKET, 64);
-                fireworks.set(DataComponentTypes.FIREWORKS, new FireworksComponent(3, List.of()));
+                item = ItemUtil.unbreakableElytra();
+                ItemStack fireworks = ItemUtil.longLastingFireworkRockets(64);
 
                 this.getInventory().armor.set(2, item);
                 this.getInventory().main.set(0, fireworks);

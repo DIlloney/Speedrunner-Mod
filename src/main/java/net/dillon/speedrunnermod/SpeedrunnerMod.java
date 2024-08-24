@@ -538,6 +538,45 @@ public class SpeedrunnerMod implements ModInitializer {
         }
     }
 
+    public static int getTrailChambersSpacing() {
+        if (options().main.structureSpawnRates.everywhere()) {
+            return 5;
+        } else if (options().main.structureSpawnRates.veryCommon()) {
+            return 8;
+        } else if (options().main.structureSpawnRates.common()) {
+            return 12;
+        } else if (options().main.structureSpawnRates.normal()) {
+            return 20;
+        } else if (options().main.structureSpawnRates.ddefault()) {
+            return 34;
+        } else if (options().main.structureSpawnRates.rare()) {
+            return 40;
+        } else if (options().main.structureSpawnRates.veryRare()) {
+            return 45;
+        } else {
+            return 0;
+        }
+    }
+
+    public static int getTrailChambersSeparation() {
+        if (options().main.structureSpawnRates.everywhere()) {
+            return 3;
+        } else if (options().main.structureSpawnRates.veryCommon()) {
+            return 7;
+        } else if (options().main.structureSpawnRates.common() ||
+                options().main.structureSpawnRates.normal()) {
+            return 8;
+        } else if (options().main.structureSpawnRates.ddefault()) {
+            return 12;
+        } else if (options().main.structureSpawnRates.rare()) {
+            return 16;
+        } else if (options().main.structureSpawnRates.veryRare()) {
+            return 20;
+        } else {
+            return 0;
+        }
+    }
+
     public static int getNetherComplexesSpacing() {
         if (options().main.structureSpawnRates.everywhere()) {
             return 4;

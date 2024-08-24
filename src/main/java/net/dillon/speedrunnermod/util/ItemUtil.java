@@ -2,11 +2,16 @@ package net.dillon.speedrunnermod.util;
 
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.FireworksComponent;
+import net.minecraft.component.type.UnbreakableComponent;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EyeOfEnderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -69,6 +74,36 @@ public class ItemUtil {
     public static RegistryEntry<Enchantment> enchantment(Entity entity, RegistryKey<Enchantment> enchantment) {
         Optional<RegistryEntry.Reference<Enchantment>> optional = entity.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(enchantment);
         return optional.get();
+    }
+
+    /**
+     * Returns an unbreakable elytra.
+     */
+    public static ItemStack unbreakableElytra() {
+        ItemStack elytra = new ItemStack(Items.ELYTRA);
+        elytra.set(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(true));
+        return elytra;
+    }
+
+    /**
+     * Returns flight duration 3 firework rockets.
+     */
+    public static ItemStack longLastingFireworkRockets(int count) {
+        ItemStack fireworks = new ItemStack(Items.FIREWORK_ROCKET, count);
+        fireworks.set(DataComponentTypes.FIREWORKS, new FireworksComponent(3, List.of()));
+        return fireworks;
+    }
+
+    /**
+     * Returns the enchanted {@code infini pearl.}
+     */
+    public static ItemStack infiniPearl(EnchantmentLevelEntry info) {
+        ItemStack infiniPearl = new ItemStack(Items.ENDER_PEARL);
+        Text text = Text.literal("InfiniPearl™");
+        text.getWithStyle(text.getStyle().withItalic(false));
+        infiniPearl.set(DataComponentTypes.CUSTOM_NAME, text);
+        infiniPearl.addEnchantment(info.enchantment, info.level);
+        return infiniPearl;
     }
 
     /**

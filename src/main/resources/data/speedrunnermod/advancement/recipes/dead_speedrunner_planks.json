@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "speedrunnermod:dead_speedrunner_logs"
+            "items": "#speedrunnermod:dead_speedrunner_logs"
           }
         ]
       }

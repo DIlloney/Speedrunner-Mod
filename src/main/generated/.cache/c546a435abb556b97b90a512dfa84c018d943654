@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-24T01:57:43.3340535	Speedrunner Mod/Tags for minecraft:item
+// 1.21.1	2024-08-24T16:41:21.9649296	Speedrunner Mod/Tags for minecraft:item
 553d2cf245adbea7c18a43bd70a6423f7bf1c8a1 data\speedrunnermod\tags\item\doom_stone_safe_tools.json
 a1a439e4b7dde8962382d6b643658545ae59e5c5 data\speedrunnermod\tags\item\doom_logs.json
 b3c894c868d480afaa768255eeec5cf305aec96a data\minecraft\tags\item\saplings.json
@@ -34,6 +34,7 @@ d8f561c12d4f7d14b53f896052dfc1cd9651190d data\minecraft\tags\item\piglin_loved.j
 6c212ad82961984e75e83f3825269ab9e2f97125 data\minecraft\tags\item\swords.json
 665d8409ac3a36472092740f9af19156023a5c33 data\speedrunnermod\tags\item\sticks.json
 34d7cf4b35642ceb2abdcb7fb7a0b11d6d867e75 data\minecraft\tags\item\hoes.json
+2d1685567a1ef4c2350b79cbe301a16913a2118c data\speedrunnermod\tags\item\trigger_unlock_piglin_awakener_recipe.json
 003e97640d77d52f0ea166113a270c39d731a308 data\minecraft\tags\item\trapdoors.json
 ef005469f5fe0cd1ab52624c8335e616ae031057 data\speedrunnermod\tags\item\speedrunner_armor.json
 74a24da4555d2f344b6355f1aa3ced5be049f537 data\minecraft\tags\item\planks.json
@@ -43,6 +44,7 @@ c58e3225175a76b75403bee9b45252138ae96abc data\minecraft\tags\item\boats.json
 148586d946cb6cfc654cbc1c0afaf6a547633380 data\minecraft\tags\item\pickaxes.json
 0294870efdba5d14283ef50ef105a69f9cd23a84 data\c\tags\item\tools\shear.json
 8391dba5d8b1dcc3fab62d9e7793451247a6deff data\speedrunnermod\tags\item\speedrunner_signs.json
+4292b9e45cc32f6be48a36f728c9f8d4fb741a26 data\speedrunnermod\tags\item\trigger_unlock_blaze_spotter_recipe.json
 5cb4e6d2ce4a6c05f88731fbefdc26720eb0a618 data\minecraft\tags\item\leaves.json
 673791220c22c286b011a6e244a959a605b3260b data\speedrunnermod\tags\item\iron_blocks.json
 9db4a56bd43c9e8101a19cd6dd62e5c06b9b1b12 data\speedrunnermod\tags\item\texture_creator_mannyqueso.json
@@ -73,3 +75,4 @@ fef7cca5162f7a2c51e7425d157a367e87012df2 data\speedrunnermod\tags\item\faster_ch
 29e9b4051601ff7423239232d99802f3fe71597f data\minecraft\tags\item\fence_gates.json
 362b26547b99707c8fde2e335bfd18110e4f7fc2 data\minecraft\tags\item\enchantable\crossbow.json
 0294870efdba5d14283ef50ef105a69f9cd23a84 data\minecraft\tags\item\enchantable\mining.json
+77debc1b163e34be0065fc442a9215845bc433ab data\speedrunnermod\tags\item\trigger_unlock_eye_of_inferno_recipe.json
