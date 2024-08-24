@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "s",
+    "s",
+    "/"
+  ],
+  "key": {
+    "s": {
+      "item": "speedrunnermod:wither_bone"
+    },
+    "/": {
+      "item": "speedrunnermod:speedrunner_stick"
+    }
+  },
+  "result": {
+    "id": "speedrunnermod:wither_sword",
+    "count": 1
+  }
+}

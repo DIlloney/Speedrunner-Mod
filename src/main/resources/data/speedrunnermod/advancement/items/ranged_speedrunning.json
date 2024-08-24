@@ -1,0 +1,37 @@
+{
+  "parent": "speedrunnermod:items/speedrunning_time",
+  "display": {
+    "icon": {
+      "id": "speedrunnermod:speedrunner_bow"
+    },
+    "title": {
+      "translate": "advancements.speedrunnermod.ranged_speedrunning.title"
+    },
+    "description": {
+      "translate": "advancements.speedrunnermod.ranged_speedrunning.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_speedrunner_bow": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "speedrunnermod:speedrunner_bow"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_speedrunner_bow"
+    ]
+  ]
+}

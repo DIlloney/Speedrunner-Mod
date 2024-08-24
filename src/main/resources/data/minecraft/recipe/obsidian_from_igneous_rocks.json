@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "speedrunnermod:igneous_rock"
+    }
+  },
+  "result": {
+    "id": "minecraft:obsidian",
+    "count": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "raw_iron_blocks",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "speedrunnermod:raw_speedrunner"
+    }
+  },
+  "result": {
+    "id": "speedrunnermod:raw_speedrunner_block"
+  }
+}

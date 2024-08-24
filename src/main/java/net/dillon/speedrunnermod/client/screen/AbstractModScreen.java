@@ -122,6 +122,7 @@ public abstract class AbstractModScreen extends BaseModScreen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        super.render(context, mouseX, mouseY, delta);
         this.renderCustomText(context);
 
         if (this.shouldRenderVersionText()) {
@@ -131,8 +132,6 @@ public abstract class AbstractModScreen extends BaseModScreen {
             int height = this.height - 24;
             context.drawCenteredTextWithShadow(this.textRenderer, SpeedrunnerMod.VERSION, farRightSide, height, 16777215);
         }
-
-        super.render(context, mouseX, mouseY, delta);
 
         if (this.shouldRenderTitleText()) {
             context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 16777215);

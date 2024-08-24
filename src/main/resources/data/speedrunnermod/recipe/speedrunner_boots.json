@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "s s",
+    "s s"
+  ],
+  "key": {
+    "s": {
+      "item": "speedrunnermod:speedrunner_ingot"
+    }
+  },
+  "result": {
+    "id": "speedrunnermod:speedrunner_boots",
+    "count": 1
+  }
+}

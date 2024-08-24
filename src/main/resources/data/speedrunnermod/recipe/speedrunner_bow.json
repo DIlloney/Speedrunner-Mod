@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bows",
+  "pattern": [
+    " /s",
+    "/ s",
+    " /s"
+  ],
+  "key": {
+    "/": {
+      "tag": "speedrunnermod:sticks"
+    },
+    "s": {
+      "item": "speedrunnermod:speedrunner_ingot"
+    }
+  },
+  "result": {
+    "id": "speedrunnermod:speedrunner_bow",
+    "count": 1
+  }
+}

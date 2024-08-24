@@ -38,7 +38,7 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
     @Overwrite
     public void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
-        boolean ifb = EnchantmentHelper.getLevel(ItemUtil.enchantment((EnderPearlEntity)(Object)this, Enchantments.LOOTING), super.getStack()) > 0;
+        boolean ifb = EnchantmentHelper.getLevel(ItemUtil.enchantment((EnderPearlEntity)(Object)this, Enchantments.INFINITY), super.getStack()) > 0;
 
         for(int i = 0; i < 32; ++i) {
             this.getWorld().addParticle(ParticleTypes.PORTAL, this.getX(), this.getY() + this.random.nextDouble() * 2.0D, this.getZ(), this.random.nextGaussian(), 0.0D, this.random.nextGaussian());

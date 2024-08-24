@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "speedrunnermod:dead_speedrunner_planks"
+    }
+  },
+  "result": {
+    "id": "speedrunnermod:dead_speedrunner_slab",
+    "count": 6
+  }
+}

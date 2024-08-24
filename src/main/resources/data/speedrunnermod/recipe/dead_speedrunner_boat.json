@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "speedrunnermod:dead_speedrunner_planks"
+    }
+  },
+  "result": {
+    "id": "speedrunnermod:dead_speedrunner_boat"
+  }
+}

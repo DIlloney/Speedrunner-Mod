@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "speedrunner_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "speedrunnermod:speedrunner_nugget"
+    }
+  },
+  "result": {
+    "id": "speedrunnermod:speedrunner_ingot",
+    "count": 1
+  }
+}

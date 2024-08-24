@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "s s",
+    "sss"
+  ],
+  "key": {
+    "s": {
+      "tag": "speedrunnermod:iron_ingots"
+    }
+  },
+  "result": {
+    "id": "minecraft:minecart",
+    "count": 1
+  }
+}

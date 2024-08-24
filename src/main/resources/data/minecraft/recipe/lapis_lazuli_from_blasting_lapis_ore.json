@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "group": "lapis_lazuli",
+  "ingredient": {
+    "item": "minecraft:lapis_ore"
+  },
+  "result": {
+    "id": "minecraft:lapis_lazuli"
+  },
+  "experience": 100,
+  "cookingtime": 20
+}

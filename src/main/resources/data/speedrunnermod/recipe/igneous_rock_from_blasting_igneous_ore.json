@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "group": "igneous_rock",
+  "ingredient": {
+    "item": "speedrunnermod:igneous_ore"
+  },
+  "result": {
+    "id": "speedrunnermod:igneous_rock"
+  },
+  "experience": 0.65,
+  "cookingtime": 100
+}

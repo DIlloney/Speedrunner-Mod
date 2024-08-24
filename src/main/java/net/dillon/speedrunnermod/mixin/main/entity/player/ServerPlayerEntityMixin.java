@@ -29,6 +29,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.List;
 import java.util.Optional;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
@@ -71,7 +72,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
                 item.set(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(true));
 
                 ItemStack fireworks = new ItemStack(Items.FIREWORK_ROCKET, 64);
-                fireworks.set(DataComponentTypes.FIREWORKS, new FireworksComponent(3, null));
+                fireworks.set(DataComponentTypes.FIREWORKS, new FireworksComponent(3, List.of()));
 
                 this.getInventory().armor.set(2, item);
                 this.getInventory().main.set(0, fireworks);

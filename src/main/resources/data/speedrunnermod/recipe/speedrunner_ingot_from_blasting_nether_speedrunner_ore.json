@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "group": "speedrunner_ingot",
+  "ingredient": {
+    "item": "speedrunnermod:nether_speedrunner_ore"
+  },
+  "result": {
+    "id": "speedrunnermod:speedrunner_ingot"
+  },
+  "experience": 1.2,
+  "cookingtime": 100
+}

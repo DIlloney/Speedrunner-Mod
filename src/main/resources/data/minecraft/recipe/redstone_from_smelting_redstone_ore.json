@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "group": "redstone",
+  "ingredient": {
+    "item": "minecraft:redstone_ore"
+  },
+  "result": {
+    "id": "minecraft:redstone"
+  },
+  "experience": 100,
+  "cookingtime": 20
+}

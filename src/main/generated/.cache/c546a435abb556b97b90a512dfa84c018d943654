@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-23T23:30:58.2346637	Speedrunner Mod/Tags for minecraft:item
+// 1.21.1	2024-08-24T01:57:43.3340535	Speedrunner Mod/Tags for minecraft:item
 553d2cf245adbea7c18a43bd70a6423f7bf1c8a1 data\speedrunnermod\tags\item\doom_stone_safe_tools.json
 a1a439e4b7dde8962382d6b643658545ae59e5c5 data\speedrunnermod\tags\item\doom_logs.json
 b3c894c868d480afaa768255eeec5cf305aec96a data\minecraft\tags\item\saplings.json
@@ -60,8 +60,8 @@ f835774514532d85f95cc176011fd40ae642771d data\speedrunnermod\tags\item\speedrunn
 50dc01c9422eef727a266135f78c34ab4d090a86 data\speedrunnermod\tags\item\fireproof_chest_boats.json
 3be005000fb6b4ccc4c025d191d9411cb9a2476e data\minecraft\tags\item\foot_armor.json
 3ca288c634432f203098d4a6a9ae59a8169e3195 data\speedrunnermod\tags\item\crossbows.json
-6474924b7fda310dae7af0c9f3fbffaef31cb49d data\minecraft\tags\item\head_armor.json
 5a9b7731f1e6b334d9b878de3dc890b1ac920fc2 data\minecraft\tags\item\enchantable\durability.json
+6474924b7fda310dae7af0c9f3fbffaef31cb49d data\minecraft\tags\item\head_armor.json
 986504d53c29cdf82d3995494666ca4c18f17799 data\minecraft\tags\item\doors.json
 e37604f1f71f0a86b1b39b01b7f6b5e7bc5a2402 data\minecraft\tags\item\stone_crafting_materials.json
 e39ac6ffb6af974addd599ea1dfef968053522ad data\minecraft\tags\item\enchantable\bow.json
