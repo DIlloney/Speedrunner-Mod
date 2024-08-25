@@ -1,12 +1,10 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.item.ModItems;
 import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
-import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -38,7 +36,7 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
     @Overwrite
     public void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
-        boolean ifb = EnchantmentHelper.getLevel(ItemUtil.enchantment((EnderPearlEntity)(Object)this, Enchantments.INFINITY), super.getStack()) > 0;
+        boolean isInfiniPearl = super.getStack().isOf(ModItems.INFINI_PEARL);
 
         for(int i = 0; i < 32; ++i) {
             this.getWorld().addParticle(ParticleTypes.PORTAL, this.getX(), this.getY() + this.random.nextDouble() * 2.0D, this.getZ(), this.random.nextGaussian(), 0.0D, this.random.nextGaussian());
@@ -46,10 +44,9 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
 
         if (!this.getWorld().isClient && !this.isRemoved()) {
             Entity entity = this.getOwner();
-            if (entity instanceof ServerPlayerEntity) {
-                ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity;
+            if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
                 if (serverPlayerEntity.networkHandler.isConnectionOpen() && serverPlayerEntity.getWorld() == this.getWorld() && !serverPlayerEntity.isSleeping()) {
-                    if (!ifb && this.random.nextFloat() < 0.05F && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
+                    if (!isInfiniPearl && this.random.nextFloat() < 0.05F && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
                         EndermiteEntity endermiteEntity = EntityType.ENDERMITE.create(this.getWorld());
                         endermiteEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), entity.getPitch());
                         this.getWorld().spawnEntity(endermiteEntity);
@@ -62,7 +59,7 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
                     }
 
                     entity.fallDistance = 0.0F;
-                    if (!ifb) {
+                    if (!isInfiniPearl) {
                         if (DOOM_MODE) {
                             if (!serverPlayerEntity.isCreative() || !serverPlayerEntity.isSpectator()) {
                                 ((ServerPlayerEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, TickCalculator.seconds(3), 0));

@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.datagen;
+package net.dillon.speedrunnermod.data.generator;
 
 import net.dillon.speedrunnermod.item.ModBlockItems;
 import net.dillon.speedrunnermod.item.ModItems;
@@ -38,6 +38,7 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModItemTags.COOLDOWN_ENCHANTMENT_ITEMS)
                 .forceAddTag(ModItemTags.SHIELDS)
                 .add(Items.ENDER_PEARL)
+                .add(ModItems.INFINI_PEARL)
                 .add(Items.CHORUS_FRUIT);
 
         getOrCreateTagBuilder(ModItemTags.CROSSBOWS)
@@ -154,28 +155,6 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
-
-        getOrCreateTagBuilder(ModItemTags.STACK_TO_64)
-                .forceAddTag(ItemTags.BEDS)
-                .forceAddTag(ItemTags.BOATS)
-                .forceAddTag(ItemTags.CHEST_BOATS)
-                .forceAddTag(ItemTags.SIGNS)
-                .forceAddTag(ItemTags.BANNERS)
-                .add(Items.POTION)
-                .add(Items.SPLASH_POTION)
-                .add(Items.LINGERING_POTION)
-                .add(Items.ENDER_PEARL)
-                .add(Items.EGG)
-                .add(Items.SNOWBALL)
-                .add(Items.ARMOR_STAND)
-                .add(Items.HONEY_BOTTLE)
-                .add(Items.BUCKET)
-                .add(Items.TOTEM_OF_UNDYING)
-                .add(ModItems.DRAGONS_PEARL)
-                .add(ModItems.PIGLIN_AWAKENER)
-                .add(ModItems.ENDER_THRUSTER)
-                .add(ModItems.BLAZE_SPOTTER)
-                .add(ModItems.RAID_ERADICATOR);
 
         getOrCreateTagBuilder(ModItemTags.STICKS)
                 .add(Items.STICK)

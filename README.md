@@ -23,11 +23,7 @@ To install, place the mod .jar file in your ".mods" folder, and don't forget to 
 - **Recommended mods** (not required): [Sodium,](https://modrinth.com/mod/sodium) [Lithium,](https://modrinth.com/mod/lithium) [Phosphor,](https://modrinth.com/mod/phosphor) and [SpeedrunIGT](https://modrinth.com/mod/speedrunigt) (and in-game timer mod)
 
 ## Leaderboards
-You can view the **official leaderboards** for the speedrunner mod [here.](https://docs.google.com/spreadsheets/d/1JHiHHzRrcQnEeLCqxcjx9znPBJbCVDkhZ6ump9VtKHY/edit?usp=drive_link)
-
-To submit speedruns onto the leaderboard, you **must** enable the "Leaderboards Mode" option, located in the **Speedrunner Mod options.** If you do not do this, your run will be automatically **rejected.**
-
-You can submit your speedrun [here,](https://docs.google.com/forms/d/e/1FAIpQLScnw-e4gkYyHGEVztWY-DLmm64jIbnqLw_LCIBkF2uQFfqVTg/viewform) and view all the requirements for submitting a speedrun.
+The leaderboards are currently disabled due, to lack of activity.
 
 ## License
 All rights reserved.

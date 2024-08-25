@@ -24,7 +24,7 @@
       "net.dillon.speedrunnermod.SpeedrunnerModClient"
     ],
     "fabric-datagen": [
-      "net.dillon.speedrunnermod.datagen.SpeedrunnerModDataGenerator"
+      "net.dillon.speedrunnermod.data.generator.SpeedrunnerModDataGenerator"
     ],
     "modmenu": [
       "net.dillon.speedrunnermod.client.impl.ModMenuImpl"

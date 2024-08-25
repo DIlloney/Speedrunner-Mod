@@ -2,6 +2,7 @@ package net.dillon.speedrunnermod.world.feature;
 
 import com.google.common.collect.ImmutableList;
 import net.dillon.speedrunnermod.block.ModBlocks;
+import net.dillon.speedrunnermod.data.generator.ModWorldGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
@@ -50,7 +51,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_EXPERIENCE = of("speedrunnermod:ore_nether_experience");
 
     /**
-     * See {@link net.dillon.speedrunnermod.datagen.ModWorldGenerator} for more.
+     * See {@link ModWorldGenerator} for more.
      */
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         List<OreFeatureConfig.Target> speedrunnerOres = List.of(

@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.datagen;
+package net.dillon.speedrunnermod.data.generator;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.world.biome.ModBiomes;

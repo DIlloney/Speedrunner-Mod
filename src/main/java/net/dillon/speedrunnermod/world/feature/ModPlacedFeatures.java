@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.world.feature;
 
 import net.dillon.speedrunnermod.block.ModBlocks;
+import net.dillon.speedrunnermod.data.generator.ModWorldGenerator;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
@@ -45,7 +46,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> PATCH_DEAD_SPEEDRUNNER_BUSH_BADLANDS = of("speedrunnermod:patch_dead_speedrunner_bush_badlands");
 
     /**
-     * See {@link net.dillon.speedrunnermod.datagen.ModWorldGenerator} for more.
+     * See {@link ModWorldGenerator} for more.
      */
     public static void bootstrap(Registerable<PlacedFeature> context) {
         RegistryEntryLookup<ConfiguredFeature<?, ?>> registryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);

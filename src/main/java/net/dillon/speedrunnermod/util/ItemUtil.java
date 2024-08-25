@@ -6,7 +6,6 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FireworksComponent;
 import net.minecraft.component.type.UnbreakableComponent;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EyeOfEnderEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -79,7 +78,7 @@ public class ItemUtil {
     /**
      * Returns an unbreakable elytra.
      */
-    public static ItemStack unbreakableElytra() {
+    public static ItemStack unbreakableComponentItem() {
         ItemStack elytra = new ItemStack(Items.ELYTRA);
         elytra.set(DataComponentTypes.UNBREAKABLE, new UnbreakableComponent(true));
         return elytra;
@@ -88,22 +87,10 @@ public class ItemUtil {
     /**
      * Returns flight duration 3 firework rockets.
      */
-    public static ItemStack longLastingFireworkRockets(int count) {
+    public static ItemStack flightDurationComponentItem(int count) {
         ItemStack fireworks = new ItemStack(Items.FIREWORK_ROCKET, count);
         fireworks.set(DataComponentTypes.FIREWORKS, new FireworksComponent(3, List.of()));
         return fireworks;
-    }
-
-    /**
-     * Returns the enchanted {@code infini pearl.}
-     */
-    public static ItemStack infiniPearl(EnchantmentLevelEntry info) {
-        ItemStack infiniPearl = new ItemStack(Items.ENDER_PEARL);
-        Text text = Text.literal("InfiniPearl™");
-        text.getWithStyle(text.getStyle().withItalic(false));
-        infiniPearl.set(DataComponentTypes.CUSTOM_NAME, text);
-        infiniPearl.addEnchantment(info.enchantment, info.level);
-        return infiniPearl;
     }
 
     /**

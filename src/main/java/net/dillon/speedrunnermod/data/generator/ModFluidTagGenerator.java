@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.datagen;
+package net.dillon.speedrunnermod.data.generator;
 
 import net.dillon.speedrunnermod.tag.ModFluidTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;

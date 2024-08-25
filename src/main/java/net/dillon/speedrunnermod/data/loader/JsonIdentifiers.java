@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.util;
+package net.dillon.speedrunnermod.data.loader;
 
 /**
  * A class used specifically to get the names of certain Minecraft ".json" files.
@@ -30,20 +30,29 @@ public final class JsonIdentifiers {
     public static final String RUINED_PORTALS = structure("ruined_portals");
     public static final String SHIPWRECKS = structure("shipwrecks");
     public static final String STRONGHOLDS = structure("strongholds");
-    public static final String TRAIL_CHAMBERS = structure("trail_chambers");
+    public static final String TRIAL_CHAMBERS = structure("trial_chambers");
     public static final String VILLAGES = structure("villages");
     public static final String WOODLAND_MANSIONS = structure("woodland_mansions");
 
     public static final String END = "worldgen/noise_settings/end.json";
 
+    /**
+     * Returns the filename for a biome in the "worldgen/biome" folder.
+     */
     private static String biome(String biomeKey) {
         return "worldgen/biome/" + biomeKey + ".json";
     }
 
+    /**
+     * Returns the filename for a placed feature in the "worldgen/placed_feature" folder.
+     */
     private static String placedFeature(String placedFeatureKey) {
         return "worldgen/placed_feature/" + placedFeatureKey + ".json";
     }
 
+    /**
+     * Returns the filename for a structure in the "worldgen/structure_set" folder.
+     */
     private static String structure(String structureSetKey) {
         return "worldgen/structure_set/" + structureSetKey + ".json";
     }

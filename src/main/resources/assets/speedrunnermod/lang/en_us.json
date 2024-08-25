@@ -126,6 +126,9 @@
   "item.speedrunnermod.piglin_awakener.tooltip": "Teleport nearby piglins to the player!",
   "item.speedrunnermod.blaze_spotter": "Blaze Spotter",
   "item.speedrunnermod.blaze_spotter.tooltip": "Teleport to the nearest blaze spawner!",
+  "item.speedrunnermod.infini_pearl": "InfiniPearl™",
+  "item.speedrunnermod.infini_pearl.tooltip.line1": "An ender pearl that does not get",
+  "item.speedrunnermod.infini_pearl.tooltip.line2": "consumed nor do damage upon use.",
 
   "item.speedrunnermod.blaze_spotter.found_blaze_spawner": "Found blaze spawner.",
   "item.speedrunnermod.blaze_spotter.confirm": "Do you wish to teleport to the blaze spawner? Right click to confirm.",

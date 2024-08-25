@@ -93,8 +93,6 @@
     "main.nether.portal.NetherPortalMixin",
     "main.nether.DimensionTypeMixin",
 
-    "main.recipe.ShapelessRecipeMixin",
-
     "main.registry.RegistryLoaderMixin",
 
     "main.trades.SellEnchantedToolFactoryMixin",

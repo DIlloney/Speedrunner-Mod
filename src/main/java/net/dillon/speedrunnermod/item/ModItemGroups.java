@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
 import net.minecraft.text.Text;
@@ -66,9 +65,9 @@ public class ModItemGroups {
                         entries.add(ModItems.RAID_ERADICATOR);
                         entries.add(ModItems.ANNUL_EYE);
                         entries.add(ModItems.DRAGONS_PEARL);
-                        entries.add(ItemUtil.unbreakableElytra());
-                        entries.add(ItemUtil.longLastingFireworkRockets(1));
-                        displayContext.lookup().getOptionalWrapper(RegistryKeys.ENCHANTMENT).ifPresent(registryWrapper -> addInfiniPearl(entries, registryWrapper));
+                        entries.add(ItemUtil.unbreakableComponentItem());
+                        entries.add(ItemUtil.flightDurationComponentItem(1));
+                        entries.add(ModItems.INFINI_PEARL);
                         entries.add(ModItems.DRAGONS_SWORD);
                         entries.add(ModItems.WITHER_SWORD);
                         entries.add(ModItems.WITHER_BONE);
@@ -157,13 +156,6 @@ public class ModItemGroups {
      */
     private static void addAllLevelEnchantedBook(ItemGroup.Entries entries, RegistryWrapper<Enchantment> registryWrapper, RegistryKey<Enchantment> enchantment) {
         registryWrapper.streamEntries().filter(enchantmentReference -> enchantmentReference.matchesKey(enchantment)).flatMap(enchantmentEntry -> IntStream.rangeClosed((enchantmentEntry.value()).getMinLevel(), enchantmentEntry.value().getMaxLevel()).mapToObj(level -> EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(enchantmentEntry, level)))).forEach(stack -> entries.add(stack, ItemGroup.StackVisibility.PARENT_TAB_ONLY));
-    }
-
-    /**
-     * Adds the infinity enchantment for the {@code infini pearl} item.
-     */
-    private static void addInfiniPearl(ItemGroup.Entries entries, RegistryWrapper<Enchantment> registryWrapper) {
-        registryWrapper.streamEntries().filter(enchantmentReference -> enchantmentReference.matchesKey(Enchantments.INFINITY)).flatMap(enchantmentEntry -> IntStream.rangeClosed((enchantmentEntry.value()).getMinLevel(), enchantmentEntry.value().getMaxLevel()).mapToObj(level -> ItemUtil.infiniPearl(new EnchantmentLevelEntry(enchantmentEntry, level)))).forEach(stack -> entries.add(stack, ItemGroup.StackVisibility.PARENT_TAB_ONLY));
     }
 
     /**

@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.world.biome;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.data.generator.ModWorldGenerator;
 import net.dillon.speedrunnermod.mixin.main.world.VanillaBiomeParametersMixin;
 import net.dillon.speedrunnermod.world.feature.ModPlacedFeatures;
 import net.dillon.speedrunnermod.world.feature.WastelandPlacedFeatures;
@@ -34,7 +35,7 @@ public class ModBiomes {
     }
 
     /**
-     * See {@link net.dillon.speedrunnermod.datagen.ModWorldGenerator} for more.
+     * See {@link ModWorldGenerator} for more.
      */
     public static void bootstrap(Registerable<Biome> biomeRegisterable) {
         biomeRegisterable.register(ModBiomes.SPEEDRUNNERS_WASTELAND_KEY, ModBiomes.createSpeedrunnersWasteland(biomeRegisterable));

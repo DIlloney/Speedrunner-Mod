@@ -1,36 +1,37 @@
-package net.dillon.speedrunnermod.mixin.main.item;
+package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.enchantment.ModEnchantments;
-import net.dillon.speedrunnermod.util.Author;
-import net.dillon.speedrunnermod.util.Authors;
 import net.dillon.speedrunnermod.util.ItemUtil;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.item.EnderPearlItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(EnderPearlItem.class)
-public class EnderPearlItemMixin extends Item {
+import java.util.List;
 
-    public EnderPearlItemMixin(Settings settings) {
-        super(settings);
+import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
+
+/**
+ * An ender pearl that does not get consumed nor do damage upon use.
+ */
+public class InfiniPearlItem extends EnderPearlItem {
+
+    public InfiniPearlItem(Settings settings) {
+        super(settings.maxCount(1).component(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.speedrunnermod.infini_pearl").formatted(Formatting.AQUA).formatted(Formatting.ITALIC)));
     }
 
-    /**
-     * Adds the {@code cooldown enchantment} function.
-     */
-    @Author(Authors.DUNCANRUNS)
-    @Overwrite
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.random.nextFloat() * 0.4F + 0.8F));
@@ -46,10 +47,20 @@ public class EnderPearlItemMixin extends Item {
         }
 
         player.incrementStat(Stats.USED.getOrCreateStat(this));
-        if (!player.getAbilities().creativeMode) {
-            itemStack.decrement(1);
-        }
 
         return TypedActionResult.success(itemStack, world.isClient());
+    }
+
+    @Override
+    public boolean hasGlint(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        if (options().client.itemTooltips) {
+            tooltip.add(Text.translatable("item.speedrunnermod.infini_pearl.tooltip.line1"));
+            tooltip.add(Text.translatable("item.speedrunnermod.infini_pearl.tooltip.line2"));
+        }
     }
 }

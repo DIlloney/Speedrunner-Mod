@@ -232,6 +232,7 @@ public class ModItems {
     public static final Item ENDER_THRUSTER = new EnderThrusterItem(new Item.Settings());
     public static final Item DRAGONS_SWORD = new DragonsSwordItem(new Item.Settings());
     public static final Item DRAGONS_PEARL = new DragonsPearlItem(new Item.Settings());
+    public static final Item INFINI_PEARL = new InfiniPearlItem(new Item.Settings());
 
     public static void init() {
         Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_ingot"), SPEEDRUNNER_INGOT);
@@ -290,6 +291,7 @@ public class ModItems {
         Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "ender_thruster"), ENDER_THRUSTER);
         Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "dragons_sword"), DRAGONS_SWORD);
         Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "dragons_pearl"), DRAGONS_PEARL);
+        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "infini_pearl"), INFINI_PEARL);
 
         info("Initialized items.");
     }

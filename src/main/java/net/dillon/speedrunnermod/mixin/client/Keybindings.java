@@ -26,7 +26,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
-import static net.dillon.speedrunnermod.SpeedrunnerModClient.isSimpleKeybindsLoaded;
 
 @Environment(EnvType.CLIENT)
 @Mixin(MinecraftClient.class)
@@ -85,17 +84,15 @@ public abstract class Keybindings {
             debugWarn(options().client.fullBright ? "speedrunnermod.toggle_fullbright.on" : "speedrunnermod.toggle_fullbright.off");
         }
 
-        if (!isSimpleKeybindsLoaded()) {
-            while (ModKeybindings.hitboxesKey.wasPressed()) {
-                boolean bl = !MinecraftClient.getInstance().getEntityRenderDispatcher().shouldRenderHitboxes();
-                MinecraftClient.getInstance().getEntityRenderDispatcher().setRenderHitboxes(bl);
-                debugWarn(bl ? "debug.show_hitboxes.on" : "debug.show_hitboxes.off");
-            }
+        while (ModKeybindings.hitboxesKey.wasPressed()) {
+            boolean bl = !MinecraftClient.getInstance().getEntityRenderDispatcher().shouldRenderHitboxes();
+            MinecraftClient.getInstance().getEntityRenderDispatcher().setRenderHitboxes(bl);
+            debugWarn(bl ? "debug.show_hitboxes.on" : "debug.show_hitboxes.off");
+        }
 
-            while (ModKeybindings.chunkBordersKey.wasPressed()) {
-                boolean bl = MinecraftClient.getInstance().debugRenderer.toggleShowChunkBorder();
-                debugWarn(bl ? "debug.chunk_boundaries.on" : "debug.chunk_boundaries.off");
-            }
+        while (ModKeybindings.chunkBordersKey.wasPressed()) {
+            boolean bl = MinecraftClient.getInstance().debugRenderer.toggleShowChunkBorder();
+            debugWarn(bl ? "debug.chunk_boundaries.on" : "debug.chunk_boundaries.off");
         }
     }
 

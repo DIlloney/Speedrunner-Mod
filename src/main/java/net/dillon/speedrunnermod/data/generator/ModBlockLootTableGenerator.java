@@ -1,4 +1,4 @@
-package net.dillon.speedrunnermod.datagen;
+package net.dillon.speedrunnermod.data.generator;
 
 import net.dillon.speedrunnermod.block.ModBlocks;
 import net.dillon.speedrunnermod.item.ModItems;

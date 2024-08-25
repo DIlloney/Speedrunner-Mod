@@ -81,6 +81,14 @@ public class SpeedrunnerModClient implements ClientModInitializer {
             options().main.leaderboardsMode = false;
         }
 
+        if (BrokenModOptions.iCarusFireworksInventorySlot) {
+            options().advanced.iCarusFireworksInventorySlot = 1;
+        }
+
+        if (BrokenModOptions.infiniPearlInventorySlot) {
+            options().advanced.infiniPearlInventorySlot = 1;
+        }
+
         if (BrokenModOptions.itemMessages) {
             options().client.itemMessages = ModOptions.ItemMessages.CHAT;
         }

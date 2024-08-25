@@ -129,6 +129,8 @@ public class ModOptions {
         public boolean decreasedZombifiedPiglinScareDistance = true;
         public int eyeOfEnderBreakingCooldown = 60;
         public int piglinAwakenerPiglinCount = 10;
+        public int iCarusFireworksInventorySlot = 1;
+        public int infiniPearlInventorySlot = 1;
         public boolean teleportPiglinDirectlyTowardsPlayer = false;
         public int throwableFireballsExplosionPower = 1;
         public boolean dragonKillsNearbyHostileEntities = true;
@@ -207,6 +209,14 @@ public class ModOptions {
 
     public boolean isEyeOfEnderBreakingCooldownValid() {
         return this.inBounds(advanced.eyeOfEnderBreakingCooldown, 20, 200);
+    }
+
+    public boolean isIcarusFireworksInventorySlotValid() {
+        return this.inBounds(advanced.iCarusFireworksInventorySlot, 1, 36);
+    }
+
+    public boolean isInfiniPearlInventorySlotValid() {
+        return this.inBounds(advanced.infiniPearlInventorySlot, 1, 36);
     }
 
     /**
@@ -562,6 +572,18 @@ public class ModOptions {
             warn("Cannot divide by zero! o_0");
         } else if (!options().isBlockBreakingMultiplierValid()) {
             warn(OPTIONS_WARNING_MESSAGE + related + "speedrunnermod.options.blockBreakingMultiplier");
+        }
+
+        if (!options().isIcarusFireworksInventorySlotValid()) {
+            error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.icarusFireworksInventorySlot");
+            isSafe(false);
+            BrokenModOptions.iCarusFireworksInventorySlot = true;
+        }
+
+        if (!options().isInfiniPearlInventorySlotValid()) {
+            error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.infiniPearlInventorySlot");
+            isSafe(false);
+            BrokenModOptions.infiniPearlInventorySlot = true;
         }
 
         if (!options().isStrongholdLibraryCountValid()) {

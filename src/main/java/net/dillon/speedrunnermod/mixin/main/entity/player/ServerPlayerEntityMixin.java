@@ -2,18 +2,13 @@ package net.dillon.speedrunnermod.mixin.main.entity.player;
 
 import com.mojang.authlib.GameProfile;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.item.ModItems;
 import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
 import net.dillon.speedrunnermod.util.ItemUtil;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.ServerStatHandler;
 import net.minecraft.stat.Stats;
@@ -28,24 +23,21 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Optional;
-
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * Configuration for {@code iCarus mode} and {@code InfiniPearl mode}.
+ * Configuration for {@code iCarus mode} and {@code InfiniPearl mode}, and sending the players death coordinates.
  */
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     @Shadow @Final
     private ServerStatHandler statHandler;
+    @Shadow
+    public abstract void sendMessage(Text message, boolean actionBar);
 
     public ServerPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile gameProfile) {
         super(world, pos, yaw, gameProfile);
     }
-
-    @Shadow
-    public abstract void sendMessage(Text message, boolean actionBar);
 
     /**
      * Sends the players coordinates to chat upon death.
@@ -58,36 +50,31 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     }
 
     /**
-     * Implements the {@code iCarus Mode} and {@code InfiniPearl Mode}.
+     * Implements {@code iCarus Mode} and {@code InfiniPearl Mode}.
      */
     @Author(Authors.DUNCANRUNS)
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
         if (this.statHandler.getStat(Stats.CUSTOM.getOrCreateStat(Stats.PLAY_TIME)) == 0) {
+
             ItemStack item;
             if (options().main.iCarusMode) {
-                item = ItemUtil.unbreakableElytra();
-                ItemStack fireworks = ItemUtil.longLastingFireworkRockets(64);
+                item = ItemUtil.unbreakableComponentItem();
+                ItemStack fireworks = ItemUtil.flightDurationComponentItem(64);
 
                 this.getInventory().armor.set(2, item);
-                this.getInventory().main.set(0, fireworks);
+                this.getInventory().main.set(options().advanced.iCarusFireworksInventorySlot - 1, fireworks);
             }
 
             if (options().main.infiniPearlMode) {
-                item = new ItemStack(Items.ENDER_PEARL, 1);
-                Optional<RegistryEntry.Reference<Enchantment>> optional = this.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.INFINITY);
-                RegistryEntry<Enchantment> registryEntry = optional.get();
-                item.addEnchantment(registryEntry, 1);
+                ItemStack infiniPearl = new ItemStack(ModItems.INFINI_PEARL, 1);
+                int slot = options().advanced.infiniPearlInventorySlot - 1;
 
-                Text text = Text.literal("InfiniPearl™");
-                text.getWithStyle(text.getStyle().withItalic(false));
-                item.set(DataComponentTypes.CUSTOM_NAME, text);
-
-                if (!options().main.iCarusMode) {
-                    this.getInventory().main.set(0, item);
-                } else {
-                    this.getInventory().main.set(1, item);
+                if (options().main.iCarusMode && options().advanced.iCarusFireworksInventorySlot == options().advanced.infiniPearlInventorySlot) {
+                    slot += 1;
                 }
+
+                this.getInventory().main.set(slot, infiniPearl);
             }
         }
     }

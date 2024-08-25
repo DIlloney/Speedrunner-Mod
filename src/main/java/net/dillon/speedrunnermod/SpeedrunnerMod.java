@@ -179,6 +179,8 @@ public class SpeedrunnerMod implements ModInitializer {
         options().advanced.decreasedZombifiedPiglinScareDistance = true;
         options().advanced.eyeOfEnderBreakingCooldown = 60;
         options().advanced.piglinAwakenerPiglinCount = 10;
+        options().advanced.iCarusFireworksInventorySlot = 0;
+        options().advanced.infiniPearlInventorySlot = 0;
         options().advanced.teleportPiglinDirectlyTowardsPlayer = false;
         options().advanced.throwableFireballsExplosionPower = 1;
         options().advanced.dragonKillsNearbyHostileEntities = true;
@@ -532,7 +534,7 @@ public class SpeedrunnerMod implements ModInitializer {
         }
     }
 
-    public static int getTrailChambersSpacing() {
+    public static int getTrialChambersSpacing() {
         if (options().main.structureSpawnRates.everywhere()) {
             return 5;
         } else if (options().main.structureSpawnRates.veryCommon()) {
@@ -552,7 +554,7 @@ public class SpeedrunnerMod implements ModInitializer {
         }
     }
 
-    public static int getTrailChambersSeparation() {
+    public static int getTrialChambersSeparation() {
         if (options().main.structureSpawnRates.everywhere()) {
             return 3;
         } else if (options().main.structureSpawnRates.veryCommon()) {
