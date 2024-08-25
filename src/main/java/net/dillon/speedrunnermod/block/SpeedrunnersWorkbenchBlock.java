@@ -17,8 +17,9 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,7 +37,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
     }
 
     @Override @ChatGPT(Credit.PARTIAL_CREDIT)
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient && player.getMainHandStack().hasEnchantments() && !player.getOffHandStack().isEmpty()) {
             ItemStack mainHandStack = player.getMainHandStack();
             ItemStack offHandStack = player.getOffHandStack();
@@ -111,11 +112,11 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                 if (wasUpgraded) {
                     player.sendMessage(Text.translatable("speedrunnermod.enchantment_levels_upgraded"), false);
                 }
-                success(world, pos, player, mainHandStack, cost);
+                success(world, pos, player, hand, mainHandStack, cost);
             }
 
             if (successWithNoEnchantments) {
-                success(world, pos, player, mainHandStack, cost);
+                success(world, pos, player, hand, mainHandStack, cost);
             }
 
             if (someIncFailed) {
@@ -129,9 +130,9 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                 fail(player, cost);
             }
 
-            return ActionResult.success(true);
+            return ItemActionResult.success(true);
         } else {
-            return super.onUse(state, world, pos, player, hit);
+            return super.onUseWithItem(stack, state, world, pos, player, hand,  hit);
         }
     }
 
@@ -167,11 +168,11 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
     /**
      * A successful enchantment transfer.
      */
-    private static void success(World world, BlockPos pos, PlayerEntity player, ItemStack mainHandStack, int cost) {
+    private static void success(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack mainHandStack, int cost) {
         player.sendMessage(Text.translatable("speedrunnermod.transferred_enchantments").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
         world.playSound(null, pos, SoundEvents.BLOCK_SMITHING_TABLE_USE, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
         player.addExperienceLevels(-cost);
-        player.setStackInHand(player.getActiveHand(), mainHandStack);
+        player.setStackInHand(hand, mainHandStack);
     }
 
     /**

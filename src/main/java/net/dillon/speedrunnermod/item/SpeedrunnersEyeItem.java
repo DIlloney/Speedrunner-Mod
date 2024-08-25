@@ -77,6 +77,11 @@ public class SpeedrunnersEyeItem extends Item {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_WARDEN_HEARTBEAT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                         }
                         case "Ancient City" -> {
+                            structureType = "Trial Chamber";
+                            type = StructureTags.ON_TRIAL_CHAMBERS_MAPS;
+                            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_TRIAL_SPAWNER_AMBIENT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                        }
+                        case "Trial Chamber" -> {
                             structureType = "Village";
                             type = StructureTags.VILLAGE;
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.NEUTRAL, 1.0F, 1.0F);

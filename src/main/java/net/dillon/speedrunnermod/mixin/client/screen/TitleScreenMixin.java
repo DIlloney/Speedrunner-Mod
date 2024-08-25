@@ -3,6 +3,7 @@ package net.dillon.speedrunnermod.mixin.client.screen;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.MainScreen;
 import net.dillon.speedrunnermod.client.screen.features.FeaturesScreen;
+import net.dillon.speedrunnermod.client.util.ModIcons;
 import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
@@ -36,7 +37,7 @@ public class TitleScreenMixin extends Screen {
     @Shadow
     private long backgroundFadeStart;
     @Unique
-    private ButtonWidget featuresButton, createWorldButton, optionsButton, wikiButton, dillon8775YouTubeButton, nuzlandYouTubeButton, mannyQuesoYouTubeButton;
+    private ButtonWidget featuresButton, createWorldButton, optionsButton, discordButton, wikiButton, dillon8775YouTubeButton, nuzlandYouTubeButton, mannyQuesoYouTubeButton;
 
     public TitleScreenMixin(Text title) {
         super(title);
@@ -91,6 +92,15 @@ public class TitleScreenMixin extends Screen {
             }).dimensions(this.width / 2 + 104, this.height / 4 + 96, 20, 20).build());
         }
 
+        this.discordButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+            this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
+                if (openInBrowser) {
+                    Util.getOperatingSystem().open(ModLinks.DISCORD);
+                }
+                this.client.setScreen(this);
+            }, ModLinks.DISCORD, false));
+        }).dimensions(options().client.socialButtons ? this.width / 2 + 128 : this.width / 2 + 104, this.height / 4 + 72, 20, 20).build());
+
         this.wikiButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
             this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                 if (openInBrowser) {
@@ -112,17 +122,18 @@ public class TitleScreenMixin extends Screen {
             context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/item/speedrunner_boots.png"), this.width / 2 - 122, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         }
 
-        context.drawTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 123, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+        context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 123, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
         if (options().client.socialButtons) {
-            context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 + 105, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(ModIcons.DILLON8775_ICON, this.width / 2 + 105, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-            context.drawTexture(SpeedrunnerMod.NUZLAND_ICON, this.width / 2 + 105, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(ModIcons.NUZLAND_ICON, this.width / 2 + 105, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-            context.drawTexture(SpeedrunnerMod.MANNYQUESO_ICON, this.width / 2 + 105, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(ModIcons.MANNYQUESO_ICON, this.width / 2 + 105, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
         }
 
-        context.drawTexture(SpeedrunnerMod.WIKI_ICON, options().client.socialButtons ? this.width / 2 + 130 : this.width / 2 + 106, wikiButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        context.drawTexture(ModIcons.DISCORD_ICON, options().client.socialButtons ? this.width / 2 + 130 : this.width / 2 + 106, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        context.drawTexture(ModIcons.WIKI_ICON, options().client.socialButtons ? this.width / 2 + 130 : this.width / 2 + 106, wikiButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
         this.renderTooltips(context, mouseX, mouseY);
 
@@ -137,15 +148,15 @@ public class TitleScreenMixin extends Screen {
      */
     @Unique
     private void renderTooltips(DrawContext context, int mouseX, int mouseY) {
-        if (featuresButton.isHovered()) {
+        if (this.featuresButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.FEATURES_TOOLTIP, 200), mouseX, mouseY);
         }
 
-        if (options().advanced.showResetButton && createWorldButton.isHovered()) {
+        if (options().advanced.showResetButton && this.createWorldButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(options().client.fastWorldCreation ? ModTexts.CREATE_WORLD_BUTTON_TOOLTIP : ModTexts.CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
         }
 
-        if (optionsButton.isHovered()) {
+        if (this.optionsButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.OPTIONS_TOOLTIP, 200), mouseX, mouseY);
         }
 
@@ -163,7 +174,11 @@ public class TitleScreenMixin extends Screen {
             }
         }
 
-        if (wikiButton.isHovered()) {
+        if (this.discordButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.DISCORD_TOOLTIP, 200), mouseX, mouseY);
+        }
+
+        if (this.wikiButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.WIKI_TOOLTIP, 200), mouseX, mouseY);
         }
     }

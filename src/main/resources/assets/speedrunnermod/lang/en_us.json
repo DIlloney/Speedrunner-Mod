@@ -826,9 +826,16 @@
   "speedrunnermod.menu.external.wiki": "Wiki...",
   "speedrunnermod.menu.title_screen.external.wiki.tooltip": "Learn some more about this mod.",
   "speedrunnermod.menu.external.youtube": "YouTube...",
+  "speedrunnermod.menu.external.discord": "Discord...",
+  "speedrunnermod.discord.tooltip": "Become a part of the Speedrunner Mod community, and get notified of new updates, sneak peaks, and more!",
   "speedrunnermod.menu.external.mod_showcase_video": "Mod Showcase Video...",
   "speedrunnermod.menu.external.leaderboards": "Leaderboards...",
   "speedrunnermod.menu.leaderboards.disabled": "The leaderboards have been disabled.",
+
+  "speedrunnermod.questions_and_issues": "Questions and Issues...",
+  "speedrunnermod.questions_and_issues.tooltip": "Fill out this form to answer any questions or address any issues you may be having with the mod.",
+  "speedrunnermod.suggestions_and_feedback": "Suggestions and Feedback...",
+  "speedrunnermod.suggestions_and_feedback.tooltip": "Fill out this form and give some feedback on the mod and throw out some suggestions!",
 
   "speedrunnermod.dillon8775_youtube.tooltip": "Check out the creator of this mod, §lDillon8775 §r(me)! :)",
   "speedrunnermod.mannyqueso_youtube.tooltip": "Check out the creator of some of the textures, §6§lMannyQUESO! §r:)",

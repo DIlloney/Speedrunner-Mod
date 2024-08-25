@@ -49,7 +49,7 @@ public class ModTexts {
     public static final Text TITLE_RESOURCES = Text.translatable("speedrunnermod.title.resources");
     public static final Text MENU_MODS = Text.translatable("speedrunnermod.menu.resources.mods").formatted(Formatting.AQUA);
     public static final Text TITLE_MODS = Text.translatable("speedrunnermod.title.resources.mods");
-    public static final Text MENU_TUTORIALS = Text.translatable("speedrunnermod.menu.resources.tutorials").formatted(Formatting.BLUE);
+    public static final Text MENU_TUTORIALS = Text.translatable("speedrunnermod.menu.resources.tutorials").formatted(Formatting.DARK_AQUA);
     public static final Text TITLE_TUTORIALS = Text.translatable("speedrunnermod.title.resources.tutorials");
     public static final Text TITLE_RESTART_REQUIRED = Text.translatable("speedrunnermod.title.restart_required");
     public static final Text TITLE_SAFE_BOOT = Text.translatable("speedrunnermod.title.safe_mode");
@@ -66,6 +66,8 @@ public class ModTexts {
     public static final Text GITHUB = Text.translatable("speedrunnermod.menu.external.github").formatted(Formatting.GRAY);
     public static final Text WEBPAGE = Text.translatable("speedrunnermod.menu.external.wiki").formatted(Formatting.LIGHT_PURPLE);
     public static final Text YOUTUBE = Text.translatable("speedrunnermod.menu.external.youtube").formatted(Formatting.RED);
+    public static final Text DISCORD = Text.translatable("speedrunnermod.menu.external.discord").formatted(Formatting.BLUE);
+    public static final Text DISCORD_TOOLTIP = Text.translatable("speedrunnermod.discord.tooltip");
     public static final Text MOD_SHOWCASE_VIDEO = Text.translatable("speedrunnermod.menu.external.mod_showcase_video").formatted(Formatting.AQUA);
     public static final Text MENU_LEADERBOARDS = Text.translatable("speedrunnermod.menu.external.leaderboards").formatted(Formatting.GREEN);
     public static final Text MENU_LEADERBOARDS_DISABLED = Text.translatable("speedrunnermod.menu.leaderboards.disabled");
@@ -109,6 +111,11 @@ public class ModTexts {
     public static final Text IGNORE = Text.translatable("speedrunnermod.ignore").formatted(Formatting.RED);
     public static final Text VIEW_INELIGIBLE_OPTIONS = Text.translatable("speedrunnermod.view_ineligible_options");
     public static final Text VISIT_SUBMISSION_PAGE = Text.translatable("speedrunnermod.visit_submission_page");
+
+    public static final Text QUESTIONS_AND_ISSUES = Text.translatable("speedrunnermod.questions_and_issues").formatted(Formatting.BLUE);
+    public static final Text QUESTIONS_AND_ISSUES_TOOLTIP = Text.translatable("speedrunnermod.questions_and_issues.tooltip");
+    public static final Text SUGGESTIONS_AND_FEEDBACK = Text.translatable("speedrunnermod.suggestions_and_feedback").formatted(Formatting.GOLD);
+    public static final Text SUGGESTIONS_AND_FEEDBACK_TOOLTIP = Text.translatable("speedrunnermod.suggestions_and_feedback.tooltip");
 
     public static final Text FEATURES_TOOLTIP = Text.translatable("speedrunnermod.features.tooltip");
     public static final Text CREATE_WORLD_BUTTON_TOOLTIP = Text.translatable("speedrunnermod.create_world_button.desc");

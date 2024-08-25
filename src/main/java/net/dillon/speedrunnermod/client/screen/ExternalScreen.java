@@ -41,10 +41,14 @@ public class ExternalScreen extends AbstractModScreen {
         this.addDrawableChild(ButtonWidget.builder(ModTexts.YOUTUBE, (buttonWidget) -> {
             this.openLink(ModLinks.DILLON8775_YOUTUBE, true);
         }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+        this.addDrawableChild(ButtonWidget.builder(ModTexts.DISCORD, (buttonWidget) -> {
+            this.openLink(ModLinks.DISCORD, false);
+        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
 
+        height += 24;
         this.addDrawableChild(ButtonWidget.builder(ModTexts.MOD_SHOWCASE_VIDEO, (buttonWidget) -> {
             this.openLink(ModLinks.MOD_SHOWCASE_VIDEO, true);
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
 
         super.init();
     }

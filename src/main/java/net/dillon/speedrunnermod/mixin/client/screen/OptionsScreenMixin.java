@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.mixin.client.screen;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.MainScreen;
+import net.dillon.speedrunnermod.client.util.ModIcons;
 import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
@@ -55,8 +55,8 @@ public class OptionsScreenMixin extends Screen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
-        context.drawTexture(SpeedrunnerMod.DILLON8775_ICON, this.width / 2 - 123, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+        context.drawTexture(ModIcons.DILLON8775_ICON, this.width / 2 - 123, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-        context.drawTexture(SpeedrunnerMod.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 178, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+        context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 178, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
     }
 }

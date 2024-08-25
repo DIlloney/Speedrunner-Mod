@@ -3,6 +3,7 @@ package net.dillon.speedrunnermod.mixin.main.registry;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.serialization.Decoder;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.Author;
@@ -21,9 +22,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,14 +32,16 @@ import static net.dillon.speedrunnermod.util.JsonIdentifiers.*;
 
 @Mixin(RegistryLoader.class)
 public class RegistryLoaderMixin {
+    @Unique
+    private final String CHAT = "https://chatgpt.com/c/501e728a-d6a2-405c-bc2c-b80cfd5b9b18"; // The ChatGPT chat used for generating JSON objects and arrays.
 
     /**
      * Directly modifies json files to change world generation.
      */
     @Author(Authors.MAXENCEDC)
     @ChatGPT(Credit.MOST_CREDIT)
-    @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;parse(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), method = "parseAndAdd", locals = LocalCapture.CAPTURE_FAILHARD)
-    private static <E> void load(MutableRegistry<E> registry, Decoder<E> decoder, RegistryOps<JsonElement> ops, RegistryKey<E> resourceKey, Resource resource, RegistryEntryInfo registrationInfo, CallbackInfo ci, Reader reader, JsonElement jsonElement) {
+    @Inject(at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/Decoder;parse(Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;"), method = "parseAndAdd")
+    private static <E> void load(MutableRegistry<E> registry, Decoder<E> decoder, RegistryOps<JsonElement> ops, RegistryKey<E> resourceKey, Resource resource, RegistryEntryInfo registrationInfo, CallbackInfo ci, @Local JsonElement jsonElement) {
         String path = registry.getKey().getValue().getPath();
         String fileName = path + "/" + resourceKey.getValue().getPath() + ".json";
 
@@ -399,8 +400,7 @@ public class RegistryLoaderMixin {
                 warpedForestSpawners.getAsJsonArray("monster").addAll(warpedForestMonsters);
             }
 
-            String monsterRoom = MONSTER_ROOM;
-            if (fileName.equals(monsterRoom) || fileName.equals(MONSTER_ROOM_DEEP)) {
+            if (fileName.equals(MONSTER_ROOM) || fileName.equals(MONSTER_ROOM_DEEP)) {
                 JsonArray placement = jsonElement.getAsJsonObject().getAsJsonArray("placement");
 
                 for (JsonElement element : placement) {
