@@ -39,6 +39,8 @@ public class GameMenuScreenMixin extends Screen {
     @Unique
     private ButtonWidget dillon8775YouTubeButton;
     @Unique
+    private ButtonWidget discordButton;
+    @Unique
     private ButtonWidget wikiButton;
 
     public GameMenuScreenMixin(Text title, ButtonWidget createWorldButton) {
@@ -78,6 +80,15 @@ public class GameMenuScreenMixin extends Screen {
                 }).dimensions(this.width / 2 + 106, this.height / 4 + 72 - 16, 20, 20).build());
             }
 
+            this.discordButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
+                this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
+                    if (openInBrowser) {
+                        Util.getOperatingSystem().open(ModLinks.DISCORD);
+                    }
+                    this.client.setScreen(this);
+                }, ModLinks.DISCORD, false));
+            }).dimensions(this.width / 2 + 106, this.height / 4 + 72 - 16, 20, 20).build());
+
             this.wikiButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                     if (openInBrowser) {
@@ -107,6 +118,7 @@ public class GameMenuScreenMixin extends Screen {
                 context.drawTexture(ModIcons.DILLON8775_ICON, this.width / 2 - 4 + 114 - 3, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
             }
 
+            context.drawTexture(ModIcons.DISCORD_ICON, this.width / 2 - 4 + 114 - 2, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
             context.drawTexture(ModIcons.WIKI_ICON, this.width / 2 - 4 + 114 - 2, wikiButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
             this.renderTooltips(context, mouseX, mouseY);
