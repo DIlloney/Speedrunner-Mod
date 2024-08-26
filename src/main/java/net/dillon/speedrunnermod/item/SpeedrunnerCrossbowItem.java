@@ -21,7 +21,7 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * The {@link net.dillon.speedrunnermod.SpeedrunnerMod} crossbow, which charges faster, shoots farther, and has more durability.
+ * A crossbow which charges faster, shoots farther, and has more durability.
  */
 public class SpeedrunnerCrossbowItem extends CrossbowItem {
 
@@ -29,9 +29,6 @@ public class SpeedrunnerCrossbowItem extends CrossbowItem {
         super(settings.maxCount(1).maxDamage(652));
     }
 
-    /**
-     * See comments inside method for changes.
-     */
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
@@ -49,15 +46,24 @@ public class SpeedrunnerCrossbowItem extends CrossbowItem {
         return TypedActionResult.fail(itemStack);
     }
 
+    /**
+     * The maximum use time for the crossbow.
+     */
     @Override
     public int getMaxUseTime(ItemStack stack, LivingEntity user) {
         return getPullTime(stack, user) + 3;
     }
 
+    /**
+     * Faster charging speed.
+     */
     private static float getSpeed(ChargedProjectilesComponent stack) {
         return stack.contains(Items.FIREWORK_ROCKET) ? 2.1F : 3.65F;
     }
 
+    /**
+     * Lowered pull time.
+     */
     public static int getPullTime(ItemStack stack, LivingEntity user) {
         float f = EnchantmentHelper.getCrossbowChargeTime(stack, user, 1.00F);
         return MathHelper.floor(f * 20.0F);

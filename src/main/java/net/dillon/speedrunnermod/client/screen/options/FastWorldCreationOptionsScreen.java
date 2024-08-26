@@ -14,6 +14,9 @@ import net.minecraft.client.option.SimpleOption;
 
 import java.io.File;
 
+/**
+ * The Speedrunner Mod's {@code "fast world creation"} options, which set the settings of each new world created.
+ */
 @Environment(EnvType.CLIENT)
 public class FastWorldCreationOptionsScreen extends AbstractModScreen {
 

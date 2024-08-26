@@ -108,8 +108,8 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     /**
-     * The {@code Speedrunner Mod} options method.
-     * */
+     * Returns the Speedrunner Mod {@code options.}
+     */
     public static ModOptions options() {
         return ModOptions.OPTIONS;
     }
@@ -196,7 +196,7 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     /**
-     * Gets the player's death coordinates.
+     * Returns the player's death coordinates.
      */
     public static Text deathCords(double x, double y, double z) {
         return Text.translatable("speedrunnermod.player_death_cords", MathUtil.roundToOneDecimalPlace(x), MathUtil.roundToOneDecimalPlace(y), MathUtil.roundToOneDecimalPlace(z));

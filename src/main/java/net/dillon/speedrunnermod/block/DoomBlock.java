@@ -152,6 +152,9 @@ public class DoomBlock {
         entity.handleFallDamage(fallDistance, fallDamage, entity.getDamageSources().fall());
     }
 
+    /**
+     * See {@link ModBlocks} for more.
+     */
     protected static class Default extends Block {
 
         protected Default(Settings settings) {

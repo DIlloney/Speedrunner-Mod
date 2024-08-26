@@ -162,17 +162,6 @@ public class AnnulEyeItem extends Item {
         return TypedActionResult.consume(itemStack);
     }
 
-    @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (options().client.itemTooltips) {
-            tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line1").formatted(Formatting.GRAY));
-            tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line2").formatted(Formatting.GRAY));
-            tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line3"));
-            tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line4"));
-            tooltip.add(Text.translatable("item.speedrunnermod.state_of_the_art.tooltip").formatted(Formatting.RED));
-        }
-    }
-
     /**
      * Finds the nearest stronghold, to then find the closest end portal frame block inside of it.
      */
@@ -203,5 +192,16 @@ public class AnnulEyeItem extends Item {
         }
 
         return null;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        if (options().client.itemTooltips) {
+            tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line1").formatted(Formatting.GRAY));
+            tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line2").formatted(Formatting.GRAY));
+            tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line3"));
+            tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line4"));
+            tooltip.add(Text.translatable("item.speedrunnermod.state_of_the_art.tooltip").formatted(Formatting.RED));
+        }
     }
 }

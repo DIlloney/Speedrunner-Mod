@@ -29,9 +29,9 @@ import java.util.TimerTask;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * An item that kills all {@link net.minecraft.entity.raid.RaiderEntity}s.
+ * An item that kills all nearby {@link net.minecraft.entity.raid.RaiderEntity}s.
  */
-public class RaidEradicatorItem extends Item implements StateOfTheArtItem {
+public class RaidEradicatorItem extends Item {
     private boolean confirm = !options().client.confirmMessages;
 
     public RaidEradicatorItem(Settings settings) {

@@ -51,6 +51,9 @@ public class InfiniPearlItem extends EnderPearlItem {
         return TypedActionResult.success(itemStack, world.isClient());
     }
 
+    /**
+     * The InfiniPearl always has an enchantment glint.
+     */
     @Override
     public boolean hasGlint(ItemStack stack) {
         return true;

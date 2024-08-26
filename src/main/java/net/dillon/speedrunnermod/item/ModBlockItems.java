@@ -16,7 +16,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * {@link SpeedrunnerMod} block items.
+ * ALl Speedrunner Mod {@code block items.}
  */
 public class ModBlockItems {
     public static final BlockItem SPEEDRUNNER_LOG = new BlockItem(ModBlocks.SPEEDRUNNER_LOG,
@@ -190,6 +190,9 @@ public class ModBlockItems {
     public static final BlockItem DOOM_LEAVES = new BlockItem(ModBlocks.DOOM_LEAVES,
             new Item.Settings());
 
+    /**
+     * Initializes all Speedrunner Mod {@code block items.}
+     */
     public static void init() {
         Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_log"), SPEEDRUNNER_LOG);
         Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "stripped_speedrunner_log"), STRIPPED_SPEEDRUNNER_LOG);

@@ -8,7 +8,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 
 /**
- * Allows the options screen to be opened with the Mod Menu mod.
+ * Allows the options screen to be opened with the {@code Mod Menu} mod.
  */
 @Environment(EnvType.CLIENT)
 public class ModMenuImpl implements ModMenuApi {

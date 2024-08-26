@@ -6,7 +6,8 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 
 /**
- * {@link SpeedrunnerMod} food components/items.
+ * All Speedrunner Mod {@code food components} (or food items).
+ * <p>Also contains all modified vanilla food components, see {@link net.dillon.speedrunnermod.mixin.main.item.FoodComponentsMixin} for more.</p>
  */
 public class ModFoodComponents {
     protected static final FoodComponent SPEEDRUNNER_BULK;

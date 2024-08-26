@@ -41,6 +41,10 @@ public class SpeedrunnerShieldRenderer implements DynamicItemRenderer {
         this.shieldModel = new ShieldEntityModel(new ModelPart(ModelPartBuilder.create().build().stream().map((modelCuboidData) -> modelCuboidData.createCuboid(64, 64)).collect(ImmutableList.toImmutableList()), m));
     }
 
+    /**
+     * Copied over from {@link net.minecraft.client.render.item.BuiltinModelItemRenderer}, starts at line {@code 132.}
+     * <p>Creates the renderer for the {@code speedrunner shield.}</p>
+     */
     @Override
     public void render(ItemStack stack, ModelTransformationMode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         BannerPatternsComponent bannerPatternsComponent = stack.getOrDefault(DataComponentTypes.BANNER_PATTERNS, BannerPatternsComponent.DEFAULT);

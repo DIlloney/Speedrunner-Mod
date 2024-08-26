@@ -12,6 +12,9 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 
+/**
+ * The {@code options} screen for the Speedrunner Mod, consisting of all the option categories.
+ */
 @Environment(EnvType.CLIENT)
 public class ModOptionsScreen extends AbstractModScreen {
     protected ButtonWidget mainOptions, fastWorldCreationOptions, clientOptions, resetOptions;

@@ -1,10 +1,13 @@
 package net.dillon.speedrunnermod.util;
 
 /**
- * Saves trouble of having to calculate the seconds to milliseconds, etc., and instead just put in the amount of seconds using these methods.
+ * Helper methods to convert certain times.
  */
 public class TimeCalculator {
 
+    /**
+     * Converts seconds to milliseconds.
+     */
     public static int secondsToMilliseconds(int seconds) {
         return seconds * 1000;
     }

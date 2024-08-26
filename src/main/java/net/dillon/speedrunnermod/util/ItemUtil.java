@@ -30,12 +30,12 @@ import java.util.Optional;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * Item util methods, used for other item classes.
+ * Helper methods used for other items.
  */
 public class ItemUtil {
 
     /**
-     * See {@link net.dillon.speedrunnermod.item.SpeedrunnersEyeItem} and {@link net.dillon.speedrunnermod.item.InfernoEyeItem} for more.
+     * Locates structures.
      */
     @Author(Authors.KWPUGH)
     public static void findStructureAndShoot(World world, PlayerEntity player, ItemStack itemstack, TagKey<Structure> type) {
@@ -56,7 +56,7 @@ public class ItemUtil {
     }
 
     /**
-     * Adds the tooltips for a {@code State-Of-The-Art} item.
+     * Adds the tooltips for {@code State-Of-The-Art} items.
      */
     public static void stateOfTheArtItem(List<Text> tooltip) {
         tooltip.add(Text.translatable("item.speedrunnermod.state_of_the_art.tooltip").formatted(Formatting.RED));

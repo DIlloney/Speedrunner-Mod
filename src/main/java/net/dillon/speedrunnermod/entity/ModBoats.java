@@ -14,7 +14,8 @@ import net.minecraft.util.Identifier;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 /**
- * See {@link net.dillon.speedrunnermod.mixin.main.entity.boat.BoatEntityMixin}, {@link net.dillon.speedrunnermod.mixin.main.entity.boat.TerraformBoatEntityMixin}, {@link net.dillon.speedrunnermod.mixin.main.entity.boat.TerraformChestBoatEntityMixin} and {@link net.dillon.speedrunnermod.mixin.main.entity.basic.EntityMixin} for modded boats functions and code.
+ * Used to create all the Speedrunner Mod {@code boats,} and these keys are used in several different mixins.
+ * <p>See {@code directory} {@link net.dillon.speedrunnermod.mixin.main.entity.boat} for more.</p>
  */
 public class ModBoats {
     public static final Identifier SPEEDRUNNER_BOAT_ID = Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_boat");
@@ -53,7 +54,7 @@ public class ModBoats {
     }
 
     /**
-     * <p>Determines {@code "faster"} boats, which is only the speedrunner boats.
+     * <p>Determines {@code "faster"} boats, boats that ride slightly faster than normal boats.
      */
     public static boolean isFastBoat(TerraformBoatType terraformBoatType) {
         return terraformBoatType.getItem().getDefaultStack().isIn(ModItemTags.FASTER_BOATS) || terraformBoatType.getChestItem().getDefaultStack().isIn(ModItemTags.FASTER_CHEST_BOATS);

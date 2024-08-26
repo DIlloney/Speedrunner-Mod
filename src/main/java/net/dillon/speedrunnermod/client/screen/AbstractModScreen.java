@@ -32,18 +32,18 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * Used to create basic {@link net.dillon.speedrunnermod.SpeedrunnerMod} screens.
+ * Used to create any {@code Speedrunner Mod} screens.
  */
 @Environment(EnvType.CLIENT)
 public abstract class AbstractModScreen extends BaseModScreen {
     protected boolean alreadySettingToIneligibleScreen = false;
-    protected File configFile;
-    protected final File configDirectory = new File(FabricLoader.getInstance().getConfigDir().toUri());
+    protected File configFile; // This returns null unless the screen is an options screen
+    protected final File configDirectory = new File(FabricLoader.getInstance().getConfigDir().toUri()); // The directory for the speedrunner mod's configuration file
     protected final Screen parent;
     protected ButtonWidget helpButton, saveButton, openOptionsFileButton, resetOptionsButton, openOptionsDirectoryButton, doneButton;
-    protected OptionListWidget optionList;
-    protected CustomButtonListWidget buttonList;
-    protected final List<ClickableWidget> buttons = new ArrayList<>();
+    protected OptionListWidget optionList; // The list of all the options for a speedrunner mod screen, returns null if the screen is not an options screen
+    protected CustomButtonListWidget buttonList; // The list of all the buttons for a speedrunner mod screen, returns null if there is no need for a scrollable section
+    protected final List<ClickableWidget> buttons = new ArrayList<>(); // The actual buttons for the scrollable buttons for a speedrunner mod screen
 
     public AbstractModScreen(Screen parent, GameOptions options, Text title) {
         super(parent, options, title);
@@ -198,36 +198,37 @@ public abstract class AbstractModScreen extends BaseModScreen {
     }
 
     /**
-     * Gets the "left side" of a screen.
+     * Returns the {@code "left side"} of a screen.
      */
     protected int getButtonsLeftSide() {
         return this.columns() == 3 ? this.width / 2 - 50 - 105 : this.columns() == 2 ? this.width / 2 - 155 : this.width / 2 - 160;
     }
 
     /**
-     * Gets the "middle" (or center) of a screen.
+     * Returns the {@code "middle" (or center)} of a screen.
      */
     protected int getButtonsMiddle() {
         return this.columns() == 2 ? this.width / 2 - 100 : this.width / 2 - 50;
     }
 
     /**
-     * Gets the "right side" of a screen.
+     * Returns the {@code "right side"} of a screen.
      */
     protected int getButtonsRightSide() {
         return this.columns() == 3 ? this.width / 2 - 50 + 105 : this.columns() == 2 ? this.getButtonsLeftSide() + 160 : this.width / 2 + 60;
     }
 
     /**
-     * Gets the height of buttons on a screen.
-     * <p>To add another row of buttons, add 24 to this variable.</p>
+     * Returns the height of buttons on a screen.
+     * <p>To add another row of buttons, add {@code 24} to this variable.</p>
+     * <p>For example, <pre>height += 24;</pre>
      */
     protected int getButtonsHeight() {
         return this.height / 6 - 12;
     }
 
     /**
-     * Gets the "done" buttons height, typically at the bottom of a screen.
+     * Returns the {@code "done"} buttons height, typically at the bottom of a screen.
      */
     protected int getDoneButtonsHeight() {
         return this.height - 29;
@@ -242,7 +243,7 @@ public abstract class AbstractModScreen extends BaseModScreen {
 
     /**
      * Render custom text on a mod screen.
-     * <p>NEVER {@link Override} the render method, use this method instead.</p>
+     * <p>NEVER {@link Override} the render basic method, use this method instead.</p>
      */
     protected void renderCustomText(DrawContext context) {
     }

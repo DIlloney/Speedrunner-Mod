@@ -5,7 +5,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 /**
- * All of the {@code links} for the Speedrunner Mod.
+ * All Speedrunner Mod {@code external links.}
  */
 @Environment(EnvType.CLIENT)
 public class ModLinks {

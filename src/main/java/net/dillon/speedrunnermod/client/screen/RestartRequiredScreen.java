@@ -27,7 +27,6 @@ public class RestartRequiredScreen extends AbstractModScreen {
     public static int currentStrongholdLibraryCount;
     public static boolean currentPanorama;
     public static boolean currentConfirmMessages;
-    public static boolean currentStackUnstackables;
 
     public RestartRequiredScreen(Screen parent, GameOptions options) {
         super(parent, options, ModTexts.TITLE_RESTART_REQUIRED);

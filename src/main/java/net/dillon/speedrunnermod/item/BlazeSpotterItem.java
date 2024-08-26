@@ -32,7 +32,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 /**
  * An item that teleports the player to the nearest blaze spawner.
  */
-public class BlazeSpotterItem extends Item implements StateOfTheArtItem {
+public class BlazeSpotterItem extends Item {
     private boolean confirm = !options().client.confirmMessages;
 
     public BlazeSpotterItem(Settings settings) {
@@ -82,14 +82,6 @@ public class BlazeSpotterItem extends Item implements StateOfTheArtItem {
         return TypedActionResult.consume(itemStack);
     }
 
-    @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (options().client.itemTooltips) {
-            tooltip.add(Text.translatable("item.speedrunnermod.blaze_spotter.tooltip"));
-            ItemUtil.stateOfTheArtItem(tooltip);
-        }
-    }
-
     /**
      * Finds the nearest blaze spawner.
      */
@@ -113,5 +105,13 @@ public class BlazeSpotterItem extends Item implements StateOfTheArtItem {
         }
 
         return null;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        if (options().client.itemTooltips) {
+            tooltip.add(Text.translatable("item.speedrunnermod.blaze_spotter.tooltip"));
+            ItemUtil.stateOfTheArtItem(tooltip);
+        }
     }
 }

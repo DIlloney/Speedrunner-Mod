@@ -15,6 +15,9 @@ import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer;
 import java.util.List;
 import java.util.OptionalInt;
 
+/**
+ * All Speedrunner Mod {@code configured features,} specifically for the {@code speedrunner's wasteland} biome.
+ */
 public class WastelandConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> DEFAULT_SPEEDRUNNER = ModConfiguredFeatures.of("speedrunnermod:wasteland_default_speedrunner");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_SPEEDRUNNER = ModConfiguredFeatures.of("speedrunnermod:wasteland_fancy_speedrunner");

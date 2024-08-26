@@ -26,9 +26,9 @@ import java.util.TimerTask;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * An item that makes the ender dragon instantly perch upon use.
+ * An item that forces the ender dragon to perch upon use.
  */
-public class DragonsPearlItem extends Item implements StateOfTheArtItem {
+public class DragonsPearlItem extends Item {
 
     public DragonsPearlItem(Settings settings) {
         super(settings.maxCount(16).rarity(Rarity.EPIC));

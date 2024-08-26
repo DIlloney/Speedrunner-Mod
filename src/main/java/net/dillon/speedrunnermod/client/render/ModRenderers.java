@@ -24,14 +24,8 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 @Environment(EnvType.CLIENT)
 public class ModRenderers {
 
-    public static void init() {
-        initializeItemRenderers();
-        initializeBlockRenderers();
-        initializeOtherRenderers();
-    }
-
     /**
-     * Registers item renderers.
+     * Registers custom item renderers, such as the {@code speedrunner bow,} {@code speedrunner crossbow,} and the {@code speedrunner shield.}
      */
     private static void initializeItemRenderers() {
         ModelPredicateProviderRegistry.register(ModItems.SPEEDRUNNER_BOW, Identifier.ofVanilla("pull"), (stack, world, entity, seed) -> {
@@ -97,5 +91,14 @@ public class ModRenderers {
         TerraformBoatClientHelper.registerModelLayers(ModBoats.WARPED_BOAT_ID, false);
 
         info("Initialized custom renderers.");
+    }
+
+    /**
+     * Initializes all {@code Speedrunner Mod} renderers.
+     */
+    public static void init() {
+        initializeItemRenderers();
+        initializeBlockRenderers();
+        initializeOtherRenderers();
     }
 }

@@ -43,7 +43,7 @@ public class BaseModScreen extends GameOptionsScreen {
     }
 
     /**
-     * An easier way to open a link in a mod screen.
+     * An easier way to open a link.
      */
     protected void openLink(String link, boolean trusted) {
         this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
@@ -56,7 +56,7 @@ public class BaseModScreen extends GameOptionsScreen {
 
     /**
      * <p>The list of all feature screens.</p>
-     * These are not in order.
+     * These are not in order, and each time a new feature screen is created, it MUST be added to this list.
      */
     protected List<AbstractFeatureScreen> allFeatureScreens() {
         return List.of(
@@ -130,6 +130,9 @@ public class BaseModScreen extends GameOptionsScreen {
                 new CustomPanoramaScreen(parent, options));
     }
 
+    /**
+     * Needed because this method is abstract in {@link GameOptionsScreen}.
+     */
     @Override
     protected void addOptions() {
     }

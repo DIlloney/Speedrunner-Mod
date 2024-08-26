@@ -15,10 +15,13 @@ import net.minecraft.util.Identifier;
 import java.util.stream.IntStream;
 
 /**
- * The {@link SpeedrunnerMod} item group.
+ * The Speedrunner Mod {@code item group.}
  */
 public class ModItemGroups {
 
+    /**
+     * This field is never used, but the {@code init} method inside this class takes care of that, and initializes this item group.
+     */
     public static ItemGroup SPEEDRUNNER_MOD = Registry.register(Registries.ITEM_GROUP, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_mod_item_group"),
             FabricItemGroup.builder()
                     .displayName(Text.literal("Speedrunner Mod"))
@@ -165,6 +168,9 @@ public class ModItemGroups {
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
     }
 
+    /**
+     * The {@code call method} to initialize the modified and new item groups.
+     */
     public static void init() {
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.SPEEDRUNNER_INGOT);
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.SPEEDRUNNER_NUGGET);

@@ -43,6 +43,9 @@ public class SpeedrunnerSwordItem extends SwordItem {
         return super.postHit(stack, target, attacker);
     }
 
+    /**
+     * Returns the attack damage for the certain {@code "speedrunner sword.}
+     */
     private int getAttackDamage() {
         return SpeedrunnerSwordItem.attackDamage;
     }

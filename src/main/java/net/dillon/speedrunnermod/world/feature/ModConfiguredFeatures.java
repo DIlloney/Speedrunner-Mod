@@ -27,6 +27,9 @@ import net.minecraft.world.gen.trunk.*;
 import java.util.List;
 import java.util.OptionalInt;
 
+/**
+ * All Speedrunner Mod {@code configured features.}
+ */
 public class ModConfiguredFeatures {
     protected static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
     protected static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchRuleTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
@@ -154,6 +157,9 @@ public class ModConfiguredFeatures {
                 .ignoreVines();
     }
 
+    /**
+     * Created because original method uses "Identifier.ofVanilla".
+     */
     protected static RegistryKey<ConfiguredFeature<?, ?>> of(String id) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(id));
     }

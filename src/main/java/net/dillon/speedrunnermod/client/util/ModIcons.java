@@ -4,7 +4,7 @@ import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.util.Identifier;
 
 /**
- * All of the {@code icons} for the Speedrunner Mod.
+ * All Speedrunner Mod {@code icons,} such as the main logo and YouTube logos.
  */
 public class ModIcons {
     public static final Identifier SPEEDRUNNER_MOD_ICON = Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/icon.png");

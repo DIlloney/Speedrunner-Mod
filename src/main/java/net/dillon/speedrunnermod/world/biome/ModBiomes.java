@@ -22,7 +22,8 @@ import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 /**
- * See {@link VanillaBiomeParametersMixin} for structure generation and more.
+ * All Speedrunner Mod {@code custom biomes.}
+ * <p>See {@link VanillaBiomeParametersMixin} for structure generation and more.</p>
  */
 public class ModBiomes {
     public static final RegistryKey<Biome> SPEEDRUNNERS_WASTELAND_KEY = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunners_wasteland"));

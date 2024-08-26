@@ -27,7 +27,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 /**
  * An item that can be used to teleport to the surface.
  */
-public class EnderThrusterItem extends Item implements StateOfTheArtItem {
+public class EnderThrusterItem extends Item {
     private boolean confirm = !options().client.confirmMessages;
 
     public EnderThrusterItem(Settings settings) {

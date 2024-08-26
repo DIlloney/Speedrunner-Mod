@@ -7,8 +7,8 @@ import net.minecraft.item.ShieldItem;
 import net.minecraft.registry.tag.ItemTags;
 
 /**
- * <p>The {@link net.dillon.speedrunnermod.SpeedrunnerMod} shield, which has a faster cooldown, and more durability.</p>
- * <p>See {@link net.dillon.speedrunnermod.recipe.SpeedrunnerShieldDecorationRecipe} and {@link net.dillon.speedrunnermod.client.render.SpeedrunnerShieldRenderer} for more.</p>
+ * <p>A shield which has a faster cooldown, and more durability.</p>
+ * <p>See {@link net.dillon.speedrunnermod.recipe.SpeedrunnerShieldDecorationRecipe}, {@link net.dillon.speedrunnermod.client.render.SpeedrunnerShieldRenderer} and {@link net.dillon.speedrunnermod.mixin.main.entity.player.PlayerEntityMixin} for more.</p>
  */
 public class SpeedrunnerShieldItem extends ShieldItem {
 

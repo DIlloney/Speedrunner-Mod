@@ -19,7 +19,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * {@link SpeedrunnerMod} items.
+ * All Speedrunner Mod {@code items.}
  */
 public class ModItems {
     private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.applies_to"))).formatted(Formatting.GOLD);
@@ -234,6 +234,9 @@ public class ModItems {
     public static final Item DRAGONS_PEARL = new DragonsPearlItem(new Item.Settings());
     public static final Item INFINI_PEARL = new InfiniPearlItem(new Item.Settings());
 
+    /**
+     * Initializes all Speedrunner Mod {@code items.}
+     */
     public static void init() {
         Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_ingot"), SPEEDRUNNER_INGOT);
         Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_nugget"), SPEEDRUNNER_NUGGET);

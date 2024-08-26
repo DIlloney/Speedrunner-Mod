@@ -32,7 +32,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 /**
  * An item that teleports nearby piglin to the player upon right-clicking.
  */
-public class PiglinAwakenerItem extends Item implements StateOfTheArtItem {
+public class PiglinAwakenerItem extends Item {
     private boolean confirm = !options().client.confirmMessages;
 
     public PiglinAwakenerItem(Settings settings) {

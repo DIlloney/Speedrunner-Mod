@@ -11,7 +11,7 @@ import net.minecraft.registry.tag.BlockTags;
 import java.util.List;
 
 /**
- * The speedrunner shears, which can mine certain blocks faster.
+ * Shears which can mine certain blocks faster and have more durability.
  */
 public class SpeedrunnerShearsItem extends ShearsItem {
 

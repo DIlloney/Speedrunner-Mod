@@ -14,6 +14,9 @@ import java.util.Arrays;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
+/**
+ * All {@code "list"} options, which are used on the actual options screens to allow changing of these options.
+ */
 @Environment(EnvType.CLIENT)
 public class ModListOptions {
 

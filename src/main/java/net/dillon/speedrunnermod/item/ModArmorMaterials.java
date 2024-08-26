@@ -11,6 +11,9 @@ import net.minecraft.util.Util;
 
 import java.util.EnumMap;
 
+/**
+ * All Speedrunner Mod {@code armor materials} (for helmets, chestplates, leggings, and boots).
+ */
 public class ModArmorMaterials {
     public static final RegistryEntry<ArmorMaterial> SPEEDRUNNER = ArmorMaterials.register("speedrunner", Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
         map.put(ArmorItem.Type.BOOTS, 2);

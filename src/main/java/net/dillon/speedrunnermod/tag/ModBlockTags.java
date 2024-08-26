@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 /**
- * {@link SpeedrunnerMod} block tags. Useful for many things in some mixins.
+ * All Speedrunner Mod {@code block tags.} Useful for many things in some mixins.
  */
 public class ModBlockTags {
     public static TagKey<Block> DEAD_SPEEDRUNNER_LOGS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_logs"));
@@ -28,6 +28,9 @@ public class ModBlockTags {
     public static TagKey<Block> TEXTURE_CREATOR_MANNYQUESO = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "texture_creator_mannyqueso"));
     public static TagKey<Block> TEXTURE_CREATOR_KREVIKUS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "texture_creator_krevikus"));
 
+    /**
+     * These are the block tags that have a modified hardness value. See {@link net.dillon.speedrunnermod.mixin.main.block.AbstractBlockStateMixin} for more.
+     */
     public static class BlockHardness {
         public static TagKey<Block> ZERO_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0_hardness"));
         public static TagKey<Block> ZERO_ONE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-1_hardness"));
@@ -59,6 +62,9 @@ public class ModBlockTags {
         public static TagKey<Block> TWENTY_FIVE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/25_hardness"));
     }
 
+    /**
+     * Initializes all Speedrunner Mod {@code block tags.}
+     */
     public static void init() {
         info("Registered block tags.");
     }

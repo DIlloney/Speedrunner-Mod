@@ -18,7 +18,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 /**
- * The {@code Speedrunner Mod} blocks.
+ * All Speedrunner Mod {@code blocks.}
  */
 public class ModBlocks {
     public static final Identifier SPEEDRUNNER_SIGN_TEXTURE = Identifier.of(SpeedrunnerMod.MOD_ID, "entity/signs/speedrunner");
@@ -301,7 +301,7 @@ public class ModBlocks {
             .sounds(BlockSoundGroup.GRASS));
 
     /**
-     * Makes certain blocks strippable.
+     * Makes certain blocks {@code strippable}.
      */
     private static void registerStrippables() {
         StrippableBlockRegistry.register(SPEEDRUNNER_LOG, STRIPPED_SPEEDRUNNER_LOG);
@@ -310,7 +310,7 @@ public class ModBlocks {
     }
 
     /**
-     * Initialize the {@code Speedrunner Mod} blocks.
+     * Initializes all Speedrunner Mod {@code blocks.}
      */
     public static void init() {
         Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_log"), SPEEDRUNNER_LOG);

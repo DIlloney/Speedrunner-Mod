@@ -18,6 +18,9 @@ import net.minecraft.world.gen.placementmodifier.*;
 
 import static net.minecraft.world.gen.feature.OrePlacedFeatures.modifiersWithCount;
 
+/**
+ * All Speedrunner Mod {@code placed features.}
+ */
 public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> DEFAULT_SPEEDRUNNER_PLACED = of("speedrunnermod:default_speedrunner_placed");
     public static final RegistryKey<PlacedFeature> DEFAULT_SPEEDRUNNER_PLACED_FOREST = of("speedrunnermod:default_speedrunner_placed_forest");
@@ -140,6 +143,9 @@ public class ModPlacedFeatures {
                 VegetationPlacedFeatures.modifiers(3));
     }
 
+    /**
+     * Created because original method uses "Identifier.ofVanilla".
+     */
     protected static RegistryKey<PlacedFeature> of(String id) {
         return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(id));
     }

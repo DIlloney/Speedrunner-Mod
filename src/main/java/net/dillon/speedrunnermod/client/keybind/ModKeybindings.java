@@ -11,7 +11,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerModClient.isSimpleKeybindsLoaded;
 
 /**
- * All of the {@code Speedrunner mod} keybinds.
+ * All {@code Speedrunner Mod} keybindings.
  */
 @Environment(EnvType.CLIENT)
 public class ModKeybindings {
@@ -22,6 +22,9 @@ public class ModKeybindings {
     public static KeyBinding hitboxesKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("speedrunnermod.toggle_hitboxes", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H, MOD_KEYBINDS));
     public static KeyBinding chunkBordersKey = KeyBindingHelper.registerKeyBinding(new KeyBinding("speedrunnermod.toggle_chunk_borders", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_K, MOD_KEYBINDS));
 
+    /**
+     * Initializes all {@code Speedrunner Mod} keybindings.
+     */
     public static void clinit() {
         info("Initialized keybinds.");
         if (isSimpleKeybindsLoaded()) {

@@ -36,31 +36,36 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
         super(settings);
     }
 
+    /**
+     * The method for transferring compatible enchantments from the players main hand, to the players offhand.
+     * <p>See additional comments inside of this method for more documentation.</p>
+     */
     @Override @ChatGPT(Credit.PARTIAL_CREDIT)
     public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient && player.getMainHandStack().hasEnchantments() && !player.getOffHandStack().isEmpty()) {
-            ItemStack mainHandStack = player.getMainHandStack();
-            ItemStack offHandStack = player.getOffHandStack();
-            ItemEnchantmentsComponent mainHandEnchantments = EnchantmentHelper.getEnchantments(mainHandStack);
-            ItemEnchantmentsComponent offHandEnchantments = EnchantmentHelper.getEnchantments(offHandStack);
-            ItemEnchantmentsComponent.Builder mainHandBuilder = new ItemEnchantmentsComponent.Builder(mainHandEnchantments);
-            ItemEnchantmentsComponent.Builder offHandBuilder = new ItemEnchantmentsComponent.Builder(offHandEnchantments);
+            ItemStack mainHandStack = player.getMainHandStack(); // Get the players main hand stack
+            ItemStack offHandStack = player.getOffHandStack(); // Get the players offhand stack
+            ItemEnchantmentsComponent mainHandEnchantments = EnchantmentHelper.getEnchantments(mainHandStack); // Get the enchantments on the players main hand item, using an item enchantments component
+            ItemEnchantmentsComponent offHandEnchantments = EnchantmentHelper.getEnchantments(offHandStack); // Get the enchantments on the players offhand item, using an item enchantments component
+            ItemEnchantmentsComponent.Builder mainHandBuilder = new ItemEnchantmentsComponent.Builder(mainHandEnchantments); // An item enchantments component builder for the players main hand enchantments
+            ItemEnchantmentsComponent.Builder offHandBuilder = new ItemEnchantmentsComponent.Builder(offHandEnchantments); // An item enchantments component builder for the players offhand enchantments
 
-            int totalTransferred = 0;
-            int cost = 0;
-            boolean successWithEnchantments = false;
-            boolean successWithNoEnchantments = false;
-            boolean fail = false;
-            boolean wasUpgraded = false;
-            boolean someIncFailed = false;
-            boolean incompatibleEnchantmentsFailed = false;
-            boolean offhandHasEnchantments = EnchantmentHelper.hasEnchantments(offHandStack);
+            int totalTransferred = 0; // The total amount of enchantments successfully transferred
+            int cost = 0; // The amount of levels that it costs to transfer all compatible enchantments
+            boolean successWithEnchantments = false; // Determines if transferring enchantments were successful, if the players offhand item already had enchantments to begin with
+            boolean successWithNoEnchantments = false; // Determines if transferring enchantments were successful, if the players offhand item had no enchantments
+            boolean fail = false; // Determines of transferring enchantments failed and/or there were no enchantments to transfer
+            boolean wasUpgraded = false; // Determines if a higher enchantment level was transferred to the offhand (ex. offhand item had unbreaking 2, unbreaking 3 was transferred)
+            boolean someIncFailed = false; // Determines if only some enchantments failed to transfer
+            boolean incompatibleEnchantmentsFailed = false; // Determines if all enchantments failed to transfer due to incompatibility
+            boolean offhandHasEnchantments = EnchantmentHelper.hasEnchantments(offHandStack); // Determines if the players offhand stack has any enchantments
 
+            // Run through all main hand enchantments
             for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : mainHandEnchantments.getEnchantmentEntries()) {
                 RegistryEntry registryEntry = entry.getKey();
                 Enchantment enchantment = (Enchantment)registryEntry.value();
 
-                if (!offhandHasEnchantments) {
+                if (!offhandHasEnchantments) { // If the players offhand item has no enchantments, "successWithNoEnchantments" returns true, and enchantments are transferred
                     totalTransferred++;
                     cost = initializeCost(player, totalTransferred);
                     if (totalTransferred != 0 && player.experienceLevel >= cost) {
@@ -69,10 +74,11 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                     } else {
                         fail = true;
                     }
-                } else {
+                } else { // Otherwise, start running through all offhand enchantments
                     boolean allIsCompatible = true;
                     for (RegistryEntry<Enchantment> registryEntry2 : offHandBuilder.getEnchantments()) {
 
+                        // Compare main hand and offhand enchantments and determine if they are compatible
                         for (RegistryEntry<Enchantment> existingEnchantment : offHandBuilder.getEnchantments()) {
                             if (!Enchantment.canBeCombined(existingEnchantment, registryEntry) && !existingEnchantment.equals(registryEntry)) {
                                 allIsCompatible = false;
@@ -80,7 +86,11 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                             }
                         }
 
+                        // Determines if an enchantment on the offhand can be upgraded to a higher level
                         boolean canUpgrade = registryEntry2.equals(registryEntry) && offHandBuilder.getLevel(registryEntry2) < mainHandBuilder.getLevel(registryEntry);
+
+                        // If all enchantments are compatible with each other and can be combined,
+                        // "successWithEnchantments" returns true, and enchantments are transferred
                         if (allIsCompatible && (Enchantment.canBeCombined(registryEntry, registryEntry2) || canUpgrade)) {
 
                             totalTransferred++;
@@ -95,11 +105,13 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                             } else {
                                 fail = true;
                             }
-                        } else {
+                        } else { // Otherwise, check for the enchantments that are compatible with each other
+                            // If total transferred is greater than 0 (or some enchantments are compatible),
+                            // "someIncFailed" returns true, and the compatible enchantments are transferred
                             if (!Enchantment.canBeCombined(registryEntry, registryEntry2)) {
                                 if (totalTransferred > 0) {
                                     someIncFailed = true;
-                                } else {
+                                } else { // Otherwise, no enchantments are transferred, and "incompatibleEnchantmentsFailed" returns true
                                     incompatibleEnchantmentsFailed = true;
                                 }
                             }
@@ -108,6 +120,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                 }
             }
 
+            // Successful enchantment transfer when the offhand item had enchantments before
             if (successWithEnchantments) {
                 if (wasUpgraded) {
                     player.sendMessage(Text.translatable("speedrunnermod.enchantment_levels_upgraded"), false);
@@ -115,17 +128,22 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                 success(world, pos, player, hand, mainHandStack, cost);
             }
 
+            // Successful enchantment transfer when the offhand item had no enchantments before
             if (successWithNoEnchantments) {
                 success(world, pos, player, hand, mainHandStack, cost);
             }
 
+            // Some incompatible enchantments were not transferred
             if (someIncFailed) {
                 player.sendMessage(Text.translatable("speedrunnermod.some_incompatible_enchantments_failed"), false);
             }
+
+            // No enchantments were transferred, because they were all incompatible
             if (incompatibleEnchantmentsFailed) {
                 player.sendMessage(Text.translatable("speedrunnermod.incompatible_enchantments_failed").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
             }
 
+            // Tells the player how many levels are needed to transfer enchantments
             if (fail) {
                 fail(player, cost);
             }

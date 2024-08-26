@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 /**
- * {@link net.dillon.speedrunnermod.SpeedrunnerMod} fuels (objects that can be used as a fuel source in a furnace).
+ * All Speedrunner Mod {@code fuels} (objects that can be used as a fuel source in a furnace).
  */
 public class ModFuels {
 

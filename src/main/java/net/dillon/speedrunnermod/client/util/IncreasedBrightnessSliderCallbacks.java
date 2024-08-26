@@ -10,7 +10,7 @@ import net.minecraft.client.option.SimpleOption;
 import java.util.Optional;
 
 /**
- * Used to increase the maximum brightness.
+ * Used to increase the maximum brightness for the Speedrunner Mod, and allowing {@code fullbright.}
  */
 @Author(Authors.ADAMVIOLA)
 public enum IncreasedBrightnessSliderCallbacks implements SimpleOption.SliderCallbacks<Double> {

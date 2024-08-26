@@ -7,7 +7,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 /**
- * All of the {@link Text#translatable(String)}s for the {@code speedrunner mod}.
+ * All {@code translation keys} for the Speedrunner Mod.
  */
 @Environment(EnvType.CLIENT)
 public class ModTexts {

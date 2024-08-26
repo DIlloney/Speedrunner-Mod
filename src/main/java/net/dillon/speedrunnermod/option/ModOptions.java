@@ -20,7 +20,7 @@ import java.util.Objects;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
 
 /**
- * The main options for the {@code Speedrunner Mod}.
+ * All Speedrunner Mod {@code options.}
  * <p>When adding new options...</p>
  * <p>- Must add a check for restart required in {@link net.dillon.speedrunnermod.client.screen.RestartRequiredScreen}, only if necessary,</p>
  * <p>- Determine if it is leaderboard-eligible, and then implement into {@link Leaderboards}.</p>

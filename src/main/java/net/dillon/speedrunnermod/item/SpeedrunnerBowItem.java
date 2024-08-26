@@ -1,7 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.client.render.ModRenderers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -21,7 +19,7 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * The {@link SpeedrunnerMod} bow, which charges faster, shoots farther, does more damage, and has more durability.
+ * A bow that charges faster, shoots farther, does more damage, and has more durability.
  */
 public class SpeedrunnerBowItem extends BowItem {
 
@@ -69,7 +67,7 @@ public class SpeedrunnerBowItem extends BowItem {
     }
 
     /**
-     * See {@link BowItem} and {@link ModRenderers#init()} for more.
+     * Renderers the pull progress of the speedrunner bow at a faster rate.
      */
     public static float getPullProgress(int useTicks) {
         float f = (float)useTicks / 15.0F;
@@ -79,6 +77,9 @@ public class SpeedrunnerBowItem extends BowItem {
         return f;
     }
 
+    /**
+     * I honestly don't know what this does, but I just lowered it from the parent method.
+     */
     @Override
     public int getMaxUseTime(ItemStack stack, LivingEntity user) {
         return 54000;

@@ -14,7 +14,7 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * A sword with very low durability, but can one-shot wither skeletons, and makes them drop a wither skeleton skull.
+ * A sword with very low durability, but can one-shot wither skeletons, and guarantees a wither skeleton skull.
  */
 public class WitherSwordItem extends SwordItem {
 

@@ -9,10 +9,12 @@ import net.minecraft.util.Identifier;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 /**
- * All of the {@code speedrunner mod} enchantments.
+ * All Speedrunner Mod {@code enchantments.}
  */
 public class ModEnchantments {
+    // For boots, grants the player the speed effect, amplifier increased for each level
     public static final RegistryKey<Enchantment> DASH = RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(SpeedrunnerMod.MOD_ID, "dash"));
+    // For items that have a "cooldown" (shields, ender pearls, chorus fruit, etc.), this lowers the cooldown on those items
     public static final RegistryKey<Enchantment> COOLDOWN = RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(SpeedrunnerMod.MOD_ID, "cooldown"));
 
     public static void init() {

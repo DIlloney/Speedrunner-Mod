@@ -13,6 +13,10 @@ import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
 
+/**
+ * The {@code banner decoration recipe} for the speedrunner shield.
+ * <p>Copied over from the original {@link net.minecraft.recipe.ShieldDecorationRecipe}.</p>
+ */
 public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
     public static SpecialRecipeSerializer<SpeedrunnerShieldDecorationRecipe> SPEEDRUNNER_SHIELD_DECORATION_RECIPE = new SpecialRecipeSerializer<>(SpeedrunnerShieldDecorationRecipe::new);
 

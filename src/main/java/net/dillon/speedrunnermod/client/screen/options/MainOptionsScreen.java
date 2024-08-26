@@ -14,6 +14,9 @@ import net.minecraft.client.option.SimpleOption;
 
 import java.io.File;
 
+/**
+ * The Speedrunner Mod's {@code main options.}
+ */
 @Environment(EnvType.CLIENT)
 public class MainOptionsScreen extends AbstractModScreen {
 

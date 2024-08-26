@@ -4,7 +4,7 @@ import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.mob.GiantEntity;
 
 /**
- * Used in {@link net.dillon.speedrunnermod.mixin.main.entity.giant.GiantEntityMixin}
+ * See {@link net.dillon.speedrunnermod.mixin.main.entity.giant.GiantEntityMixin} for more.
  */
 public class GiantAttackGoal extends MeleeAttackGoal {
     private final GiantEntity giant;

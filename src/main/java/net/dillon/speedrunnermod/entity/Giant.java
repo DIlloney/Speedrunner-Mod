@@ -10,7 +10,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 /**
- * Used in {@link net.dillon.speedrunnermod.mixin.main.entity.giant.GiantEntityMixin}
+ * See {@link net.dillon.speedrunnermod.mixin.main.entity.giant.GiantEntityMixin} for more.
  */
 public interface Giant {
 
@@ -21,8 +21,7 @@ public interface Giant {
         boolean bl = target.damage(attacker.getDamageSources().mobAttack(attacker), g);
         if (bl) {
             World world = attacker.getWorld();
-            if (world instanceof ServerWorld) {
-                ServerWorld serverWorld = (ServerWorld)world;
+            if (world instanceof ServerWorld serverWorld) {
                 EnchantmentHelper.onTargetDamaged(serverWorld, target, damageSource);
             }
             if (!attacker.isBaby()) {
@@ -33,9 +32,8 @@ public interface Giant {
     }
 
     static void knockback(LivingEntity attacker, LivingEntity target) {
-        double e;
         double d = attacker.getAttributeValue(EntityAttributes.GENERIC_ATTACK_KNOCKBACK);
-        double f = d - (e = target.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
+        double f = d - target.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE);
         if (f <= 0.0) {
             return;
         }

@@ -16,6 +16,9 @@ import net.minecraft.util.Identifier;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
+/**
+ * The {@code main screen} for the Speedrunner Mod, consisting of all the basic resources, such as options, external links, other mods, and more.
+ */
 @Environment(EnvType.CLIENT)
 public class MainScreen extends AbstractModScreen {
     protected ButtonWidget optionsButton, featuresButton, resourcesButton, externalButton, creditsButton, leaderboardsButton, easierSpeedrunningModButton, doomModeButton;

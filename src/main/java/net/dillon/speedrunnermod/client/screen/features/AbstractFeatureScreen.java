@@ -27,7 +27,7 @@ import org.lwjgl.glfw.GLFW;
 import java.util.List;
 
 /**
- * Used to create various different screens, for the soul purpose of showing off the Speedrunner Mod's main features.
+ * Used to create {@code feature screens}, for the soul purpose of displaying some of Speedrunner Mod's features.
  */
 @Environment(EnvType.CLIENT)
 public abstract class AbstractFeatureScreen extends BaseModScreen {
@@ -47,6 +47,9 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
     @Nullable
     private Text category4Text;
 
+    /**
+     * A basic feature screen constructor.
+     */
     public AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderBaseImage, boolean renderCraftingRecipe) {
         super(parent, options, title);
         this.parent = parent;
@@ -54,6 +57,9 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         this.renderCraftingRecipe = renderCraftingRecipe;
     }
 
+    /**
+     * A feature screen constructor which additionally determines if certain buttons should be moved over.
+     */
     public AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderBaseImage, boolean renderCraftingRecipe, boolean moveButtons) {
         super(parent, options, title);
         this.parent = parent;
@@ -62,6 +68,9 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         this.moveButtons = moveButtons;
     }
 
+    /**
+     * A feature screen constructor, this one is typically used for the last page of a category.
+     */
     public AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderBaseImage, boolean renderCraftingRecipe, Screen category1Screen, Text category1Text, Screen category2Screen, Text category2Text, Screen category3Screen, Text category3Text, boolean hasFourthCategory, @Nullable Screen category4Screen, @Nullable Text category4Text) {
         super(parent, options, title);
         this.parent = parent;
@@ -78,6 +87,9 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         this.category4Text = category4Text;
     }
 
+    /**
+     * A feature screen constructor, also typically used for the last page of a category, which additionally determines if certain buttons should be moved around.
+     */
     public AbstractFeatureScreen(Screen parent, GameOptions options, Text title, boolean renderBaseImage, boolean renderCraftingRecipe, boolean moveButtons, Screen category1Screen, Text category1Text, Screen category2Screen, Text category2Text, Screen category3Screen, Text category3Text, boolean hasFourthCategory, @Nullable Screen category4Screen, @Nullable Text category4Text) {
         super(parent, options, title);
         this.parent = parent;
@@ -95,17 +107,27 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         this.category4Text = category4Text;
     }
 
+    /**
+     * Creates the basic buttons for every feature screen.
+     * <p>See comments inside of method for more documentation.</p>
+     */
     @Override
     protected void init() {
         int width = this.getButtonsWidth();
         int height = this.getButtonsHeight();
 
+        // A starter feature screen (or the first page of a certain category of features)
+        // consists of only a "Next" and "Done" button
         if (this.getScreenType() == ScreenType.STARTER) {
             this.addDrawableChild(ButtonWidget.builder(ModTexts.NEXT, button -> this.client.setScreen(this.getNextScreen())).dimensions(width, height, 150, 20).build());
 
             height += 24;
             this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, button -> this.close()).dimensions(width, height, 150, 20).build());
-        } else if (this.getScreenType() == ScreenType.NORMAL) {
+        }
+
+        // A normal feature screen, which is any page between the first and last page of a certain category of features,
+        // consists of a "Next", "Previous" and "Done" button
+        else if (this.getScreenType() == ScreenType.NORMAL) {
             this.addDrawableChild(ButtonWidget.builder(ModTexts.NEXT, button -> this.client.setScreen(this.getNextScreen())).dimensions(width, height, 150, 20).build());
 
             height += 24;
@@ -113,7 +135,11 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
 
             height += 24;
             this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, button -> this.close()).dimensions(width, height, 150, 20).build());
-        } else if (this.getScreenType() == ScreenType.FINAL) {
+        }
+
+        // A final feature screen (the last page of a certain category of features),
+        // Consists of all the other remaining categories to explore, along with a "Previous" and "Done" button.
+        else if (this.getScreenType() == ScreenType.FINAL) {
             this.addDrawableChild(ButtonWidget.builder(this.category1Text, button -> this.client.setScreen(this.category1Screen)).dimensions(width, height, 150, 20).build());
 
             height += 24;
@@ -132,7 +158,11 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
 
             height += 24;
             this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE, button -> this.close()).dimensions(width, height, 150, 20).build());
-        } else if (this.getScreenType() == ScreenType.END) {
+        }
+
+        // An "end" feature screen, which is only used for the last page of a certain category and the last actual category,
+        // Consists of all the other categories to re-explore, as well as a "Previous" and "Done" button.
+        else if (this.getScreenType() == ScreenType.END) {
             height = this.height / 6 + 115;
             this.addDrawableChild(ButtonWidget.builder(Text.translatable("speedrunnermod.menu.features.learn_more"), button -> {
                 this.openLink(ModLinks.WIKI, true);
@@ -163,6 +193,9 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         }
     }
 
+    /**
+     * Determine what to do when the user closes a screen.
+     */
     @Override
     public void close() {
         if (this.getScreenCategory() == ScreenCategory.BLOCKS_AND_ITEMS) {
@@ -180,6 +213,9 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         }
     }
 
+    /**
+     * Renders the basic and additional objects on a feature screen.
+     */
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
@@ -217,6 +253,9 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
         this.renderCustomImage(context);
     }
 
+    /**
+     * Allows for navigation between pages by using the left and right arrow keys.
+     */
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if (keyCode == GLFW.GLFW_KEY_LEFT || keyCode == GLFW.GLFW_KEY_A) {
@@ -230,7 +269,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
     }
 
     /**
-     * Gets the maximum amount of pages for each category.
+     * Returns the maximum amount of pages for each category.
      */
     protected int getMaxPages() {
         switch (this.getScreenCategory()) {
@@ -256,7 +295,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
     }
 
     /**
-     * Gets the page number of feature screens.
+     * Returns the page number of feature screens.
      */
     private Screen page(int pageNumber) {
         switch (this.getScreenCategory()) {
@@ -308,7 +347,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
     }
 
     /**
-     * Gets the category to display on the feature screen.
+     * Returns the category to display on the feature screen.
      */
     private String linesCategory() {
         if (this.getScreenCategory() == ScreenCategory.BLOCKS_AND_ITEMS) {
@@ -332,15 +371,15 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
     }
 
     /**
-     * Gets the buttons width on the screen.
-     * <p>You should only {@link Override} this method if you use {@link AbstractFeatureScreen#renderCustomImage(DrawContext)}.</p>
+     * Returns the buttons width on the screen.
+     * <p>You should only {@link Override} this method if you use the {@link AbstractFeatureScreen#renderCustomImage(DrawContext)} method.</p>
      */
     protected int getButtonsWidth() {
         return this.renderCraftingRecipe || this.moveButtons ? this.width / 2 - 175 : this.width / 2 - 75;
     }
 
     /**
-     * Gets the height of the buttons on the screen.
+     * Returns the height of the buttons on the screen.
      */
     protected int getButtonsHeight() {
         if (this.getScreenType() == ScreenType.FINAL) {
@@ -393,15 +432,15 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
     }
 
     /**
-     * Renders a 1920x1080 image cut down to 240x135 on the screen.
+     * Renders a {@code 1920x1080} image cut down to {@code 240x135} on the screen.
      */
     protected void renderFullResolutionDownscaledImage(DrawContext context) {
         context.drawTexture(this.getDownscaledImage(), this.width / 2, 170, 0.0F, 0.0F, 240, 135, 240, 135);
     }
 
     /**
-     * <p>Gets the downscaled image location.</p>
-     * As long as this returns {@code null}, the image will not be rendered on the screen.
+     * <p>Returns the downscaled image location.</p>
+     * As long as this method returns {@code null}, no image will be rendered on the screen.
      */
     protected Identifier getDownscaledImage() {
         return null;
@@ -423,7 +462,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
 
     /**
      * <p>Gets the {@code previous screen}, which goes back to the screen displayed before.</p>
-     * <i>On {@link ScreenType#STARTER} pages, there may not be a previous screen.</i>
+     * <p>On {@link ScreenType#STARTER} pages, there may not be a previous screen.</p>
      */
     @Nullable
     protected Screen getPreviousScreen() {
@@ -466,13 +505,13 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
     protected abstract Identifier getCraftingRecipeImage();
 
     /**
-     * Gets the category that the feature screen is in.
+     * Returns the screen category that the feature screen fits in.
      */
     @NotNull
     public abstract ScreenCategory getScreenCategory();
 
     /**
-     * Gets the type of feature screen.
+     * Returns the type of feature screen.
      */
     @NotNull
     protected abstract ScreenType getScreenType();

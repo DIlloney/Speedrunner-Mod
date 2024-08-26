@@ -23,7 +23,7 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * An eye of ender that locates nether fortresses and bastions.
+ * An eye of ender that locates nearby nether fortresses and bastions.
  */
 public class InfernoEyeItem extends Item {
     private String structureType = "Fortress";

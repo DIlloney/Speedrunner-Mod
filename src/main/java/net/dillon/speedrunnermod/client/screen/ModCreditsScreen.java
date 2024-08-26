@@ -8,6 +8,9 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.util.Identifier;
 
+/**
+ * The credits screen for the Speedrunner Mod, rendering a custom credits image.
+ */
 @Environment(EnvType.CLIENT)
 public class ModCreditsScreen extends AbstractModScreen {
 

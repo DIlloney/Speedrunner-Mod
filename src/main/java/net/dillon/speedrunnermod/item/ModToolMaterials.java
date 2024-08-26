@@ -10,6 +10,9 @@ import net.minecraft.registry.tag.TagKey;
 
 import java.util.function.Supplier;
 
+/**
+ * All Speedrunner Mod {@code tool materials} (for pickaxes, axes, swords, etc.)
+ */
 public enum ModToolMaterials implements ToolMaterial {
     SPEEDRUNNER_SHOVEL_AXE_HOE(BlockTags.INCORRECT_FOR_IRON_TOOL, 500, 11.0F, 0.0F, 17, () -> {
         return Ingredient.ofItems(ModItems.SPEEDRUNNER_INGOT);

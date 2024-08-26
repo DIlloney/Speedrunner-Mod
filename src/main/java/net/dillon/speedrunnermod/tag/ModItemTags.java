@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 /**
- * Speedrunner Mod item tags.
+ * All Speedrunner Mod {@code item tags.}
  */
 public class ModItemTags {
     public static TagKey<Item> BOWS = TagKey.of(RegistryKeys.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "bows"));
@@ -57,6 +57,9 @@ public class ModItemTags {
         public static TagKey<Item> TEXTURE_CREATOR_KREVIKUS = TagKey.of(RegistryKeys.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "texture_creator_krevikus"));
     }
 
+    /**
+     * Initializes all Speedrunner Mod {@code item tags.}
+     */
     public static void init() {
         info("Registered item tags.");
     }

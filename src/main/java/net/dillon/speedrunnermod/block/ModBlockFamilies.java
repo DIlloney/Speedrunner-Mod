@@ -7,6 +7,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 
 /**
  * The {@code speedrunner mod} block family.
+ * <p>See data generators for more.</p>
  */
 public class ModBlockFamilies {
     public static final BlockFamily SPEEDRUNNER_FAMILY = BlockFamilies.register(ModBlocks.SPEEDRUNNER_PLANKS)

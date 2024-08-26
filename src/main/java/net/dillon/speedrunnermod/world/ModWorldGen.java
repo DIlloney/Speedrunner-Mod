@@ -15,6 +15,9 @@ import net.minecraft.world.gen.GenerationStep;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
 
+/**
+ * All Speedrunner Mod {@code custom world gen features.}
+ */
 public class ModWorldGen {
     public static final Pool<SpawnSettings.SpawnEntry> NETHER_FORTRESS_MOB_SPAWNS;
     public static final NetherFortressGenerator.PieceData[] NETHER_FORTRESS_GENERATION_BRIDGE;
@@ -22,7 +25,7 @@ public class ModWorldGen {
     public static final StrongholdGenerator.PieceData[] STRONGHOLD_GENERATION;
 
     /**
-     * Initializes the {@code speedrunner mod worldgen.}
+     * Initializes all Speedrunner Mod {@code custom world gen features.}
      */
     public static void init() {
         addOres();

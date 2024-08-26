@@ -17,6 +17,9 @@ import net.minecraft.world.gen.placementmodifier.*;
 
 import static net.minecraft.world.gen.feature.OrePlacedFeatures.modifiersWithCount;
 
+/**
+ * All Speedrunner Mod {@code placed features}, specifically for the {@code speedrunner's wasteland} biome.
+ */
 public class WastelandPlacedFeatures {
     public static final RegistryKey<PlacedFeature> DEFAULT_SPEEDRUNNER_PLACED = ModPlacedFeatures.of("speedrunnermod:wasteland_default_speedrunner_placed");
     public static final RegistryKey<PlacedFeature> FANCY_SPEEDRUNNER_PLACED = ModPlacedFeatures.of("speedrunnermod:wasteland_fancy_speedrunner_placed");

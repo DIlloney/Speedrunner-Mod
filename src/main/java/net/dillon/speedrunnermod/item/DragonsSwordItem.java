@@ -22,9 +22,9 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * A weapon that can be used to instantly kill the ender dragon.
+ * A weapon that instantly kills the ender dragon.
  */
-public class DragonsSwordItem extends SwordItem implements StateOfTheArtItem {
+public class DragonsSwordItem extends SwordItem {
 
     public DragonsSwordItem(Settings settings) {
         super(ModToolMaterials.DRAGONS_SWORD, settings.rarity(Rarity.EPIC).attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.DRAGONS_SWORD, 9, -2.4F)));
@@ -52,7 +52,7 @@ public class DragonsSwordItem extends SwordItem implements StateOfTheArtItem {
     }
 
     /**
-     * The Dragon's sword will always have an enchantment glint.
+     * The Dragon's sword always has an enchantment glint.
      */
     @Override
     public boolean hasGlint(ItemStack stack) {

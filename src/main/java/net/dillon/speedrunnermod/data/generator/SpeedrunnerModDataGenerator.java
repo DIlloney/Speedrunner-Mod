@@ -12,7 +12,7 @@ import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 
 /**
- * See {@link net.dillon.speedrunnermod.world} for more.
+ * Runs all Speedrunner Mod {@code data generators} and creates all respective {@code .json} files.
  */
 public class SpeedrunnerModDataGenerator implements DataGeneratorEntrypoint {
 
@@ -33,6 +33,9 @@ public class SpeedrunnerModDataGenerator implements DataGeneratorEntrypoint {
         SpeedrunnerMod.info("Finished running through data generator.");
     }
 
+    /**
+     * Runs all {@code world data generators,} and creates the respective {@code .json} files.
+     */
     @Override
     public void buildRegistry(RegistryBuilder registryBuilder) {
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);

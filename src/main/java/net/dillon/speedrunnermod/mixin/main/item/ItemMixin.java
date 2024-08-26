@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.mixin.main.item;
 
-import net.dillon.speedrunnermod.item.StateOfTheArtItem;
 import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,7 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Mixin(Item.class)
-public class ItemMixin implements StateOfTheArtItem {
+public class ItemMixin {
 
     /**
      * Adds tooltips to items can be used to craft the piglin awakener item.
