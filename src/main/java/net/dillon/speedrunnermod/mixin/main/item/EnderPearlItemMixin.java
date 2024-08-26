@@ -1,8 +1,6 @@
 package net.dillon.speedrunnermod.mixin.main.item;
 
 import net.dillon.speedrunnermod.enchantment.ModEnchantments;
-import net.dillon.speedrunnermod.util.Author;
-import net.dillon.speedrunnermod.util.Authors;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,7 +27,6 @@ public class EnderPearlItemMixin extends Item {
     /**
      * Adds the {@code cooldown enchantment} function.
      */
-    @Author(Authors.DUNCANRUNS)
     @Overwrite
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
