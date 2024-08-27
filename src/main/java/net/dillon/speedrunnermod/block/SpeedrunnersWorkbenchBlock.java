@@ -70,7 +70,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                     cost = initializeCost(player, totalTransferred);
                     if (totalTransferred != 0 && player.experienceLevel >= cost && enchantment.isAcceptableItem(offHandStack)) {
                         successWithNoEnchantments = true;
-                        transferEnchantments(enchantment, mainHandStack, offHandStack, mainHandBuilder, offHandBuilder, entry, registryEntry, null);
+                        transferEnchantments(mainHandStack, offHandStack, mainHandBuilder, offHandBuilder, entry, registryEntry);
                     } else {
                         if (!enchantment.isAcceptableItem(offHandStack)) {
                             incompatibleEnchantmentsFailed = true;
@@ -105,7 +105,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                                 if (canUpgrade) {
                                     wasUpgraded = true;
                                 }
-                                transferEnchantments(enchantment, mainHandStack, offHandStack, mainHandBuilder, offHandBuilder, entry, registryEntry, registryEntry2);
+                                transferEnchantments(mainHandStack, offHandStack, mainHandBuilder, offHandBuilder, entry, registryEntry);
                             } else {
                                 fail = true;
                             }
@@ -160,14 +160,27 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
 
     /**
      * Applies the transferred enchantments to the item.
+     * <p>See comments inside method for more documentation.</p>
      */
-    private static void transferEnchantments(Enchantment enchantment, ItemStack mainHandStack, ItemStack offHandStack, ItemEnchantmentsComponent.Builder mainHandBuilder, ItemEnchantmentsComponent.Builder offHandBuilder, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry, RegistryEntry registryEntry, RegistryEntry<Enchantment> registryEntry2) {
-        if (enchantment.isAcceptableItem(offHandStack)) {
-            EnchantmentHelper.apply(offHandStack, builder -> builder.add(entry.getKey(), mainHandBuilder.getLevel(entry.getKey())));
-            EnchantmentHelper.apply(mainHandStack, builder -> builder.remove(enchantmentRegistryEntry -> enchantmentRegistryEntry.value().isAcceptableItem(offHandStack)));
+    @ChatGPT(Credit.PARTIAL_CREDIT)
+    private static void transferEnchantments(ItemStack mainHandStack, ItemStack offHandStack, ItemEnchantmentsComponent.Builder mainHandBuilder, ItemEnchantmentsComponent.Builder offHandBuilder, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry, RegistryEntry registryEntry) {
+        int mainHandLevel = mainHandBuilder.getLevel(entry.getKey());
+        int offHandLevel = offHandBuilder.getLevel(entry.getKey());
+
+        // Check if the offhand already has the enchantment
+        if (offHandLevel > 0) {
+            // If offhand has a lower level, upgrade it
+            if (offHandLevel < mainHandLevel) {
+                EnchantmentHelper.apply(offHandStack, builder -> builder.add(entry.getKey(), mainHandLevel));
+            }
+            // No further action needed if the levels are equal or offhand has a higher level
         } else {
-            EnchantmentHelper.apply(offHandStack, builder -> builder.remove(enchantmentRegistryEntry -> !enchantmentRegistryEntry.value().isAcceptableItem(offHandStack)));
+            // If the offhand does not have the enchantment, transfer it
+            EnchantmentHelper.apply(offHandStack, builder -> builder.add(entry.getKey(), mainHandLevel));
         }
+
+        // Remove the enchantment from the main hand item if it was transferred/upgraded to the offhand
+        EnchantmentHelper.apply(mainHandStack, builder -> builder.remove(enchantmentRegistryEntry -> enchantmentRegistryEntry.equals(registryEntry)));
     }
 
     /**
