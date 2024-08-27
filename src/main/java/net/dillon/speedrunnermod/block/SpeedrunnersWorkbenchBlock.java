@@ -68,11 +68,15 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                 if (!offhandHasEnchantments) { // If the players offhand item has no enchantments, "successWithNoEnchantments" returns true, and enchantments are transferred
                     totalTransferred++;
                     cost = initializeCost(player, totalTransferred);
-                    if (totalTransferred != 0 && player.experienceLevel >= cost) {
+                    if (totalTransferred != 0 && player.experienceLevel >= cost && enchantment.isAcceptableItem(offHandStack)) {
                         successWithNoEnchantments = true;
-                        transferEnchantments(enchantment, mainHandStack, offHandStack, mainHandBuilder, entry);
+                        transferEnchantments(enchantment, mainHandStack, offHandStack, mainHandBuilder, offHandBuilder, entry, registryEntry, null);
                     } else {
-                        fail = true;
+                        if (!enchantment.isAcceptableItem(offHandStack)) {
+                            incompatibleEnchantmentsFailed = true;
+                        } else {
+                            fail = true;
+                        }
                     }
                 } else { // Otherwise, start running through all offhand enchantments
                     boolean allIsCompatible = true;
@@ -80,7 +84,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
 
                         // Compare main hand and offhand enchantments and determine if they are compatible
                         for (RegistryEntry<Enchantment> existingEnchantment : offHandBuilder.getEnchantments()) {
-                            if (!Enchantment.canBeCombined(existingEnchantment, registryEntry) && !existingEnchantment.equals(registryEntry)) {
+                            if (!Enchantment.canBeCombined(existingEnchantment, registryEntry) && !registryEntry2.equals(registryEntry)) {
                                 allIsCompatible = false;
                                 break;
                             }
@@ -91,7 +95,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
 
                         // If all enchantments are compatible with each other and can be combined,
                         // "successWithEnchantments" returns true, and enchantments are transferred
-                        if (allIsCompatible && (Enchantment.canBeCombined(registryEntry, registryEntry2) || canUpgrade)) {
+                        if (allIsCompatible && Enchantment.canBeCombined(registryEntry, registryEntry2) && enchantment.isAcceptableItem(offHandStack) || canUpgrade) {
 
                             totalTransferred++;
                             cost = initializeCost(player, totalTransferred);
@@ -101,14 +105,14 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                                 if (canUpgrade) {
                                     wasUpgraded = true;
                                 }
-                                transferEnchantments(enchantment, mainHandStack, offHandStack, mainHandBuilder, entry);
+                                transferEnchantments(enchantment, mainHandStack, offHandStack, mainHandBuilder, offHandBuilder, entry, registryEntry, registryEntry2);
                             } else {
                                 fail = true;
                             }
                         } else { // Otherwise, check for the enchantments that are compatible with each other
                             // If total transferred is greater than 0 (or some enchantments are compatible),
                             // "someIncFailed" returns true, and the compatible enchantments are transferred
-                            if (!Enchantment.canBeCombined(registryEntry, registryEntry2)) {
+                            if (!Enchantment.canBeCombined(registryEntry, registryEntry2) || !enchantment.isAcceptableItem(offHandStack)) {
                                 if (totalTransferred > 0) {
                                     someIncFailed = true;
                                 } else { // Otherwise, no enchantments are transferred, and "incompatibleEnchantmentsFailed" returns true
@@ -157,7 +161,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
     /**
      * Applies the transferred enchantments to the item.
      */
-    private static void transferEnchantments(Enchantment enchantment, ItemStack mainHandStack, ItemStack offHandStack, ItemEnchantmentsComponent.Builder mainHandBuilder, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry) {
+    private static void transferEnchantments(Enchantment enchantment, ItemStack mainHandStack, ItemStack offHandStack, ItemEnchantmentsComponent.Builder mainHandBuilder, ItemEnchantmentsComponent.Builder offHandBuilder, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry, RegistryEntry registryEntry, RegistryEntry<Enchantment> registryEntry2) {
         if (enchantment.isAcceptableItem(offHandStack)) {
             EnchantmentHelper.apply(offHandStack, builder -> builder.add(entry.getKey(), mainHandBuilder.getLevel(entry.getKey())));
             EnchantmentHelper.apply(mainHandStack, builder -> builder.remove(enchantmentRegistryEntry -> enchantmentRegistryEntry.value().isAcceptableItem(offHandStack)));
