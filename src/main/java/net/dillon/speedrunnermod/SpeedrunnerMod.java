@@ -180,7 +180,6 @@ public class SpeedrunnerMod implements ModInitializer {
         options().advanced.piglinAwakenerPiglinCount = 10;
         options().advanced.iCarusFireworksInventorySlot = 0;
         options().advanced.infiniPearlInventorySlot = 0;
-        options().advanced.teleportPiglinDirectlyTowardsPlayer = false;
         options().advanced.throwableFireballsExplosionPower = 1;
         options().advanced.dragonKillsNearbyHostileEntities = true;
         options().advanced.dragonImmunityFromGiantAndWither = true;
