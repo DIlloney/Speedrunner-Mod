@@ -47,6 +47,9 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         }
     }
 
+    /**
+     * Gives the player the {@code unbreakable elytra,} one stack of {@code flight duration 3 firework rockets}, and an {@code InfiniPearl} if enabled.
+     */
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
         if (this.statHandler.getStat(Stats.CUSTOM.getOrCreateStat(Stats.PLAY_TIME)) == 0) {
@@ -66,6 +69,10 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
 
                 if (options().main.iCarusMode && options().advanced.iCarusFireworksInventorySlot == options().advanced.infiniPearlInventorySlot) {
                     slot += 1;
+                }
+
+                if (options().main.iCarusMode && options().advanced.iCarusFireworksInventorySlot == options().advanced.infiniPearlInventorySlot && options().advanced.infiniPearlInventorySlot >= 36) {
+                    slot -= 2;
                 }
 
                 this.getInventory().main.set(slot, infiniPearl);

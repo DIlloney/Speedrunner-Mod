@@ -323,7 +323,7 @@ public class ModOptions {
         public boolean modifiedStrongholdGeneration = true;
 
         /**
-         * Allows strongholds to generate at higher/lower Y-levels, depending if doom mode is enabled or not.
+         * Allows strongholds to generate at higher/lower Y-levels, depending on if doom mode is enabled or not.
          */
         public boolean modifiedStrongholdYGeneration = true;
 
