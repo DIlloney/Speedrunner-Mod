@@ -16,6 +16,9 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 @Mixin(AnvilScreen.class)
 public class RemoveTooExpensiveText {
 
+    /**
+     * Removes the {@code too expensive} level cap on the anvil screen (client-side).
+     */
     @ModifyConstant(method = "drawForeground", constant = @Constant(intValue = 40))
     private int mixinLimitInt(int i) {
         if (options().main.betterAnvil) {

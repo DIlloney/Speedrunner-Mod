@@ -471,7 +471,7 @@
           "functions": [
             {
               "function": "minecraft:enchant_randomly",
-              "enchantments": [
+              "options": [
                 "speedrunnermod:dash",
                 "speedrunnermod:cooldown"
               ]

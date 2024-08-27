@@ -26,6 +26,7 @@ public class MainOptionsScreen extends AbstractModScreen {
 
     /**
      * All of the {@code main options.}
+     * <p>These are displayed in order.</p>
      */
     private static SimpleOption<?>[] mainOptions() {
         return new SimpleOption[]{
@@ -58,6 +59,7 @@ public class MainOptionsScreen extends AbstractModScreen {
                 ModListOptions.BETTER_ANVIL,
                 ModListOptions.ANVIL_COST_LIMIT,
                 ModListOptions.HIGHER_ENCHANTMENT_LEVELS,
+                ModListOptions.RIGHT_CLICK_TO_REMOVE_SILK_TOUCH,
                 ModListOptions.ARROWS_DESTROY_BEDS,
                 ModListOptions.MOB_SPAWNING_RATE,
                 ModListOptions.FASTER_SPAWNERS,

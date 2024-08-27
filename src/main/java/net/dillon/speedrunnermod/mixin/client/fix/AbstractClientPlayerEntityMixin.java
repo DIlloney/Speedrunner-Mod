@@ -41,7 +41,7 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity {
             if (itemStack.isIn(ModItemTags.BOWS)) {
                 int i = getItemUseTime();
                 float g;
-                float dividedBy = itemStack.isOf(ModItems.SPEEDRUNNER_BOW) ? 15.0F : 20.0F;
+                float dividedBy = itemStack.isOf(ModItems.SPEEDRUNNER_BOW) ? 15.0F : 20.0F; // Speedrunner Bow pull time is faster
                 g = (float) i / dividedBy;
                 g = g > 1.0F ? 1.0F : g * g;
                 f *= 1.0F - g * 0.15F;

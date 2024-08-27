@@ -63,9 +63,9 @@ public abstract class CreateWorldScreenMixin {
 
             assert gameMode != null;
             assert difficulty != null;
-            worldCreator.setGameMode(gameMode);
-            worldCreator.setDifficulty(difficulty);
-            worldCreator.setCheatsEnabled(options().client.allowCheats);
+            this.worldCreator.setGameMode(gameMode);
+            this.worldCreator.setDifficulty(difficulty);
+            this.worldCreator.setCheatsEnabled(options().client.allowCheats);
             createLevel();
         }
     }

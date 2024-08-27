@@ -13,6 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LogoDrawer.class)
 public class LogoDrawerMixin {
 
+    /**
+     * Renders the {@code Speedrunner's Edition} text on the title screen.
+     */
     @Inject(method = "draw(Lnet/minecraft/client/gui/DrawContext;IFI)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawTexture(Lnet/minecraft/util/Identifier;IIFFIIII)V", ordinal = 1), cancellable = true)
     private void speedrunnerEdition(DrawContext context, int screenWidth, float alpha, int y2, CallbackInfo ci) {
         ci.cancel();

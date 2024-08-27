@@ -19,6 +19,10 @@ import java.util.Map;
 @Environment(EnvType.CLIENT)
 @Mixin(RenderLayers.class)
 public class RenderLayersMixin {
+
+    /**
+     * Gives lava a render layer, similar to the built-in water render layer.
+     */
     private static Map<Fluid, RenderLayer> LAVA = Util.make(Maps.newHashMap(), hashMap -> {
         RenderLayer renderLayer = RenderLayer.getTranslucent();
         hashMap.put(Fluids.FLOWING_LAVA, renderLayer);

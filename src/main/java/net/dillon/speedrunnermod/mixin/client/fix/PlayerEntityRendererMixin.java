@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
- * Fixes some more incorrect rendering with speedrunner crossbows.
+ * Fixes some incorrect rendering with speedrunner crossbows.
  */
 @Environment(EnvType.CLIENT)
 @Mixin(PlayerEntityRenderer.class)

@@ -152,6 +152,7 @@ public class SpeedrunnerMod implements ModInitializer {
         options().main.betterAnvil = true;
         options().main.anvilCostLimit = 10;
         options().main.higherEnchantmentLevels = true;
+        options().main.rightClickToRemoveSilkTouch = true;
         options().main.customDataGeneration = true;
         options().main.leaderboardsMode = false;
 
@@ -170,8 +171,6 @@ public class SpeedrunnerMod implements ModInitializer {
         options().advanced.modifiedStrongholdGeneration = true;
         options().advanced.modifiedStrongholdYGeneration = true;
         options().advanced.modifiedNetherFortressGeneration = true;
-        options().advanced.removeSilkTouchWhenRightClick = true;
-        options().advanced.fixSpeedrunnerEditionTextOffset = true;
         options().advanced.showResetButton = true;
         options().advanced.higherBreathTime = true;
         options().advanced.generateSpeedrunnerWood = true;

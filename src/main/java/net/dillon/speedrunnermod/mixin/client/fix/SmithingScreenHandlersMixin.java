@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class SmithingScreenHandlersMixin {
 
     /**
-     * Fixes the {@code Speedrunner's Workbench} GUI screen not opening.
+     * Fixes the {@code Speedrunner's Workbench} GUI screen not opening when right-clicking.
      */
     @Inject(method = "canUse", at = @At("RETURN"), cancellable = true)
     private void canUseSpeedrunnersWorkbench(BlockState state, CallbackInfoReturnable<Boolean> cir) {

@@ -32,7 +32,7 @@ public class DeathScreenMixin extends Screen {
     }
 
     /**
-     * Adds a reset button to the death screen.
+     * Adds a {@code reset button} to the death screen.
      */
     @Inject(method = "init", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z"))
     private void addResetButton(CallbackInfo ci) {

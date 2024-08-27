@@ -33,22 +33,14 @@ public class GameMenuScreenMixin extends Screen {
     @Shadow @Final
     private boolean showMenu;
     @Unique
-    private ButtonWidget optionsButton;
-    @Unique
-    private ButtonWidget createWorldButton;
-    @Unique
-    private ButtonWidget dillon8775YouTubeButton;
-    @Unique
-    private ButtonWidget discordButton;
-    @Unique
-    private ButtonWidget wikiButton;
+    private ButtonWidget optionsButton, createWorldButton, dillon8775YouTubeButton, discordButton, wikiButton;
 
     public GameMenuScreenMixin(Text title, ButtonWidget createWorldButton) {
         super(title);
     }
 
     /**
-     * Adds additional buttons to the title screen.
+     * Adds additional buttons to the game menu screen (discord, options button, etc.)
      */
     @Inject(method = "initWidgets", at = @At("TAIL"))
     private void addButtons(CallbackInfo ci) {
@@ -101,7 +93,7 @@ public class GameMenuScreenMixin extends Screen {
     }
 
     /**
-     * Renders additional textures on the pause menu screen.
+     * Renders additional textures on the game menu screen.
      */
     @Inject(method = "render", at = @At("TAIL"))
     private void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
@@ -134,7 +126,7 @@ public class GameMenuScreenMixin extends Screen {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(options().client.fastWorldCreation ? ModTexts.CREATE_WORLD_BUTTON_TOOLTIP : ModTexts.CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
         }
 
-        if (optionsButton.isHovered()) {
+        if (this.optionsButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.OPTIONS_TOOLTIP, 200), mouseX, mouseY);
         }
 
@@ -144,7 +136,7 @@ public class GameMenuScreenMixin extends Screen {
             }
         }
 
-        if (wikiButton.isHovered()) {
+        if (this.wikiButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.WIKI_TOOLTIP, 200), mouseX, mouseY);
         }
     }

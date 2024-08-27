@@ -38,6 +38,23 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "minecraft:golden_sword",
+          "functions": [
+            {
+              "function": "minecraft:enchant_randomly",
+              "options": [
+                "minecraft:looting"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "minecraft:flint_and_steel"
         }
       ]
@@ -204,19 +221,6 @@
                 "min": 9,
                 "max": 18
               }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 18,
-          "name": "minecraft:golden_sword",
-          "functions": [
-            {
-              "function": "minecraft:enchant_randomly",
-              "enchantments": [
-                "minecraft:looting"
-              ]
             }
           ]
         },

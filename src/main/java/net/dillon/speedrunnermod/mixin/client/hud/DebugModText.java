@@ -17,6 +17,10 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 @Mixin(DebugHud.class)
 public class DebugModText {
 
+    /**
+     * Adds the Speedrunner Mod label and the mod's version to the F3 screen on the right-hand side.
+     * <p>Also adds a small doom mode text (if it's enabled).</p>
+     */
     @Inject(method = "getRightText", at = @At("RETURN"))
     private void getRightText(CallbackInfoReturnable<List<String>> cir) {
         List<String> returnValue = cir.getReturnValue();

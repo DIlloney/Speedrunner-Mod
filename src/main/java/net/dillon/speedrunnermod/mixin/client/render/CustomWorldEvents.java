@@ -29,7 +29,8 @@ public abstract class CustomWorldEvents {
     private @Nullable ClientWorld world;
 
     /**
-     * Adds custom "world events", see {@link net.dillon.speedrunnermod.mixin.main.entity.EyeOfEnderEntityMixin} for these usages.
+     * Allows for the correct particle breaking animation for different ender eyes.
+     * <p>See {@link net.dillon.speedrunnermod.mixin.main.entity.EyeOfEnderEntityMixin} for more on this.</p>
      */
     @Inject(method = "processWorldEvent", at = @At("TAIL"))
     private void moddedWorldEvents(int eventId, BlockPos pos, int data, CallbackInfo ci) {
@@ -42,6 +43,9 @@ public abstract class CustomWorldEvents {
         }
     }
 
+    /**
+     * The event method for rendering the particles when an eye of ender breaks.
+     */
     @Unique
     private void eyeOfEnderBreakEvent(Item item, ParticleEffect particleType, BlockPos pos) {
         Random modRandom = this.world.random;
