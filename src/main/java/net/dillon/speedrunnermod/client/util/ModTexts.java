@@ -14,9 +14,12 @@ public class ModTexts {
     public static final Text BLANK = Text.literal("");
     public static final Text OK = Text.translatable("speedrunnermod.ok");
     public static final Text SAVE = Text.translatable("speedrunnermod.save");
+    public static final Text SAVE_TOOLTIP = Text.translatable("speedrunnermod.save.tooltip");
     public static final Text NEXT = Text.translatable("speedrunnermod.next");
     public static final Text PREVIOUS = Text.translatable("speedrunnermod.previous");
     public static final Text BACK = Text.translatable("speedrunnermod.back");
+    public static final Text HELP_TOOLTIP = Text.translatable("speedrunnermod.help_button.tooltip");
+    public static final Text DIRECTORY_TOOLTIP = Text.translatable("speedrunnermod.directory_button.tooltip");
     public static final Text ON = Text.literal("ON");
     public static final Text OFF = Text.literal("OFF");
 
@@ -77,6 +80,7 @@ public class ModTexts {
     public static final Text TITLE_INELIGIBLE_OPTIONS = Text.translatable("speedrunnermod.title.ineligible_options");
 
     public static final Text MENU_OPEN_OPTIONS_FILE = Text.translatable("speedrunnermod.menu.open_options_file");
+    public static final Text OPEN_OPTIONS_FILE_TOOLTIP = Text.translatable("speedrunnermod.menu.open_options_file.tooltip");
 
     public static final Text SODIUM = Text.translatable("speedrunnermod.title.resources.mods.sodium").formatted(Formatting.GREEN);
     public static final Text SODIUM_TOOLTIP = Text.translatable("speedrunnermod.title.resources.mods.sodium.tooltip");

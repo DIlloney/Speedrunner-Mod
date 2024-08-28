@@ -532,6 +532,7 @@
   "speedrunnermod.restart_later": "Not Now",
 
   "speedrunnermod.menu.open_options_file": "Open File...",
+  "speedrunnermod.menu.open_options_file.tooltip": "Open config file in new window and view advanced options...",
 
   "speedrunnermod.menu.features": "Features...",
   "speedrunnermod.menu.features.tooltip": "View a list of multiple pages, containing a bunch of features that this mod includes!",
@@ -890,11 +891,12 @@
 
   "speedrunnermod.ok": "Ok",
   "speedrunnermod.save": "Save",
+  "speedrunnermod.save.tooltip": "Save and flush all changes.",
   "speedrunnermod.next": "Next",
   "speedrunnermod.previous": "Previous",
   "speedrunnermod.back": "Back",
-  "speedrunnermod.help": "Help...",
-  "speedrunnermod.directory": "Directory...",
+  "speedrunnermod.help_button.tooltip": "Help...",
+  "speedrunnermod.directory_button.tooltip": "Open config directory...",
   "speedrunnermod.player_death_cords": "You died at X: %.2f, Y = %.2f, Z = %.2f",
 
   "speedrunnermod.entity_boat_paddle_lava": "Rowing",

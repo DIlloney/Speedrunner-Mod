@@ -25,8 +25,8 @@ public class CustomButtonListWidget extends ElementListWidget<CustomButtonListWi
     /**
      * Create a new {@link CustomButtonListWidget}.
      */
-    public CustomButtonListWidget(MinecraftClient minecraftClient, int i, int j, int k, int l) {
-        super(minecraftClient, i, j, k, l);
+    public CustomButtonListWidget(MinecraftClient client, int width, int height, int k, int l) {
+        super(client, width, height, k, l);
         this.centerListVertically = false;
     }
 

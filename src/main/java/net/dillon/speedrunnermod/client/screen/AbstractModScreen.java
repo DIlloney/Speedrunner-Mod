@@ -152,11 +152,17 @@ public abstract class AbstractModScreen extends BaseModScreen {
      */
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.isOptionsScreen()) {
+            if (this.saveButton.isHovered()) {
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.SAVE_TOOLTIP, 200), mouseX, mouseY);
+            }
+            if (this.openOptionsFileButton.isHovered()) {
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.OPEN_OPTIONS_FILE_TOOLTIP, 200), mouseX, mouseY);
+            }
             if (this.helpButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.help"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.HELP_TOOLTIP, 200), mouseX, mouseY);
             }
             if (this.openOptionsDirectoryButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.directory"), 200), mouseX, mouseY);
+                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.DIRECTORY_TOOLTIP, 200), mouseX, mouseY);
             }
         }
     }
