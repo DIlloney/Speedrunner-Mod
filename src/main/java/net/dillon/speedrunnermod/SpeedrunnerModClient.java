@@ -36,14 +36,14 @@ public class SpeedrunnerModClient implements ClientModInitializer {
     }
 
     /**
-     * Checks if the {@code SpeedrunIGT} mod is loaded.
+     * Returns true if the {@code SpeedrunIGT} mod is loaded.
      */
-    private static boolean isSpeedrunIGTLoaded() {
+    public static boolean isSpeedrunIGTLoaded() {
         return FabricLoader.getInstance().isModLoaded("speedrunigt");
     }
 
     /**
-     * Checks if the {@code Simple Keybinds} mod is loaded.
+     * Returns true if the {@code Simple Keybinds} mod is loaded.
      */
     public static boolean isSimpleKeybindsLoaded() {
         return FabricLoader.getInstance().isModLoaded("simplekeybinds");

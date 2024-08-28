@@ -25,7 +25,7 @@ public class EnderPearlItemMixin extends Item {
     }
 
     /**
-     * Adds the {@code cooldown enchantment} function.
+     * Implements the {@code cooldown enchantment} function.
      */
     @Overwrite
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {

@@ -50,7 +50,7 @@ public class PiglinBrainMixin {
     }
 
     /**
-     * Gets if the player is wearing a piglin safe armor item.
+     * Returns true if the player is wearing a {@code piglin safe armor} item.
      */
     @Unique
     private static boolean isPiglinSafeArmor(ItemStack stack) {

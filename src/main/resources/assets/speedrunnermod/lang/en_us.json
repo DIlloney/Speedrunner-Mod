@@ -466,7 +466,7 @@
   "speedrunnermod.options.anvil_cost_limit": "Anvil Cost Limit",
   "speedrunnermod.options.anvil_cost_limit.tooltip": "Set the maximum cost that is allowed when using an anvil.\n\nIf the cost goes above this value, the cost will instead be this value.",
   "speedrunnermod.options.higher_enchantment_levels": "Higher Enchant Levels",
-  "speedrunnermod.options.higher_enchantment_levels.tooltip": "Allows the combination of two maximum level enchanted items to go above the enchantment level cap",
+  "speedrunnermod.options.higher_enchantment_levels.tooltip": "Allows the combination of two maximum level enchanted items to go above the enchantment level cap.",
   "speedrunnermod.options.right_click_to_remove_silk_touch": "Right-click to Remove Silk Touch",
   "speedrunnermod.options.right_click_to_remove_silk_touch.tooltip": "Allows the player to right-click on an ore block and remove the silk touch enchantment from their handheld item.",
   "speedrunnermod.options.higher_breath_time": "Higher Breath Time",

@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 /**
  * Makes strongholds smaller, and easier to navigate.
- * <p>Applies the opposite effect if {@code Doom Mode} is on.</p>
+ * <p>Applies the opposite effect if {@code doom mode} is enabled.</p>
  */
 @Mixin(StrongholdGenerator.class)
 public class StrongholdGeneratorMixin {

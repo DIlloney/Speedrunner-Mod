@@ -16,7 +16,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public class ItemEntityMixin {
 
     /**
-     * Makes all items in the {@code Fireproof Items} tag, fireproof.
+     * Makes all items in the {@code "Fireproof Items"} tag, fireproof.
      */
     @Author(Authors.UNKNOWN)
     @Inject(method = "isFireImmune", at = @At("RETURN"), cancellable = true)

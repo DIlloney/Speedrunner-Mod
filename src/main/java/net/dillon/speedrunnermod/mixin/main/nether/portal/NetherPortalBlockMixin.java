@@ -14,6 +14,9 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 @Mixin(NetherPortalBlock.class)
 public class NetherPortalBlockMixin {
 
+    /**
+     * Returns the {@code custom nether portal delay}, according to the speedrunner mod option.
+     */
     @Inject(method = "getPortalDelay", at = @At("RETURN"), cancellable = true)
     private void portalDelay(ServerWorld world, Entity entity, CallbackInfoReturnable<Integer> cir) {
         if (entity instanceof PlayerEntity playerEntity) {

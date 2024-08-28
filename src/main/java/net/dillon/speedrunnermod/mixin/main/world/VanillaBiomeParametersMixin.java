@@ -20,8 +20,8 @@ public class VanillaBiomeParametersMixin {
     private RegistryKey<Biome>[][] commonBiomes;
 
     /**
-     * Changes biome generation, according to {@code Better Biomes} and {@code Custom Biomes}.
-     * <p>Also allows the {@code Speedrunner's Wasteland} biome to generate, since there isn't really any other way to do it in <b>1.18.1.</b></p>
+     * Changes biome generation, according to the {@code better biomes} and {@code custom biomes} options.
+     * <p>Also allows the {@code Speedrunner's Wasteland} biome to generate, since there isn't really any other way to do it (that I know of) in <b>1.18.1</b> and above.</p>
      */
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(CallbackInfo ci) {

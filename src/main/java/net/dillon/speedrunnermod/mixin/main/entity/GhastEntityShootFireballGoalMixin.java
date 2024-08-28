@@ -19,7 +19,7 @@ public class GhastEntityShootFireballGoalMixin {
     private GhastEntity ghast;
 
     /**
-     * Kills a ghast immediately after it shoots a fireball, if the {@code kill ghast upon fireball} option is enabled.
+     * Kills the ghast immediately after it shoots a fireball, if the {@code kill ghast upon fireball} option is enabled.
      */
     @Inject(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/mob/GhastEntity$ShootFireballGoal;cooldown:I", ordinal = 1, opcode = Opcodes.PUTFIELD))
     private void killGhastUponFireball(CallbackInfo ci) {

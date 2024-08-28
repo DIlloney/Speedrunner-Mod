@@ -14,7 +14,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 public class EndPortalFeatureMixin {
 
     /**
-     * If {@code doom mode} is {@code ON,} then the end portal feature will generate with doom stone.
+     * Generates {@code doom stone} around the main end portal (in the end) if {@code doom mode} is enabled.
      */
     @Redirect(method = "generate", at = @At(value = "FIELD", target = "Lnet/minecraft/block/Blocks;END_STONE:Lnet/minecraft/block/Block;"))
     private Block changeBaseBlock() {

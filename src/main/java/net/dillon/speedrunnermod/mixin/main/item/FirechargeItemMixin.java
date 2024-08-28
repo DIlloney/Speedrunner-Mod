@@ -16,9 +16,6 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
-/**
- * Gives the fire charge item a greater purpose
- */
 @Mixin(FireChargeItem.class)
 public class FirechargeItemMixin extends Item {
 
@@ -26,6 +23,9 @@ public class FirechargeItemMixin extends Item {
         super(settings);
     }
 
+    /**
+     * Allows fireballs to be thrown.
+     */
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         if (options().main.throwableFireballs) {

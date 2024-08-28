@@ -46,7 +46,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     /**
-     * Adds some features to the players movement and abilities.
+     * Adds some features to the players movement speed and abilities, such as the {@code dash enchantment,} and swimming speeds in water and lava.
      */
     @Inject(method = "travel", at = @At("TAIL"))
     private void travel(Vec3d movementInput, CallbackInfo ci) {
@@ -77,7 +77,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     /**
-     * Makes the player immune to kinetic damage, if disabled.
+     * Makes the player immune to {@code kinetic damage}, if disabled.
      */
     @Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"), cancellable = true)
     private void cancelElytraDamage(Vec3d movementInput, CallbackInfo ci) {
@@ -87,7 +87,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     /**
-     * Disables the sound from playing to kinetic damage, if disabled.
+     * Disables the sound from playing due to {@code kinetic damage}, if disabled.
      */
     @Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;playSound(Lnet/minecraft/sound/SoundEvent;FF)V"), cancellable = true)
     private void cancelElytraDamageSound(Vec3d movementInput, CallbackInfo ci) {
@@ -97,7 +97,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     /**
-     * Allows entities to "swim upward" at a faster rate if they have on a buffed piece of armor.
+     * Allows entities to "swim upward" at a faster rate if they have on a {@code "buffed"} piece of armor.
      */
     @Overwrite
     public void swimUpward(TagKey<Fluid> fluid) {
@@ -114,7 +114,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     /**
-     * Applies fire resistance for 2 minutes when using a totem.
+     * Applies {@code fire resistance} for {@code 2 minutes} when using a totem.
      */
     @Inject(method = "tryUseTotem", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z"))
     private void applyFireResistance(DamageSource source, CallbackInfoReturnable<Boolean> cir) {

@@ -14,7 +14,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.GiantEntity;
 import net.minecraft.entity.player.ItemCooldownManager;
-import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,7 +26,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -46,8 +44,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     public abstract ItemCooldownManager getItemCooldownManager();
     @Shadow
     public abstract ItemStack getEquippedStack(EquipmentSlot slot);
-    @Shadow @Final
-    private PlayerAbilities abilities;
     @Shadow
     public abstract boolean damage(DamageSource source, float amount);
 
@@ -56,7 +52,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     }
 
     /**
-     * Makes sure that the speedrunner shield actually gets disabled when hit with an axe, and also lowers this cooldown from the {@code dash enchantment}.
+     * Makes sure that the speedrunner shield {@code gets disabled} when hit with an {@code axe}, and also lowers this cooldown from the {@code dash enchantment}.
      */
     @Inject(method = "disableShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getItemCooldownManager()Lnet/minecraft/entity/player/ItemCooldownManager;"))
     private void disableShield(CallbackInfo ci) {
@@ -68,7 +64,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     }
 
     /**
-     * Allows speedrunner shields to get disabled, as a shield should, when hit by an axe.
+     * Allows speedrunner shields to {@code get disabled}, as a shield should, when hit by an {@code axe.}
      */
     @Redirect(method = "damageShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean damageShield(ItemStack stack, Item item) {
@@ -76,7 +72,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     }
 
     /**
-     * A thing for {@code doom mode.} >:)
+     * Makes the Giant disable players' shields.
      */
     @Inject(method = "takeShieldHit", at = @At("TAIL"))
     private void takeShieldHit(LivingEntity attacker, CallbackInfo ci) {

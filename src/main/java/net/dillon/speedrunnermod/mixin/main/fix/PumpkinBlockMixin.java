@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class PumpkinBlockMixin {
 
     /**
-     * Fixes speedrunner shears not working on pumpkin blocks.
+     * Fixes {@code speedrunner shears} not working on pumpkin blocks.
      */
     @Redirect(method = "onUseWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean onUse(ItemStack stack, Item item) {

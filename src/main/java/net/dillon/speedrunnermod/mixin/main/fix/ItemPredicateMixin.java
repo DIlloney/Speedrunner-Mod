@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public class ItemPredicateMixin {
 
     /**
-     * Fixes the speedrunner shears not working correctly.
+     * Fixes {@code speedrunner shears} not working as {@code "shears".}
      */
     @Author(Authors.UNKNOWN)
     @ModifyVariable(method = "test", at = @At("HEAD"), argsOnly = true)

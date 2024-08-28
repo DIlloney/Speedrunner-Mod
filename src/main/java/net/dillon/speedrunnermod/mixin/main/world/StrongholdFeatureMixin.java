@@ -16,7 +16,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public abstract class StrongholdFeatureMixin {
 
     /**
-     * Changes the minimum and maximum Y value a stronghold can generate at.
+     * Changes the {@code minimum} and {@code maximum Y-value} a stronghold can generate at.
      */
     @ModifyArgs(method = "addPieces", at = @At(value = "INVOKE", target = "Lnet/minecraft/structure/StructurePiecesCollector;shiftInto(IILnet/minecraft/util/math/random/Random;I)I"))
     private static void changeMinAndMaxYValue(Args args) {

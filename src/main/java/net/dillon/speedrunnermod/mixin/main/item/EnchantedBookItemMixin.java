@@ -25,6 +25,9 @@ public class EnchantedBookItemMixin extends Item {
         super(settings);
     }
 
+    /**
+     * Adds helpful tooltips for the {@code dash} and {@code cooldown} enchantments.
+     */
     @Override
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
         if (options().client.itemTooltips) {

@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 /**
- * Makes nether fortress smaller and easier to navigate, see {@link ModWorldGen}.
+ * Makes nether fortress smaller and easier to navigate, see {@link ModWorldGen} for more.
  */
 @Mixin(NetherFortressGenerator.class)
 public class NetherFortressGeneratorMixin {

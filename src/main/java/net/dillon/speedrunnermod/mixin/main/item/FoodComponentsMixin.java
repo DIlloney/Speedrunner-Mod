@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * Replaces the vanilla Minecraft food items with better foods.
- * <p>See {@link ModFoodComponents}.</p>
+ * Modifies {@code vanilla food items} to be better.
+ * <p>See {@link ModFoodComponents} for more.</p>
  */
 @Mixin(FoodComponents.class)
 public class FoodComponentsMixin {

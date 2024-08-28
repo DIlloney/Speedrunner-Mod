@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
+/**
+ * Applies the custom panorama.
+ */
 @Mixin(Screen.class)
 public class ScreenMixin {
     @Shadow

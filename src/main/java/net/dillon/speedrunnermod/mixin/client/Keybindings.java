@@ -27,6 +27,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
+/**
+ * Implements all keybindings functions into the game.
+ */
 @Environment(EnvType.CLIENT)
 @Mixin(MinecraftClient.class)
 public abstract class Keybindings {
@@ -48,7 +51,7 @@ public abstract class Keybindings {
     public GameOptions options;
 
     /**
-     * Applies the {@code speedrunner mod keybinds} to the game.
+     * All speedrunner mod {@code keybinding} functions.
      */
     @Inject(at = @At("TAIL"), method = "handleInputEvents")
     private void handleInputEvents(CallbackInfo info) {
@@ -96,6 +99,9 @@ public abstract class Keybindings {
         }
     }
 
+    /**
+     * Displays the {@code [Debug Warn]:} prefix when sending a debug message.
+     */
     @Unique
     private void debugWarn(String string, Object... objects) {
         this.inGameHud.getChatHud().addMessage((ModTexts.BLANK).copy().append((Text.translatable("debug.prefix")).formatted(Formatting.YELLOW, Formatting.BOLD)).append(" ").append(Text.translatable(string, objects)));

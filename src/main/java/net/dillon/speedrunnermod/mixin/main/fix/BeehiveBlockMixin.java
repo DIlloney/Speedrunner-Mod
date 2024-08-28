@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class BeehiveBlockMixin {
 
     /**
-     * Fixes speedrunner shears not working on beehives.
+     * Fixes {@code speedrunner shears} not working on beehives.
      */
     @Redirect(method = "onUseWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 0))
     private boolean onUse(ItemStack stack, Item item) {

@@ -61,6 +61,9 @@ public abstract class RavagerEntityMixin extends RaiderEntity {
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, genericFollowRange);
     }
 
+    /**
+     * Inflicts players with {@code slowness} when attacking.
+     */
     @Inject(method = "tryAttack", at = @At("RETURN"))
     private void tryAttack(Entity target, CallbackInfoReturnable cir) {
         if (DOOM_MODE && target instanceof PlayerEntity) {

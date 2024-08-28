@@ -33,6 +33,9 @@ public class SellEnchantedToolFactoryMixin {
     @Shadow @Final
     private float multiplier;
 
+    /**
+     * Lowers the cost of {@code enchanted tools} sold from villagers.
+     */
     @Overwrite
     public TradeOffer create(Entity entity, Random random) {
         int i = random.nextInt(4) + 30;

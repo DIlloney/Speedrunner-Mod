@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public interface VibrationsCallbackMixin {
 
     /**
-     * Allows players to safely run by {@code sculk sensor blocks} if the player is wearing speedrunner boots.
+     * Allows players to safely run by or across {@code sculk sensor blocks} if the player is wearing {@code speedrunner boots.}
      */
     @Inject(method = "canAccept", at = @At("RETURN"), cancellable = true)
     private void isPlayerWearingSpeedrunnerBoots(RegistryEntry<GameEvent> gameEvent, GameEvent.Emitter emitter, CallbackInfoReturnable<Boolean> cir) {

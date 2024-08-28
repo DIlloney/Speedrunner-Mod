@@ -116,24 +116,24 @@ public class TitleScreenMixin extends Screen {
      */
     @Inject(method = "render", at = @At("TAIL"))
     private void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/item/golden_speedrunner_upgrade_smithing_template.png"), this.width / 2 - 122, this.featuresButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/item/golden_speedrunner_upgrade_smithing_template.png"), featuresButton.getX() + 2, this.featuresButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
         if (options().advanced.showResetButton) {
-            context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/item/speedrunner_boots.png"), this.width / 2 - 122, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/item/speedrunner_boots.png"), createWorldButton.getX() + 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         }
 
-        context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 123, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+        context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, optionsButton.getX() + 1, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
         if (options().client.socialButtons) {
-            context.drawTexture(ModIcons.DILLON8775_ICON, this.width / 2 + 105, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(ModIcons.DILLON8775_ICON, dillon8775YouTubeButton.getX() + 1, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-            context.drawTexture(ModIcons.NUZLAND_ICON, this.width / 2 + 105, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(ModIcons.NUZLAND_ICON, nuzlandYouTubeButton.getX() + 1, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-            context.drawTexture(ModIcons.MANNYQUESO_ICON, this.width / 2 + 105, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(ModIcons.MANNYQUESO_ICON, mannyQuesoYouTubeButton.getX() + 1, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
         }
 
-        context.drawTexture(ModIcons.DISCORD_ICON, options().client.socialButtons ? this.width / 2 + 130 : this.width / 2 + 106, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
-        context.drawTexture(ModIcons.WIKI_ICON, options().client.socialButtons ? this.width / 2 + 130 : this.width / 2 + 106, wikiButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        context.drawTexture(ModIcons.DISCORD_ICON, discordButton.getX() + 2, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        context.drawTexture(ModIcons.WIKI_ICON, wikiButton.getX() + 2, wikiButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
         this.renderTooltips(context, mouseX, mouseY);
 
@@ -161,15 +161,15 @@ public class TitleScreenMixin extends Screen {
         }
 
         if (options().client.socialButtons) {
-            if (dillon8775YouTubeButton.isHovered()) {
+            if (this.dillon8775YouTubeButton.isHovered()) {
                 context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
 
-            if (nuzlandYouTubeButton.isHovered()) {
+            if (this.nuzlandYouTubeButton.isHovered()) {
                 context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.NUZLAND_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
 
-            if (mannyQuesoYouTubeButton.isHovered()) {
+            if (this.mannyQuesoYouTubeButton.isHovered()) {
                 context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MANNYQUESO_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
         }

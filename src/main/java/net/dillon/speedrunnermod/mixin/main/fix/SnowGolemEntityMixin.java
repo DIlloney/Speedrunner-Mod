@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class SnowGolemEntityMixin {
 
     /**
-     * Fixes speedrunner shears not working on snow golems.
+     * Fixes {@code speedrunner shears} not working on snow golems.
      */
     @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean interactMob(ItemStack stack, Item item) {

@@ -16,7 +16,7 @@ public class DimensionTypeMixin {
     private boolean ultrawarm;
 
     /**
-     * Allows water to be placed in the nether if the {@code "Allow Water In Nether"} option is on.
+     * Allows water to be placed in the nether if the {@code allow water in nether} option is on.
      */
     @Inject(method = "ultrawarm", at = @At("RETURN"), cancellable = true)
     private void allowWaterInNether(CallbackInfoReturnable<Boolean> cir) {

@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
@@ -82,7 +81,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
     public void killAllHostiles(CallbackInfo ci) {
         if (options().advanced.dragonKillsNearbyHostileEntities && this.getWorld() instanceof ServerWorld) {
             EnderDragonEntity dragon = (EnderDragonEntity)(Object)this;
-            World world = ((Entity)(Object)this).getEntityWorld();
+            World world = this.getEntityWorld();
 
             List<HostileEntity> hostiles = world.getEntitiesByClass(HostileEntity.class,
                     dragon.getBoundingBox().expand(options().advanced.dragonKillsHostileEntitiesDistance[0], options().advanced.dragonKillsHostileEntitiesDistance[1], options().advanced.dragonKillsHostileEntitiesDistance[2]), entity -> true);
@@ -150,7 +149,8 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
     }
 
     /**
-     * Checks if a giant and/or a wither are alive, and if one of them is, the dragon cannot die.
+     * Checks if a giant and/or a wither are alive.
+     * <p>If either are present, the ender dragon {@code cannot die.}</p>
      */
     @Unique
     private boolean isGiantOrWitherAlive() {

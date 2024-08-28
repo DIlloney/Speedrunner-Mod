@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class TripwireBlockMixin {
 
     /**
-     * Fixes speedrunner shears not working on tripwire hooks.
+     * Fixes {@code speedrunner shears} not working on tripwire hooks.
      */
     @Redirect(method = "onBreak", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean onBreak(ItemStack stack, Item item) {

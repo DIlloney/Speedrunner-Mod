@@ -28,7 +28,7 @@ public abstract class SheepEntityMixin extends AnimalEntity {
     }
 
     /**
-     * Allows sheep to be sheared with normal and speedrunner shears.
+     * Allows sheep to be sheared with {@code speedrunner shears.}
      */
     @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean interactMob(ItemStack stack, Item item) {

@@ -19,7 +19,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public class ItemMixin {
 
     /**
-     * Adds tooltips to items can be used to craft the piglin awakener item.
+     * Adds tooltips to items that can be used to craft the {@code piglin awakener.}
      */
     @Inject(method = "appendTooltip", at = @At("TAIL"))
     private void appendTooltipsForPiglinAwakenerItems(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type, CallbackInfo ci) {

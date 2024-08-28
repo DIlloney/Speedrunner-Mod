@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class RuinedPortalStructureMixin {
 
     /**
-     * Allows ruined portals to generate correctly, due to the speedrunner mod's world generation modifications.
+     * Allows ruined portals to generate correctly with the {@code speedrunner mod's world generation modifications.}
      */
     @Inject(method = "getFloorHeight", at = @At(value = "RETURN"), cancellable = true)
     private static void getNewFloorHeight(Random random, ChunkGenerator chunkGenerator, RuinedPortalStructurePiece.VerticalPlacement verticalPlacement, boolean airPocket, int height, int blockCountY, BlockBox box, HeightLimitView world, NoiseConfig noiseConfig, CallbackInfoReturnable<Integer> cir) {

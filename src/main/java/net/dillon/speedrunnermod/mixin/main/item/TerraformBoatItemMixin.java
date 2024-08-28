@@ -20,6 +20,9 @@ public class TerraformBoatItemMixin extends Item {
         super(settings);
     }
 
+    /**
+     * Adds helpful tooltips to {@code "faster"} and {@code "fireproof"} boats.
+     */
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         if (options().client.itemTooltips) {

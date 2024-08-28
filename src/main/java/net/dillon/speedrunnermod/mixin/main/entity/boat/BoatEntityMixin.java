@@ -41,7 +41,7 @@ public abstract class BoatEntityMixin extends Entity {
     }
 
     /**
-     * Makes {@code all boats} slightly slower in lava.
+     * Makes all boats slightly slower in lava.
      */
     @Inject(method = "tick", at = @At("HEAD"))
     private void slowDownBoats(CallbackInfo ci) {

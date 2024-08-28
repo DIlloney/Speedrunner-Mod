@@ -9,6 +9,9 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 @Mixin(StrongholdGenerator.PortalRoom.class)
 public class StrongholdPortalRoomMixin {
 
+    /**
+     * Increases the chances of there being an eye prefilled in an end portal block.
+     */
     @ModifyConstant(method = "generate", constant = @Constant(floatValue = 0.9F))
     private float changeEyeChance(float constant) {
         return SpeedrunnerMod.getEnderEyeChance();

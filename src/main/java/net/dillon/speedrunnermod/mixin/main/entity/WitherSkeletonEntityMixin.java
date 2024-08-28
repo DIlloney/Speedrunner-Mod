@@ -57,7 +57,7 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
     }
 
     /**
-     * A thing for {@code doom mode.} >:)
+     * Inflicts players with {@code slowness} if {@code doom mode} is enabled.
      */
     @Inject(method = "tryAttack", at = @At("RETURN"))
     private void tryAttack(Entity target, CallbackInfoReturnable<?> cir) {

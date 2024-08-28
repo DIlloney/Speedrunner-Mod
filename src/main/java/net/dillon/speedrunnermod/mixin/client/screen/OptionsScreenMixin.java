@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.mixin.client.screen;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.MainScreen;
 import net.dillon.speedrunnermod.client.util.ModIcons;
 import net.dillon.speedrunnermod.client.util.ModLinks;
@@ -25,8 +24,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
+/**
+ * Priority set to {@code 1001} for {@code SpeedrunIGT} compatibility, as this mod also {@link Override}s the default render method.
+ */
 @Environment(EnvType.CLIENT)
-@Mixin(OptionsScreen.class)
+@Mixin(value = OptionsScreen.class, priority = 1001)
 public class OptionsScreenMixin extends Screen {
     @Shadow @Final
     private GameOptions settings;
@@ -37,6 +39,9 @@ public class OptionsScreenMixin extends Screen {
         super(title);
     }
 
+    /**
+     * Adds additional buttons to the vanilla options screen.
+     */
     @Inject(method = "init", at = @At("TAIL"))
     private void addButtons(CallbackInfo ci) {
         if (options().client.socialButtons) {
@@ -55,13 +60,15 @@ public class OptionsScreenMixin extends Screen {
         }).dimensions(this.width / 2 - 179, this.height / 6 + 128 - 6, 20, 20).build());
     }
 
+    /**
+     * Renders the textures for the additional buttons on the vanilla options screen.
+     */
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
-        SpeedrunnerMod.info("RENDERED!");
-        context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, (this.width / 2) - 178, this.optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+        context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, optionsButton.getX() + 1, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
         if (options().client.socialButtons) {
-            context.drawTexture(ModIcons.DILLON8775_ICON, this.width / 2 - 123, this.dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(ModIcons.DILLON8775_ICON, dillon8775YouTubeButton.getX() + 1, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
         }
     }
 }

@@ -25,7 +25,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public class Fog {
 
     /**
-     * Applies the {@code Fog} option.
+     * Applies the {@code Fog} option to the game.
      */
     @Overwrite
     public static void applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta) {
@@ -34,8 +34,8 @@ public class Fog {
         FogShape fogShape = FogShape.SPHERE;
         float f;
         float g;
-        final int fog = 2147483647;
-        final float lavaVisionDistance = 35.0F;
+        final int fog = 2147483647; // Maximum integer value removes fog from the game entirely
+        final float lavaVisionDistance = 35.0F; // The distance that the player can see when submergged in lava
         if (cameraSubmersionType == CameraSubmersionType.LAVA) {
             if (entity.isSpectator()) {
                 f = -8.0F;

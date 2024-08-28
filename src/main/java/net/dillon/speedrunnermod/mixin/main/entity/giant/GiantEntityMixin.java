@@ -48,6 +48,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 
+/**
+ * The {@code Giant Boss (doom mode)} exclusive.
+ * <p>- Constantly regenerates health</p>
+ * <p>- Knocks back players and mobs when attacking</p>
+ * <p>- Teleports to the middle of the end island if it falls into the void</p>
+ * <p>- Random chance of spawning TNT as a defence mechanism</p>
+ * <p>- Immune to explosions, fall damage, fire and lava damage, and cannot go through end portals or gateways</p>
+ * <p>- Summons TNT upon death</p>
+ * <p>- And more...</p>
+ */
 @Mixin(GiantEntity.class)
 public class GiantEntityMixin extends HostileEntity implements Giant {
     @Unique
@@ -63,6 +73,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         super(entityType, world);
     }
 
+    /**
+     * Drops more experience upon death when using looting.
+     */
     @Override
     public int getXpToDrop() {
         int looting = attackingPlayer != null ? EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((GiantEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 150 : 0;
@@ -85,6 +98,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         return i;
     }
 
+    /**
+     * Gives the Giant a bossbar and other navigation functions.
+     */
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
         if (DOOM_MODE) {
@@ -97,6 +113,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Attributes for the Giant, including maximum health, movement speed, attack damage, and knockback amount.
+     */
     @Overwrite
     public static DefaultAttributeContainer.Builder createGiantAttributes() {
         final double genericMaxHealth = DOOM_MODE ? 300.0D : 100.0D;
@@ -106,6 +125,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, genericMaxHealth).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, genericMovementSpeed).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, genericAttackDamage).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, genericAttackKnockback);
     }
 
+    /**
+     * Gives the Giant different goals, to be able to swim, look around, attack other entities, etc.
+     */
     @Override
     protected void initGoals() {
         if (DOOM_MODE) {
@@ -120,6 +142,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Ticks the bossbar and heals the giant progressively.
+     */
     @Override
     public void tick() {
         super.tick();
@@ -132,6 +157,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Teleports the Giant to the middle of the end island if it falls into the void.
+     */
     @Override
     public void attemptTickInVoid() {
         if (DOOM_MODE) {
@@ -149,6 +177,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Summons TNT upon death and plays a fitting sound effect.
+     */
     @Override
     public void onDeath(DamageSource source) {
         super.onDeath(source);
@@ -162,6 +193,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Handles damaging for the Giant.
+     */
     @Override
     public boolean damage(DamageSource source, float amount) {
         if (DOOM_MODE) {
@@ -204,6 +238,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         return super.damage(source, amount);
     }
 
+    /**
+     * Handles attacking for the Giant.
+     */
     @Override
     public boolean tryAttack(Entity target) {
         if (DOOM_MODE) {
@@ -212,6 +249,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         return DOOM_MODE ? Giant.tryAttack(this, (LivingEntity)target) : super.tryAttack(target);
     }
 
+    /**
+     * Handles knockback for the Giant.
+     */
     @Override
     protected void knockback(LivingEntity target) {
         if (DOOM_MODE) {
@@ -219,6 +259,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Handles movements for the Giant.
+     */
     @Override
     public void travel(Vec3d movementInput) {
         if (DOOM_MODE) {
@@ -234,6 +277,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Handles swimming for the Giant.
+     */
     @Override
     public void updateSwimming() {
         super.updateSwimming();
@@ -250,6 +296,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Checks if the Giant can despawn.
+     */
     @Override
     public void checkDespawn() {
         if (DOOM_MODE) {
@@ -261,36 +310,57 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Makes the Giant immune to fall damage.
+     */
     @Override
     public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource source) {
         return !DOOM_MODE;
     }
 
+    /**
+     * Prevents the Giant from getting status effects.
+     */
     @Override
     public boolean addStatusEffect(StatusEffectInstance effect, @Nullable Entity source) {
         return !DOOM_MODE;
     }
 
+    /**
+     * Makes the Giant immune to fire and lava damage.
+     */
     @Override
     public boolean isFireImmune() {
         return DOOM_MODE;
     }
 
+    /**
+     * Makes the Giant immune to explosion damage.
+     */
     @Override
     public boolean isImmuneToExplosion(Explosion explosion) {
         return DOOM_MODE;
     }
 
+    /**
+     * Prevents the Giant from being able to be ridden.
+     */
     @Override
     public boolean canStartRiding(Entity entity) {
         return !DOOM_MODE && super.canStartRiding(entity);
     }
 
+    /**
+     * Prevents the Giant from being able to use portals.
+     */
     @Override
     public boolean canUsePortals(boolean allowVehicles) {
         return !DOOM_MODE;
     }
 
+    /**
+     * Sets the bossbars name to {@code "Giant".}
+     */
     @Override
     public void setCustomName(@Nullable Text name) {
         super.setCustomName(name);
@@ -299,6 +369,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Detects when a player is {@code in range} of the Giant, and then {@code displays} the bossbar on that players screen.
+     */
     @Override
     public void onStartedTrackingBy(ServerPlayerEntity player) {
         super.onStartedTrackingBy(player);
@@ -307,6 +380,9 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Detects when the player gets {@code out of range} of the Giant, and then {@code removes} the bossbar from that players screen.
+     */
     @Override
     public void onStoppedTrackingBy(ServerPlayerEntity player) {
         super.onStoppedTrackingBy(player);
@@ -315,26 +391,41 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Puts the Giant's sound under the {@code "hostile"} category (neutral if doom mode is disabled).
+     */
     @Override
     public SoundCategory getSoundCategory() {
         return DOOM_MODE ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
     }
 
+    /**
+     * Returns the {@code ambient sound} of a Giant.
+     */
     @Override
     public SoundEvent getAmbientSound() {
         return DOOM_MODE ? SoundEvents.ENTITY_ZOMBIE_AMBIENT : null;
     }
 
+    /**
+     * Returns the {@code hurt sound} of a Giant.
+     */
     @Override
     public SoundEvent getHurtSound(DamageSource source) {
         return DOOM_MODE ? SoundEvents.ENTITY_ZOMBIE_HURT : SoundEvents.ENTITY_GENERIC_HURT;
     }
 
+    /**
+     * Returns the {@code death sound} of a Giant.
+     */
     @Override
     public SoundEvent getDeathSound() {
         return DOOM_MODE ? SoundEvents.ENTITY_ZOMBIE_DEATH : SoundEvents.ENTITY_GENERIC_DEATH;
     }
 
+    /**
+     * Applies the {@code stepping sound} for a Giant.
+     */
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
         if (DOOM_MODE) {
@@ -342,11 +433,17 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         }
     }
 
+    /**
+     * Returns the {@code volume} of a Giant.
+     */
     @Override
     public float getSoundVolume() {
         return DOOM_MODE ? 5.0F : 1.0F;
     }
 
+    /**
+     * Returns true if the Giant is attacking while underwater.
+     */
     @Unique
     boolean isTargetingUnderwater() {
         if (this.targetingUnderwater) {
@@ -358,7 +455,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
     }
 
     /**
-     * Drops rotten flesh randomly when the giant is damaged.
+     * Drops rotten flesh randomly when the Giant is damaged.
      */
     @Unique
     private void onGiantDamageDropFood() {

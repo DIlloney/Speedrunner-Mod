@@ -14,7 +14,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 public class EndGatewayBlockEntityMixin {
 
     /**
-     * Changes the end stone block in the end gateway block feature.
+     * Generates {@code doom stone} instead of end stone around the {@code end gateway} world feature if {@code doom mode} is enabled.
      */
     @Redirect(method = "findPortalPosition", at = @At(value = "FIELD", target = "Lnet/minecraft/block/Blocks;END_STONE:Lnet/minecraft/block/Block;"))
     private static Block changeBaseBlock() {

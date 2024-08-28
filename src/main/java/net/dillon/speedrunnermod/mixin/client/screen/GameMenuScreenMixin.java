@@ -101,17 +101,17 @@ public class GameMenuScreenMixin extends Screen {
             context.drawTexture(Identifier.of("speedrunnermod:textures/gui/speedrunner_mod.png"), this.width / 2 - 4 - 58 - 2, this.height / 4 - 26 + 2, 0.0F, 0.0F, 129, 16, 129, 16);
 
             if (options().advanced.showResetButton) {
-                context.drawTexture(Identifier.of("speedrunnermod:textures/item/speedrunner_boots.png"), this.width / 2 - 4 - 118 - 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+                context.drawTexture(Identifier.of("speedrunnermod:textures/item/speedrunner_boots.png"), createWorldButton.getX() + 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
             }
 
-            context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, this.width / 2 - 4 - 119 - 2, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, optionsButton.getX() + 1, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
             if (options().client.socialButtons) {
-                context.drawTexture(ModIcons.DILLON8775_ICON, this.width / 2 - 4 + 114 - 3, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+                context.drawTexture(ModIcons.DILLON8775_ICON, dillon8775YouTubeButton.getX() + 1, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
             }
 
-            context.drawTexture(ModIcons.DISCORD_ICON, this.width / 2 - 4 + 114 - 2, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
-            context.drawTexture(ModIcons.WIKI_ICON, this.width / 2 - 4 + 114 - 2, wikiButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(ModIcons.DISCORD_ICON, discordButton.getX() + 2, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(ModIcons.WIKI_ICON, wikiButton.getX() + 2, wikiButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
             this.renderTooltips(context, mouseX, mouseY);
         }

@@ -14,7 +14,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 public class EndIslandFeatureMixin {
 
     /**
-     * If {@code doom mode} is {@code ON,} then the end island will generate with doom stone.
+     * Makes {@code doom stone} generate as the base block of the {@code end islands} (found at the outer end islands) if {@code doom mode} is enabled.
      */
     @Redirect(method = "generate", at = @At(value = "FIELD", target = "Lnet/minecraft/block/Blocks;END_STONE:Lnet/minecraft/block/Block;"))
     private Block changeBaseBlock() {

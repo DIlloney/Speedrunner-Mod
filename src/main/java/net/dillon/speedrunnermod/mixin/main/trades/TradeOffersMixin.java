@@ -26,8 +26,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 /**
  * <p>Makes default Minecraft villager trades, better!</p>
  * <p>Turns out, Minecraft's code is broken, so I had to fix it.</p>
- * <p>---</p>
- * {@link net.minecraft.village.TradeOffers.TypeAwareBuyForOneEmeraldFactory} wasn't working correctly, so I had to cast the {@link ImmutableMap#builder()} to a default {@link Map} in order for it to work.
+ * Note: {@link net.minecraft.village.TradeOffers.TypeAwareBuyForOneEmeraldFactory} wasn't working correctly, so I had to cast the {@link ImmutableMap#builder()} to a default {@link Map} in order for it to work.
  */
 @Mixin(TradeOffers.class)
 public class TradeOffersMixin {

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class BlockEntityTypeMixin {
 
     /**
-     * Fixes speedrunner signs not working correctly.
+     * Fixes {@code speedrunner signs} not working correctly.
      */
     @Inject(method = "supports", at = @At("HEAD"), cancellable = true)
     private void supports(BlockState state, CallbackInfoReturnable<Boolean> info) {

@@ -38,25 +38,34 @@ public class WardenEntityMixin extends HostileEntity {
     }
 
     /**
-     * Ticks the bossbar.
+     * Ticks the warden's bossbar.
      */
     @Inject(method = "tick", at = @At("TAIL"))
     private void tickBossBar(CallbackInfo ci) {
         this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
+    /**
+     * Sets the name of the warden's bossbar to {@code "Warden".}
+     */
     @Override
     public void setCustomName(@Nullable Text name) {
         super.setCustomName(name);
         this.bossBar.setName(this.getDisplayName());
     }
 
+    /**
+     * Detects when a player is {@code in range} of a warden, and then {@code displays} the bossbar on that players screen.
+     */
     @Override
     public void onStartedTrackingBy(ServerPlayerEntity player) {
         super.onStartedTrackingBy(player);
         this.bossBar.addPlayer(player);
     }
 
+    /**
+     * Detects when a player gets {@code out of range} of a warden, and then {@code removes} the bossbar from that players screen.
+     */
     @Override
     public void onStoppedTrackingBy(ServerPlayerEntity player) {
         super.onStoppedTrackingBy(player);

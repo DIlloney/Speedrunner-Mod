@@ -54,7 +54,7 @@ public class ZombieEntityMixin extends HostileEntity {
     }
 
     /**
-     * A thing for {@code doom mode.} >:)
+     * Inflicts players with {@code slowness} if {@code doom mode} is enabled.
      */
     @Override
     public boolean tryAttack(Entity target) {

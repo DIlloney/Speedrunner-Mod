@@ -19,7 +19,7 @@ public class AbstractBlockStateMixin {
     private float hardness;
 
     /**
-     * Applies the {@code Faster Block Breaking} option to certain blocks.
+     * All modified {@code block hardness values} for the speedrunner mod.
      */
     @Inject(method = "getHardness", at = @At("HEAD"), cancellable = true)
     private void applyFasterBlockBreaking(BlockView world, BlockPos pos, CallbackInfoReturnable<Float> cir) {

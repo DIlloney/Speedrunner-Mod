@@ -25,11 +25,15 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Mixin(RegistryLoader.class)
 public class RegistryLoaderMixin {
+    /**
+     * This link was used to generate .json files using the code provided in the {@code data.loader} package in this mod.
+     */
     @Unique
     private final String CHAT = "https://chatgpt.com/c/501e728a-d6a2-405c-bc2c-b80cfd5b9b18"; // The ChatGPT chat used for generating JSON objects and arrays.
 
     /**
-     * Directly modifies json files to change world generation.
+     * Directly modifies {@code ".json" files} to change and modify {@code world generation features,} including structures, mob spawns, and more.
+     * <p>See package {@link net.dillon.speedrunnermod.data.loader} fore more on this.</p>
      */
     @Author(Authors.MAXENCEDC)
     @ChatGPT(Credit.MOST_CREDIT)
