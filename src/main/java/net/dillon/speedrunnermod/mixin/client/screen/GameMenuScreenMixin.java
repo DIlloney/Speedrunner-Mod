@@ -69,7 +69,7 @@ public class GameMenuScreenMixin extends Screen {
                         }
                         this.client.setScreen(this);
                     }, ModLinks.DILLON8775_YOUTUBE, true));
-                }).dimensions(this.width / 2 + 106, this.height / 4 + 72 - 16, 20, 20).build());
+                }).dimensions(this.width / 2 + 106, this.height / 4 + 48 - 16, 20, 20).build());
             }
 
             this.discordButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
@@ -134,6 +134,10 @@ public class GameMenuScreenMixin extends Screen {
             if (dillon8775YouTubeButton.isHovered()) {
                 context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }
+        }
+
+        if (this.discordButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.DISCORD_TOOLTIP, 200), mouseX, mouseY);
         }
 
         if (this.wikiButton.isHovered()) {
