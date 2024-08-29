@@ -33,7 +33,8 @@ public class GuardianEntityMixin extends HostileEntity {
     }
 
     /**
-     * Modifies the guardian's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code guardian} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createGuardianAttributes() {

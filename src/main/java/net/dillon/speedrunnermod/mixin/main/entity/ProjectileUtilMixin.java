@@ -21,7 +21,8 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 public class ProjectileUtilMixin {
 
     /**
-     * Makes skeleton's shoot slowness arrows if {@code doom mode} is {@code ON.}
+     * @author Dillon8775
+     * @reason Makes skeleton's shoot slowness arrows if {@code doom mode} is enabled.
      */
     @Overwrite
     public static PersistentProjectileEntity createArrowProjectile(LivingEntity entity, ItemStack stack, float damageModifier, @Nullable ItemStack bow) {

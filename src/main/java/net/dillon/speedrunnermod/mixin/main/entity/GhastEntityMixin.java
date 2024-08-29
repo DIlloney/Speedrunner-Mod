@@ -34,7 +34,8 @@ public class GhastEntityMixin extends FlyingEntity {
     }
 
     /**
-     * Modifies the ghast's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code ghast} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createGhastAttributes() {

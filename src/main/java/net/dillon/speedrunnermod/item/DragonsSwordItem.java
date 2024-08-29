@@ -22,7 +22,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * A weapon that instantly kills the ender dragon.
+ * A weapon that {@code one-shots} the {@code ender dragon.}
  */
 public class DragonsSwordItem extends SwordItem {
 

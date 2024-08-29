@@ -25,7 +25,8 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public class Fog {
 
     /**
-     * Applies the {@code Fog} option to the game.
+     * @author Dillon8775
+     * @reason Applies the {@code Fog} option to the game.
      */
     @Overwrite
     public static void applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta) {

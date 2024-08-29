@@ -13,7 +13,8 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 public class ZombifiedPiglinEntityMixin {
 
     /**
-     * Modifies the zombified piglin's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code zombified piglin} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createZombifiedPiglinAttributes() {

@@ -37,7 +37,8 @@ public class ZombieEntityMixin extends HostileEntity {
     }
 
     /**
-     * Modifies the zombie's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code zombie} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createZombieAttributes() {

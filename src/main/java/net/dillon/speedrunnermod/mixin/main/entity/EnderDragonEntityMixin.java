@@ -107,7 +107,8 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
     }
 
     /**
-     * Allows the ender dragon to stay perched for a longer period of time.
+     * @author Dillon8775
+     * @reason Allows the ender dragon to stay perched for a longer period of time.
      */
     @Overwrite
     public boolean damagePart(EnderDragonPart part, DamageSource source, float amount) {

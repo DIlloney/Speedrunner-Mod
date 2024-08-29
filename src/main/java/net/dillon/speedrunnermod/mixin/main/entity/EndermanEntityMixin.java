@@ -33,7 +33,8 @@ public class EndermanEntityMixin extends HostileEntity {
     }
 
     /**
-     * Modifies the enderman's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code enderman} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createEndermanAttributes() {

@@ -13,7 +13,8 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 public class BreezeEntityMixin {
 
     /**
-     * Modifies the attributes for breezes.
+     * @author Dillon8775
+     * @reason Modifies {@code breeze} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createBreezeAttributes() {

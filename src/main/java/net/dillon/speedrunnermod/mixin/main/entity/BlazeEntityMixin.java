@@ -33,7 +33,8 @@ public class BlazeEntityMixin extends HostileEntity {
     }
 
     /**
-     * Modifies the attributes for blazes.
+     * @author Dillon8775
+     * @reason Modifies {@code blaze} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createBlazeAttributes() {

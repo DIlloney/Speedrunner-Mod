@@ -97,7 +97,8 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     /**
-     * Allows entities to "swim upward" at a faster rate if they have on a {@code "buffed"} piece of armor.
+     * @author Dillon8775
+     * @reason Allows entities to "swim upward" at a faster rate if they have on a {@code "buffed"} piece of armor.
      */
     @Overwrite
     public void swimUpward(TagKey<Fluid> fluid) {

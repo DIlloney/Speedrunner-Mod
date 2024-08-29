@@ -34,7 +34,8 @@ public class SellEnchantedToolFactoryMixin {
     private float multiplier;
 
     /**
-     * Lowers the cost of {@code enchanted tools} sold from villagers.
+     * @author Dillon8775
+     * @reason Lowers the cost of {@code enchanted tools} sold from villagers.
      */
     @Overwrite
     public TradeOffer create(Entity entity, Random random) {

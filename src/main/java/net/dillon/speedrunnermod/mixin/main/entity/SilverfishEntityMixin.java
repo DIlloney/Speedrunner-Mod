@@ -33,7 +33,8 @@ public abstract class SilverfishEntityMixin extends HostileEntity {
     }
 
     /**
-     * Modifies the silverfish's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code silverfish} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createSilverfishAttributes() {

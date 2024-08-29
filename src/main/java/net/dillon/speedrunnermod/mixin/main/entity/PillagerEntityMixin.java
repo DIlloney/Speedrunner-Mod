@@ -34,7 +34,8 @@ public abstract class PillagerEntityMixin extends IllagerEntity {
     }
 
     /**
-     * Modifies the pillager's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code pillager} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createPillagerAttributes() {

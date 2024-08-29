@@ -33,7 +33,8 @@ public class ZoglinEntityMixin extends HostileEntity {
     }
 
     /**
-     * Modifies the zoglin's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code zoglin} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createZoglinAttributes() {

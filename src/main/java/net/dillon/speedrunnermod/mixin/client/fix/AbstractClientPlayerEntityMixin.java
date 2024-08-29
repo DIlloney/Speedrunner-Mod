@@ -25,7 +25,8 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity {
     }
 
     /**
-     * Fixes the speedrunner bow not working with the FOV multiplier, and also changes it because it pulls faster.
+     * @author Dillon8775
+     * @reason Fixes the speedrunner bow not working with the FOV multiplier, and also changes it because it pulls faster.
      */
     @Overwrite
     public float getFovMultiplier() {

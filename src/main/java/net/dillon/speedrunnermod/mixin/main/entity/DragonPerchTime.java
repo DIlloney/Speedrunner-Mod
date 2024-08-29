@@ -27,7 +27,8 @@ public abstract class DragonPerchTime {
     private UUID dragonUuid;
 
     /**
-     * Implements the {@code dragon perch time} feature, and also spawns a giant and wither if {@code doom mode} is {@code ON.}
+     * @author Dillon8775
+     * @reason Implements the {@code dragon perch time} feature, and also spawns a giant and wither if {@code doom mode} is enabled.
      */
     @Overwrite
     private EnderDragonEntity createDragon() {

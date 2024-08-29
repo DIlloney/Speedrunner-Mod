@@ -16,7 +16,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * ALl Speedrunner Mod {@code block items.}
+ * All Speedrunner Mod {@code block items.}
  */
 public class ModBlockItems {
     public static final BlockItem SPEEDRUNNER_LOG = new BlockItem(ModBlocks.SPEEDRUNNER_LOG,

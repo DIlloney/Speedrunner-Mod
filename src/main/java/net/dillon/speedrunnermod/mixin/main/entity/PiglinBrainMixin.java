@@ -34,7 +34,8 @@ public class PiglinBrainMixin {
     }
 
     /**
-     * Removes the first argument of the original method, and makes piglins {@code willing to trade}, even if they were previously hit by the player.
+     * @author Dillon8775
+     * @reason Removes the first argument of the original method, and makes piglins {@code willing to trade}, even if they were previously hit by the player.
      */
     @Overwrite
     public static boolean isWillingToTrade(PiglinEntity piglin, ItemStack nearbyItems) {

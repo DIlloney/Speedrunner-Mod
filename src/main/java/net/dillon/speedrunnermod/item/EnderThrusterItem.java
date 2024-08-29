@@ -25,7 +25,7 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * An item that can be used to teleport to the surface.
+ * An item that can be used to {@code teleport} to the {@code surface.}
  */
 public class EnderThrusterItem extends Item {
     private boolean confirm = !options().client.confirmMessages;

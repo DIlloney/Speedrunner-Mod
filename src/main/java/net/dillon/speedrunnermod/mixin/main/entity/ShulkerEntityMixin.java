@@ -50,7 +50,8 @@ public abstract class ShulkerEntityMixin extends GolemEntity {
     }
 
     /**
-     * Prevents shulkers from teleporting, and allows them to be shot with arrows, even when closed.
+     * @author Dillon8775
+     * @reason Prevents {@code shulkers} from teleporting, and allows them to be shot with arrows, even when closed.
      */
     @Overwrite
     public boolean damage(DamageSource source, float amount) {

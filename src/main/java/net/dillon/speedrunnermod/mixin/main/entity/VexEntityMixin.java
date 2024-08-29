@@ -38,7 +38,8 @@ public class VexEntityMixin extends HostileEntity {
     }
 
     /**
-     * Modifies the vexes attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code vex} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createVexAttributes() {
@@ -50,7 +51,8 @@ public class VexEntityMixin extends HostileEntity {
     }
 
     /**
-     * Disables vexes from {@code noClipping} in {@code doom mode.}
+     * @author Dillon8775
+     * @reason Disables vexes from {@code noClipping} on {@code doom mode.}
      */
     @Redirect(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/mob/VexEntity;noClip:Z"))
     private void setNoClip(VexEntity vex, boolean value) {

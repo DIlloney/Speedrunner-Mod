@@ -39,7 +39,8 @@ public abstract class VindicatorEntityMixin extends IllagerEntity {
     }
 
     /**
-     * Modifies the vindicator's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code vindicator} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createVindicatorAttributes() {

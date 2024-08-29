@@ -31,7 +31,8 @@ public class SlimeEntityMixin extends MobEntity {
     }
 
     /**
-     * Increases the time it takes for slimes to make a full jump.
+     * @author Dillon8775
+     * @reason Increases the time it takes for slimes to make a full jump.
      */
     @Overwrite
     public int getTicksUntilNextJump() {
@@ -39,7 +40,8 @@ public class SlimeEntityMixin extends MobEntity {
     }
 
     /**
-     * Decreases the amount of damage that magma cubes do.
+     * @author Dillon8775
+     * @reason Decreases the amount of damage that magma cubes do.
      */
     @Overwrite
     public float getDamageAmount() {

@@ -34,7 +34,8 @@ public abstract class WitchEntityMixin extends RaiderEntity {
     }
 
     /**
-     * Modifies the witch's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code witch} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createWitchAttributes() {

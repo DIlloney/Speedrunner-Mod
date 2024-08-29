@@ -31,7 +31,8 @@ public abstract class MinecraftClientMixin {
     protected abstract void createInitScreens(List<Function<Runnable, Screen>> list);
 
     /**
-     * <p>Adds the {@code Safe Mode} feature.</p>
+     * @author Dillon8775
+     * @reason Adds the {@code Safe Mode} feature.
      * <p>If the speedrunner mod detects broken options, then the game will load into the {@link SafeBootScreen}.</p>
      */
     @Overwrite

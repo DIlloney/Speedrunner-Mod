@@ -73,7 +73,8 @@ public class WardenEntityMixin extends HostileEntity {
     }
 
     /**
-     * Makes the warden weaker.
+     * @author Dillon8775
+     * @reason Modifies {@code warden} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder addAttributes() {

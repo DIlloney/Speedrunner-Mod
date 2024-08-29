@@ -26,7 +26,8 @@ public class ChorusFruitItemMixin extends Item {
     }
 
     /**
-     * Implements a cooldown for the {@code cooldown enchantment.}
+     * @author Dillon8775
+     * @reason Implements a cooldown for the {@code cooldown enchantment.}
      */
     @Overwrite
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {

@@ -42,7 +42,8 @@ public abstract class RavagerEntityMixin extends RaiderEntity {
     }
 
     /**
-     * Modifies the ravager's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code ravager} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createRavagerAttributes() {

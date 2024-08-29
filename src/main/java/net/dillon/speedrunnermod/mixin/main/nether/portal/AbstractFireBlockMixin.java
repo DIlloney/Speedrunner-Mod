@@ -24,7 +24,8 @@ public class AbstractFireBlockMixin {
     }
 
     /**
-     * Allows nether portals to be built in all dimensions if {@code Global Nether Portals} is on.
+     * @author Dillon8775
+     * @reason Allows nether portals to be built in all dimensions if {@code Global Nether Portals} is on.
      */
     @Overwrite
     private static boolean isOverworldOrNether(World world) {

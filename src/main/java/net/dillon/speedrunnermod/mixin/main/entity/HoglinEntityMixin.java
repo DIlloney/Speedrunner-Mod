@@ -32,7 +32,8 @@ public abstract class HoglinEntityMixin extends AnimalEntity {
     }
 
     /**
-     * Modifies the hoglin's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code hoglin} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createHoglinAttributes() {

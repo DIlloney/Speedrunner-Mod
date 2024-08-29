@@ -28,7 +28,7 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * An eye of ender that locates most overworld structures.
+ * An {@code eye of ender} item that locates {@code most overworld structures.}
  */
 public class SpeedrunnersEyeItem extends Item {
     private String structureType = "Village";

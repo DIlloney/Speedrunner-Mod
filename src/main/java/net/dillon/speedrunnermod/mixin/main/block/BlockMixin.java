@@ -15,7 +15,8 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public class BlockMixin {
 
     /**
-     * <p>Lowers fall damage. This applies to all entities.</p>
+     * @author Dillon8775
+     * @reason Lowers fall damage. This applies to all entities.
      * <p>If the entity is {@code sneaking}, then the damage can be reduced by {@code ~1.25%.}</p>
      */
     @Overwrite

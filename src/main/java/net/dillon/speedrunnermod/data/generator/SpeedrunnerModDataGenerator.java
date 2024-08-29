@@ -21,13 +21,13 @@ public class SpeedrunnerModDataGenerator implements DataGeneratorEntrypoint {
         SpeedrunnerMod.info("Initializing speedrunner mod data generator!");
 
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+        pack.addProvider(ModWorldGenerator::new);
         pack.addProvider(ModBlockTagGenerator::new);
+        pack.addProvider(ModBlockLootTableGenerator::new);
         pack.addProvider(ModEnchantmentGenerator::new);
         pack.addProvider(ModEnchantmentTagGenerator::new);
         pack.addProvider(ModItemTagGenerator::new);
         pack.addProvider(ModFluidTagGenerator::new);
-        pack.addProvider(ModBlockLootTableGenerator::new);
-        pack.addProvider(ModWorldGenerator::new);
         pack.addProvider(ModModelGenerator::new);
 
         SpeedrunnerMod.info("Finished running through data generator.");
@@ -38,10 +38,10 @@ public class SpeedrunnerModDataGenerator implements DataGeneratorEntrypoint {
      */
     @Override
     public void buildRegistry(RegistryBuilder registryBuilder) {
+        registryBuilder.addRegistry(RegistryKeys.BIOME, ModBiomes::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, WastelandConfiguredFeatures::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, WastelandPlacedFeatures::bootstrap);
-        registryBuilder.addRegistry(RegistryKeys.BIOME, ModBiomes::bootstrap);
     }
 }

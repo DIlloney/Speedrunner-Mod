@@ -17,7 +17,8 @@ public class MagmaCubeEntityMixin extends SlimeEntity {
     }
 
     /**
-     * Increases the time it takes for magma cubes to make a full jump to attack a player.
+     * @author Dillon8775
+     * @reason Increases the time it takes for magma cubes to make a full jump to attack a player.
      */
     @Overwrite
     public int getTicksUntilNextJump() {
@@ -25,7 +26,8 @@ public class MagmaCubeEntityMixin extends SlimeEntity {
     }
 
     /**
-     * Decreases the amount of damage that magma cubes do.
+     * @author Dillon8775
+     * @reason Decreases the amount of damage that magma cubes do.
      */
     @Overwrite
     public float getDamageAmount() {

@@ -34,8 +34,8 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * <p>An eye of ender that locates the exact distance of the stronghold, in meters/blocks, and tells it to the player.</p>
- * <p>Also allows the player to teleport directly to the stronghold's closest portal room.</p>
+ * <p>An {@code eye of ender} item that locates the {@code exact distance} of the {@code nearest stronghold} (in meters/blocks) and tells it to the player.</p>
+ * <p>Additionally, this item allows the player to {@code teleport directly} to the nearest stronghold's {@code nearest portal room.}</p>
  */
 public class AnnulEyeItem extends Item {
     private boolean confirm = !options().client.confirmMessages;

@@ -30,7 +30,8 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
     }
 
     /**
-     * Makes ender pearls do less damage, and implements the {@code Infinit Pearl Mode} feature to work correctly.
+     * @author Dillon8775
+     * @reason Makes ender pearls do less damage, and implements the {@code Infinit Pearl Mode} feature to work correctly.
      */
     @Author(Authors.DUNCANRUNS)
     @Overwrite

@@ -50,9 +50,9 @@ public class SpeedrunnerMod implements ModInitializer {
      */
     @Override
     public void onInitialize() {
-        ModBoats.init();
-
         ModWorldGen.init();
+
+        ModBoats.init();
 
         ModBlocks.init();
         ModBlockFamilies.init();

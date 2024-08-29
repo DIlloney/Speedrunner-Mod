@@ -32,7 +32,8 @@ public abstract class EyeOfEnderEntityMixin extends Entity implements FlyingItem
     }
 
     /**
-     * Changes the function of the eye of ender, and applies different effects to it in certain modes, based off what type it is.
+     * @author Dillon8775
+     * @reason Changes the function of the eye of ender, and applies different effects to it in certain modes, based off what type it is.
      */
     @Overwrite
     public void tick() {

@@ -9,7 +9,8 @@ import org.spongepowered.asm.mixin.Overwrite;
 public class OreDropsMixin {
 
     /**
-     * Applies better loot drops from ores.
+     * @author Dillon8775
+     * @reason Applies better loot drops from ores.
      */
     @Overwrite
     public int getValue(Random random, int initialCount, int enchantmentLevel) {

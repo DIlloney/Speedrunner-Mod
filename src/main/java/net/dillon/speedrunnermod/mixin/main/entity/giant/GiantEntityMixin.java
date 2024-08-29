@@ -114,7 +114,8 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
     }
 
     /**
-     * Attributes for the Giant, including maximum health, movement speed, attack damage, and knockback amount.
+     * @author Dillon8775
+     * @reason Attributes for the Giant, including maximum health, movement speed, attack damage, and knockback amount.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createGiantAttributes() {

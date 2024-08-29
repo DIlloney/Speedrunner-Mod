@@ -30,7 +30,7 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * An item that teleports the player to the nearest blaze spawner.
+ * An item that {@code teleports} the player to the {@code nearest blaze spawner.}
  */
 public class BlazeSpotterItem extends Item {
     private boolean confirm = !options().client.confirmMessages;

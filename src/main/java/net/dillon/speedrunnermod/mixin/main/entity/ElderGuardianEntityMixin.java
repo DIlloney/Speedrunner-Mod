@@ -42,7 +42,8 @@ public class ElderGuardianEntityMixin extends GuardianEntity {
     }
 
     /**
-     * Modifies elder guardian attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code elder guardian} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createElderGuardianAttributes() {
@@ -56,7 +57,8 @@ public class ElderGuardianEntityMixin extends GuardianEntity {
     }
 
     /**
-     * Decreases the range that an elder guardian can detect a player, and also decreases the mining fatigue duration.
+     * @author Dillon8775
+     * @reason Decreases the range that an elder guardian can detect a player, and also decreases the mining fatigue duration.
      */
     @Overwrite
     public void mobTick() {

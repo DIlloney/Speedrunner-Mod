@@ -34,7 +34,8 @@ public abstract class PiglinEntityMixin extends AbstractPiglinEntity {
     }
 
     /**
-     * Modifies the piglin's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code piglin} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createPiglinAttributes() {

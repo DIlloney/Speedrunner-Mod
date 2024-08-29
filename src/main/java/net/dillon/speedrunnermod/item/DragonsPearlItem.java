@@ -26,7 +26,7 @@ import java.util.TimerTask;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * An item that forces the ender dragon to perch upon use.
+ * An item that forces the {@code ender dragon} to {@code perch.}
  */
 public class DragonsPearlItem extends Item {
 

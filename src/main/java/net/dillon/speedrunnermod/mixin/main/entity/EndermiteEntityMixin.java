@@ -33,7 +33,8 @@ public class EndermiteEntityMixin extends HostileEntity {
     }
 
     /**
-     * Modifies the endermite's attributes.
+     * @author Dillon8775
+     * @reason Modifies {@code endermite} attributes.
      */
     @Overwrite
     public static DefaultAttributeContainer.Builder createEndermiteAttributes() {

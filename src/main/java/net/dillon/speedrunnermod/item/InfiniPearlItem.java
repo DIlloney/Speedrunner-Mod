@@ -23,7 +23,7 @@ import java.util.List;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * An ender pearl that does not get consumed nor do damage upon use.
+ * An {@code ender pearl} like item that does not get consumed nor do damage upon use.
  */
 public class InfiniPearlItem extends EnderPearlItem {
 
@@ -31,6 +31,9 @@ public class InfiniPearlItem extends EnderPearlItem {
         super(settings.maxCount(1).component(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.speedrunnermod.infini_pearl").formatted(Formatting.AQUA).formatted(Formatting.ITALIC)));
     }
 
+    /**
+     * Acts pretty much exactly like an {@code ender pearl,} just removing the item decrement and entity damage.
+     */
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);

@@ -30,7 +30,7 @@ import java.util.TimerTask;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
- * An item that teleports nearby piglin to the player upon right-clicking.
+ * An item that teleports {@code nearby piglin} to the player.
  */
 public class PiglinAwakenerItem extends Item {
     private boolean confirm = !options().client.confirmMessages;
