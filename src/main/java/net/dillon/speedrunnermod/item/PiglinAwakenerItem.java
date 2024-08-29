@@ -69,6 +69,7 @@ public class PiglinAwakenerItem extends Item {
                                     if (!player.getAbilities().creativeMode) {
                                         stack.decrement(1);
                                     }
+                                    boolean sneakingWhenClicked = player.isSneaking();
                                     new Timer().schedule(new TimerTask() {
                                         @Override
                                         public void run() {
@@ -78,9 +79,9 @@ public class PiglinAwakenerItem extends Item {
                                                     if (world.random.nextFloat() < 0.50F) {
                                                         piglin.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, TickCalculator.minutes(2), 0, false, true, false));
                                                     }
-                                                    double x = !player.isSneaking() ? player.getX() + world.random.nextInt(7) - 3 : player.getX();
-                                                    double y = !player.isSneaking() ? player.getY() + world.random.nextDouble() * (2.0 - 0.5) + 0.5 : player.getY();
-                                                    double z = !player.isSneaking() ? player.getZ() + world.random.nextInt(7) - 3 : player.getZ();
+                                                    double x = !sneakingWhenClicked ? player.getX() + world.random.nextInt(7) - 3 : player.getX();
+                                                    double y = !sneakingWhenClicked ? player.getY() + world.random.nextDouble() * (2.0 - 0.5) + 0.5 : player.getY();
+                                                    double z = !sneakingWhenClicked ? player.getZ() + world.random.nextInt(7) - 3 : player.getZ();
                                                     piglin.teleport(x, y, z, false);
                                                     maxNumberOfPiglin++;
                                                 }
