@@ -1,6 +1,7 @@
 {
   "required": true,
   "package": "net.dillon.speedrunnermod.mixin",
+  "plugin": "net.dillon.speedrunnermod.mixin.plugin.ConditionalMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "main.better_loot.OreDropsMixin",

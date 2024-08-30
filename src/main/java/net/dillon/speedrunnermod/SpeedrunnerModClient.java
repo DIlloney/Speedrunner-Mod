@@ -112,13 +112,13 @@ public class SpeedrunnerModClient implements ClientModInitializer {
      * Returns the {@code minimum brightness} value for the speedrunner mod.
      */
     public static double getMinBrightness() {
-        return 0.0D;
+        return options().advanced.minimumBrightness;
     }
 
     /**
      * Returns the {@code maximum brightness} value for the speedrunner mod.
      */
     public static double getMaxBrightness() {
-        return 12.0D;
+        return options().advanced.maximumBrightness;
     }
 }

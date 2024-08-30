@@ -182,6 +182,9 @@ public class SpeedrunnerMod implements ModInitializer {
         options().advanced.iCarusFireworksInventorySlot = 0;
         options().advanced.infiniPearlInventorySlot = 0;
         options().advanced.throwableFireballsExplosionPower = 1;
+        options().advanced.applyFogMixin = true;
+        options().advanced.minimumBrightness = 0.0D;
+        options().advanced.maximumBrightness = 12.0D;
         options().advanced.dragonKillsNearbyHostileEntities = true;
         options().advanced.dragonImmunityFromGiantAndWither = true;
         options().advanced.annulEyePortalRoomDistanceXYZ = createListOption(-128, -128, -128, 128, 128, 128);

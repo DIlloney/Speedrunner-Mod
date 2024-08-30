@@ -390,6 +390,22 @@ public class ModOptions {
         public int throwableFireballsExplosionPower = 1;
 
         /**
+         * Applies the fog option into the game.
+         * <p>Disable this if you are experiencing compatibility issues with other mods that may also mess with fog settings.</p>
+         */
+        public boolean applyFogMixin = true;
+
+        /**
+         * The minimum brightness amount for the Speedrunner Mod.
+         */
+        public double minimumBrightness = 0.0D;
+
+        /**
+         * The maximum brightness amount for the Speedrunner Mod.
+         */
+        public double maximumBrightness = 12.0D;
+
+        /**
          * Makes the ender dragon kill all nearby hostile entities upon dying, excluding enderman.
          */
         public boolean dragonKillsNearbyHostileEntities = true;
