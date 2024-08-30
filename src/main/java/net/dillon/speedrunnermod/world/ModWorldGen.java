@@ -1,6 +1,6 @@
 package net.dillon.speedrunnermod.world;
 
-import net.dillon.speedrunnermod.world.biome.ModBiomes;
+import net.dillon.speedrunnermod.world.biome.ModBiomeKeys;
 import net.dillon.speedrunnermod.world.feature.ModPlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -28,7 +28,7 @@ public class ModWorldGen {
      * Initializes all Speedrunner Mod {@code custom world gen features.}
      */
     public static void init() {
-        ModBiomes.init();
+        ModBiomeKeys.init();
 
         addOres();
         addVegetalDecoration();
@@ -43,19 +43,19 @@ public class ModWorldGen {
     }
 
     /**
-     * Underground ore features.
+     * All Speedrunner Mod {@code underground ore features.}
      */
     private static void addOres() {
-        BiomeModifications.addFeature(BiomeSelectors.excludeByKey(ModBiomes.SPEEDRUNNERS_WASTELAND_KEY),
+        BiomeModifications.addFeature(BiomeSelectors.excludeByKey(ModBiomeKeys.SPEEDRUNNERS_WASTELAND_KEY),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.ORE_SPEEDRUNNER_UPPER);
 
-        BiomeModifications.addFeature(BiomeSelectors.excludeByKey(ModBiomes.SPEEDRUNNERS_WASTELAND_KEY),
+        BiomeModifications.addFeature(BiomeSelectors.excludeByKey(ModBiomeKeys.SPEEDRUNNERS_WASTELAND_KEY),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.ORE_SPEEDRUNNER_MIDDLE);
 
-        BiomeModifications.addFeature(BiomeSelectors.excludeByKey(ModBiomes.SPEEDRUNNERS_WASTELAND_KEY),
+        BiomeModifications.addFeature(BiomeSelectors.excludeByKey(ModBiomeKeys.SPEEDRUNNERS_WASTELAND_KEY),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.ORE_SPEEDRUNNER_SMALL);
 
-        BiomeModifications.addFeature(BiomeSelectors.excludeByKey(ModBiomes.SPEEDRUNNERS_WASTELAND_KEY),
+        BiomeModifications.addFeature(BiomeSelectors.excludeByKey(ModBiomeKeys.SPEEDRUNNERS_WASTELAND_KEY),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.ORE_EXPERIENCE);
 
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.BASALT_DELTAS),
@@ -78,7 +78,7 @@ public class ModWorldGen {
     }
 
     /**
-     * Vegetal decoration features.
+     * All Speedrunner Mod {@code vegetation decoration features.}
      */
     private static void addVegetalDecoration() {
         if (options().advanced.generateSpeedrunnerWood) {

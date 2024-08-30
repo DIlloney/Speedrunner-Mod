@@ -2,7 +2,7 @@ package net.dillon.speedrunnermod.mixin.main.block;
 
 import net.dillon.speedrunnermod.block.ModBlocks;
 import net.dillon.speedrunnermod.util.ItemUtil;
-import net.dillon.speedrunnermod.world.biome.ModBiomes;
+import net.dillon.speedrunnermod.world.biome.ModBiomeKeys;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -67,7 +67,7 @@ public class ExperienceDroppingBlockMixin extends Block {
         if (player != null && EnchantmentHelper.getLevel(ItemUtil.enchantment(player, Enchantments.SILK_TOUCH), stack) == 0) {
             int f;
             int i;
-            if (world.getBiome(pos) == ModBiomes.SPEEDRUNNERS_WASTELAND_KEY) {
+            if (world.getBiome(pos) == ModBiomeKeys.SPEEDRUNNERS_WASTELAND_KEY) {
                 if (state.isOf(Blocks.GOLD_ORE)) {
                     f = EnchantmentHelper.getLevel(ItemUtil.enchantment(player, Enchantments.FORTUNE), stack) * 58;
                     i = 10 + world.random.nextInt(20) + f;

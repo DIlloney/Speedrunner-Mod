@@ -10,6 +10,7 @@ public class BrokenModOptions {
     public static boolean strongholdLibraryCount = false;
     public static boolean mobSpawningRate = false;
     public static boolean leaderboards = false;
+    public static boolean speedrunnersWastelandBiomeWeight = false;
     public static boolean iCarusFireworksInventorySlot = false;
     public static boolean infiniPearlInventorySlot = false;
     public static boolean itemMessages = false;

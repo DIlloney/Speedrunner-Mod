@@ -2,16 +2,13 @@ package net.dillon.speedrunnermod.world.biome;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.data.generator.ModWorldGenerator;
-import net.dillon.speedrunnermod.mixin.main.world.VanillaBiomeParametersMixin;
 import net.dillon.speedrunnermod.world.feature.ModPlacedFeatures;
 import net.dillon.speedrunnermod.world.feature.WastelandPlacedFeatures;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
@@ -19,31 +16,20 @@ import net.minecraft.world.gen.feature.OrePlacedFeatures;
 import net.minecraft.world.gen.feature.UndergroundPlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
-
 /**
- * All Speedrunner Mod {@code custom biomes.}
- * <p>See {@link VanillaBiomeParametersMixin} for structure generation and more.</p>
+ * All Speedrunner Mod {@code custom biome features and additions.}
  */
 public class ModBiomes {
-    public static final RegistryKey<Biome> SPEEDRUNNERS_WASTELAND_KEY = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunners_wasteland"));
-
-    /**
-     * Initializes the {@link ModBiomes} class.
-     */
-    public static void init() {
-        info("Initialized and registered the Speedrunner's Wasteland biome.");
-    }
 
     /**
      * See {@link ModWorldGenerator} for more.
      */
     public static void bootstrap(Registerable<Biome> biomeRegisterable) {
-        biomeRegisterable.register(ModBiomes.SPEEDRUNNERS_WASTELAND_KEY, ModBiomes.createSpeedrunnersWasteland(biomeRegisterable));
+        biomeRegisterable.register(ModBiomeKeys.SPEEDRUNNERS_WASTELAND_KEY, createSpeedrunnersWasteland(biomeRegisterable));
     }
 
     /**
-     * Creates and adds all the features into the {@code speedrunner's wasteland biome.}
+     * All features for the {@code Speedrunner's Wasteland biome.}
      */
     private static Biome createSpeedrunnersWasteland(Registerable<Biome> context) {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
@@ -87,6 +73,9 @@ public class ModBiomes {
                 .generationSettings(lookupBackedBuilder.build()).build();
     }
 
+    /**
+     * Adds all {@code ore features} to the {@code Speedrunner's Wasteland biome.}
+     */
     private static void addSpeedrunnersWastelandOres(GenerationSettings.LookupBackedBuilder builder) {
         builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, WastelandPlacedFeatures.ORE_DIAMOND);
         builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, WastelandPlacedFeatures.ORE_DIAMOND_BURIED);
@@ -110,12 +99,19 @@ public class ModBiomes {
         builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.ORE_IGNEOUS);
     }
 
+    /**
+     * Adds all {@code "features"} to the {@code Speedrunner's Wasteland biome.}
+     */
     private static void addSpeedrunnersWastelandFeatures(GenerationSettings.LookupBackedBuilder builder) {
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WastelandPlacedFeatures.PATCH_RAW_SPEEDRUNNER_BLOCK_PLACED);
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WastelandPlacedFeatures.DEFAULT_SPEEDRUNNER_PLACED);
         builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WastelandPlacedFeatures.FANCY_SPEEDRUNNER_PLACED);
     }
 
+    /**
+     * Adds all {@code monster spawn entries} to the {@code Speedrunner's Wasteland biome.}
+     * @param builder
+     */
     private static void addSpeedrunnersWastelandMonsters(SpawnSettings.Builder builder) {
         builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 25, 4, 4));
         builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIE, 25, 1, 4));

@@ -3,8 +3,9 @@ plugins {
 	id 'maven-publish'
 }
 
-version = project.mod_version
-group = project.maven_group
+fabricApi {
+	configureDataGeneration()
+}
 
 base {
 	archivesName = project.archives_base_name
@@ -14,10 +15,9 @@ repositories {
 	maven {
 		url "https://maven.terraformersmc.com/releases/"
 	}
-}
-
-fabricApi {
-	configureDataGeneration()
+	maven {
+		url "https://maven.minecraftforge.net/"
+	}
 }
 
 dependencies {
@@ -25,17 +25,27 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
+	// Terraform Wood API
 	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
 	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
 
+	// TerraBlender
+	modImplementation "com.github.glitchfiend:TerraBlender-fabric:${project.minecraft_version}-${project.terrablender_version}"
+	include "com.github.glitchfiend:TerraBlender-fabric:${project.minecraft_version}-${project.terrablender_version}"
+
+	// Mod Menu
 	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
+	// Fabric API
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 loom {
 	accessWidenerPath = file("src/main/resources/speedrunner-mod.accessWidener")
 }
+
+version = project.mod_version
+group = project.maven_group
 
 processResources {
 	inputs.property "version", project.version

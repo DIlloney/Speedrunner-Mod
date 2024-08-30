@@ -299,8 +299,8 @@
   "advancements.speedrunnermod.deep_dark.description": "Slay Minecraft's most difficult boss, the warden.",
   "advancements.speedrunnermod.yes_the_end.title": "Yes, The End.",
   "advancements.speedrunnermod.yes_the_end.description": "Complete a speedrun",
-  "advancements.speedrunnermod.the_quicker_picker_upper.title": "The Quicker Picker Upper",
-  "advancements.speedrunnermod.the_quicker_picker_upper.description": "Obtain a Speedrunner Pickaxe",
+  "advancements.speedrunnermod.quicker_pick.title": "Quicker Pick",
+  "advancements.speedrunnermod.quicker_pick.description": "Obtain a Speedrunner Pickaxe",
 
   "entity.minecraft.villager.retired_speedrunner": "Retired Speedrunner",
 
@@ -434,6 +434,8 @@
   "speedrunnermod.options.mob_spawning_rate.high": "High",
   "speedrunnermod.options.custom_biomes_and_custom_biome_features": "Custom Biomes And Custom Biome Features",
   "speedrunnermod.options.custom_biomes_and_custom_biome_features.tooltip": "Allows the §b\"Speedrunner Wasteland\"§r biome to generate, and allows additional worldgen features to be added to different biomes.\n\n§a§lRequires restart.",
+  "speedrunnermod.options.speedrunners_wasteland_biome_weight": "Speedrunner's Wasteland Biome Weight",
+  "speedrunnermod.options.speedrunners_wasteland_biome_weight.tooltip": "Changes how often the §bSpeedrunner's Wasteland biome§r generates.\n\nIf you want to disable the biome from generating completely, disable §l\"Custom Biomes and Custom Biome Features\".",
   "speedrunnermod.options.common_ores": "Common Ores",
   "speedrunnermod.options.common_ores.tooltip": "Makes certain ores generate more commonly.\n\n§e§lRequires world reload.",
   "speedrunnermod.options.lava_boats": "Lava Boats",

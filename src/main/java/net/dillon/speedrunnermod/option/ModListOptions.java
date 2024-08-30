@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.option;
 
 import com.mojang.serialization.Codec;
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -160,7 +159,7 @@ public class ModListOptions {
                             return GameOptions.getGenericValueText(optionText, Text.literal("x" + value));
                         }
                     },
-                    new SimpleOption.ValidatingIntSliderCallbacks(1, 3), 1, value -> SpeedrunnerMod.options().main.blockBreakingMultiplier = value);
+                    new SimpleOption.ValidatingIntSliderCallbacks(1, 3), options().main.blockBreakingMultiplier, value -> options().main.blockBreakingMultiplier = value);
 
     public static final SimpleOption<Integer> DRAGON_PERCH_TIME =
             new SimpleOption<>("speedrunnermod.options.dragon_perch_time", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.dragon_perch_time.tooltip")),
@@ -172,32 +171,32 @@ public class ModListOptions {
                         } else {
                             return GameOptions.getGenericValueText(optionText, Text.literal(value + " seconds"));
                         }},
-                    new SimpleOption.ValidatingIntSliderCallbacks(8, 90), 8, value -> SpeedrunnerMod.options().main.dragonPerchTime = value);
+                    new SimpleOption.ValidatingIntSliderCallbacks(8, 90), options().main.dragonPerchTime, value -> options().main.dragonPerchTime = value);
 
     public static final SimpleOption<Integer> STRONGHOLD_DISTANCE =
             new SimpleOption<>("speedrunnermod.options.stronghold_distance", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_distance.tooltip")),
                     GameOptions::getGenericValueText,
-                    new SimpleOption.ValidatingIntSliderCallbacks(3, 64), 4, value -> SpeedrunnerMod.options().main.strongholdDistance = value);
+                    new SimpleOption.ValidatingIntSliderCallbacks(3, 64), options().main.strongholdDistance, value -> options().main.strongholdDistance = value);
 
     public static final SimpleOption<Integer> STRONGHOLD_SPREAD =
             new SimpleOption<>("speedrunnermod.options.stronghold_spread", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_spread.tooltip")),
                     GameOptions::getGenericValueText,
-                    new SimpleOption.ValidatingIntSliderCallbacks(2, 32), 3, value -> SpeedrunnerMod.options().main.strongholdSpread = value);
+                    new SimpleOption.ValidatingIntSliderCallbacks(2, 32), options().main.strongholdSpread, value -> options().main.strongholdSpread = value);
 
     public static final SimpleOption<Integer> STRONGHOLD_COUNT =
             new SimpleOption<>("speedrunnermod.options.stronghold_count", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_count.tooltip")),
                     GameOptions::getGenericValueText,
-                    new SimpleOption.ValidatingIntSliderCallbacks(4, 156), 128, value -> SpeedrunnerMod.options().main.strongholdCount = value);
+                    new SimpleOption.ValidatingIntSliderCallbacks(4, 156), options().main.strongholdCount, value -> options().main.strongholdCount = value);
 
     public static final SimpleOption<Integer> STRONGHOLD_PORTAL_ROOM_COUNT =
             new SimpleOption<>("speedrunnermod.options.stronghold_portal_room_count", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_portal_room_count.tooltip")),
                     GameOptions::getGenericValueText,
-                    new SimpleOption.ValidatingIntSliderCallbacks(1, 3), 3, value -> SpeedrunnerMod.options().main.strongholdPortalRoomCount = value);
+                    new SimpleOption.ValidatingIntSliderCallbacks(1, 3), options().main.strongholdPortalRoomCount, value -> options().main.strongholdPortalRoomCount = value);
 
     public static final SimpleOption<Integer> STRONGHOLD_LIBRARY_COUNT =
             new SimpleOption<>("speedrunnermod.options.stronghold_library_count", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_library_count.tooltip")),
                     GameOptions::getGenericValueText,
-                    new SimpleOption.ValidatingIntSliderCallbacks(1, 8), 2, value -> SpeedrunnerMod.options().main.strongholdLibraryCount = value);
+                    new SimpleOption.ValidatingIntSliderCallbacks(1, 8), options().main.strongholdLibraryCount, value -> options().main.strongholdLibraryCount = value);
 
     public static final SimpleOption<Integer> NETHER_PORTAL_DELAY =
             new SimpleOption<>("speedrunnermod.options.nether_portal_delay", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.nether_portal_delay.tooltip")),
@@ -209,7 +208,7 @@ public class ModListOptions {
                         } else {
                             return GameOptions.getGenericValueText(optionText, Text.literal(value + "s"));
                         }},
-                    new SimpleOption.ValidatingIntSliderCallbacks(-1, 20), 2, value -> SpeedrunnerMod.options().main.netherPortalDelay = value);
+                    new SimpleOption.ValidatingIntSliderCallbacks(-1, 20), options().main.netherPortalDelay, value -> options().main.netherPortalDelay = value);
 
     public static final SimpleOption<Integer> ANVIL_COST_LIMIT =
             new SimpleOption<>("speedrunnermod.options.anvil_cost_limit", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.anvil_cost_limit.tooltip")),
@@ -221,5 +220,10 @@ public class ModListOptions {
                         } else {
                             return GameOptions.getGenericValueText(optionText, Text.literal(value + " levels"));
                         }},
-                    new SimpleOption.ValidatingIntSliderCallbacks(1, 50), 10, value -> SpeedrunnerMod.options().main.anvilCostLimit = value);
+                    new SimpleOption.ValidatingIntSliderCallbacks(1, 50), options().main.anvilCostLimit, value -> options().main.anvilCostLimit = value);
+
+    public static final SimpleOption<Integer> SPEEDRUNNERS_WASTELAND_BIOME_WEIGHT =
+            new SimpleOption<>("speedrunnermod.options.speedrunners_wasteland_biome_weight", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.speedrunners_wasteland_biome_weight.tooltip")),
+                    GameOptions::getGenericValueText,
+                    new SimpleOption.ValidatingIntSliderCallbacks(2, 24), options().main.speedrunnersWastelandBiomeWeight, value -> options().main.speedrunnersWastelandBiomeWeight = value);
 }

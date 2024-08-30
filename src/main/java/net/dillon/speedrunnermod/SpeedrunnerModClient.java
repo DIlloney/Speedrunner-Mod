@@ -81,6 +81,10 @@ public class SpeedrunnerModClient implements ClientModInitializer {
             options().main.leaderboardsMode = false;
         }
 
+        if (BrokenModOptions.speedrunnersWastelandBiomeWeight) {
+            options().main.speedrunnersWastelandBiomeWeight = 9;
+        }
+
         if (BrokenModOptions.iCarusFireworksInventorySlot) {
             options().advanced.iCarusFireworksInventorySlot = 1;
         }

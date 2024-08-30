@@ -132,6 +132,7 @@ public class SpeedrunnerMod implements ModInitializer {
         options().main.betterVillagerTrades = true;
         options().main.fireproofItems = true;
         options().main.customBiomesAndCustomBiomeFeatures = true;
+        options().main.speedrunnersWastelandBiomeWeight = 9;
         options().main.commonOres = true;
         options().main.lavaBoats = true;
         options().main.netherWater = true;
