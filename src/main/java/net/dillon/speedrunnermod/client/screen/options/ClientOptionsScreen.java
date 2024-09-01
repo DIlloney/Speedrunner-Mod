@@ -14,6 +14,8 @@ import net.minecraft.client.option.SimpleOption;
 
 import java.io.File;
 
+import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
+
 /**
  * The Speedrunner Mod's {@code client options screen.}
  */
@@ -45,6 +47,10 @@ public class ClientOptionsScreen extends AbstractModScreen {
     protected void init() {
         this.optionList = this.addDrawableChild(new OptionListWidget(this.client, this.width, this));
         this.optionList.addAll(clientOptions(this.gameOptions));
+        if (!options().advanced.applyFogMixin) {
+            OptionListWidget.WidgetEntry widget = this.optionList.children().getFirst();
+            widget.widgets.getFirst().active = false;
+        }
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);
 

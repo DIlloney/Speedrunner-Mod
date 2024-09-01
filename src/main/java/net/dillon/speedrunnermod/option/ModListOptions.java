@@ -54,7 +54,7 @@ public class ModListOptions {
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.iCarusMode, value -> options().main.iCarusMode = value);
 
     public static final SimpleOption<Boolean> FOG = new SimpleOption<>("speedrunnermod.options.fog", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.fog.tooltip")),
-            (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.fog, value -> {
+            (optionText, value) -> !options().advanced.applyFogMixin ? ModTexts.DISABLED : !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.fog, value -> {
         options().client.fog = value;
         MinecraftClient.getInstance().worldRenderer.reload();
     });
@@ -221,9 +221,4 @@ public class ModListOptions {
                             return GameOptions.getGenericValueText(optionText, Text.literal(value + " levels"));
                         }},
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 50), options().main.anvilCostLimit, value -> options().main.anvilCostLimit = value);
-
-    public static final SimpleOption<Integer> SPEEDRUNNERS_WASTELAND_BIOME_WEIGHT =
-            new SimpleOption<>("speedrunnermod.options.speedrunners_wasteland_biome_weight", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.speedrunners_wasteland_biome_weight.tooltip")),
-                    GameOptions::getGenericValueText,
-                    new SimpleOption.ValidatingIntSliderCallbacks(2, 24), options().main.speedrunnersWastelandBiomeWeight, value -> options().main.speedrunnersWastelandBiomeWeight = value);
 }

@@ -12,7 +12,6 @@ import net.minecraft.client.option.GameOptions;
 
 @Environment(EnvType.CLIENT)
 public class ResourcesScreen extends AbstractModScreen {
-    protected ButtonWidget questionsAndIssuesButton, suggestionsAndFeedbackButton;
 
     public ResourcesScreen(Screen parent, GameOptions options) {
         super(parent, options, ModTexts.TITLE_RESOURCES);
@@ -20,37 +19,37 @@ public class ResourcesScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        int height = this.getButtonsHeight();
+        this.initializeCustomButtonListWidget();
 
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_MODS, (button) -> {
+        this.buttons.add(0, ButtonWidget.builder(ModTexts.MENU_MODS, (button) -> {
             this.client.setScreen(new ModsScreen(this.parent, MinecraftClient.getInstance().options));
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
-        this.questionsAndIssuesButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.QUESTIONS_AND_ISSUES, (button) -> {
+        }).build());
+
+        this.buttons.add(1, ButtonWidget.builder(ModTexts.QUESTIONS_AND_ISSUES, (button) -> {
             this.openLink(ModLinks.QUESTIONS_AND_ISSUES, true);
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_WIKI, (button) -> {
+        this.buttons.add(2, ButtonWidget.builder(ModTexts.MENU_WIKI, (button) -> {
             this.openLink(ModLinks.WIKI, true);
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
-        this.suggestionsAndFeedbackButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.SUGGESTIONS_AND_FEEDBACK, (button) -> {
-            this.openLink(ModLinks.SUGGESTIONS_AND_FEEDBACK, true);
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_TUTORIALS, (button) -> {
+        this.buttons.add(3, ButtonWidget.builder(ModTexts.SUGGESTIONS_AND_FEEDBACK, (button) -> {
+            this.openLink(ModLinks.SUGGESTIONS_AND_FEEDBACK, true);
+        }).build());
+
+        this.buttons.add(4, ButtonWidget.builder(ModTexts.MENU_TUTORIALS, (button) -> {
             this.client.setScreen(new TutorialsScreen(this.parent, MinecraftClient.getInstance().options));
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+        }).build());
 
         super.init();
     }
 
     @Override
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
-        if (this.questionsAndIssuesButton.isHovered()) {
+        if (this.buttons.get(1).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.QUESTIONS_AND_ISSUES_TOOLTIP, 200), mouseX, mouseY);
         }
-        if (this.suggestionsAndFeedbackButton.isHovered()) {
+        if (this.buttons.get(3).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.SUGGESTIONS_AND_FEEDBACK_TOOLTIP, 200), mouseX, mouseY);
         }
     }

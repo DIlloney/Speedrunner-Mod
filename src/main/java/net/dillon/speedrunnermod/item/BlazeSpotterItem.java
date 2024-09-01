@@ -53,7 +53,7 @@ public class BlazeSpotterItem extends Item {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.HOSTILE, 1.0F, 1.0F);
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_BLAZE_AMBIENT, SoundCategory.HOSTILE, 3.0F, 0.6F);
                             player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, TickCalculator.seconds(world.random.nextInt(4) + 7), 0, false, true, true));
-                            player.getItemCooldownManager().set(this, TickCalculator.seconds(10));
+                            player.getItemCooldownManager().set(this, TickCalculator.seconds(30));
                             if (!player.getAbilities().creativeMode) {
                                 itemStack.decrement(1);
                             }

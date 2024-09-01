@@ -17,7 +17,6 @@ import net.minecraft.text.Text;
  */
 @Environment(EnvType.CLIENT)
 public class ModOptionsScreen extends AbstractModScreen {
-    protected ButtonWidget mainOptions, fastWorldCreationOptions, clientOptions, resetOptions;
 
     public ModOptionsScreen(Screen parent, GameOptions options) {
         super(parent, options, Text.translatable("speedrunnermod.title.options"));
@@ -25,39 +24,39 @@ public class ModOptionsScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        int height = this.getButtonsHeight();
-        this.mainOptions = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_OPTIONS_MAIN, (button) -> {
+        this.initializeCustomButtonListWidget();
+
+        this.buttons.add(0, ButtonWidget.builder(ModTexts.MENU_OPTIONS_MAIN, (button) -> {
             this.client.setScreen(new MainOptionsScreen(this, options));
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+        }).build());
 
-        this.fastWorldCreationOptions = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_FAST_WORLD_CREATION, (button) -> {
+        this.buttons.add(1, ButtonWidget.builder(ModTexts.MENU_FAST_WORLD_CREATION, (button) -> {
             this.client.setScreen(new FastWorldCreationOptionsScreen(this, options));
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).build());
 
-        height += 24;
-        this.clientOptions = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_OPTIONS_CLIENT, (button) -> {
+        this.buttons.add(2, ButtonWidget.builder(ModTexts.MENU_OPTIONS_CLIENT, (button) -> {
             this.client.setScreen(new ClientOptionsScreen(this, options));
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+        }).build());
 
-        this.resetOptions = this.addDrawableChild(ButtonWidget.builder(ModTexts.MENU_OPTIONS_RESET, (button) -> {
+        this.buttons.add(3, ButtonWidget.builder(ModTexts.MENU_OPTIONS_RESET, (button) -> {
             this.client.setScreen(new ResetOptionsConfirmScreen(this, options));
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).build());
 
         super.init();
     }
 
     @Override
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
-        if (mainOptions.isHovered()) {
+        if (this.buttons.get(0).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_MAIN_TOOLTIP, 200), mouseX, mouseY);
         }
-        if (fastWorldCreationOptions.isHovered()) {
+        if (this.buttons.get(1).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_FAST_WORLD_CREATION_TOOLTIP, 200), mouseX, mouseY);
         }
-        if (clientOptions.isHovered()) {
+        if (this.buttons.get(2).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_CLIENT_TOOLTIP, 200), mouseX, mouseY);
         }
-        if (resetOptions.isHovered()) {
+        if (this.buttons.get(3).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_RESET_TOOLTIP, 200), mouseX, mouseY);
         }
         super.renderTooltips(context, mouseX, mouseY);

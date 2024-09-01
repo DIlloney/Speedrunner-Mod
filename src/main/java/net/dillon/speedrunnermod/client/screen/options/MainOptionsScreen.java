@@ -42,7 +42,6 @@ public class MainOptionsScreen extends AbstractModScreen {
                 ModListOptions.BETTER_FOODS,
                 ModListOptions.BETTER_BIOMES,
                 ModListOptions.CUSTOM_BIOMES_AND_CUSTOM_BIOME_FEATURES,
-                ModListOptions.SPEEDRUNNERS_WASTELAND_BIOME_WEIGHT,
                 ModListOptions.FIREPROOF_ITEMS,
                 ModListOptions.THROWABLE_FIREBALLS,
                 ModListOptions.FALL_DAMAGE,

@@ -43,10 +43,10 @@ public class DragonsPearlItem extends Item {
                     List<EnderDragonEntity> dragons = world.getEntitiesByClass(EnderDragonEntity.class, player.getBoundingBox().expand(options().advanced.dragonsPearlDragonDistanceXYZ[0], options().advanced.dragonsPearlDragonDistanceXYZ[1], options().advanced.dragonsPearlDragonDistanceXYZ[2]), entity -> true);
 
                     if (!dragons.isEmpty()) {
-                        EnderDragonEntity enderDragon = dragons.get(0);
+                        EnderDragonEntity enderDragon = dragons.getFirst();
                         if (!isDragonAlreadyPerchingOrPerched(enderDragon) && !isDragonDead(enderDragon)) {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 2.0F, 0.3F);
-                            player.getItemCooldownManager().set(this, TickCalculator.seconds(10));
+                            player.getItemCooldownManager().set(this, TickCalculator.seconds(30));
                             if (!player.getAbilities().creativeMode) {
                                 itemStack.decrement(1);
                             }

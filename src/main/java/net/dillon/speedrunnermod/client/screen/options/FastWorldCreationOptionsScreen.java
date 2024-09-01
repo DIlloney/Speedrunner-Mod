@@ -14,6 +14,8 @@ import net.minecraft.client.option.SimpleOption;
 
 import java.io.File;
 
+import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
+
 /**
  * The Speedrunner Mod's {@code "fast world creation"} options, which set the settings of each new world created.
  */
@@ -35,6 +37,15 @@ public class FastWorldCreationOptionsScreen extends AbstractModScreen {
     protected void init() {
         this.optionList = this.addDrawableChild(new OptionListWidget(this.client, this.width, this));
         this.optionList.addAll(fwcOptions());
+        if (!options().client.fastWorldCreation) {
+            for (int i = 0; i < this.optionList.children().size(); i++) {
+                OptionListWidget.WidgetEntry widget = this.optionList.children().get(i);
+                if (i != 0) {
+                    widget.widgets.getFirst().active = false;
+                }
+                widget.widgets.get(1).active = false;
+            }
+        }
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);
 

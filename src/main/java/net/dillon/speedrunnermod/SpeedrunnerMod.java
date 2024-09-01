@@ -132,7 +132,6 @@ public class SpeedrunnerMod implements ModInitializer {
         options().main.betterVillagerTrades = true;
         options().main.fireproofItems = true;
         options().main.customBiomesAndCustomBiomeFeatures = true;
-        options().main.speedrunnersWastelandBiomeWeight = 9;
         options().main.commonOres = true;
         options().main.lavaBoats = true;
         options().main.netherWater = true;
@@ -175,6 +174,7 @@ public class SpeedrunnerMod implements ModInitializer {
         options().advanced.showResetButton = true;
         options().advanced.higherBreathTime = true;
         options().advanced.generateSpeedrunnerWood = true;
+        options().advanced.speedrunnersWastelandBiomeWeight = 9;
         options().advanced.longerDragonPerchStayTime = true;
         options().advanced.decreasedZombifiedPiglinScareDistance = true;
         options().advanced.eyeOfEnderBreakingCooldown = 60;

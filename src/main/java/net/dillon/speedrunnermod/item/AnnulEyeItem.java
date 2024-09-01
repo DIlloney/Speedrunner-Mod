@@ -30,7 +30,6 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
@@ -92,14 +91,16 @@ public class AnnulEyeItem extends Item {
                         }
 
                         if (hasRequiredItems) {
+                            player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.calculating").formatted(Formatting.RED), false);
                             BlockPos endPortalFrameBlock = findPortalRoom(world, player.getBlockPos());
 
                             if (endPortalFrameBlock != null) {
                                 if (confirm) {
+                                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.found_portal_room").formatted(Formatting.GREEN), false);
                                     player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.teleporting").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                                     player.teleport(endPortalFrameBlock.getX() + 0.5F, endPortalFrameBlock.getY() + 1.0F, endPortalFrameBlock.getZ() + 0.5F, true);
                                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.HOSTILE, 1.0F, 1.0F);
-                                    player.getItemCooldownManager().set(this, TickCalculator.seconds(10));
+                                    player.getItemCooldownManager().set(this, TickCalculator.seconds(60));
                                     if (!player.getAbilities().creativeMode) {
                                         itemStack.decrement(1);
                                         for (int i = 0; i < player.getInventory().size(); i++) {

@@ -115,12 +115,6 @@ public class ModOptions {
         public boolean customBiomesAndCustomBiomeFeatures = true;
 
         /**
-         * The weight for the Speedrunner's Wasteland biome (how commonly it can generate).
-         */
-        @RequiresRestart
-        public int speedrunnersWastelandBiomeWeight = 9;
-
-        /**
          * Allows certain ores to generate more commonly.
          */
         public boolean commonOres = true;
@@ -354,6 +348,12 @@ public class ModOptions {
         public boolean generateSpeedrunnerWood = true;
 
         /**
+         * The weight for the Speedrunner's Wasteland biome (how commonly it can generate).
+         */
+        @RequiresRestart
+        public int speedrunnersWastelandBiomeWeight = 9;
+
+        /**
          * In vanilla Minecraft, the ender dragon will fly away after perching when it takes so much damage. However, this option extends that damage amount, to allow the dragon to stay perched for a longer period of time, even after taking a large amount of damage.
          */
         public boolean longerDragonPerchStayTime = true;
@@ -568,7 +568,7 @@ public class ModOptions {
      * Returns true if the {@code Speedrunner's Wasteland Biome Weight} option is valid.
      */
     public boolean isSpeedrunnersWastelandBiomeWeightValid() {
-        return this.inBounds(main.speedrunnersWastelandBiomeWeight, 1, 32);
+        return this.inBounds(advanced.speedrunnersWastelandBiomeWeight, 1, 32);
     }
 
     /**
@@ -1072,7 +1072,7 @@ public class ModOptions {
             warn(OPTIONS_WARNING_MESSAGE + related + "speedrunnermod.options.blockBreakingMultiplier");
         }
 
-        if (options().main.speedrunnersWastelandBiomeWeight < 1) {
+        if (options().advanced.speedrunnersWastelandBiomeWeight < 1) {
             error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.speedrunnersWastelandBiomeWeight");
             isSafe(false);
             BrokenModOptions.speedrunnersWastelandBiomeWeight = true;

@@ -8,6 +8,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
+import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
 import org.jetbrains.annotations.Nullable;
@@ -25,8 +26,8 @@ public class CustomButtonListWidget extends ElementListWidget<CustomButtonListWi
     /**
      * Create a new {@link CustomButtonListWidget}.
      */
-    public CustomButtonListWidget(MinecraftClient client, int width, int height, int k, int l) {
-        super(client, width, height, k, l);
+    public CustomButtonListWidget(MinecraftClient client, int width, GameOptionsScreen optionsScreen) {
+        super(client, width, optionsScreen.layout.getContentHeight(), optionsScreen.layout.getHeaderHeight(), 25);
         this.centerListVertically = false;
     }
 

@@ -22,6 +22,7 @@ accessible class net/minecraft/loot/function/ApplyBonusLootFunction$OreDrops
 accessible class net/minecraft/client/MinecraftClient$LoadingContext
 accessible class net/minecraft/client/option/SimpleOption$Callbacks
 extendable class net/minecraft/client/option/SimpleOption$SliderCallbacks
+accessible class net/minecraft/client/gui/widget/OptionListWidget$WidgetEntry
 
 accessible method net/minecraft/world/gen/feature/OrePlacedFeatures modifiersWithCount (ILnet/minecraft/world/gen/placementmodifier/PlacementModifier;)Ljava/util/List;
 accessible method net/minecraft/world/gen/feature/OrePlacedFeatures modifiersWithRarity (ILnet/minecraft/world/gen/placementmodifier/PlacementModifier;)Ljava/util/List;
@@ -54,3 +55,4 @@ accessible field net/minecraft/entity/mob/MobEntity handItems Lnet/minecraft/uti
 accessible field net/minecraft/entity/mob/BlazeEntity$ShootFireballGoal fireballCooldown I
 accessible field net/minecraft/item/CrossbowItem charged Z
 accessible field net/minecraft/item/CrossbowItem loaded Z
+accessible field net/minecraft/client/gui/widget/OptionListWidget$WidgetEntry widgets Ljava/util/List;

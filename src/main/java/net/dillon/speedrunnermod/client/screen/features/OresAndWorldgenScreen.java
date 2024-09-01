@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.client.screen.features;
 
 import net.dillon.speedrunnermod.client.screen.AbstractModScreen;
-import net.dillon.speedrunnermod.client.screen.CustomButtonListWidget;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
@@ -17,11 +16,8 @@ public class OresAndWorldgenScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        this.buttonList = this.addDrawableChild(new CustomButtonListWidget(this.client, this.width, this.height - 64, 32, 25));
-
-        this.clearButtons();
+        this.initializeCustomButtonListWidget();
         this.iterate(ScreenCategory.ORES_AND_WORLDGEN);
-
         super.init();
     }
 

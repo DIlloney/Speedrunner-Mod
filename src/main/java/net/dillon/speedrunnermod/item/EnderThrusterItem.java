@@ -47,7 +47,7 @@ public class EnderThrusterItem extends Item {
 
                     if (y != playerY && !(playerY > y)) {
                         if (confirm) {
-                            player.getItemCooldownManager().set(this, TickCalculator.seconds(5));
+                            player.getItemCooldownManager().set(this, TickCalculator.seconds(10));
                             if (!player.getAbilities().creativeMode) {
                                 itemStack.decrement(1);
                             }

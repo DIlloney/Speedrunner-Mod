@@ -190,6 +190,14 @@ public abstract class AbstractModScreen extends BaseModScreen {
     }
 
     /**
+     * Initializes a {@code custom button list widget.}
+     */
+    protected void initializeCustomButtonListWidget() {
+        this.buttonList = this.addDrawableChild(new CustomButtonListWidget(this.client, this.width, this));
+        this.clearButtons();
+    }
+
+    /**
      * The function for the {@code "done"} button.
      */
     protected void doneButtonFunction() {

@@ -87,17 +87,4 @@ public class TheEndBiomesLoader {
             theEndEffects.add("particle", particleObject);
         }
     }
-
-    /**
-     * Modifies the basic building blocks of the end, and changes it to doom stone if {@code doom mode} is enabled.
-     */
-    public static void modifyEnd(JsonElement jsonElement) {
-        String stone = DOOM_MODE ? "speedrunnermod:doom_stone" : "minecraft:end_stone";
-        JsonObject defaultBlock = jsonElement.getAsJsonObject().getAsJsonObject("default_block");
-        defaultBlock.addProperty("Name", stone);
-
-        JsonObject surfaceRule = jsonElement.getAsJsonObject().getAsJsonObject("surface_rule");
-        JsonObject resultState = surfaceRule.getAsJsonObject("result_state");
-        resultState.addProperty("Name", stone);
-    }
 }

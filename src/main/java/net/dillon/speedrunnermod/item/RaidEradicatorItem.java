@@ -55,7 +55,7 @@ public class RaidEradicatorItem extends Item {
                     if (hasTotemEquipped) {
                         if (confirm) {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_RAVAGER_ROAR, SoundCategory.HOSTILE, 3.0F, 1.0F);
-                            player.getItemCooldownManager().set(this, TickCalculator.seconds(30));
+                            player.getItemCooldownManager().set(this, TickCalculator.minutes(5));
                             if (!player.getAbilities().creativeMode) {
                                 stack.decrement(1);
                             }

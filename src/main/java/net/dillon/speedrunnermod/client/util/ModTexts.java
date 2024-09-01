@@ -22,6 +22,7 @@ public class ModTexts {
     public static final Text DIRECTORY_TOOLTIP = Text.translatable("speedrunnermod.directory_button.tooltip");
     public static final Text ON = Text.literal("ON");
     public static final Text OFF = Text.literal("OFF");
+    public static final Text DISABLED = Text.literal("Feature Disabled");
 
     public static final Text TITLE = Text.translatable("speedrunnermod.title");
     public static final Text MENU_OPTIONS_ACTION_NEEDED = Text.translatable("speedrunnermod.leaderboards.action_needed");

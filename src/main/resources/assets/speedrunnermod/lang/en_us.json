@@ -160,10 +160,11 @@
   "item.speedrunnermod.dragons_pearl.wrong_dimension": "You must be in the end to use this item!",
 
   "item.speedrunnermod.eye_of_annul.blocks_away": "The nearest %s is %s blocks away.",
-  "item.speedrunnermod.eye_of_annul.found_portal_room": "Found portal room.",
+  "item.speedrunnermod.eye_of_annul.found_portal_room": "Found portal room!",
   "item.speedrunnermod.eye_of_annul.couldnt_find_portal_room": "Couldn't find portal room.",
   "item.speedrunnermod.eye_of_annul.doom_mode": "Haha... that doesn't work on doom mode! >:)",
   "item.speedrunnermod.eye_of_annul.confirm": "Do you wish to teleport to the portal room? Right-click to confirm.",
+  "item.speedrunnermod.eye_of_annul.calculating": "Calculating distance... This may take a moment.",
   "item.speedrunnermod.eye_of_annul.teleporting": "The gatekeeper wishes you luck.",
   "item.speedrunnermod.eye_of_annul.wrong_dimension": "You must be in the overworld to use this item!",
   "item.speedrunnermod.eye_of_annul.no_ender_eye": "The gatekeeper requests an ender eye.",
@@ -832,7 +833,7 @@
   "speedrunnermod.menu.external.modrinth": "Modrinth...",
   "speedrunnermod.menu.external.github": "GitHub...",
   "speedrunnermod.menu.external.wiki": "Wiki...",
-  "speedrunnermod.menu.title_screen.external.wiki.tooltip": "Learn some more about this mod.",
+  "speedrunnermod.menu.title_screen.external.wiki.tooltip": "Learn more about the Speedrunner Mod.",
   "speedrunnermod.menu.external.youtube": "YouTube...",
   "speedrunnermod.menu.external.discord": "Discord...",
   "speedrunnermod.discord.tooltip": "Become a part of the Speedrunner Mod community, and get notified of new updates, sneak peaks, and more!",
@@ -900,6 +901,8 @@
   "speedrunnermod.help_button.tooltip": "Help...",
   "speedrunnermod.directory_button.tooltip": "Open config directory...",
   "speedrunnermod.player_death_cords": "You died at X: %.2f, Y = %.2f, Z = %.2f",
+
+  "speedrunnermod.fog.mixin_disabled": "Fog mixin has been disabled. Re-enable it in the advanced Speedrunner Mod options to use this feature.",
 
   "speedrunnermod.entity_boat_paddle_lava": "Rowing",
 

@@ -10,7 +10,6 @@ import net.minecraft.client.option.GameOptions;
 
 @Environment(EnvType.CLIENT)
 public class ExternalScreen extends AbstractModScreen {
-    protected ButtonWidget webpageButton;
 
     protected ExternalScreen(Screen parent, GameOptions options) {
         super(parent, options, ModTexts.TITLE_EXTERNAL);
@@ -18,37 +17,35 @@ public class ExternalScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        int height = this.getButtonsHeight();
+        this.initializeCustomButtonListWidget();
 
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.CURSEFORGE, (buttonWidget) -> {
+        this.buttons.add(0, ButtonWidget.builder(ModTexts.CURSEFORGE, (buttonWidget) -> {
             this.openLink(ModLinks.CURSEFORGE, false);
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+        }).build());
 
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.MODRINTH, (buttonWidget) -> {
+        this.buttons.add(1, ButtonWidget.builder(ModTexts.MODRINTH, (buttonWidget) -> {
             this.openLink(ModLinks.MODRINTH, false);
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.GITHUB, (buttonWidget) -> {
+        this.buttons.add(2, ButtonWidget.builder(ModTexts.GITHUB, (buttonWidget) -> {
             this.openLink(ModLinks.GITHUB, false);
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+        }).build());
 
-        this.webpageButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.WEBPAGE, (buttonWidget) -> {
+        this.buttons.add(3, ButtonWidget.builder(ModTexts.WEBPAGE, (buttonWidget) -> {
             this.openLink(ModLinks.WIKI, true);
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.YOUTUBE, (buttonWidget) -> {
+        this.buttons.add(4, ButtonWidget.builder(ModTexts.YOUTUBE, (buttonWidget) -> {
             this.openLink(ModLinks.DILLON8775_YOUTUBE, true);
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.DISCORD, (buttonWidget) -> {
-            this.openLink(ModLinks.DISCORD, false);
-        }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+        }).build());
 
-        height += 24;
-        this.addDrawableChild(ButtonWidget.builder(ModTexts.MOD_SHOWCASE_VIDEO, (buttonWidget) -> {
+        this.buttons.add(5, ButtonWidget.builder(ModTexts.DISCORD, (buttonWidget) -> {
+            this.openLink(ModLinks.DISCORD, false);
+        }).build());
+
+        this.buttons.add(6, ButtonWidget.builder(ModTexts.MOD_SHOWCASE_VIDEO, (buttonWidget) -> {
             this.openLink(ModLinks.MOD_SHOWCASE_VIDEO, true);
-        }).dimensions(this.getButtonsLeftSide(), height, 150, 20).build());
+        }).build());
 
         super.init();
     }

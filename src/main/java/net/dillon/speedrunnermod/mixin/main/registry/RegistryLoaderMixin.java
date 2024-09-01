@@ -158,10 +158,6 @@ public class RegistryLoaderMixin {
                     StructuresLoader.modifyWoodlandMansions(jsonElement);
                 }
             }
-
-            if (fileName.equals(JsonIdentifiers.END)) {
-                TheEndBiomesLoader.modifyEnd(jsonElement);
-            }
         }
     }
 }

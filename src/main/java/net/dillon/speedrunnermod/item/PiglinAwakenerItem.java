@@ -65,7 +65,7 @@ public class PiglinAwakenerItem extends Item {
                             if (hasGold) {
                                 if (confirm) {
                                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PIGLIN_ANGRY, SoundCategory.HOSTILE, 3.0F, 1.0F);
-                                    player.getItemCooldownManager().set(this, TickCalculator.seconds(20));
+                                    player.getItemCooldownManager().set(this, TickCalculator.seconds(60));
                                     if (!player.getAbilities().creativeMode) {
                                         stack.decrement(1);
                                     }

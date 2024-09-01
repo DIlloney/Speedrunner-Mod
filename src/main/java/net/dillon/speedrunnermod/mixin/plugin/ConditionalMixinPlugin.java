@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.mixin.plugin;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.dillon.speedrunnermod.util.Credit;
 import org.objectweb.asm.tree.ClassNode;
@@ -19,7 +20,12 @@ public class ConditionalMixinPlugin implements IMixinConfigPlugin {
      */
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return options().advanced.applyFogMixin || !mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.Fog");
+        if (!options().advanced.applyFogMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.Fog")) {
+            SpeedrunnerMod.warn("Speedrunner Mod Fog mixin has been disabled.");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     // Other methods...
