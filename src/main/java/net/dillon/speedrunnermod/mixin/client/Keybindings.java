@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.mixin.client;
 
+import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.SpeedrunnerModClient;
 import net.dillon.speedrunnermod.client.keybind.ModKeybindings;
 import net.dillon.speedrunnermod.client.util.ModTexts;
@@ -7,6 +8,7 @@ import net.dillon.speedrunnermod.option.ModOptions;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.RunArgs;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.screen.MessageScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -49,6 +51,16 @@ public abstract class Keybindings {
     public abstract IntegratedServer getServer();
     @Shadow @Final
     public GameOptions options;
+
+    /**
+     * Ensures that the {@code fullbright} option is correctly initialized when launching the game.
+     */
+    @Inject(method = "<init>", at = @At("TAIL"))
+    private void checkGamma(RunArgs args, CallbackInfo ci) {
+        options().client.fullBright = MinecraftClient.getInstance().options.getGamma().getValue() >= 10.0D;
+        ModOptions.saveConfig();
+        SpeedrunnerMod.error("SAVED!");
+    }
 
     /**
      * All speedrunner mod {@code keybinding} functions.
@@ -100,6 +112,7 @@ public abstract class Keybindings {
             ModOptions.saveConfig();
             MinecraftClient.getInstance().options.getGamma().setValue(options().client.fullBright ? SpeedrunnerModClient.getMaxBrightness() : 1.0D);
             debugWarn(options().client.fullBright ? "speedrunnermod.toggle_fullbright.on" : "speedrunnermod.toggle_fullbright.off");
+            MinecraftClient.getInstance().options.write();
         }
     }
 
