@@ -13,6 +13,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -42,7 +43,8 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
      */
     @Override @ChatGPT(Credit.PARTIAL_CREDIT)
     public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!world.isClient && player.getMainHandStack().hasEnchantments() && !player.getOffHandStack().isEmpty()) {
+        boolean holdingEnchantedBookItem = player.getMainHandStack().isOf(Items.ENCHANTED_BOOK) || player.getOffHandStack().isOf(Items.ENCHANTED_BOOK);
+        if (!world.isClient && !holdingEnchantedBookItem && player.getMainHandStack().hasEnchantments() && !player.getOffHandStack().isEmpty()) {
             ItemStack mainHandStack = player.getMainHandStack(); // Get the players main hand stack
             ItemStack offHandStack = player.getOffHandStack(); // Get the players offhand stack
             ItemEnchantmentsComponent mainHandEnchantments = EnchantmentHelper.getEnchantments(mainHandStack); // Get the enchantments on the players main hand item, using an item enchantments component
@@ -67,10 +69,10 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
 
                 if (!offhandHasEnchantments) { // If the players offhand item has no enchantments, "successWithNoEnchantments" returns true, and enchantments are transferred
                     totalTransferred++;
-                    cost = initializeCost(player, totalTransferred);
+                    cost = this.initializeCost(player, totalTransferred);
                     if (totalTransferred != 0 && player.experienceLevel >= cost && enchantment.isAcceptableItem(offHandStack)) {
                         successWithNoEnchantments = true;
-                        transferEnchantments(mainHandStack, offHandStack, mainHandBuilder, offHandBuilder, entry, registryEntry);
+                        this.transferEnchantments(mainHandStack, offHandStack, mainHandBuilder, offHandBuilder, entry, registryEntry);
                     } else {
                         if (!enchantment.isAcceptableItem(offHandStack)) {
                             incompatibleEnchantmentsFailed = true;
@@ -98,14 +100,14 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                         if (allIsCompatible && Enchantment.canBeCombined(registryEntry, registryEntry2) && enchantment.isAcceptableItem(offHandStack) || canUpgrade) {
 
                             totalTransferred++;
-                            cost = initializeCost(player, totalTransferred);
+                            cost = this.initializeCost(player, totalTransferred);
 
                             if (totalTransferred != 0 && player.experienceLevel >= cost) {
                                 successWithEnchantments = true;
                                 if (canUpgrade) {
                                     wasUpgraded = true;
                                 }
-                                transferEnchantments(mainHandStack, offHandStack, mainHandBuilder, offHandBuilder, entry, registryEntry);
+                                this.transferEnchantments(mainHandStack, offHandStack, mainHandBuilder, offHandBuilder, entry, registryEntry);
                             } else {
                                 fail = true;
                             }
@@ -129,12 +131,12 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                 if (wasUpgraded) {
                     player.sendMessage(Text.translatable("speedrunnermod.enchantment_levels_upgraded"), false);
                 }
-                success(world, pos, player, hand, mainHandStack, cost);
+                this.success(world, pos, player, hand, mainHandStack, cost);
             }
 
             // Successful enchantment transfer when the offhand item had no enchantments before
             if (successWithNoEnchantments) {
-                success(world, pos, player, hand, mainHandStack, cost);
+                this.success(world, pos, player, hand, mainHandStack, cost);
             }
 
             // Some incompatible enchantments were not transferred
@@ -149,7 +151,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
 
             // Tells the player how many levels are needed to transfer enchantments
             if (fail) {
-                fail(player, cost);
+                this.fail(player, cost);
             }
 
             return ItemActionResult.success(true);
@@ -163,7 +165,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
      * <p>See comments inside method for more documentation.</p>
      */
     @ChatGPT(Credit.PARTIAL_CREDIT)
-    private static void transferEnchantments(ItemStack mainHandStack, ItemStack offHandStack, ItemEnchantmentsComponent.Builder mainHandBuilder, ItemEnchantmentsComponent.Builder offHandBuilder, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry, RegistryEntry registryEntry) {
+    private void transferEnchantments(ItemStack mainHandStack, ItemStack offHandStack, ItemEnchantmentsComponent.Builder mainHandBuilder, ItemEnchantmentsComponent.Builder offHandBuilder, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry, RegistryEntry registryEntry) {
         int mainHandLevel = mainHandBuilder.getLevel(entry.getKey());
         int offHandLevel = offHandBuilder.getLevel(entry.getKey());
 
@@ -186,7 +188,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
     /**
      * Corrects the {@code cost} variable to equal the total amount of enchantments transferred multiplied by itself.
      */
-    private static int initializeCost(PlayerEntity player, int totalTransferred) {
+    private int initializeCost(PlayerEntity player, int totalTransferred) {
         int cost = MathUtil.multiplyBySelf(totalTransferred);
 
         if (cost > options().main.anvilCostLimit && options().main.anvilCostLimit != 50) {
@@ -203,7 +205,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
     /**
      * A successful enchantment transfer.
      */
-    private static void success(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack mainHandStack, int cost) {
+    private void success(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack mainHandStack, int cost) {
         player.sendMessage(Text.translatable("speedrunnermod.transferred_enchantments").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
         world.playSound(null, pos, SoundEvents.BLOCK_SMITHING_TABLE_USE, SoundCategory.BLOCKS, 1.0F, world.random.nextFloat() * 0.1F + 0.9F);
         player.addExperienceLevels(-cost);
@@ -213,7 +215,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
     /**
      * Failed to transfer any enchantments.
      */
-    private static void fail(PlayerEntity player, int cost) {
+    private void fail(PlayerEntity player, int cost) {
         player.sendMessage(Text.translatable("speedrunnermod.no_enchantments_transferred").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
         if (!(player.experienceLevel >= cost)) {
             player.sendMessage(Text.translatable("speedrunnermod.levels_needed", cost), false);
