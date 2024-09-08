@@ -69,7 +69,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
 
                 if (!offhandHasEnchantments) { // If the players offhand item has no enchantments, "successWithNoEnchantments" returns true, and enchantments are transferred
                     totalTransferred++;
-                    cost = this.initializeCost(player, totalTransferred);
+                    cost = this.initializeCost(player, mainHandBuilder, entry, totalTransferred);
                     if (totalTransferred != 0 && player.experienceLevel >= cost && enchantment.isAcceptableItem(offHandStack)) {
                         successWithNoEnchantments = true;
                         this.transferEnchantments(mainHandStack, offHandStack, mainHandBuilder, offHandBuilder, entry, registryEntry);
@@ -100,7 +100,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                         if (allIsCompatible && Enchantment.canBeCombined(registryEntry, registryEntry2) && enchantment.isAcceptableItem(offHandStack) || canUpgrade) {
 
                             totalTransferred++;
-                            cost = this.initializeCost(player, totalTransferred);
+                            cost = this.initializeCost(player, mainHandBuilder, entry, totalTransferred);
 
                             if (totalTransferred != 0 && player.experienceLevel >= cost) {
                                 successWithEnchantments = true;
@@ -188,8 +188,8 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
     /**
      * Corrects the {@code cost} variable to equal the total amount of enchantments transferred multiplied by itself.
      */
-    private int initializeCost(PlayerEntity player, int totalTransferred) {
-        int cost = MathUtil.multiplyBySelf(totalTransferred);
+    private int initializeCost(PlayerEntity player, ItemEnchantmentsComponent.Builder enchantmentLevel, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry, int totalTransferred) {
+        int cost = MathUtil.multiplyEnchantments(enchantmentLevel, entry, totalTransferred);
 
         if (cost > options().main.anvilCostLimit && options().main.anvilCostLimit != 50) {
             cost = options().main.anvilCostLimit;

@@ -131,12 +131,12 @@
   "item.speedrunnermod.infini_pearl.tooltip.line2": "consumed nor do damage upon use.",
 
   "item.speedrunnermod.blaze_spotter.found_blaze_spawner": "Found blaze spawner.",
-  "item.speedrunnermod.blaze_spotter.confirm": "Do you wish to teleport to the blaze spawner? Right click to confirm.",
+  "item.speedrunnermod.blaze_spotter.confirm": "Do you wish to teleport to the nearest blaze spawner? Right-click to confirm.",
   "item.speedrunnermod.blaze_spotter.couldnt_find_spawner": "Couldn't find blaze spawner.",
   "item.speedrunnermod.blaze_spotter.wrong_dimension": "You must be in the nether to use this item!",
 
   "item.speedrunnermod.piglin_awakener.got_piglins": "Got piglins.",
-  "item.speedrunnermod.piglin_awakener.confirm": "Do you wish to teleport summon nearby piglin? Right click to confirm.",
+  "item.speedrunnermod.piglin_awakener.confirm": "Do you wish to teleport summon nearby piglin? Right-click to confirm.",
   "item.speedrunnermod.piglin_awakener.couldnt_find_piglins": "Couldn't find any nearby piglin.",
   "item.speedrunnermod.piglin_awakener.wrong_dimension": "You must be in the nether to use this item!",
   "item.speedrunnermod.piglin_awakener.unsafe": "Piglins say... no gold armor, no rally! >:(",
@@ -144,12 +144,12 @@
   "item.speedrunnermod.piglin_awakener_craftable": "Can be used to craft the piglin awakener item.",
 
   "item.speedrunnermod.raid_eradicator.found_raiders": "Found raiders.",
-  "item.speedrunnermod.raid_eradicator.confirm": "Do you wish to kill all nearby raider entities? Right click to confirm.",
+  "item.speedrunnermod.raid_eradicator.confirm": "Do you wish to purge all nearby raider entities? Right-click to confirm.",
   "item.speedrunnermod.raid_eradicator.no_totem": "Where's your totem...?",
   "item.speedrunnermod.raid_eradicator.couldnt_find_raiders": "Couldn't find any nearby raider entities.",
   "item.speedrunnermod.raid_eradicator.success": "THE RAIDERS HAVE BEEN PURGED.",
 
-  "item.speedrunnermod.ender_thruster.confirm": "Do you wish to teleport to the surface? Right click to confirm.",
+  "item.speedrunnermod.ender_thruster.confirm": "Do you wish to teleport to the surface? Right-click to confirm.",
   "item.speedrunnermod.ender_thruster.wrong_dimension": "You can't use this item in the nether.",
   "item.speedrunnermod.ender_thruster.couldnt_teleport": "Couldn't teleport, Y-level is already the same.",
 
@@ -163,13 +163,15 @@
   "item.speedrunnermod.eye_of_annul.found_portal_room": "Found portal room!",
   "item.speedrunnermod.eye_of_annul.couldnt_find_portal_room": "Couldn't find portal room.",
   "item.speedrunnermod.eye_of_annul.doom_mode": "Haha... that doesn't work on doom mode! >:)",
-  "item.speedrunnermod.eye_of_annul.confirm": "Do you wish to teleport to the portal room? Right-click to confirm.",
+  "item.speedrunnermod.eye_of_annul.confirm": "Do you wish to teleport to the portal room? Shift + right-click to confirm.",
   "item.speedrunnermod.eye_of_annul.calculating": "Calculating distance... This may take a moment.",
   "item.speedrunnermod.eye_of_annul.teleporting": "The gatekeeper wishes you luck.",
   "item.speedrunnermod.eye_of_annul.wrong_dimension": "You must be in the overworld to use this item!",
   "item.speedrunnermod.eye_of_annul.no_ender_eye": "The gatekeeper requests an ender eye.",
   "item.speedrunnermod.eye_of_annul.no_ender_pearl": "The gatekeeper requests an ender pearl.",
   "item.speedrunnermod.eye_of_annul.has_none": "The gatekeeper says... bring me an eye and a pearl, and I will let you through.",
+  "item.speedrunnermod.eye_of_annul.teleporter_enabled": "Teleporter enabled.",
+  "item.speedrunnermod.eye_of_annul.teleporter_disabled": "Teleporter disabled.",
 
   "item.speedrunnermod.eye_of_inferno.looking_for": "Eye of Inferno is now looking for a %s!",
   "item.speedrunnermod.eye_of_inferno.looking_for.tooltip": "Currently Locating: %s",

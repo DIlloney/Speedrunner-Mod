@@ -278,7 +278,7 @@ public class ModOptions {
          * Enable/disable the confirmation messages when using certain items (ex. eye of annul, ender thruster, piglin awakener, etc.).
          */
         @RequiresRestart
-        public boolean confirmMessages = false;
+        public boolean confirmMessages = true;
 
         /**
          * Display the external link buttons across different screens.

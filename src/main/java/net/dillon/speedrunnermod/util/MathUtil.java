@@ -1,5 +1,10 @@
 package net.dillon.speedrunnermod.util;
 
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.registry.entry.RegistryEntry;
+
 import java.util.Random;
 
 /**
@@ -23,9 +28,9 @@ public class MathUtil {
     }
 
     /**
-     * Multiplies the inputted number by itself.
+     * Multiplies the cost based on the enchantment levels.
      */
-    public static int multiplyBySelf(int value) {
-        return value * value;
+    public static int multiplyEnchantments(ItemEnchantmentsComponent.Builder enchantmentLevel, Object2IntMap.Entry<RegistryEntry<Enchantment>> entry, int totalTransferred) {
+        return enchantmentLevel.getLevel(entry.getKey()) == 1 ? totalTransferred * totalTransferred : (totalTransferred * totalTransferred) + enchantmentLevel.getLevel(entry.getKey());
     }
 }

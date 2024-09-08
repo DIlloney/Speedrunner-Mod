@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.mixin.client;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.SpeedrunnerModClient;
 import net.dillon.speedrunnermod.client.keybind.ModKeybindings;
 import net.dillon.speedrunnermod.client.util.ModTexts;
@@ -59,7 +58,6 @@ public abstract class Keybindings {
     private void checkGamma(RunArgs args, CallbackInfo ci) {
         options().client.fullBright = MinecraftClient.getInstance().options.getGamma().getValue() >= 10.0D;
         ModOptions.saveConfig();
-        SpeedrunnerMod.error("SAVED!");
     }
 
     /**
