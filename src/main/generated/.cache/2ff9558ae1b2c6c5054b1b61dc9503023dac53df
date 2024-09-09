@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-29T20:51:53.8017886	Speedrunner Mod/Tags for minecraft:block
+// 1.21.1	2024-09-09T00:00:57.3772387	Speedrunner Mod/Tags for minecraft:block
 5cb4e6d2ce4a6c05f88731fbefdc26720eb0a618 data\minecraft\tags\block\leaves.json
 b3c894c868d480afaa768255eeec5cf305aec96a data\minecraft\tags\block\saplings.json
 ebcb6df97718314913387058d6107ba954896c77 data\minecraft\tags\block\wooden_fences.json
@@ -23,7 +23,7 @@ be89e38c14619d40d4e51dc0413f97f2e5174307 data\speedrunnermod\tags\block\smithing
 2e8b7f847f1f53d0fb5f7cf2e88f5d54cf015c30 data\speedrunnermod\tags\block\speedrunner_fuels.json
 161e2d7cc4ef6158026f8488f679d126c64839cd data\speedrunnermod\tags\block\dead_speedrunner_logs.json
 7b7239fc32b072669d54f58da7bf598b2509271f data\minecraft\tags\block\wooden_buttons.json
-9db4a56bd43c9e8101a19cd6dd62e5c06b9b1b12 data\speedrunnermod\tags\block\texture_creator_mannyqueso.json
+4ad20a543959bb6899c4afd33a85af2ebc4d6173 data\speedrunnermod\tags\block\texture_creator_mannyqueso.json
 9187fb1009577435394cd600603d264ffa8310cd data\minecraft\tags\block\standing_signs.json
 9cfd5f89b1a72d6ac40f07ffc4e3a76eb78ec2e3 data\minecraft\tags\block\ceiling_hanging_signs.json
 2138ea53b231930d90cc8c2bc0fd00c0fe4a682c data\speedrunnermod\tags\block\speedrunner_sapling_placeables.json

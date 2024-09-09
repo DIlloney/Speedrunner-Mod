@@ -98,7 +98,8 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.DEAD_SPEEDRUNNER_HANGING_WALL_SIGN);
 
         getOrCreateTagBuilder(ModBlockTags.TEXTURE_CREATOR_MANNYQUESO)
-                .add(ModBlocks.THRUSTER_BLOCK);
+                .add(ModBlocks.THRUSTER_BLOCK)
+                .add(ModBlocks.SPEEDRUNNERS_WORKBENCH);
 
         getOrCreateTagBuilder(ModBlockTags.TEXTURE_CREATOR_KREVIKUS)
                 .forceAddTag(ModBlockTags.EXPERIENCE_ORES);
