@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.client.screen;
 
+import net.dillon.speedrunnermod.client.screen.options.AdvancedOptionsScreen;
 import net.dillon.speedrunnermod.client.screen.options.ClientOptionsScreen;
 import net.dillon.speedrunnermod.client.screen.options.FastWorldCreationOptionsScreen;
 import net.dillon.speedrunnermod.client.screen.options.MainOptionsScreen;
@@ -38,7 +39,11 @@ public class ModOptionsScreen extends AbstractModScreen {
             this.client.setScreen(new ClientOptionsScreen(this, options));
         }).build());
 
-        this.buttons.add(3, ButtonWidget.builder(ModTexts.MENU_OPTIONS_RESET, (button) -> {
+        this.buttons.add(3, ButtonWidget.builder(ModTexts.MENU_ADVANCED_OPTIONS, (button) -> {
+            this.client.setScreen(new AdvancedOptionsScreen(this, options));
+        }).build());
+
+        this.buttons.add(4, ButtonWidget.builder(ModTexts.MENU_OPTIONS_RESET, (button) -> {
             this.client.setScreen(new ResetOptionsConfirmScreen(this, options));
         }).build());
 
@@ -57,6 +62,9 @@ public class ModOptionsScreen extends AbstractModScreen {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_CLIENT_TOOLTIP, 200), mouseX, mouseY);
         }
         if (this.buttons.get(3).isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_ADVANCED_OPTIONS_TOOLTIP, 200), mouseX, mouseY);
+        }
+        if (this.buttons.get(4).isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_RESET_TOOLTIP, 200), mouseX, mouseY);
         }
         super.renderTooltips(context, mouseX, mouseY);

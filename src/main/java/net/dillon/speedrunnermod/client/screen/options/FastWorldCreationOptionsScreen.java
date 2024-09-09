@@ -29,8 +29,12 @@ public class FastWorldCreationOptionsScreen extends AbstractModScreen {
     /**
      * All of the {@code fast world creation options.}
      */
-    private static SimpleOption<?>[] fwcOptions() {
-        return new SimpleOption[]{ModListOptions.FAST_WORLD_CREATION, ModListOptions.GAMEMODE, ModListOptions.DIFFICULTY, ModListOptions.ALLOW_CHEATS};
+    private SimpleOption<?>[] fwcOptions() {
+        return new SimpleOption[]{
+                ModListOptions.FAST_WORLD_CREATION,
+                ModListOptions.GAMEMODE,
+                ModListOptions.DIFFICULTY,
+                ModListOptions.ALLOW_CHEATS};
     }
 
     @Override

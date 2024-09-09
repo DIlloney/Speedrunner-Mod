@@ -41,6 +41,7 @@ public class ModTexts {
     public static final Text MENU_OPTIONS_CLIENT_TOOLTIP = Text.translatable("speedrunnermod.menu.options.client.tooltip");
     public static final Text MENU_OPTIONS_RESET_TOOLTIP = Text.translatable("speedrunnermod.menu.options.reset.tooltip");
     public static final Text MENU_ADVANCED_OPTIONS = Text.translatable("speedrunnermod.menu.options.advanced");
+    public static final Text MENU_ADVANCED_OPTIONS_TOOLTIP = Text.translatable("speedrunnermod.menu.options.advanced.tooltip");
     public static final Text TITLE_ADVANCED_OPTIONS = Text.translatable("speedrunnermod.title.options.advanced");
     public static final Text MENU_CREDITS = Text.translatable("speedrunnermod.menu.credits");
     public static final Text TITLE_CREDITS = Text.translatable("speedrunnermod.title.credits");

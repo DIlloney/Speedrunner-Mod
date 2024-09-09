@@ -364,9 +364,9 @@ public class ModOptions {
         public boolean decreasedZombifiedPiglinScareDistance = true;
 
         /**
-         * Determines how long it takes (in ticks) that it takes for an eye of ender to break after throwing it.
+         * Determines how long it takes (in ticks) for an eye of ender to break after throwing it.
          */
-        public int eyeOfEnderBreakingCooldown = 60;
+        public int enderEyeBreakingCooldown = 60;
 
         /**
          * Determines the total amount of piglin that can teleport to the player per time using the piglin awakener item (Default = 10).
@@ -387,7 +387,7 @@ public class ModOptions {
         /**
          * Determines the explosion power for fireballs when thrown with a fire charge.
          */
-        public int throwableFireballsExplosionPower = 1;
+        public int fireballExplosionPower = 1;
 
         /**
          * Applies the fog option into the game.
@@ -575,7 +575,7 @@ public class ModOptions {
      * Returns true if the {@code Eye of Ender Breaking Cooldown} advanced option is valid.
      */
     public boolean isEyeOfEnderBreakingCooldownValid() {
-        return this.inBounds(advanced.eyeOfEnderBreakingCooldown, 20, 200);
+        return this.inBounds(advanced.enderEyeBreakingCooldown, 20, 200);
     }
 
     /**

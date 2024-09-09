@@ -32,7 +32,7 @@ public class FirechargeItemMixin extends Item {
             ItemStack stack = player.getStackInHand(hand);
             if (!world.isClient) {
                 Vec3d lookVec = player.getRotationVec(1.0F);
-                FireballEntity fireball = new FireballEntity(world, player, lookVec.normalize(), options().advanced.throwableFireballsExplosionPower);
+                FireballEntity fireball = new FireballEntity(world, player, lookVec.normalize(), options().advanced.fireballExplosionPower);
                 fireball.updatePosition(player.getX(), player.getEyeY() - 0.235, player.getZ());
                 fireball.setOwner(player);
                 world.spawnEntity(fireball);

@@ -29,7 +29,7 @@ public class ClientOptionsScreen extends AbstractModScreen {
     /**
      * All of the {@code client-side speedrunner mod options.}
      */
-    private static SimpleOption<?>[] clientOptions(GameOptions gameOptions) {
+    private SimpleOption<?>[] clientOptions(GameOptions gameOptions) {
         return new SimpleOption[]{
                 ModListOptions.FOG,
                 gameOptions.getGamma(),

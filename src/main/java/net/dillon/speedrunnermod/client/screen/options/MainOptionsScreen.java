@@ -28,7 +28,7 @@ public class MainOptionsScreen extends AbstractModScreen {
      * All of the {@code main options.}
      * <p>These are displayed in order.</p>
      */
-    private static SimpleOption<?>[] mainOptions() {
+    private SimpleOption<?>[] mainOptions() {
         return new SimpleOption[]{
                 ModListOptions.STRUCTURE_SPAWN_RATES,
                 ModListOptions.FASTER_BLOCK_BREAKING,
