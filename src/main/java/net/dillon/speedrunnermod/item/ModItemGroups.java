@@ -25,7 +25,7 @@ public class ModItemGroups {
     public static ItemGroup SPEEDRUNNER_MOD = Registry.register(Registries.ITEM_GROUP, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_mod_item_group"),
             FabricItemGroup.builder()
                     .displayName(Text.literal("Speedrunner Mod"))
-                    .icon(() -> new ItemStack(ModBlockItems.SPEEDRUNNER_BLOCK)).entries((displayContext, entries) -> {
+                    .icon(() -> new ItemStack(ModBlockItems.SPEEDRUNNERS_WORKBENCH)).entries((displayContext, entries) -> {
                         entries.add(ModItems.SPEEDRUNNER_INGOT);
                         entries.add(ModItems.SPEEDRUNNER_NUGGET);
                         entries.add(ModBlockItems.SPEEDRUNNER_BLOCK);

@@ -179,8 +179,8 @@ public class SpeedrunnerMod implements ModInitializer {
         options().advanced.decreasedZombifiedPiglinScareDistance = true;
         options().advanced.enderEyeBreakingCooldown = 60;
         options().advanced.piglinAwakenerPiglinCount = 10;
-        options().advanced.iCarusFireworksInventorySlot = 0;
-        options().advanced.infiniPearlInventorySlot = 0;
+        options().advanced.iCarusFireworksInventorySlot = 1;
+        options().advanced.infiniPearlInventorySlot = 1;
         options().advanced.fireballExplosionPower = 1;
         options().advanced.applyFogMixin = true;
         options().advanced.minimumBrightness = 0.0D;

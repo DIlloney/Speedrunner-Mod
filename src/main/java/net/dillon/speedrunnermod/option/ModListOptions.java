@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.option;
 
 import com.mojang.serialization.Codec;
+import net.dillon.speedrunnermod.client.util.InactiveableOption;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -8,6 +9,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 
@@ -178,7 +180,7 @@ public class ModListOptions {
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().advanced.applyFogMixin, value -> options().advanced.applyFogMixin = value);
 
     public static final SimpleOption<Boolean> DRAGON_KILLS_NEARBY_HOSTILE_ENTITIES = new SimpleOption<>("speedrunnermod.options.dragon_kills_nearby_hostile_entities", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.dragon_kills_nearby_hostile_entities.tooltip")),
-            (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().advanced.dragonKillsNearbyHostileEntities, value -> options().advanced.dragonKillsNearbyHostileEntities = value);
+            (optionText, value) -> !value ? ModTexts.NO : ModTexts.YES, SimpleOption.BOOLEAN, options().advanced.dragonKillsNearbyHostileEntities, value -> options().advanced.dragonKillsNearbyHostileEntities = value);
 
     public static final SimpleOption<Boolean> DRAGON_IMMUNITY_FROM_GIANT_AND_WITHER = new SimpleOption<>("speedrunnermod.options.dragon_immunity_from_giant_and_wither", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.dragon_immunity_from_giant_and_wither.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().advanced.dragonImmunityFromGiantAndWither, value -> options().advanced.dragonImmunityFromGiantAndWither = value);
@@ -189,7 +191,7 @@ public class ModListOptions {
                         if (value == 1) {
                             return GameOptions.getGenericValueText(optionText, ModTexts.OFF);
                         } else {
-                            return GameOptions.getGenericValueText(optionText, Text.literal("x" + value));
+                            return GameOptions.getGenericValueText(optionText, Text.literal("x" + value).formatted(Formatting.AQUA));
                         }
                     },
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 3), options().main.blockBreakingMultiplier, value -> options().main.blockBreakingMultiplier = value);
@@ -198,48 +200,48 @@ public class ModListOptions {
             new SimpleOption<>("speedrunnermod.options.dragon_perch_time", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.dragon_perch_time.tooltip")),
                     (optionText, value) -> {
                         if (value == 9) {
-                            return GameOptions.getGenericValueText(optionText, Text.literal("Instant"));
+                            return GameOptions.getGenericValueText(optionText, Text.literal("Instant").formatted(Formatting.AQUA));
                         } else if (value <= 8) {
                             return GameOptions.getGenericValueText(optionText, ModTexts.OFF);
                         } else {
-                            return GameOptions.getGenericValueText(optionText, Text.literal(value + " seconds"));
+                            return GameOptions.getGenericValueText(optionText, Text.literal(value + " seconds").formatted(Formatting.AQUA));
                         }},
                     new SimpleOption.ValidatingIntSliderCallbacks(8, 90), options().main.dragonPerchTime, value -> options().main.dragonPerchTime = value);
 
     public static final SimpleOption<Integer> STRONGHOLD_DISTANCE =
             new SimpleOption<>("speedrunnermod.options.stronghold_distance", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_distance.tooltip")),
-                    GameOptions::getGenericValueText,
+                    ModListOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(3, 64), options().main.strongholdDistance, value -> options().main.strongholdDistance = value);
 
     public static final SimpleOption<Integer> STRONGHOLD_SPREAD =
             new SimpleOption<>("speedrunnermod.options.stronghold_spread", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_spread.tooltip")),
-                    GameOptions::getGenericValueText,
+                    ModListOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(2, 32), options().main.strongholdSpread, value -> options().main.strongholdSpread = value);
 
     public static final SimpleOption<Integer> STRONGHOLD_COUNT =
             new SimpleOption<>("speedrunnermod.options.stronghold_count", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_count.tooltip")),
-                    GameOptions::getGenericValueText,
+                    ModListOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(4, 156), options().main.strongholdCount, value -> options().main.strongholdCount = value);
 
     public static final SimpleOption<Integer> STRONGHOLD_PORTAL_ROOM_COUNT =
             new SimpleOption<>("speedrunnermod.options.stronghold_portal_room_count", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_portal_room_count.tooltip")),
-                    GameOptions::getGenericValueText,
+                    ModListOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 3), options().main.strongholdPortalRoomCount, value -> options().main.strongholdPortalRoomCount = value);
 
     public static final SimpleOption<Integer> STRONGHOLD_LIBRARY_COUNT =
             new SimpleOption<>("speedrunnermod.options.stronghold_library_count", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.stronghold_library_count.tooltip")),
-                    GameOptions::getGenericValueText,
+                    ModListOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 8), options().main.strongholdLibraryCount, value -> options().main.strongholdLibraryCount = value);
 
     public static final SimpleOption<Integer> NETHER_PORTAL_DELAY =
             new SimpleOption<>("speedrunnermod.options.nether_portal_delay", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.nether_portal_delay.tooltip")),
                     (optionText, value) -> {
                         if (value == -1) {
-                            return GameOptions.getGenericValueText(optionText, Text.literal("Go by Gamerule"));
+                            return GameOptions.getGenericValueText(optionText, Text.literal("Go by Gamerule").formatted(Formatting.GREEN));
                         } else if (value == 0) {
-                            return GameOptions.getGenericValueText(optionText, Text.literal("None"));
+                            return GameOptions.getGenericValueText(optionText, Text.literal("None").formatted(Formatting.RED));
                         } else {
-                            return GameOptions.getGenericValueText(optionText, Text.literal(value + "s"));
+                            return GameOptions.getGenericValueText(optionText, Text.literal(value + "s").formatted(Formatting.AQUA));
                         }},
                     new SimpleOption.ValidatingIntSliderCallbacks(-1, 20), options().main.netherPortalDelay, value -> options().main.netherPortalDelay = value);
 
@@ -247,41 +249,105 @@ public class ModListOptions {
             new SimpleOption<>("speedrunnermod.options.anvil_cost_limit", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.anvil_cost_limit.tooltip")),
                     (optionText, value) -> {
                         if (value == 50) {
-                            return GameOptions.getGenericValueText(optionText, Text.literal("No Limit"));
+                            return GameOptions.getGenericValueText(optionText, Text.literal("No Limit").formatted(Formatting.RED));
                         } else if (value == 1) {
-                            return GameOptions.getGenericValueText(optionText, Text.literal(value + " level"));
+                            return GameOptions.getGenericValueText(optionText, Text.literal(value + " level").formatted(Formatting.AQUA));
                         } else {
-                            return GameOptions.getGenericValueText(optionText, Text.literal(value + " levels"));
+                            return GameOptions.getGenericValueText(optionText, Text.literal(value + " levels").formatted(Formatting.AQUA));
                         }},
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 50), options().main.anvilCostLimit, value -> options().main.anvilCostLimit = value);
 
     public static final SimpleOption<Integer> SPEEDRUNNERS_WASTELAND_BIOME_WEIGHT =
             new SimpleOption<>("speedrunnermod.options.speedrunners_wasteland_biome_weight", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.speedrunners_wasteland_biome_weight.tooltip")),
-                    GameOptions::getGenericValueText,
+                    ModListOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(2, 32), options().advanced.speedrunnersWastelandBiomeWeight, value -> options().advanced.speedrunnersWastelandBiomeWeight = value);
 
     public static final SimpleOption<Integer> ENDER_EYE_BREAKING_COOLDOWN =
             new SimpleOption<>("speedrunnermod.options.ender_eye_breaking_cooldown", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.ender_eye_breaking_cooldown.tooltip")),
-                    GameOptions::getGenericValueText,
-                    new SimpleOption.ValidatingIntSliderCallbacks(20, 200), options().advanced.enderEyeBreakingCooldown, value -> options().advanced.enderEyeBreakingCooldown = value);
+                    (optionText, value) -> GameOptions.getGenericValueText(optionText, Text.literal(value + " seconds")),
+                    new SimpleOption.ValidatingIntSliderCallbacks(1, 10), options().advanced.enderEyeBreakingCooldown / 20, value -> options().advanced.enderEyeBreakingCooldown = value * 20);
 
     public static final SimpleOption<Integer> PIGLIN_AWAKENER_PIGLIN_COUNT =
             new SimpleOption<>("speedrunnermod.options.piglin_awakener_piglin_count", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.piglin_awakener_piglin_count.tooltip")),
-                    GameOptions::getGenericValueText,
+                    ModListOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(3, 25), options().advanced.piglinAwakenerPiglinCount, value -> options().advanced.piglinAwakenerPiglinCount = value);
 
     public static final SimpleOption<Integer> ICARUS_FIREWORKS_INVENTORY_SLOT =
             new SimpleOption<>("speedrunnermod.options.icarus_fireworks_inventory_slot", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.icarus_fireworks_inventory_slot.tooltip")),
-                    GameOptions::getGenericValueText,
+                    ModListOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 36), options().advanced.iCarusFireworksInventorySlot, value -> options().advanced.iCarusFireworksInventorySlot = value);
 
     public static final SimpleOption<Integer> INFINI_PEARL_INVENTORY_SLOT =
             new SimpleOption<>("speedrunnermod.options.infini_pearl_inventory_slot", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.infini_pearl_inventory_slot.tooltip")),
-                    GameOptions::getGenericValueText,
+                    ModListOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 36), options().advanced.infiniPearlInventorySlot, value -> options().advanced.infiniPearlInventorySlot = value);
 
     public static final SimpleOption<Integer> FIREBALL_EXPLOSION_POWER =
             new SimpleOption<>("speedrunnermod.options.fireball_explosion_power", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.fireball_explosion_power.tooltip")),
-                    GameOptions::getGenericValueText,
+                    ModListOptions::getGenericValueText,
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 10), options().advanced.fireballExplosionPower, value -> options().advanced.fireballExplosionPower = value);
+
+    /**
+     * Returns the generic value text prefix, with aqua formatting.
+     */
+    private static Text getGenericValueText(Text prefix, int value) {
+        return GameOptions.getGenericValueText(prefix, Text.literal(Integer.toString(value)).formatted(Formatting.AQUA));
+    }
+
+    /**
+     * {@code "Inactivable"} options, which are buttons that can be disabled, or grayed out under certain conditions.
+     */
+    public static class Inactiveable {
+
+        @InactiveableOption
+        public static final SimpleOption<ModOptions.GameMode> IAO_GAMEMODE =
+                new SimpleOption<>("speedrunnermod.options.gamemode", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.fwc_required")), SimpleOption.enumValueText(),
+                        new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(ModOptions.GameMode.values()), Codec.INT.xmap(ModOptions.GameMode::byId, ModOptions.GameMode::getId)),
+                        options().client.gameMode, value -> options().client.gameMode = value);
+
+        @InactiveableOption
+        public static final SimpleOption<ModOptions.Difficulty> IAO_DIFFICULTY =
+                new SimpleOption<>("speedrunnermod.options.difficulty", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.fwc_required")), SimpleOption.enumValueText(),
+                        new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(ModOptions.Difficulty.values()), Codec.INT.xmap(ModOptions.Difficulty::byId, ModOptions.Difficulty::getId)),
+                        ModOptions.Difficulty.EASY, value -> options().client.difficulty = value);
+
+        @InactiveableOption
+        public static final SimpleOption<Boolean> IAO_FOG = new SimpleOption<>("speedrunnermod.options.fog", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.apply_fog_mixin_required")),
+                (optionText, value) -> !options().advanced.applyFogMixin ? ModTexts.DISABLED : !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.fog, value -> {
+            options().client.fog = value;
+            MinecraftClient.getInstance().worldRenderer.reload();
+        });
+
+        @InactiveableOption
+        public static final SimpleOption<Boolean> IAO_ALLOW_CHEATS = new SimpleOption<>("speedrunnermod.options.allow_cheats", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.fwc_required")),
+                (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.allowCheats, value -> options().client.allowCheats = value);
+
+        @InactiveableOption
+        public static final SimpleOption<Boolean> IAO_DRAGON_IMMUNITY_FROM_GIANT_AND_WITHER = new SimpleOption<>("speedrunnermod.options.dragon_immunity_from_giant_and_wither", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.doom_mode_required")),
+                (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().advanced.dragonImmunityFromGiantAndWither, value -> options().advanced.dragonImmunityFromGiantAndWither = value);
+
+        @InactiveableOption
+        public static final SimpleOption<Integer> IAO_PIGLIN_AWAKENER_PIGLIN_COUNT =
+                new SimpleOption<>("speedrunnermod.options.piglin_awakener_piglin_count", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.state_of_the_art_items_required")),
+                        ModListOptions::getGenericValueText,
+                        new SimpleOption.ValidatingIntSliderCallbacks(3, 25), options().advanced.piglinAwakenerPiglinCount, value -> options().advanced.piglinAwakenerPiglinCount = value);
+
+        @InactiveableOption
+        public static final SimpleOption<Integer> IAO_ICARUS_FIREWORKS_INVENTORY_SLOT =
+                new SimpleOption<>("speedrunnermod.options.icarus_fireworks_inventory_slot", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.icarus_mode_required")),
+                        ModListOptions::getGenericValueText,
+                        new SimpleOption.ValidatingIntSliderCallbacks(1, 36), options().advanced.iCarusFireworksInventorySlot, value -> options().advanced.iCarusFireworksInventorySlot = value);
+
+        @InactiveableOption
+        public static final SimpleOption<Integer> IAO_INFINI_PEARL_INVENTORY_SLOT =
+                new SimpleOption<>("speedrunnermod.options.infini_pearl_inventory_slot", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.infini_pearl_mode_required")),
+                        ModListOptions::getGenericValueText,
+                        new SimpleOption.ValidatingIntSliderCallbacks(1, 36), options().advanced.infiniPearlInventorySlot, value -> options().advanced.infiniPearlInventorySlot = value);
+
+        @InactiveableOption
+        public static final SimpleOption<Integer> IAO_FIREBALL_EXPLOSION_POWER =
+                new SimpleOption<>("speedrunnermod.options.fireball_explosion_power", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.throwable_fireballs_required")),
+                        ModListOptions::getGenericValueText,
+                        new SimpleOption.ValidatingIntSliderCallbacks(1, 10), options().advanced.fireballExplosionPower, value -> options().advanced.fireballExplosionPower = value);
+    }
 }

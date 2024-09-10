@@ -3,6 +3,7 @@ package net.dillon.speedrunnermod.client.screen;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
+import net.dillon.speedrunnermod.client.util.ButtonSide;
 import net.dillon.speedrunnermod.client.util.ModLinks;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.Leaderboards;
@@ -185,6 +186,19 @@ public abstract class AbstractModScreen extends BaseModScreen {
                         this.client.setScreen(screen);
                     }).build());
                 }
+            }
+        }
+    }
+
+    /**
+     * Deactivates certain buttons based on certain boolean values.
+     * <p>Do not call if {@code optionList} is {@code null.}</p>
+     */
+    protected void deactivateButton(int buttonListIndex, ButtonSide buttonSide, boolean option) {
+        for (int i = 0; i < this.optionList.children().size(); i++) {
+            OptionListWidget.WidgetEntry widget = this.optionList.children().get(i);
+            if (i == buttonListIndex && !option) {
+                widget.widgets.get(ButtonSide.buttonIndexes(buttonSide)).active = false;
             }
         }
     }

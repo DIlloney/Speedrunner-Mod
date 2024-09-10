@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.options;
 
 import net.dillon.speedrunnermod.client.screen.AbstractModScreen;
+import net.dillon.speedrunnermod.client.util.ButtonSide;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.ModListOptions;
 import net.dillon.speedrunnermod.option.ModOptions;
@@ -32,24 +33,19 @@ public class FastWorldCreationOptionsScreen extends AbstractModScreen {
     private SimpleOption<?>[] fwcOptions() {
         return new SimpleOption[]{
                 ModListOptions.FAST_WORLD_CREATION,
-                ModListOptions.GAMEMODE,
-                ModListOptions.DIFFICULTY,
-                ModListOptions.ALLOW_CHEATS};
+                options().client.fastWorldCreation ? ModListOptions.GAMEMODE : ModListOptions.Inactiveable.IAO_GAMEMODE,
+                options().client.fastWorldCreation ? ModListOptions.DIFFICULTY : ModListOptions.Inactiveable.IAO_DIFFICULTY,
+                options().client.fastWorldCreation ? ModListOptions.ALLOW_CHEATS : ModListOptions.Inactiveable.IAO_ALLOW_CHEATS
+        };
     }
 
     @Override
     protected void init() {
         this.optionList = this.addDrawableChild(new OptionListWidget(this.client, this.width, this));
         this.optionList.addAll(fwcOptions());
-        if (!options().client.fastWorldCreation) {
-            for (int i = 0; i < this.optionList.children().size(); i++) {
-                OptionListWidget.WidgetEntry widget = this.optionList.children().get(i);
-                if (i != 0) {
-                    widget.widgets.getFirst().active = false;
-                }
-                widget.widgets.get(1).active = false;
-            }
-        }
+        this.deactivateButton(0, ButtonSide.RIGHT, options().client.fastWorldCreation);
+        this.deactivateButton(1, ButtonSide.LEFT, options().client.fastWorldCreation);
+        this.deactivateButton(1, ButtonSide.RIGHT, options().client.fastWorldCreation);
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);
 

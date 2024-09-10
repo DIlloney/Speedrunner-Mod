@@ -20,8 +20,10 @@ public class ModTexts {
     public static final Text BACK = Text.translatable("speedrunnermod.back");
     public static final Text HELP_TOOLTIP = Text.translatable("speedrunnermod.help_button.tooltip");
     public static final Text DIRECTORY_TOOLTIP = Text.translatable("speedrunnermod.directory_button.tooltip");
-    public static final Text ON = Text.literal("ON");
-    public static final Text OFF = Text.literal("OFF");
+    public static final Text ON = Text.literal("ON").formatted(Formatting.GREEN);
+    public static final Text OFF = Text.literal("OFF").formatted(Formatting.RED);
+    public static final Text YES = Text.literal("YES").formatted(Formatting.GREEN);
+    public static final Text NO = Text.literal("NO").formatted(Formatting.RED);
     public static final Text DISABLED = Text.literal("Feature Disabled");
 
     public static final Text TITLE = Text.translatable("speedrunnermod.title");

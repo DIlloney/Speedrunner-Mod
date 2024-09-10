@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.client.screen.options;
 
 import net.dillon.speedrunnermod.client.screen.AbstractModScreen;
+import net.dillon.speedrunnermod.client.util.ButtonSide;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.dillon.speedrunnermod.option.ModListOptions;
 import net.dillon.speedrunnermod.option.ModOptions;
@@ -31,7 +32,7 @@ public class ClientOptionsScreen extends AbstractModScreen {
      */
     private SimpleOption<?>[] clientOptions(GameOptions gameOptions) {
         return new SimpleOption[]{
-                ModListOptions.FOG,
+                options().advanced.applyFogMixin ? ModListOptions.FOG : ModListOptions.Inactiveable.IAO_FOG,
                 gameOptions.getGamma(),
                 ModListOptions.ITEM_TOOLTIPS,
                 ModListOptions.TEXTURE_TOOLTIPS,
@@ -47,10 +48,7 @@ public class ClientOptionsScreen extends AbstractModScreen {
     protected void init() {
         this.optionList = this.addDrawableChild(new OptionListWidget(this.client, this.width, this));
         this.optionList.addAll(clientOptions(this.gameOptions));
-        if (!options().advanced.applyFogMixin) {
-            OptionListWidget.WidgetEntry widget = this.optionList.children().getFirst();
-            widget.widgets.getFirst().active = false;
-        }
+        this.deactivateButton(0, ButtonSide.LARGE, options().advanced.applyFogMixin);
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);
 

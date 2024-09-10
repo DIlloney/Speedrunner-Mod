@@ -320,16 +320,19 @@ public class ModOptions {
         /**
          * Allows strongholds to generate differently, or smaller.
          */
+        @RequiresRestart
         public boolean modifiedStrongholdGeneration = true;
 
         /**
          * Allows strongholds to generate at higher/lower Y-levels, depending on if doom mode is enabled or not.
          */
+        @RequiresRestart
         public boolean modifiedStrongholdYGeneration = true;
 
         /**
          * Allows nether fortresses to generate differently, or smaller, along with more than two blaze spawners per fortress.
          */
+        @RequiresRestart
         public boolean modifiedNetherFortressGeneration = true;
 
         /**
@@ -393,6 +396,7 @@ public class ModOptions {
          * Applies the fog option into the game.
          * <p>Disable this if you are experiencing compatibility issues with other mods that may also mess with fog settings.</p>
          */
+        @RequiresRestart
         public boolean applyFogMixin = true;
 
         /**
