@@ -54,7 +54,7 @@ public class SpeedrunnerModClient implements ClientModInitializer {
      */
     public static void fixOptions() {
         if (BrokenModOptions.structureSpawnRates) {
-            options().main.structureSpawnRates = ModOptions.StructureSpawnRates.COMMON;
+            options().main.structureSpawnRates = ModOptions.StructureSpawnRate.COMMON;
         }
 
         if (BrokenModOptions.blockBreakingMultiplier) {

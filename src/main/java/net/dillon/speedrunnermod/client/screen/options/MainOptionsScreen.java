@@ -8,7 +8,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
 
@@ -70,7 +69,7 @@ public class MainOptionsScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        this.optionList = this.addDrawableChild(new OptionListWidget(this.client, this.width, this));
+        this.initializeOptionListWidget();
         this.optionList.addAll(mainOptions());
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);

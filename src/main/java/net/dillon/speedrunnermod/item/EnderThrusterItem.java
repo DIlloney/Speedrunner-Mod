@@ -39,7 +39,7 @@ public class EnderThrusterItem extends Item {
         ItemStack itemStack = player.getStackInHand(hand);
         player.setCurrentHand(hand);
         if (!world.isClient) {
-            if (options().main.stateOfTheArtItems) {
+            if (options().stateOfTheArtItems.isEnderThrusterEnabled()) {
                 if (!(world.getRegistryKey() == World.NETHER)) {
                     int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING, player.getBlockX(), player.getBlockZ());
                     BlockPos pos = new BlockPos(player.getBlockX(), y - 1, player.getBlockZ());

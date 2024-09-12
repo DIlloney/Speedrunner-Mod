@@ -35,7 +35,7 @@ public class DragonsSwordItem extends SwordItem {
      */
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target instanceof EnderDragonEntity dragon && options().main.stateOfTheArtItems) {
+        if (target instanceof EnderDragonEntity dragon && options().stateOfTheArtItems.isDragonsSwordEnabled()) {
             if (!DOOM_MODE) {
                 stack.damage(ModToolMaterials.DRAGONS_SWORD.getDurability(), attacker, EquipmentSlot.MAINHAND);
                 dragon.setHealth(0.0F);

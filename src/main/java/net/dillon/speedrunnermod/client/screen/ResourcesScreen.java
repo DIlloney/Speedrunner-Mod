@@ -47,10 +47,10 @@ public class ResourcesScreen extends AbstractModScreen {
     @Override
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.buttons.get(1).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.QUESTIONS_AND_ISSUES_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.QUESTIONS_AND_ISSUES_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(3).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.SUGGESTIONS_AND_FEEDBACK_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.SUGGESTIONS_AND_FEEDBACK_TOOLTIP, context, mouseX, mouseY);
         }
     }
 

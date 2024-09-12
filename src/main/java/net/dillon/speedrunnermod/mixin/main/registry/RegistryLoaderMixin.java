@@ -109,7 +109,7 @@ public class RegistryLoaderMixin {
                 }
             }
 
-            if (!options().main.structureSpawnRates.equals(ModOptions.StructureSpawnRates.DISABLED)) {
+            if (!options().main.structureSpawnRates.equals(ModOptions.StructureSpawnRate.DISABLED)) {
                 if (fileName.equals(JsonIdentifiers.ANCIENT_CITIES)) {
                     StructuresLoader.modifyAncientCities(jsonElement);
                 }

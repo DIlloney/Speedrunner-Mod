@@ -35,7 +35,10 @@ public class ModOptions {
     public static ModOptions OPTIONS = getConfig();
     public final Main main = new Main();
     public final Client client = new Client();
+    public final StateOfTheArtItems stateOfTheArtItems = new StateOfTheArtItems();
     public final Advanced advanced = new Advanced();
+    public final StructureSpawnRates structureSpawnRates = new StructureSpawnRates();
+    public final Mixins mixins = new Mixins();
 
     /**
      * All {@code Main Speedrunner Mod options.}
@@ -46,7 +49,7 @@ public class ModOptions {
         /**
          * Determines how frequently Minecraft structures generate throughout the world.
          */
-        public StructureSpawnRates structureSpawnRates = StructureSpawnRates.COMMON;
+        public StructureSpawnRate structureSpawnRates = StructureSpawnRate.COMMON;
 
         /**
          * Allows certain blocks to be broken faster.
@@ -73,12 +76,6 @@ public class ModOptions {
          * Grants the player with an ender pearl that does not do damage nor get consumed upon use.
          */
         public boolean infiniPearlMode = false;
-
-        /**
-         * Allows the user to enable/disable the functions of "State of the Art" items, which are items that may be considered "broken" (as in crazy, not actually broken), OP, or cracked, such as the Dragon's Pearl, Piglin Awakener, Raid Eradicator, etc.
-         */
-        @RequiresRestart
-        public boolean stateOfTheArtItems = true;
 
         /**
          * Flips the mod's description upside down, and makes the game harder to speedrun.
@@ -312,8 +309,110 @@ public class ModOptions {
     }
 
     /**
+     * {@code State-Of-The-Art items} config.
+     * <p>Allows for toggling of individual item functions.</p>
+     */
+    public static class StateOfTheArtItems {
+
+        /**
+         * Allows the user to enable/disable the functions of "State of the Art" items, which are items that may be considered "broken" (as in crazy, not actually broken), OP, or cracked, such as the Dragon's Pearl, Piglin Awakener, Raid Eradicator, etc.
+         */
+        public boolean stateOfTheArtItems = true;
+
+        /**
+         * Determines if the annul eye stronghold portal room teleporter should be enabled.
+         */
+        public boolean annulEye = true;
+
+        /**
+         * Determines if the blaze spotter item function should be enabled.
+         */
+        public boolean blazeSpotter = true;
+
+        /**
+         * Determines if the dragons pearl item function should be enabled.
+         */
+        public boolean dragonsPearl = true;
+
+        /**
+         * Determines if the dragons sword item should be enabled.
+         */
+        public boolean dragonsSword = true;
+
+        /**
+         * Determines if the ender thruster item function should be enabled.
+         */
+        public boolean enderThruster = true;
+
+        /**
+         * Determines if the piglin awakener item function should be enabled.
+         */
+        public boolean piglinAwakener = true;
+
+        /**
+         * Determines if the raid eradicator item function should be enabled.
+         */
+        public boolean raidEradicator = true;
+
+        /**
+         * Returns true if {@code State-Of-The-Art items} option is enabled and the annul eye toggle switch is enabled.
+         */
+        public boolean isAnnulEyeTeleporterEnabled() {
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.annulEye;
+        }
+
+        /**
+         * Returns true if {@code State-Of-The-Art items} option is enabled and the blaze spotter toggle switch is enabled.
+         */
+        public boolean isBlazeSpotterEnabled() {
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.blazeSpotter;
+        }
+
+        /**
+         * Returns true if {@code State-Of-The-Art items} option is enabled and the dragons pearl toggle switch is enabled.
+         */
+        public boolean isDragonsPearlEnabled() {
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.dragonsPearl;
+        }
+
+        /**
+         * Returns true if {@code State-Of-The-Art items} option is enabled and the dragons sword toggle switch is enabled.
+         */
+        public boolean isDragonsSwordEnabled() {
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.dragonsSword;
+        }
+
+        /**
+         * Returns true if {@code State-Of-The-Art items} option is enabled and the ender thruster toggle switch is enabled.
+         */
+        public boolean isEnderThrusterEnabled() {
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.enderThruster;
+        }
+
+        /**
+         * Returns true if {@code State-Of-The-Art items} option is enabled and the piglin awakener toggle switch is enabled.
+         */
+        public boolean isPiglinAwakenerEnabled() {
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.piglinAwakener;
+        }
+
+        /**
+         * Returns true if {@code State-Of-The-Art items} option is enabled and the raid eradicator toggle switch is enabled.
+         */
+        public boolean isRaidEradicatorEnabled() {
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.raidEradicator;
+        }
+
+        /**
+         * Returns true if {@code State-Of-The-Art items} option is enabled.
+         */
+        private boolean isStateOfTheArtItemsEnabled() {
+            return options().stateOfTheArtItems.stateOfTheArtItems;
+        }
+    }
+
+    /**
      * All {@code Advanced Speedrunner Mod options.}
-     * <p>Only accessible via the mod's configuration file.</p>
      */
     public static class Advanced {
 
@@ -393,13 +492,6 @@ public class ModOptions {
         public int fireballExplosionPower = 1;
 
         /**
-         * Applies the fog option into the game.
-         * <p>Disable this if you are experiencing compatibility issues with other mods that may also mess with fog settings.</p>
-         */
-        @RequiresRestart
-        public boolean applyFogMixin = true;
-
-        /**
          * The minimum brightness amount for the Speedrunner Mod.
          */
         public double minimumBrightness = 0.0D;
@@ -462,6 +554,68 @@ public class ModOptions {
     }
 
     /**
+     * All {@code Mixin} control options.
+     */
+    public static class Mixins {
+
+        /**
+         * Applies the terrablender surface rule data mixin into the game.
+         * <p>Disable this if you do not want doom stone to generate throughout the end when doom mode is enabled, or if another mod is trying to generate other blocks.</p>
+         */
+        @RequiresRestart
+        public boolean terraBlenderSurfaceRuleDataMixin = true;
+
+        /**
+         * Applies the fog option into the game.
+         * <p>Disable this if you are experiencing compatibility issues with other mods that may also mess with fog settings.</p>
+         */
+        @RequiresRestart
+        public boolean backgroundRendererMixin = true;
+
+        /**
+         * Applies the simple option mixin into the game, which controls the brightness option slider.
+         * <p>Disable this if you are experiencing compatibility issues with other mods, or if you don't want the new brightness slider.</p>
+         */
+        @RequiresRestart
+        public boolean simpleOptionMixin = true;
+
+        /**
+         * Applies the logo drawer mixin into the game, which adds the custom speedrunner edition logo to the title screen.
+         * <p>Disable this if you do not want the custom logo, or are making a custom texture pack that uses a different logo, or are experiencing compatibility issues with other mods.</p>
+         */
+        @RequiresRestart
+        public boolean logoDrawerMixin = true;
+
+        /**
+         * Applies the render layers mixin into the game, which registers a render layer for lava boats.
+         * <p>I would only disable this if you absolutely have to, or if you are experiencing noticeable issues with lava boats, or aren't using them.</p>
+         */
+        @RequiresRestart
+        public boolean renderLayersMixin = true;
+    }
+
+    /**
+     * {@code Structure Spawn Rates} config.
+     * <p>These values are only applied if the {@code Structure Spawn Rates} option is set to {@code CUSTOM.}
+     * <p>The {@code first integer} in the option list is the {@code spacing value.}
+     * <p>The {@code second integer} in the option list is the {@code separation value.}
+     * <p>The {@code separation value} should NEVER be greater than or equal to the spacing value. The game will crash if this happens.
+     */
+    public static class StructureSpawnRates {
+        public int[] ancientCities = createStructureSpawnRateOption(16, 8);
+        public int[] villages = createStructureSpawnRateOption(16, 8);
+        public int[] desertPyramids = createStructureSpawnRateOption(10, 5);
+        public int[] junglePyramids = createStructureSpawnRateOption(10, 5);
+        public int[] pillagerOutposts = createStructureSpawnRateOption(10, 5);
+        public int[] endCities = createStructureSpawnRateOption(7, 3);
+        public int[] woodlandMansions = createStructureSpawnRateOption(25, 12);
+        public int[] ruinedPortals = createStructureSpawnRateOption(9, 4);
+        public int[] shipwrecks = createStructureSpawnRateOption(10, 5);
+        public int[] trialChambers = createStructureSpawnRateOption(12, 6);
+        public int[] netherComplexes = createStructureSpawnRateOption(8, 4);
+    }
+
+    /**
      * Creates an {@code integer list option,} with {@code positive} coordinate values.
      */
     public static double[] createListOption(double posX, double posY, double posZ) {
@@ -473,6 +627,13 @@ public class ModOptions {
      */
     public static int[] createListOption(int negX, int negY, int negZ, int posX, int posY, int posZ) {
         return new int[]{negX, negY, negZ, posX, posY, posZ};
+    }
+
+    /**
+     * Creates a new {@code structure spawn rate option.}
+     */
+    public static int[] createStructureSpawnRateOption(int spacing, int separation) {
+        return new int[]{spacing, separation};
     }
 
     /**
@@ -613,7 +774,7 @@ public class ModOptions {
     /**
      * All the different {@code Structure Spawn Rate} options, from extremely common to extremely rare.
      */
-    public enum StructureSpawnRates implements TranslatableOption {
+    public enum StructureSpawnRate implements TranslatableOption {
         EVERYWHERE(0, "speedrunnermod.options.structure_spawn_rates.everywhere"),
         VERY_COMMON(1, "speedrunnermod.options.structure_spawn_rates.very_common"),
         COMMON(2, "speedrunnermod.options.structure_spawn_rates.common"),
@@ -621,13 +782,14 @@ public class ModOptions {
         DEFAULT(4, "speedrunnermod.options.structure_spawn_rates.default"),
         RARE(5, "speedrunnermod.options.structure_spawn_rates.rare"),
         VERY_RARE(6, "speedrunnermod.options.structure_spawn_rates.very_rare"),
-        DISABLED(7, "speedrunnermod.options.structure_spawn_rates.disabled");
+        CUSTOM(7, "speedrunnermod.options.structure_spawn_rates.custom"),
+        DISABLED(8, "speedrunnermod.options.structure_spawn_rates.disabled");
 
-        private static final StructureSpawnRates[] VALUES = Arrays.stream(StructureSpawnRates.values()).sorted(Comparator.comparingInt(StructureSpawnRates::getId)).toArray(StructureSpawnRates[]::new);
+        private static final StructureSpawnRate[] VALUES = Arrays.stream(StructureSpawnRate.values()).sorted(Comparator.comparingInt(StructureSpawnRate::getId)).toArray(StructureSpawnRate[]::new);
         private final int id;
         private final String translateKey;
 
-        StructureSpawnRates(int id, String translationKey) {
+        StructureSpawnRate(int id, String translationKey) {
             this.id = id;
             this.translateKey = Objects.requireNonNull(translationKey, "translateKey");
         }
@@ -651,7 +813,7 @@ public class ModOptions {
         /**
          * Not sure what this does to be honest, but it's used in {@link ModListOptions}.
          */
-        public static StructureSpawnRates byId(int id) {
+        public static StructureSpawnRate byId(int id) {
             return VALUES[MathHelper.floorMod(id, VALUES.length)];
         }
 
@@ -667,6 +829,7 @@ public class ModOptions {
                     options().main.structureSpawnRates.equals(DEFAULT) ||
                     options().main.structureSpawnRates.equals(RARE) ||
                     options().main.structureSpawnRates.equals(VERY_RARE) ||
+                    options().main.structureSpawnRates.equals(CUSTOM) ||
                     options().main.structureSpawnRates.equals(DISABLED);
         }
 
@@ -674,63 +837,70 @@ public class ModOptions {
          * Returns the {@code Everywhere} structure spawn rate option.
          */
         public boolean everywhere() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRates.EVERYWHERE);
+            return options().main.structureSpawnRates.equals(StructureSpawnRate.EVERYWHERE);
         }
 
         /**
          * Returns the {@code Very Common} structure spawn rate option.
          */
         public boolean veryCommon() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRates.VERY_COMMON);
+            return options().main.structureSpawnRates.equals(StructureSpawnRate.VERY_COMMON);
         }
 
         /**
          * Returns the {@code Very Common} or {@code Common} structure spawn rate option.
          */
         public boolean veryCommonOrCommon() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRates.VERY_COMMON) || options().main.structureSpawnRates.equals(COMMON);
+            return options().main.structureSpawnRates.equals(StructureSpawnRate.VERY_COMMON) || options().main.structureSpawnRates.equals(COMMON);
         }
 
         /**
          * Returns the {@code Common} structure spawn rate option.
          */
         public boolean common() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRates.COMMON);
+            return options().main.structureSpawnRates.equals(StructureSpawnRate.COMMON);
         }
 
         /**
          * Returns the {@code Normal} structure spawn rate option.
          */
         public boolean normal() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRates.NORMAL);
+            return options().main.structureSpawnRates.equals(StructureSpawnRate.NORMAL);
         }
 
         /**
          * Returns the {@code Default} structure spawn rate option,
          */
         public boolean ddefault() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRates.DEFAULT);
+            return options().main.structureSpawnRates.equals(StructureSpawnRate.DEFAULT);
         }
 
         /**
          * Returns the {@code Normal} or {@code Default} structure spawn rate option.
          */
         public boolean commonNormalOrDefault() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRates.COMMON) || options().main.structureSpawnRates.equals(StructureSpawnRates.NORMAL) || options().main.structureSpawnRates.equals(StructureSpawnRates.DEFAULT);
+            return options().main.structureSpawnRates.equals(StructureSpawnRate.COMMON) || options().main.structureSpawnRates.equals(StructureSpawnRate.NORMAL) || options().main.structureSpawnRates.equals(StructureSpawnRate.DEFAULT);
         }
 
         /**
          * Returns the {@code Rare} structure spawn rate option.
          */
         public boolean rare() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRates.RARE);
+            return options().main.structureSpawnRates.equals(StructureSpawnRate.RARE);
         }
 
         /**
          * Returns the {@code Very Rare} structure spawn rate option.
          */
         public boolean veryRare() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRates.VERY_RARE);
+            return options().main.structureSpawnRates.equals(StructureSpawnRate.VERY_RARE);
+        }
+
+        /**
+         * Returns the {@code Custom} structure spawn rate option.
+         */
+        public boolean custom() {
+            return options().main.structureSpawnRates.equals(StructureSpawnRate.CUSTOM);
         }
     }
 

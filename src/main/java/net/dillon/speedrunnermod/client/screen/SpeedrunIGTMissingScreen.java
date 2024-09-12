@@ -41,10 +41,10 @@ public class SpeedrunIGTMissingScreen extends AbstractModScreen {
     @Override
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.leftButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.download_and_install.tooltip"), 200), mouseX, mouseY);
+            this.renderBasicTooltip(Text.translatable("speedrunnermod.download_and_install.tooltip"), context, mouseX, mouseY);
         }
         if (this.middleButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.disable_leaderboards_mode_and_restart.tooltip"), 200), mouseX, mouseY);
+            this.renderBasicTooltip(Text.translatable("speedrunnermod.disable_leaderboards_mode_and_restart.tooltip"), context, mouseX, mouseY);
         }
         super.renderTooltips(context, mouseX, mouseY);
     }

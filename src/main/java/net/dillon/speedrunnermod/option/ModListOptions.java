@@ -3,6 +3,7 @@ package net.dillon.speedrunnermod.option;
 import com.mojang.serialization.Codec;
 import net.dillon.speedrunnermod.client.util.InactiveableOption;
 import net.dillon.speedrunnermod.client.util.ModTexts;
+import net.dillon.speedrunnermod.client.util.TranslationStringKeys;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -21,9 +22,9 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 @Environment(EnvType.CLIENT)
 public class ModListOptions {
 
-    public static final SimpleOption<ModOptions.StructureSpawnRates> STRUCTURE_SPAWN_RATES =
+    public static final SimpleOption<ModOptions.StructureSpawnRate> STRUCTURE_SPAWN_RATES =
             new SimpleOption<>("speedrunnermod.options.structure_spawn_rates", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.structure_spawn_rates.tooltip")), SimpleOption.enumValueText(),
-                    new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(ModOptions.StructureSpawnRates.values()), Codec.INT.xmap(ModOptions.StructureSpawnRates::byId, ModOptions.StructureSpawnRates::getId)),
+                    new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(ModOptions.StructureSpawnRate.values()), Codec.INT.xmap(ModOptions.StructureSpawnRate::byId, ModOptions.StructureSpawnRate::getId)),
                     options().main.structureSpawnRates, value -> options().main.structureSpawnRates = value);
 
     public static final SimpleOption<ModOptions.ItemMessages> ITEM_MESSAGES =
@@ -47,7 +48,7 @@ public class ModListOptions {
                     ModOptions.Difficulty.EASY, value -> options().client.difficulty = value);
 
     public static final SimpleOption<Boolean> STATE_OF_THE_ART_ITEMS = new SimpleOption<>("speedrunnermod.options.state_of_the_art_items", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.state_of_the_art_items.tooltip")),
-            (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.stateOfTheArtItems, value -> options().main.stateOfTheArtItems = value);
+            (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().stateOfTheArtItems.stateOfTheArtItems, value -> options().stateOfTheArtItems.stateOfTheArtItems = value);
 
     public static final SimpleOption<Boolean> FASTER_BLOCK_BREAKING = new SimpleOption<>("speedrunnermod.options.faster_block_breaking", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.faster_block_breaking.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.fasterBlockBreaking, value -> options().main.fasterBlockBreaking = value);
@@ -56,7 +57,7 @@ public class ModListOptions {
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().main.iCarusMode, value -> options().main.iCarusMode = value);
 
     public static final SimpleOption<Boolean> FOG = new SimpleOption<>("speedrunnermod.options.fog", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.fog.tooltip")),
-            (optionText, value) -> !options().advanced.applyFogMixin ? ModTexts.DISABLED : !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.fog, value -> {
+            (optionText, value) -> !options().mixins.backgroundRendererMixin ? ModTexts.FEATURE_DISABLED : !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.fog, value -> {
         options().client.fog = value;
         MinecraftClient.getInstance().worldRenderer.reload();
     });
@@ -176,14 +177,26 @@ public class ModListOptions {
     public static final SimpleOption<Boolean> DECREASED_ZOMBIFIED_PIGLIN_SCARE_DISTANCE = new SimpleOption<>("speedrunnermod.options.decreased_zombified_piglin_scare_distance", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.decreased_zombified_piglin_scare_distance.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().advanced.decreasedZombifiedPiglinScareDistance, value -> options().advanced.decreasedZombifiedPiglinScareDistance = value);
 
-    public static final SimpleOption<Boolean> APPLY_FOG_MIXIN = new SimpleOption<>("speedrunnermod.options.apply_fog_mixin", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.apply_fog_mixin.tooltip")),
-            (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().advanced.applyFogMixin, value -> options().advanced.applyFogMixin = value);
-
     public static final SimpleOption<Boolean> DRAGON_KILLS_NEARBY_HOSTILE_ENTITIES = new SimpleOption<>("speedrunnermod.options.dragon_kills_nearby_hostile_entities", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.dragon_kills_nearby_hostile_entities.tooltip")),
             (optionText, value) -> !value ? ModTexts.NO : ModTexts.YES, SimpleOption.BOOLEAN, options().advanced.dragonKillsNearbyHostileEntities, value -> options().advanced.dragonKillsNearbyHostileEntities = value);
 
     public static final SimpleOption<Boolean> DRAGON_IMMUNITY_FROM_GIANT_AND_WITHER = new SimpleOption<>("speedrunnermod.options.dragon_immunity_from_giant_and_wither", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.dragon_immunity_from_giant_and_wither.tooltip")),
             (optionText, value) -> !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().advanced.dragonImmunityFromGiantAndWither, value -> options().advanced.dragonImmunityFromGiantAndWither = value);
+
+    public static final SimpleOption<Boolean> TERRABLENDER_SURFACE_RULE_DATA_MIXIN = new SimpleOption<>("speedrunnermod.options.terrablender_surface_rule_data_mixin", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.terrablender_surface_rule_data_mixin.tooltip")),
+            (optionText, value) -> !value ? ModTexts.DISABLED : ModTexts.ENABLED, SimpleOption.BOOLEAN, options().mixins.terraBlenderSurfaceRuleDataMixin, value -> options().mixins.terraBlenderSurfaceRuleDataMixin = value);
+
+    public static final SimpleOption<Boolean> BACKGROUND_RENDERER_MIXIN = new SimpleOption<>("speedrunnermod.options.background_renderer_mixin", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.background_renderer_mixin.tooltip")),
+                (optionText, value) -> !value ? ModTexts.DISABLED : ModTexts.ENABLED, SimpleOption.BOOLEAN, options().mixins.backgroundRendererMixin, value -> options().mixins.backgroundRendererMixin = value);
+
+    public static final SimpleOption<Boolean> SIMPLE_OPTION_MIXIN = new SimpleOption<>("speedrunnermod.options.simple_option_mixin", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.simple_option_mixin.tooltip")),
+            (optionText, value) -> !value ? ModTexts.DISABLED : ModTexts.ENABLED, SimpleOption.BOOLEAN, options().mixins.simpleOptionMixin, value -> options().mixins.simpleOptionMixin = value);
+
+    public static final SimpleOption<Boolean> LOGO_DRAWER_MIXIN = new SimpleOption<>("speedrunnermod.options.logo_drawer_mixin", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.logo_drawer_mixin.tooltip")),
+            (optionText, value) -> !value ? ModTexts.DISABLED : ModTexts.ENABLED, SimpleOption.BOOLEAN, options().mixins.logoDrawerMixin, value -> options().mixins.logoDrawerMixin = value);
+
+    public static final SimpleOption<Boolean> RENDER_LAYERS_MIXIN = new SimpleOption<>("speedrunnermod.options.render_layers_mixin", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.render_layers_mixin.tooltip")),
+            (optionText, value) -> !value ? ModTexts.DISABLED : ModTexts.ENABLED, SimpleOption.BOOLEAN, options().mixins.renderLayersMixin, value -> options().mixins.renderLayersMixin = value);
 
     public static final SimpleOption<Integer> BLOCK_BREAKING_MULTIPLIER =
             new SimpleOption<>("speedrunnermod.options.block_breaking_multiplier", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.block_breaking_multiplier.tooltip")),
@@ -288,6 +301,174 @@ public class ModListOptions {
                     new SimpleOption.ValidatingIntSliderCallbacks(1, 10), options().advanced.fireballExplosionPower, value -> options().advanced.fireballExplosionPower = value);
 
     /**
+     * Returns a {@link SimpleOption} for a {@code State-Of-The-Art item.}
+     */
+    public static SimpleOption<Boolean> stateOfTheArtItem(String itemTranslationKey) {
+        return new SimpleOption<>("speedrunnermod.options.state_of_the_art_items." + itemTranslationKey, options().stateOfTheArtItems.stateOfTheArtItems ? SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.state_of_the_art_items." + itemTranslationKey + ".tooltip")) : SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.state_of_the_art_items.disabled")),
+                (optionText, value) -> !value || !options().stateOfTheArtItems.stateOfTheArtItems ? ModTexts.DISABLED : ModTexts.ENABLED, SimpleOption.BOOLEAN, defaultItemValue(itemTranslationKey), value -> {
+            switch (itemTranslationKey) {
+                case TranslationStringKeys.ANNUL_EYE -> options().stateOfTheArtItems.annulEye = value;
+                case TranslationStringKeys.BLAZE_SPOTTER -> options().stateOfTheArtItems.blazeSpotter = value;
+                case TranslationStringKeys.DRAGONS_PEARL -> options().stateOfTheArtItems.dragonsPearl = value;
+                case TranslationStringKeys.DRAGONS_SWORD -> options().stateOfTheArtItems.dragonsSword = value;
+                case TranslationStringKeys.ENDER_THRUSTER -> options().stateOfTheArtItems.enderThruster = value;
+                case TranslationStringKeys.PIGLIN_AWAKENER -> options().stateOfTheArtItems.piglinAwakener = value;
+                case TranslationStringKeys.RAID_ERADICATOR -> options().stateOfTheArtItems.raidEradicator = value;
+            }
+        });
+    }
+
+    /**
+     * Returns the {@code default value} that the {@code ModListOption} should default to for {@code State-Of-The-Art items.}
+     */
+    private static boolean defaultItemValue(String itemTranslationKey) {
+        switch (itemTranslationKey) {
+            case TranslationStringKeys.ANNUL_EYE -> {
+                return options().stateOfTheArtItems.annulEye;
+            }
+            case TranslationStringKeys.BLAZE_SPOTTER -> {
+                return options().stateOfTheArtItems.blazeSpotter;
+            }
+            case TranslationStringKeys.DRAGONS_PEARL -> {
+                return options().stateOfTheArtItems.dragonsPearl;
+            }
+            case TranslationStringKeys.DRAGONS_SWORD -> {
+                return options().stateOfTheArtItems.dragonsSword;
+            }
+            case TranslationStringKeys.ENDER_THRUSTER -> {
+                return options().stateOfTheArtItems.enderThruster;
+            }
+            case TranslationStringKeys.PIGLIN_AWAKENER -> {
+                return options().stateOfTheArtItems.piglinAwakener;
+            }
+            case TranslationStringKeys.RAID_ERADICATOR -> {
+                return options().stateOfTheArtItems.raidEradicator;
+            }
+            default -> {
+                return options().stateOfTheArtItems.stateOfTheArtItems;
+            }
+        }
+    }
+
+    /**
+     * Creates a new {@code Structure Spawn Rate option.}
+     */
+    public static SimpleOption<Integer> structureSpawnRate(String structure) {
+        return new SimpleOption<>("speedrunnermod.options.structure_spawn_rates." + structure, options().main.structureSpawnRates.custom() ? SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.structure_spawn_rates_description.tooltip")) : SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.structure_spawn_rates.custom_required")),
+                (optionText, value) -> ModListOptions.listIntegerText(optionText, structure),
+                new SimpleOption.ValidatingIntSliderCallbacks(3, 24), defaultStructureValue(structure), value -> determineValue(structure, value));
+    }
+
+    /**
+     * Sets the values for each respective structure setting.
+     */
+    private static void determineValue(String structure, int value) {
+        switch (structure) {
+            case TranslationStringKeys.ANCIENT_CITY -> setValue(options().structureSpawnRates.ancientCities, value);
+            case TranslationStringKeys.VILLAGE -> setValue(options().structureSpawnRates.villages, value);
+            case TranslationStringKeys.DESERT_PYRAMID -> setValue(options().structureSpawnRates.desertPyramids, value);
+            case TranslationStringKeys.JUNGLE_PYRAMID -> setValue(options().structureSpawnRates.junglePyramids, value);
+            case TranslationStringKeys.PILLAGER_OUTPOST -> setValue(options().structureSpawnRates.pillagerOutposts, value);
+            case TranslationStringKeys.END_CITY -> setValue(options().structureSpawnRates.endCities, value);
+            case TranslationStringKeys.WOODLAND_MANSION -> setValue(options().structureSpawnRates.woodlandMansions, value);
+            case TranslationStringKeys.RUINED_PORTAL -> setValue(options().structureSpawnRates.ruinedPortals, value);
+            case TranslationStringKeys.SHIPWRECK -> setValue(options().structureSpawnRates.shipwrecks, value);
+            case TranslationStringKeys.TRIAL_CHAMBER -> setValue(options().structureSpawnRates.trialChambers, value);
+            case TranslationStringKeys.NETHER_COMPLEXES -> setValue(options().structureSpawnRates.netherComplexes, value);
+        }
+    }
+
+    /**
+     * Bounds the value of the {@link SimpleOption} to the {@code spacing value} of the structure, and then sets the separate value to that divided by 2.
+     */
+    private static void setValue(int[] option, int value) {
+        option[0] = value;
+        option[1] = option[0] / 2;
+    }
+
+    /**
+     * Returns the text that should be displayed on the {@link SimpleOption}.
+     */
+    private static Text listIntegerText(Text prefix, String structure) {
+        switch (structure) {
+            case TranslationStringKeys.ANCIENT_CITY -> {
+                return GameOptions.getGenericValueText(prefix, Text.literal(options().structureSpawnRates.ancientCities[0] + ", " + options().structureSpawnRates.ancientCities[1]));
+            }
+            case TranslationStringKeys.DESERT_PYRAMID -> {
+                return GameOptions.getGenericValueText(prefix, Text.literal(options().structureSpawnRates.desertPyramids[0] + ", " + options().structureSpawnRates.desertPyramids[1]));
+            }
+            case TranslationStringKeys.JUNGLE_PYRAMID -> {
+                return GameOptions.getGenericValueText(prefix, Text.literal(options().structureSpawnRates.junglePyramids[0] + ", " + options().structureSpawnRates.junglePyramids[1]));
+            }
+            case TranslationStringKeys.PILLAGER_OUTPOST -> {
+                return GameOptions.getGenericValueText(prefix, Text.literal(options().structureSpawnRates.pillagerOutposts[0] + ", " + options().structureSpawnRates.pillagerOutposts[1]));
+            }
+            case TranslationStringKeys.END_CITY -> {
+                return GameOptions.getGenericValueText(prefix, Text.literal(options().structureSpawnRates.endCities[0] + ", " + options().structureSpawnRates.endCities[1]));
+            }
+            case TranslationStringKeys.WOODLAND_MANSION -> {
+                return GameOptions.getGenericValueText(prefix, Text.literal(options().structureSpawnRates.woodlandMansions[0] + ", " + options().structureSpawnRates.woodlandMansions[1]));
+            }
+            case TranslationStringKeys.RUINED_PORTAL -> {
+                return GameOptions.getGenericValueText(prefix, Text.literal(options().structureSpawnRates.ruinedPortals[0] + ", " + options().structureSpawnRates.ruinedPortals[1]));
+            }
+            case TranslationStringKeys.SHIPWRECK -> {
+                return GameOptions.getGenericValueText(prefix, Text.literal(options().structureSpawnRates.shipwrecks[0] + ", " + options().structureSpawnRates.shipwrecks[1]));
+            }
+            case TranslationStringKeys.TRIAL_CHAMBER -> {
+                return GameOptions.getGenericValueText(prefix, Text.literal(options().structureSpawnRates.trialChambers[0] + ", " + options().structureSpawnRates.trialChambers[1]));
+            }
+            case TranslationStringKeys.NETHER_COMPLEXES -> {
+                return GameOptions.getGenericValueText(prefix, Text.literal(options().structureSpawnRates.netherComplexes[0] + ", " + options().structureSpawnRates.netherComplexes[1]));
+            }
+            default -> {
+                return GameOptions.getGenericValueText(prefix, Text.literal(options().structureSpawnRates.villages[0] + ", " + options().structureSpawnRates.villages[1]));
+            }
+        }
+    }
+
+    /**
+     * Returns the {@code default spacing value} that the respective {@link SimpleOption} should return when loading into the game.
+     */
+    private static int defaultStructureValue(String structure) {
+        switch (structure) {
+            case TranslationStringKeys.ANCIENT_CITY -> {
+                return options().structureSpawnRates.ancientCities[0];
+            }
+            case TranslationStringKeys.DESERT_PYRAMID -> {
+                return options().structureSpawnRates.desertPyramids[0];
+            }
+            case TranslationStringKeys.JUNGLE_PYRAMID -> {
+                return options().structureSpawnRates.junglePyramids[0];
+            }
+            case TranslationStringKeys.PILLAGER_OUTPOST -> {
+                return options().structureSpawnRates.pillagerOutposts[0];
+            }
+            case TranslationStringKeys.END_CITY -> {
+                return options().structureSpawnRates.endCities[0];
+            }
+            case TranslationStringKeys.WOODLAND_MANSION -> {
+                return options().structureSpawnRates.woodlandMansions[0];
+            }
+            case TranslationStringKeys.RUINED_PORTAL -> {
+                return options().structureSpawnRates.ruinedPortals[0];
+            }
+            case TranslationStringKeys.SHIPWRECK -> {
+                return options().structureSpawnRates.shipwrecks[0];
+            }
+            case TranslationStringKeys.TRIAL_CHAMBER -> {
+                return options().structureSpawnRates.trialChambers[0];
+            }
+            case TranslationStringKeys.NETHER_COMPLEXES -> {
+                return options().structureSpawnRates.netherComplexes[0];
+            }
+            default -> {
+                return options().structureSpawnRates.villages[0];
+            }
+        }
+    }
+
+    /**
      * Returns the generic value text prefix, with aqua formatting.
      */
     private static Text getGenericValueText(Text prefix, int value) {
@@ -313,7 +494,7 @@ public class ModListOptions {
 
         @InactiveableOption
         public static final SimpleOption<Boolean> IAO_FOG = new SimpleOption<>("speedrunnermod.options.fog", SimpleOption.constantTooltip(Text.translatable("speedrunnermod.options.apply_fog_mixin_required")),
-                (optionText, value) -> !options().advanced.applyFogMixin ? ModTexts.DISABLED : !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.fog, value -> {
+                (optionText, value) -> !options().mixins.backgroundRendererMixin ? ModTexts.FEATURE_DISABLED : !value ? ModTexts.OFF : ModTexts.ON, SimpleOption.BOOLEAN, options().client.fog, value -> {
             options().client.fog = value;
             MinecraftClient.getInstance().worldRenderer.reload();
         });

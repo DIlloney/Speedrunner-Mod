@@ -9,7 +9,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
 
@@ -32,7 +31,7 @@ public class ClientOptionsScreen extends AbstractModScreen {
      */
     private SimpleOption<?>[] clientOptions(GameOptions gameOptions) {
         return new SimpleOption[]{
-                options().advanced.applyFogMixin ? ModListOptions.FOG : ModListOptions.Inactiveable.IAO_FOG,
+                options().mixins.backgroundRendererMixin ? ModListOptions.FOG : ModListOptions.Inactiveable.IAO_FOG,
                 gameOptions.getGamma(),
                 ModListOptions.ITEM_TOOLTIPS,
                 ModListOptions.TEXTURE_TOOLTIPS,
@@ -46,9 +45,9 @@ public class ClientOptionsScreen extends AbstractModScreen {
 
     @Override
     protected void init() {
-        this.optionList = this.addDrawableChild(new OptionListWidget(this.client, this.width, this));
+        this.initializeOptionListWidget();
         this.optionList.addAll(clientOptions(this.gameOptions));
-        this.deactivateButton(0, ButtonSide.LARGE, options().advanced.applyFogMixin);
+        this.deactivateButton(0, ButtonSide.LARGE, options().mixins.backgroundRendererMixin);
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);
 

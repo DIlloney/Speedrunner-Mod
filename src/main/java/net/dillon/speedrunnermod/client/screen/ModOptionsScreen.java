@@ -1,9 +1,6 @@
 package net.dillon.speedrunnermod.client.screen;
 
-import net.dillon.speedrunnermod.client.screen.options.AdvancedOptionsScreen;
-import net.dillon.speedrunnermod.client.screen.options.ClientOptionsScreen;
-import net.dillon.speedrunnermod.client.screen.options.FastWorldCreationOptionsScreen;
-import net.dillon.speedrunnermod.client.screen.options.MainOptionsScreen;
+import net.dillon.speedrunnermod.client.screen.options.*;
 import net.dillon.speedrunnermod.client.util.ModTexts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -12,6 +9,8 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
  * The {@code options} screen for the Speedrunner Mod, consisting of all the option categories.
@@ -39,11 +38,24 @@ public class ModOptionsScreen extends AbstractModScreen {
             this.client.setScreen(new ClientOptionsScreen(this, options));
         }).build());
 
-        this.buttons.add(3, ButtonWidget.builder(ModTexts.MENU_ADVANCED_OPTIONS, (button) -> {
+        this.buttons.add(3, ButtonWidget.builder(ModTexts.MENU_STATE_OF_THE_ART_ITEM_OPTIONS, (button) -> {
+            this.client.setScreen(new StateOfTheArtItemsOptionsScreen(this, options));
+        }).build());
+
+        this.buttons.add(4, ButtonWidget.builder(ModTexts.MENU_STRUCTURE_SPAWN_RATE_OPTIONS, (button) -> {
+            this.client.setScreen(new StructureSpawnRateOptionsScreen(this, options));
+        }).build());
+        this.buttons.get(4).active = options().main.structureSpawnRates.custom();
+
+        this.buttons.add(5, ButtonWidget.builder(ModTexts.MENU_ADVANCED_OPTIONS, (button) -> {
             this.client.setScreen(new AdvancedOptionsScreen(this, options));
         }).build());
 
-        this.buttons.add(4, ButtonWidget.builder(ModTexts.MENU_OPTIONS_RESET, (button) -> {
+        this.buttons.add(6, ButtonWidget.builder(ModTexts.MENU_MIXIN_OPTIONS, (button) -> {
+            this.client.setScreen(new MixinOptionsScreen(this, options));
+        }).build());
+
+        this.buttons.add(7, ButtonWidget.builder(ModTexts.MENU_OPTIONS_RESET, (button) -> {
             this.client.setScreen(new ResetOptionsConfirmScreen(this, options));
         }).build());
 
@@ -53,19 +65,32 @@ public class ModOptionsScreen extends AbstractModScreen {
     @Override
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.buttons.get(0).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_MAIN_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.MENU_OPTIONS_MAIN_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(1).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_FAST_WORLD_CREATION_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.MENU_FAST_WORLD_CREATION_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(2).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_CLIENT_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.MENU_OPTIONS_CLIENT_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(3).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_ADVANCED_OPTIONS_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.MENU_STATE_OF_THE_ART_ITEM_OPTIONS_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(4).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_RESET_TOOLTIP, 200), mouseX, mouseY);
+            if (options().main.structureSpawnRates.custom()) {
+                this.renderBasicTooltip(ModTexts.MENU_STRUCTURE_SPAWN_RATE_OPTIONS_TOOLTIP, context, mouseX, mouseY);
+            } else {
+                this.renderBasicTooltip(ModTexts.MENU_STRUCTURE_SPAWN_RATE_OPTIONS_NEEDS_CUSTOM_TOOLTIP, context, mouseX, mouseY);
+            }
+        }
+        if (this.buttons.get(5).isHovered()) {
+            this.renderBasicTooltip(ModTexts.MENU_ADVANCED_OPTIONS_TOOLTIP, context, mouseX, mouseY);
+        }
+        if (this.buttons.get(6).isHovered()) {
+            this.renderBasicTooltip(ModTexts.MENU_MIXIN_OPTIONS_TOOLTIP, context, mouseX, mouseY);
+        }
+        if (this.buttons.get(7).isHovered()) {
+            this.renderBasicTooltip(ModTexts.MENU_OPTIONS_RESET_TOOLTIP, context, mouseX, mouseY);
         }
         super.renderTooltips(context, mouseX, mouseY);
     }

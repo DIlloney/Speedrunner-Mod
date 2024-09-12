@@ -63,28 +63,28 @@ public class ModsScreen extends AbstractModScreen {
     @Override
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.buttons.get(0).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.SODIUM_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.SODIUM_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(1).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.LITHIUM_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.LITHIUM_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(2).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.PHOSPHOR_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.PHOSPHOR_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(3).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.SPEEDRUN_IGT_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.SPEEDRUN_IGT_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(4).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.LAZYDFU_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.LAZYDFU_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(5).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.KRYPTON_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.KRYPTON_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(6).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.SIMPLE_KEYBINDS_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.SIMPLE_KEYBINDS_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(7).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.OPTIFINE_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.OPTIFINE_TOOLTIP, context, mouseX, mouseY);
         }
         super.renderTooltips(context, mouseX, mouseY);
     }

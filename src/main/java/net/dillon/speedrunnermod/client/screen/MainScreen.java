@@ -81,25 +81,25 @@ public class MainScreen extends AbstractModScreen {
         if (this.buttons.get(0).isHovered()) {
             if (options().main.leaderboardsMode) {
                 if (!Leaderboards.isEligibleForLeaderboardRuns()) {
-                    context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_ACTION_NEEDED, 200), mouseX, mouseY);
+                    this.renderBasicTooltip(ModTexts.MENU_OPTIONS_ACTION_NEEDED, context, mouseX, mouseY);
                 } else {
-                    context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_SAFE, 200), mouseX, mouseY);
+                    this.renderBasicTooltip(ModTexts.MENU_OPTIONS_SAFE, context, mouseX, mouseY);
                 }
             } else {
-                context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_OPTIONS_TOOLTIP, 200), mouseX, mouseY);
+                this.renderBasicTooltip(ModTexts.MENU_OPTIONS_TOOLTIP, context, mouseX, mouseY);
             }
         }
         if (this.buttons.get(1).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_FEATURES_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.MENU_FEATURES_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(2).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_RESOURCES_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.MENU_RESOURCES_TOOLTIP, context, mouseX, mouseY);
         }
         if (this.buttons.get(5).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.MENU_LEADERBOARDS_DISABLED, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.MENU_LEADERBOARDS_DISABLED, context, mouseX, mouseY);
         }
         if (this.buttons.get(6).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.EASIER_SPEEDRUNNING_MOD_TOOLTIP, 200), mouseX, mouseY);
+            this.renderBasicTooltip(ModTexts.EASIER_SPEEDRUNNING_MOD_TOOLTIP, context, mouseX, mouseY);
         }
         super.renderTooltips(context, mouseX, mouseY);
     }

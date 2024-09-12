@@ -78,7 +78,7 @@ public class AnnulEyeItem extends Item {
                         return TypedActionResult.success(itemStack);
                     }
                 } else {
-                    boolean isEnabled = options().main.stateOfTheArtItems;
+                    boolean isEnabled = options().stateOfTheArtItems.isAnnulEyeTeleporterEnabled();
                     if (isEnabled) {
                         ItemStack enderEye = new ItemStack(Items.ENDER_EYE);
                         ItemStack enderPearl = new ItemStack(Items.ENDER_PEARL);
@@ -196,7 +196,7 @@ public class AnnulEyeItem extends Item {
             tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line2").formatted(Formatting.GRAY));
             tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line3"));
             tooltip.add(Text.translatable("item.speedrunnermod.eye_of_annul.tooltip.line4"));
-            tooltip.add(options().main.stateOfTheArtItems ? Text.translatable("item.speedrunnermod.eye_of_annul.teleporter_enabled").formatted(Formatting.ITALIC).formatted(Formatting.GREEN) : Text.translatable("item.speedrunnermod.eye_of_annul.teleporter_disabled").formatted(Formatting.ITALIC).formatted(Formatting.RED));
+            tooltip.add(options().stateOfTheArtItems.isAnnulEyeTeleporterEnabled() ? Text.translatable("item.speedrunnermod.eye_of_annul.teleporter_enabled").formatted(Formatting.ITALIC).formatted(Formatting.GREEN) : Text.translatable("item.speedrunnermod.eye_of_annul.teleporter_disabled").formatted(Formatting.ITALIC).formatted(Formatting.RED));
             tooltip.add(Text.translatable("item.speedrunnermod.state_of_the_art.tooltip").formatted(Formatting.RED));
         }
     }

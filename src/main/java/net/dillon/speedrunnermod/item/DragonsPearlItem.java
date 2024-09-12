@@ -38,12 +38,12 @@ public class DragonsPearlItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         if (!world.isClient) {
-            if (options().main.stateOfTheArtItems) {
+            if (options().stateOfTheArtItems.isDragonsPearlEnabled()) {
                 if (world.getRegistryKey() == World.END) {
                     List<EnderDragonEntity> dragons = world.getEntitiesByClass(EnderDragonEntity.class, player.getBoundingBox().expand(options().advanced.dragonsPearlDragonDistanceXYZ[0], options().advanced.dragonsPearlDragonDistanceXYZ[1], options().advanced.dragonsPearlDragonDistanceXYZ[2]), entity -> true);
 
                     if (!dragons.isEmpty()) {
-                        EnderDragonEntity enderDragon = dragons.getFirst();
+                        EnderDragonEntity enderDragon = dragons.get(0);
                         if (!isDragonAlreadyPerchingOrPerched(enderDragon) && !isDragonDead(enderDragon)) {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 2.0F, 0.3F);
                             player.getItemCooldownManager().set(this, TickCalculator.seconds(30));

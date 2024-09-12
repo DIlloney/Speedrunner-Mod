@@ -24,7 +24,9 @@ public class ModTexts {
     public static final Text OFF = Text.literal("OFF").formatted(Formatting.RED);
     public static final Text YES = Text.literal("YES").formatted(Formatting.GREEN);
     public static final Text NO = Text.literal("NO").formatted(Formatting.RED);
-    public static final Text DISABLED = Text.literal("Feature Disabled");
+    public static final Text ENABLED = Text.literal("Enabled").formatted(Formatting.GREEN);
+    public static final Text DISABLED = Text.literal("DISABLED").formatted(Formatting.BOLD).formatted(Formatting.RED);
+    public static final Text FEATURE_DISABLED = Text.literal("Feature Disabled");
 
     public static final Text TITLE = Text.translatable("speedrunnermod.title");
     public static final Text MENU_OPTIONS_ACTION_NEEDED = Text.translatable("speedrunnermod.leaderboards.action_needed");
@@ -42,6 +44,16 @@ public class ModTexts {
     public static final Text MENU_OPTIONS_CLIENT = Text.translatable("speedrunnermod.menu.options.client");
     public static final Text MENU_OPTIONS_CLIENT_TOOLTIP = Text.translatable("speedrunnermod.menu.options.client.tooltip");
     public static final Text MENU_OPTIONS_RESET_TOOLTIP = Text.translatable("speedrunnermod.menu.options.reset.tooltip");
+    public static final Text MENU_STATE_OF_THE_ART_ITEM_OPTIONS = Text.translatable("speedrunnermod.menu.options.state_of_the_art_items");
+    public static final Text MENU_STATE_OF_THE_ART_ITEM_OPTIONS_TOOLTIP = Text.translatable("speedrunnermod.menu.options.state_of_the_art_items.tooltip");
+    public static final Text TITLE_STATE_OF_THE_ART_ITEMS = Text.translatable("speedrunnermod.title.options.state_of_the_art_items");
+    public static final Text MENU_STRUCTURE_SPAWN_RATE_OPTIONS = Text.translatable("speedrunnermod.menu.options.structure_spawn_rates");
+    public static final Text MENU_STRUCTURE_SPAWN_RATE_OPTIONS_TOOLTIP = Text.translatable("speedrunnermod.menu.options.structure_spawn_rates.tooltip");
+    public static final Text MENU_STRUCTURE_SPAWN_RATE_OPTIONS_NEEDS_CUSTOM_TOOLTIP = Text.translatable("speedrunnermod.menu.options.structure_spawn_rates_needs_custom.tooltip");
+    public static final Text TITLE_STRUCTURE_SPAWN_RATE_OPTIONS = Text.translatable("speedrunnermod.title.options.structure_spawn_rates");
+    public static final Text MENU_MIXIN_OPTIONS = Text.translatable("speedrunnermod.menu.options.mixins");
+    public static final Text MENU_MIXIN_OPTIONS_TOOLTIP = Text.translatable("speedrunnermod.menu.options.mixins.tooltip");
+    public static final Text TITLE_MIXIN_OPTIONS = Text.translatable("speedrunnermod.title.options.mixins");
     public static final Text MENU_ADVANCED_OPTIONS = Text.translatable("speedrunnermod.menu.options.advanced");
     public static final Text MENU_ADVANCED_OPTIONS_TOOLTIP = Text.translatable("speedrunnermod.menu.options.advanced.tooltip");
     public static final Text TITLE_ADVANCED_OPTIONS = Text.translatable("speedrunnermod.title.options.advanced");

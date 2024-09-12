@@ -34,6 +34,7 @@ public class ModItemTags {
     public static TagKey<Item> SPEED_BOOTS = TagKey.of(RegistryKeys.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speed_boots"));
     public static TagKey<Item> SPEEDRUNNER_ARMOR = TagKey.of(RegistryKeys.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_armor"));
     public static TagKey<Item> SPEEDRUNNER_TOOLS = TagKey.of(RegistryKeys.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_tools"));
+    public static TagKey<Item> STATE_OF_THE_ART_ITEMS = TagKey.of(RegistryKeys.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "state_of_the_art_items"));
     public static TagKey<Item> STICKS = TagKey.of(RegistryKeys.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, "sticks"));
 
     /**

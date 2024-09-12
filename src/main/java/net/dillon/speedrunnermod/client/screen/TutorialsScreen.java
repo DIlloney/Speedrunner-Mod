@@ -64,28 +64,28 @@ public class TutorialsScreen extends AbstractModScreen {
     @Override
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.buttons.get(0).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.bastion_routes.tooltip"), 200), mouseX, mouseY);
+            this.renderBasicTooltip(Text.translatable("speedrunnermod.menu.resources.tutorials.bastion_routes.tooltip"), context, mouseX, mouseY);
         }
         if (this.buttons.get(1).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.nether_fortresses.tooltip"), 200), mouseX, mouseY);
+            this.renderBasicTooltip(Text.translatable("speedrunnermod.menu.resources.tutorials.nether_fortresses.tooltip"), context, mouseX, mouseY);
         }
         if (this.buttons.get(2).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.microlensing.tooltip"), 200), mouseX, mouseY);
+            this.renderBasicTooltip(Text.translatable("speedrunnermod.menu.resources.tutorials.microlensing.tooltip"), context, mouseX, mouseY);
         }
         if (this.buttons.get(3).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.blind_travel.tooltip"), 200), mouseX, mouseY);
+            this.renderBasicTooltip(Text.translatable("speedrunnermod.menu.resources.tutorials.blind_travel.tooltip"), context, mouseX, mouseY);
         }
         if (this.buttons.get(4).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.one_cycling.tooltip"), 200), mouseX, mouseY);
+            this.renderBasicTooltip(Text.translatable("speedrunnermod.menu.resources.tutorials.one_cycling.tooltip"), context, mouseX, mouseY);
         }
         if (this.buttons.get(5).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.pie_chart.tooltip"), 200), mouseX, mouseY);
+            this.renderBasicTooltip(Text.translatable("speedrunnermod.menu.resources.tutorials.pie_chart.tooltip"), context, mouseX, mouseY);
         }
         if (this.buttons.get(7).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.buried_treasure.tooltip"), 200), mouseX, mouseY);
+            this.renderBasicTooltip(Text.translatable("speedrunnermod.menu.resources.tutorials.buried_treasure.tooltip"), context, mouseX, mouseY);
         }
         if (this.buttons.get(8).isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.menu.resources.tutorials.other_useful_tricks.tooltip"), 200), mouseX, mouseY);
+            this.renderBasicTooltip(Text.translatable("speedrunnermod.menu.resources.tutorials.other_useful_tricks.tooltip"), context, mouseX, mouseY);
         }
         super.renderTooltips(context, mouseX, mouseY);
     }

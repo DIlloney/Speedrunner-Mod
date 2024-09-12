@@ -29,6 +29,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static net.dillon.speedrunnermod.option.ModOptions.createListOption;
+import static net.dillon.speedrunnermod.option.ModOptions.createStructureSpawnRateOption;
 
 /**
  * The home initializer for the Speedrunner Mod.
@@ -119,13 +120,13 @@ public class SpeedrunnerMod implements ModInitializer {
      */
     @Environment(EnvType.CLIENT)
     public static void resetOptions() {
-        options().main.structureSpawnRates = ModOptions.StructureSpawnRates.COMMON;
+        options().main.structureSpawnRates = ModOptions.StructureSpawnRate.COMMON;
         options().main.fasterBlockBreaking = true;
         options().main.blockBreakingMultiplier = 1;
         options().main.betterBiomes = true;
         options().main.iCarusMode = false;
         options().main.infiniPearlMode = false;
-        options().main.stateOfTheArtItems = true;
+        options().stateOfTheArtItems.stateOfTheArtItems = true;
         options().main.doomMode = false;
         options().main.dragonPerchTime = 8;
         options().main.killGhastOnFireball = false;
@@ -168,6 +169,14 @@ public class SpeedrunnerMod implements ModInitializer {
         options().client.allowCheats = false;
         options().client.showDeathCords = true;
 
+        options().stateOfTheArtItems.annulEye = true;
+        options().stateOfTheArtItems.blazeSpotter = true;
+        options().stateOfTheArtItems.dragonsPearl = true;
+        options().stateOfTheArtItems.dragonsSword = true;
+        options().stateOfTheArtItems.enderThruster = true;
+        options().stateOfTheArtItems.piglinAwakener = true;
+        options().stateOfTheArtItems.raidEradicator = true;
+
         options().advanced.modifiedStrongholdGeneration = true;
         options().advanced.modifiedStrongholdYGeneration = true;
         options().advanced.modifiedNetherFortressGeneration = true;
@@ -182,7 +191,6 @@ public class SpeedrunnerMod implements ModInitializer {
         options().advanced.iCarusFireworksInventorySlot = 1;
         options().advanced.infiniPearlInventorySlot = 1;
         options().advanced.fireballExplosionPower = 1;
-        options().advanced.applyFogMixin = true;
         options().advanced.minimumBrightness = 0.0D;
         options().advanced.maximumBrightness = 12.0D;
         options().advanced.dragonKillsNearbyHostileEntities = true;
@@ -195,6 +203,24 @@ public class SpeedrunnerMod implements ModInitializer {
         options().advanced.dragonKillsHostileEntitiesDistance = createListOption(200.0D, 200.0D, 200.0D);
         options().advanced.dragonImmunityDetectionDistanceForGiant = createListOption(200.0D, 200.0D, 200.0D);
         options().advanced.dragonImmunityDetectionDistanceForWither = createListOption(300.0D, 300.0D, 300.0D);
+
+        options().structureSpawnRates.ancientCities = createStructureSpawnRateOption(16, 8);
+        options().structureSpawnRates.villages = createStructureSpawnRateOption(16, 8);
+        options().structureSpawnRates.desertPyramids = createStructureSpawnRateOption(10, 5);
+        options().structureSpawnRates.junglePyramids = createStructureSpawnRateOption(10, 5);
+        options().structureSpawnRates.pillagerOutposts = createStructureSpawnRateOption(10, 5);
+        options().structureSpawnRates.endCities = createStructureSpawnRateOption(7, 3);
+        options().structureSpawnRates.woodlandMansions = createStructureSpawnRateOption(25, 12);
+        options().structureSpawnRates.ruinedPortals = createStructureSpawnRateOption(9, 4);
+        options().structureSpawnRates.shipwrecks = createStructureSpawnRateOption(10, 5);
+        options().structureSpawnRates.trialChambers = createStructureSpawnRateOption(12, 6);
+        options().structureSpawnRates.netherComplexes = createStructureSpawnRateOption(8, 4);
+
+        options().mixins.terraBlenderSurfaceRuleDataMixin = true;
+        options().mixins.backgroundRendererMixin = true;
+        options().mixins.simpleOptionMixin = true;
+        options().mixins.logoDrawerMixin = true;
+        options().mixins.renderLayersMixin = true;
     }
 
     /**
@@ -221,7 +247,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 32;
         } else {
-            return 0;
+            return options().structureSpawnRates.ancientCities[0];
         }
     }
 
@@ -237,7 +263,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 16;
         } else {
-            return 0;
+            return options().structureSpawnRates.ancientCities[1];
         }
     }
 
@@ -257,7 +283,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 52;
         } else {
-            return 0;
+            return options().structureSpawnRates.villages[0];
         }
     }
 
@@ -273,7 +299,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 16;
         } else {
-            return 0;
+            return options().structureSpawnRates.villages[1];
         }
     }
 
@@ -293,7 +319,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 52;
         } else {
-            return 0;
+            return options().structureSpawnRates.desertPyramids[0];
         }
     }
 
@@ -309,7 +335,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 16;
         } else {
-            return 0;
+            return options().structureSpawnRates.desertPyramids[1];
         }
     }
 
@@ -329,7 +355,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 50;
         } else {
-            return 0;
+            return options().structureSpawnRates.junglePyramids[0];
         }
     }
 
@@ -345,7 +371,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 12;
         } else {
-            return 0;
+            return options().structureSpawnRates.junglePyramids[1];
         }
     }
 
@@ -365,7 +391,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 50;
         } else {
-            return 0;
+            return options().structureSpawnRates.pillagerOutposts[0];
         }
     }
 
@@ -381,7 +407,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 12;
         } else {
-            return 0;
+            return options().structureSpawnRates.pillagerOutposts[1];
         }
     }
 
@@ -399,7 +425,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.rare()) {
             return 25;
         } else {
-            return 0;
+            return options().structureSpawnRates.endCities[0];
         }
     }
 
@@ -419,7 +445,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 18;
         } else {
-            return 0;
+            return options().structureSpawnRates.endCities[1];
         }
     }
 
@@ -439,7 +465,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 120;
         } else {
-            return 0;
+            return options().structureSpawnRates.woodlandMansions[0];
         }
     }
 
@@ -453,7 +479,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 25;
         } else {
-            return 0;
+            return options().structureSpawnRates.woodlandMansions[1];
         }
     }
 
@@ -473,7 +499,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 60;
         } else {
-            return 0;
+            return options().structureSpawnRates.ruinedPortals[0];
         }
     }
 
@@ -493,7 +519,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 20;
         } else {
-            return 0;
+            return options().structureSpawnRates.ruinedPortals[1];
         }
     }
 
@@ -513,7 +539,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 40;
         } else {
-            return 0;
+            return options().structureSpawnRates.shipwrecks[0];
         }
     }
 
@@ -532,7 +558,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 10;
         } else {
-            return 0;
+            return options().structureSpawnRates.shipwrecks[1];
         }
     }
 
@@ -552,7 +578,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 45;
         } else {
-            return 0;
+            return options().structureSpawnRates.trialChambers[0];
         }
     }
 
@@ -571,7 +597,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 20;
         } else {
-            return 0;
+            return options().structureSpawnRates.trialChambers[1];
         }
     }
 
@@ -591,7 +617,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 40;
         } else {
-            return 0;
+            return options().structureSpawnRates.netherComplexes[0];
         }
     }
 
@@ -610,7 +636,7 @@ public class SpeedrunnerMod implements ModInitializer {
         } else if (options().main.structureSpawnRates.veryRare()) {
             return 10;
         } else {
-            return 0;
+            return options().structureSpawnRates.netherComplexes[1];
         }
     }
 

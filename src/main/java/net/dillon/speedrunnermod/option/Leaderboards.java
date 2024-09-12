@@ -18,7 +18,7 @@ public class Leaderboards {
     private static final ModOptions.Main options = options().main;
     private static final ModOptions.Client cloptions = options().client;
     private static boolean currentLeaderboardsMode;
-    private static ModOptions.StructureSpawnRates currentStructureSpawnRates;
+    private static ModOptions.StructureSpawnRate currentStructureSpawnRates;
     private static int currentBlockBreakingMultiplier;
     private static int currentDragonPerchTime;
     private static ModOptions.Difficulty currentDifficulty;
@@ -68,7 +68,7 @@ public class Leaderboards {
         ineligibleOptions.clear();
         if (!areStructureSpawnRatesEligible()) {
             warnIneligible("Structure Spawn Rates");
-            addIneligible("structure_spawn_rates", withFormatting(options.structureSpawnRates.toString(), options.structureSpawnRates.everywhere() ? Formatting.AQUA : options.structureSpawnRates.ddefault() || options.structureSpawnRates.equals(ModOptions.StructureSpawnRates.DISABLED) ? Formatting.WHITE : options.structureSpawnRates.rare() ? Formatting.LIGHT_PURPLE : options.structureSpawnRates.veryRare() ? Formatting.DARK_PURPLE : Formatting.RED, Formatting.BOLD));
+            addIneligible("structure_spawn_rates", withFormatting(options.structureSpawnRates.toString(), options.structureSpawnRates.everywhere() ? Formatting.AQUA : options.structureSpawnRates.ddefault() || options.structureSpawnRates.equals(ModOptions.StructureSpawnRate.DISABLED) ? Formatting.WHITE : options.structureSpawnRates.rare() ? Formatting.LIGHT_PURPLE : options.structureSpawnRates.veryRare() ? Formatting.DARK_PURPLE : Formatting.RED, Formatting.BOLD));
         }
 
         if (!isDragonPerchTimeEligible()) {
@@ -210,7 +210,7 @@ public class Leaderboards {
      */
     public static void fixOptions() {
         if (!areStructureSpawnRatesEligible()) {
-            options.structureSpawnRates = ModOptions.StructureSpawnRates.COMMON;
+            options.structureSpawnRates = ModOptions.StructureSpawnRate.COMMON;
         }
 
         if (!isDragonPerchTimeEligible()) {

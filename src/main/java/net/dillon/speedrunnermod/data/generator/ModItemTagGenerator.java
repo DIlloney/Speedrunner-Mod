@@ -160,6 +160,15 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(Items.STICK)
                 .add(ModItems.SPEEDRUNNER_STICK);
 
+        getOrCreateTagBuilder(ModItemTags.STATE_OF_THE_ART_ITEMS)
+                .add(ModItems.ANNUL_EYE)
+                .add(ModItems.BLAZE_SPOTTER)
+                .add(ModItems.DRAGONS_PEARL)
+                .add(ModItems.DRAGONS_SWORD)
+                .add(ModItems.ENDER_THRUSTER)
+                .add(ModItems.PIGLIN_AWAKENER)
+                .add(ModItems.RAID_ERADICATOR);
+
         getOrCreateTagBuilder(ModItemTags.Block.DOOM_LOGS)
                 .add(ModBlockItems.DOOM_LOG)
                 .add(ModBlockItems.STRIPPED_DOOM_LOG);

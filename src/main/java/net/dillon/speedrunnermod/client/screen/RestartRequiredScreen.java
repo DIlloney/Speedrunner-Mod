@@ -22,7 +22,7 @@ public class RestartRequiredScreen extends AbstractModScreen {
     public static boolean currentCustomBiomesAndCustomBiomeFeatures;
     public static boolean currentPanorama;
     public static boolean currentConfirmMessages;
-    public static boolean currentApplyFogMixin;
+    public static boolean currentBackgroundRendererMixin;
     public static boolean currentModifiedStrongholdGeneration;
     public static boolean currentModifiedStrongholdYGeneration;
     public static boolean currentModifiedNetherFortressGeneration;
@@ -101,7 +101,6 @@ public class RestartRequiredScreen extends AbstractModScreen {
         currentCustomBiomesAndCustomBiomeFeatures = options().main.customBiomesAndCustomBiomeFeatures;
         currentPanorama = options().client.customPanorama;
         currentConfirmMessages = options().client.confirmMessages;
-        currentApplyFogMixin = options().advanced.applyFogMixin;
         currentModifiedStrongholdGeneration = options().advanced.modifiedStrongholdGeneration;
         currentModifiedStrongholdYGeneration = options().advanced.modifiedStrongholdYGeneration;
         currentModifiedNetherFortressGeneration = options().advanced.modifiedNetherFortressGeneration;
@@ -111,6 +110,7 @@ public class RestartRequiredScreen extends AbstractModScreen {
         currentStrongholdPortalRoomCount = options().main.strongholdPortalRoomCount;
         currentStrongholdLibraryCount = options().main.strongholdLibraryCount;
         currentSpeedrunnersWastelandBiomeWeight = options().advanced.speedrunnersWastelandBiomeWeight;
+        currentBackgroundRendererMixin = options().mixins.backgroundRendererMixin;
     }
 
     public static boolean needsRestart() {
@@ -121,7 +121,6 @@ public class RestartRequiredScreen extends AbstractModScreen {
                 currentCustomBiomesAndCustomBiomeFeatures != options().main.customBiomesAndCustomBiomeFeatures ||
                 currentPanorama != options().client.customPanorama ||
                 currentConfirmMessages != options().client.confirmMessages ||
-                currentApplyFogMixin != options().advanced.applyFogMixin ||
                 currentModifiedStrongholdGeneration != options().advanced.modifiedStrongholdGeneration ||
                 currentModifiedStrongholdYGeneration != options().advanced.modifiedStrongholdYGeneration ||
                 currentModifiedNetherFortressGeneration != options().advanced.modifiedNetherFortressGeneration ||
@@ -130,7 +129,8 @@ public class RestartRequiredScreen extends AbstractModScreen {
                 currentStrongholdCount != options().main.strongholdCount ||
                 currentStrongholdPortalRoomCount != options().main.strongholdPortalRoomCount ||
                 currentStrongholdLibraryCount != options().main.strongholdLibraryCount ||
-                currentSpeedrunnersWastelandBiomeWeight != options().advanced.speedrunnersWastelandBiomeWeight;
+                currentSpeedrunnersWastelandBiomeWeight != options().advanced.speedrunnersWastelandBiomeWeight ||
+                currentBackgroundRendererMixin != options().mixins.backgroundRendererMixin;
     }
 
     private static void revertChanges() {
@@ -141,7 +141,6 @@ public class RestartRequiredScreen extends AbstractModScreen {
         options().main.customBiomesAndCustomBiomeFeatures = currentCustomBiomesAndCustomBiomeFeatures;
         options().client.customPanorama = currentPanorama;
         options().client.confirmMessages = currentConfirmMessages;
-        options().advanced.applyFogMixin = currentApplyFogMixin;
         options().advanced.modifiedStrongholdGeneration = currentModifiedStrongholdGeneration;
         options().advanced.modifiedStrongholdYGeneration = currentModifiedStrongholdYGeneration;
         options().advanced.modifiedNetherFortressGeneration = currentModifiedNetherFortressGeneration;
@@ -151,5 +150,6 @@ public class RestartRequiredScreen extends AbstractModScreen {
         options().main.strongholdPortalRoomCount = currentStrongholdPortalRoomCount;
         options().main.strongholdLibraryCount = currentStrongholdLibraryCount;
         options().advanced.speedrunnersWastelandBiomeWeight = currentSpeedrunnersWastelandBiomeWeight;
+        options().mixins.backgroundRendererMixin = currentBackgroundRendererMixin;
     }
 }

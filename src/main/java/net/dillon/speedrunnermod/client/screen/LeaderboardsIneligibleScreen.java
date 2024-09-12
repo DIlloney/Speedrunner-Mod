@@ -104,23 +104,23 @@ public class LeaderboardsIneligibleScreen extends AbstractModScreen {
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.leftButton.isHovered()) {
             if (needsRestartFromEnablingLeaderboardsMode) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.restart_now.tooltip"), 200), mouseX, mouseY);
+                this.renderBasicTooltip(Text.translatable("speedrunnermod.restart_now.tooltip"), context, mouseX, mouseY);
             } else if (Leaderboards.noOptionsWereChanged()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.fix_and_restart.tooltip"), 200), mouseX, mouseY);
+                this.renderBasicTooltip(Text.translatable("speedrunnermod.fix_and_restart.tooltip"), context, mouseX, mouseY);
             } else {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.revert_changes.tooltip"), 200), mouseX, mouseY);
+                this.renderBasicTooltip(Text.translatable("speedrunnermod.revert_changes.tooltip"), context, mouseX, mouseY);
             }
         }
         if (this.middleButton.isHovered()) {
             if (!needsRestartFromEnablingLeaderboardsMode) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.disable_leaderboards_mode_and_restart.tooltip"), 200), mouseX, mouseY);
+                this.renderBasicTooltip(Text.translatable("speedrunnermod.disable_leaderboards_mode_and_restart.tooltip"), context, mouseX, mouseY);
             }
         }
         if (this.rightButton.isHovered()) {
             if (!needsRestartFromEnablingLeaderboardsMode) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.ignore.tooltip"), 200), mouseX, mouseY);
+                this.renderBasicTooltip(Text.translatable("speedrunnermod.ignore.tooltip"), context, mouseX, mouseY);
             } else {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.ignore_restart.tooltip"), 200), mouseX, mouseY);
+                this.renderBasicTooltip(Text.translatable("speedrunnermod.ignore_restart.tooltip"), context, mouseX, mouseY);
             }
         }
         super.renderTooltips(context, mouseX, mouseY);

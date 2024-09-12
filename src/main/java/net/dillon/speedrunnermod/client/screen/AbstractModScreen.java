@@ -154,18 +154,25 @@ public abstract class AbstractModScreen extends BaseModScreen {
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.isOptionsScreen()) {
             if (this.saveButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.SAVE_TOOLTIP, 200), mouseX, mouseY);
+                this.renderBasicTooltip(ModTexts.SAVE_TOOLTIP, context, mouseX, mouseY);
             }
             if (this.openOptionsFileButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.OPEN_OPTIONS_FILE_TOOLTIP, 200), mouseX, mouseY);
+                this.renderBasicTooltip(ModTexts.OPEN_OPTIONS_FILE_TOOLTIP, context, mouseX, mouseY);
             }
             if (this.helpButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.HELP_TOOLTIP, 200), mouseX, mouseY);
+                this.renderBasicTooltip(ModTexts.HELP_TOOLTIP, context, mouseX, mouseY);
             }
             if (this.openOptionsDirectoryButton.isHovered()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(ModTexts.DIRECTORY_TOOLTIP, 200), mouseX, mouseY);
+                this.renderBasicTooltip(ModTexts.DIRECTORY_TOOLTIP, context, mouseX, mouseY);
             }
         }
+    }
+
+    /**
+     * A simplified way to render a tooltip.
+     */
+    protected void renderBasicTooltip(Text text, DrawContext context, int mouseX, int mouseY) {
+        context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(text, 200), mouseX, mouseY);
     }
 
     /**
@@ -201,6 +208,13 @@ public abstract class AbstractModScreen extends BaseModScreen {
                 widget.widgets.get(ButtonSide.buttonIndexes(buttonSide)).active = false;
             }
         }
+    }
+
+    /**
+     * Initializes a {@code option list widget.}
+     */
+    protected void initializeOptionListWidget() {
+        this.optionList = this.addDrawableChild(new OptionListWidget(this.client, this.width, this));
     }
 
     /**

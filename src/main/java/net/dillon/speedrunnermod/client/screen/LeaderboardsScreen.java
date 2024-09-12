@@ -47,11 +47,11 @@ public class LeaderboardsScreen extends AbstractModScreen {
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.submitSpeedrunButton.isHovered()) {
             if (!options().main.leaderboardsMode) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.leaderboards_mode_disabled.tooltip"), 200), mouseX, mouseY);
+                this.renderBasicTooltip(Text.translatable("speedrunnermod.leaderboards_mode_disabled.tooltip"), context, mouseX, mouseY);
             } else if (!Leaderboards.isEligibleForLeaderboardRuns()) {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.cannot_submit_speedrun.tooltip"), 200), mouseX, mouseY);
+                this.renderBasicTooltip(Text.translatable("speedrunnermod.cannot_submit_speedrun.tooltip"), context, mouseX, mouseY);
             } else {
-                context.drawOrderedTooltip(this.textRenderer, this.client.textRenderer.wrapLines(Text.translatable("speedrunnermod.submit_speedrun.tooltip"), 200), mouseX, mouseY);
+                this.renderBasicTooltip(Text.translatable("speedrunnermod.submit_speedrun.tooltip"), context, mouseX, mouseY);
             }
         }
         super.renderTooltips(context, mouseX, mouseY);

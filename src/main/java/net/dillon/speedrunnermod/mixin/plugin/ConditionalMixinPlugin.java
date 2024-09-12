@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.mixin.plugin;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.dillon.speedrunnermod.util.Credit;
 import org.objectweb.asm.tree.ClassNode;
@@ -20,12 +19,7 @@ public class ConditionalMixinPlugin implements IMixinConfigPlugin {
      */
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (!options().advanced.applyFogMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.Fog")) {
-            SpeedrunnerMod.warn("Speedrunner Mod Fog mixin has been disabled.");
-            return false;
-        } else {
-            return true;
-        }
+        return !shouldNotApply(mixinClassName);
     }
 
     // Other methods...
@@ -54,5 +48,16 @@ public class ConditionalMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
+    }
+
+    /**
+     * Returns mixins that should not apply based on certain conditions.
+     */
+    private boolean shouldNotApply(String mixinClassName) {
+        return !options().mixins.terraBlenderSurfaceRuleDataMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.main.world.TBSurfaceRuleDataMixin") ||
+                !options().mixins.backgroundRendererMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.Fog") ||
+                !options().mixins.simpleOptionMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.IncreasedBrightness") ||
+                !options().mixins.logoDrawerMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.screen.LogoDrawerMixin") ||
+                !options().mixins.renderLayersMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.fix.RenderLayersMixin");
     }
 }

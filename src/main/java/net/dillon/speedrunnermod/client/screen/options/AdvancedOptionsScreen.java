@@ -9,7 +9,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
 
@@ -35,33 +34,33 @@ public class AdvancedOptionsScreen extends AbstractModScreen {
                 ModListOptions.SHOW_RESET_BUTTON,
                 ModListOptions.HIGHER_BREATH_TIME,
                 options().main.throwableFireballs ? ModListOptions.FIREBALL_EXPLOSION_POWER : ModListOptions.Inactiveable.IAO_FIREBALL_EXPLOSION_POWER,
-                ModListOptions.APPLY_FOG_MIXIN
         };
     }
 
     @Override
     protected void init() {
-        this.optionList = this.addDrawableChild(new OptionListWidget(this.client, this.width, this));
+        this.initializeOptionListWidget();
+
         this.optionList.addSingleOptionEntry(ModListOptions.MODIFIED_STRONGHOLD_GENERATION);
         this.optionList.addSingleOptionEntry(ModListOptions.MODIFIED_STRONGHOLD_Y_GENERATION);
         this.optionList.addSingleOptionEntry(ModListOptions.MODIFIED_NETHER_FORTRESS_GENERATION);
-        this.optionList.addAll(advancedOptions());
         this.optionList.addSingleOptionEntry(ModListOptions.GENERATE_SPEEDRUNNER_WOOD);
         this.optionList.addSingleOptionEntry(ModListOptions.SPEEDRUNNERS_WASTELAND_BIOME_WEIGHT);
         this.optionList.addSingleOptionEntry(ModListOptions.ENDER_EYE_BREAKING_COOLDOWN);
         this.optionList.addSingleOptionEntry(ModListOptions.LONGER_DRAGON_PERCH_STAY_TIME);
         this.optionList.addSingleOptionEntry(ModListOptions.DECREASED_ZOMBIFIED_PIGLIN_SCARE_DISTANCE);
-        this.optionList.addSingleOptionEntry(options().main.stateOfTheArtItems ? ModListOptions.PIGLIN_AWAKENER_PIGLIN_COUNT : ModListOptions.Inactiveable.IAO_PIGLIN_AWAKENER_PIGLIN_COUNT);
+        this.optionList.addSingleOptionEntry(options().stateOfTheArtItems.isPiglinAwakenerEnabled() ? ModListOptions.PIGLIN_AWAKENER_PIGLIN_COUNT : ModListOptions.Inactiveable.IAO_PIGLIN_AWAKENER_PIGLIN_COUNT);
         this.optionList.addSingleOptionEntry(options().main.iCarusMode ? ModListOptions.ICARUS_FIREWORKS_INVENTORY_SLOT : ModListOptions.Inactiveable.IAO_ICARUS_FIREWORKS_INVENTORY_SLOT);
         this.optionList.addSingleOptionEntry(options().main.infiniPearlMode ? ModListOptions.INFINI_PEARL_INVENTORY_SLOT : ModListOptions.Inactiveable.IAO_INFINI_PEARL_INVENTORY_SLOT);
         this.optionList.addSingleOptionEntry(ModListOptions.DRAGON_KILLS_NEARBY_HOSTILE_ENTITIES);
         this.optionList.addSingleOptionEntry(options().main.doomMode ? ModListOptions.DRAGON_IMMUNITY_FROM_GIANT_AND_WITHER : ModListOptions.Inactiveable.IAO_DRAGON_IMMUNITY_FROM_GIANT_AND_WITHER);
+        this.optionList.addAll(advancedOptions());
 
-        this.deactivateButton(4, ButtonSide.LEFT, options().main.throwableFireballs);
-        this.deactivateButton(10, ButtonSide.LARGE, options().main.stateOfTheArtItems);
-        this.deactivateButton(11, ButtonSide.LARGE, options().main.iCarusMode);
-        this.deactivateButton(12, ButtonSide.LARGE, options().main.infiniPearlMode);
-        this.deactivateButton(14, ButtonSide.LARGE, options().main.doomMode);
+        this.deactivateButton(8, ButtonSide.LARGE, options().stateOfTheArtItems.isPiglinAwakenerEnabled());
+        this.deactivateButton(9, ButtonSide.LARGE, options().main.iCarusMode);
+        this.deactivateButton(10, ButtonSide.LARGE, options().main.infiniPearlMode);
+        this.deactivateButton(12, ButtonSide.LARGE, options().main.doomMode);
+        this.deactivateButton(14, ButtonSide.LEFT, options().main.throwableFireballs);
 
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);

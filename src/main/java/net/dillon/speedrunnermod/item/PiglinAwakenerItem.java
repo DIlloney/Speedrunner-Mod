@@ -44,7 +44,7 @@ public class PiglinAwakenerItem extends Item {
         ItemStack stack = player.getStackInHand(hand);
         player.setCurrentHand(hand);
         if (!world.isClient) {
-            if (options().main.stateOfTheArtItems) {
+            if (options().stateOfTheArtItems.isPiglinAwakenerEnabled()) {
                 if (world.getRegistryKey() == World.NETHER) {
                     List<PiglinEntity> piglins = world.getEntitiesByClass(PiglinEntity.class, player.getBoundingBox().expand(options().advanced.piglinAwakenerPiglinDistanceXYZ[0], options().advanced.piglinAwakenerPiglinDistanceXYZ[1], options().advanced.piglinAwakenerPiglinDistanceXYZ[2]), entity -> true);
 
