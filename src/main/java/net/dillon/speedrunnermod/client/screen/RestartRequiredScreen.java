@@ -22,10 +22,14 @@ public class RestartRequiredScreen extends AbstractModScreen {
     public static boolean currentCustomBiomesAndCustomBiomeFeatures;
     public static boolean currentPanorama;
     public static boolean currentConfirmMessages;
-    public static boolean currentBackgroundRendererMixin;
     public static boolean currentModifiedStrongholdGeneration;
     public static boolean currentModifiedStrongholdYGeneration;
     public static boolean currentModifiedNetherFortressGeneration;
+    public static boolean currentTerraBlenderSurfaceRuleDataMixin;
+    public static boolean currentBackgroundRendererMixin;
+    public static boolean currentSimpleOptionMixin;
+    public static boolean currentLogoDrawerMixin;
+    public static boolean currentRenderLayersMixin;
     public static int currentStrongholdDistance;
     public static int currentStrongholdSpread;
     public static int currentStrongholdCount;
@@ -104,13 +108,17 @@ public class RestartRequiredScreen extends AbstractModScreen {
         currentModifiedStrongholdGeneration = options().advanced.modifiedStrongholdGeneration;
         currentModifiedStrongholdYGeneration = options().advanced.modifiedStrongholdYGeneration;
         currentModifiedNetherFortressGeneration = options().advanced.modifiedNetherFortressGeneration;
+        currentTerraBlenderSurfaceRuleDataMixin = options().mixins.terraBlenderSurfaceRuleDataMixin;
+        currentBackgroundRendererMixin = options().mixins.backgroundRendererMixin;
+        currentSimpleOptionMixin = options().mixins.simpleOptionMixin;
+        currentLogoDrawerMixin = options().mixins.logoDrawerMixin;
+        currentRenderLayersMixin = options().mixins.renderLayersMixin;
         currentStrongholdDistance = options().main.strongholdDistance;
         currentStrongholdSpread = options().main.strongholdSpread;
         currentStrongholdCount = options().main.strongholdCount;
         currentStrongholdPortalRoomCount = options().main.strongholdPortalRoomCount;
         currentStrongholdLibraryCount = options().main.strongholdLibraryCount;
         currentSpeedrunnersWastelandBiomeWeight = options().advanced.speedrunnersWastelandBiomeWeight;
-        currentBackgroundRendererMixin = options().mixins.backgroundRendererMixin;
     }
 
     public static boolean needsRestart() {
@@ -124,13 +132,17 @@ public class RestartRequiredScreen extends AbstractModScreen {
                 currentModifiedStrongholdGeneration != options().advanced.modifiedStrongholdGeneration ||
                 currentModifiedStrongholdYGeneration != options().advanced.modifiedStrongholdYGeneration ||
                 currentModifiedNetherFortressGeneration != options().advanced.modifiedNetherFortressGeneration ||
+                currentTerraBlenderSurfaceRuleDataMixin != options().mixins.terraBlenderSurfaceRuleDataMixin ||
+                currentBackgroundRendererMixin != options().mixins.backgroundRendererMixin ||
+                currentSimpleOptionMixin != options().mixins.simpleOptionMixin ||
+                currentLogoDrawerMixin != options().mixins.logoDrawerMixin ||
+                currentRenderLayersMixin != options().mixins.renderLayersMixin ||
                 currentStrongholdDistance != options().main.strongholdDistance ||
                 currentStrongholdSpread != options().main.strongholdSpread ||
                 currentStrongholdCount != options().main.strongholdCount ||
                 currentStrongholdPortalRoomCount != options().main.strongholdPortalRoomCount ||
                 currentStrongholdLibraryCount != options().main.strongholdLibraryCount ||
-                currentSpeedrunnersWastelandBiomeWeight != options().advanced.speedrunnersWastelandBiomeWeight ||
-                currentBackgroundRendererMixin != options().mixins.backgroundRendererMixin;
+                currentSpeedrunnersWastelandBiomeWeight != options().advanced.speedrunnersWastelandBiomeWeight;
     }
 
     private static void revertChanges() {
@@ -144,12 +156,16 @@ public class RestartRequiredScreen extends AbstractModScreen {
         options().advanced.modifiedStrongholdGeneration = currentModifiedStrongholdGeneration;
         options().advanced.modifiedStrongholdYGeneration = currentModifiedStrongholdYGeneration;
         options().advanced.modifiedNetherFortressGeneration = currentModifiedNetherFortressGeneration;
+        options().mixins.terraBlenderSurfaceRuleDataMixin = currentTerraBlenderSurfaceRuleDataMixin;
+        options().mixins.backgroundRendererMixin = currentBackgroundRendererMixin;
+        options().mixins.simpleOptionMixin = currentSimpleOptionMixin;
+        options().mixins.logoDrawerMixin = currentLogoDrawerMixin;
+        options().mixins.renderLayersMixin = currentRenderLayersMixin;
         options().main.strongholdDistance = currentStrongholdDistance;
         options().main.strongholdSpread = currentStrongholdSpread;
         options().main.strongholdCount = currentStrongholdCount;
         options().main.strongholdPortalRoomCount = currentStrongholdPortalRoomCount;
         options().main.strongholdLibraryCount = currentStrongholdLibraryCount;
         options().advanced.speedrunnersWastelandBiomeWeight = currentSpeedrunnersWastelandBiomeWeight;
-        options().mixins.backgroundRendererMixin = currentBackgroundRendererMixin;
     }
 }
