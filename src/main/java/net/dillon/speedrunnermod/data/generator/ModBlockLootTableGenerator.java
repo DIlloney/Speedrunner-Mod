@@ -28,7 +28,7 @@ import java.util.concurrent.CompletableFuture;
  */
 public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
     private static final float[] NEW_SAPLING_DROP_CHANCE = new float[]{0.075F, 0.0800F, 0.093333336F, 0.15F};
-    private static final float[] NEW_LEAVES_STICK_DROP_CHANCE = new float[]{0.65F,  0.06555558F, 0.70F, 0.075F, 0.1F};
+    private static final float[] NEW_LEAVES_STICK_DROP_CHANCE = new float[]{0.65F, 0.06555558F, 0.70F, 0.075F, 0.1F};
     private final RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
 
     protected ModBlockLootTableGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {

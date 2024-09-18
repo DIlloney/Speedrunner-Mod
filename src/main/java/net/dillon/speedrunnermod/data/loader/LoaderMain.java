@@ -6,7 +6,6 @@ import com.google.gson.JsonObject;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.dillon.speedrunnermod.util.Credit;
-import org.spongepowered.asm.mixin.Unique;
 
 import java.util.Map;
 
@@ -22,7 +21,6 @@ public class LoaderMain {
     /**
      * Modifies the creature spawn parameters in a given biome.
      */
-    @Unique
     @ChatGPT(Credit.FULL_CREDIT)
     protected static void modifyCreatureSpawns(JsonElement jsonElement, Map<String, Integer[]> creatureValues, boolean waterCreature) {
         JsonArray spawnersArray = jsonElement.getAsJsonObject().getAsJsonObject("spawners").getAsJsonArray(waterCreature ? "water_creature" : "creature");
@@ -51,7 +49,7 @@ public class LoaderMain {
     /**
      * Modifies the monster spawn parameters in a given biome.
      */
-    @Unique @ChatGPT(Credit.FULL_CREDIT)
+    @ChatGPT(Credit.FULL_CREDIT)
     protected static void modifyMonsterSpawns(JsonElement jsonElement, Map<String, Integer[]> monsterValues, boolean customWeight) {
         JsonArray spawnersArray = jsonElement.getAsJsonObject().getAsJsonObject("spawners").getAsJsonArray("monster");
 
@@ -85,7 +83,6 @@ public class LoaderMain {
     /**
      * Creates a mob spawn setting, specifically for creature spawns.
      */
-    @Unique
     protected static Integer[] createSpawnSettings(int weight, int minCountLow, int defaultMinCount, int maxCountHigh, int defaultMaxCount) {
         return new Integer[]{weight, minCountLow, defaultMinCount, maxCountHigh, defaultMaxCount};
     }
@@ -93,7 +90,6 @@ public class LoaderMain {
     /**
      * Creates a mob spawn setting, specifically for monster spawns.
      */
-    @Unique
     protected static Integer[] createSpawnSettings(int weight, int minCount, int maxCount) {
         return new Integer[]{weight, minCount, maxCount};
     }
@@ -101,7 +97,6 @@ public class LoaderMain {
     /**
      * Creates a mob spawn setting without a weight, specifically for monster spawns.
      */
-    @Unique
     protected static Integer[] createSpawnSettings(int minCount, int maxCount) {
         return new Integer[]{0, minCount, maxCount};
     }

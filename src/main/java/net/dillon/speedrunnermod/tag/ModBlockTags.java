@@ -12,54 +12,75 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
  * All Speedrunner Mod {@code block tags.} Useful for many things in some mixins.
  */
 public class ModBlockTags {
-    public static TagKey<Block> DEAD_SPEEDRUNNER_LOGS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_logs"));
-    public static TagKey<Block> DOOM_LOGS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "doom_logs"));
-    public static TagKey<Block> EXPERIENCE_ORES = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "experience_ores"));
-    public static TagKey<Block> IGNEOUS_ORES = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "igneous_ores"));
-    public static TagKey<Block> IRON_BLOCKS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "iron_blocks"));
-    public static TagKey<Block> NETHER_PORTAL_BASE_BLOCKS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "nether_portal_base_blocks"));
-    public static TagKey<Block> SMITHING_TABLES = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "smithing_tables"));
-    public static TagKey<Block> SPEEDRUNNER_FUELS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_fuels"));
-    public static TagKey<Block> SPEEDRUNNER_LOGS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_logs"));
-    public static TagKey<Block> SPEEDRUNNER_ORES = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_ores"));
-    public static TagKey<Block> SPEEDRUNNER_PLANKS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_planks"));
-    public static TagKey<Block> SPEEDRUNNER_SAPLING_PLACEABLES = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_sapling_placeables"));
-    public static TagKey<Block> SPEEDRUNNER_SIGNS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_signs"));
-    public static TagKey<Block> TEXTURE_CREATOR_MANNYQUESO = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "texture_creator_mannyqueso"));
-    public static TagKey<Block> TEXTURE_CREATOR_KREVIKUS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "texture_creator_krevikus"));
+    public static TagKey<Block> DEAD_SPEEDRUNNER_LOGS = of("dead_speedrunner_logs");
+    public static TagKey<Block> DOOM_LOGS = of("doom_logs");
+    public static TagKey<Block> EXPERIENCE_ORES = of("experience_ores");
+    public static TagKey<Block> IGNEOUS_ORES = of("igneous_ores");
+    public static TagKey<Block> IRON_BLOCKS = of("iron_blocks");
+    public static TagKey<Block> NETHER_PORTAL_BASE_BLOCKS = of("nether_portal_base_blocks");
+    public static TagKey<Block> SMITHING_TABLES = of("smithing_tables");
+    public static TagKey<Block> SPEEDRUNNER_FUELS = of("speedrunner_fuels");
+    public static TagKey<Block> SPEEDRUNNER_LOGS = of("speedrunner_logs");
+    public static TagKey<Block> SPEEDRUNNER_ORES = of("speedrunner_ores");
+    public static TagKey<Block> SPEEDRUNNER_PLANKS = of("speedrunner_planks");
+    public static TagKey<Block> SPEEDRUNNER_SAPLING_PLACEABLES = of("speedrunner_sapling_placeables");
+    public static TagKey<Block> SPEEDRUNNER_SIGNS = of("speedrunner_signs");
+    public static TagKey<Block> TEXTURE_CREATOR_MANNYQUESO = of("texture_creator_mannyqueso");
+    public static TagKey<Block> TEXTURE_CREATOR_KREVIKUS = of("texture_creator_krevikus");
 
     /**
      * These are the block tags that have a modified hardness value. See {@link net.dillon.speedrunnermod.mixin.main.block.AbstractBlockStateMixin} for more.
      */
     public static class BlockHardness {
-        public static TagKey<Block> ZERO_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0_hardness"));
-        public static TagKey<Block> ZERO_ONE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-1_hardness"));
-        public static TagKey<Block> ZERO_TWO_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-2_hardness"));
-        public static TagKey<Block> ZERO_THREE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-3_hardness"));
-        public static TagKey<Block> ZERO_THREEFIVE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-35_hardness"));
-        public static TagKey<Block> ZERO_THREESEVEN_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-37_hardness"));
-        public static TagKey<Block> ZERO_FOUR_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-4_hardness"));
-        public static TagKey<Block> ZERO_FIVE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-5_hardness"));
-        public static TagKey<Block> ZERO_SIX_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-6_hardness"));
-        public static TagKey<Block> ZERO_SIXFIVE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-65_hardness"));
-        public static TagKey<Block> ZERO_SEVEN_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-7_hardness"));
-        public static TagKey<Block> ZERO_EIGHT_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/0-8_hardness"));
-        public static TagKey<Block> ONE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/1_hardness"));
-        public static TagKey<Block> ONE_THREE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/1-3_hardness"));
-        public static TagKey<Block> ONE_FOUR_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/1-4_hardness"));
-        public static TagKey<Block> ONE_FIVE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/1-5_hardness"));
-        public static TagKey<Block> ONE_SIX_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/1-6_hardness"));
-        public static TagKey<Block> TWO_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/2_hardness"));
-        public static TagKey<Block> TWO_FIVE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/2-5_hardness"));
-        public static TagKey<Block> THREE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/3_hardness"));
-        public static TagKey<Block> FOUR_FIVE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/4-5_hardness"));
-        public static TagKey<Block> FIVE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/5_hardness"));
-        public static TagKey<Block> SIX_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/6_hardness"));
-        public static TagKey<Block> SEVEN_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/7_hardness"));
-        public static TagKey<Block> EIGHT_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/8_hardness"));
-        public static TagKey<Block> NINE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/9_hardness"));
-        public static TagKey<Block> TEN_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/10_hardness"));
-        public static TagKey<Block> TWENTY_FIVE_HARDNESS = TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/25_hardness"));
+        public static TagKey<Block> ZERO_HARDNESS = blockHardness(0);
+        public static TagKey<Block> ZERO_ONE_HARDNESS = blockHardness(0, 1);
+        public static TagKey<Block> ZERO_TWO_HARDNESS = blockHardness(0, 2);
+        public static TagKey<Block> ZERO_THREE_HARDNESS = blockHardness(0, 3);
+        public static TagKey<Block> ZERO_THREEFIVE_HARDNESS = blockHardness(0, 35);
+        public static TagKey<Block> ZERO_THREESEVEN_HARDNESS = blockHardness(0, 37);
+        public static TagKey<Block> ZERO_FOUR_HARDNESS = blockHardness(0, 4);
+        public static TagKey<Block> ZERO_FIVE_HARDNESS = blockHardness(0, 5);
+        public static TagKey<Block> ZERO_SIX_HARDNESS = blockHardness(0, 6);
+        public static TagKey<Block> ZERO_SIXFIVE_HARDNESS = blockHardness(0, 65);
+        public static TagKey<Block> ZERO_SEVEN_HARDNESS = blockHardness(0, 7);
+        public static TagKey<Block> ZERO_EIGHT_HARDNESS = blockHardness(0, 8);
+        public static TagKey<Block> ONE_HARDNESS = blockHardness(1);
+        public static TagKey<Block> ONE_THREE_HARDNESS = blockHardness(1, 3);
+        public static TagKey<Block> ONE_FOUR_HARDNESS = blockHardness(1, 4);
+        public static TagKey<Block> ONE_FIVE_HARDNESS = blockHardness(1, 5);
+        public static TagKey<Block> ONE_SIX_HARDNESS = blockHardness(1, 6);
+        public static TagKey<Block> TWO_HARDNESS = blockHardness(2);
+        public static TagKey<Block> TWO_FIVE_HARDNESS = blockHardness(2, 5);
+        public static TagKey<Block> THREE_HARDNESS = blockHardness(3);
+        public static TagKey<Block> FOUR_FIVE_HARDNESS = blockHardness(4, 5);
+        public static TagKey<Block> FIVE_HARDNESS = blockHardness(5);
+        public static TagKey<Block> SIX_HARDNESS = blockHardness(6);
+        public static TagKey<Block> SEVEN_HARDNESS = blockHardness(7);
+        public static TagKey<Block> EIGHT_HARDNESS = blockHardness(8);
+        public static TagKey<Block> NINE_HARDNESS = blockHardness(9);
+        public static TagKey<Block> TEN_HARDNESS = blockHardness(10);
+        public static TagKey<Block> TWENTY_FIVE_HARDNESS = blockHardness(25);
+    }
+
+    /**
+     * Registers a {@code block tag.}
+     */
+    private static TagKey<Block> of(String path) {
+        return TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, path));
+    }
+
+    /**
+     * Registers a {@code block hardness tag} with a "double" value.
+     */
+    private static TagKey<Block> blockHardness(int base, int decimal) {
+        return TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/"+base+"-"+decimal+"_hardness"));
+    }
+
+    /**
+     * Registers a {@code block hardness tag} with an integer value.
+     */
+    private static TagKey<Block> blockHardness(int hardness) {
+        return TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/"+hardness+"_hardness"));
     }
 
     /**

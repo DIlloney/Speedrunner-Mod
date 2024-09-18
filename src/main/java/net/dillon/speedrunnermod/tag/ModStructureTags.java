@@ -12,10 +12,17 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
  * All Speedrunner Mod {@code structure tags.} These are only really used because vanilla Minecraft doesn't have a tag for these structures.
  */
 public class ModStructureTags {
-    public static final TagKey<Structure> ANCIENT_CITIES = TagKey.of(RegistryKeys.STRUCTURE, Identifier.of(SpeedrunnerMod.MOD_ID, "ancient_cities"));
-    public static final TagKey<Structure> BASTIONS = TagKey.of(RegistryKeys.STRUCTURE, Identifier.of(SpeedrunnerMod.MOD_ID, "bastions"));
-    public static final TagKey<Structure> DESERT_PYRAMIDS = TagKey.of(RegistryKeys.STRUCTURE, Identifier.of(SpeedrunnerMod.MOD_ID, "desert_pyramids"));
-    public static final TagKey<Structure> FORTRESSES = TagKey.of(RegistryKeys.STRUCTURE, Identifier.of(SpeedrunnerMod.MOD_ID, "fortresses"));
+    public static final TagKey<Structure> ANCIENT_CITIES = of("ancient_cities");
+    public static final TagKey<Structure> BASTIONS = of("bastions");
+    public static final TagKey<Structure> DESERT_PYRAMIDS = of("desert_pyramids");
+    public static final TagKey<Structure> FORTRESSES = of("fortresses");
+
+    /**
+     * Registers a {@code structure tag.}
+     */
+    private static TagKey<Structure> of(String path) {
+        return TagKey.of(RegistryKeys.STRUCTURE, Identifier.of(SpeedrunnerMod.MOD_ID, path));
+    }
 
     public static void init() {
         info("Registered structure tags.");

@@ -7,5 +7,12 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 public class ModEnchantmentTags {
-    public static TagKey<Enchantment> RETIRED_SPEEDRUNNER_TRADES = TagKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(SpeedrunnerMod.MOD_ID, "retired_speedrunner_trades"));
+    public static TagKey<Enchantment> RETIRED_SPEEDRUNNER_TRADES = of("retired_speedrunner_trades");
+
+    /**
+     * Registers an {@code enchantment tag.}
+     */
+    private static TagKey<Enchantment> of(String path) {
+        return TagKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(SpeedrunnerMod.MOD_ID, path));
+    }
 }
