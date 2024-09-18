@@ -18,7 +18,7 @@ public class ModBlockFamilies {
             .sign(ModBlocks.DEAD_SPEEDRUNNER_SIGN, ModBlocks.DEAD_SPEEDRUNNER_WALL_SIGN)
             .group("wooden").unlockCriterionName("has_planks").build();
 
-    public static void init() {
+    public static void registerBlockFamilies() {
         info("Initialized the speedrunner wood block family.");
     }
 }

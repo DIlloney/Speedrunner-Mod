@@ -86,7 +86,7 @@ public class ModBlockTags {
     /**
      * Initializes all Speedrunner Mod {@code block tags.}
      */
-    public static void init() {
-        info("Registered block tags.");
+    public static void initializeBlockTags() {
+        info("Initialized block tags.");
     }
 }

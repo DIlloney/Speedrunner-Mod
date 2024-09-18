@@ -31,7 +31,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 @Mixin(TradeOffers.class)
 public class TradeOffersMixin {
     @Shadow
-    public static final Map<VillagerProfession, Int2ObjectMap<TradeOffers.Factory[]>> PROFESSION_TO_LEVELED_TRADE = options().main.betterVillagerTrades ? Util.make(Maps.newHashMap(), map -> {
+    public static final Map<VillagerProfession, Int2ObjectMap<TradeOffers.Factory[]>> PROFESSION_TO_LEVELED_TRADE = options().main.betterVillagerTrades.getCurrentValue() ? Util.make(Maps.newHashMap(), map -> {
         map.put(VillagerProfession.FARMER, TradeOffers.copyToFastUtilMap(
                 ImmutableMap.of(
                         1, new TradeOffers.Factory[]{

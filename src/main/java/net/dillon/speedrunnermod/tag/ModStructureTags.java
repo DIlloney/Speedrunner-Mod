@@ -24,7 +24,7 @@ public class ModStructureTags {
         return TagKey.of(RegistryKeys.STRUCTURE, Identifier.of(SpeedrunnerMod.MOD_ID, path));
     }
 
-    public static void init() {
-        info("Registered structure tags.");
+    public static void initializeStructureTags() {
+        info("Initialized structure tags.");
     }
 }

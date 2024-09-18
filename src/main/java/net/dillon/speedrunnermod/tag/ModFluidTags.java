@@ -24,7 +24,7 @@ public class ModFluidTags {
     /**
      * Initializes all Speedrunner Mod {@code fluid tags.}
      */
-    public static void init() {
-        info("Registered fluid tags.");
+    public static void initializeFluidTags() {
+        info("Initialized fluid tags.");
     }
 }

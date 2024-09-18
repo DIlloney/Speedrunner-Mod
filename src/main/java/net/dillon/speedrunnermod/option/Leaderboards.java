@@ -18,10 +18,10 @@ public class Leaderboards {
     private static final ModOptions.Main options = options().main;
     private static final ModOptions.Client cloptions = options().client;
     private static boolean currentLeaderboardsMode;
-    private static ModOptions.StructureSpawnRate currentStructureSpawnRates;
+    private static StructureSpawnRate currentStructureSpawnRates;
     private static int currentBlockBreakingMultiplier;
     private static int currentDragonPerchTime;
-    private static ModOptions.Difficulty currentDifficulty;
+    private static Difficulty currentDifficulty;
     private static int currentStrongholdCount;
     private static int currentStrongholdDistance;
     private static int currentStrongholdSpread;
@@ -33,7 +33,7 @@ public class Leaderboards {
     /**
      * Used to call the class and initialize it ({@link SpeedrunnerMod#onInitialize()}).
      */
-    public static void init() {
+    public static void initializeLeaderboards() {
         info("Initialized leaderboard settings.");
     }
 
@@ -68,17 +68,17 @@ public class Leaderboards {
         ineligibleOptions.clear();
         if (!areStructureSpawnRatesEligible()) {
             warnIneligible("Structure Spawn Rates");
-            addIneligible("structure_spawn_rates", withFormatting(options.structureSpawnRates.toString(), options.structureSpawnRates.everywhere() ? Formatting.AQUA : options.structureSpawnRates.ddefault() || options.structureSpawnRates.equals(ModOptions.StructureSpawnRate.DISABLED) ? Formatting.WHITE : options.structureSpawnRates.rare() ? Formatting.LIGHT_PURPLE : options.structureSpawnRates.veryRare() ? Formatting.DARK_PURPLE : Formatting.RED, Formatting.BOLD));
+            addIneligible("structure_spawn_rates", withFormatting(options.structureSpawnRates.toString(), options.structureSpawnRates.everywhere() ? Formatting.AQUA : options.structureSpawnRates.ddefault() || options.structureSpawnRates.equals(StructureSpawnRate.DISABLED) ? Formatting.WHITE : options.structureSpawnRates.rare() ? Formatting.LIGHT_PURPLE : options.structureSpawnRates.veryRare() ? Formatting.DARK_PURPLE : Formatting.RED, Formatting.BOLD));
         }
 
         if (!isDragonPerchTimeEligible()) {
             warnIneligible("Dragon Perch Time");
-            addIneligible("dragon_perch_time", withFormatting(options.dragonPerchTime, Formatting.RED, Formatting.BOLD));
+            addIneligible("dragon_perch_time", withFormatting(options.dragonPerchTime.getCurrentValue(), Formatting.RED, Formatting.BOLD));
         }
 
         if (!isBlockBreakingMultiplierEligible()) {
             warnIneligible("Block Breaking Multiplier");
-            addIneligible("block_breaking_multiplier", withFormatting(options.blockBreakingMultiplier, Formatting.RED, Formatting.BOLD));
+            addIneligible("block_breaking_multiplier", withFormatting(options.blockBreakingMultiplier.getCurrentValue(), Formatting.RED, Formatting.BOLD));
         }
 
         if (!isDifficultyEligible()) {
@@ -88,37 +88,37 @@ public class Leaderboards {
 
         if (!isStrongholdCountEligible()) {
             warnIneligible("Stronghold Count");
-            addIneligible("stronghold_count", withFormatting(options.strongholdCount, Formatting.RED, Formatting.BOLD));
+            addIneligible("stronghold_count", withFormatting(options.strongholdCount.getCurrentValue(), Formatting.RED, Formatting.BOLD));
         }
 
         if (!isStrongholdDistanceEligible()) {
             warnIneligible("Stronghold Distance");
-            addIneligible("stronghold_distance", withFormatting(options.strongholdDistance, Formatting.RED, Formatting.BOLD));
+            addIneligible("stronghold_distance", withFormatting(options.strongholdDistance.getCurrentValue(), Formatting.RED, Formatting.BOLD));
         }
 
         if (!isStrongholdSpreadEligible()) {
             warnIneligible("Stronghold Spread");
-            addIneligible("stronghold_spread", withFormatting(options.strongholdSpread, Formatting.RED, Formatting.BOLD));
+            addIneligible("stronghold_spread", withFormatting(options.strongholdSpread.getCurrentValue(), Formatting.RED, Formatting.BOLD));
         }
 
         if (!isStrongholdPortalRoomsEligible()) {
             warnIneligible("Stronghold Portal Room Count");
-            addIneligible("stronghold_portal_room_count", withFormatting(options.strongholdPortalRoomCount, Formatting.RED, Formatting.BOLD));
+            addIneligible("stronghold_portal_room_count", withFormatting(options.strongholdPortalRoomCount.getCurrentValue(), Formatting.RED, Formatting.BOLD));
         }
 
         if (!isStrongholdLibrariesEligible()) {
             warnIneligible("Stronghold Library Count");
-            addIneligible("stronghold_library_count", withFormatting(options.strongholdLibraryCount, Formatting.RED, Formatting.BOLD));
+            addIneligible("stronghold_library_count", withFormatting(options.strongholdLibraryCount.getCurrentValue(), Formatting.RED, Formatting.BOLD));
         }
 
         if (!isAnvilCostLimitEligible()) {
             warnIneligible("Anvil Cost Limit");
-            addIneligible("anvil_cost_limit", withFormatting(options.anvilCostLimit, Formatting.RED, Formatting.BOLD));
+            addIneligible("anvil_cost_limit", withFormatting(options.anvilCostLimit.getCurrentValue(), Formatting.RED, Formatting.BOLD));
         }
 
         if (!isNetherPortalCooldownEligible()) {
             warnIneligible("Nether Portal Cooldown");
-            addIneligible("nether_portal_cooldown", withFormatting(options.netherPortalDelay, Formatting.RED, Formatting.BOLD));
+            addIneligible("nether_portal_cooldown", withFormatting(options.netherPortalDelay.getCurrentValue(), Formatting.RED, Formatting.BOLD));
         }
 
         if (!isIcarusModeEligible()) {
@@ -162,30 +162,30 @@ public class Leaderboards {
      */
     public static void getCurrentOptions() {
         currentStructureSpawnRates = options.structureSpawnRates;
-        currentBlockBreakingMultiplier = options.blockBreakingMultiplier;
-        currentDragonPerchTime = options.dragonPerchTime;
+        currentBlockBreakingMultiplier = options.blockBreakingMultiplier.getCurrentValue();
+        currentDragonPerchTime = options.dragonPerchTime.getCurrentValue();
         currentDifficulty = cloptions.difficulty;
-        currentStrongholdCount = options.strongholdCount;
-        currentStrongholdDistance = options.strongholdDistance;
-        currentStrongholdSpread = options.strongholdSpread;
-        currentStrongholdPortalRoomCount = options.strongholdPortalRoomCount;
-        currentStrongholdLibrariesCount = options.strongholdLibraryCount;
-        currentAnvilCostLimit = options.anvilCostLimit;
-        currentNetherPortalCooldown = options.netherPortalDelay;
+        currentStrongholdCount = options.strongholdCount.getCurrentValue();
+        currentStrongholdDistance = options.strongholdDistance.getCurrentValue();
+        currentStrongholdSpread = options.strongholdSpread.getCurrentValue();
+        currentStrongholdPortalRoomCount = options.strongholdPortalRoomCount.getCurrentValue();
+        currentStrongholdLibrariesCount = options.strongholdLibraryCount.getCurrentValue();
+        currentAnvilCostLimit = options.anvilCostLimit.getCurrentValue();
+        currentNetherPortalCooldown = options.netherPortalDelay.getCurrentValue();
     }
 
     /**
      * Gets the current state of the leaderboards mode option.
      */
     public static void getCurrentLeaderboardsMode() {
-        currentLeaderboardsMode = options.leaderboardsMode;
+        currentLeaderboardsMode = options.leaderboardsMode.getCurrentValue();
     }
 
     /**
      * Checks to see if the leaderboard mode option was changed.
      */
     public static boolean wasLeaderboardsModeChanged() {
-        return currentLeaderboardsMode != options.leaderboardsMode;
+        return currentLeaderboardsMode != options.leaderboardsMode.getCurrentValue();
     }
 
     /**
@@ -193,16 +193,16 @@ public class Leaderboards {
      */
     public static boolean noOptionsWereChanged() {
         return currentStructureSpawnRates == options.structureSpawnRates &&
-                currentDragonPerchTime == options.dragonPerchTime &&
-                currentBlockBreakingMultiplier == options.blockBreakingMultiplier &&
+                currentDragonPerchTime == options.dragonPerchTime.getCurrentValue() &&
+                currentBlockBreakingMultiplier == options.blockBreakingMultiplier.getCurrentValue() &&
                 currentDifficulty == cloptions.difficulty &&
-                currentStrongholdCount == options.strongholdCount &&
-                currentStrongholdDistance == options.strongholdDistance &&
-                currentStrongholdSpread == options.strongholdSpread &&
-                currentStrongholdPortalRoomCount == options.strongholdPortalRoomCount &&
-                currentStrongholdLibrariesCount == options.strongholdLibraryCount &&
-                currentAnvilCostLimit == options.anvilCostLimit &&
-                currentNetherPortalCooldown == options.netherPortalDelay;
+                currentStrongholdCount == options.strongholdCount.getCurrentValue() &&
+                currentStrongholdDistance == options.strongholdDistance.getCurrentValue() &&
+                currentStrongholdSpread == options.strongholdSpread.getCurrentValue() &&
+                currentStrongholdPortalRoomCount == options.strongholdPortalRoomCount.getCurrentValue() &&
+                currentStrongholdLibrariesCount == options.strongholdLibraryCount.getCurrentValue() &&
+                currentAnvilCostLimit == options.anvilCostLimit.getCurrentValue() &&
+                currentNetherPortalCooldown == options.netherPortalDelay.getCurrentValue();
     }
 
     /**
@@ -210,51 +210,51 @@ public class Leaderboards {
      */
     public static void fixOptions() {
         if (!areStructureSpawnRatesEligible()) {
-            options.structureSpawnRates = ModOptions.StructureSpawnRate.COMMON;
+            options.structureSpawnRates = StructureSpawnRate.COMMON;
         }
 
         if (!isDragonPerchTimeEligible()) {
-            options.dragonPerchTime = 8;
+            options.dragonPerchTime.reset();
         }
 
         if (!isBlockBreakingMultiplierEligible()) {
-            options.blockBreakingMultiplier = 1;
+            options.blockBreakingMultiplier.reset();
         }
 
         if (!isDifficultyEligible()) {
-            cloptions.difficulty = ModOptions.Difficulty.EASY;
+            cloptions.difficulty = Difficulty.EASY;
         }
 
         if (!isStrongholdCountEligible()) {
-            options.strongholdCount = 128;
+            options.strongholdCount.reset();
         }
 
         if (!isStrongholdDistanceEligible()) {
-            options.strongholdDistance = 4;
+            options.strongholdDistance.reset();
         }
 
         if (!isStrongholdSpreadEligible()) {
-            options.strongholdSpread = 3;
+            options.strongholdSpread.reset();
         }
 
         if (!isStrongholdPortalRoomsEligible()) {
-            options.strongholdPortalRoomCount = 3;
+            options.strongholdPortalRoomCount.reset();
         }
 
         if (!isStrongholdLibrariesEligible()) {
-            options.strongholdLibraryCount = 2;
+            options.strongholdLibraryCount.reset();
         }
 
         if (!isAnvilCostLimitEligible()) {
-            options.anvilCostLimit = 10;
+            options.anvilCostLimit.reset();
         }
 
         if (!isNetherPortalCooldownEligible()) {
-            options.netherPortalDelay = 2;
+            options.netherPortalDelay.reset();
         }
 
         if (!isFasterSpawnersEligible()) {
-            options.fasterSpawners = true;
+            options.fasterSpawners.reset();
         }
 
         fixBooleanOptions();
@@ -265,7 +265,7 @@ public class Leaderboards {
      */
     public static void revertChanges() {
         if (wasLeaderboardsModeChanged()) {
-            options.leaderboardsMode = true;
+            options.leaderboardsMode.set(true);
         }
 
         if (!areStructureSpawnRatesEligible()) {
@@ -273,11 +273,11 @@ public class Leaderboards {
         }
 
         if (!isBlockBreakingMultiplierEligible()) {
-            options.blockBreakingMultiplier = currentBlockBreakingMultiplier;
+            options.blockBreakingMultiplier.set(currentBlockBreakingMultiplier);
         }
 
         if (!isDragonPerchTimeEligible()) {
-            options.dragonPerchTime = currentDragonPerchTime;
+            options.dragonPerchTime.set(currentDragonPerchTime);
         }
 
         if (!isDifficultyEligible()) {
@@ -285,31 +285,31 @@ public class Leaderboards {
         }
 
         if (!isStrongholdCountEligible()) {
-            options.strongholdCount = currentStrongholdCount;
+            options.strongholdCount.set(currentStrongholdCount);
         }
 
         if (!isStrongholdDistanceEligible()) {
-            options.strongholdDistance = currentStrongholdDistance;
+            options.strongholdDistance.set(currentStrongholdDistance);
         }
 
         if (!isStrongholdSpreadEligible()) {
-            options.strongholdSpread = currentStrongholdSpread;
+            options.strongholdSpread.set(currentStrongholdSpread);
         }
 
         if (!isStrongholdPortalRoomsEligible()) {
-            options.strongholdPortalRoomCount = currentStrongholdPortalRoomCount;
+            options.strongholdPortalRoomCount.set(currentStrongholdPortalRoomCount);
         }
 
         if (!isStrongholdLibrariesEligible()) {
-            options.strongholdLibraryCount = currentStrongholdLibrariesCount;
+            options.strongholdLibraryCount.set(currentStrongholdLibrariesCount);
         }
 
         if (!isAnvilCostLimitEligible()) {
-            options.anvilCostLimit = currentAnvilCostLimit;
+            options.anvilCostLimit.set(currentAnvilCostLimit);
         }
 
         if (!isNetherPortalCooldownEligible()) {
-            options.netherPortalDelay = currentNetherPortalCooldown;
+            options.netherPortalDelay.set(currentNetherPortalCooldown);
         }
 
         fixBooleanOptions();
@@ -320,27 +320,27 @@ public class Leaderboards {
      */
     private static void fixBooleanOptions() {
         if (!isIcarusModeEligible()) {
-            options.iCarusMode = false;
+            options.iCarusMode.reset();
         }
 
         if (!isInfiniPearlModeEligible()) {
-            options.infiniPearlMode = false;
+            options.infiniPearlMode.reset();
         }
 
         if (!isFallDamageEligible()) {
-            options.fallDamage = true;
+            options.fallDamage.reset();
         }
 
         if (!isKineticDamageEligible()) {
-            options.kineticDamage = true;
+            options.kineticDamage.reset();
         }
 
         if (!isAllowCheatsEligible()) {
-            cloptions.allowCheats = false;
+            cloptions.allowCheats.reset();
         }
 
         if (!isKillGhastOnFireballEligible()) {
-            options.killGhastOnFireball = false;
+            options.killGhastOnFireball.reset();
         }
     }
 
@@ -373,7 +373,7 @@ public class Leaderboards {
      */
     public static void disableLeaderboardsMode() {
         info("Disabling leaderboards mode and closing game. Re-launch to apply changes.");
-        options().main.leaderboardsMode = false;
+        options().main.leaderboardsMode.reset();
         ModOptions.saveConfig();
     }
 
@@ -398,70 +398,70 @@ public class Leaderboards {
     }
 
     private static boolean isBlockBreakingMultiplierEligible() {
-        return options.blockBreakingMultiplier == 1;
+        return options.blockBreakingMultiplier.getCurrentValue() == 1;
     }
 
     private static boolean isDragonPerchTimeEligible() {
-        return options().inBounds(options.dragonPerchTime, 8, 90);
+        return options().inBounds(options.dragonPerchTime.getCurrentValue(), 8, 90);
     }
 
     private static boolean isDifficultyEligible() {
-        return options().client.difficulty != ModOptions.Difficulty.PEACEFUL;
+        return options().client.difficulty != Difficulty.PEACEFUL;
     }
 
     private static boolean isStrongholdCountEligible() {
-        return options().inBounds(options.strongholdCount, 128, 156);
+        return options().inBounds(options.strongholdCount.getCurrentValue(), 128, 156);
     }
 
     private static boolean isStrongholdDistanceEligible() {
-        return options().inBounds(options.strongholdDistance, 3, 18);
+        return options().inBounds(options.strongholdDistance.getCurrentValue(), 3, 18);
     }
 
     private static boolean isStrongholdSpreadEligible() {
-        return options().inBounds(options.strongholdSpread, 2, 12);
+        return options().inBounds(options.strongholdSpread.getCurrentValue(), 2, 12);
     }
 
     private static boolean isStrongholdPortalRoomsEligible() {
-        return options().inBounds(options.strongholdPortalRoomCount, 1, 3);
+        return options().inBounds(options.strongholdPortalRoomCount.getCurrentValue(), 1, 3);
     }
 
     private static boolean isStrongholdLibrariesEligible() {
-        return options().inBounds(options.strongholdLibraryCount, 1, 4);
+        return options().inBounds(options.strongholdLibraryCount.getCurrentValue(), 1, 4);
     }
 
     private static boolean isAnvilCostLimitEligible() {
-        return options().inBounds(options.anvilCostLimit, 10);
+        return options().inBounds(options.anvilCostLimit.getCurrentValue(), 10);
     }
 
     private static boolean isNetherPortalCooldownEligible() {
-        return options().inBounds(options.netherPortalDelay, 1, 20);
+        return options().inBounds(options.netherPortalDelay.getCurrentValue(), 1, 20);
     }
 
     private static boolean isFasterSpawnersEligible() {
-        return options.fasterSpawners;
+        return options.fasterSpawners.getCurrentValue();
     }
 
     private static boolean isIcarusModeEligible() {
-        return !options.iCarusMode;
+        return !options.iCarusMode.getCurrentValue();
     }
 
     private static boolean isInfiniPearlModeEligible() {
-        return !options.infiniPearlMode;
+        return !options.infiniPearlMode.getCurrentValue();
     }
 
     private static boolean isFallDamageEligible() {
-        return options.fallDamage;
+        return options.fallDamage.getCurrentValue();
     }
 
     private static boolean isKineticDamageEligible() {
-        return options.kineticDamage;
+        return options.kineticDamage.getCurrentValue();
     }
 
     private static boolean isAllowCheatsEligible() {
-        return !cloptions.allowCheats;
+        return !cloptions.allowCheats.getCurrentValue();
     }
 
     private static boolean isKillGhastOnFireballEligible() {
-        return !options.killGhastOnFireball;
+        return !options.killGhastOnFireball.getCurrentValue();
     }
 }

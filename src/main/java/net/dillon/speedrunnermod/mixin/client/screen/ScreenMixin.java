@@ -22,7 +22,7 @@ public class ScreenMixin {
     public static CubeMapRenderer PANORAMA_RENDERER;
 
     static {
-        if (options().client.customPanorama) {
+        if (options().client.customPanorama.getCurrentValue()) {
             ROTATING_PANORAMA_RENDERER = new RotatingCubeMapRenderer(new CubeMapRenderer(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/panorama")));
         } else {
             ROTATING_PANORAMA_RENDERER = new RotatingCubeMapRenderer(PANORAMA_RENDERER);

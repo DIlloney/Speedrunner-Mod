@@ -53,7 +53,7 @@ public abstract class EntityMixin {
     @Inject(method = "setOnFireFromLava", at = @At("HEAD"), cancellable = true)
     private void setOnFireFromLava(CallbackInfo ci) {
         Entity vehicle = getVehicle();
-        if (options().main.lavaBoats) {
+        if (options().main.lavaBoats.getCurrentValue()) {
             if (vehicle instanceof TerraformBoatEntity terraformBoat && ModBoats.isFireproofBoat(terraformBoat.getTerraformBoat()) || vehicle instanceof TerraformChestBoatEntity terraformChestBoat && ModBoats.isFireproofBoat(terraformChestBoat.getTerraformBoat())) {
                 if (fireTicks > 0 && fireTicks % 20 == 0) {
                     ((Entity)(Object)this).damage(this.getDamageSources().onFire(), 1.0F);

@@ -44,7 +44,7 @@ public class OptionsScreenMixin extends Screen {
      */
     @Inject(method = "init", at = @At("TAIL"))
     private void addButtons(CallbackInfo ci) {
-        if (options().client.socialButtons) {
+        if (options().client.socialButtons.getCurrentValue()) {
             this.dillon8775YouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (button) -> {
                 this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                     if (openInBrowser) {
@@ -67,7 +67,7 @@ public class OptionsScreenMixin extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
         context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, optionsButton.getX() + 1, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
-        if (options().client.socialButtons) {
+        if (options().client.socialButtons.getCurrentValue()) {
             context.drawTexture(ModIcons.DILLON8775_ICON, dillon8775YouTubeButton.getX() + 1, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
         }
     }

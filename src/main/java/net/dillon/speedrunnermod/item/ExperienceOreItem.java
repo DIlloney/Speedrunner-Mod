@@ -22,11 +22,11 @@ public class ExperienceOreItem extends BlockItem {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (options().client.itemTooltips) {
+        if (options().client.itemTooltips.getCurrentValue()) {
             tooltip.add(Text.translatable("block.speedrunnermod.experience_ore.tooltip.line1").formatted(Formatting.GRAY));
             tooltip.add(Text.translatable("block.speedrunnermod.experience_ore.tooltip.line2").formatted(Formatting.GRAY));
         }
-        if (options().client.textureTooltips) {
+        if (options().client.textureTooltips.getCurrentValue()) {
             tooltip.add(Text.translatable("speedrunnermod.texture_creator.krevikus"));
         }
     }

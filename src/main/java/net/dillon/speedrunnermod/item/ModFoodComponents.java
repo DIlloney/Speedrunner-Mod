@@ -1,9 +1,10 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
  * All Speedrunner Mod {@code food components} (or food items).
@@ -67,19 +68,19 @@ public class ModFoodComponents {
         SPEEDRUNNER_BULK = new FoodComponent.Builder().nutrition(12).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 1200, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 1200, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 600, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 500, 1), 0.5F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200), 0.25F).alwaysEdible().build();
         ROTTEN_SPEEDRUNNER_BULK = new FoodComponent.Builder().nutrition(4).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 400, 0), 0.5F).statusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 300, 0), 0.1F).build();
         COOKED_FLESH = new FoodComponent.Builder().nutrition(6).saturationModifier(0.8F).build();
-        PIGLIN_PORK = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(4).saturationModifier(0.3F).build() : new FoodComponent.Builder().nutrition(3).saturationModifier(0.2F).build();
-        COOKED_PIGLIN_PORK = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(8).saturationModifier(0.8F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.7F).build();
-        GOLDEN_PIGLIN_PORK = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(8).saturationModifier(0.9F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.8F).build();
-        GOLDEN_BEEF = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(8).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.9F).build();
-        GOLDEN_PORKCHOP = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(8).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.9F).build();
-        GOLDEN_MUTTON = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(6).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.9F).build();
-        GOLDEN_CHICKEN = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(6).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.7F).build();
-        GOLDEN_RABBIT = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(5).saturationModifier(1.2F).build() : new FoodComponent.Builder().nutrition(5).saturationModifier(0.7F).build();
-        GOLDEN_COD = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(5).saturationModifier(1.2F).build() : new FoodComponent.Builder().nutrition(5).saturationModifier(0.7F).build();
-        GOLDEN_SALMON = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(6).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(6).saturationModifier(0.9F).build();
-        GOLDEN_BREAD = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(5).saturationModifier(1.2F).build() : new FoodComponent.Builder().nutrition(5).saturationModifier(0.7F).build();
-        GOLDEN_POTATO = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(6).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(5).saturationModifier(0.7F).build();
-        GOLDEN_BEETROOT = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(2).saturationModifier(1.5F).build() : new FoodComponent.Builder().nutrition(2).saturationModifier(0.7F).build();
+        PIGLIN_PORK = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(4).saturationModifier(0.3F).build() : new FoodComponent.Builder().nutrition(3).saturationModifier(0.2F).build();
+        COOKED_PIGLIN_PORK = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(8).saturationModifier(0.8F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.7F).build();
+        GOLDEN_PIGLIN_PORK = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(8).saturationModifier(0.9F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.8F).build();
+        GOLDEN_BEEF = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(8).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.9F).build();
+        GOLDEN_PORKCHOP = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(8).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.9F).build();
+        GOLDEN_MUTTON = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(6).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.9F).build();
+        GOLDEN_CHICKEN = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(6).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.7F).build();
+        GOLDEN_RABBIT = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(5).saturationModifier(1.2F).build() : new FoodComponent.Builder().nutrition(5).saturationModifier(0.7F).build();
+        GOLDEN_COD = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(5).saturationModifier(1.2F).build() : new FoodComponent.Builder().nutrition(5).saturationModifier(0.7F).build();
+        GOLDEN_SALMON = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(6).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(6).saturationModifier(0.9F).build();
+        GOLDEN_BREAD = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(5).saturationModifier(1.2F).build() : new FoodComponent.Builder().nutrition(5).saturationModifier(0.7F).build();
+        GOLDEN_POTATO = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(6).saturationModifier(1.0F).build() : new FoodComponent.Builder().nutrition(5).saturationModifier(0.7F).build();
+        GOLDEN_BEETROOT = options().main.betterFoods.getCurrentValue() ? new FoodComponent.Builder().nutrition(2).saturationModifier(1.5F).build() : new FoodComponent.Builder().nutrition(2).saturationModifier(0.7F).build();
         APPLE = new FoodComponent.Builder().nutrition(4).saturationModifier(0.8F).build();
         BAKED_POTATO = new FoodComponent.Builder().nutrition(6).saturationModifier(0.9F).build();
         BEEF = new FoodComponent.Builder().nutrition(4).saturationModifier(0.7F).build();

@@ -4,7 +4,7 @@ import com.google.gson.JsonElement;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.serialization.Decoder;
 import net.dillon.speedrunnermod.data.loader.*;
-import net.dillon.speedrunnermod.option.ModOptions;
+import net.dillon.speedrunnermod.option.StructureSpawnRate;
 import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
 import net.dillon.speedrunnermod.util.ChatGPT;
@@ -42,7 +42,7 @@ public class RegistryLoaderMixin {
         String path = registry.getKey().getValue().getPath();
         String fileName = path + "/" + resourceKey.getValue().getPath() + ".json";
 
-        if (options().main.customDataGeneration) {
+        if (options().main.customDataGeneration.getCurrentValue()) {
             for (int i = 0; i < EntitySpawnsLoader.biomesWithDefaultMonsters().size(); i++) {
                 if (fileName.equals(EntitySpawnsLoader.biomesWithDefaultMonsters().get(i))) {
                     EntitySpawnsLoader.modifyBiomesWithDefaultMonsters(jsonElement);
@@ -87,7 +87,7 @@ public class RegistryLoaderMixin {
                 PlacedFeaturesLoader.modifyMonsterRoom(jsonElement);
             }
 
-            if (options().main.commonOres) {
+            if (options().main.commonOres.getCurrentValue()) {
                 String oreDiamond = JsonIdentifiers.ORE_DIAMOND;
                 if (fileName.equals(oreDiamond) || fileName.equals(JsonIdentifiers.ORE_DIAMOND_BURIED)) {
                     PlacedFeaturesLoader.modifyOreDiamond(fileName, oreDiamond, jsonElement);
@@ -103,13 +103,13 @@ public class RegistryLoaderMixin {
                 }
             }
 
-            if (options().main.customBiomesAndCustomBiomeFeatures) {
+            if (options().main.customBiomesAndCustomBiomeFeatures.getCurrentValue()) {
                 if (fileName.equals(JsonIdentifiers.TREES_PLAINS)) {
                     PlacedFeaturesLoader.modifyTreePlains(jsonElement);
                 }
             }
 
-            if (!options().main.structureSpawnRates.equals(ModOptions.StructureSpawnRate.DISABLED)) {
+            if (!options().main.structureSpawnRates.equals(StructureSpawnRate.DISABLED)) {
                 if (fileName.equals(JsonIdentifiers.ANCIENT_CITIES)) {
                     StructuresLoader.modifyAncientCities(jsonElement);
                 }

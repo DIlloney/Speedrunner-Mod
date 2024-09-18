@@ -2,8 +2,7 @@ package net.dillon.speedrunnermod;
 
 import net.dillon.speedrunnermod.client.keybind.ModKeybindings;
 import net.dillon.speedrunnermod.client.render.ModRenderers;
-import net.dillon.speedrunnermod.option.BrokenModOptions;
-import net.dillon.speedrunnermod.option.ModOptions;
+import net.dillon.speedrunnermod.option.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,7 +24,7 @@ public class SpeedrunnerModClient implements ClientModInitializer {
     public void onInitializeClient() {
         ModRenderers.init();
 
-        if (options().main.leaderboardsMode && !isSpeedrunIGTLoaded()) {
+        if (options().main.leaderboardsMode.getCurrentValue() && !isSpeedrunIGTLoaded()) {
             speedrunIGTMissing = true;
             warn("Detected that SpeedrunIGT is not loaded, you should probably download this mod if you would like to submit speedruns to the leaderboards.");
         }
@@ -54,55 +53,55 @@ public class SpeedrunnerModClient implements ClientModInitializer {
      */
     public static void fixOptions() {
         if (BrokenModOptions.structureSpawnRates) {
-            options().main.structureSpawnRates = ModOptions.StructureSpawnRate.COMMON;
+            options().main.structureSpawnRates = StructureSpawnRate.COMMON;
         }
 
         if (BrokenModOptions.blockBreakingMultiplier) {
-            options().main.blockBreakingMultiplier = 1;
+            options().main.blockBreakingMultiplier.reset();
         }
 
         if (BrokenModOptions.strongholdPortalRoomCount) {
-            options().main.strongholdPortalRoomCount = 3;
+            options().main.strongholdPortalRoomCount.reset();
         }
 
         if (BrokenModOptions.strongholdLibraryCount) {
-            options().main.strongholdLibraryCount = 2;
+            options().main.strongholdLibraryCount.reset();
         }
 
         if (BrokenModOptions.netherPortalCooldown) {
-            options().main.netherPortalDelay = 2;
+            options().main.netherPortalDelay.reset();
         }
 
         if (BrokenModOptions.mobSpawningRate) {
-            options().main.mobSpawningRate = ModOptions.MobSpawningRate.HIGH;
+            options().main.mobSpawningRate = MobSpawningRate.HIGH;
         }
 
         if (BrokenModOptions.leaderboards) {
-            options().main.leaderboardsMode = false;
+            options().main.leaderboardsMode.reset();
         }
 
         if (BrokenModOptions.speedrunnersWastelandBiomeWeight) {
-            options().advanced.speedrunnersWastelandBiomeWeight = 9;
+            options().advanced.speedrunnersWastelandBiomeWeight.reset();
         }
 
         if (BrokenModOptions.iCarusFireworksInventorySlot) {
-            options().advanced.iCarusFireworksInventorySlot = 1;
+            options().advanced.iCarusFireworksInventorySlot.reset();
         }
 
         if (BrokenModOptions.infiniPearlInventorySlot) {
-            options().advanced.infiniPearlInventorySlot = 1;
+            options().advanced.infiniPearlInventorySlot.reset();
         }
 
         if (BrokenModOptions.itemMessages) {
-            options().client.itemMessages = ModOptions.ItemMessages.CHAT;
+            options().client.itemMessages = ItemMessages.CHAT;
         }
 
         if (BrokenModOptions.gameMode) {
-            options().client.gameMode = ModOptions.GameMode.SURVIVAL;
+            options().client.gameMode = GameMode.SURVIVAL;
         }
 
         if (BrokenModOptions.difficulty) {
-            options().client.difficulty = ModOptions.Difficulty.EASY;
+            options().client.difficulty = Difficulty.EASY;
         }
 
         ModOptions.saveConfig();
@@ -112,13 +111,13 @@ public class SpeedrunnerModClient implements ClientModInitializer {
      * Returns the {@code minimum brightness} value for the speedrunner mod.
      */
     public static double getMinBrightness() {
-        return options().advanced.minimumBrightness;
+        return options().advanced.minimumBrightness.getCurrentValue();
     }
 
     /**
      * Returns the {@code maximum brightness} value for the speedrunner mod.
      */
     public static double getMaxBrightness() {
-        return options().advanced.maximumBrightness;
+        return options().advanced.maximumBrightness.getCurrentValue();
     }
 }

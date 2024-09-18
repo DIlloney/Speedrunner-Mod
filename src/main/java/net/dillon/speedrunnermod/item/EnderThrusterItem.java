@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.block.ModBlocks;
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.MathUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
@@ -28,7 +27,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * An item that can be used to {@code teleport} to the {@code surface.}
  */
 public class EnderThrusterItem extends Item {
-    private boolean confirm = !options().client.confirmMessages;
+    private boolean confirm = !options().client.confirmMessages.getCurrentValue();
 
     public EnderThrusterItem(Settings settings) {
         super(settings.maxCount(1));
@@ -73,19 +72,19 @@ public class EnderThrusterItem extends Item {
                             player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.confirm").formatted(Formatting.WHITE), false);
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDERMAN_AMBIENT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                         }
-                        if (options().client.confirmMessages) {
+                        if (options().client.confirmMessages.getCurrentValue()) {
                             confirm = !confirm;
                         }
                         player.swingHand(hand, true);
                         return TypedActionResult.success(itemStack);
                     } else {
-                        player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.couldnt_teleport"), ModOptions.ItemMessages.isActionbar());
+                        player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.couldnt_teleport"), options().client.itemMessages.isActionbar());
                     }
                 } else {
-                    player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                 }
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.BLUE, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.BLUE, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             }
         }
 
@@ -94,7 +93,7 @@ public class EnderThrusterItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (options().client.itemTooltips) {
+        if (options().client.itemTooltips.getCurrentValue()) {
             tooltip.add(Text.translatable("item.speedrunnermod.ender_thruster.tooltip"));
             ItemUtil.stateOfTheArtItem(tooltip);
         }

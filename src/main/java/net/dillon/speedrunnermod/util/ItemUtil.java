@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.util;
 
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FireworksComponent;
@@ -60,7 +59,7 @@ public class ItemUtil {
      */
     public static void stateOfTheArtItem(List<Text> tooltip) {
         tooltip.add(Text.translatable("item.speedrunnermod.state_of_the_art.tooltip").formatted(Formatting.RED));
-        if (options().stateOfTheArtItems.stateOfTheArtItems) {
+        if (options().stateOfTheArtItems.stateOfTheArtItems.getCurrentValue()) {
             tooltip.add(Text.translatable("item.speedrunnermod.state_of_the_art.tooltip.enabled").formatted(Formatting.GREEN).formatted(Formatting.ITALIC));
         } else {
             tooltip.add(Text.translatable("item.speedrunnermod.state_of_the_art.tooltip.disabled").formatted(Formatting.RED).formatted(Formatting.ITALIC));
@@ -108,6 +107,6 @@ public class ItemUtil {
      * Returns a specific type of formatting.
      */
     public static Formatting toFormatting(Formatting actionbarOn, Formatting actionbarOff) {
-        return ModOptions.ItemMessages.isActionbar() ? actionbarOn : actionbarOff;
+        return options().client.itemMessages.isActionbar() ? actionbarOn : actionbarOff;
     }
 }

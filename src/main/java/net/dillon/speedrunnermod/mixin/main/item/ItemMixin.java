@@ -23,12 +23,12 @@ public class ItemMixin {
      */
     @Inject(method = "appendTooltip", at = @At("TAIL"))
     private void appendTooltipsForPiglinAwakenerItems(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type, CallbackInfo ci) {
-        if (options().client.itemTooltips) {
+        if (options().client.itemTooltips.getCurrentValue()) {
             if (stack.isIn(ModItemTags.PIGLIN_AWAKENER_CRAFTABLES)) {
                 tooltip.add(Text.translatable("item.speedrunnermod.piglin_awakener_craftable").formatted(Formatting.GOLD));
             }
         }
-        if (options().client.textureTooltips) {
+        if (options().client.textureTooltips.getCurrentValue()) {
             if (stack.isIn(ModItemTags.Block.TEXTURE_CREATOR_MANNYQUESO)) {
                 tooltip.add(Text.translatable("speedrunnermod.texture_creator.mannyqueso"));
             }

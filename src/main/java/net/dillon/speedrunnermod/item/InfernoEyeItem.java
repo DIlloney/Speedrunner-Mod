@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.tag.ModStructureTags;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.entity.player.PlayerEntity;
@@ -50,10 +49,10 @@ public class InfernoEyeItem extends Item {
                         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_BLAZE_AMBIENT, SoundCategory.HOSTILE, 2.0F, 1.0F);
                     }
 
-                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_inferno.looking_for", structureType).formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_inferno.looking_for", structureType).formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                 } else {
                     ItemUtil.findStructureAndShoot(world, player, itemStack, type);
-                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_inferno.located", structureType).formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_inferno.located", structureType).formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
 
                     if (!player.getAbilities().creativeMode) {
@@ -65,7 +64,7 @@ public class InfernoEyeItem extends Item {
                 player.swingHand(hand, true);
                 return TypedActionResult.success(itemStack);
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_inferno.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_inferno.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             }
         }
 
@@ -74,7 +73,7 @@ public class InfernoEyeItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (options().client.itemTooltips) {
+        if (options().client.itemTooltips.getCurrentValue()) {
             tooltip.add(Text.translatable("item.speedrunnermod.eye_of_inferno.tooltip"));
         }
         tooltip.add(Text.translatable("item.speedrunnermod.eye_of_inferno.looking_for.tooltip", structureType).formatted(Formatting.BOLD));

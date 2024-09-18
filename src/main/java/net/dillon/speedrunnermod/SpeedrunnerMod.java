@@ -8,14 +8,10 @@ import net.dillon.speedrunnermod.item.ModBlockItems;
 import net.dillon.speedrunnermod.item.ModFuels;
 import net.dillon.speedrunnermod.item.ModItemGroups;
 import net.dillon.speedrunnermod.item.ModItems;
-import net.dillon.speedrunnermod.option.Leaderboards;
-import net.dillon.speedrunnermod.option.ModOptions;
+import net.dillon.speedrunnermod.option.*;
 import net.dillon.speedrunnermod.recipe.ModRecipes;
 import net.dillon.speedrunnermod.sound.ModSoundEvents;
-import net.dillon.speedrunnermod.tag.ModBlockTags;
-import net.dillon.speedrunnermod.tag.ModFluidTags;
-import net.dillon.speedrunnermod.tag.ModItemTags;
-import net.dillon.speedrunnermod.tag.ModStructureTags;
+import net.dillon.speedrunnermod.tag.*;
 import net.dillon.speedrunnermod.util.MathUtil;
 import net.dillon.speedrunnermod.village.ModTradeOffers;
 import net.dillon.speedrunnermod.village.ModVillagers;
@@ -28,9 +24,6 @@ import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static net.dillon.speedrunnermod.option.ModOptions.createListOption;
-import static net.dillon.speedrunnermod.option.ModOptions.createStructureSpawnRateOption;
-
 /**
  * The home initializer for the Speedrunner Mod.
  */
@@ -40,7 +33,7 @@ public class SpeedrunnerMod implements ModInitializer {
     public static final String MC_VERSION = "1.21.1";
     public static final String VERSION = "Version: " + MOD_VERSION;
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
-    public static boolean DOOM_MODE = SpeedrunnerMod.options().main.doomMode;
+    public static boolean DOOM_MODE = SpeedrunnerMod.options().main.doomMode.getCurrentValue();
     public static final String OPTIONS_ERROR_MESSAGE = "Found error with speedrunner mod settings, launching in safe mode.";
     public static final String OPTIONS_WARNING_MESSAGE = "Found an unusual value in the speedrunner mod settings.";
     public static boolean safeBoot;
@@ -51,29 +44,30 @@ public class SpeedrunnerMod implements ModInitializer {
      */
     @Override
     public void onInitialize() {
-        ModWorldGen.init();
+        ModWorldGen.initializeWorldGenFeatures();
 
-        ModBoats.init();
+        ModBoats.registerBoats();
 
-        ModBlocks.init();
-        ModBlockFamilies.init();
-        ModBlockItems.init();
-        ModItems.init();
-        ModItemGroups.init();
+        ModBlocks.registerBlocks();
+        ModBlockFamilies.registerBlockFamilies();
+        ModBlockItems.registerBlockItems();
+        ModItems.registerItems();
+        ModItemGroups.initializeItemGroups();
 
-        ModStructureTags.init();
-        ModBlockTags.init();
-        ModItemTags.init();
-        ModFluidTags.init();
+        ModBlockTags.initializeBlockTags();
+        ModEnchantmentTags.initializeEnchantmentTags();
+        ModFluidTags.initializeFluidTags();
+        ModItemTags.initializeItemTags();
+        ModStructureTags.initializeStructureTags();
 
-        ModSoundEvents.init();
+        ModSoundEvents.initializeSoundEvents();
 
-        ModEnchantments.init();
-        ModRecipes.init();
-        ModFuels.init();
+        ModEnchantments.initializeEnchantments();
+        ModRecipes.registerCustomRecipes();
+        ModFuels.registerFuels();
 
-        ModVillagers.init();
-        ModTradeOffers.init();
+        ModVillagers.registerVillagerProfessions();
+        ModTradeOffers.registerVillagerTrades();
 
         safeBoot = false;
         ModOptions.loadConfig();
@@ -82,7 +76,7 @@ public class SpeedrunnerMod implements ModInitializer {
             info("You dare to attempt Doom Mode? Good luck...");
         }
 
-        Leaderboards.init();
+        Leaderboards.initializeLeaderboards();
 
         info("The Speedrunner Mod (" + MOD_VERSION + ")" + " has successfully initialized!");
     }
@@ -113,114 +107,6 @@ public class SpeedrunnerMod implements ModInitializer {
      */
     public static ModOptions options() {
         return ModOptions.OPTIONS;
-    }
-
-    /**
-     * Resets all of the {@code speedrunner mod options} back to factory default.
-     */
-    @Environment(EnvType.CLIENT)
-    public static void resetOptions() {
-        options().main.structureSpawnRates = ModOptions.StructureSpawnRate.COMMON;
-        options().main.fasterBlockBreaking = true;
-        options().main.blockBreakingMultiplier = 1;
-        options().main.betterBiomes = true;
-        options().main.iCarusMode = false;
-        options().main.infiniPearlMode = false;
-        options().stateOfTheArtItems.stateOfTheArtItems = true;
-        options().main.doomMode = false;
-        options().main.dragonPerchTime = 8;
-        options().main.killGhastOnFireball = false;
-        options().main.betterVillagerTrades = true;
-        options().main.fireproofItems = true;
-        options().main.customBiomesAndCustomBiomeFeatures = true;
-        options().main.commonOres = true;
-        options().main.lavaBoats = true;
-        options().main.netherWater = true;
-        options().main.betterFoods = true;
-        options().main.fallDamage = true;
-        options().main.kineticDamage = true;
-        options().main.strongholdDistance = 4;
-        options().main.strongholdSpread = 3;
-        options().main.strongholdCount = 128;
-        options().main.strongholdPortalRoomCount = 3;
-        options().main.strongholdLibraryCount = 2;
-        options().main.mobSpawningRate = ModOptions.MobSpawningRate.HIGH;
-        options().main.fasterSpawners = true;
-        options().main.netherPortalDelay = 2;
-        options().main.throwableFireballs = true;
-        options().main.arrowsDestroyBeds = true;
-        options().main.globalNetherPortals = true;
-        options().main.betterAnvil = true;
-        options().main.anvilCostLimit = 10;
-        options().main.higherEnchantmentLevels = true;
-        options().main.rightClickToRemoveSilkTouch = true;
-        options().main.customDataGeneration = true;
-        options().main.leaderboardsMode = false;
-
-        options().client.fog = true;
-        options().client.itemTooltips = true;
-        options().client.customPanorama = true;
-        options().client.itemMessages = ModOptions.ItemMessages.ACTIONBAR;
-        options().client.confirmMessages = true;
-        options().client.socialButtons = false;
-        options().client.fastWorldCreation = true;
-        options().client.gameMode = ModOptions.GameMode.SURVIVAL;
-        options().client.difficulty = ModOptions.Difficulty.EASY;
-        options().client.allowCheats = false;
-        options().client.showDeathCords = true;
-
-        options().stateOfTheArtItems.annulEye = true;
-        options().stateOfTheArtItems.blazeSpotter = true;
-        options().stateOfTheArtItems.dragonsPearl = true;
-        options().stateOfTheArtItems.dragonsSword = true;
-        options().stateOfTheArtItems.enderThruster = true;
-        options().stateOfTheArtItems.piglinAwakener = true;
-        options().stateOfTheArtItems.raidEradicator = true;
-
-        options().advanced.modifiedStrongholdGeneration = true;
-        options().advanced.modifiedStrongholdYGeneration = true;
-        options().advanced.modifiedNetherFortressGeneration = true;
-        options().advanced.showResetButton = true;
-        options().advanced.higherBreathTime = true;
-        options().advanced.generateSpeedrunnerWood = true;
-        options().advanced.speedrunnersWastelandBiomeWeight = 9;
-        options().advanced.longerDragonPerchStayTime = true;
-        options().advanced.decreasedZombifiedPiglinScareDistance = true;
-        options().advanced.enderEyeBreakingCooldown = 60;
-        options().advanced.piglinAwakenerPiglinCount = 10;
-        options().advanced.iCarusFireworksInventorySlot = 1;
-        options().advanced.infiniPearlInventorySlot = 1;
-        options().advanced.fireballExplosionPower = 1;
-        options().advanced.minimumBrightness = 0.0D;
-        options().advanced.maximumBrightness = 12.0D;
-        options().advanced.dragonKillsNearbyHostileEntities = true;
-        options().advanced.dragonImmunityFromGiantAndWither = true;
-        options().advanced.annulEyePortalRoomDistanceXYZ = createListOption(-128, -128, -128, 128, 128, 128);
-        options().advanced.piglinAwakenerPiglinDistanceXYZ = createListOption(100.0D, 100.0D, 100.0D);
-        options().advanced.blazeSpotterDistanceXYZ = createListOption(-156, -72, -156, 156, 72, 156);
-        options().advanced.raidEradicatorDistanceXYZ = createListOption(300.0D, 300.0D, 300.0D);
-        options().advanced.dragonsPearlDragonDistanceXYZ = createListOption(150.0D, 150.0D, 150.0D);
-        options().advanced.dragonKillsHostileEntitiesDistance = createListOption(200.0D, 200.0D, 200.0D);
-        options().advanced.dragonImmunityDetectionDistanceForGiant = createListOption(200.0D, 200.0D, 200.0D);
-        options().advanced.dragonImmunityDetectionDistanceForWither = createListOption(300.0D, 300.0D, 300.0D);
-
-        options().structureSpawnRates.ancientCities = createStructureSpawnRateOption(16, 8);
-        options().structureSpawnRates.villages = createStructureSpawnRateOption(16, 8);
-        options().structureSpawnRates.desertPyramids = createStructureSpawnRateOption(10, 5);
-        options().structureSpawnRates.junglePyramids = createStructureSpawnRateOption(10, 5);
-        options().structureSpawnRates.pillagerOutposts = createStructureSpawnRateOption(10, 5);
-        options().structureSpawnRates.endCities = createStructureSpawnRateOption(7, 3);
-        options().structureSpawnRates.woodlandMansions = createStructureSpawnRateOption(25, 12);
-        options().structureSpawnRates.ruinedPortals = createStructureSpawnRateOption(9, 4);
-        options().structureSpawnRates.shipwrecks = createStructureSpawnRateOption(10, 5);
-        options().structureSpawnRates.trialChambers = createStructureSpawnRateOption(12, 6);
-        options().structureSpawnRates.netherComplexes = createStructureSpawnRateOption(8, 4);
-
-        options().mixins.terraBlenderSurfaceRuleDataMixin = true;
-        options().mixins.backgroundRendererMixin = true;
-        options().mixins.simpleOptionMixin = true;
-        options().mixins.logoDrawerMixin = true;
-        options().mixins.renderLayersMixin = true;
     }
 
     /**
@@ -649,7 +535,7 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     public static int getMaximumAmountOfPiglinAllowedViaPiglinAwakener() {
-        return options().advanced.piglinAwakenerPiglinCount;
+        return options().advanced.piglinAwakenerPiglinCount.getCurrentValue();
     }
 
     public static float getBoatInLavaVelocityMultiplier() {
@@ -677,7 +563,7 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     public static int getPlayerBreathTime() {
-        return options().advanced.higherBreathTime ? 8 : 4;
+        return options().advanced.higherBreathTime.getCurrentValue() ? 8 : 4;
     }
 
     public static int getBlazeFireballCooldown() {
@@ -709,7 +595,7 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     public static float getEnderDragonStayPerchedTime() {
-        if (options().advanced.longerDragonPerchStayTime) {
+        if (options().advanced.longerDragonPerchStayTime.getCurrentValue()) {
             return DOOM_MODE ? 0.18F : 0.60F;
         } else {
             return 0.25F;
@@ -733,7 +619,7 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     public static double getZombifiedPiglinRunawayDistance() {
-        return options().advanced.decreasedZombifiedPiglinScareDistance ? 2.0D : 6.0D;
+        return options().advanced.decreasedZombifiedPiglinScareDistance.getCurrentValue() ? 2.0D : 6.0D;
     }
 
     public static int getSilverfishCallForHelpDelay() {

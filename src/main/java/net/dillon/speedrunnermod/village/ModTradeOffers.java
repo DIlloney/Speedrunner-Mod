@@ -36,7 +36,7 @@ public class ModTradeOffers {
     /**
      * Initializes the {@code Retired Speedrunner's} trade offers.
      */
-    public static void init() {
+    public static void registerVillagerTrades() {
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 1, factories -> {
             factories.add(new TradeOffers.BuyItemFactory(ModItems.SPEEDRUNNER_INGOT, 1, 24, 3));
         });

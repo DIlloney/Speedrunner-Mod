@@ -23,7 +23,7 @@ public class ModRecipes {
     /**
      * Initializes all Speedrunner Mod {@code custom recipes.}
      */
-    public static void init() {
+    public static void registerCustomRecipes() {
         register("crafting_special_speedrunner_shield_decoration", SpeedrunnerShieldDecorationRecipe.SPEEDRUNNER_SHIELD_DECORATION_RECIPE);
 
         info("Registered speedrunner shield decoration recipe.");

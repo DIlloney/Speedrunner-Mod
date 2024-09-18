@@ -24,7 +24,7 @@ public class VanillaBiomeParametersMixin {
      */
     @Inject(method = "<init>", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
-        if (SpeedrunnerMod.options().main.betterBiomes) {
+        if (SpeedrunnerMod.options().main.betterBiomes.getCurrentValue()) {
             this.commonBiomes = new RegistryKey[][]{
                     {BiomeKeys.PLAINS,
                             BiomeKeys.PLAINS,

@@ -1,21 +1,15 @@
 package net.dillon.speedrunnermod.option;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.SafeBootScreen;
 import net.dillon.speedrunnermod.util.TimeCalculator;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.util.TranslatableOption;
-import net.minecraft.util.math.MathHelper;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Objects;
+import java.io.IOException;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
 
@@ -54,122 +48,122 @@ public class ModOptions {
         /**
          * Allows certain blocks to be broken faster.
          */
-        public boolean fasterBlockBreaking = true;
+        public BooleanOption fasterBlockBreaking = new BooleanOption(true);
 
         /**
          * The multiplier for how faster blocks can be broken.
          */
-        public int blockBreakingMultiplier = 1;
+        public IntegerOption blockBreakingMultiplier = new IntegerOption(1);
 
         /**
          * Allows certain biomes, such as plains, deserts, savannas, etc., to generate more commonly.
          */
         @RequiresRestart
-        public boolean betterBiomes = true;
+        public BooleanOption betterBiomes = new BooleanOption(true);
 
         /**
          * Grants the player with a pre-equipped unbreakable elytra and a stack of flight duration 3 firework rockets.
          */
-        public boolean iCarusMode = false;
+        public BooleanOption iCarusMode = new BooleanOption(false);
 
         /**
          * Grants the player with an ender pearl that does not do damage nor get consumed upon use.
          */
-        public boolean infiniPearlMode = false;
+        public BooleanOption infiniPearlMode = new BooleanOption(false);
 
         /**
          * Flips the mod's description upside down, and makes the game harder to speedrun.
          */
         @RequiresRestart
-        public boolean doomMode = false;
+        public BooleanOption doomMode = new BooleanOption(false);
 
         /**
          *  Determines the amount of time (in seconds) that it takes for the ender dragon to automatically perch upon entering the end.
          *  <p>Note: {@code 8 = OFF, 9 = Instant.}</p>
          */
-        public int dragonPerchTime = 8;
+        public IntegerOption dragonPerchTime = new IntegerOption(8);
 
         /**
          * Instantly kills a ghast when they shoot a fireball.
          */
-        public boolean killGhastOnFireball = false;
+        public BooleanOption killGhastOnFireball = new BooleanOption(false);
 
         /**
          * Improves villager trades by making them less expensive and sell better stuff.
          */
         @RequiresRestart
-        public boolean betterVillagerTrades = true;
+        public BooleanOption betterVillagerTrades = new BooleanOption(true);
 
         /**
          * Allows certain items to be fireproof.
          */
-        public boolean fireproofItems = true;
+        public BooleanOption fireproofItems = new BooleanOption(true);
 
         /**
          * Allows the Speedrunner's Wasteland biome to generate, and allows some additional worldgen features to be added to different biomes.
          */
         @RequiresRestart
-        public boolean customBiomesAndCustomBiomeFeatures = true;
+        public BooleanOption customBiomesAndCustomBiomeFeatures = new BooleanOption(true);
 
         /**
          * Allows certain ores to generate more commonly.
          */
-        public boolean commonOres = true;
+        public BooleanOption commonOres = new BooleanOption(true);
 
         /**
          * Allows certain boats to be fireproof.
          */
-        public boolean lavaBoats = true;
+        public BooleanOption lavaBoats = new BooleanOption(true);
 
         /**
          * Allows water to be placed in the nether.
          */
-        public boolean netherWater = true;
+        public BooleanOption netherWater = new BooleanOption(true);
 
         /**
          * Improves most vanilla food items to restore more hunger bars and give more saturation.
          */
-        public boolean betterFoods = true;
+        public BooleanOption betterFoods = new BooleanOption(true);
 
         /**
          * Enables/disables fall damage.
          */
-        public boolean fallDamage = true;
+        public BooleanOption fallDamage = new BooleanOption(true);
 
         /**
          * Enables/disables "kinetic" damage (damage taken when flying into walls with an elytra).
          */
-        public boolean kineticDamage = true;
+        public BooleanOption kineticDamage = new BooleanOption(true);
 
         /**
          * Determines how far from spawn strongholds can generate.
          */
         @RequiresRestart
-        public int strongholdDistance = 4;
+        public IntegerOption strongholdDistance = new IntegerOption(4);
 
         /**
          * Determines how far apart strongholds can generate from each other.
          */
         @RequiresRestart
-        public int strongholdSpread = 3;
+        public IntegerOption strongholdSpread = new IntegerOption(3);
 
         /**
          * Determines the total amount of strongholds that can generate in a singular Minecraft world.
          */
         @RequiresRestart
-        public int strongholdCount = 128;
+        public IntegerOption strongholdCount = new IntegerOption(128);
 
         /**
          * Determines how many stronghold portal rooms can generate per stronghold.
          */
         @RequiresRestart
-        public int strongholdPortalRoomCount = 3;
+        public IntegerOption strongholdPortalRoomCount = new IntegerOption(3);
 
         /**
          * Determines how many libraries can generate per stronghold.
          */
         @RequiresRestart
-        public int strongholdLibraryCount = 2;
+        public IntegerOption strongholdLibraryCount = new IntegerOption(2);
 
         /**
          * Determines how big of packs mobs can spawn in.
@@ -179,59 +173,59 @@ public class ModOptions {
         /**
          * Sets the delay when entering/exiting the nether via a nether portal block.
          */
-        public int netherPortalDelay = 2;
+        public IntegerOption netherPortalDelay = new IntegerOption(2);
 
         /**
          * Allows fireballs to be thrown.
          */
-        public boolean throwableFireballs = true;
+        public BooleanOption throwableFireballs = new BooleanOption(true);
 
         /**
          * Allows arrows to blow up beds.
          */
-        public boolean arrowsDestroyBeds = true;
+        public BooleanOption arrowsDestroyBeds = new BooleanOption(true);
 
         /**
          * Allows nether portals to be built in the end.
          */
-        public boolean globalNetherPortals = true;
+        public BooleanOption globalNetherPortals = new BooleanOption(true);
 
         /**
          * Removes the "too expensive" feature from anvils, and also lowers the maximum cost for block use.
          */
-        public boolean betterAnvil = true;
+        public BooleanOption betterAnvil = new BooleanOption(true);
 
         /**
          * Sets the maximum cost that is allowed when using an anvil.
          * <p>If the cost goes above this value, the cost will instead be this value.</p>
          */
-        public int anvilCostLimit = 10;
+        public IntegerOption anvilCostLimit = new IntegerOption(10);
 
         /**
          * Allows the combination of two maximum level enchanted items to go above the enchantment level cap.
          */
-        public boolean higherEnchantmentLevels = true;
+        public BooleanOption higherEnchantmentLevels = new BooleanOption(true);
 
         /**
          * Allows the player to right-click on an ore block and remove the silk touch enchantment from their handheld item.
          */
-        public boolean rightClickToRemoveSilkTouch = true;
+        public BooleanOption rightClickToRemoveSilkTouch = new BooleanOption(true);
 
         /**
          * Increases the rate at which mobs spawn from spawner blocks.
          */
-        public boolean fasterSpawners = true;
+        public BooleanOption fasterSpawners = new BooleanOption(true);
 
         /**
          * This allows all world modifications to be applied, which includes making structures more common, modifying mob/creature spawn rates, doom mode features, and more.
          */
-        public boolean customDataGeneration = true;
+        public BooleanOption customDataGeneration = new BooleanOption(true);
 
         /**
          * Enables leaderboard mode, and applies the leaderboard checks and settings to the mod.
          */
         @RequiresRestart @Deprecated
-        public boolean leaderboardsMode = false;
+        public BooleanOption leaderboardsMode = new BooleanOption(false);
     }
 
     /**
@@ -243,28 +237,28 @@ public class ModOptions {
         /**
          * Enable/disable Minecraft's default fog.
          */
-        public boolean fog = true;
+        public BooleanOption fog = new BooleanOption(true);
 
         /**
          * Enables/disables fullbright.
          */
-        public boolean fullBright = false;
+        public BooleanOption fullBright = new BooleanOption(false);
 
         /**
          * Applies certain tooltips to certain items.
          */
-        public boolean itemTooltips = true;
+        public BooleanOption itemTooltips = new BooleanOption(true);
 
         /**
          * Puts the creator name of a certain texture on the specified item.
          */
-        public boolean textureTooltips = false;
+        public BooleanOption textureTooltips = new BooleanOption(false);
 
         /**
          * Enable/disable the Speedrunner Mod's custom panorama.
          */
         @RequiresRestart
-        public boolean customPanorama = true;
+        public BooleanOption customPanorama = new BooleanOption(true);
 
         /**
          * Determines whether certain player messages should be sent to the player's chat or actionbar (the area above the hotbar).
@@ -275,17 +269,17 @@ public class ModOptions {
          * Enable/disable the confirmation messages when using certain items (ex. eye of annul, ender thruster, piglin awakener, etc.).
          */
         @RequiresRestart
-        public boolean confirmMessages = true;
+        public BooleanOption confirmMessages = new BooleanOption(true);
 
         /**
          * Display the external link buttons across different screens.
          */
-        public boolean socialButtons = false;
+        public BooleanOption socialButtons = new BooleanOption(false);
 
         /**
          * Create a new world with just one click.
          */
-        public boolean fastWorldCreation = true;
+        public BooleanOption fastWorldCreation = new BooleanOption(true);
 
         /**
          * Determines the gamemode they every new world should generate with.
@@ -300,12 +294,12 @@ public class ModOptions {
         /**
          * Allows cheats when a new world is created.
          */
-        public boolean allowCheats = false;
+        public BooleanOption allowCheats = new BooleanOption(false);
 
         /**
          * Sends the players coordinates to chat upon death, and displays them on the death screen.
          */
-        public boolean showDeathCords = true;
+        public BooleanOption showDeathCords = new BooleanOption(true);
     }
 
     /**
@@ -317,97 +311,97 @@ public class ModOptions {
         /**
          * Allows the user to enable/disable the functions of "State of the Art" items, which are items that may be considered "broken" (as in crazy, not actually broken), OP, or cracked, such as the Dragon's Pearl, Piglin Awakener, Raid Eradicator, etc.
          */
-        public boolean stateOfTheArtItems = true;
+        public BooleanOption stateOfTheArtItems = new BooleanOption(true);
 
         /**
          * Determines if the annul eye stronghold portal room teleporter should be enabled.
          */
-        public boolean annulEye = true;
+        public BooleanOption annulEye = new BooleanOption(true);
 
         /**
          * Determines if the blaze spotter item function should be enabled.
          */
-        public boolean blazeSpotter = true;
+        public BooleanOption blazeSpotter = new BooleanOption(true);
 
         /**
          * Determines if the dragons pearl item function should be enabled.
          */
-        public boolean dragonsPearl = true;
+        public BooleanOption dragonsPearl = new BooleanOption(true);
 
         /**
          * Determines if the dragons sword item should be enabled.
          */
-        public boolean dragonsSword = true;
+        public BooleanOption dragonsSword = new BooleanOption(true);
 
         /**
          * Determines if the ender thruster item function should be enabled.
          */
-        public boolean enderThruster = true;
+        public BooleanOption enderThruster = new BooleanOption(true);
 
         /**
          * Determines if the piglin awakener item function should be enabled.
          */
-        public boolean piglinAwakener = true;
+        public BooleanOption piglinAwakener = new BooleanOption(true);
 
         /**
          * Determines if the raid eradicator item function should be enabled.
          */
-        public boolean raidEradicator = true;
+        public BooleanOption raidEradicator = new BooleanOption(true);
 
         /**
          * Returns true if {@code State-Of-The-Art items} option is enabled and the annul eye toggle switch is enabled.
          */
         public boolean isAnnulEyeTeleporterEnabled() {
-            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.annulEye;
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.annulEye.getCurrentValue();
         }
 
         /**
          * Returns true if {@code State-Of-The-Art items} option is enabled and the blaze spotter toggle switch is enabled.
          */
         public boolean isBlazeSpotterEnabled() {
-            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.blazeSpotter;
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.blazeSpotter.getCurrentValue();
         }
 
         /**
          * Returns true if {@code State-Of-The-Art items} option is enabled and the dragons pearl toggle switch is enabled.
          */
         public boolean isDragonsPearlEnabled() {
-            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.dragonsPearl;
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.dragonsPearl.getCurrentValue();
         }
 
         /**
          * Returns true if {@code State-Of-The-Art items} option is enabled and the dragons sword toggle switch is enabled.
          */
         public boolean isDragonsSwordEnabled() {
-            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.dragonsSword;
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.dragonsSword.getCurrentValue();
         }
 
         /**
          * Returns true if {@code State-Of-The-Art items} option is enabled and the ender thruster toggle switch is enabled.
          */
         public boolean isEnderThrusterEnabled() {
-            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.enderThruster;
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.enderThruster.getCurrentValue();
         }
 
         /**
          * Returns true if {@code State-Of-The-Art items} option is enabled and the piglin awakener toggle switch is enabled.
          */
         public boolean isPiglinAwakenerEnabled() {
-            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.piglinAwakener;
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.piglinAwakener.getCurrentValue();
         }
 
         /**
          * Returns true if {@code State-Of-The-Art items} option is enabled and the raid eradicator toggle switch is enabled.
          */
         public boolean isRaidEradicatorEnabled() {
-            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.raidEradicator;
+            return isStateOfTheArtItemsEnabled() && options().stateOfTheArtItems.raidEradicator.getCurrentValue();
         }
 
         /**
          * Returns true if {@code State-Of-The-Art items} option is enabled.
          */
         private boolean isStateOfTheArtItemsEnabled() {
-            return options().stateOfTheArtItems.stateOfTheArtItems;
+            return options().stateOfTheArtItems.stateOfTheArtItems.getCurrentValue();
         }
     }
 
@@ -420,137 +414,137 @@ public class ModOptions {
          * Allows strongholds to generate differently, or smaller.
          */
         @RequiresRestart
-        public boolean modifiedStrongholdGeneration = true;
+        public BooleanOption modifiedStrongholdGeneration = new BooleanOption(true);
 
         /**
          * Allows strongholds to generate at higher/lower Y-levels, depending on if doom mode is enabled or not.
          */
         @RequiresRestart
-        public boolean modifiedStrongholdYGeneration = true;
+        public BooleanOption modifiedStrongholdYGeneration = new BooleanOption(true);
 
         /**
          * Allows nether fortresses to generate differently, or smaller, along with more than two blaze spawners per fortress.
          */
         @RequiresRestart
-        public boolean modifiedNetherFortressGeneration = true;
+        public BooleanOption modifiedNetherFortressGeneration = new BooleanOption(true);
 
         /**
          * Display the reset button on the title screen, game menu screen and pause screen.
          */
-        public boolean showResetButton = true;
+        public BooleanOption showResetButton = new BooleanOption(true);
 
         /**
          * Allows the player to breath for a longer period of time while underwater, and also allows the player to regain oxygen when coming out of water blocks.
          */
-        public boolean higherBreathTime = true;
+        public BooleanOption higherBreathTime = new BooleanOption(true);
 
         /**
          * Allow all types/variants of speedrunner wood to generate across the world. This includes the different variants of speedrunner trees, dead speedrunner trees, and dead speedrunner bushes.
          */
-        public boolean generateSpeedrunnerWood = true;
+        public BooleanOption generateSpeedrunnerWood = new BooleanOption(true);
 
         /**
          * The weight for the Speedrunner's Wasteland biome (how commonly it can generate).
          */
         @RequiresRestart
-        public int speedrunnersWastelandBiomeWeight = 9;
+        public IntegerOption speedrunnersWastelandBiomeWeight = new IntegerOption(9);
 
         /**
          * In vanilla Minecraft, the ender dragon will fly away after perching when it takes so much damage. However, this option extends that damage amount, to allow the dragon to stay perched for a longer period of time, even after taking a large amount of damage.
          */
-        public boolean longerDragonPerchStayTime = true;
+        public BooleanOption longerDragonPerchStayTime = new BooleanOption(true);
 
         /**
          * Piglins get scared of zombified piglin if they are within 6 blocks of the zombified piglin. This option decreases that distance to 2 blocks.
          */
-        public boolean decreasedZombifiedPiglinScareDistance = true;
+        public BooleanOption decreasedZombifiedPiglinScareDistance = new BooleanOption(true);
 
         /**
          * Determines how long it takes (in ticks) for an eye of ender to break after throwing it.
          */
-        public int enderEyeBreakingCooldown = 60;
+        public IntegerOption enderEyeBreakingCooldown = new IntegerOption(60);
 
         /**
          * Determines the total amount of piglin that can teleport to the player per time using the piglin awakener item (Default = 10).
          */
-        public int piglinAwakenerPiglinCount = 10;
+        public IntegerOption piglinAwakenerPiglinCount = new IntegerOption(10);
 
         /**
          * Sets the inventory slot that the flight duration 3 firework rockets should be given to when iCarus Mode is enabled.
          */
-        public int iCarusFireworksInventorySlot = 1;
+        public IntegerOption iCarusFireworksInventorySlot = new IntegerOption(1);
 
         /**
          * Sets the inventory slot that the InfiniPearl item should be given to when InfiniPearl mode is enabled.
          * <p>This value is incremented by one if iCarus Mode is already enabled.</p>
          */
-        public int infiniPearlInventorySlot = 1;
+        public IntegerOption infiniPearlInventorySlot = new IntegerOption(1);
 
         /**
          * Determines the explosion power for fireballs when thrown with a fire charge.
          */
-        public int fireballExplosionPower = 1;
+        public IntegerOption fireballExplosionPower = new IntegerOption(1);
 
         /**
          * The minimum brightness amount for the Speedrunner Mod.
          */
-        public double minimumBrightness = 0.0D;
+        public DoubleOption minimumBrightness = new DoubleOption(0.0D);
 
         /**
          * The maximum brightness amount for the Speedrunner Mod.
          */
-        public double maximumBrightness = 12.0D;
+        public DoubleOption maximumBrightness = new DoubleOption(12.0D);
 
         /**
          * Makes the ender dragon kill all nearby hostile entities upon dying, excluding enderman.
          */
-        public boolean dragonKillsNearbyHostileEntities = true;
+        public BooleanOption dragonKillsNearbyHostileEntities = new BooleanOption(true);
 
         /**
          * On doom mode, the ender dragon cannot be killed by any means if the Giant and Wither are still alive in the end.
          */
-        public boolean dragonImmunityFromGiantAndWither = true;
+        public BooleanOption dragonImmunityFromGiantAndWither = new BooleanOption(true);
 
         /**
          * When using the eye of annul stronghold portal room teleporter feature, it iterates through [-X, -Y, -Z, X, Y, Z] all blocks in this location to locate the portal room block. Negative values go below the player, positive values go above.
          */
-        public int[] annulEyePortalRoomDistanceXYZ = createListOption(-128, -128, -128, 128, 128, 128);
+        public IntegerListOption annulEyePortalRoomDistanceXYZ = new IntegerListOption(createListOption(-128, -128, -128, 128, 128, 128));
 
         /**
          * When using the piglin awakener, the game will search around the player [X_Y_Z] blocks to find nearby piglin. The higher these numbers, the farther out the game looks. Increasing these numbers however is not recommended, as it could create extreme amounts of lag.
          */
-        public double[] piglinAwakenerPiglinDistanceXYZ = createListOption(100.0D, 100.0D, 100.0D);
+        public DoubleListOption piglinAwakenerPiglinDistanceXYZ = new DoubleListOption(createListOption(100.0D, 100.0D, 100.0D));
 
         /**
          * Determines the distance that the blaze spotter will use to determine the nearest blaze spawner.
          */
-        public int[] blazeSpotterDistanceXYZ = createListOption(-156, -72, -156, 156, 72, 156);
+        public IntegerListOption blazeSpotterDistanceXYZ = new IntegerListOption(createListOption(-156, -72, -156, 156, 72, 156));
 
         /**
          * When using the raid eradicator, the item will search a distance to search for the nearest raider entities.
          */
-        public double[] raidEradicatorDistanceXYZ = createListOption(300.0D, 300.0D, 300.0D);
+        public DoubleListOption raidEradicatorDistanceXYZ = new DoubleListOption(createListOption(300.0D, 300.0D, 300.0D));
 
         /**
          * The dragon's pearl item will look in the radius of [X_Y_Z] for the nearest ender dragon, and choose that dragon to control perching.
          */
-        public double[] dragonsPearlDragonDistanceXYZ = createListOption(150.0D, 150.0D, 150.0D);
+        public DoubleListOption dragonsPearlDragonDistanceXYZ = new DoubleListOption(createListOption(150.0D, 150.0D, 150.0D));
 
         /**
          * Determines the entities in range that will be killed upon the ender dragon's death.
          * <p>This option is redundant if the option Dragon Kills Nearby Hostile Entities is OFF.</p>
          */
-        public double[] dragonKillsHostileEntitiesDistance = createListOption(200.0D, 200.0D, 200.0D);
+        public DoubleListOption dragonKillsHostileEntitiesDistance = new DoubleListOption(createListOption(200.0D, 200.0D, 200.0D));
 
         /**
          * When on doom mode, the dragon cannot die if there is a nearby giant. This option specifies the range that the giant has to be in from the dragon in order for it to be immune.
          */
-        public double[] dragonImmunityDetectionDistanceForGiant = createListOption(200.0D, 200.0D, 200.0D);
+        public DoubleListOption dragonImmunityDetectionDistanceForGiant = new DoubleListOption(createListOption(200.0D, 200.0D, 200.0D));
 
         /**
          * When on doom mode, the dragon cannot die if there is a nearby wither. This option specifies the range that the wither has to be in from the dragon in order for it to be immune.
          */
-        public double[] dragonImmunityDetectionDistanceForWither = createListOption(300.0D, 300.0D, 300.0D);
+        public DoubleListOption dragonImmunityDetectionDistanceForWither = new DoubleListOption(createListOption(300.0D, 300.0D, 300.0D));
     }
 
     /**
@@ -563,35 +557,35 @@ public class ModOptions {
          * <p>Disable this if you do not want doom stone to generate throughout the end when doom mode is enabled, or if another mod is trying to generate other blocks.</p>
          */
         @RequiresRestart
-        public boolean terraBlenderSurfaceRuleDataMixin = true;
+        public BooleanOption terraBlenderSurfaceRuleDataMixin = new BooleanOption(true);
 
         /**
          * Applies the fog option into the game.
          * <p>Disable this if you are experiencing compatibility issues with other mods that may also mess with fog settings.</p>
          */
         @RequiresRestart
-        public boolean backgroundRendererMixin = true;
+        public BooleanOption backgroundRendererMixin = new BooleanOption(true);
 
         /**
          * Applies the simple option mixin into the game, which controls the brightness option slider.
          * <p>Disable this if you are experiencing compatibility issues with other mods, or if you don't want the new brightness slider.</p>
          */
         @RequiresRestart
-        public boolean simpleOptionMixin = true;
+        public BooleanOption simpleOptionMixin = new BooleanOption(true);
 
         /**
          * Applies the logo drawer mixin into the game, which adds the custom speedrunner edition logo to the title screen.
          * <p>Disable this if you do not want the custom logo, or are making a custom texture pack that uses a different logo, or are experiencing compatibility issues with other mods.</p>
          */
         @RequiresRestart
-        public boolean logoDrawerMixin = true;
+        public BooleanOption logoDrawerMixin = new BooleanOption(true);
 
         /**
          * Applies the render layers mixin into the game, which registers a render layer for lava boats.
          * <p>I would only disable this if you absolutely have to, or if you are experiencing noticeable issues with lava boats, or aren't using them.</p>
          */
         @RequiresRestart
-        public boolean renderLayersMixin = true;
+        public BooleanOption renderLayersMixin = new BooleanOption(true);
     }
 
     /**
@@ -649,112 +643,112 @@ public class ModOptions {
      * Returns true if the {@code Dragon Perch Time} option is valid.
      */
     public boolean isDragonPerchTimeValid() {
-        return this.inBounds(main.dragonPerchTime, 8, 90);
+        return this.inBounds(main.dragonPerchTime.getCurrentValue(), 8, 90);
     }
 
     /**
      * Returns true if the {@code Dragon Perch Time} option is {@code on.}
      */
     public boolean isDragonPerchTimeOn() {
-        return this.inBounds(main.dragonPerchTime, 10);
+        return this.inBounds(main.dragonPerchTime.getCurrentValue(), 10);
     }
 
     /**
      * Returns true if the {@code Dragon Perch Time} option is {@code "instant".}
      */
     public boolean isInstantDragonPerchTime() {
-        return options().main.dragonPerchTime == 9;
+        return options().main.dragonPerchTime.getCurrentValue() == 9;
     }
 
     /**
      * Returns the current {@code Dragon Perch Time} option in milliseconds.
      */
     public int getDragonPerchTime() {
-        return TimeCalculator.secondsToMilliseconds(options().main.dragonPerchTime);
+        return TimeCalculator.secondsToMilliseconds(options().main.dragonPerchTime.getCurrentValue());
     }
 
     /**
      * Returns true if the {@code Block Breaking Multiplier} option is valid.
      */
     public boolean isBlockBreakingMultiplierValid() {
-        return this.inBounds(main.blockBreakingMultiplier, 1, 3);
+        return this.inBounds(main.blockBreakingMultiplier.getCurrentValue(), 1, 3);
     }
 
     /**
      * Returns true if the {@code Stronghold Distance} option is valid.
      */
     public boolean isStrongholdDistanceValid() {
-        return this.inBounds(main.strongholdDistance, 3, 64);
+        return this.inBounds(main.strongholdDistance.getCurrentValue(), 3, 64);
     }
 
     /**
      * Returns true if the {@code Stronghold Spread} option is valid.
      */
     public boolean isStrongholdSpreadValid() {
-        return this.inBounds(main.strongholdSpread, 2, 32);
+        return this.inBounds(main.strongholdSpread.getCurrentValue(), 2, 32);
     }
 
     /**
      * Returns true if the {@code Stronghold Count} option is valid.
      */
     public boolean isStrongholdCountValid() {
-        return this.inBounds(main.strongholdCount, 4, 156);
+        return this.inBounds(main.strongholdCount.getCurrentValue(), 4, 156);
     }
 
     /**
      * Returns true if the {@code Stronghold Portal Room Count} option is valid.
      */
     public boolean isStrongholdPortalRoomCountValid() {
-        return this.inBounds(main.strongholdPortalRoomCount, 0, 3);
+        return this.inBounds(main.strongholdPortalRoomCount.getCurrentValue(), 0, 3);
     }
 
     /**
      * Returns true if the {@code Stronghold Library Count} option is valid.
      */
     public boolean isStrongholdLibraryCountValid() {
-        return this.inBounds(main.strongholdLibraryCount, 1, 10);
+        return this.inBounds(main.strongholdLibraryCount.getCurrentValue(), 1, 10);
     }
 
     /**
      * Returns true if the {@code Anvil Cost Limit} option is valid.
      */
     public boolean isAnvilCostLimitValid() {
-        return this.inBounds(main.anvilCostLimit, 1, 50);
+        return this.inBounds(main.anvilCostLimit.getCurrentValue(), 1, 50);
     }
 
     /**
      * Returns true if the {@code Nether Portal Cooldown} option is valid.
      */
     public boolean isNetherPortalCooldownValid() {
-        return this.inBounds(main.netherPortalDelay, 0, 20);
+        return this.inBounds(main.netherPortalDelay.getCurrentValue(), 0, 20);
     }
 
     /**
      * Returns true if the {@code Speedrunner's Wasteland Biome Weight} option is valid.
      */
     public boolean isSpeedrunnersWastelandBiomeWeightValid() {
-        return this.inBounds(advanced.speedrunnersWastelandBiomeWeight, 1, 32);
+        return this.inBounds(advanced.speedrunnersWastelandBiomeWeight.getCurrentValue(), 1, 32);
     }
 
     /**
      * Returns true if the {@code Eye of Ender Breaking Cooldown} advanced option is valid.
      */
     public boolean isEyeOfEnderBreakingCooldownValid() {
-        return this.inBounds(advanced.enderEyeBreakingCooldown, 20, 200);
+        return this.inBounds(advanced.enderEyeBreakingCooldown.getCurrentValue(), 20, 200);
     }
 
     /**
      * Returns true if the {@code Icarus Fireworks Inventory Slot} advanced option is valid.
      */
     public boolean isIcarusFireworksInventorySlotValid() {
-        return this.inBounds(advanced.iCarusFireworksInventorySlot, 1, 36);
+        return this.inBounds(advanced.iCarusFireworksInventorySlot.getCurrentValue(), 1, 36);
     }
 
     /**
      * Returns true if the {@code InfiniPearl Inventory Slot} advanced option is valid.
      */
     public boolean isInfiniPearlInventorySlotValid() {
-        return this.inBounds(advanced.infiniPearlInventorySlot, 1, 36);
+        return this.inBounds(advanced.infiniPearlInventorySlot.getCurrentValue(), 1, 36);
     }
 
     /**
@@ -769,336 +763,6 @@ public class ModOptions {
      */
     public boolean inBounds(int option, int min, int max) {
         return option >= min && option <= max;
-    }
-
-    /**
-     * All the different {@code Structure Spawn Rate} options, from extremely common to extremely rare.
-     */
-    public enum StructureSpawnRate implements TranslatableOption {
-        EVERYWHERE(0, "speedrunnermod.options.structure_spawn_rates.everywhere"),
-        VERY_COMMON(1, "speedrunnermod.options.structure_spawn_rates.very_common"),
-        COMMON(2, "speedrunnermod.options.structure_spawn_rates.common"),
-        NORMAL(3, "speedrunnermod.options.structure_spawn_rates.normal"),
-        DEFAULT(4, "speedrunnermod.options.structure_spawn_rates.default"),
-        RARE(5, "speedrunnermod.options.structure_spawn_rates.rare"),
-        VERY_RARE(6, "speedrunnermod.options.structure_spawn_rates.very_rare"),
-        CUSTOM(7, "speedrunnermod.options.structure_spawn_rates.custom"),
-        DISABLED(8, "speedrunnermod.options.structure_spawn_rates.disabled");
-
-        private static final StructureSpawnRate[] VALUES = Arrays.stream(StructureSpawnRate.values()).sorted(Comparator.comparingInt(StructureSpawnRate::getId)).toArray(StructureSpawnRate[]::new);
-        private final int id;
-        private final String translateKey;
-
-        StructureSpawnRate(int id, String translationKey) {
-            this.id = id;
-            this.translateKey = Objects.requireNonNull(translationKey, "translateKey");
-        }
-
-        /**
-         * Returns the {@code id value} of the {@code Structure Spawn Rate} option.
-         */
-        @Override
-        public int getId() {
-            return this.id;
-        }
-
-        /**
-         * Returns the {@code translation key} of the {@code Structure Spawn Rate} option.
-         */
-        @Override
-        public String getTranslationKey() {
-            return this.translateKey;
-        }
-
-        /**
-         * Not sure what this does to be honest, but it's used in {@link ModListOptions}.
-         */
-        public static StructureSpawnRate byId(int id) {
-            return VALUES[MathHelper.floorMod(id, VALUES.length)];
-        }
-
-        /**
-         * Returns true if the {@code Structure Spawn Rate} option is safe.
-         * <p>Going into the configuration file and setting the option to an invalid string, will crash the game.</p>
-         */
-        public boolean isSafe() {
-            return options().main.structureSpawnRates.equals(EVERYWHERE) ||
-                    options().main.structureSpawnRates.equals(VERY_COMMON) ||
-                    options().main.structureSpawnRates.equals(COMMON) ||
-                    options().main.structureSpawnRates.equals(NORMAL) ||
-                    options().main.structureSpawnRates.equals(DEFAULT) ||
-                    options().main.structureSpawnRates.equals(RARE) ||
-                    options().main.structureSpawnRates.equals(VERY_RARE) ||
-                    options().main.structureSpawnRates.equals(CUSTOM) ||
-                    options().main.structureSpawnRates.equals(DISABLED);
-        }
-
-        /**
-         * Returns the {@code Everywhere} structure spawn rate option.
-         */
-        public boolean everywhere() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRate.EVERYWHERE);
-        }
-
-        /**
-         * Returns the {@code Very Common} structure spawn rate option.
-         */
-        public boolean veryCommon() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRate.VERY_COMMON);
-        }
-
-        /**
-         * Returns the {@code Very Common} or {@code Common} structure spawn rate option.
-         */
-        public boolean veryCommonOrCommon() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRate.VERY_COMMON) || options().main.structureSpawnRates.equals(COMMON);
-        }
-
-        /**
-         * Returns the {@code Common} structure spawn rate option.
-         */
-        public boolean common() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRate.COMMON);
-        }
-
-        /**
-         * Returns the {@code Normal} structure spawn rate option.
-         */
-        public boolean normal() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRate.NORMAL);
-        }
-
-        /**
-         * Returns the {@code Default} structure spawn rate option,
-         */
-        public boolean ddefault() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRate.DEFAULT);
-        }
-
-        /**
-         * Returns the {@code Normal} or {@code Default} structure spawn rate option.
-         */
-        public boolean commonNormalOrDefault() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRate.COMMON) || options().main.structureSpawnRates.equals(StructureSpawnRate.NORMAL) || options().main.structureSpawnRates.equals(StructureSpawnRate.DEFAULT);
-        }
-
-        /**
-         * Returns the {@code Rare} structure spawn rate option.
-         */
-        public boolean rare() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRate.RARE);
-        }
-
-        /**
-         * Returns the {@code Very Rare} structure spawn rate option.
-         */
-        public boolean veryRare() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRate.VERY_RARE);
-        }
-
-        /**
-         * Returns the {@code Custom} structure spawn rate option.
-         */
-        public boolean custom() {
-            return options().main.structureSpawnRates.equals(StructureSpawnRate.CUSTOM);
-        }
-    }
-
-    /**
-     * All the different {@code Mob Spawning Rate} options.
-     */
-    public enum MobSpawningRate implements TranslatableOption {
-        LOW(0, "speedrunnermod.options.mob_spawning_rate.low"),
-        NORMAL(1, "speedrunnermod.options.mob_spawning_rate.normal"),
-        HIGH(2, "speedrunnermod.options.mob_spawning_rate.high");
-
-        private static final MobSpawningRate[] VALUES = Arrays.stream(MobSpawningRate.values()).sorted(Comparator.comparingInt(MobSpawningRate::getId)).toArray(MobSpawningRate[]::new);
-        private final int id;
-        private final String translateKey;
-
-        MobSpawningRate(int id, String translationKey) {
-            this.id = id;
-            this.translateKey = Objects.requireNonNull(translationKey, "translateKey");
-        }
-
-        /**
-         * Returns the {@code id value} of the {@code Mob Spawning Rate} option.
-         */
-        @Override
-        public int getId() {
-            return this.id;
-        }
-
-        /**
-         * Returns the {@code translation key} of the {@code Mob Spawning Rate} option.
-         */
-        @Override
-        public String getTranslationKey() {
-            return this.translateKey;
-        }
-
-        /**
-         * Not sure what this does to be honest, but it's used in {@link ModListOptions}.
-         */
-        public static MobSpawningRate byId(int id) {
-            return VALUES[MathHelper.floorMod(id, VALUES.length)];
-        }
-    }
-
-    /**
-     * All the different {@code GameMode} options.
-     */
-    public enum GameMode implements TranslatableOption {
-        SURVIVAL(0, "speedrunnermod.options.gamemode.survival"),
-        CREATIVE(1, "speedrunnermod.options.gamemode.creative"),
-        HARDCORE(2, "speedrunnermod.options.gamemode.hardcore"),
-        SPECTATOR(3, "speedrunnermod.options.gamemode.spectator");
-
-        private static final GameMode[] VALUES = Arrays.stream(GameMode.values()).sorted(Comparator.comparingInt(GameMode::getId)).toArray(GameMode[]::new);
-        private final int id;
-        private final String translateKey;
-
-        GameMode(int id, String translationKey) {
-            this.id = id;
-            this.translateKey = Objects.requireNonNull(translationKey, "translateKey");
-        }
-
-        /**
-         * Returns the {@code id value} of the fast world creation {@code GameMode} option.
-         */
-        @Override
-        public int getId() {
-            return this.id;
-        }
-
-        /**
-         * Returns the {@code translation key} of the {@code GameMode} option.
-         */
-        @Override
-        public String getTranslationKey() {
-            return this.translateKey;
-        }
-
-        /**
-         * Not sure what this does to be honest, but it's used in {@link ModListOptions}.
-         */
-        public static GameMode byId(int id) {
-            return VALUES[MathHelper.floorMod(id, VALUES.length)];
-        }
-
-        /**
-         * Returns true if the {@code GameMode} option is safe to run.
-         */
-        public boolean isSafe() {
-            return options().client.gameMode.equals(SURVIVAL) ||
-                    options().client.gameMode.equals(CREATIVE) ||
-                    options().client.gameMode.equals(HARDCORE) ||
-                    options().client.gameMode.equals(SPECTATOR);
-        }
-    }
-
-    /**
-     * All the different {@code Difficulty} options.
-     */
-    public enum Difficulty implements TranslatableOption {
-        PEACEFUL(0, "speedrunnermod.options.difficulty.peaceful"),
-        EASY(1, "speedrunnermod.options.difficulty.easy"),
-        NORMAL(2, "speedrunnermod.options.difficulty.normal"),
-        HARD(3, "speedrunnermod.options.difficulty.hard");
-
-        private static final Difficulty[] VALUES = Arrays.stream(Difficulty.values()).sorted(Comparator.comparingInt(Difficulty::getId)).toArray(Difficulty[]::new);
-        private final int id;
-        private final String translateKey;
-
-        Difficulty(int id, String translationKey) {
-            this.id = id;
-            this.translateKey = Objects.requireNonNull(translationKey, "translateKey");
-        }
-
-        /**
-         * Returns the {@code id value} of the fast world creation {@code Difficulty} option.
-         */
-        @Override
-        public int getId() {
-            return this.id;
-        }
-
-        /**
-         * Returns the {@code translation key} of the {@code Difficulty} option.
-         */
-        @Override
-        public String getTranslationKey() {
-            return this.translateKey;
-        }
-
-        /**
-         * Not sure what this does to be honest, but it's used in {@link ModListOptions}.
-         */
-        public static Difficulty byId(int id) {
-            return VALUES[MathHelper.floorMod(id, VALUES.length)];
-        }
-
-        /**
-         * Returns true if the {@code Difficulty} option is safe to run.
-         */
-        public boolean isSafe() {
-            return options().client.difficulty.equals(PEACEFUL) ||
-                    options().client.difficulty.equals(EASY) ||
-                    options().client.difficulty.equals(NORMAL) ||
-                    options().client.difficulty.equals(HARD);
-        }
-    }
-
-    public enum ItemMessages implements TranslatableOption {
-        CHAT(0, "speedrunnermod.options.item_messages.chat"),
-        ACTIONBAR(1, "speedrunnermod.options.item_messages.actionbar");
-
-        private static final ItemMessages[] VALUES = Arrays.stream(ItemMessages.values()).sorted(Comparator.comparingInt(ItemMessages::getId)).toArray(ItemMessages[]::new);
-        private final int id;
-        private final String translateKey;
-
-        ItemMessages(int id, String translationKey) {
-            this.id = id;
-            this.translateKey = Objects.requireNonNull(translationKey, "translateKey");
-        }
-
-        /**
-         * Returns the {@code id value} of the {@code Item Messages} option.
-         */
-        @Override
-        public int getId() {
-            return this.id;
-        }
-
-        /**
-         * Returns the {@code translation key} of the {@code Item Messages} option.
-         */
-        @Override
-        public String getTranslationKey() {
-            return this.translateKey;
-        }
-
-        /**
-         * Not sure what this does to be honest, but it's used in {@link ModListOptions}.
-         */
-        public static ItemMessages byId(int id) {
-            return VALUES[MathHelper.floorMod(id, VALUES.length)];
-        }
-
-        /**
-         * Returns true if the {@code Item Messages} option is safe to run.
-         */
-        public boolean isSafe() {
-            return options().client.itemMessages.equals(ACTIONBAR) ||
-                    options().client.itemMessages.equals(CHAT);
-        }
-
-        /**
-         * Returns true if the {@code Item Messages} option is set to actionbar.
-         */
-        public static boolean isActionbar() {
-            return options().client.itemMessages.equals(ACTIONBAR);
-        }
     }
 
     /**
@@ -1169,6 +833,19 @@ public class ModOptions {
         return file;
     }
 
+    public static void loadValues() {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader(CONFIG)) {
+            ModOptions options = gson.fromJson(reader, ModOptions.class);
+
+            for (IntegerOption option : OptionManager.getIntegerOptions()) {
+
+            }
+        } catch (JsonIOException | JsonSyntaxException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * The game is safe to run if the {@code safe} parameter returns true.
      */
@@ -1185,7 +862,7 @@ public class ModOptions {
         final String pertaining = "Pertaining to: ";
         final String related = space + pertaining;
 
-        if (options().main.leaderboardsMode) {
+        if (options().main.leaderboardsMode.getCurrentValue()) {
             error("Leaderboards mode is ON, please disable, as the leaderboards have been deleted.");
             isSafe(false);
             BrokenModOptions.leaderboards = true;
@@ -1221,7 +898,7 @@ public class ModOptions {
             BrokenModOptions.difficulty = true;
         }
 
-        if (options().main.netherPortalDelay < 0) {
+        if (options().main.netherPortalDelay.getCurrentValue() < 0) {
             error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.netherPortalCooldown");
             isSafe(false);
             BrokenModOptions.netherPortalCooldown = true;
@@ -1229,7 +906,7 @@ public class ModOptions {
             warn(OPTIONS_WARNING_MESSAGE + related + "speedrunnermod.options.netherPortalCooldown");
         }
 
-        if (options().main.strongholdPortalRoomCount < 1) {
+        if (options().main.strongholdPortalRoomCount.getCurrentValue() < 1) {
             error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.strongholdPortalRoomCount");
             isSafe(false);
             BrokenModOptions.strongholdPortalRoomCount = true;
@@ -1237,7 +914,7 @@ public class ModOptions {
             warn(OPTIONS_WARNING_MESSAGE + related + "speedrunnermod.options.strongholdPortalRoomCount");
         }
 
-        if (options().main.blockBreakingMultiplier < 0) {
+        if (options().main.blockBreakingMultiplier.getCurrentValue() < 0) {
             error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.blockBreakingMultiplier");
             isSafe(false);
             BrokenModOptions.blockBreakingMultiplier = true;
@@ -1246,7 +923,7 @@ public class ModOptions {
             warn(OPTIONS_WARNING_MESSAGE + related + "speedrunnermod.options.blockBreakingMultiplier");
         }
 
-        if (options().advanced.speedrunnersWastelandBiomeWeight < 1) {
+        if (options().advanced.speedrunnersWastelandBiomeWeight.getCurrentValue() < 1) {
             error(OPTIONS_ERROR_MESSAGE + related + "speedrunnermod.options.speedrunnersWastelandBiomeWeight");
             isSafe(false);
             BrokenModOptions.speedrunnersWastelandBiomeWeight = true;

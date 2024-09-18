@@ -93,7 +93,7 @@ public abstract class AbstractModScreen extends BaseModScreen {
             LeaderboardsIneligibleScreen.needsRestartFromEnablingLeaderboardsMode = false;
             this.alreadySettingToIneligibleScreen = false;
 
-            if (options().main.leaderboardsMode) {
+            if (options().main.leaderboardsMode.getCurrentValue()) {
                 if (Leaderboards.wasLeaderboardsModeChanged()) {
                     LeaderboardsIneligibleScreen.needsRestartFromEnablingLeaderboardsMode = true;
                 }

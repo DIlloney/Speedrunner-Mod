@@ -30,7 +30,7 @@ public class EnchantedBookItemMixin extends Item {
      */
     @Override
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (options().client.itemTooltips) {
+        if (options().client.itemTooltips.getCurrentValue()) {
             ItemEnchantmentsComponent itemEnchantmentsComponent = EnchantmentHelper.getEnchantments(stack);
             for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : itemEnchantmentsComponent.getEnchantmentEntries()) {
                 if (entry.getKey().matchesKey(ModEnchantments.DASH)) {

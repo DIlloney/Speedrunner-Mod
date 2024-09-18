@@ -33,7 +33,7 @@ public class AdvancedOptionsScreen extends AbstractModScreen {
         return new SimpleOption[]{
                 ModListOptions.SHOW_RESET_BUTTON,
                 ModListOptions.HIGHER_BREATH_TIME,
-                options().main.throwableFireballs ? ModListOptions.FIREBALL_EXPLOSION_POWER : ModListOptions.Inactiveable.IAO_FIREBALL_EXPLOSION_POWER,
+                options().main.throwableFireballs.getCurrentValue() ? ModListOptions.FIREBALL_EXPLOSION_POWER : ModListOptions.Inactiveable.IAO_FIREBALL_EXPLOSION_POWER,
         };
     }
 
@@ -50,17 +50,17 @@ public class AdvancedOptionsScreen extends AbstractModScreen {
         this.optionList.addSingleOptionEntry(ModListOptions.LONGER_DRAGON_PERCH_STAY_TIME);
         this.optionList.addSingleOptionEntry(ModListOptions.DECREASED_ZOMBIFIED_PIGLIN_SCARE_DISTANCE);
         this.optionList.addSingleOptionEntry(options().stateOfTheArtItems.isPiglinAwakenerEnabled() ? ModListOptions.PIGLIN_AWAKENER_PIGLIN_COUNT : ModListOptions.Inactiveable.IAO_PIGLIN_AWAKENER_PIGLIN_COUNT);
-        this.optionList.addSingleOptionEntry(options().main.iCarusMode ? ModListOptions.ICARUS_FIREWORKS_INVENTORY_SLOT : ModListOptions.Inactiveable.IAO_ICARUS_FIREWORKS_INVENTORY_SLOT);
-        this.optionList.addSingleOptionEntry(options().main.infiniPearlMode ? ModListOptions.INFINI_PEARL_INVENTORY_SLOT : ModListOptions.Inactiveable.IAO_INFINI_PEARL_INVENTORY_SLOT);
+        this.optionList.addSingleOptionEntry(options().main.iCarusMode.getCurrentValue() ? ModListOptions.ICARUS_FIREWORKS_INVENTORY_SLOT : ModListOptions.Inactiveable.IAO_ICARUS_FIREWORKS_INVENTORY_SLOT);
+        this.optionList.addSingleOptionEntry(options().main.infiniPearlMode.getCurrentValue() ? ModListOptions.INFINI_PEARL_INVENTORY_SLOT : ModListOptions.Inactiveable.IAO_INFINI_PEARL_INVENTORY_SLOT);
         this.optionList.addSingleOptionEntry(ModListOptions.DRAGON_KILLS_NEARBY_HOSTILE_ENTITIES);
-        this.optionList.addSingleOptionEntry(options().main.doomMode ? ModListOptions.DRAGON_IMMUNITY_FROM_GIANT_AND_WITHER : ModListOptions.Inactiveable.IAO_DRAGON_IMMUNITY_FROM_GIANT_AND_WITHER);
+        this.optionList.addSingleOptionEntry(options().main.doomMode.getCurrentValue() ? ModListOptions.DRAGON_IMMUNITY_FROM_GIANT_AND_WITHER : ModListOptions.Inactiveable.IAO_DRAGON_IMMUNITY_FROM_GIANT_AND_WITHER);
         this.optionList.addAll(advancedOptions());
 
         this.deactivateButton(8, ButtonSide.LARGE, options().stateOfTheArtItems.isPiglinAwakenerEnabled());
-        this.deactivateButton(9, ButtonSide.LARGE, options().main.iCarusMode);
-        this.deactivateButton(10, ButtonSide.LARGE, options().main.infiniPearlMode);
-        this.deactivateButton(12, ButtonSide.LARGE, options().main.doomMode);
-        this.deactivateButton(14, ButtonSide.LEFT, options().main.throwableFireballs);
+        this.deactivateButton(9, ButtonSide.LARGE, options().main.iCarusMode.getCurrentValue());
+        this.deactivateButton(10, ButtonSide.LARGE, options().main.infiniPearlMode.getCurrentValue());
+        this.deactivateButton(12, ButtonSide.LARGE, options().main.doomMode.getCurrentValue());
+        this.deactivateButton(14, ButtonSide.LEFT, options().main.throwableFireballs.getCurrentValue());
 
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);

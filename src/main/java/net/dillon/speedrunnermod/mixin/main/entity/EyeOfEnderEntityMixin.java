@@ -75,7 +75,7 @@ public abstract class EyeOfEnderEntityMixin extends Entity implements FlyingItem
         if (!this.getWorld().isClient) {
             this.setPosition(d, e, f);
             ++this.lifespan;
-            if (this.lifespan > options().advanced.enderEyeBreakingCooldown && !this.getWorld().isClient) {
+            if (this.lifespan > options().advanced.enderEyeBreakingCooldown.getCurrentValue() && !this.getWorld().isClient) {
                 this.discard();
                 if (DOOM_MODE) {
                     if (this.getStack().getItem() == Items.ENDER_EYE) {

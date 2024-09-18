@@ -67,7 +67,7 @@ public abstract class BoatEntityMixin extends Entity {
      */
     @ModifyArg(method = "fall", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/vehicle/BoatEntity;handleFallDamage(FFLnet/minecraft/entity/damage/DamageSource;)Z"), index = 1)
     private float lowerFallDamage(float par1) {
-        if (!options().main.fallDamage) {
+        if (!options().main.fallDamage.getCurrentValue()) {
             return 0.0F;
         } else {
             return DOOM_MODE ? 1.0F : 0.7F;

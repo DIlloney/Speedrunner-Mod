@@ -24,7 +24,7 @@ public class ModSoundEvents {
     /**
      * Initializes all speedrunner mod {@code custom sounds.}
      */
-    public static void init() {
-        info("Initialized lava boat paddling sound.");
+    public static void initializeSoundEvents() {
+        info("Initialized sounds.");
     }
 }

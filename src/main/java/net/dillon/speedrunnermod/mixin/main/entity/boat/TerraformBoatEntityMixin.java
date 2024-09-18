@@ -32,7 +32,7 @@ public abstract class TerraformBoatEntityMixin extends BoatEntity {
      */
     @Override
     public boolean isFireImmune() {
-        if (options().main.lavaBoats) {
+        if (options().main.lavaBoats.getCurrentValue()) {
             return ModBoats.isFireproofBoat(this.getTerraformBoat()) || super.isFireImmune();
         } else {
             return super.isFireImmune();

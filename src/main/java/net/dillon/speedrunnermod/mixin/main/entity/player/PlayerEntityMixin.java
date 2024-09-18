@@ -104,7 +104,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
      */
     @Override
     protected int getNextAirUnderwater(int air) {
-        if (options().advanced.higherBreathTime && this.random.nextInt(4) > 0) {
+        if (options().advanced.higherBreathTime.getCurrentValue() && this.random.nextInt(4) > 0) {
             return air;
         }
 

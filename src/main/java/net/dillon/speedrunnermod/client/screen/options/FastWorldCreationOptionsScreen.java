@@ -32,9 +32,9 @@ public class FastWorldCreationOptionsScreen extends AbstractModScreen {
     private SimpleOption<?>[] fwcOptions() {
         return new SimpleOption[]{
                 ModListOptions.FAST_WORLD_CREATION,
-                options().client.fastWorldCreation ? ModListOptions.GAMEMODE : ModListOptions.Inactiveable.IAO_GAMEMODE,
-                options().client.fastWorldCreation ? ModListOptions.DIFFICULTY : ModListOptions.Inactiveable.IAO_DIFFICULTY,
-                options().client.fastWorldCreation ? ModListOptions.ALLOW_CHEATS : ModListOptions.Inactiveable.IAO_ALLOW_CHEATS
+                options().client.fastWorldCreation.getCurrentValue() ? ModListOptions.GAMEMODE : ModListOptions.Inactiveable.IAO_GAMEMODE,
+                options().client.fastWorldCreation.getCurrentValue() ? ModListOptions.DIFFICULTY : ModListOptions.Inactiveable.IAO_DIFFICULTY,
+                options().client.fastWorldCreation.getCurrentValue() ? ModListOptions.ALLOW_CHEATS : ModListOptions.Inactiveable.IAO_ALLOW_CHEATS
         };
     }
 
@@ -43,9 +43,9 @@ public class FastWorldCreationOptionsScreen extends AbstractModScreen {
         this.initializeOptionListWidget();
 
         this.optionList.addAll(fwcOptions());
-        this.deactivateButton(0, ButtonSide.RIGHT, options().client.fastWorldCreation);
-        this.deactivateButton(1, ButtonSide.LEFT, options().client.fastWorldCreation);
-        this.deactivateButton(1, ButtonSide.RIGHT, options().client.fastWorldCreation);
+        this.deactivateButton(0, ButtonSide.RIGHT, options().client.fastWorldCreation.getCurrentValue());
+        this.deactivateButton(1, ButtonSide.LEFT, options().client.fastWorldCreation.getCurrentValue());
+        this.deactivateButton(1, ButtonSide.RIGHT, options().client.fastWorldCreation.getCurrentValue());
 
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);

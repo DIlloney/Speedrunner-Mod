@@ -27,7 +27,7 @@ public abstract class CreateWorldScreenMixin {
      */
     @Inject(method = "init", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
-        if (options().client.fastWorldCreation) {
+        if (options().client.fastWorldCreation.getCurrentValue()) {
 
             Difficulty difficulty = null;
             switch (options().client.difficulty) {
@@ -65,7 +65,7 @@ public abstract class CreateWorldScreenMixin {
             assert difficulty != null;
             this.worldCreator.setGameMode(gameMode);
             this.worldCreator.setDifficulty(difficulty);
-            this.worldCreator.setCheatsEnabled(options().client.allowCheats);
+            this.worldCreator.setCheatsEnabled(options().client.allowCheats.getCurrentValue());
             createLevel();
         }
     }

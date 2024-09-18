@@ -33,7 +33,7 @@ public class MainScreen extends AbstractModScreen {
         this.buttons.add(0, ButtonWidget.builder(Text.translatable("menu.options").formatted(getOptionsTextColor()), (button) -> {
             RestartRequiredScreen.getCurrentOptions();
             Leaderboards.getCurrentLeaderboardsMode();
-            if (options().main.leaderboardsMode) {
+            if (options().main.leaderboardsMode.getCurrentValue()) {
                 Leaderboards.getCurrentOptions();
             }
             this.client.setScreen(new ModOptionsScreen(this, options));
@@ -71,7 +71,7 @@ public class MainScreen extends AbstractModScreen {
                 this.client.setScreen(new SecretDoomModeScreen(this, options));
             }
         }).build());
-        this.buttons.get(7).visible = options().main.doomMode;
+        this.buttons.get(7).visible = options().main.doomMode.getCurrentValue();
 
         super.init();
     }
@@ -79,7 +79,7 @@ public class MainScreen extends AbstractModScreen {
     @Override
     protected void renderTooltips(DrawContext context, int mouseX, int mouseY) {
         if (this.buttons.get(0).isHovered()) {
-            if (options().main.leaderboardsMode) {
+            if (options().main.leaderboardsMode.getCurrentValue()) {
                 if (!Leaderboards.isEligibleForLeaderboardRuns()) {
                     this.renderBasicTooltip(ModTexts.MENU_OPTIONS_ACTION_NEEDED, context, mouseX, mouseY);
                 } else {
@@ -115,7 +115,7 @@ public class MainScreen extends AbstractModScreen {
      * Sets the color of the options button, depending on if leaderboards mode is on, and if the options meet the leaderboards criteria.
      */
     private static Formatting getOptionsTextColor() {
-        if (options().main.leaderboardsMode) {
+        if (options().main.leaderboardsMode.getCurrentValue()) {
             if (!Leaderboards.isEligibleForLeaderboardRuns()) {
                 return Formatting.RED;
             } else {

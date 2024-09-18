@@ -48,13 +48,13 @@ public class StateOfTheArtItemsOptionsScreen extends AbstractModScreen {
         this.optionList.addSingleOptionEntry(ModListOptions.STATE_OF_THE_ART_ITEMS);
         this.optionList.addAll(stateOfTheArtItems());
 
-        this.deactivateButton(1, ButtonSide.LEFT, options().stateOfTheArtItems.stateOfTheArtItems);
-        this.deactivateButton(1, ButtonSide.RIGHT, options().stateOfTheArtItems.stateOfTheArtItems);
-        this.deactivateButton(2, ButtonSide.LEFT, options().stateOfTheArtItems.stateOfTheArtItems);
-        this.deactivateButton(2, ButtonSide.RIGHT, options().stateOfTheArtItems.stateOfTheArtItems);
-        this.deactivateButton(3, ButtonSide.LEFT, options().stateOfTheArtItems.stateOfTheArtItems);
-        this.deactivateButton(3, ButtonSide.RIGHT, options().stateOfTheArtItems.stateOfTheArtItems);
-        this.deactivateButton(4, ButtonSide.LEFT, options().stateOfTheArtItems.stateOfTheArtItems);
+        this.deactivateButton(1, ButtonSide.LEFT, options().stateOfTheArtItems.stateOfTheArtItems.getCurrentValue());
+        this.deactivateButton(1, ButtonSide.RIGHT, options().stateOfTheArtItems.stateOfTheArtItems.getCurrentValue());
+        this.deactivateButton(2, ButtonSide.LEFT, options().stateOfTheArtItems.stateOfTheArtItems.getCurrentValue());
+        this.deactivateButton(2, ButtonSide.RIGHT, options().stateOfTheArtItems.stateOfTheArtItems.getCurrentValue());
+        this.deactivateButton(3, ButtonSide.LEFT, options().stateOfTheArtItems.stateOfTheArtItems.getCurrentValue());
+        this.deactivateButton(3, ButtonSide.RIGHT, options().stateOfTheArtItems.stateOfTheArtItems.getCurrentValue());
+        this.deactivateButton(4, ButtonSide.LEFT, options().stateOfTheArtItems.stateOfTheArtItems.getCurrentValue());
 
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);

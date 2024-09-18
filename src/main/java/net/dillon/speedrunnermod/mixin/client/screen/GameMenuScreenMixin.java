@@ -45,7 +45,7 @@ public class GameMenuScreenMixin extends Screen {
     @Inject(method = "initWidgets", at = @At("TAIL"))
     private void addButtons(CallbackInfo ci) {
         if (this.showMenu) {
-            if (options().advanced.showResetButton) {
+            if (options().advanced.showResetButton.getCurrentValue()) {
                 this.createWorldButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                     if (this.client.inGameHud != null) {
                         this.client.inGameHud.getChatHud().clear(false);
@@ -54,14 +54,14 @@ public class GameMenuScreenMixin extends Screen {
                     this.client.disconnect(new MessageScreen(Text.translatable("speedrunnermod.menu.generating_new_world")));
                     CreateWorldScreen.create(this.client, this);
                 }).dimensions(this.width / 2 - 4 - 120 - 2, this.height / 4 + 72 - 16, 20, 20).build());
-                this.createWorldButton.active = options().client.fastWorldCreation && this.client.isInSingleplayer() && this.client.isIntegratedServerRunning() && !this.client.getServer().isRemote();
+                this.createWorldButton.active = options().client.fastWorldCreation.getCurrentValue() && this.client.isInSingleplayer() && this.client.isIntegratedServerRunning() && !this.client.getServer().isRemote();
             }
 
             this.optionsButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                 this.client.setScreen(new MainScreen(this, MinecraftClient.getInstance().options));
             }).dimensions(this.width / 2 - 4 - 120 - 2, this.height / 4 + 96 - 16, 20, 20).build());
 
-            if (options().client.socialButtons) {
+            if (options().client.socialButtons.getCurrentValue()) {
                 this.dillon8775YouTubeButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
                     this.client.setScreen(new ConfirmLinkScreen(openInBrowser -> {
                         if (openInBrowser) {
@@ -100,13 +100,13 @@ public class GameMenuScreenMixin extends Screen {
         if (this.showMenu) {
             context.drawTexture(Identifier.of("speedrunnermod:textures/gui/speedrunner_mod.png"), this.width / 2 - 4 - 58 - 2, this.height / 4 - 26 + 2, 0.0F, 0.0F, 129, 16, 129, 16);
 
-            if (options().advanced.showResetButton) {
+            if (options().advanced.showResetButton.getCurrentValue()) {
                 context.drawTexture(Identifier.of("speedrunnermod:textures/item/speedrunner_boots.png"), createWorldButton.getX() + 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
             }
 
             context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, optionsButton.getX() + 1, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-            if (options().client.socialButtons) {
+            if (options().client.socialButtons.getCurrentValue()) {
                 context.drawTexture(ModIcons.DILLON8775_ICON, dillon8775YouTubeButton.getX() + 1, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
             }
 
@@ -122,15 +122,15 @@ public class GameMenuScreenMixin extends Screen {
      */
     @Unique
     private void renderTooltips(DrawContext context, int mouseX, int mouseY) {
-        if (options().advanced.showResetButton && createWorldButton.isHovered()) {
-            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(options().client.fastWorldCreation ? ModTexts.CREATE_WORLD_BUTTON_TOOLTIP : ModTexts.CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
+        if (options().advanced.showResetButton.getCurrentValue() && createWorldButton.isHovered()) {
+            context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(options().client.fastWorldCreation.getCurrentValue() ? ModTexts.CREATE_WORLD_BUTTON_TOOLTIP : ModTexts.CREATE_WORLD_BUTTON_DISABLED_TOOLTIP, 200), mouseX, mouseY);
         }
 
         if (this.optionsButton.isHovered()) {
             context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.OPTIONS_TOOLTIP, 200), mouseX, mouseY);
         }
 
-        if (options().client.socialButtons) {
+        if (options().client.socialButtons.getCurrentValue()) {
             if (dillon8775YouTubeButton.isHovered()) {
                 context.drawOrderedTooltip(this.textRenderer, this.textRenderer.wrapLines(ModTexts.DILLON8775_YOUTUBE_TOOLTIP, 200), mouseX, mouseY);
             }

@@ -56,7 +56,7 @@ public abstract class Keybindings {
      */
     @Inject(method = "<init>", at = @At("TAIL"))
     private void checkGamma(RunArgs args, CallbackInfo ci) {
-        options().client.fullBright = MinecraftClient.getInstance().options.getGamma().getValue() >= 10.0D;
+        options().client.fullBright.set(MinecraftClient.getInstance().options.getGamma().getValue() >= 10.0D);
         ModOptions.saveConfig();
     }
 
@@ -67,7 +67,7 @@ public abstract class Keybindings {
     private void handleInputEvents(CallbackInfo info) {
         while (ModKeybindings.resetKey.wasPressed()) {
             if (this.isInSingleplayer() && this.isIntegratedServerRunning() && !this.getServer().isRemote()) {
-                if (options().client.fastWorldCreation) {
+                if (options().client.fastWorldCreation.getCurrentValue()) {
                     if (this.inGameHud != null) {
                         this.inGameHud.getChatHud().clear(false);
                     }
@@ -95,21 +95,21 @@ public abstract class Keybindings {
         }
 
         while (ModKeybindings.fogKey.wasPressed()) {
-            if (options().mixins.backgroundRendererMixin) {
-                options().client.fog = !options().client.fog;
+            if (options().mixins.backgroundRendererMixin.getCurrentValue()) {
+                options().client.fog.invert();
                 ModOptions.saveConfig();
                 MinecraftClient.getInstance().worldRenderer.reload();
-                debugWarn(options().client.fog ? "speedrunnermod.toggle_fog.on" : "speedrunnermod.toggle_fog.off");
+                debugWarn(options().client.fog.getCurrentValue() ? "speedrunnermod.toggle_fog.on" : "speedrunnermod.toggle_fog.off");
             } else {
                 debugWarn("speedrunnermod.fog.mixin_disabled");
             }
         }
 
         while (ModKeybindings.fullbrightKey.wasPressed()) {
-            options().client.fullBright = !options().client.fullBright;
+            options().client.fullBright.invert();
             ModOptions.saveConfig();
-            MinecraftClient.getInstance().options.getGamma().setValue(options().client.fullBright ? SpeedrunnerModClient.getMaxBrightness() : 1.0D);
-            debugWarn(options().client.fullBright ? "speedrunnermod.toggle_fullbright.on" : "speedrunnermod.toggle_fullbright.off");
+            MinecraftClient.getInstance().options.getGamma().setValue(options().client.fullBright.getCurrentValue() ? SpeedrunnerModClient.getMaxBrightness() : 1.0D);
+            debugWarn(options().client.fullBright.getCurrentValue() ? "speedrunnermod.toggle_fullbright.on" : "speedrunnermod.toggle_fullbright.off");
             MinecraftClient.getInstance().options.write();
         }
     }

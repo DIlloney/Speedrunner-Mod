@@ -312,73 +312,80 @@ public class ModBlocks {
     /**
      * Initializes all Speedrunner Mod {@code blocks.}
      */
-    public static void init() {
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_log"), SPEEDRUNNER_LOG);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "stripped_speedrunner_log"), STRIPPED_SPEEDRUNNER_LOG);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_wood"), SPEEDRUNNER_WOOD);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "stripped_speedrunner_wood"), STRIPPED_SPEEDRUNNER_WOOD);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_leaves"), SPEEDRUNNER_LEAVES);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_sapling"), SPEEDRUNNER_SAPLING);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "potted_speedrunner_sapling"), POTTED_SPEEDRUNNER_SAPLING);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_planks"), SPEEDRUNNER_PLANKS);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_slab"), SPEEDRUNNER_SLAB);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_stairs"), SPEEDRUNNER_STAIRS);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_fence"), SPEEDRUNNER_FENCE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_fence_gate"), SPEEDRUNNER_FENCE_GATE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_trapdoor"), WOODEN_SPEEDRUNNER_TRAPDOOR);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_button"), WOODEN_SPEEDRUNNER_BUTTON);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_pressure_plate"), WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "wooden_speedrunner_door"), WOODEN_SPEEDRUNNER_DOOR);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_sign"), SPEEDRUNNER_SIGN);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_wall_sign"), SPEEDRUNNER_WALL_SIGN);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_hanging_sign"), SPEEDRUNNER_HANGING_SIGN);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_hanging_wall_sign"), SPEEDRUNNER_HANGING_WALL_SIGN);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_log"), DEAD_SPEEDRUNNER_LOG);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_stripped_speedrunner_log"), DEAD_STRIPPED_SPEEDRUNNER_LOG);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_wood"), DEAD_SPEEDRUNNER_WOOD);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_stripped_speedrunner_wood"), DEAD_STRIPPED_SPEEDRUNNER_WOOD);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_leaves"), DEAD_SPEEDRUNNER_LEAVES);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_sapling"), DEAD_SPEEDRUNNER_SAPLING);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_potted_speedrunner_sapling"), DEAD_POTTED_SPEEDRUNNER_SAPLING);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_planks"), DEAD_SPEEDRUNNER_PLANKS);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_slab"), DEAD_SPEEDRUNNER_SLAB);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_stairs"), DEAD_SPEEDRUNNER_STAIRS);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_fence"), DEAD_SPEEDRUNNER_FENCE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_fence_gate"), DEAD_SPEEDRUNNER_FENCE_GATE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_wooden_speedrunner_trapdoor"), DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_wooden_speedrunner_button"), DEAD_WOODEN_SPEEDRUNNER_BUTTON);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_wooden_speedrunner_pressure_plate"), DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_wooden_speedrunner_door"), DEAD_WOODEN_SPEEDRUNNER_DOOR);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_sign"), DEAD_SPEEDRUNNER_SIGN);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_wall_sign"), DEAD_SPEEDRUNNER_WALL_SIGN);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_hanging_sign"), DEAD_SPEEDRUNNER_HANGING_SIGN);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_hanging_wall_sign"), DEAD_SPEEDRUNNER_HANGING_WALL_SIGN);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_trapdoor"), SPEEDRUNNER_TRAPDOOR);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_weighted_pressure_plate"), SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_door"), SPEEDRUNNER_DOOR);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_bush"), DEAD_SPEEDRUNNER_BUSH);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "potted_dead_speedrunner_bush"), POTTED_DEAD_SPEEDRUNNER_BUSH);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunners_workbench"), SPEEDRUNNERS_WORKBENCH);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_block"), SPEEDRUNNER_BLOCK);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "raw_speedrunner_block"), RAW_SPEEDRUNNER_BLOCK);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "thruster_block"), THRUSTER_BLOCK);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_ore"), SPEEDRUNNER_ORE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "deepslate_speedrunner_ore"), DEEPSLATE_SPEEDRUNNER_ORE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "nether_speedrunner_ore"), NETHER_SPEEDRUNNER_ORE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "igneous_ore"), IGNEOUS_ORE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "deepslate_igneous_ore"), DEEPSLATE_IGNEOUS_ORE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "nether_igneous_ore"), NETHER_IGNEOUS_ORE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "experience_ore"), EXPERIENCE_ORE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "deepslate_experience_ore"), DEEPSLATE_EXPERIENCE_ORE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "nether_experience_ore"), NETHER_EXPERIENCE_ORE);
+    public static void registerBlocks() {
+        register("speedrunner_log", SPEEDRUNNER_LOG);
+        register("stripped_speedrunner_log", STRIPPED_SPEEDRUNNER_LOG);
+        register("speedrunner_wood", SPEEDRUNNER_WOOD);
+        register("stripped_speedrunner_wood", STRIPPED_SPEEDRUNNER_WOOD);
+        register("speedrunner_leaves", SPEEDRUNNER_LEAVES);
+        register("speedrunner_sapling", SPEEDRUNNER_SAPLING);
+        register("potted_speedrunner_sapling", POTTED_SPEEDRUNNER_SAPLING);
+        register("speedrunner_planks", SPEEDRUNNER_PLANKS);
+        register("speedrunner_slab", SPEEDRUNNER_SLAB);
+        register("speedrunner_stairs", SPEEDRUNNER_STAIRS);
+        register("speedrunner_fence", SPEEDRUNNER_FENCE);
+        register("speedrunner_fence_gate", SPEEDRUNNER_FENCE_GATE);
+        register("wooden_speedrunner_trapdoor", WOODEN_SPEEDRUNNER_TRAPDOOR);
+        register("wooden_speedrunner_button", WOODEN_SPEEDRUNNER_BUTTON);
+        register("wooden_speedrunner_pressure_plate", WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
+        register("wooden_speedrunner_door", WOODEN_SPEEDRUNNER_DOOR);
+        register("speedrunner_sign", SPEEDRUNNER_SIGN);
+        register("speedrunner_wall_sign", SPEEDRUNNER_WALL_SIGN);
+        register("speedrunner_hanging_sign", SPEEDRUNNER_HANGING_SIGN);
+        register("speedrunner_hanging_wall_sign", SPEEDRUNNER_HANGING_WALL_SIGN);
+        register("dead_speedrunner_log", DEAD_SPEEDRUNNER_LOG);
+        register("dead_stripped_speedrunner_log", DEAD_STRIPPED_SPEEDRUNNER_LOG);
+        register("dead_speedrunner_wood", DEAD_SPEEDRUNNER_WOOD);
+        register("dead_stripped_speedrunner_wood", DEAD_STRIPPED_SPEEDRUNNER_WOOD);
+        register("dead_speedrunner_leaves", DEAD_SPEEDRUNNER_LEAVES);
+        register("dead_speedrunner_sapling", DEAD_SPEEDRUNNER_SAPLING);
+        register("dead_potted_speedrunner_sapling", DEAD_POTTED_SPEEDRUNNER_SAPLING);
+        register("dead_speedrunner_planks", DEAD_SPEEDRUNNER_PLANKS);
+        register("dead_speedrunner_slab", DEAD_SPEEDRUNNER_SLAB);
+        register("dead_speedrunner_stairs", DEAD_SPEEDRUNNER_STAIRS);
+        register("dead_speedrunner_fence", DEAD_SPEEDRUNNER_FENCE);
+        register("dead_speedrunner_fence_gate", DEAD_SPEEDRUNNER_FENCE_GATE);
+        register("dead_wooden_speedrunner_trapdoor", DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
+        register("dead_wooden_speedrunner_button", DEAD_WOODEN_SPEEDRUNNER_BUTTON);
+        register("dead_wooden_speedrunner_pressure_plate", DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
+        register("dead_wooden_speedrunner_door", DEAD_WOODEN_SPEEDRUNNER_DOOR);
+        register("dead_speedrunner_sign", DEAD_SPEEDRUNNER_SIGN);
+        register("dead_speedrunner_wall_sign", DEAD_SPEEDRUNNER_WALL_SIGN);
+        register("dead_speedrunner_hanging_sign", DEAD_SPEEDRUNNER_HANGING_SIGN);
+        register("dead_speedrunner_hanging_wall_sign", DEAD_SPEEDRUNNER_HANGING_WALL_SIGN);
+        register("speedrunner_trapdoor", SPEEDRUNNER_TRAPDOOR);
+        register("speedrunner_weighted_pressure_plate", SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
+        register("speedrunner_door", SPEEDRUNNER_DOOR);
+        register("dead_speedrunner_bush", DEAD_SPEEDRUNNER_BUSH);
+        register("potted_dead_speedrunner_bush", POTTED_DEAD_SPEEDRUNNER_BUSH);
+        register("speedrunners_workbench", SPEEDRUNNERS_WORKBENCH);
+        register("speedrunner_block", SPEEDRUNNER_BLOCK);
+        register("raw_speedrunner_block", RAW_SPEEDRUNNER_BLOCK);
+        register("thruster_block", THRUSTER_BLOCK);
+        register("speedrunner_ore", SPEEDRUNNER_ORE);
+        register("deepslate_speedrunner_ore", DEEPSLATE_SPEEDRUNNER_ORE);
+        register("nether_speedrunner_ore", NETHER_SPEEDRUNNER_ORE);
+        register("igneous_ore", IGNEOUS_ORE);
+        register("deepslate_igneous_ore", DEEPSLATE_IGNEOUS_ORE);
+        register("nether_igneous_ore", NETHER_IGNEOUS_ORE);
+        register("experience_ore", EXPERIENCE_ORE);
+        register("deepslate_experience_ore", DEEPSLATE_EXPERIENCE_ORE);
+        register("nether_experience_ore", NETHER_EXPERIENCE_ORE);
 
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "doom_stone"), DOOM_STONE);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "doom_log"), DOOM_LOG);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "stripped_doom_log"), STRIPPED_DOOM_LOG);
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "doom_leaves"), DOOM_LEAVES);
+        register("doom_stone", DOOM_STONE);
+        register("doom_log", DOOM_LOG);
+        register("stripped_doom_log", STRIPPED_DOOM_LOG);
+        register("doom_leaves", DOOM_LEAVES);
 
         registerStrippables();
 
         info("Initialized blocks.");
+    }
+
+    /**
+     * Registers a {@code block.}
+     */
+    private static void register(String path, Block block) {
+        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, path), block);
     }
 }

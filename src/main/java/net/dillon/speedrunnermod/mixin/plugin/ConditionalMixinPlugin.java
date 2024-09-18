@@ -54,10 +54,10 @@ public class ConditionalMixinPlugin implements IMixinConfigPlugin {
      * Returns mixins that should not apply based on certain conditions.
      */
     private boolean shouldNotApply(String mixinClassName) {
-        return !options().mixins.terraBlenderSurfaceRuleDataMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.main.world.TBSurfaceRuleDataMixin") ||
-                !options().mixins.backgroundRendererMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.Fog") ||
-                !options().mixins.simpleOptionMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.IncreasedBrightness") ||
-                !options().mixins.logoDrawerMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.screen.LogoDrawerMixin") ||
-                !options().mixins.renderLayersMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.fix.RenderLayersMixin");
+        return !options().mixins.terraBlenderSurfaceRuleDataMixin.getCurrentValue() && mixinClassName.equals("net.dillon.speedrunnermod.mixin.main.world.TBSurfaceRuleDataMixin") ||
+                !options().mixins.backgroundRendererMixin.getCurrentValue() && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.Fog") ||
+                !options().mixins.simpleOptionMixin.getCurrentValue() && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.IncreasedBrightness") ||
+                !options().mixins.logoDrawerMixin.getCurrentValue() && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.screen.LogoDrawerMixin") ||
+                !options().mixins.renderLayersMixin.getCurrentValue() && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.fix.RenderLayersMixin");
     }
 }

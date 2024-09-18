@@ -84,7 +84,7 @@ public class Fog {
             }
         } else if (thickFog) {
             f = viewDistance * 0.05F;
-            if (!options().client.fog) {
+            if (!options().client.fog.getCurrentValue()) {
                 g = fog;
             } else {
                 g = Math.min(viewDistance, 192.0F) * 0.5F;
@@ -96,7 +96,7 @@ public class Fog {
         } else {
             float j = MathHelper.clamp(viewDistance / 10.0F, 4.0F, 64.0F);
             f = viewDistance - j;
-            if (!options().client.fog) {
+            if (!options().client.fog.getCurrentValue()) {
                 g = fog;
             } else {
                 g = viewDistance;

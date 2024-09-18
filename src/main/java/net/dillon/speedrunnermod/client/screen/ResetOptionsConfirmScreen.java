@@ -2,7 +2,7 @@ package net.dillon.speedrunnermod.client.screen;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.util.ModTexts;
-import net.dillon.speedrunnermod.option.ModOptions;
+import net.dillon.speedrunnermod.option.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -13,6 +13,7 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
+import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Environment(EnvType.CLIENT)
 public class ResetOptionsConfirmScreen extends AbstractModScreen {
@@ -25,7 +26,7 @@ public class ResetOptionsConfirmScreen extends AbstractModScreen {
     protected void init() {
         int height = this.height / 6 + 126;
         this.addDrawableChild(ButtonWidget.builder(ModTexts.RESET_CONFIRM, (buttonWidget) -> {
-            SpeedrunnerMod.resetOptions();
+            resetOptions();
             ModOptions.saveConfig();
             info("Successfully reset all options. Restart the game to take full effect.");
             this.client.setScreen(new ResetOptionsScreen(this.parent, MinecraftClient.getInstance().options));
@@ -33,6 +34,35 @@ public class ResetOptionsConfirmScreen extends AbstractModScreen {
         this.addDrawableChild(ButtonWidget.builder(ModTexts.NOT_NOW, (buttonWidget) -> {
             this.close();
         }).dimensions(this.getButtonsRightSide(), height, 150, 20).build());
+    }
+
+    /**
+     * Resets all instances of every option in the speedrunner mod.
+     */
+    public static void resetOptions() {
+        for (BooleanOption option : OptionManager.getBooleanOptions()) {
+            option.reset();
+        }
+        for (IntegerOption option : OptionManager.getIntegerOptions()) {
+            System.out.println(option.getCurrentValue());
+            option.reset();
+            SpeedrunnerMod.error(String.valueOf(option.getCurrentValue()));
+        }
+        for (IntegerListOption option : OptionManager.getIntegerListOptions()) {
+            option.reset();
+        }
+        for (DoubleOption option : OptionManager.getDoubleOptions()) {
+            option.reset();
+        }
+        for (DoubleListOption option : OptionManager.getDoubleListOptions()) {
+            option.reset();
+        }
+
+        options().main.structureSpawnRates = StructureSpawnRate.COMMON;
+        options().main.mobSpawningRate = MobSpawningRate.HIGH;
+        options().client.itemMessages = ItemMessages.ACTIONBAR;
+        options().client.gameMode = GameMode.SURVIVAL;
+        options().client.difficulty = Difficulty.EASY;
     }
 
     @Override

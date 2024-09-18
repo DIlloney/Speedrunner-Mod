@@ -23,7 +23,7 @@ public class GhastEntityShootFireballGoalMixin {
      */
     @Inject(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/mob/GhastEntity$ShootFireballGoal;cooldown:I", ordinal = 1, opcode = Opcodes.PUTFIELD))
     private void killGhastUponFireball(CallbackInfo ci) {
-        if (options().main.killGhastOnFireball) {
+        if (options().main.killGhastOnFireball.getCurrentValue()) {
             this.ghast.kill();
         }
     }

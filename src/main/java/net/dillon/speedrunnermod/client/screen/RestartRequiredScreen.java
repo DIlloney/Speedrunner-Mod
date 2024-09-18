@@ -98,74 +98,74 @@ public class RestartRequiredScreen extends AbstractModScreen {
     }
 
     public static void getCurrentOptions() {
-        currentLeaderboardsMode = options().main.leaderboardsMode;
-        currentBetterBiomes = options().main.betterBiomes;
-        currentDoomMode = options().main.doomMode;
-        currentBetterVillagerTrades = options().main.betterVillagerTrades;
-        currentCustomBiomesAndCustomBiomeFeatures = options().main.customBiomesAndCustomBiomeFeatures;
-        currentPanorama = options().client.customPanorama;
-        currentConfirmMessages = options().client.confirmMessages;
-        currentModifiedStrongholdGeneration = options().advanced.modifiedStrongholdGeneration;
-        currentModifiedStrongholdYGeneration = options().advanced.modifiedStrongholdYGeneration;
-        currentModifiedNetherFortressGeneration = options().advanced.modifiedNetherFortressGeneration;
-        currentTerraBlenderSurfaceRuleDataMixin = options().mixins.terraBlenderSurfaceRuleDataMixin;
-        currentBackgroundRendererMixin = options().mixins.backgroundRendererMixin;
-        currentSimpleOptionMixin = options().mixins.simpleOptionMixin;
-        currentLogoDrawerMixin = options().mixins.logoDrawerMixin;
-        currentRenderLayersMixin = options().mixins.renderLayersMixin;
-        currentStrongholdDistance = options().main.strongholdDistance;
-        currentStrongholdSpread = options().main.strongholdSpread;
-        currentStrongholdCount = options().main.strongholdCount;
-        currentStrongholdPortalRoomCount = options().main.strongholdPortalRoomCount;
-        currentStrongholdLibraryCount = options().main.strongholdLibraryCount;
-        currentSpeedrunnersWastelandBiomeWeight = options().advanced.speedrunnersWastelandBiomeWeight;
+        currentLeaderboardsMode = options().main.leaderboardsMode.getCurrentValue();
+        currentBetterBiomes = options().main.betterBiomes.getCurrentValue();
+        currentDoomMode = options().main.doomMode.getCurrentValue();
+        currentBetterVillagerTrades = options().main.betterVillagerTrades.getCurrentValue();
+        currentCustomBiomesAndCustomBiomeFeatures = options().main.customBiomesAndCustomBiomeFeatures.getCurrentValue();
+        currentPanorama = options().client.customPanorama.getCurrentValue();
+        currentConfirmMessages = options().client.confirmMessages.getCurrentValue();
+        currentModifiedStrongholdGeneration = options().advanced.modifiedStrongholdGeneration.getCurrentValue();
+        currentModifiedStrongholdYGeneration = options().advanced.modifiedStrongholdYGeneration.getCurrentValue();
+        currentModifiedNetherFortressGeneration = options().advanced.modifiedNetherFortressGeneration.getCurrentValue();
+        currentTerraBlenderSurfaceRuleDataMixin = options().mixins.terraBlenderSurfaceRuleDataMixin.getCurrentValue();
+        currentBackgroundRendererMixin = options().mixins.backgroundRendererMixin.getCurrentValue();
+        currentSimpleOptionMixin = options().mixins.simpleOptionMixin.getCurrentValue();
+        currentLogoDrawerMixin = options().mixins.logoDrawerMixin.getCurrentValue();
+        currentRenderLayersMixin = options().mixins.renderLayersMixin.getCurrentValue();
+        currentStrongholdDistance = options().main.strongholdDistance.getCurrentValue();
+        currentStrongholdSpread = options().main.strongholdSpread.getCurrentValue();
+        currentStrongholdCount = options().main.strongholdCount.getCurrentValue();
+        currentStrongholdPortalRoomCount = options().main.strongholdPortalRoomCount.getCurrentValue();
+        currentStrongholdLibraryCount = options().main.strongholdLibraryCount.getCurrentValue();
+        currentSpeedrunnersWastelandBiomeWeight = options().advanced.speedrunnersWastelandBiomeWeight.getCurrentValue();
     }
 
     public static boolean needsRestart() {
-        return currentLeaderboardsMode != options().main.leaderboardsMode ||
-                currentBetterBiomes != options().main.betterBiomes ||
-                currentDoomMode != options().main.doomMode ||
-                currentBetterVillagerTrades != options().main.betterVillagerTrades ||
-                currentCustomBiomesAndCustomBiomeFeatures != options().main.customBiomesAndCustomBiomeFeatures ||
-                currentPanorama != options().client.customPanorama ||
-                currentConfirmMessages != options().client.confirmMessages ||
-                currentModifiedStrongholdGeneration != options().advanced.modifiedStrongholdGeneration ||
-                currentModifiedStrongholdYGeneration != options().advanced.modifiedStrongholdYGeneration ||
-                currentModifiedNetherFortressGeneration != options().advanced.modifiedNetherFortressGeneration ||
-                currentTerraBlenderSurfaceRuleDataMixin != options().mixins.terraBlenderSurfaceRuleDataMixin ||
-                currentBackgroundRendererMixin != options().mixins.backgroundRendererMixin ||
-                currentSimpleOptionMixin != options().mixins.simpleOptionMixin ||
-                currentLogoDrawerMixin != options().mixins.logoDrawerMixin ||
-                currentRenderLayersMixin != options().mixins.renderLayersMixin ||
-                currentStrongholdDistance != options().main.strongholdDistance ||
-                currentStrongholdSpread != options().main.strongholdSpread ||
-                currentStrongholdCount != options().main.strongholdCount ||
-                currentStrongholdPortalRoomCount != options().main.strongholdPortalRoomCount ||
-                currentStrongholdLibraryCount != options().main.strongholdLibraryCount ||
-                currentSpeedrunnersWastelandBiomeWeight != options().advanced.speedrunnersWastelandBiomeWeight;
+        return currentLeaderboardsMode != options().main.leaderboardsMode.getCurrentValue() ||
+                currentBetterBiomes != options().main.betterBiomes.getCurrentValue() ||
+                currentDoomMode != options().main.doomMode.getCurrentValue() ||
+                currentBetterVillagerTrades != options().main.betterVillagerTrades.getCurrentValue() ||
+                currentCustomBiomesAndCustomBiomeFeatures != options().main.customBiomesAndCustomBiomeFeatures.getCurrentValue() ||
+                currentPanorama != options().client.customPanorama.getCurrentValue() ||
+                currentConfirmMessages != options().client.confirmMessages.getCurrentValue() ||
+                currentModifiedStrongholdGeneration != options().advanced.modifiedStrongholdGeneration.getCurrentValue() ||
+                currentModifiedStrongholdYGeneration != options().advanced.modifiedStrongholdYGeneration.getCurrentValue() ||
+                currentModifiedNetherFortressGeneration != options().advanced.modifiedNetherFortressGeneration.getCurrentValue() ||
+                currentTerraBlenderSurfaceRuleDataMixin != options().mixins.terraBlenderSurfaceRuleDataMixin.getCurrentValue() ||
+                currentBackgroundRendererMixin != options().mixins.backgroundRendererMixin.getCurrentValue() ||
+                currentSimpleOptionMixin != options().mixins.simpleOptionMixin.getCurrentValue() ||
+                currentLogoDrawerMixin != options().mixins.logoDrawerMixin.getCurrentValue() ||
+                currentRenderLayersMixin != options().mixins.renderLayersMixin.getCurrentValue() ||
+                currentStrongholdDistance != options().main.strongholdDistance.getCurrentValue() ||
+                currentStrongholdSpread != options().main.strongholdSpread.getCurrentValue() ||
+                currentStrongholdCount != options().main.strongholdCount.getCurrentValue() ||
+                currentStrongholdPortalRoomCount != options().main.strongholdPortalRoomCount.getCurrentValue() ||
+                currentStrongholdLibraryCount != options().main.strongholdLibraryCount.getCurrentValue() ||
+                currentSpeedrunnersWastelandBiomeWeight != options().advanced.speedrunnersWastelandBiomeWeight.getCurrentValue();
     }
 
     private static void revertChanges() {
-        options().main.leaderboardsMode = currentLeaderboardsMode;
-        options().main.betterBiomes = currentBetterBiomes;
-        options().main.doomMode = currentDoomMode;
-        options().main.betterVillagerTrades = currentBetterVillagerTrades;
-        options().main.customBiomesAndCustomBiomeFeatures = currentCustomBiomesAndCustomBiomeFeatures;
-        options().client.customPanorama = currentPanorama;
-        options().client.confirmMessages = currentConfirmMessages;
-        options().advanced.modifiedStrongholdGeneration = currentModifiedStrongholdGeneration;
-        options().advanced.modifiedStrongholdYGeneration = currentModifiedStrongholdYGeneration;
-        options().advanced.modifiedNetherFortressGeneration = currentModifiedNetherFortressGeneration;
-        options().mixins.terraBlenderSurfaceRuleDataMixin = currentTerraBlenderSurfaceRuleDataMixin;
-        options().mixins.backgroundRendererMixin = currentBackgroundRendererMixin;
-        options().mixins.simpleOptionMixin = currentSimpleOptionMixin;
-        options().mixins.logoDrawerMixin = currentLogoDrawerMixin;
-        options().mixins.renderLayersMixin = currentRenderLayersMixin;
-        options().main.strongholdDistance = currentStrongholdDistance;
-        options().main.strongholdSpread = currentStrongholdSpread;
-        options().main.strongholdCount = currentStrongholdCount;
-        options().main.strongholdPortalRoomCount = currentStrongholdPortalRoomCount;
-        options().main.strongholdLibraryCount = currentStrongholdLibraryCount;
-        options().advanced.speedrunnersWastelandBiomeWeight = currentSpeedrunnersWastelandBiomeWeight;
+        options().main.leaderboardsMode.set(currentLeaderboardsMode);
+        options().main.betterBiomes.set(currentBetterBiomes);
+        options().main.doomMode.set(currentDoomMode);
+        options().main.betterVillagerTrades.set(currentBetterVillagerTrades);
+        options().main.customBiomesAndCustomBiomeFeatures.set(currentCustomBiomesAndCustomBiomeFeatures);
+        options().client.customPanorama.set(currentPanorama);
+        options().client.confirmMessages.set(currentConfirmMessages);
+        options().advanced.modifiedStrongholdGeneration.set(currentModifiedStrongholdGeneration);
+        options().advanced.modifiedStrongholdYGeneration.set(currentModifiedStrongholdYGeneration);
+        options().advanced.modifiedNetherFortressGeneration.set(currentModifiedNetherFortressGeneration);
+        options().mixins.terraBlenderSurfaceRuleDataMixin.set(currentTerraBlenderSurfaceRuleDataMixin);
+        options().mixins.backgroundRendererMixin.set(currentBackgroundRendererMixin);
+        options().mixins.simpleOptionMixin.set(currentSimpleOptionMixin);
+        options().mixins.logoDrawerMixin.set(currentLogoDrawerMixin);
+        options().mixins.renderLayersMixin.set(currentRenderLayersMixin);
+        options().main.strongholdDistance.set(currentStrongholdDistance);
+        options().main.strongholdSpread.set(currentStrongholdSpread);
+        options().main.strongholdCount.set(currentStrongholdCount);
+        options().main.strongholdPortalRoomCount.set(currentStrongholdPortalRoomCount);
+        options().main.strongholdLibraryCount.set(currentStrongholdLibraryCount);
+        options().advanced.speedrunnersWastelandBiomeWeight.set(currentSpeedrunnersWastelandBiomeWeight);
     }
 }

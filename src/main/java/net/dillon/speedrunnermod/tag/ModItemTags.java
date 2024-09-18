@@ -68,7 +68,7 @@ public class ModItemTags {
     /**
      * Initializes all Speedrunner Mod {@code item tags.}
      */
-    public static void init() {
-        info("Registered item tags.");
+    public static void initializeItemTags() {
+        info("Initialize item tags.");
     }
 }

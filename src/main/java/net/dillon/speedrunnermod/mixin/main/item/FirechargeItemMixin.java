@@ -28,11 +28,11 @@ public class FirechargeItemMixin extends Item {
      */
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        if (options().main.throwableFireballs) {
+        if (options().main.throwableFireballs.getCurrentValue()) {
             ItemStack stack = player.getStackInHand(hand);
             if (!world.isClient) {
                 Vec3d lookVec = player.getRotationVec(1.0F);
-                FireballEntity fireball = new FireballEntity(world, player, lookVec.normalize(), options().advanced.fireballExplosionPower);
+                FireballEntity fireball = new FireballEntity(world, player, lookVec.normalize(), options().advanced.fireballExplosionPower.getCurrentValue());
                 fireball.updatePosition(player.getX(), player.getEyeY() - 0.235, player.getZ());
                 fireball.setOwner(player);
                 world.spawnEntity(fireball);

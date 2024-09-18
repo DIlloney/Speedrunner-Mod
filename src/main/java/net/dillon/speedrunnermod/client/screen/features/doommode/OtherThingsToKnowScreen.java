@@ -32,12 +32,12 @@ public class OtherThingsToKnowScreen extends AbstractFeatureScreen {
 
         height += 24;
         ButtonWidget enableDoomMode = this.addDrawableChild(ButtonWidget.builder(ModTexts.ENABLE_DOOM_MODE, button -> {
-            if (!options().main.doomMode) {
+            if (!options().main.doomMode.getCurrentValue()) {
                 this.client.setScreen(new RestartRequiredScreen(this.parent, MinecraftClient.getInstance().options));
             }
-            options().main.doomMode = true;
+            options().main.doomMode.set(true);
         }).dimensions(this.getButtonsWidth(), height, 150, 20).build());
-        enableDoomMode.active = !options().main.doomMode;
+        enableDoomMode.active = !options().main.doomMode.getCurrentValue();
     }
 
     @Override

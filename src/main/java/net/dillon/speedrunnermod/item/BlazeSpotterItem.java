@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.dillon.speedrunnermod.util.Credit;
 import net.dillon.speedrunnermod.util.ItemUtil;
@@ -33,7 +32,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * An item that {@code teleports} the player to the {@code nearest blaze spawner.}
  */
 public class BlazeSpotterItem extends Item {
-    private boolean confirm = !options().client.confirmMessages;
+    private boolean confirm = !options().client.confirmMessages.getCurrentValue();
 
     public BlazeSpotterItem(Settings settings) {
         super(settings.maxCount(16));
@@ -58,24 +57,24 @@ public class BlazeSpotterItem extends Item {
                                 itemStack.decrement(1);
                             }
                         } else {
-                            player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.found_blaze_spawner").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                            player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.found_blaze_spawner").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                             player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.confirm"), false);
                         }
-                        if (options().client.confirmMessages) {
+                        if (options().client.confirmMessages.getCurrentValue()) {
                             confirm = !confirm;
                         }
                         player.swingHand(hand, true);
                         return TypedActionResult.success(player.getStackInHand(hand));
                     } else {
                         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 3.0F);
-                        player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.couldnt_find_spawner").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                        player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.couldnt_find_spawner").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                     }
                 } else {
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 5.0F);
-                    player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                 }
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             }
         }
 
@@ -87,7 +86,7 @@ public class BlazeSpotterItem extends Item {
      */
     @ChatGPT(Credit.FULL_CREDIT)
     private BlockPos findNearestBlazeSpawner(ServerWorld world, BlockPos fortressPos) {
-        for (BlockPos pos : BlockPos.iterate(fortressPos.add(options().advanced.blazeSpotterDistanceXYZ[0], options().advanced.blazeSpotterDistanceXYZ[1], options().advanced.blazeSpotterDistanceXYZ[2]), fortressPos.add(options().advanced.blazeSpotterDistanceXYZ[3], options().advanced.blazeSpotterDistanceXYZ[4], options().advanced.blazeSpotterDistanceXYZ[5]))) {
+        for (BlockPos pos : BlockPos.iterate(fortressPos.add(options().advanced.blazeSpotterDistanceXYZ.getAtIndex(0), options().advanced.blazeSpotterDistanceXYZ.getAtIndex(1), options().advanced.blazeSpotterDistanceXYZ.getAtIndex(2)), fortressPos.add(options().advanced.blazeSpotterDistanceXYZ.getAtIndex(3), options().advanced.blazeSpotterDistanceXYZ.getAtIndex(4), options().advanced.blazeSpotterDistanceXYZ.getAtIndex(5)))) {
             if (world.getBlockState(pos).getBlock() == Blocks.SPAWNER) {
                 BlockEntity blockEntity = world.getBlockEntity(pos);
                 if (blockEntity instanceof MobSpawnerBlockEntity) {
@@ -109,7 +108,7 @@ public class BlazeSpotterItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (options().client.itemTooltips) {
+        if (options().client.itemTooltips.getCurrentValue()) {
             tooltip.add(Text.translatable("item.speedrunnermod.blaze_spotter.tooltip"));
             ItemUtil.stateOfTheArtItem(tooltip);
         }

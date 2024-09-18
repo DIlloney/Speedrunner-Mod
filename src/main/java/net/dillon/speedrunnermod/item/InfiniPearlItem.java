@@ -64,7 +64,7 @@ public class InfiniPearlItem extends EnderPearlItem {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (options().client.itemTooltips) {
+        if (options().client.itemTooltips.getCurrentValue()) {
             tooltip.add(Text.translatable("item.speedrunnermod.infini_pearl.tooltip.line1"));
             tooltip.add(Text.translatable("item.speedrunnermod.infini_pearl.tooltip.line2"));
         }

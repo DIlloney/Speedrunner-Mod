@@ -87,7 +87,7 @@ public class SpeedrunnerBowItem extends BowItem {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (options().client.itemTooltips) {
+        if (options().client.itemTooltips.getCurrentValue()) {
             tooltip.add(Text.translatable("item.speedrunnermod.speedrunner_bow.tooltip.line1").formatted(Formatting.GRAY));
             tooltip.add(Text.translatable("item.speedrunnermod.speedrunner_bow.tooltip.line2").formatted(Formatting.GRAY));
         }

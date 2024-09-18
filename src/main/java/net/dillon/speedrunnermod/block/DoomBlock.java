@@ -141,7 +141,7 @@ public class DoomBlock {
      */
     private static void fallDamage(Entity entity, float fallDistance) {
         float fallDamage;
-        if (!SpeedrunnerMod.options().main.fallDamage) {
+        if (!SpeedrunnerMod.options().main.fallDamage.getCurrentValue()) {
             fallDamage = 0.0F;
         } else {
             fallDamage = DOOM_MODE ? 1.15F : 1.0F;

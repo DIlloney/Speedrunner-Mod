@@ -37,7 +37,7 @@ public class ModVillagers {
     /**
      * Initializes the {@code Retired Speedrunner.}
      */
-    public static void init() {
+    public static void registerVillagerProfessions() {
         info("Initialized the Retired Speedrunner villager profession.");
     }
 }

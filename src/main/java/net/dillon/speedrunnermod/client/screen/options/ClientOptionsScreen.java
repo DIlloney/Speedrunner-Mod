@@ -31,7 +31,7 @@ public class ClientOptionsScreen extends AbstractModScreen {
      */
     private SimpleOption<?>[] clientOptions(GameOptions gameOptions) {
         return new SimpleOption[]{
-                options().mixins.backgroundRendererMixin ? ModListOptions.FOG : ModListOptions.Inactiveable.IAO_FOG,
+                options().mixins.backgroundRendererMixin.getCurrentValue() ? ModListOptions.FOG : ModListOptions.Inactiveable.IAO_FOG,
                 gameOptions.getGamma(),
                 ModListOptions.ITEM_TOOLTIPS,
                 ModListOptions.TEXTURE_TOOLTIPS,
@@ -47,7 +47,7 @@ public class ClientOptionsScreen extends AbstractModScreen {
     protected void init() {
         this.initializeOptionListWidget();
         this.optionList.addAll(clientOptions(this.gameOptions));
-        this.deactivateButton(0, ButtonSide.LARGE, options().mixins.backgroundRendererMixin);
+        this.deactivateButton(0, ButtonSide.LARGE, options().mixins.backgroundRendererMixin.getCurrentValue());
         this.addSelectableChild(this.optionList);
         this.configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), ModOptions.CONFIG);
 

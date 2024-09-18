@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.dillon.speedrunnermod.util.TimeCalculator;
@@ -32,7 +31,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * An item that kills all nearby {@link net.minecraft.entity.raid.RaiderEntity}s.
  */
 public class RaidEradicatorItem extends Item {
-    private boolean confirm = !options().client.confirmMessages;
+    private boolean confirm = !options().client.confirmMessages.getCurrentValue();
 
     public RaidEradicatorItem(Settings settings) {
         super(settings.rarity(Rarity.EPIC).maxCount(1));
@@ -44,7 +43,7 @@ public class RaidEradicatorItem extends Item {
         player.setCurrentHand(hand);
         if (!world.isClient) {
             if (options().stateOfTheArtItems.isRaidEradicatorEnabled()) {
-                List<RaiderEntity> raiders = world.getEntitiesByClass(RaiderEntity.class, player.getBoundingBox().expand(options().advanced.raidEradicatorDistanceXYZ[0], options().advanced.raidEradicatorDistanceXYZ[1], options().advanced.raidEradicatorDistanceXYZ[2]), entity -> true);
+                List<RaiderEntity> raiders = world.getEntitiesByClass(RaiderEntity.class, player.getBoundingBox().expand(options().advanced.raidEradicatorDistanceXYZ.getAtIndex(0), options().advanced.raidEradicatorDistanceXYZ.getAtIndex(1), options().advanced.raidEradicatorDistanceXYZ.getAtIndex(2)), entity -> true);
 
                 if (!raiders.isEmpty()) {
                     boolean hasTotemEquipped = player.getMainHandStack().isOf(Items.TOTEM_OF_UNDYING) || player.getOffHandStack().isOf(Items.TOTEM_OF_UNDYING);
@@ -80,23 +79,23 @@ public class RaidEradicatorItem extends Item {
                             }, TimeCalculator.secondsToMilliseconds(3));
                         } else {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_VINDICATOR_AMBIENT, SoundCategory.HOSTILE, 3.0F, 1.0F);
-                            player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.found_raiders").formatted(ItemUtil.toFormatting(Formatting.YELLOW, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                            player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.found_raiders").formatted(ItemUtil.toFormatting(Formatting.YELLOW, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                             player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.confirm"), false);
                         }
-                        if (options().client.confirmMessages) {
+                        if (options().client.confirmMessages.getCurrentValue()) {
                             confirm = !confirm;
                         }
                         player.swingHand(hand, true);
                         return TypedActionResult.success(stack);
                     } else {
                         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_WITCH_AMBIENT, SoundCategory.NEUTRAL, 3.0F, 1.0F);
-                        player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.no_totem").formatted(Formatting.YELLOW), ModOptions.ItemMessages.isActionbar());
+                        player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.no_totem").formatted(Formatting.YELLOW), options().client.itemMessages.isActionbar());
                     }
                 } else {
-                    player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.couldnt_find_raiders"), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.couldnt_find_raiders"), options().client.itemMessages.isActionbar());
                 }
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GRAY, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GRAY, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             }
         }
 
@@ -105,7 +104,7 @@ public class RaidEradicatorItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (options().client.itemTooltips) {
+        if (options().client.itemTooltips.getCurrentValue()) {
             tooltip.add(Text.translatable("item.speedrunnermod.raid_eradicator.tooltip"));
             ItemUtil.stateOfTheArtItem(tooltip);
         }

@@ -171,7 +171,7 @@ public class ModItemGroups {
     /**
      * The {@code call method} to initialize the modified and new item groups.
      */
-    public static void init() {
+    public static void initializeItemGroups() {
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.SPEEDRUNNER_INGOT);
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.SPEEDRUNNER_NUGGET);
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.RAW_SPEEDRUNNER);

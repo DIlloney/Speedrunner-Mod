@@ -10,7 +10,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
  */
 public class ModFuels {
 
-    public static void init() {
+    public static void registerFuels() {
         FuelRegistry.INSTANCE.add(ModBlocks.SPEEDRUNNER_LOG, 400);
         FuelRegistry.INSTANCE.add(ModBlocks.DEAD_SPEEDRUNNER_LOG, 500);
         FuelRegistry.INSTANCE.add(ModBlocks.STRIPPED_SPEEDRUNNER_LOG, 400);

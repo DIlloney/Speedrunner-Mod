@@ -3,7 +3,7 @@ package net.dillon.speedrunnermod.data.loader;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.dillon.speedrunnermod.option.ModOptions;
+import net.dillon.speedrunnermod.option.MobSpawningRate;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.dillon.speedrunnermod.util.Credit;
 
@@ -32,13 +32,13 @@ public class LoaderMain {
             if (creatureValues.containsKey(mobType)) {
                 Integer[] values = creatureValues.get(mobType);
                 spawner.addProperty("weight", values[0]);
-                if (options().main.mobSpawningRate.equals(ModOptions.MobSpawningRate.LOW)) {
+                if (options().main.mobSpawningRate.equals(MobSpawningRate.LOW)) {
                     spawner.addProperty("minCount", values[1]);
                     spawner.addProperty("maxCount", values[4]);
-                } else if (options().main.mobSpawningRate.equals(ModOptions.MobSpawningRate.NORMAL)) {
+                } else if (options().main.mobSpawningRate.equals(MobSpawningRate.NORMAL)) {
                     spawner.addProperty("minCount", values[2]);
                     spawner.addProperty("maxCount", values[4]);
-                } else if (options().main.mobSpawningRate.equals(ModOptions.MobSpawningRate.HIGH)) {
+                } else if (options().main.mobSpawningRate.equals(MobSpawningRate.HIGH)) {
                     spawner.addProperty("minCount", values[2]);
                     spawner.addProperty("maxCount", values[3]);
                 }
