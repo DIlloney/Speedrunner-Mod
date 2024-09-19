@@ -33,9 +33,7 @@ public class Leaderboards {
     /**
      * Used to call the class and initialize it ({@link SpeedrunnerMod#onInitialize()}).
      */
-    public static void init() {
-        info("Initialized leaderboard settings.");
-    }
+    public static void initializeLeaderboards() {}
 
     /**
      * Determines if the current speedrunner mod settings are eligible for a leaderboard submission.

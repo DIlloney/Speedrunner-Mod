@@ -6,8 +6,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
-
 /**
  * All Speedrunner Mod {@code custom sounds.}
  */
@@ -17,9 +15,7 @@ public class ModSoundEvents {
     /**
      * Initializes all speedrunner mod {@code custom sounds.}
      */
-    public static void init() {
-        info("Initialized lava boat paddling sound.");
-    }
+    public static void initializeSoundEvents() {}
 
     /**
      * Registers a {@code sound event.}

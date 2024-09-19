@@ -6,8 +6,6 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
-
 /**
  * All Speedrunner Mod {@code block tags.} Useful for many things in some mixins.
  */
@@ -86,7 +84,5 @@ public class ModBlockTags {
     /**
      * Initializes all Speedrunner Mod {@code block tags.}
      */
-    public static void init() {
-        info("Registered block tags.");
-    }
+    public static void initializeBlockTags() {}
 }

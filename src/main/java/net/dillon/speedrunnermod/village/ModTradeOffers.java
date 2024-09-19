@@ -26,17 +26,15 @@ import net.minecraft.village.TradedItem;
 
 import java.util.Optional;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
-
 /**
  * All {@code Retired Speedrunner's} trades and offers.
  */
 public class ModTradeOffers {
 
     /**
-     * Initializes the {@code Retired Speedrunner's} trade offers.
+     * Registers the {@code Retired Speedrunner's} trade offers.
      */
-    public static void init() {
+    public static void registerTradeOffers() {
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 1, factories -> {
             factories.add(new TradeOffers.BuyItemFactory(ModItems.SPEEDRUNNER_INGOT, 1, 24, 3));
         });
@@ -85,8 +83,6 @@ public class ModTradeOffers {
         TradeOfferHelper.registerVillagerOffers(ModVillagers.RETIRED_SPEEDRUNNER, 5, factories -> {
             factories.add(new ModTradeOffers.SellMaxedEnchantedNetheriteChestplateFactory(12, 3, 25, 1.35F));
         });
-
-        info("Registered the Retired Speedrunner villager trades.");
     }
 
     public static class SellItemFactorySpeedrunnerIngot implements TradeOffers.Factory {

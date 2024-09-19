@@ -12,10 +12,7 @@ import net.dillon.speedrunnermod.option.Leaderboards;
 import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.recipe.ModRecipes;
 import net.dillon.speedrunnermod.sound.ModSoundEvents;
-import net.dillon.speedrunnermod.tag.ModBlockTags;
-import net.dillon.speedrunnermod.tag.ModFluidTags;
-import net.dillon.speedrunnermod.tag.ModItemTags;
-import net.dillon.speedrunnermod.tag.ModStructureTags;
+import net.dillon.speedrunnermod.tag.*;
 import net.dillon.speedrunnermod.util.MathUtil;
 import net.dillon.speedrunnermod.village.ModTradeOffers;
 import net.dillon.speedrunnermod.village.ModVillagers;
@@ -37,7 +34,7 @@ import static net.dillon.speedrunnermod.option.ModOptions.createStructureSpawnRa
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
     public static final String MOD_VERSION = "v1.9.8.1";
-    public static final String MC_VERSION = "1.21.1";
+    public static final String MC_VERSION = "1.21.x";
     public static final String VERSION = "Version: " + MOD_VERSION;
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
     public static boolean DOOM_MODE = SpeedrunnerMod.options().main.doomMode;
@@ -47,33 +44,34 @@ public class SpeedrunnerMod implements ModInitializer {
     private static final Logger LOGGER = LogManager.getLogger("Speedrunner Mod");
 
     /**
-     * Initializes all Speedrunner mod features, items, blocks, etc.
+     * Initializes/registers all Speedrunner mod features, items, blocks, etc.
      */
     @Override
     public void onInitialize() {
-        ModWorldGen.init();
+        ModWorldGen.initializeWorldGenFeatures();
 
-        ModBoats.init();
+        ModBoats.registerBoats();
 
-        ModBlocks.init();
-        ModBlockFamilies.init();
-        ModBlockItems.init();
-        ModItems.init();
-        ModItemGroups.init();
+        ModBlocks.registerBlocks();
+        ModBlockFamilies.registerBlockFamilies();
+        ModBlockItems.registerBlockItems();
+        ModItems.registerItems();
+        ModItemGroups.initializeItemGroups();
 
-        ModStructureTags.init();
-        ModBlockTags.init();
-        ModItemTags.init();
-        ModFluidTags.init();
+        ModBlockTags.initializeBlockTags();
+        ModEnchantmentTags.initializeEnchantmentTags();
+        ModFluidTags.initializeFluidTags();
+        ModItemTags.initializeItemTags();
+        ModStructureTags.initializeStructureTags();
 
-        ModSoundEvents.init();
+        ModSoundEvents.initializeSoundEvents();
 
-        ModEnchantments.init();
-        ModRecipes.init();
-        ModFuels.init();
+        ModEnchantments.initializeEnchantments();
+        ModRecipes.registerCustomRecipes();
+        ModFuels.registerFuels();
 
-        ModVillagers.init();
-        ModTradeOffers.init();
+        ModVillagers.initializeVillagerProfessions();
+        ModTradeOffers.registerTradeOffers();
 
         safeBoot = false;
         ModOptions.loadConfig();
@@ -82,7 +80,7 @@ public class SpeedrunnerMod implements ModInitializer {
             info("You dare to attempt Doom Mode? Good luck...");
         }
 
-        Leaderboards.init();
+        Leaderboards.initializeLeaderboards();
 
         info("The Speedrunner Mod (" + MOD_VERSION + ")" + " has successfully initialized!");
     }

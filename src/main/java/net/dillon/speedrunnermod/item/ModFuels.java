@@ -3,14 +3,12 @@ package net.dillon.speedrunnermod.item;
 import net.dillon.speedrunnermod.block.ModBlocks;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
-
 /**
  * All Speedrunner Mod {@code fuels} (objects that can be used as a fuel source in a furnace).
  */
 public class ModFuels {
 
-    public static void init() {
+    public static void registerFuels() {
         FuelRegistry.INSTANCE.add(ModBlocks.SPEEDRUNNER_LOG, 400);
         FuelRegistry.INSTANCE.add(ModBlocks.DEAD_SPEEDRUNNER_LOG, 500);
         FuelRegistry.INSTANCE.add(ModBlocks.STRIPPED_SPEEDRUNNER_LOG, 400);
@@ -45,7 +43,5 @@ public class ModFuels {
         FuelRegistry.INSTANCE.add(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON, 200);
         FuelRegistry.INSTANCE.add(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_BUTTON, 300);
         FuelRegistry.INSTANCE.add(ModBlocks.DEAD_SPEEDRUNNER_BUSH, 200);
-
-        info("Initialized fuels.");
     }
 }

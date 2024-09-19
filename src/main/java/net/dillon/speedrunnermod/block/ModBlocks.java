@@ -15,8 +15,6 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
-
 /**
  * All Speedrunner Mod {@code blocks.}
  */
@@ -312,7 +310,7 @@ public class ModBlocks {
     /**
      * Initializes all Speedrunner Mod {@code blocks.}
      */
-    public static void init() {
+    public static void registerBlocks() {
         register("speedrunner_log", SPEEDRUNNER_LOG);
         register("stripped_speedrunner_log", STRIPPED_SPEEDRUNNER_LOG);
         register("speedrunner_wood", SPEEDRUNNER_WOOD);
@@ -378,8 +376,6 @@ public class ModBlocks {
         register("doom_leaves", DOOM_LEAVES);
 
         registerStrippables();
-
-        info("Initialized blocks.");
     }
 
     /**

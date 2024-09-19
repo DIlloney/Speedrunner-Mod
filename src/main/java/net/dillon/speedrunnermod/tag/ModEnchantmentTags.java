@@ -15,4 +15,9 @@ public class ModEnchantmentTags {
     private static TagKey<Enchantment> of(String path) {
         return TagKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(SpeedrunnerMod.MOD_ID, path));
     }
+
+    /**
+     * Initializes all Speedrunner Mod {@code enchantment tags.}
+     */
+    public static void initializeEnchantmentTags() {}
 }

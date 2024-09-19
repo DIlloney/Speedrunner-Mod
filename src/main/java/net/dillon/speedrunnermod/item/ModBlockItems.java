@@ -8,9 +8,8 @@ import net.minecraft.util.Formatting;
 
 import java.util.List;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
-import static net.dillon.speedrunnermod.item.ModItems.register;
+import static net.dillon.speedrunnermod.item.ModItems.registerItem;
 
 /**
  * All Speedrunner Mod {@code block items.}
@@ -190,64 +189,62 @@ public class ModBlockItems {
     /**
      * Initializes all Speedrunner Mod {@code block items.}
      */
-    public static void init() {
-        register("speedrunner_log", SPEEDRUNNER_LOG);
-        register("stripped_speedrunner_log", STRIPPED_SPEEDRUNNER_LOG);
-        register("speedrunner_wood", SPEEDRUNNER_WOOD);
-        register("stripped_speedrunner_wood", STRIPPED_SPEEDRUNNER_WOOD);
-        register("speedrunner_leaves", SPEEDRUNNER_LEAVES);
-        register("speedrunner_sapling", SPEEDRUNNER_SAPLING);
-        register("speedrunner_planks", SPEEDRUNNER_PLANKS);
-        register("speedrunner_slab", SPEEDRUNNER_SLAB);
-        register("speedrunner_stairs", SPEEDRUNNER_STAIRS);
-        register("speedrunner_fence", SPEEDRUNNER_FENCE);
-        register("speedrunner_fence_gate", SPEEDRUNNER_FENCE_GATE);
-        register("wooden_speedrunner_trapdoor", WOODEN_SPEEDRUNNER_TRAPDOOR);
-        register("wooden_speedrunner_button", WOODEN_SPEEDRUNNER_BUTTON);
-        register("wooden_speedrunner_pressure_plate", WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
-        register("wooden_speedrunner_door", WOODEN_SPEEDRUNNER_DOOR);
-        register("speedrunner_sign", SPEEDRUNNER_SIGN);
-        register("speedrunner_hanging_sign", SPEEDRUNNER_HANGING_SIGN);
-        register("dead_speedrunner_log", DEAD_SPEEDRUNNER_LOG);
-        register("dead_stripped_speedrunner_log", DEAD_STRIPPED_SPEEDRUNNER_LOG);
-        register("dead_speedrunner_wood", DEAD_SPEEDRUNNER_WOOD);
-        register("dead_stripped_speedrunner_wood", DEAD_STRIPPED_SPEEDRUNNER_WOOD);
-        register("dead_speedrunner_leaves", DEAD_SPEEDRUNNER_LEAVES);
-        register("dead_speedrunner_sapling", DEAD_SPEEDRUNNER_SAPLING);
-        register("dead_speedrunner_planks", DEAD_SPEEDRUNNER_PLANKS);
-        register("dead_speedrunner_slab", DEAD_SPEEDRUNNER_SLAB);
-        register("dead_speedrunner_stairs", DEAD_SPEEDRUNNER_STAIRS);
-        register("dead_speedrunner_fence", DEAD_SPEEDRUNNER_FENCE);
-        register("dead_speedrunner_fence_gate", DEAD_SPEEDRUNNER_FENCE_GATE);
-        register("dead_wooden_speedrunner_trapdoor", DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
-        register("dead_wooden_speedrunner_button", DEAD_WOODEN_SPEEDRUNNER_BUTTON);
-        register("dead_wooden_speedrunner_pressure_plate", DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
-        register("dead_wooden_speedrunner_door", DEAD_WOODEN_SPEEDRUNNER_DOOR);
-        register("dead_speedrunner_sign", DEAD_SPEEDRUNNER_SIGN);
-        register("dead_speedrunner_hanging_sign", DEAD_SPEEDRUNNER_HANGING_SIGN);
-        register("speedrunner_trapdoor", SPEEDRUNNER_TRAPDOOR);
-        register("speedrunner_weighted_pressure_plate", SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
-        register("speedrunner_door", SPEEDRUNNER_DOOR);
-        register("dead_speedrunner_bush", DEAD_SPEEDRUNNER_BUSH);
-        register("speedrunners_workbench", SPEEDRUNNERS_WORKBENCH);
-        register("speedrunner_block", SPEEDRUNNER_BLOCK);
-        register("raw_speedrunner_block", RAW_SPEEDRUNNER_BLOCK);
-        register("thruster_block", THRUSTER_BLOCK);
-        register("speedrunner_ore", SPEEDRUNNER_ORE);
-        register("deepslate_speedrunner_ore", DEEPSLATE_SPEEDRUNNER_ORE);
-        register("nether_speedrunner_ore", NETHER_SPEEDRUNNER_ORE);
-        register("igneous_ore", IGNEOUS_ORE);
-        register("deepslate_igneous_ore", DEEPSLATE_IGNEOUS_ORE);
-        register("nether_igneous_ore", NETHER_IGNEOUS_ORE);
-        register("experience_ore", EXPERIENCE_ORE);
-        register("deepslate_experience_ore", DEEPSLATE_EXPERIENCE_ORE);
-        register("nether_experience_ore", NETHER_EXPERIENCE_ORE);
+    public static void registerBlockItems() {
+        registerItem("speedrunner_log", SPEEDRUNNER_LOG);
+        registerItem("stripped_speedrunner_log", STRIPPED_SPEEDRUNNER_LOG);
+        registerItem("speedrunner_wood", SPEEDRUNNER_WOOD);
+        registerItem("stripped_speedrunner_wood", STRIPPED_SPEEDRUNNER_WOOD);
+        registerItem("speedrunner_leaves", SPEEDRUNNER_LEAVES);
+        registerItem("speedrunner_sapling", SPEEDRUNNER_SAPLING);
+        registerItem("speedrunner_planks", SPEEDRUNNER_PLANKS);
+        registerItem("speedrunner_slab", SPEEDRUNNER_SLAB);
+        registerItem("speedrunner_stairs", SPEEDRUNNER_STAIRS);
+        registerItem("speedrunner_fence", SPEEDRUNNER_FENCE);
+        registerItem("speedrunner_fence_gate", SPEEDRUNNER_FENCE_GATE);
+        registerItem("wooden_speedrunner_trapdoor", WOODEN_SPEEDRUNNER_TRAPDOOR);
+        registerItem("wooden_speedrunner_button", WOODEN_SPEEDRUNNER_BUTTON);
+        registerItem("wooden_speedrunner_pressure_plate", WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
+        registerItem("wooden_speedrunner_door", WOODEN_SPEEDRUNNER_DOOR);
+        registerItem("speedrunner_sign", SPEEDRUNNER_SIGN);
+        registerItem("speedrunner_hanging_sign", SPEEDRUNNER_HANGING_SIGN);
+        registerItem("dead_speedrunner_log", DEAD_SPEEDRUNNER_LOG);
+        registerItem("dead_stripped_speedrunner_log", DEAD_STRIPPED_SPEEDRUNNER_LOG);
+        registerItem("dead_speedrunner_wood", DEAD_SPEEDRUNNER_WOOD);
+        registerItem("dead_stripped_speedrunner_wood", DEAD_STRIPPED_SPEEDRUNNER_WOOD);
+        registerItem("dead_speedrunner_leaves", DEAD_SPEEDRUNNER_LEAVES);
+        registerItem("dead_speedrunner_sapling", DEAD_SPEEDRUNNER_SAPLING);
+        registerItem("dead_speedrunner_planks", DEAD_SPEEDRUNNER_PLANKS);
+        registerItem("dead_speedrunner_slab", DEAD_SPEEDRUNNER_SLAB);
+        registerItem("dead_speedrunner_stairs", DEAD_SPEEDRUNNER_STAIRS);
+        registerItem("dead_speedrunner_fence", DEAD_SPEEDRUNNER_FENCE);
+        registerItem("dead_speedrunner_fence_gate", DEAD_SPEEDRUNNER_FENCE_GATE);
+        registerItem("dead_wooden_speedrunner_trapdoor", DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
+        registerItem("dead_wooden_speedrunner_button", DEAD_WOODEN_SPEEDRUNNER_BUTTON);
+        registerItem("dead_wooden_speedrunner_pressure_plate", DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
+        registerItem("dead_wooden_speedrunner_door", DEAD_WOODEN_SPEEDRUNNER_DOOR);
+        registerItem("dead_speedrunner_sign", DEAD_SPEEDRUNNER_SIGN);
+        registerItem("dead_speedrunner_hanging_sign", DEAD_SPEEDRUNNER_HANGING_SIGN);
+        registerItem("speedrunner_trapdoor", SPEEDRUNNER_TRAPDOOR);
+        registerItem("speedrunner_weighted_pressure_plate", SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE);
+        registerItem("speedrunner_door", SPEEDRUNNER_DOOR);
+        registerItem("dead_speedrunner_bush", DEAD_SPEEDRUNNER_BUSH);
+        registerItem("speedrunners_workbench", SPEEDRUNNERS_WORKBENCH);
+        registerItem("speedrunner_block", SPEEDRUNNER_BLOCK);
+        registerItem("raw_speedrunner_block", RAW_SPEEDRUNNER_BLOCK);
+        registerItem("thruster_block", THRUSTER_BLOCK);
+        registerItem("speedrunner_ore", SPEEDRUNNER_ORE);
+        registerItem("deepslate_speedrunner_ore", DEEPSLATE_SPEEDRUNNER_ORE);
+        registerItem("nether_speedrunner_ore", NETHER_SPEEDRUNNER_ORE);
+        registerItem("igneous_ore", IGNEOUS_ORE);
+        registerItem("deepslate_igneous_ore", DEEPSLATE_IGNEOUS_ORE);
+        registerItem("nether_igneous_ore", NETHER_IGNEOUS_ORE);
+        registerItem("experience_ore", EXPERIENCE_ORE);
+        registerItem("deepslate_experience_ore", DEEPSLATE_EXPERIENCE_ORE);
+        registerItem("nether_experience_ore", NETHER_EXPERIENCE_ORE);
 
-        register("doom_stone", DOOM_STONE);
-        register("doom_log", DOOM_LOG);
-        register("stripped_doom_log", STRIPPED_DOOM_LOG);
-        register("doom_leaves", DOOM_LEAVES);
-
-        info("Initialized block items.");
+        registerItem("doom_stone", DOOM_STONE);
+        registerItem("doom_log", DOOM_LOG);
+        registerItem("stripped_doom_log", STRIPPED_DOOM_LOG);
+        registerItem("doom_leaves", DOOM_LEAVES);
     }
 }

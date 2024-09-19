@@ -6,8 +6,6 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.structure.Structure;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
-
 /**
  * All Speedrunner Mod {@code structure tags.} These are only really used because vanilla Minecraft doesn't have a tag for these structures.
  */
@@ -24,7 +22,5 @@ public class ModStructureTags {
         return TagKey.of(RegistryKeys.STRUCTURE, Identifier.of(SpeedrunnerMod.MOD_ID, path));
     }
 
-    public static void init() {
-        info("Registered structure tags.");
-    }
+    public static void initializeStructureTags() {}
 }

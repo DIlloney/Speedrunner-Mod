@@ -27,12 +27,11 @@ public class ModWorldGen {
     /**
      * Initializes all Speedrunner Mod {@code custom world gen features.}
      */
-    public static void init() {
+    public static void initializeWorldGenFeatures() {
         ModBiomeKeys.init();
 
         addOres();
         addVegetalDecoration();
-        info("Initialized world gen features.");
 
         if (DOOM_MODE) {
             if (options().main.strongholdLibraryCount > 5) {

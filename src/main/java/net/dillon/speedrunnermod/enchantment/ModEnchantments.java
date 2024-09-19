@@ -6,8 +6,6 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
-
 /**
  * All Speedrunner Mod {@code enchantments.}
  */
@@ -24,7 +22,8 @@ public class ModEnchantments {
         return RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(SpeedrunnerMod.MOD_ID, path));
     }
 
-    public static void init() {
-        info("Initialized enchantments.");
-    }
+    /**
+     * Initializes all speedrunner mod {@code enchantments.}
+     */
+    public static void initializeEnchantments() {}
 }

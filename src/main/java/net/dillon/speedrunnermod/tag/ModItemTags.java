@@ -6,8 +6,6 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
-
 /**
  * All Speedrunner Mod {@code item tags.}
  */
@@ -68,7 +66,5 @@ public class ModItemTags {
     /**
      * Initializes all Speedrunner Mod {@code item tags.}
      */
-    public static void init() {
-        info("Registered item tags.");
-    }
+    public static void initializeItemTags() {}
 }

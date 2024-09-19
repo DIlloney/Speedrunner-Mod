@@ -15,7 +15,6 @@ import net.minecraft.util.Util;
 
 import java.util.List;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
@@ -237,72 +236,70 @@ public class ModItems {
     /**
      * Initializes all Speedrunner Mod {@code items.}
      */
-    public static void init() {
-        register("speedrunner_ingot", SPEEDRUNNER_INGOT);
-        register("speedrunner_nugget", SPEEDRUNNER_NUGGET);
-        register("raw_speedrunner", RAW_SPEEDRUNNER);
-        register("speedrunner_sword", SPEEDRUNNER_SWORD);
-        register("speedrunner_shovel", SPEEDRUNNER_SHOVEL);
-        register("speedrunner_pickaxe", SPEEDRUNNER_PICKAXE);
-        register("speedrunner_axe", SPEEDRUNNER_AXE);
-        register("speedrunner_hoe", SPEEDRUNNER_HOE);
-        register("speedrunner_helmet", SPEEDRUNNER_HELMET);
-        register("speedrunner_chestplate", SPEEDRUNNER_CHESTPLATE);
-        register("speedrunner_leggings", SPEEDRUNNER_LEGGINGS);
-        register("speedrunner_boots", SPEEDRUNNER_BOOTS);
-        register("speedrunner_bow", SPEEDRUNNER_BOW);
-        register("speedrunner_crossbow", SPEEDRUNNER_CROSSBOW);
-        register("speedrunner_shears", SPEEDRUNNER_SHEARS);
-        register("speedrunner_flint_and_steel", SPEEDRUNNER_FLINT_AND_STEEL);
-        register("speedrunner_shield", SPEEDRUNNER_SHIELD);
-        register("golden_speedrunner_sword", GOLDEN_SPEEDRUNNER_SWORD);
-        register("golden_speedrunner_shovel", GOLDEN_SPEEDRUNNER_SHOVEL);
-        register("golden_speedrunner_pickaxe", GOLDEN_SPEEDRUNNER_PICKAXE);
-        register("golden_speedrunner_axe", GOLDEN_SPEEDRUNNER_AXE);
-        register("golden_speedrunner_hoe", GOLDEN_SPEEDRUNNER_HOE);
-        register("golden_speedrunner_helmet", GOLDEN_SPEEDRUNNER_HELMET);
-        register("golden_speedrunner_chestplate", GOLDEN_SPEEDRUNNER_CHESTPLATE);
-        register("golden_speedrunner_leggings", GOLDEN_SPEEDRUNNER_LEGGINGS);
-        register("golden_speedrunner_boots", GOLDEN_SPEEDRUNNER_BOOTS);
-        register("golden_speedrunner_upgrade_smithing_template", GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE);
-        register("speedrunner_bulk", SPEEDRUNNER_BULK);
-        register("rotten_speedrunner_bulk", ROTTEN_SPEEDRUNNER_BULK);
-        register("cooked_flesh", COOKED_FLESH);
-        register("piglin_pork", PIGLIN_PORK);
-        register("cooked_piglin_pork", COOKED_PIGLIN_PORK);
-        register("golden_piglin_pork", GOLDEN_PIGLIN_PORK);
-        register("golden_beef", GOLDEN_BEEF);
-        register("golden_porkchop", GOLDEN_PORKCHOP);
-        register("golden_mutton", GOLDEN_MUTTON);
-        register("golden_chicken", GOLDEN_CHICKEN);
-        register("golden_rabbit", GOLDEN_RABBIT);
-        register("golden_cod", GOLDEN_COD);
-        register("golden_salmon", GOLDEN_SALMON);
-        register("golden_bread", GOLDEN_BREAD);
-        register("golden_potato", GOLDEN_POTATO);
-        register("golden_beetroot", GOLDEN_BEETROOT);
-        register("igneous_rock", IGNEOUS_ROCK);
-        register("speedrunner_stick", SPEEDRUNNER_STICK);
-        register("wither_bone", WITHER_BONE);
-        register("wither_sword", WITHER_SWORD);
-        register("annul_eye", ANNUL_EYE);
-        register("speedrunners_eye", SPEEDRUNNERS_EYE);
-        register("inferno_eye", INFERNO_EYE);
-        register("piglin_awakener", PIGLIN_AWAKENER);
-        register("blaze_spotter", BLAZE_SPOTTER);
-        register("raid_eradicator", RAID_ERADICATOR);
-        register("ender_thruster", ENDER_THRUSTER);
-        register("dragons_sword", DRAGONS_SWORD);
-        register("dragons_pearl", DRAGONS_PEARL);
-        register("infini_pearl", INFINI_PEARL);
-
-        info("Initialized items.");
+    public static void registerItems() {
+        registerItem("speedrunner_ingot", SPEEDRUNNER_INGOT);
+        registerItem("speedrunner_nugget", SPEEDRUNNER_NUGGET);
+        registerItem("raw_speedrunner", RAW_SPEEDRUNNER);
+        registerItem("speedrunner_sword", SPEEDRUNNER_SWORD);
+        registerItem("speedrunner_shovel", SPEEDRUNNER_SHOVEL);
+        registerItem("speedrunner_pickaxe", SPEEDRUNNER_PICKAXE);
+        registerItem("speedrunner_axe", SPEEDRUNNER_AXE);
+        registerItem("speedrunner_hoe", SPEEDRUNNER_HOE);
+        registerItem("speedrunner_helmet", SPEEDRUNNER_HELMET);
+        registerItem("speedrunner_chestplate", SPEEDRUNNER_CHESTPLATE);
+        registerItem("speedrunner_leggings", SPEEDRUNNER_LEGGINGS);
+        registerItem("speedrunner_boots", SPEEDRUNNER_BOOTS);
+        registerItem("speedrunner_bow", SPEEDRUNNER_BOW);
+        registerItem("speedrunner_crossbow", SPEEDRUNNER_CROSSBOW);
+        registerItem("speedrunner_shears", SPEEDRUNNER_SHEARS);
+        registerItem("speedrunner_flint_and_steel", SPEEDRUNNER_FLINT_AND_STEEL);
+        registerItem("speedrunner_shield", SPEEDRUNNER_SHIELD);
+        registerItem("golden_speedrunner_sword", GOLDEN_SPEEDRUNNER_SWORD);
+        registerItem("golden_speedrunner_shovel", GOLDEN_SPEEDRUNNER_SHOVEL);
+        registerItem("golden_speedrunner_pickaxe", GOLDEN_SPEEDRUNNER_PICKAXE);
+        registerItem("golden_speedrunner_axe", GOLDEN_SPEEDRUNNER_AXE);
+        registerItem("golden_speedrunner_hoe", GOLDEN_SPEEDRUNNER_HOE);
+        registerItem("golden_speedrunner_helmet", GOLDEN_SPEEDRUNNER_HELMET);
+        registerItem("golden_speedrunner_chestplate", GOLDEN_SPEEDRUNNER_CHESTPLATE);
+        registerItem("golden_speedrunner_leggings", GOLDEN_SPEEDRUNNER_LEGGINGS);
+        registerItem("golden_speedrunner_boots", GOLDEN_SPEEDRUNNER_BOOTS);
+        registerItem("golden_speedrunner_upgrade_smithing_template", GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE);
+        registerItem("speedrunner_bulk", SPEEDRUNNER_BULK);
+        registerItem("rotten_speedrunner_bulk", ROTTEN_SPEEDRUNNER_BULK);
+        registerItem("cooked_flesh", COOKED_FLESH);
+        registerItem("piglin_pork", PIGLIN_PORK);
+        registerItem("cooked_piglin_pork", COOKED_PIGLIN_PORK);
+        registerItem("golden_piglin_pork", GOLDEN_PIGLIN_PORK);
+        registerItem("golden_beef", GOLDEN_BEEF);
+        registerItem("golden_porkchop", GOLDEN_PORKCHOP);
+        registerItem("golden_mutton", GOLDEN_MUTTON);
+        registerItem("golden_chicken", GOLDEN_CHICKEN);
+        registerItem("golden_rabbit", GOLDEN_RABBIT);
+        registerItem("golden_cod", GOLDEN_COD);
+        registerItem("golden_salmon", GOLDEN_SALMON);
+        registerItem("golden_bread", GOLDEN_BREAD);
+        registerItem("golden_potato", GOLDEN_POTATO);
+        registerItem("golden_beetroot", GOLDEN_BEETROOT);
+        registerItem("igneous_rock", IGNEOUS_ROCK);
+        registerItem("speedrunner_stick", SPEEDRUNNER_STICK);
+        registerItem("wither_bone", WITHER_BONE);
+        registerItem("wither_sword", WITHER_SWORD);
+        registerItem("annul_eye", ANNUL_EYE);
+        registerItem("speedrunners_eye", SPEEDRUNNERS_EYE);
+        registerItem("inferno_eye", INFERNO_EYE);
+        registerItem("piglin_awakener", PIGLIN_AWAKENER);
+        registerItem("blaze_spotter", BLAZE_SPOTTER);
+        registerItem("raid_eradicator", RAID_ERADICATOR);
+        registerItem("ender_thruster", ENDER_THRUSTER);
+        registerItem("dragons_sword", DRAGONS_SWORD);
+        registerItem("dragons_pearl", DRAGONS_PEARL);
+        registerItem("infini_pearl", INFINI_PEARL);
     }
 
     /**
-     * Registers an {@code item.}
+     * Registers an {@code item}.
      */
-    protected static void register(String path, Item item) {
+    protected static void registerItem(String path, Item item) {
         Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, path), item);
     }
 }

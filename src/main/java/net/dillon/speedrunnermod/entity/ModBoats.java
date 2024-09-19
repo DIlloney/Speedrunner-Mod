@@ -11,8 +11,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
-
 /**
  * Used to create all the Speedrunner Mod {@code boats,} and these keys are used in several different mixins.
  * <p>See {@code directory} {@link net.dillon.speedrunnermod.mixin.main.entity.boat} for more.</p>
@@ -37,13 +35,21 @@ public class ModBoats {
     public static final TerraformBoatType CRIMSON_BOAT = new TerraformBoatType.Builder().item(ModItems.CRIMSON_BOAT).chestItem(ModItems.CRIMSON_CHEST_BOAT).planks(Blocks.CRIMSON_PLANKS.asItem()).build();
     public static final TerraformBoatType WARPED_BOAT = new TerraformBoatType.Builder().item(ModItems.WARPED_BOAT).chestItem(ModItems.WARPED_CHEST_BOAT).planks(Blocks.WARPED_PLANKS.asItem()).build();
 
-    public static void init() {
-        Registry.register(TerraformBoatTypeRegistry.INSTANCE, SPEEDRUNNER_BOAT_KEY, SPEEDRUNNER_BOAT);
-        Registry.register(TerraformBoatTypeRegistry.INSTANCE, DEAD_SPEEDRUNNER_BOAT_KEY, DEAD_SPEEDRUNNER_BOAT);
-        Registry.register(TerraformBoatTypeRegistry.INSTANCE, CRIMSON_BOAT_KEY, CRIMSON_BOAT);
-        Registry.register(TerraformBoatTypeRegistry.INSTANCE, WARPED_BOAT_KEY, WARPED_BOAT);
+    /**
+     * Registers all speedrunner mod {@code boats.}
+     */
+    public static void registerBoats() {
+        registerBoat(SPEEDRUNNER_BOAT_KEY, SPEEDRUNNER_BOAT);
+        registerBoat(DEAD_SPEEDRUNNER_BOAT_KEY, DEAD_SPEEDRUNNER_BOAT);
+        registerBoat(CRIMSON_BOAT_KEY, CRIMSON_BOAT);
+        registerBoat(WARPED_BOAT_KEY, WARPED_BOAT);
+    }
 
-        info("Initialized speedrunner mod boats (crimson, warped and speedrunner).");
+    /**
+     * Registers a {@code boat}.
+     */
+    private static void registerBoat(RegistryKey<TerraformBoatType> key, TerraformBoatType boat) {
+        Registry.register(TerraformBoatTypeRegistry.INSTANCE, key, boat);
     }
 
     /**

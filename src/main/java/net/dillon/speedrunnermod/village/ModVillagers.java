@@ -14,8 +14,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.info;
-
 /**
  * All Speedrunner Mod {@code custom villager professions.}
  */
@@ -37,7 +35,5 @@ public class ModVillagers {
     /**
      * Initializes the {@code Retired Speedrunner.}
      */
-    public static void init() {
-        info("Initialized the Retired Speedrunner villager profession.");
-    }
+    public static void initializeVillagerProfessions() {}
 }
