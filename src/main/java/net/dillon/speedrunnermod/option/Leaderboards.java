@@ -31,7 +31,7 @@ public class Leaderboards {
     private static int currentNetherPortalCooldown;
 
     /**
-     * Used to call the class and initialize it ({@link SpeedrunnerMod#onInitialize()}).
+     * Used to call the Leaderboards class and initialize it ({@link SpeedrunnerMod#onInitialize()}).
      */
     public static void initializeLeaderboards() {}
 

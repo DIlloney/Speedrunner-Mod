@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features.blocksanditems;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -11,6 +10,8 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 @Environment(EnvType.CLIENT)
 public class EyeOfInfernoScreen extends AbstractFeatureScreen {
@@ -32,7 +33,7 @@ public class EyeOfInfernoScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/eye_of_inferno.png");
+        return ofSpeedrunnerMod("textures/gui/features/items/eye_of_inferno.png");
     }
 
     @Override
@@ -47,7 +48,7 @@ public class EyeOfInfernoScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getCraftingRecipeImage() {
-        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/eye_of_inferno_crafting_recipe.png");
+        return ofSpeedrunnerMod("textures/gui/features/recipes/eye_of_inferno_crafting_recipe.png");
     }
 
     @Override

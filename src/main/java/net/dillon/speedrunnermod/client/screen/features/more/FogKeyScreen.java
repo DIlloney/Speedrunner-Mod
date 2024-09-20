@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features.more;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -11,6 +10,8 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 @Environment(EnvType.CLIENT)
 public class FogKeyScreen extends AbstractFeatureScreen {
@@ -32,7 +33,7 @@ public class FogKeyScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getImage() {
-        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/keybinds/toggle_fog_keybind.png");
+        return ofSpeedrunnerMod("textures/gui/features/keybinds/toggle_fog_keybind.png");
     }
 
     @Override

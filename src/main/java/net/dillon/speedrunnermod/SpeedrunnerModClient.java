@@ -32,7 +32,7 @@ public class SpeedrunnerModClient implements ClientModInitializer {
 
         ModKeybindings.clinit();
 
-        info("Client-side speedrunner mod has successfully loaded!");
+        info("Client-side Speedrunner Mod features have successfully loaded!");
     }
 
     /**

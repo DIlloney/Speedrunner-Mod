@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.item;
 
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.entity.ModBoats;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
@@ -9,23 +8,23 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.Util;
 
 import java.util.List;
 
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
  * All Speedrunner Mod {@code items.}
  */
 public class ModItems {
-    private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.applies_to"))).formatted(Formatting.GOLD);
-    private static final Text GOLDEN_SPEEDRUNNER_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.ingredients"))).formatted(Formatting.AQUA);
-    private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", Identifier.of(SpeedrunnerMod.MOD_ID, "golden_speedrunner_upgrade"))).formatted(Formatting.GRAY);
-    private static final Text GOLDEN_SPEEDRUNNER_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.base_slot_description")));
-    private static final Text GOLDEN_SPEEDRUNNER_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.of(SpeedrunnerMod.MOD_ID, "smithing_template.golden_speedrunner_upgrade.additions_slot_description")));
+    private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", ofSpeedrunnerMod("smithing_template.golden_speedrunner_upgrade.applies_to"))).formatted(Formatting.GOLD);
+    private static final Text GOLDEN_SPEEDRUNNER_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", ofSpeedrunnerMod("smithing_template.golden_speedrunner_upgrade.ingredients"))).formatted(Formatting.AQUA);
+    private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", ofSpeedrunnerMod("golden_speedrunner_upgrade"))).formatted(Formatting.GRAY);
+    private static final Text GOLDEN_SPEEDRUNNER_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", ofSpeedrunnerMod("smithing_template.golden_speedrunner_upgrade.base_slot_description")));
+    private static final Text GOLDEN_SPEEDRUNNER_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", ofSpeedrunnerMod("smithing_template.golden_speedrunner_upgrade.additions_slot_description")));
 
     public static final Item SPEEDRUNNER_INGOT = new Item(
             new Item.Settings()) {
@@ -234,7 +233,7 @@ public class ModItems {
     public static final Item INFINI_PEARL = new InfiniPearlItem(new Item.Settings());
 
     /**
-     * Initializes all Speedrunner Mod {@code items.}
+     * Registers all Speedrunner Mod {@code items.}
      */
     public static void registerItems() {
         registerItem("speedrunner_ingot", SPEEDRUNNER_INGOT);
@@ -300,6 +299,6 @@ public class ModItems {
      * Registers an {@code item}.
      */
     protected static void registerItem(String path, Item item) {
-        Registry.register(Registries.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, path), item);
+        Registry.register(Registries.ITEM, ofSpeedrunnerMod(path), item);
     }
 }

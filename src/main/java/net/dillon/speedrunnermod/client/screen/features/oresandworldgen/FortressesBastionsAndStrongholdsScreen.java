@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features.oresandworldgen;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -15,6 +14,8 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 @Environment(EnvType.CLIENT)
 public class FortressesBastionsAndStrongholdsScreen extends AbstractFeatureScreen {
@@ -41,8 +42,8 @@ public class FortressesBastionsAndStrongholdsScreen extends AbstractFeatureScree
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/stronghold_gen.png"), this.width / 2 - 260, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
-        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/nether_fortress_gen.png"), this.width / 2 + 97, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(ofSpeedrunnerMod("textures/gui/features/screenshots/stronghold_gen.png"), this.width / 2 - 260, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(ofSpeedrunnerMod("textures/gui/features/screenshots/nether_fortress_gen.png"), this.width / 2 + 97, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

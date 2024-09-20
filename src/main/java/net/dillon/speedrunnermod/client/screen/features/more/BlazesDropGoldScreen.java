@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features.more;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -11,6 +10,8 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 @Environment(EnvType.CLIENT)
 public class BlazesDropGoldScreen extends AbstractFeatureScreen {
@@ -26,7 +27,7 @@ public class BlazesDropGoldScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/blazes_drop_gold.png");
+        return ofSpeedrunnerMod("textures/gui/features/screenshots/blazes_drop_gold.png");
     }
 
     @Override

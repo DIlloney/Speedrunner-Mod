@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features.oresandworldgen;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -11,6 +10,8 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 @Environment(EnvType.CLIENT)
 public class ExperienceOresScreen extends AbstractFeatureScreen {
@@ -32,7 +33,7 @@ public class ExperienceOresScreen extends AbstractFeatureScreen {
 
     @Override
     protected Identifier getDownscaledImage() {
-        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/experience_ores.png");
+        return ofSpeedrunnerMod("textures/gui/features/screenshots/experience_ores.png");
     }
 
     @Override

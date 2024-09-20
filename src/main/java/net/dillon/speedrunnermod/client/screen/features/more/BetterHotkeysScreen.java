@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features.more;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -12,6 +11,8 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 @Environment(EnvType.CLIENT)
 public class BetterHotkeysScreen extends AbstractFeatureScreen {
@@ -32,8 +33,8 @@ public class BetterHotkeysScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/keybinds/toggle_chunk_borders_keybind.png"), this.width / 2 + 23, 190, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
-        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/keybinds/toggle_hitboxes_keybind.png"), this.width / 2 + 23, 210, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(ofSpeedrunnerMod("textures/gui/features/keybinds/toggle_chunk_borders_keybind.png"), this.width / 2 + 23, 190, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(ofSpeedrunnerMod("textures/gui/features/keybinds/toggle_hitboxes_keybind.png"), this.width / 2 + 23, 210, 0, 0, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override

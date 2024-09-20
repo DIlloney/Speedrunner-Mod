@@ -1,14 +1,13 @@
 package net.dillon.speedrunnermod.mixin.client.screen;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.client.gui.CubeMapRenderer;
 import net.minecraft.client.gui.RotatingCubeMapRenderer;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
@@ -23,7 +22,7 @@ public class ScreenMixin {
 
     static {
         if (options().client.customPanorama) {
-            ROTATING_PANORAMA_RENDERER = new RotatingCubeMapRenderer(new CubeMapRenderer(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/title/background/panorama")));
+            ROTATING_PANORAMA_RENDERER = new RotatingCubeMapRenderer(new CubeMapRenderer(ofSpeedrunnerMod("textures/gui/title/background/panorama")));
         } else {
             ROTATING_PANORAMA_RENDERER = new RotatingCubeMapRenderer(PANORAMA_RENDERER);
         }

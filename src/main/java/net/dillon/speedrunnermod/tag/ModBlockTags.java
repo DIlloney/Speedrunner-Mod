@@ -1,10 +1,10 @@
 package net.dillon.speedrunnermod.tag;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 /**
  * All Speedrunner Mod {@code block tags.} Useful for many things in some mixins.
@@ -64,21 +64,21 @@ public class ModBlockTags {
      * Registers a {@code block tag.}
      */
     private static TagKey<Block> of(String path) {
-        return TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, path));
+        return TagKey.of(RegistryKeys.BLOCK, ofSpeedrunnerMod(path));
     }
 
     /**
      * Registers a {@code block hardness tag} with a "double" value.
      */
     private static TagKey<Block> blockHardness(int base, int decimal) {
-        return TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/"+base+"-"+decimal+"_hardness"));
+        return TagKey.of(RegistryKeys.BLOCK, ofSpeedrunnerMod("block_hardness/"+base+"-"+decimal+"_hardness"));
     }
 
     /**
      * Registers a {@code block hardness tag} with an integer value.
      */
     private static TagKey<Block> blockHardness(int hardness) {
-        return TagKey.of(RegistryKeys.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, "block_hardness/"+hardness+"_hardness"));
+        return TagKey.of(RegistryKeys.BLOCK, ofSpeedrunnerMod("block_hardness/"+hardness+"_hardness"));
     }
 
     /**

@@ -1,10 +1,10 @@
 package net.dillon.speedrunnermod.enchantment;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 /**
  * All Speedrunner Mod {@code enchantments.}
@@ -19,11 +19,11 @@ public class ModEnchantments {
      * Registers a {@code enchantment}
      */
     private static RegistryKey<Enchantment> register(String path) {
-        return RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(SpeedrunnerMod.MOD_ID, path));
+        return RegistryKey.of(RegistryKeys.ENCHANTMENT, ofSpeedrunnerMod(path));
     }
 
     /**
-     * Initializes all speedrunner mod {@code enchantments.}
+     * Initializes all Speedrunner Mod {@code enchantments.}
      */
     public static void initializeEnchantments() {}
 }

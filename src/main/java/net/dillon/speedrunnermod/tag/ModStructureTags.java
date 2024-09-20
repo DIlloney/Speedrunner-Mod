@@ -1,10 +1,10 @@
 package net.dillon.speedrunnermod.tag;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.structure.Structure;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 /**
  * All Speedrunner Mod {@code structure tags.} These are only really used because vanilla Minecraft doesn't have a tag for these structures.
@@ -19,8 +19,11 @@ public class ModStructureTags {
      * Registers a {@code structure tag.}
      */
     private static TagKey<Structure> of(String path) {
-        return TagKey.of(RegistryKeys.STRUCTURE, Identifier.of(SpeedrunnerMod.MOD_ID, path));
+        return TagKey.of(RegistryKeys.STRUCTURE, ofSpeedrunnerMod(path));
     }
 
+    /**
+     * Initializes all Speedrunner Mod {@code structure tags.}
+     */
     public static void initializeStructureTags() {}
 }

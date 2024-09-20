@@ -12,8 +12,6 @@ import net.minecraft.client.option.GameOptions;
 
 import java.io.File;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
-
 /**
  * Switches to enable/disable certain mixins from loading into the game.
  */

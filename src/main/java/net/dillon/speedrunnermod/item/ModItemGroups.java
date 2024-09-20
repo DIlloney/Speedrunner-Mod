@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.enchantment.ModEnchantments;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -10,9 +9,10 @@ import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
 import java.util.stream.IntStream;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 /**
  * The Speedrunner Mod {@code item group.}
@@ -22,7 +22,7 @@ public class ModItemGroups {
     /**
      * This field is never used, but the {@code init} method inside this class takes care of that, and initializes this item group.
      */
-    public static ItemGroup SPEEDRUNNER_MOD = Registry.register(Registries.ITEM_GROUP, Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_mod_item_group"),
+    public static ItemGroup SPEEDRUNNER_MOD = Registry.register(Registries.ITEM_GROUP, ofSpeedrunnerMod("speedrunner_mod_item_group"),
             FabricItemGroup.builder()
                     .displayName(Text.literal("Speedrunner Mod"))
                     .icon(() -> new ItemStack(ModBlockItems.SPEEDRUNNERS_WORKBENCH)).entries((displayContext, entries) -> {
@@ -169,9 +169,9 @@ public class ModItemGroups {
     }
 
     /**
-     * The {@code call method} to initialize the modified and new item groups.
+     * The method to register the modified and new item groups.
      */
-    public static void initializeItemGroups() {
+    public static void registerModifiedItemGroups() {
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.SPEEDRUNNER_INGOT);
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.SPEEDRUNNER_NUGGET);
         addToItemGroup(ItemGroups.INGREDIENTS, ModItems.RAW_SPEEDRUNNER);

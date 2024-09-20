@@ -21,6 +21,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,10 +54,10 @@ public class SpeedrunnerMod implements ModInitializer {
         ModBoats.registerBoats();
 
         ModBlocks.registerBlocks();
-        ModBlockFamilies.registerBlockFamilies();
+        ModBlockFamilies.initializeBlockFamilies();
         ModBlockItems.registerBlockItems();
         ModItems.registerItems();
-        ModItemGroups.initializeItemGroups();
+        ModItemGroups.registerModifiedItemGroups();
 
         ModBlockTags.initializeBlockTags();
         ModEnchantmentTags.initializeEnchantmentTags();
@@ -82,7 +83,7 @@ public class SpeedrunnerMod implements ModInitializer {
 
         Leaderboards.initializeLeaderboards();
 
-        info("The Speedrunner Mod (" + MOD_VERSION + ")" + " has successfully initialized!");
+        info("The Speedrunner Mod (" + MOD_VERSION + ")" + " has successfully been loaded!");
     }
 
     /**
@@ -219,6 +220,13 @@ public class SpeedrunnerMod implements ModInitializer {
         options().mixins.simpleOptionMixin = true;
         options().mixins.logoDrawerMixin = true;
         options().mixins.renderLayersMixin = true;
+    }
+
+    /**
+     * Returns a new {@link Identifier} with the {@code Speedrunner Mod's namespace.}
+     */
+    public static Identifier ofSpeedrunnerMod(String path) {
+        return Identifier.of(MOD_ID, path);
     }
 
     /**

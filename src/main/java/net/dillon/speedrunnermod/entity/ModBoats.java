@@ -2,7 +2,6 @@ package net.dillon.speedrunnermod.entity;
 
 import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.block.ModBlocks;
 import net.dillon.speedrunnermod.item.ModItems;
 import net.dillon.speedrunnermod.tag.ModItemTags;
@@ -11,19 +10,21 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
+
 /**
  * Used to create all the Speedrunner Mod {@code boats,} and these keys are used in several different mixins.
  * <p>See {@code directory} {@link net.dillon.speedrunnermod.mixin.main.entity.boat} for more.</p>
  */
 public class ModBoats {
-    public static final Identifier SPEEDRUNNER_BOAT_ID = Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_boat");
-    public static final Identifier SPEEDRUNNER_CHEST_BOAT_ID = Identifier.of(SpeedrunnerMod.MOD_ID, "speedrunner_chest_boat");
-    public static final Identifier DEAD_SPEEDRUNNER_BOAT_ID = Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_boat");
-    public static final Identifier DEAD_SPEEDRUNNER_CHEST_BOAT_ID = Identifier.of(SpeedrunnerMod.MOD_ID, "dead_speedrunner_chest_boat");
-    public static final Identifier CRIMSON_BOAT_ID = Identifier.of(SpeedrunnerMod.MOD_ID, "crimson_boat");
-    public static final Identifier CRIMSON_CHEST_BOAT_ID = Identifier.of(SpeedrunnerMod.MOD_ID, "crimson_chest_boat");
-    public static final Identifier WARPED_BOAT_ID = Identifier.of(SpeedrunnerMod.MOD_ID, "warped_boat");
-    public static final Identifier WARPED_CHEST_BOAT_ID = Identifier.of(SpeedrunnerMod.MOD_ID, "warped_chest_boat");
+    public static final Identifier SPEEDRUNNER_BOAT_ID = ofSpeedrunnerMod("speedrunner_boat");
+    public static final Identifier SPEEDRUNNER_CHEST_BOAT_ID = ofSpeedrunnerMod("speedrunner_chest_boat");
+    public static final Identifier DEAD_SPEEDRUNNER_BOAT_ID = ofSpeedrunnerMod("dead_speedrunner_boat");
+    public static final Identifier DEAD_SPEEDRUNNER_CHEST_BOAT_ID = ofSpeedrunnerMod("dead_speedrunner_chest_boat");
+    public static final Identifier CRIMSON_BOAT_ID = ofSpeedrunnerMod("crimson_boat");
+    public static final Identifier CRIMSON_CHEST_BOAT_ID = ofSpeedrunnerMod("crimson_chest_boat");
+    public static final Identifier WARPED_BOAT_ID = ofSpeedrunnerMod("warped_boat");
+    public static final Identifier WARPED_CHEST_BOAT_ID = ofSpeedrunnerMod("warped_chest_boat");
 
     public static final RegistryKey<TerraformBoatType> SPEEDRUNNER_BOAT_KEY = TerraformBoatTypeRegistry.createKey(SPEEDRUNNER_BOAT_ID);
     public static final RegistryKey<TerraformBoatType> DEAD_SPEEDRUNNER_BOAT_KEY = TerraformBoatTypeRegistry.createKey(DEAD_SPEEDRUNNER_BOAT_ID);

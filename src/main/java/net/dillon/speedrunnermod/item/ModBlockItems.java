@@ -187,7 +187,7 @@ public class ModBlockItems {
             new Item.Settings());
 
     /**
-     * Initializes all Speedrunner Mod {@code block items.}
+     * Registers all Speedrunner Mod {@code block items.}
      */
     public static void registerBlockItems() {
         registerItem("speedrunner_log", SPEEDRUNNER_LOG);

@@ -8,6 +8,9 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
  */
 public class ModFuels {
 
+    /**
+     * Registers all Speedrunner Mod {@code fuel objects.}
+     */
     public static void registerFuels() {
         FuelRegistry.INSTANCE.add(ModBlocks.SPEEDRUNNER_LOG, 400);
         FuelRegistry.INSTANCE.add(ModBlocks.DEAD_SPEEDRUNNER_LOG, 500);

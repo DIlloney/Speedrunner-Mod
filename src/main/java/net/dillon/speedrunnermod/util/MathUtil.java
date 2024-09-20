@@ -20,13 +20,6 @@ public class MathUtil {
     }
 
     /**
-     * Returns the passed value divided by 2.
-     */
-    public static int divideByTwo(int value) {
-        return value / 2;
-    }
-
-    /**
      * Returns a random float, with a minimum and maximum value.
      */
     public static float randomFloat(float min, float max) {

@@ -4,7 +4,6 @@ import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformWallSignBlock;
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
@@ -15,16 +14,18 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
+
 /**
  * All Speedrunner Mod {@code blocks.}
  */
 public class ModBlocks {
-    public static final Identifier SPEEDRUNNER_SIGN_TEXTURE = Identifier.of(SpeedrunnerMod.MOD_ID, "entity/signs/speedrunner");
-    public static final Identifier SPEEDRUNNER_HANGING_SIGN_TEXTURE = Identifier.of(SpeedrunnerMod.MOD_ID, "entity/signs/hanging/speedrunner");
-    public static final Identifier SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE = Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/hanging_signs/speedrunner");
-    public static final Identifier DEAD_SPEEDRUNNER_SIGN_TEXTURE = Identifier.of(SpeedrunnerMod.MOD_ID, "entity/signs/dead_speedrunner");
-    public static final Identifier DEAD_SPEEDRUNNER_HANGING_SIGN_TEXTURE = Identifier.of(SpeedrunnerMod.MOD_ID, "entity/signs/hanging/dead_speedrunner");
-    public static final Identifier DEAD_SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE = Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/hanging_signs/dead_speedrunner");
+    public static final Identifier SPEEDRUNNER_SIGN_TEXTURE = ofSpeedrunnerMod("entity/signs/speedrunner");
+    public static final Identifier SPEEDRUNNER_HANGING_SIGN_TEXTURE = ofSpeedrunnerMod("entity/signs/hanging/speedrunner");
+    public static final Identifier SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE = ofSpeedrunnerMod("textures/gui/hanging_signs/speedrunner");
+    public static final Identifier DEAD_SPEEDRUNNER_SIGN_TEXTURE = ofSpeedrunnerMod("entity/signs/dead_speedrunner");
+    public static final Identifier DEAD_SPEEDRUNNER_HANGING_SIGN_TEXTURE = ofSpeedrunnerMod("entity/signs/hanging/dead_speedrunner");
+    public static final Identifier DEAD_SPEEDRUNNER_HANGING_GUI_SIGN_TEXTURE = ofSpeedrunnerMod("textures/gui/hanging_signs/dead_speedrunner");
 
     public static final Block SPEEDRUNNER_LOG = new PillarBlock(AbstractBlock.Settings.create()
             .strength(1.0F)
@@ -308,7 +309,7 @@ public class ModBlocks {
     }
 
     /**
-     * Initializes all Speedrunner Mod {@code blocks.}
+     * Registers all Speedrunner Mod {@code blocks.}
      */
     public static void registerBlocks() {
         register("speedrunner_log", SPEEDRUNNER_LOG);
@@ -382,6 +383,6 @@ public class ModBlocks {
      * Registers a {@code block.}
      */
     private static void register(String path, Block block) {
-        Registry.register(Registries.BLOCK, Identifier.of(SpeedrunnerMod.MOD_ID, path), block);
+        Registry.register(Registries.BLOCK, ofSpeedrunnerMod(path), block);
     }
 }

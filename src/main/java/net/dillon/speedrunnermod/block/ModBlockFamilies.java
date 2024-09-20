@@ -21,6 +21,8 @@ public class ModBlockFamilies {
                 .group("wooden").unlockCriterionName("has_planks").build();
     }
 
-    public static void registerBlockFamilies() {
-    }
+    /**
+     * Initializes all Speedrunner Mod {@code block families.}
+     */
+    public static void initializeBlockFamilies() {}
 }

@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features.toolsandarmor;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -14,6 +13,8 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 @Environment(EnvType.CLIENT)
 public class WitherSwordScreen extends AbstractFeatureScreen {
@@ -35,7 +36,7 @@ public class WitherSwordScreen extends AbstractFeatureScreen {
 
     @Override
     protected @NotNull Identifier getImage() {
-        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/items/wither_sword.png");
+        return ofSpeedrunnerMod("textures/gui/features/items/wither_sword.png");
     }
 
     @Override
@@ -50,7 +51,7 @@ public class WitherSwordScreen extends AbstractFeatureScreen {
 
     @Override
     protected @NotNull Identifier getCraftingRecipeImage() {
-        return Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/recipes/wither_sword_crafting_recipe.png");
+        return ofSpeedrunnerMod("textures/gui/features/recipes/wither_sword_crafting_recipe.png");
     }
 
     @Override

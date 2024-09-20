@@ -16,7 +16,6 @@ import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Final;
@@ -27,6 +26,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @Environment(EnvType.CLIENT)
@@ -116,10 +116,10 @@ public class TitleScreenMixin extends Screen {
      */
     @Inject(method = "render", at = @At("TAIL"))
     private void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/item/golden_speedrunner_upgrade_smithing_template.png"), featuresButton.getX() + 2, this.featuresButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        context.drawTexture(ofSpeedrunnerMod("textures/item/golden_speedrunner_upgrade_smithing_template.png"), featuresButton.getX() + 2, this.featuresButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
         if (options().advanced.showResetButton) {
-            context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/item/speedrunner_boots.png"), createWorldButton.getX() + 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(ofSpeedrunnerMod("textures/item/speedrunner_boots.png"), createWorldButton.getX() + 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         }
 
         context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, optionsButton.getX() + 1, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);

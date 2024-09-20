@@ -1,10 +1,10 @@
 package net.dillon.speedrunnermod.tag;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 /**
  * All Speedrunner Mod {@code item tags.}
@@ -60,7 +60,7 @@ public class ModItemTags {
      * Registers an {@code item tag.}
      */
     private static TagKey<Item> of(String path) {
-        return TagKey.of(RegistryKeys.ITEM, Identifier.of(SpeedrunnerMod.MOD_ID, path));
+        return TagKey.of(RegistryKeys.ITEM, ofSpeedrunnerMod(path));
     }
 
     /**

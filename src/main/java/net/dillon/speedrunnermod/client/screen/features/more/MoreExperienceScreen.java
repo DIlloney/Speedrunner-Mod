@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.client.screen.features.more;
 
-import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.client.screen.features.AbstractFeatureScreen;
 import net.dillon.speedrunnermod.client.screen.features.ScreenCategory;
 import net.dillon.speedrunnermod.client.screen.features.ScreenType;
@@ -12,6 +11,8 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
 @Environment(EnvType.CLIENT)
 public class MoreExperienceScreen extends AbstractFeatureScreen {
@@ -32,8 +33,8 @@ public class MoreExperienceScreen extends AbstractFeatureScreen {
 
     @Override
     protected void renderCustomImage(DrawContext context) {
-        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/more_experience_from_mobs.png"), this.width / 2 - 260, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
-        context.drawTexture(Identifier.of(SpeedrunnerMod.MOD_ID, "textures/gui/features/screenshots/more_experience_from_ores.png"), this.width / 2 + 97, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(ofSpeedrunnerMod("textures/gui/features/screenshots/more_experience_from_mobs.png"), this.width / 2 - 260, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+        context.drawTexture(ofSpeedrunnerMod("textures/gui/features/screenshots/more_experience_from_ores.png"), this.width / 2 + 97, 200, 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
     }
 
     @Override
