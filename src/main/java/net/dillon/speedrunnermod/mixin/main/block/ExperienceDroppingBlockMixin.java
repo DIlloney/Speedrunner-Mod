@@ -18,8 +18,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -41,7 +41,7 @@ public class ExperienceDroppingBlockMixin extends Block {
      * Removes the silk touch enchantment when right-clicking on an ore block.
      */
     @Override
-    public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getStackInHand(hand);
         if (!world.isClient && itemStack.isSuitableFor(state) && EnchantmentHelper.getLevel(ItemUtil.enchantment(player, Enchantments.SILK_TOUCH), itemStack) > 0 && options().main.rightClickToRemoveSilkTouch) {
             ItemEnchantmentsComponent itemEnchantmentsComponent = EnchantmentHelper.apply(itemStack, builder -> builder.remove(enchantmentRegistryEntry -> enchantmentRegistryEntry.matchesKey(Enchantments.SILK_TOUCH)));
@@ -52,7 +52,7 @@ public class ExperienceDroppingBlockMixin extends Block {
             }
             player.sendMessage(Text.translatable("speedrunnermod.removed_silk_touch"), false);
             player.setStackInHand(hand, itemStack);
-            return ItemActionResult.success(true);
+            return ActionResult.SUCCESS;
         } else {
             return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
         }

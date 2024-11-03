@@ -18,9 +18,9 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -42,7 +42,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
      * <p>See additional comments inside of this method for more documentation.</p>
      */
     @Override @ChatGPT(Credit.PARTIAL_CREDIT)
-    public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         boolean holdingEnchantedBookItem = player.getMainHandStack().isOf(Items.ENCHANTED_BOOK) || player.getOffHandStack().isOf(Items.ENCHANTED_BOOK);
         if (!world.isClient && !holdingEnchantedBookItem && player.getMainHandStack().hasEnchantments() && !player.getOffHandStack().isEmpty()) {
             ItemStack mainHandStack = player.getMainHandStack(); // Get the players main hand stack
@@ -154,7 +154,7 @@ public class SpeedrunnersWorkbenchBlock extends SmithingTableBlock {
                 this.fail(player, cost);
             }
 
-            return ItemActionResult.success(true);
+            return ActionResult.SUCCESS;
         } else {
             return super.onUseWithItem(stack, state, world, pos, player, hand,  hit);
         }

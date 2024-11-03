@@ -10,6 +10,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.*;
@@ -40,13 +41,13 @@ public class DoomBlock {
 
             if (world.random.nextFloat() < 0.40F) {
                 for(int i = 0; i < world.random.nextInt(3) + 1; i++) {
-                    ZombieEntity zombie = EntityType.ZOMBIE.create(world);
+                    ZombieEntity zombie = EntityType.ZOMBIE.create(world, SpawnReason.MOB_SUMMONED);
                     zombie.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, TickCalculator.seconds(30), 0, false, true, false));
                     zombie.refreshPositionAndAngles(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, world.random.nextFloat() * 360.0F, 0.0F);
                     world.spawnEntity(zombie);
                 }
             } else if (world.random.nextFloat() < 0.25F) {
-                VindicatorEntity vindicator = EntityType.VINDICATOR.create(world);
+                VindicatorEntity vindicator = EntityType.VINDICATOR.create(world, SpawnReason.MOB_SUMMONED);
                 ItemStack axe = new ItemStack(Items.IRON_AXE);
                 axe.setDamage(world.random.nextInt(100));
                 vindicator.handItems.set(0, axe);
@@ -54,12 +55,12 @@ public class DoomBlock {
                 vindicator.refreshPositionAndAngles(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, world.random.nextFloat() * 360.0F, 0.0F);
                 world.spawnEntity(vindicator);
             } else if (world.random.nextFloat() < 0.10F) {
-                RavagerEntity ravager = EntityType.RAVAGER.create(world);
+                RavagerEntity ravager = EntityType.RAVAGER.create(world, SpawnReason.MOB_SUMMONED);
                 ravager.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, TickCalculator.seconds(30), 0, false, true, false));
                 ravager.refreshPositionAndAngles(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, world.random.nextFloat() * 360.0F, 0.0F);
                 world.spawnEntity(ravager);
             } else if (world.random.nextFloat() < 0.10F) {
-                PiglinBruteEntity brute = EntityType.PIGLIN_BRUTE.create(world);
+                PiglinBruteEntity brute = EntityType.PIGLIN_BRUTE.create(world, SpawnReason.MOB_SUMMONED);
                 ItemStack axe = new ItemStack(Items.GOLDEN_AXE);
                 axe.setDamage(world.random.nextInt(24));
                 brute.handItems.set(0, axe);
@@ -68,7 +69,7 @@ public class DoomBlock {
                 brute.refreshPositionAndAngles(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, world.random.nextFloat() * 360.0F, 0.0F);
                 world.spawnEntity(brute);
             } else if (world.random.nextFloat() < 0.05F) {
-                GhastEntity ghast = EntityType.GHAST.create(world);
+                GhastEntity ghast = EntityType.GHAST.create(world, SpawnReason.MOB_SUMMONED);
                 ghast.setHealth(ghast.getMaxHealth() + 90.0F);
                 ghast.refreshPositionAndAngles(pos.getX() + 1.0F, pos.getY() + 1.5F, pos.getZ() + 0.5F, world.random.nextFloat() * 360.0F, 0.0F);
                 world.spawnEntity(ghast);
