@@ -1,6 +1,6 @@
 package net.dillon.speedrunnermod.recipe;
 
-import net.minecraft.recipe.SpecialRecipeSerializer;
+import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
@@ -14,7 +14,7 @@ public class ModRecipes {
     /**
      * Registers a {@code special crafting recipe.}
      */
-    private static void register(String path, SpecialRecipeSerializer<?> specialCraftingRecipe) {
+    private static void register(String path, SpecialCraftingRecipe.SpecialRecipeSerializer<?> specialCraftingRecipe) {
         Registry.register(Registries.RECIPE_SERIALIZER, ofSpeedrunnerMod(path), specialCraftingRecipe);
     }
 

@@ -12,9 +12,9 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.Structure;
 
@@ -34,7 +34,7 @@ public class InfernoEyeItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         player.setCurrentHand(hand);
         if (!world.isClient) {
@@ -63,13 +63,13 @@ public class InfernoEyeItem extends Item {
 
                 player.incrementStat(Stats.USED.getOrCreateStat(this));
                 player.swingHand(hand, true);
-                return TypedActionResult.success(itemStack);
+                return ActionResult.SUCCESS;
             } else {
                 player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_inferno.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
             }
         }
 
-        return TypedActionResult.consume(itemStack);
+        return ActionResult.CONSUME;
     }
 
     @Override

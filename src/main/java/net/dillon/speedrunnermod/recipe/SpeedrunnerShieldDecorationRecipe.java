@@ -7,7 +7,6 @@ import net.minecraft.item.BannerItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
-import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
@@ -28,7 +27,7 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
     public boolean matches(CraftingRecipeInput craftingRecipeInput, World world) {
         ItemStack itemStack = ItemStack.EMPTY;
         ItemStack itemStack2 = ItemStack.EMPTY;
-        for (int i = 0; i < craftingRecipeInput.getSize(); ++i) {
+        for (int i = 0; i < craftingRecipeInput.getStacks().size(); ++i) {
             ItemStack itemStack3 = craftingRecipeInput.getStackInSlot(i);
             if (itemStack3.isEmpty()) continue;
             if (itemStack3.getItem() instanceof BannerItem) {
@@ -58,7 +57,7 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
     public ItemStack craft(CraftingRecipeInput craftingRecipeInput, RegistryWrapper.WrapperLookup wrapperLookup) {
         ItemStack itemStack = ItemStack.EMPTY;
         ItemStack itemStack2 = ItemStack.EMPTY;
-        for (int i = 0; i < craftingRecipeInput.getSize(); ++i) {
+        for (int i = 0; i < craftingRecipeInput.getStacks().size(); ++i) {
             ItemStack itemStack3 = craftingRecipeInput.getStackInSlot(i);
             if (itemStack3.isEmpty()) continue;
             if (itemStack3.getItem() instanceof BannerItem) {
@@ -80,7 +79,8 @@ public class SpeedrunnerShieldDecorationRecipe extends SpecialCraftingRecipe {
         return width * height >= 2;
     }
 
-    public RecipeSerializer<?> getSerializer() {
+    @Override
+    public RecipeSerializer<? extends SpecialCraftingRecipe> getSerializer() {
         return SPEEDRUNNER_SHIELD_DECORATION_RECIPE;
     }
 }

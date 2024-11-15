@@ -10,7 +10,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -173,7 +172,7 @@ public class ModTradeOffers {
             if (!optional.isEmpty()) {
                 RegistryEntry<Enchantment> registryEntry = optional.get();
                 Enchantment enchantment = registryEntry.value();
-                itemStack = EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(registryEntry, enchantment.getMaxLevel()));
+                itemStack = EnchantmentHelper.getEnchantedBookWith(new EnchantmentLevelEntry(registryEntry, enchantment.getMaxLevel()));
                 l = this.basePrice;
 
                 if (l > 10) {

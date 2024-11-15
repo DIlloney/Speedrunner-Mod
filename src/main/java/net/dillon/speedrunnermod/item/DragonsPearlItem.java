@@ -13,10 +13,10 @@ import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rarity;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class DragonsPearlItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         if (!world.isClient) {
             if (options().stateOfTheArtItems.isDragonsPearlEnabled()) {
@@ -46,7 +46,7 @@ public class DragonsPearlItem extends Item {
                         EnderDragonEntity enderDragon = dragons.get(0);
                         if (!isDragonAlreadyPerchingOrPerched(enderDragon) && !isDragonDead(enderDragon)) {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 2.0F, 0.3F);
-                            player.getItemCooldownManager().set(this, TickCalculator.seconds(30));
+                            player.getItemCooldownManager().set(this.getDefaultStack(), TickCalculator.seconds(30));
                             if (!player.getAbilities().creativeMode) {
                                 itemStack.decrement(1);
                             }
@@ -57,7 +57,7 @@ public class DragonsPearlItem extends Item {
                                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.HOSTILE, 3.0F, 0.65F);
                                 }
                             }, TimeCalculator.secondsToMilliseconds(2));
-                            return TypedActionResult.success(itemStack);
+                            return ActionResult.SUCCESS;
                         } else {
                             if (!isDragonDead(enderDragon)) {
                                 if (isDragonSitting(enderDragon)) {
@@ -84,7 +84,7 @@ public class DragonsPearlItem extends Item {
             }
         }
 
-        return TypedActionResult.consume(itemStack);
+        return ActionResult.SUCCESS;
     }
 
     /**

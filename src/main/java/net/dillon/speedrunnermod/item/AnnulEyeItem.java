@@ -20,10 +20,10 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rarity;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -44,7 +44,7 @@ public class AnnulEyeItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         player.setCurrentHand(hand);
         if (!world.isClient) {
@@ -75,7 +75,7 @@ public class AnnulEyeItem extends Item {
 
                         player.incrementStat(Stats.USED.getOrCreateStat(this));
                         player.swingHand(hand, true);
-                        return TypedActionResult.success(itemStack);
+                        return ActionResult.SUCCESS;
                     }
                 } else {
                     boolean isEnabled = options().stateOfTheArtItems.isAnnulEyeTeleporterEnabled();
@@ -100,7 +100,7 @@ public class AnnulEyeItem extends Item {
                                     player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.teleporting").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                                     player.teleport(endPortalFrameBlock.getX() + 0.5F, endPortalFrameBlock.getY() + 1.0F, endPortalFrameBlock.getZ() + 0.5F, true);
                                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.HOSTILE, 1.0F, 1.0F);
-                                    player.getItemCooldownManager().set(this, TickCalculator.seconds(60));
+                                    player.getItemCooldownManager().set(this.getDefaultStack(), TickCalculator.seconds(60));
                                     if (!player.getAbilities().creativeMode) {
                                         itemStack.decrement(1);
                                         for (int i = 0; i < player.getInventory().size(); i++) {
@@ -130,7 +130,7 @@ public class AnnulEyeItem extends Item {
                                 world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
                                 player.incrementStat(Stats.USED.getOrCreateStat(this));
                                 player.swingHand(hand, true);
-                                return TypedActionResult.success(itemStack);
+                                return ActionResult.SUCCESS;
                             } else {
                                 player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.couldnt_find_portal_room").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
                             }
@@ -154,7 +154,7 @@ public class AnnulEyeItem extends Item {
             }
         }
 
-        return TypedActionResult.consume(itemStack);
+        return ActionResult.CONSUME;
     }
 
     /**

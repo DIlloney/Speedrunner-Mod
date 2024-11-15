@@ -13,9 +13,9 @@ import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
@@ -35,7 +35,7 @@ public class EnderThrusterItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         player.setCurrentHand(hand);
         if (!world.isClient) {
@@ -47,7 +47,7 @@ public class EnderThrusterItem extends Item {
 
                     if (y != playerY && !(playerY > y)) {
                         if (confirm) {
-                            player.getItemCooldownManager().set(this, TickCalculator.seconds(10));
+                            player.getItemCooldownManager().set(this.getDefaultStack(), TickCalculator.seconds(10));
                             if (!player.getAbilities().creativeMode) {
                                 itemStack.decrement(1);
                             }
@@ -77,7 +77,7 @@ public class EnderThrusterItem extends Item {
                             confirm = !confirm;
                         }
                         player.swingHand(hand, true);
-                        return TypedActionResult.success(itemStack);
+                        return ActionResult.SUCCESS;
                     } else {
                         player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.couldnt_teleport"), ModOptions.ItemMessages.isActionbar());
                     }
@@ -89,7 +89,7 @@ public class EnderThrusterItem extends Item {
             }
         }
 
-        return TypedActionResult.consume(itemStack);
+        return ActionResult.CONSUME;
     }
 
     @Override
