@@ -9,6 +9,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.FlyingEntity;
 import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -26,11 +27,11 @@ public class GhastEntityMixin extends FlyingEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((GhastEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 36;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**
@@ -42,7 +43,7 @@ public class GhastEntityMixin extends FlyingEntity {
         final double genericMaxHealth = DOOM_MODE ? 20.0D : 5.0D;
         final double genericFollowRange = DOOM_MODE ? 100.0D : 50.0D;
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, genericMaxHealth)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, genericFollowRange);
+                .add(EntityAttributes.MAX_HEALTH, genericMaxHealth)
+                .add(EntityAttributes.FOLLOW_RANGE, genericFollowRange);
     }
 }

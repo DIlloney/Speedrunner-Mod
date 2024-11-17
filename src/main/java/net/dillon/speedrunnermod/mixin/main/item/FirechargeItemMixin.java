@@ -8,8 +8,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,7 +27,7 @@ public class FirechargeItemMixin extends Item {
      * Allows fireballs to be thrown.
      */
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         if (options().main.throwableFireballs) {
             ItemStack stack = player.getStackInHand(hand);
             if (!world.isClient) {
@@ -38,12 +38,12 @@ public class FirechargeItemMixin extends Item {
                 world.spawnEntity(fireball);
                 world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
-                player.getItemCooldownManager().set(this, TickCalculator.seconds(1));
+                player.getItemCooldownManager().set(this.getDefaultStack(), TickCalculator.seconds(1));
                 if (!player.getAbilities().creativeMode) {
                     stack.decrement(1);
                 }
 
-                return TypedActionResult.success(stack);
+                return ActionResult.SUCCESS;
             }
         }
 

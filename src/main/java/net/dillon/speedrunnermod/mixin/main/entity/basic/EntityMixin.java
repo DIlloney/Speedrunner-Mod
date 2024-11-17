@@ -8,6 +8,7 @@ import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSources;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,6 +31,8 @@ public abstract class EntityMixin {
     @Shadow
     private int fireTicks;
 
+    @Shadow public abstract World getWorld();
+
     /**
      * Decreases time set on fire for from lava.
      */
@@ -41,7 +44,7 @@ public abstract class EntityMixin {
     /**
      * Decreases damage from lava.
      */
-    @ModifyArg(method = "setOnFireFromLava", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
+    @ModifyArg(method = "setOnFireFromLava", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/damage/DamageSource;F)Z"))
     private float setOnFireFromLavaAmount(float x) {
         return SpeedrunnerMod.getLavaDamageAmount();
     }
@@ -53,10 +56,10 @@ public abstract class EntityMixin {
     @Inject(method = "setOnFireFromLava", at = @At("HEAD"), cancellable = true)
     private void setOnFireFromLava(CallbackInfo ci) {
         Entity vehicle = getVehicle();
-        if (options().main.lavaBoats) {
+        if (options().main.lavaBoats && this.getWorld() instanceof ServerWorld serverWorld) {
             if (vehicle instanceof TerraformBoatEntity terraformBoat && ModBoats.isFireproofBoat(terraformBoat.getTerraformBoat()) || vehicle instanceof TerraformChestBoatEntity terraformChestBoat && ModBoats.isFireproofBoat(terraformChestBoat.getTerraformBoat())) {
                 if (fireTicks > 0 && fireTicks % 20 == 0) {
-                    ((Entity)(Object)this).damage(this.getDamageSources().onFire(), 1.0F);
+                    ((Entity)(Object)this).damage(serverWorld, this.getDamageSources().onFire(), 1.0F);
                 }
                 ci.cancel();
             }

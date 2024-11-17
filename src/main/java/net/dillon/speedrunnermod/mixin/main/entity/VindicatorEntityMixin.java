@@ -14,6 +14,7 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.VindicatorEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -31,11 +32,11 @@ public abstract class VindicatorEntityMixin extends IllagerEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((VindicatorEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 36;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**
@@ -49,18 +50,18 @@ public abstract class VindicatorEntityMixin extends IllagerEntity {
         final double genericMaxHealth = DOOM_MODE ? 20.0D : 24.0D;
         final double genericAttackDamage = 5.0D;
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, genericMovementSpeed)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, genericFollowRange)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, genericMaxHealth)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, genericAttackDamage);
+                .add(EntityAttributes.MOVEMENT_SPEED, genericMovementSpeed)
+                .add(EntityAttributes.FOLLOW_RANGE, genericFollowRange)
+                .add(EntityAttributes.MAX_HEALTH, genericMaxHealth)
+                .add(EntityAttributes.ATTACK_DAMAGE, genericAttackDamage);
     }
 
     /**
      * Inflicts players with {@code slowness} if {@code doom mode} is enabled.
      */
     @Override
-    public boolean tryAttack(Entity target) {
-        if (!super.tryAttack(target)) {
+    public boolean tryAttack(ServerWorld world, Entity target) {
+        if (!super.tryAttack(world, target)) {
             return false;
         } else {
             if (DOOM_MODE && target instanceof PlayerEntity) {

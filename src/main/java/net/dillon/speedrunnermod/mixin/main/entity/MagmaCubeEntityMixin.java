@@ -31,6 +31,6 @@ public class MagmaCubeEntityMixin extends SlimeEntity {
      */
     @Overwrite
     public float getDamageAmount() {
-        return (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * SpeedrunnerMod.getSlimeDamageMultiplier();
+        return (float)this.getAttributeValue(EntityAttributes.ATTACK_DAMAGE) * SpeedrunnerMod.getSlimeDamageMultiplier();
     }
 }

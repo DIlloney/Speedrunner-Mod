@@ -6,6 +6,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,11 +27,11 @@ public class AbstractSkeletonEntityMixin extends HostileEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((AbstractSkeletonEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 32;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**

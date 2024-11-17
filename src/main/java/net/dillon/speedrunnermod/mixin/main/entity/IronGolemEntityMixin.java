@@ -9,6 +9,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.GolemEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -26,11 +27,11 @@ public class IronGolemEntityMixin extends GolemEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((IronGolemEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 32;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**
@@ -44,9 +45,9 @@ public class IronGolemEntityMixin extends GolemEntity {
         final double genericKnockbackResistance = DOOM_MODE ? 0.7D : 0.5D;
         final double genericAttackDamage = DOOM_MODE ? 20.0D : 7.0D;
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, genericMaxHealth)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, genericMovementSpeed)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, genericKnockbackResistance)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, genericAttackDamage);
+                .add(EntityAttributes.MAX_HEALTH, genericMaxHealth)
+                .add(EntityAttributes.MOVEMENT_SPEED, genericMovementSpeed)
+                .add(EntityAttributes.KNOCKBACK_RESISTANCE, genericKnockbackResistance)
+                .add(EntityAttributes.ATTACK_DAMAGE, genericAttackDamage);
     }
 }

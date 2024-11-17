@@ -10,6 +10,7 @@ import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.passive.GolemEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.registry.tag.DamageTypeTags;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -34,11 +35,11 @@ public abstract class ShulkerEntityMixin extends GolemEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((ShulkerEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 36;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**
@@ -54,7 +55,7 @@ public abstract class ShulkerEntityMixin extends GolemEntity {
      * @reason Prevents {@code shulkers} from teleporting, and allows them to be shot with arrows, even when closed.
      */
     @Overwrite
-    public boolean damage(DamageSource source, float amount) {
+    public boolean damage(ServerWorld world, DamageSource source, float amount) {
         Entity entity2;
         if (this.isClosed()) {
             entity2 = source.getSource();
@@ -69,7 +70,7 @@ public abstract class ShulkerEntityMixin extends GolemEntity {
             }
         }
 
-        if (!super.damage(source, amount)) {
+        if (!super.damage(world, source, amount)) {
             return false;
         } else {
             if (source.isIn(DamageTypeTags.IS_PROJECTILE)) {

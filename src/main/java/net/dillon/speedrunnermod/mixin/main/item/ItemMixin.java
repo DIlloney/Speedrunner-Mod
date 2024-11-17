@@ -1,9 +1,16 @@
 package net.dillon.speedrunnermod.mixin.main.item;
 
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.dillon.speedrunnermod.enchantment.ModEnchantments;
 import net.dillon.speedrunnermod.tag.ModItemTags;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,10 +29,21 @@ public class ItemMixin {
      * Adds tooltips to items that can be used to craft the {@code piglin awakener.}
      */
     @Inject(method = "appendTooltip", at = @At("TAIL"))
-    private void appendTooltipsForPiglinAwakenerItems(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type, CallbackInfo ci) {
+    private void appendTooltips(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type, CallbackInfo ci) {
         if (options().client.itemTooltips) {
             if (stack.isIn(ModItemTags.PIGLIN_AWAKENER_CRAFTABLES)) {
                 tooltip.add(Text.translatable("item.speedrunnermod.piglin_awakener_craftable").formatted(Formatting.GOLD));
+            }
+            if (stack.isOf(Items.ENCHANTED_BOOK)) {
+                ItemEnchantmentsComponent itemEnchantmentsComponent = EnchantmentHelper.getEnchantments(stack);
+                for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : itemEnchantmentsComponent.getEnchantmentEntries()) {
+                    if (entry.getKey().matchesKey(ModEnchantments.DASH)) {
+                        tooltip.add(Text.translatable("enchantment.speedrunnermod.dash.tooltip").formatted(Formatting.GRAY));
+                    }
+                    if (entry.getKey().matchesKey(ModEnchantments.COOLDOWN)) {
+                        tooltip.add(Text.translatable("enchantment.speedrunnermod.cooldown.tooltip").formatted(Formatting.GRAY));
+                    }
+                }
             }
         }
         if (options().client.textureTooltips) {

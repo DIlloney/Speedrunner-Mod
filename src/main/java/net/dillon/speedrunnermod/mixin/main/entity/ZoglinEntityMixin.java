@@ -8,6 +8,7 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.ZoglinEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -25,11 +26,11 @@ public class ZoglinEntityMixin extends HostileEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((ZoglinEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 36;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**
@@ -44,10 +45,10 @@ public class ZoglinEntityMixin extends HostileEntity {
         final double genericAttackKnockback = DOOM_MODE ? 1.2D : 0.5D;
         final double genericAttackDamage = DOOM_MODE ? 8.0D : 4.0D;
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, genericMaxHealth)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, genericMovementSpeed)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, genericKnockbackResistance)
-                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, genericAttackKnockback)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, genericAttackDamage);
+                .add(EntityAttributes.MAX_HEALTH, genericMaxHealth)
+                .add(EntityAttributes.MOVEMENT_SPEED, genericMovementSpeed)
+                .add(EntityAttributes.KNOCKBACK_RESISTANCE, genericKnockbackResistance)
+                .add(EntityAttributes.ATTACK_KNOCKBACK, genericAttackKnockback)
+                .add(EntityAttributes.ATTACK_DAMAGE, genericAttackDamage);
     }
 }

@@ -21,6 +21,7 @@ import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -45,7 +46,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Shadow
     public abstract ItemStack getEquippedStack(EquipmentSlot slot);
     @Shadow
-    public abstract boolean damage(DamageSource source, float amount);
+    public abstract boolean damage(ServerWorld world, DamageSource source, float amount);
 
     public PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -56,11 +57,11 @@ public abstract class PlayerEntityMixin extends LivingEntity {
      */
     @Inject(method = "disableShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getItemCooldownManager()Lnet/minecraft/entity/player/ItemCooldownManager;"))
     private void disableShield(CallbackInfo ci) {
-        Optional<RegistryEntry.Reference<Enchantment>> optional = this.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(ModEnchantments.COOLDOWN);
+        Optional<RegistryEntry.Reference<Enchantment>> optional = this.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getOptional(ModEnchantments.COOLDOWN);
         RegistryEntry<Enchantment> registryEntry = optional.get();
         int coolEnchantment = EnchantmentHelper.getEquipmentLevel(registryEntry, (PlayerEntity)(Object)this);
         int cooldown = coolEnchantment > 5 ? 0 : coolEnchantment == 5 ? 5 : coolEnchantment == 4 ? 10 : coolEnchantment == 3 ? 20 : coolEnchantment == 2 ? 40 : coolEnchantment == 1 ? 60 : 80;
-        this.getItemCooldownManager().set(ModItems.SPEEDRUNNER_SHIELD, cooldown);
+        this.getItemCooldownManager().set(ModItems.SPEEDRUNNER_SHIELD.getDefaultStack(), cooldown);
     }
 
     /**
@@ -81,8 +82,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                 int coolEnchantment = EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((PlayerEntity)(Object)this, ModEnchantments.COOLDOWN), (PlayerEntity)(Object)this);
                 int shieldCooldown = coolEnchantment > 5 ? 0 : coolEnchantment == 5 ? 10 : coolEnchantment == 4 ? 25 : coolEnchantment == 3 ? 50 : coolEnchantment == 2 ? 100 : coolEnchantment == 1 ? 150 : 200;
                 int speedrunnerShieldCooldown = coolEnchantment > 5 ? 0 : coolEnchantment == 5 ? 5 : coolEnchantment == 4 ? 15 : coolEnchantment == 3 ? 25 : coolEnchantment == 2 ? 75 : coolEnchantment == 1 ? 150 : 180;
-                this.getItemCooldownManager().set(Items.SHIELD, shieldCooldown);
-                this.getItemCooldownManager().set(ModItems.SPEEDRUNNER_SHIELD, speedrunnerShieldCooldown);
+                this.getItemCooldownManager().set(Items.SHIELD.getDefaultStack(), shieldCooldown);
+                this.getItemCooldownManager().set(ModItems.SPEEDRUNNER_SHIELD.getDefaultStack(), speedrunnerShieldCooldown);
                 this.clearActiveItem();
                 this.getWorld().sendEntityStatus(this, (byte)30);
             }
@@ -126,7 +127,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                     this.getWorld().setBlockState(pos, Blocks.LAVA.getDefaultState());
                 }
                 this.teleport(0.5, y, 0.5, true);
-                this.damage(this.getDamageSources().generic(), 1000000.0F);
+                this.serverDamage(this.getDamageSources().generic(), 1000000.0F);
                 this.getWorld().playSound(null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 10.0F, 1.0F);
             }
         } else {

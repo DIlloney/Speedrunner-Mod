@@ -32,7 +32,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
     @Shadow
     private float damageDuringSitting;
     @Shadow
-    protected abstract boolean parentDamage(DamageSource source, float amount);
+    protected abstract void parentDamage(ServerWorld world, DamageSource source, float amount);
     @Shadow @Final
     public EnderDragonPart head;
     @Shadow @Final
@@ -61,7 +61,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
     /**
      * Makes the ender dragon do less damage.
      */
-    @ModifyArg(method = "damageLivingEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"), index = 1)
+    @ModifyArg(method = "damageLivingEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/damage/DamageSource;F)Z"), index = 2)
     private float damageLivingEntities(float amount) {
         return SpeedrunnerMod.getEnderDragonDamageMultiplier();
     }
@@ -69,7 +69,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
     /**
      * Makes end crystals do more damage to the ender dragon.
      */
-    @ModifyArg(method = "crystalDestroyed", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/boss/dragon/EnderDragonEntity;damagePart(Lnet/minecraft/entity/boss/dragon/EnderDragonPart;Lnet/minecraft/entity/damage/DamageSource;F)Z"), index = 2)
+    @ModifyArg(method = "crystalDestroyed", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/boss/dragon/EnderDragonEntity;damagePart(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/boss/dragon/EnderDragonPart;Lnet/minecraft/entity/damage/DamageSource;F)Z"), index = 3)
     private float crystalDestroyed(float amount) {
         return SpeedrunnerMod.getEnderDragonEndCrystalDestroyedHealthAmount();
     }
@@ -79,7 +79,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
      */
     @Inject(method = "updatePostDeath", at = @At("TAIL"))
     public void killAllHostiles(CallbackInfo ci) {
-        if (options().advanced.dragonKillsNearbyHostileEntities && this.getWorld() instanceof ServerWorld) {
+        if (options().advanced.dragonKillsNearbyHostileEntities && this.getWorld() instanceof ServerWorld serverWorld) {
             EnderDragonEntity dragon = (EnderDragonEntity)(Object)this;
             World world = this.getEntityWorld();
 
@@ -88,7 +88,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
 
             for (HostileEntity hostile : hostiles) {
                 if (!(hostile instanceof EndermanEntity)) {
-                    hostile.kill();
+                    hostile.kill(serverWorld);
                 }
             }
         }
@@ -111,7 +111,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
      * @reason Allows the ender dragon to stay perched for a longer period of time.
      */
     @Overwrite
-    public boolean damagePart(EnderDragonPart part, DamageSource source, float amount) {
+    public boolean damagePart(ServerWorld serverWorld, EnderDragonPart part, DamageSource source, float amount) {
         if (this.phaseManager.getCurrent().getType() == PhaseType.DYING) {
             return false;
         } else {
@@ -129,7 +129,7 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
             } else {
                 if (source.getAttacker() instanceof PlayerEntity || source.isIn(DamageTypeTags.ALWAYS_HURTS_ENDER_DRAGONS)) {
                     float f = this.getHealth();
-                    this.parentDamage(source, amount);
+                    this.parentDamage(serverWorld, source, amount);
                     if (this.isDead() && !this.phaseManager.getCurrent().isSittingOrHovering()) {
                         this.setHealth(0.0F);
                         this.phaseManager.setPhase(PhaseType.DYING);

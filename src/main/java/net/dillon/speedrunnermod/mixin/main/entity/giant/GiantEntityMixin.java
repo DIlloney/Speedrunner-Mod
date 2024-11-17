@@ -77,7 +77,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
      * Drops more experience upon death when using looting.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         int looting = attackingPlayer != null ? EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((GiantEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 150 : 0;
         this.experiencePoints = 50 + looting;
         int i = this.experiencePoints;
@@ -123,7 +123,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
         final double genericMovementSpeed = DOOM_MODE ? 0.3500000528343624D : 0.5D;
         final double genericAttackDamage = DOOM_MODE ? 10.0D : 50.0D;
         final double genericAttackKnockback = DOOM_MODE ? 1.0D : 0.0D;
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, genericMaxHealth).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, genericMovementSpeed).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, genericAttackDamage).add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, genericAttackKnockback);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.MAX_HEALTH, genericMaxHealth).add(EntityAttributes.MOVEMENT_SPEED, genericMovementSpeed).add(EntityAttributes.ATTACK_DAMAGE, genericAttackDamage).add(EntityAttributes.ATTACK_KNOCKBACK, genericAttackKnockback);
     }
 
     /**
@@ -198,7 +198,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
      * Handles damaging for the Giant.
      */
     @Override
-    public boolean damage(DamageSource source, float amount) {
+    public boolean damage(ServerWorld world, DamageSource source, float amount) {
         if (DOOM_MODE) {
             Entity entity = source.getSource();
 
@@ -218,7 +218,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
 
             if (this.getHealth() <= 150 && entity instanceof ProjectileEntity projectile) {
                 if (projectile.getOwner() != null) {
-                    projectile.getOwner().damage(projectile.getOwner().getDamageSources().generic(), MathUtil.randomFloat(1.0F, 3.0F));
+                    projectile.getOwner().damage(world, projectile.getOwner().getDamageSources().generic(), MathUtil.randomFloat(1.0F, 3.0F));
                 }
                 return false;
             }
@@ -232,22 +232,22 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
             }
 
             if (this.random.nextFloat() < 0.05F && this.getHealth() <= 250) {
-                this.onGiantDamageDropFood();
+                this.onGiantDamageDropFood(world);
             }
         }
 
-        return super.damage(source, amount);
+        return super.damage(world, source, amount);
     }
 
     /**
      * Handles attacking for the Giant.
      */
     @Override
-    public boolean tryAttack(Entity target) {
+    public boolean tryAttack(ServerWorld world, Entity target) {
         if (DOOM_MODE) {
             this.getWorld().sendEntityStatus(this, (byte)4);
         }
-        return DOOM_MODE ? Giant.tryAttack(this, (LivingEntity)target) : super.tryAttack(target);
+        return DOOM_MODE ? Giant.tryAttack(world, this, (LivingEntity)target) : super.tryAttack(world, target);
     }
 
     /**
@@ -459,20 +459,20 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
      * Drops rotten flesh randomly when the Giant is damaged.
      */
     @Unique
-    private void onGiantDamageDropFood() {
+    private void onGiantDamageDropFood(ServerWorld serverWorld) {
         for (int i = 0; i < 3; i++) {
-            this.dropItem(Items.ROTTEN_FLESH);
+            this.dropItem(serverWorld, Items.ROTTEN_FLESH);
         }
 
         if (this.random.nextFloat() < 0.3F) {
             for (int i = 0; i < 2; i++) {
-                this.dropItem(Items.ROTTEN_FLESH);
+                this.dropItem(serverWorld, Items.ROTTEN_FLESH);
             }
         }
 
         if (this.random.nextFloat() < 0.2F) {
             for (int i = 0; i < 2; i++) {
-                this.dropItem(ModItems.COOKED_FLESH);
+                this.dropItem(serverWorld, ModItems.COOKED_FLESH);
             }
         }
     }
@@ -483,7 +483,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
     @Unique
     private void onGiantDamage() {
         for (int i = 0; i < 4; i++) {
-            TntEntity tnt = EntityType.TNT.create(this.getWorld());
+            TntEntity tnt = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
             tnt.setFuse(100);
             int x = i == 0 || i == 2 ? 5 : -5;
             int z = i == 0 || i == 1 ? 5 : -5;
@@ -498,44 +498,44 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
      */
     @Unique
     private void onGiantDeath() {
-        TntEntity tntEntity = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity.setInvulnerable(true);
         tntEntity.setFuse(100);
         tntEntity.refreshPositionAndAngles(this.getX() + 5, this.getY() + 25, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity1 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity1 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity1.setFuse(100);
         tntEntity1.refreshPositionAndAngles(this.getX() - 5, this.getY() + 25, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity2 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity2 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity2.setFuse(100);
         tntEntity2.refreshPositionAndAngles(this.getX() + 5, this.getY() + 25, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity3 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity3 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity3.setFuse(100);
         tntEntity3.refreshPositionAndAngles(this.getX() - 5, this.getY() + 25, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity4 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity4 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity4.setFuse(100);
         tntEntity4.refreshPositionAndAngles(this.getX() + 5, this.getY() + 50, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity5 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity5 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity5.setFuse(100);
         tntEntity5.refreshPositionAndAngles(this.getX() - 5, this.getY() + 50, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity6 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity6 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity6.setFuse(100);
         tntEntity6.refreshPositionAndAngles(this.getX() + 5, this.getY() + 50, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity7 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity7 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity7.setFuse(100);
         tntEntity7.refreshPositionAndAngles(this.getX() - 5, this.getY() + 50, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity8 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity8 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity8.setFuse(120);
         tntEntity8.refreshPositionAndAngles(this.getX() + 5, this.getY() + 75, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity9 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity9 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity9.setFuse(120);
         tntEntity9.refreshPositionAndAngles(this.getX() - 5, this.getY() + 75, this.getZ() + 5, 0.0F, 0.0F);
-        TntEntity tntEntity10 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity10 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity10.setFuse(120);
         tntEntity10.refreshPositionAndAngles(this.getX() + 5, this.getY() + 75, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity11 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity11 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity11.setFuse(120);
         tntEntity11.refreshPositionAndAngles(this.getX() - 5, this.getY() + 75, this.getZ() - 5, 0.0F, 0.0F);
-        TntEntity tntEntity12 = EntityType.TNT.create(this.getWorld());
+        TntEntity tntEntity12 = EntityType.TNT.create(this.getWorld(), SpawnReason.TRIGGERED);
         tntEntity12.setFuse(140);
         tntEntity12.refreshPositionAndAngles(this.getX(), this.getY() + 100, this.getZ(), 0.0F, 0.0F);
         this.getWorld().playSound(null, this.getX(), this.getEyeY(), this.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.AMBIENT, 5.0F, 1.0F);

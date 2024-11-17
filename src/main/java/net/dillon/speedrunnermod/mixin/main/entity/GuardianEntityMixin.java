@@ -8,6 +8,7 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.GuardianEntity;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -25,11 +26,11 @@ public class GuardianEntityMixin extends HostileEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 10 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((GuardianEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 36;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**
@@ -43,9 +44,9 @@ public class GuardianEntityMixin extends HostileEntity {
         final double genericFollowRange = DOOM_MODE ? 24.0D : 8.0;
         final double genericMaxHealth = DOOM_MODE ? 35.0D : 15.0D;
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, genericAttackDamage)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, genericMovementSpeed)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, genericFollowRange)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, genericMaxHealth);
+                .add(EntityAttributes.ATTACK_DAMAGE, genericAttackDamage)
+                .add(EntityAttributes.MOVEMENT_SPEED, genericMovementSpeed)
+                .add(EntityAttributes.FOLLOW_RANGE, genericFollowRange)
+                .add(EntityAttributes.MAX_HEALTH, genericMaxHealth);
     }
 }

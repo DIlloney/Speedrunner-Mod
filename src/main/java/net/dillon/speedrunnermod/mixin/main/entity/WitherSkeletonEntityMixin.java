@@ -13,6 +13,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.mob.WitherSkeletonEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,11 +34,11 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((WitherSkeletonEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 36;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**
@@ -60,7 +61,7 @@ public abstract class WitherSkeletonEntityMixin extends AbstractSkeletonEntity {
      * Inflicts players with {@code slowness} if {@code doom mode} is enabled.
      */
     @Inject(method = "tryAttack", at = @At("RETURN"))
-    private void tryAttack(Entity target, CallbackInfoReturnable<?> cir) {
+    private void tryAttack(ServerWorld world, Entity target, CallbackInfoReturnable<?> cir) {
         if (DOOM_MODE && target instanceof PlayerEntity) {
             ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, TickCalculator.seconds(10), 0));
         }

@@ -9,6 +9,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.PillagerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -26,11 +27,11 @@ public abstract class PillagerEntityMixin extends IllagerEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((PillagerEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 36;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**
@@ -44,9 +45,9 @@ public abstract class PillagerEntityMixin extends IllagerEntity {
         final double genericAttackDamage = DOOM_MODE ? 8.0D : 4.0;
         final double genericFollowRange = DOOM_MODE ? 32.0D : 16.0D;
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, genericMovementSpeed)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, genericMaxHealth)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, genericAttackDamage)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, genericFollowRange);
+                .add(EntityAttributes.MOVEMENT_SPEED, genericMovementSpeed)
+                .add(EntityAttributes.MAX_HEALTH, genericMaxHealth)
+                .add(EntityAttributes.ATTACK_DAMAGE, genericAttackDamage)
+                .add(EntityAttributes.FOLLOW_RANGE, genericFollowRange);
     }
 }

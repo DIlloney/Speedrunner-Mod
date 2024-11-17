@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
@@ -33,7 +34,7 @@ public abstract class DragonPerchTime {
     @Overwrite
     private EnderDragonEntity createDragon() {
         this.world.getWorldChunk(new BlockPos(0, 128, 0));
-        EnderDragonEntity enderDragonEntity = EntityType.ENDER_DRAGON.create(this.world);
+        EnderDragonEntity enderDragonEntity = EntityType.ENDER_DRAGON.create(this.world, SpawnReason.EVENT);
         enderDragonEntity.getPhaseManager().setPhase(PhaseType.HOLDING_PATTERN);
         enderDragonEntity.refreshPositionAndAngles(0.0D, 128.0D, 0.0D, this.world.random.nextFloat() * 360.0F, 0.0F);
         this.world.spawnEntity(enderDragonEntity);
@@ -51,10 +52,10 @@ public abstract class DragonPerchTime {
         }
 
         if (DOOM_MODE) {
-            WitherEntity witherEntity = EntityType.WITHER.create(this.world);
+            WitherEntity witherEntity = EntityType.WITHER.create(this.world, SpawnReason.EVENT);
             witherEntity.refreshPositionAndAngles(0.0D, 196.0D, 0.0D, this.world.random.nextFloat() * 360.0F, 0.0F);
             this.world.spawnEntity(witherEntity);
-            GiantEntity giantEntity = EntityType.GIANT.create(this.world);
+            GiantEntity giantEntity = EntityType.GIANT.create(this.world, SpawnReason.EVENT);
             giantEntity.refreshPositionAndAngles(0.0D, 96.0D, 0.0D, this.world.random.nextFloat() * 240.0F, 0.0F);
             this.world.spawnEntity(giantEntity);
         }

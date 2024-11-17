@@ -83,10 +83,10 @@ public class WardenEntityMixin extends HostileEntity {
         double genericKnockbackResistance = DOOM_MODE ? 1.0 : 0.65;
         double genericAttackKnockback = DOOM_MODE ? 2.0 : 1.0;
         double genericAttackDamage = DOOM_MODE ? 30.0 : 15.0;
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, genericMaxHealth)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, genericMovementSpeed)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, genericKnockbackResistance)
-                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, genericAttackKnockback)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, genericAttackDamage);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.MAX_HEALTH, genericMaxHealth)
+                .add(EntityAttributes.MOVEMENT_SPEED, genericMovementSpeed)
+                .add(EntityAttributes.KNOCKBACK_RESISTANCE, genericKnockbackResistance)
+                .add(EntityAttributes.ATTACK_KNOCKBACK, genericAttackKnockback)
+                .add(EntityAttributes.ATTACK_DAMAGE, genericAttackDamage);
     }
 }

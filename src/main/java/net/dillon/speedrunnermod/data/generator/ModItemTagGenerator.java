@@ -120,16 +120,6 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(Items.ENDER_PEARL)
                 .add(Items.BLAZE_POWDER);
 
-        getOrCreateTagBuilder(ModItemTags.PIGLIN_SAFE_ARMOR)
-                .add(Items.GOLDEN_HELMET)
-                .add(Items.GOLDEN_CHESTPLATE)
-                .add(Items.GOLDEN_LEGGINGS)
-                .add(Items.GOLDEN_BOOTS)
-                .add(ModItems.GOLDEN_SPEEDRUNNER_HELMET)
-                .add(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE)
-                .add(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS)
-                .add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
-
         getOrCreateTagBuilder(ModItemTags.SCULK_SENSOR_SAFE_BOOTS)
                 .add(ModItems.SPEEDRUNNER_BOOTS)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
@@ -399,6 +389,16 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
                 .add(ModItems.SPEEDRUNNER_BOOTS)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
+
+        getOrCreateTagBuilder(ItemTags.PIGLIN_SAFE_ARMOR)
+                .add(Items.GOLDEN_HELMET)
+                .add(Items.GOLDEN_CHESTPLATE)
+                .add(Items.GOLDEN_LEGGINGS)
+                .add(Items.GOLDEN_BOOTS)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_HELMET)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE)
+                .add(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
     }
 }

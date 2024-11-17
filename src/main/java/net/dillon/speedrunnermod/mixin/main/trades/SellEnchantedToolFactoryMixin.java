@@ -41,7 +41,7 @@ public class SellEnchantedToolFactoryMixin {
     public TradeOffer create(Entity entity, Random random) {
         int i = random.nextInt(4) + 30;
         DynamicRegistryManager dynamicRegistryManager = entity.getWorld().getRegistryManager();
-        Optional<RegistryEntryList.Named<Enchantment>> optional = dynamicRegistryManager.get(RegistryKeys.ENCHANTMENT).getEntryList(EnchantmentTags.ON_TRADED_EQUIPMENT);
+        Optional<RegistryEntryList.Named<Enchantment>> optional = dynamicRegistryManager.getOrThrow(RegistryKeys.ENCHANTMENT).getOptional(EnchantmentTags.ON_TRADED_EQUIPMENT);
         ItemStack itemStack = EnchantmentHelper.enchant(random, new ItemStack(this.tool.getItem()), i, dynamicRegistryManager, optional);
         int j = Math.min(this.basePrice, 12);
         TradedItem tradedItem = new TradedItem(Items.EMERALD, j);

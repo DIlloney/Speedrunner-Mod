@@ -20,7 +20,7 @@ public class SmallFireballEntityMixin {
     /**
      * Decreases damage dealt from small fireballs (or blaze fireballs).
      */
-    @ModifyArg(method = "onEntityHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"), index = 1)
+    @ModifyArg(method = "onEntityHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/damage/DamageSource;F)Z"), index = 2)
     private float onEntityHitDamage(float x) {
         return SpeedrunnerMod.getFireballDamageMultiplier();
     }

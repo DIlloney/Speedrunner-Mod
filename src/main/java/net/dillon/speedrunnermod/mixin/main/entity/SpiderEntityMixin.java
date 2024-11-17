@@ -11,6 +11,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -27,19 +28,19 @@ public class SpiderEntityMixin extends HostileEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 5 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((SpiderEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 32;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**
      * Inflicts players with {@code slowness} if {@code doom mode} is enabled.
      */
     @Override
-    public boolean tryAttack(Entity target) {
-        if (!super.tryAttack(target)) {
+    public boolean tryAttack(ServerWorld world, Entity target) {
+        if (!super.tryAttack(world, target)) {
             return false;
         } else {
             if (target instanceof PlayerEntity) {

@@ -6,9 +6,8 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ChorusFruitItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.consume.TeleportRandomlyConsumeEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -18,12 +17,8 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(ChorusFruitItem.class)
-public class ChorusFruitItemMixin extends Item {
-
-    public ChorusFruitItemMixin(Settings settings) {
-        super(settings);
-    }
+@Mixin(TeleportRandomlyConsumeEffect.class)
+public class ChorusFruitItemMixin {
 
     /**
      * @author Dillon8775

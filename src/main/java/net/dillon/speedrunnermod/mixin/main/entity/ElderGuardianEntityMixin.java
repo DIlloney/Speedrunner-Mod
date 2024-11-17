@@ -34,11 +34,11 @@ public class ElderGuardianEntityMixin extends GuardianEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 10 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((ElderGuardianEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 72;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**
@@ -51,9 +51,9 @@ public class ElderGuardianEntityMixin extends GuardianEntity {
         final double genericAttackDamage = DOOM_MODE ? 8.0D : 4.0D;
         final double genericMaxHealth = DOOM_MODE ? 50.0D : 25.0D;
         return GuardianEntity.createGuardianAttributes()
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, genericMovementSpeed)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, genericAttackDamage)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, genericMaxHealth);
+                .add(EntityAttributes.MOVEMENT_SPEED, genericMovementSpeed)
+                .add(EntityAttributes.ATTACK_DAMAGE, genericAttackDamage)
+                .add(EntityAttributes.MAX_HEALTH, genericMaxHealth);
     }
 
     /**
@@ -61,8 +61,8 @@ public class ElderGuardianEntityMixin extends GuardianEntity {
      * @reason Decreases the range that an elder guardian can detect a player, and also decreases the mining fatigue duration.
      */
     @Overwrite
-    public void mobTick() {
-        super.mobTick();
+    public void mobTick(ServerWorld world) {
+        super.mobTick(world);
         final int i = DOOM_MODE ? 600 : 6000;
         if ((this.age + this.getId()) % i == 0) {
             final int duration = DOOM_MODE ? TickCalculator.minutes(5) : TickCalculator.seconds(30);

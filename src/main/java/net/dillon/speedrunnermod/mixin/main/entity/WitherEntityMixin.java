@@ -7,6 +7,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,11 +24,11 @@ public class WitherEntityMixin extends HostileEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 50 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((WitherEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 150;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**

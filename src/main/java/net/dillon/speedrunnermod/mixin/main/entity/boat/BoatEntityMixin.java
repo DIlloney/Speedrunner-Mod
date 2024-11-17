@@ -8,6 +8,7 @@ import net.dillon.speedrunnermod.util.Authors;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.vehicle.AbstractBoatEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.registry.tag.TagKey;
@@ -31,7 +32,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  * A mixin to register, control, and fix modded boats.
  */
 @Author(Authors.ANXIETIE)
-@Mixin(BoatEntity.class)
+@Mixin(AbstractBoatEntity.class)
 public abstract class BoatEntityMixin extends Entity {
     @Shadow
     public abstract ActionResult interact(PlayerEntity player, Hand hand);
@@ -55,7 +56,7 @@ public abstract class BoatEntityMixin extends Entity {
     /**
      * Allows the paddling in lava sound to play when paddling a boat in lava.
      */
-    @Inject(method = "getPaddleSoundEvent", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getPaddleSound", at = @At("HEAD"), cancellable = true)
     public void getPaddleSoundEvent(CallbackInfoReturnable<SoundEvent> cir) {
         if (this.isInLava()) {
             cir.setReturnValue(ModSoundEvents.ENTITY_BOAT_PADDLE_LAVA);

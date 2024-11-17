@@ -6,12 +6,15 @@ import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.entity.ModBoats;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.function.Supplier;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
@@ -20,11 +23,12 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  */
 @Mixin(TerraformBoatEntity.class)
 public abstract class TerraformBoatEntityMixin extends BoatEntity {
+
     @Shadow
     public abstract TerraformBoatType getTerraformBoat();
 
-    public TerraformBoatEntityMixin(EntityType<? extends BoatEntity> entityType, World world) {
-        super(entityType, world);
+    public TerraformBoatEntityMixin(EntityType<? extends BoatEntity> entityType, World world, Supplier<Item> supplier) {
+        super(entityType, world, supplier);
     }
 
     /**

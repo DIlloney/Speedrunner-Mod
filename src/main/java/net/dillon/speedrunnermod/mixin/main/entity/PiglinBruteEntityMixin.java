@@ -6,6 +6,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.AbstractPiglinEntity;
 import net.minecraft.entity.mob.PiglinBruteEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,11 +25,11 @@ public abstract class PiglinBruteEntityMixin extends AbstractPiglinEntity {
      * Increases the experience dropped upon death.
      */
     @Override
-    public int getXpToDrop() {
+    public int getXpToDrop(ServerWorld world) {
         if (this.attackingPlayer != null) {
             this.experiencePoints = 20 + EnchantmentHelper.getEquipmentLevel(ItemUtil.enchantment((PiglinBruteEntity)(Object)this, Enchantments.LOOTING), this.attackingPlayer) * 72;
         }
-        return super.getXpToDrop();
+        return super.getXpToDrop(world);
     }
 
     /**

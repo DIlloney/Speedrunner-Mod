@@ -79,8 +79,8 @@ public abstract class LivingEntityMixin extends Entity {
     /**
      * Makes the player immune to {@code kinetic damage}, if disabled.
      */
-    @Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"), cancellable = true)
-    private void cancelElytraDamage(Vec3d movementInput, CallbackInfo ci) {
+    @Inject(method = "checkGlidingCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;serverDamage(Lnet/minecraft/entity/damage/DamageSource;F)V"), cancellable = true)
+    private void cancelElytraDamage(double oldSpeed, double newSpeed, CallbackInfo ci) {
         if (!options().main.kineticDamage) {
             ci.cancel();
         }
@@ -89,8 +89,8 @@ public abstract class LivingEntityMixin extends Entity {
     /**
      * Disables the sound from playing due to {@code kinetic damage}, if disabled.
      */
-    @Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;playSound(Lnet/minecraft/sound/SoundEvent;FF)V"), cancellable = true)
-    private void cancelElytraDamageSound(Vec3d movementInput, CallbackInfo ci) {
+    @Inject(method = "checkGlidingCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;playSound(Lnet/minecraft/sound/SoundEvent;FF)V"), cancellable = true)
+    private void cancelElytraDamageSound(double oldSpeed, double newSpeed, CallbackInfo ci) {
         if (!options().main.kineticDamage) {
             ci.cancel();
         }
@@ -117,7 +117,7 @@ public abstract class LivingEntityMixin extends Entity {
     /**
      * Applies {@code fire resistance} for {@code 2 minutes} when using a totem.
      */
-    @Inject(method = "tryUseTotem", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z"))
+    @Inject(method = "tryUseDeathProtector", at = @At(value = "INVOKE", target = "Lnet/minecraft/component/type/DeathProtectionComponent;applyDeathEffects(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/LivingEntity;)V"))
     private void applyFireResistance(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
         this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, TickCalculator.minutes(2), 0));
     }

@@ -22,8 +22,8 @@ public class ZombifiedPiglinEntityMixin {
         final double genericMovementSpeed = DOOM_MODE ? 0.33000000427232513D : 0.23000000427232513D;
         final double genericAttackDamage = DOOM_MODE ? 7.0D : 2.0D;
         return ZombieEntity.createZombieAttributes()
-                .add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS, zombieSpawnReinforcements)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, genericMovementSpeed)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, genericAttackDamage);
+                .add(EntityAttributes.SPAWN_REINFORCEMENTS, zombieSpawnReinforcements)
+                .add(EntityAttributes.MOVEMENT_SPEED, genericMovementSpeed)
+                .add(EntityAttributes.ATTACK_DAMAGE, genericAttackDamage);
     }
 }

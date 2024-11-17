@@ -25,7 +25,6 @@ public class ModItemTags {
     public static TagKey<Item> IRON_INGOTS = of("iron_ingots");
     public static TagKey<Item> IRON_NUGGETS = of("iron_nuggets");
     public static TagKey<Item> PIGLIN_AWAKENER_CRAFTABLES = of("piglin_awakener_craftables");
-    public static TagKey<Item> PIGLIN_SAFE_ARMOR = of("piglin_safe_armor");
     public static TagKey<Item> SCULK_SENSOR_SAFE_BOOTS = of("sculk_sensor_safe_boots");
     public static TagKey<Item> SHIELDS = of("shields");
     public static TagKey<Item> SHEARS = of("shears");

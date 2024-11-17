@@ -7,12 +7,15 @@ import net.dillon.speedrunnermod.entity.ModBoats;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.entity.vehicle.ChestBoatEntity;
+import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.function.Supplier;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
@@ -24,8 +27,8 @@ public abstract class TerraformChestBoatEntityMixin extends ChestBoatEntity {
     @Shadow
     public abstract TerraformBoatType getTerraformBoat();
 
-    public TerraformChestBoatEntityMixin(EntityType<? extends BoatEntity> entityType, World world) {
-        super(entityType, world);
+    public TerraformChestBoatEntityMixin(EntityType<? extends ChestBoatEntity> entityType, World world, Supplier<Item> supplier) {
+        super(entityType, world, supplier);
     }
 
     /**

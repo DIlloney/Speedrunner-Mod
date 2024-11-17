@@ -7,6 +7,7 @@ import net.dillon.speedrunnermod.util.Authors;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.EndermiteEntity;
@@ -14,6 +15,7 @@ import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
@@ -43,12 +45,12 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
             this.getWorld().addParticle(ParticleTypes.PORTAL, this.getX(), this.getY() + this.random.nextDouble() * 2.0D, this.getZ(), this.random.nextGaussian(), 0.0D, this.random.nextGaussian());
         }
 
-        if (!this.getWorld().isClient && !this.isRemoved()) {
+        if (this.getWorld() instanceof ServerWorld serverWorld && !this.isRemoved()) {
             Entity entity = this.getOwner();
             if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
                 if (serverPlayerEntity.networkHandler.isConnectionOpen() && serverPlayerEntity.getWorld() == this.getWorld() && !serverPlayerEntity.isSleeping()) {
-                    if (!isInfiniPearl && this.random.nextFloat() < 0.05F && this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
-                        EndermiteEntity endermiteEntity = EntityType.ENDERMITE.create(this.getWorld());
+                    if (!isInfiniPearl && this.random.nextFloat() < 0.05F && serverWorld.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING)) {
+                        EndermiteEntity endermiteEntity = EntityType.ENDERMITE.create(this.getWorld(), SpawnReason.TRIGGERED);
                         endermiteEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), entity.getPitch());
                         this.getWorld().spawnEntity(endermiteEntity);
                     }
@@ -66,7 +68,7 @@ public abstract class EnderPearlEntityMixin extends ThrownItemEntity {
                                 ((ServerPlayerEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, TickCalculator.seconds(3), 0));
                             }
                         }
-                        entity.damage(entity.getDamageSources().fall(), SpeedrunnerMod.getEnderPearlDamageMultiplier());
+                        entity.damage(serverWorld, entity.getDamageSources().fall(), SpeedrunnerMod.getEnderPearlDamageMultiplier());
                     }
                 }
             } else if (entity != null) {

@@ -13,6 +13,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -47,19 +48,19 @@ public class ZombieEntityMixin extends HostileEntity {
         final double genericAttackDamage = DOOM_MODE ? 7.0D : 2.0D;
         final double genericArmor = DOOM_MODE ? 2.0D : 1.0D;
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, genericFollowRange)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, genericMovementSpeed)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, genericAttackDamage)
-                .add(EntityAttributes.GENERIC_ARMOR, genericArmor)
-                .add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS);
+                .add(EntityAttributes.FOLLOW_RANGE, genericFollowRange)
+                .add(EntityAttributes.MOVEMENT_SPEED, genericMovementSpeed)
+                .add(EntityAttributes.ATTACK_DAMAGE, genericAttackDamage)
+                .add(EntityAttributes.ARMOR, genericArmor)
+                .add(EntityAttributes.SPAWN_REINFORCEMENTS);
     }
 
     /**
      * Inflicts players with {@code slowness} if {@code doom mode} is enabled.
      */
     @Override
-    public boolean tryAttack(Entity target) {
-        if (!super.tryAttack(target)) {
+    public boolean tryAttack(ServerWorld world, Entity target) {
+        if (!super.tryAttack(world, target)) {
             return false;
         } else {
             if (DOOM_MODE && target instanceof PlayerEntity) {

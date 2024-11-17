@@ -82,7 +82,6 @@
     "main.fix.TripwireBlockMixin",
 
     "main.item.ChorusFruitItemMixin",
-    "main.item.EnchantedBookItemMixin",
     "main.item.EnderPearlItemMixin",
     "main.item.FirechargeItemMixin",
     "main.item.FoodComponentsMixin",
