@@ -28,7 +28,7 @@ public class ModEnchantmentGenerator extends FabricDynamicRegistryProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        RegistryWrapper<Item> itemLookup = registries.getWrapperOrThrow(RegistryKeys.ITEM);
+        RegistryWrapper<Item> itemLookup = registries.getOrThrow(RegistryKeys.ITEM);
 
         register(entries, ModEnchantments.DASH, Enchantment.builder(
                 Enchantment.definition(

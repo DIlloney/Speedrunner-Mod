@@ -37,7 +37,7 @@ public class HeldItemRendererMixin {
         return stack.isOf(Items.CROSSBOW) && CrossbowItem.isCharged(stack) || stack.isOf(ModItems.SPEEDRUNNER_CROSSBOW) && SpeedrunnerCrossbowItem.isCharged(stack);
     }
 
-    @Redirect(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 1))
+    @Redirect(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 0))
     private boolean renderFirstPersonItem(ItemStack stack, Item item) {
         return stack.isIn(ModItemTags.CROSSBOWS);
     }

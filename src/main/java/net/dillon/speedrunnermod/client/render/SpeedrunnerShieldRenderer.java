@@ -12,12 +12,12 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BannerBlockEntityRenderer;
 import net.minecraft.client.render.entity.model.ShieldEntityModel;
 import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.BannerPatternsComponent;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ModelTransformationMode;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
@@ -30,7 +30,7 @@ import java.util.Objects;
  */
 @Environment(EnvType.CLIENT)
 public class SpeedrunnerShieldRenderer implements DynamicItemRenderer {
-    private final ShieldEntityModel shieldModel;
+    private final ShieldEntityModel modelShield;
     private static final SpriteIdentifier SPEEDRUNNER_SHIELD_BASE = new SpriteIdentifier(TexturedRenderLayers.SHIELD_PATTERNS_ATLAS_TEXTURE, Identifier.of("entity/speedrunner_shield_base"));
     private static final SpriteIdentifier SPEEDRUNNER_SHIELD_BASE_NO_PATTERN = new SpriteIdentifier(TexturedRenderLayers.SHIELD_PATTERNS_ATLAS_TEXTURE, Identifier.of("entity/speedrunner_shield_base_no_pattern"));
 
@@ -38,7 +38,7 @@ public class SpeedrunnerShieldRenderer implements DynamicItemRenderer {
         ModelPart pl = new ModelPart(ModelPartBuilder.create().uv(0, 0).cuboid(-6.0F, -11.0F, -2.0F, 12.0F, 22.0F, 1.0F).build().stream().map((modelCuboidData) -> modelCuboidData.createCuboid(64, 64)).collect(ImmutableList.toImmutableList()), Collections.emptyMap());
         ModelPart ha = new ModelPart(ModelPartBuilder.create().uv(26, 0).cuboid(-1.0F, -3.0F, -1.0F, 2.0F, 6.0F, 6.0F).build().stream().map((modelCuboidData) -> modelCuboidData.createCuboid(64, 64)).collect(ImmutableList.toImmutableList()), Collections.emptyMap());
         Map<String, ModelPart> m = Map.of("plate", pl, "handle", ha);
-        this.shieldModel = new ShieldEntityModel(new ModelPart(ModelPartBuilder.create().build().stream().map((modelCuboidData) -> modelCuboidData.createCuboid(64, 64)).collect(ImmutableList.toImmutableList()), m));
+        this.modelShield = new ShieldEntityModel(new ModelPart(ModelPartBuilder.create().build().stream().map((modelCuboidData) -> modelCuboidData.createCuboid(64, 64)).collect(ImmutableList.toImmutableList()), m));
     }
 
     /**
@@ -51,15 +51,16 @@ public class SpeedrunnerShieldRenderer implements DynamicItemRenderer {
         DyeColor dyeColor2 = stack.get(DataComponentTypes.BASE_COLOR);
         boolean bl = !bannerPatternsComponent.layers().isEmpty() || dyeColor2 != null;
         matrices.push();
-        matrices.scale(1.0f, -1.0f, -1.0f);
+        matrices.scale(1.0F, -1.0F, -1.0F);
         SpriteIdentifier spriteIdentifier = bl ? SPEEDRUNNER_SHIELD_BASE : SPEEDRUNNER_SHIELD_BASE_NO_PATTERN;
-        VertexConsumer vertexConsumer = spriteIdentifier.getSprite().getTextureSpecificVertexConsumer(ItemRenderer.getDirectItemGlintConsumer(vertexConsumers, this.shieldModel.getLayer(spriteIdentifier.getAtlasId()), true, stack.hasGlint()));
-        this.shieldModel.getHandle().render(matrices, vertexConsumer, light, overlay);
+        VertexConsumer vertexConsumer = spriteIdentifier.getSprite().getTextureSpecificVertexConsumer(ItemRenderer.getItemGlintConsumer(vertexConsumers, this.modelShield.getLayer(spriteIdentifier.getAtlasId()), mode == ModelTransformationMode.GUI, stack.hasGlint()));
+        this.modelShield.getHandle().render(matrices, vertexConsumer, light, overlay);
         if (bl) {
-            BannerBlockEntityRenderer.renderCanvas(matrices, vertexConsumers, light, overlay, this.shieldModel.getPlate(), spriteIdentifier, false, Objects.requireNonNullElse(dyeColor2, DyeColor.WHITE), bannerPatternsComponent, stack.hasGlint());
+            BannerBlockEntityRenderer.renderCanvas(matrices, vertexConsumers, light, overlay, this.modelShield.getPlate(), spriteIdentifier, false, Objects.requireNonNullElse(dyeColor2, DyeColor.WHITE), bannerPatternsComponent, stack.hasGlint(), false);
         } else {
-            this.shieldModel.getPlate().render(matrices, vertexConsumer, light, overlay);
+            this.modelShield.getPlate().render(matrices, vertexConsumer, light, overlay);
         }
+
         matrices.pop();
     }
 }
