@@ -19,7 +19,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public class WitherSwordItem extends SwordItem {
 
     public WitherSwordItem(Settings settings) {
-        super(ModToolMaterials.WITHER_SWORD, settings.attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.WITHER_SWORD, 3, -2.4F)));
+        super(ModToolMaterials.WITHER_SWORD, 9, -2.4F, settings);
     }
 
     /**

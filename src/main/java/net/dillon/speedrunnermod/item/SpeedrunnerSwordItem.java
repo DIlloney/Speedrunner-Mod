@@ -22,7 +22,7 @@ public class SpeedrunnerSwordItem extends SwordItem {
     private static int attackDamage;
 
     public SpeedrunnerSwordItem(int attackDamage, Settings settings) {
-        super(ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, settings.attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, attackDamage, -2.4F)));
+        super(ModToolMaterials.DRAGONS_SWORD, attackDamage, -2.4F, settings);
         SpeedrunnerSwordItem.attackDamage = attackDamage;
     }
 
