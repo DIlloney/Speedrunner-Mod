@@ -104,7 +104,7 @@ public class ModFoodComponents {
         HONEY_BOTTLE = new FoodComponent.Builder().nutrition(6).saturationModifier(0.5F).build();
         MELON_SLICE = new FoodComponent.Builder().nutrition(4).saturationModifier(1.2F).build();
         MUTTON = new FoodComponent.Builder().nutrition(2).saturationModifier(0.8F).build();
-        POISONOUS_POTATO = new FoodComponent.Builder().nutrition(2).saturationModifier(0.7F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 0.6F).build();
+        POISONOUS_POTATO = new FoodComponent.Builder().nutrition(2).saturationModifier(0.7F).status(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 0.6F).build();
         PORKCHOP = new FoodComponent.Builder().nutrition(4).saturationModifier(0.4F).build();
         POTATO = new FoodComponent.Builder().nutrition(1).saturationModifier(1.0F).build();
         PUFFERFISH = new FoodComponent.Builder().nutrition(1).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 1200, 3), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 2), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 300, 0), 1.0F).build();

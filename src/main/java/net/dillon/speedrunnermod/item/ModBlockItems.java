@@ -61,7 +61,7 @@ public class ModBlockItems {
             new Item.Settings());
 
     public static final BlockItem SPEEDRUNNER_SIGN = new SignItem(
-            new Item.Settings().maxCount(16), ModBlocks.SPEEDRUNNER_SIGN, ModBlocks.SPEEDRUNNER_WALL_SIGN);
+            ModBlocks.SPEEDRUNNER_SIGN, ModBlocks.SPEEDRUNNER_WALL_SIGN, new Item.Settings().maxCount(16));
 
     public static final BlockItem SPEEDRUNNER_HANGING_SIGN = new HangingSignItem(
             ModBlocks.SPEEDRUNNER_HANGING_SIGN, ModBlocks.SPEEDRUNNER_HANGING_WALL_SIGN, new Item.Settings().maxCount(16));
@@ -112,7 +112,7 @@ public class ModBlockItems {
             new Item.Settings());
 
     public static final BlockItem DEAD_SPEEDRUNNER_SIGN = new SignItem(
-            new Item.Settings().maxCount(16), ModBlocks.DEAD_SPEEDRUNNER_SIGN, ModBlocks.DEAD_SPEEDRUNNER_WALL_SIGN);
+            ModBlocks.DEAD_SPEEDRUNNER_SIGN, ModBlocks.DEAD_SPEEDRUNNER_WALL_SIGN, new Item.Settings().maxCount(16));
 
     public static final BlockItem DEAD_SPEEDRUNNER_HANGING_SIGN = new HangingSignItem(
             ModBlocks.DEAD_SPEEDRUNNER_HANGING_SIGN, ModBlocks.DEAD_SPEEDRUNNER_HANGING_WALL_SIGN, new Item.Settings().maxCount(16));

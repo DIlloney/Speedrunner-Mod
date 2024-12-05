@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.block.ModBlocks;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.minecraft.item.FuelRegistry;
 
 /**
  * All Speedrunner Mod {@code fuels} (objects that can be used as a fuel source in a furnace).

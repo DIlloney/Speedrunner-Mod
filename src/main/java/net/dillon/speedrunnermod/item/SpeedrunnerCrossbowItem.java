@@ -10,9 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -30,20 +30,20 @@ public class SpeedrunnerCrossbowItem extends CrossbowItem {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+    public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         ChargedProjectilesComponent chargedProjectilesComponent = itemStack.get(DataComponentTypes.CHARGED_PROJECTILES);
         if (chargedProjectilesComponent != null && !chargedProjectilesComponent.isEmpty()) {
             this.shootAll(world, user, hand, itemStack, getSpeed(chargedProjectilesComponent), 1.0F, null);
-            return TypedActionResult.consume(itemStack);
+            return ActionResult.CONSUME;
         }
         if (!user.getProjectileType(itemStack).isEmpty()) {
             this.charged = false;
             this.loaded = false;
             user.setCurrentHand(hand);
-            return TypedActionResult.consume(itemStack);
+            return ActionResult.CONSUME;
         }
-        return TypedActionResult.fail(itemStack);
+        return ActionResult.FAIL;
     }
 
     /**

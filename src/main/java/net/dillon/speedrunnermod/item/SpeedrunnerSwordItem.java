@@ -33,10 +33,10 @@ public class SpeedrunnerSwordItem extends SwordItem {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (attacker instanceof PlayerEntity) {
             if (target instanceof WitherEntity) {
-                target.damage(attacker.getDamageSources().playerAttack((PlayerEntity)attacker), getAttackDamage() * 4.45F);
+                target.serverDamage(attacker.getDamageSources().playerAttack((PlayerEntity)attacker), getAttackDamage() * 4.45F);
             } else if (target instanceof GiantEntity giant) {
                 if (!(giant.getHealth() <= 150)) {
-                    target.damage(attacker.getDamageSources().playerAttack((PlayerEntity)attacker), getAttackDamage() * 2.25F);
+                    target.serverDamage(attacker.getDamageSources().playerAttack((PlayerEntity)attacker), getAttackDamage() * 2.25F);
                 }
             }
         }

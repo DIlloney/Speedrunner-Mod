@@ -20,6 +20,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -140,7 +141,7 @@ public abstract class AbstractModScreen extends BaseModScreen {
 
         if (this.isOptionsScreen()) {
             this.optionList.render(context, mouseX, mouseY, delta);
-            context.drawTexture(Identifier.of("speedrunnermod:textures/gui/question_mark.png"), helpButton.getX() + 2, helpButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(RenderLayer::getGuiTextured, Identifier.of("speedrunnermod:textures/gui/question_mark.png"), helpButton.getX() + 2, helpButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         } else if (buttonList != null) {
             this.buttonList.render(context, mouseX, mouseY, delta);
         }

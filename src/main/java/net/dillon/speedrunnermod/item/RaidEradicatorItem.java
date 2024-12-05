@@ -13,13 +13,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rarity;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -39,10 +40,10 @@ public class RaidEradicatorItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         player.setCurrentHand(hand);
-        if (!world.isClient) {
+        if (!world.isClient && world instanceof ServerWorld serverWorld) {
             if (options().stateOfTheArtItems.isRaidEradicatorEnabled()) {
                 List<RaiderEntity> raiders = world.getEntitiesByClass(RaiderEntity.class, player.getBoundingBox().expand(options().advanced.raidEradicatorDistanceXYZ[0], options().advanced.raidEradicatorDistanceXYZ[1], options().advanced.raidEradicatorDistanceXYZ[2]), entity -> true);
 
@@ -55,7 +56,7 @@ public class RaidEradicatorItem extends Item {
                     if (hasTotemEquipped) {
                         if (confirm) {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_RAVAGER_ROAR, SoundCategory.HOSTILE, 3.0F, 1.0F);
-                            player.getItemCooldownManager().set(this, TickCalculator.minutes(5));
+                            player.getItemCooldownManager().set(this.getDefaultStack(), TickCalculator.minutes(5));
                             if (!player.getAbilities().creativeMode) {
                                 stack.decrement(1);
                             }
@@ -65,7 +66,7 @@ public class RaidEradicatorItem extends Item {
                                     for (RaiderEntity raider : raiders) {
                                         if (!raider.hasCustomName()) {
                                             if (!(raider instanceof WitchEntity)) {
-                                                raider.kill();
+                                                raider.kill(serverWorld);
                                             } else {
                                                 raider.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, TickCalculator.seconds(30), 2, false, true, false));
                                                 raider.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, TickCalculator.seconds(30), 1, false, true, false));
@@ -74,7 +75,7 @@ public class RaidEradicatorItem extends Item {
                                             }
                                         }
                                     }
-                                    player.damage(player.getDamageSources().generic(), player.getHealth());
+                                    player.damage(serverWorld, player.getDamageSources().generic(), player.getHealth());
                                     player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.success").formatted(Formatting.RED), false);
                                 }
                             }, TimeCalculator.secondsToMilliseconds(3));
@@ -87,7 +88,7 @@ public class RaidEradicatorItem extends Item {
                             confirm = !confirm;
                         }
                         player.swingHand(hand, true);
-                        return TypedActionResult.success(stack);
+                        return ActionResult.SUCCESS;
                     } else {
                         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_WITCH_AMBIENT, SoundCategory.NEUTRAL, 3.0F, 1.0F);
                         player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.no_totem").formatted(Formatting.YELLOW), ModOptions.ItemMessages.isActionbar());
@@ -100,7 +101,7 @@ public class RaidEradicatorItem extends Item {
             }
         }
 
-        return TypedActionResult.consume(stack);
+        return ActionResult.CONSUME;
     }
 
     @Override

@@ -6,6 +6,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
 
 /**
@@ -20,7 +21,7 @@ public class ModCreditsScreen extends AbstractModScreen {
 
     @Override
     public void renderCustomObjects(DrawContext context) {
-        context.drawTexture(Identifier.of("speedrunnermod:textures/gui/credits.png"), this.width / 2 - 159, this.height / 6 + 18, 0.0F, 0.0F, 320, 180, 320, 180);
+        context.drawTexture(RenderLayer::getGuiTextured, Identifier.of("speedrunnermod:textures/gui/credits.png"), this.width / 2 - 159, this.height / 6 + 18, 0.0F, 0.0F, 320, 180, 320, 180);
     }
 
     @Override

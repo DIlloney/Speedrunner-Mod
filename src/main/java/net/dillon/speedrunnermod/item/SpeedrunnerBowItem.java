@@ -31,7 +31,7 @@ public class SpeedrunnerBowItem extends BowItem {
      * See comments inside method for changes.
      */
     @Override
-    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+    public boolean onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (!(user instanceof PlayerEntity playerEntity)) {
             return;
         }

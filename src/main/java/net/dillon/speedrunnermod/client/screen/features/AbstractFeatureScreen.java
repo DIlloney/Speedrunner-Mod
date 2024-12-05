@@ -16,6 +16,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
@@ -237,14 +238,14 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
 
         if (this.renderBaseImage) {
             if (screenText.size() <= 8) {
-                context.drawTexture(this.getImage(), this.getImageX(), this.getImageY(), 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
+                context.drawTexture(RenderLayer::getGuiTextured, this.getImage(), this.getImageX(), this.getImageY(), 0.0F, 0.0F, this.getImageWidth(), this.getImageHeight(), this.getImageWidth(), this.getImageHeight());
             } else {
                 throw new IllegalArgumentException();
             }
         }
 
         if (this.renderCraftingRecipe) {
-            context.drawTexture(this.getCraftingRecipeImage(), this.getCraftingRecipeImageX(), this.getCraftingRecipeImageY(), 0.0F, 0.0F, this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight(), this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight());
+            context.drawTexture(RenderLayer::getGuiTextured, this.getCraftingRecipeImage(), this.getCraftingRecipeImageX(), this.getCraftingRecipeImageY(), 0.0F, 0.0F, this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight(), this.getCraftingRecipeImageWidth(), this.getCraftingRecipeImageHeight());
         }
 
         if (this.getDownscaledImage() != null) {
@@ -435,7 +436,7 @@ public abstract class AbstractFeatureScreen extends BaseModScreen {
      * Renders a {@code 1920x1080} image cut down to {@code 240x135} on the screen.
      */
     protected void renderFullResolutionDownscaledImage(DrawContext context) {
-        context.drawTexture(this.getDownscaledImage(), this.width / 2, 170, 0.0F, 0.0F, 240, 135, 240, 135);
+        context.drawTexture(RenderLayer::getGuiTextured, this.getDownscaledImage(), this.width / 2, 170, 0.0F, 0.0F, 240, 135, 240, 135);
     }
 
     /**

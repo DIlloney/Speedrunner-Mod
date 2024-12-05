@@ -11,10 +11,10 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Rarity;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public class DragonsSwordItem extends SwordItem {
 
     public DragonsSwordItem(Settings settings) {
-        super(ModToolMaterials.DRAGONS_SWORD, settings.rarity(Rarity.EPIC).attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.DRAGONS_SWORD, 9, -2.4F)));
+        super(ModToolMaterials.DRAGONS_SWORD, 9, -2.4F, settings);
     }
 
     /**
@@ -40,7 +40,7 @@ public class DragonsSwordItem extends SwordItem {
                 stack.damage(ModToolMaterials.DRAGONS_SWORD.getDurability(), attacker, EquipmentSlot.MAINHAND);
                 dragon.setHealth(0.0F);
             } else {
-                attacker.damage(attacker.getDamageSources().mobAttack(attacker), MathUtil.randomFloat(2.0F, 3.0F));
+                attacker.serverDamage(attacker.getDamageSources().mobAttack(attacker), MathUtil.randomFloat(2.0F, 3.0F));
                 attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, TickCalculator.seconds(5), 0, false, true, true));
                 attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, TickCalculator.seconds(2), 0, false, true, true));
                 if (attacker instanceof PlayerEntity) {

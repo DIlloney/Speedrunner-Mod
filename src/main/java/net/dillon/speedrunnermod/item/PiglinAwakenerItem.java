@@ -2,7 +2,6 @@ package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.option.ModOptions;
-import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.dillon.speedrunnermod.util.TimeCalculator;
@@ -15,12 +14,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -40,7 +40,7 @@ public class PiglinAwakenerItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         player.setCurrentHand(hand);
         if (!world.isClient) {
@@ -56,7 +56,7 @@ public class PiglinAwakenerItem extends Item {
                         }
                         for (ItemStack armorItems : player.getArmorItems()) {
                             Item item = armorItems.getItem();
-                            if (item instanceof ArmorItem armorItem && armorItem.getDefaultStack().isIn(ModItemTags.PIGLIN_SAFE_ARMOR)) {
+                            if (item instanceof ArmorItem armorItem && armorItem.getDefaultStack().isIn(ItemTags.PIGLIN_SAFE_ARMOR)) {
                                 isSafe = true;
                             }
                         }
@@ -65,7 +65,7 @@ public class PiglinAwakenerItem extends Item {
                             if (hasGold) {
                                 if (confirm) {
                                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PIGLIN_ANGRY, SoundCategory.HOSTILE, 3.0F, 1.0F);
-                                    player.getItemCooldownManager().set(this, TickCalculator.seconds(60));
+                                    player.getItemCooldownManager().set(this.getDefaultStack(), TickCalculator.seconds(60));
                                     if (!player.getAbilities().creativeMode) {
                                         stack.decrement(1);
                                     }
@@ -100,7 +100,7 @@ public class PiglinAwakenerItem extends Item {
                                     confirm = !confirm;
                                 }
                                 player.swingHand(hand, true);
-                                return TypedActionResult.success(stack);
+                                return ActionResult.SUCCESS;
                             } else {
                                 world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PIGLIN_AMBIENT, SoundCategory.NEUTRAL, 3.0F, 1.0F);
                                 player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.no_gold_ingot").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
@@ -120,7 +120,7 @@ public class PiglinAwakenerItem extends Item {
             }
         }
 
-        return TypedActionResult.consume(stack);
+        return ActionResult.CONSUME;
     }
 
     @Override
