@@ -129,7 +129,7 @@ public class ModItems {
     public static final Item GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE = new SmithingTemplateItem(GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT, GOLDEN_SPEEDRUNNER_INGREDIENTS_TEXT, GOLDEN_SPEEDRUNNER_UPGRADE_TEXT, GOLDEN_SPEEDRUNNER_BASE_SLOT_DESCRIPTION_TEXT, GOLDEN_SPEEDRUNNER_ADDITIONS_SLOT_DESCRIPTION_TEXT, SmithingTemplateItem.getNetheriteUpgradeEmptyBaseSlotTextures(), SmithingTemplateItem.getNetheriteUpgradeEmptyAdditionsSlotTextures());
 
     public static final Item SPEEDRUNNER_BULK = new Item(
-            new Item.Settings().rarity(Rarity.RARE).food(ModFoodComponents.SPEEDRUNNER_BULK)) {
+            new Item.Settings().rarity(Rarity.RARE).food(ModFoodComponents.SPEEDRUNNER_BULK, ModConsumableComponents.SPEEDRUNNER_BULK)) {
 
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
@@ -142,7 +142,7 @@ public class ModItems {
     };
 
     public static final Item ROTTEN_SPEEDRUNNER_BULK = new Item(
-            new Item.Settings().food(ModFoodComponents.ROTTEN_SPEEDRUNNER_BULK));
+            new Item.Settings().food(ModFoodComponents.ROTTEN_SPEEDRUNNER_BULK, ModConsumableComponents.ROTTEN_SPEEDRUNNER_BULK));
 
     public static final Item COOKED_FLESH = new Item(
             new Item.Settings().food(ModFoodComponents.COOKED_FLESH));

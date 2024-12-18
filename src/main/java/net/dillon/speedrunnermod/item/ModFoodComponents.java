@@ -64,8 +64,8 @@ public class ModFoodComponents {
     public static final FoodComponent TROPICAL_FISH;
 
     static {
-        SPEEDRUNNER_BULK = new FoodComponent.Builder().nutrition(12).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 1200, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 1200, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 600, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 500, 1), 0.5F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200), 0.25F).alwaysEdible().build();
-        ROTTEN_SPEEDRUNNER_BULK = new FoodComponent.Builder().nutrition(4).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 400, 0), 0.5F).statusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 300, 0), 0.1F).build();
+        SPEEDRUNNER_BULK = new FoodComponent.Builder().nutrition(12).saturationModifier(1.2F).alwaysEdible().build();
+        ROTTEN_SPEEDRUNNER_BULK = new FoodComponent.Builder().nutrition(4).saturationModifier(0.1F).build();
         COOKED_FLESH = new FoodComponent.Builder().nutrition(6).saturationModifier(0.8F).build();
         PIGLIN_PORK = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(4).saturationModifier(0.3F).build() : new FoodComponent.Builder().nutrition(3).saturationModifier(0.2F).build();
         COOKED_PIGLIN_PORK = SpeedrunnerMod.options().main.betterFoods ? new FoodComponent.Builder().nutrition(8).saturationModifier(0.8F).build() : new FoodComponent.Builder().nutrition(8).saturationModifier(0.7F).build();
@@ -87,7 +87,7 @@ public class ModFoodComponents {
         BREAD = new FoodComponent.Builder().nutrition(5).saturationModifier(1.1F).build();
         CARROT = new FoodComponent.Builder().nutrition(3).saturationModifier(1.2F).build();
         CHICKEN = new FoodComponent.Builder().nutrition(2).saturationModifier(1.2F).build();
-        CHORUS_FRUIT = new FoodComponent.Builder().nutrition(4).saturationModifier(0.6F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0F).alwaysEdible().build();
+        CHORUS_FRUIT = new FoodComponent.Builder().nutrition(4).saturationModifier(0.6F).alwaysEdible().build();
         COD = new FoodComponent.Builder().nutrition(2).saturationModifier(1.2F).build();
         COOKED_BEEF = new FoodComponent.Builder().nutrition(8).saturationModifier(0.9F).build();
         COOKED_CHICKEN = new FoodComponent.Builder().nutrition(6).saturationModifier(0.9F).build();
@@ -97,14 +97,14 @@ public class ModFoodComponents {
         COOKED_RABBIT = new FoodComponent.Builder().nutrition(5).saturationModifier(1.1F).build();
         COOKED_SALMON = new FoodComponent.Builder().nutrition(6).saturationModifier(0.9F).build();
         COOKIE = new FoodComponent.Builder().nutrition(2).saturationModifier(1.3F).build();
-        DRIED_KELP = new FoodComponent.Builder().nutrition(1).saturationModifier(0.6F).snack().build();
-        ENCHANTED_GOLDEN_APPLE = new FoodComponent.Builder().nutrition(8).saturationModifier(1.4F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 600, 1), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3), 1.0F).alwaysEdible().build();
-        GOLDEN_APPLE = new FoodComponent.Builder().nutrition(8).saturationModifier(1.3F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 2), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEdible().build();
-        GOLDEN_CARROT = new FoodComponent.Builder().nutrition(6).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F).build();
+        DRIED_KELP = new FoodComponent.Builder().nutrition(1).saturationModifier(0.6F).build();
+        ENCHANTED_GOLDEN_APPLE = new FoodComponent.Builder().nutrition(8).saturationModifier(1.4F).alwaysEdible().build();
+        GOLDEN_APPLE = new FoodComponent.Builder().nutrition(8).saturationModifier(1.3F).alwaysEdible().build();
+        GOLDEN_CARROT = new FoodComponent.Builder().nutrition(6).saturationModifier(1.2F).build();
         HONEY_BOTTLE = new FoodComponent.Builder().nutrition(6).saturationModifier(0.5F).build();
         MELON_SLICE = new FoodComponent.Builder().nutrition(4).saturationModifier(1.2F).build();
         MUTTON = new FoodComponent.Builder().nutrition(2).saturationModifier(0.8F).build();
-        POISONOUS_POTATO = new FoodComponent.Builder().nutrition(2).saturationModifier(0.7F).status(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 0.6F).build();
+        POISONOUS_POTATO = new FoodComponent.Builder().nutrition(2).saturationModifier(0.7F).build();
         PORKCHOP = new FoodComponent.Builder().nutrition(4).saturationModifier(0.4F).build();
         POTATO = new FoodComponent.Builder().nutrition(1).saturationModifier(1.0F).build();
         PUFFERFISH = new FoodComponent.Builder().nutrition(1).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 1200, 3), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 2), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 300, 0), 1.0F).build();

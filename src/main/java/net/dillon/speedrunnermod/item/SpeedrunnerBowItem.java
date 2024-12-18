@@ -33,25 +33,37 @@ public class SpeedrunnerBowItem extends BowItem {
     @Override
     public boolean onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (!(user instanceof PlayerEntity playerEntity)) {
-            return;
-        }
-        ItemStack itemStack = playerEntity.getProjectileType(stack);
-        if (itemStack.isEmpty()) {
-            return;
-        }
-        int i = this.getMaxUseTime(stack, user) - remainingUseTicks;
-        float f = getPullProgress(i);
-        if ((double)f < 0.1) {
-            return;
-        }
-        List<ItemStack> list = BowItem.load(stack, itemStack, playerEntity);
-        if (world instanceof ServerWorld serverWorld) {
-            if (!list.isEmpty()) {
-                this.shootAll(serverWorld, playerEntity, playerEntity.getActiveHand(), stack, list, f * 3.5F /* In the BowItem class, this value is set to 3.0. Now it's 3.5, which increases the speed */, 1.0F, f == 1.0F, null);
+            return false;
+        } else {
+            ItemStack itemStack = playerEntity.getProjectileType(stack);
+            if (itemStack.isEmpty()) {
+                return false;
+            } else {
+                int i = this.getMaxUseTime(stack, user) - remainingUseTicks;
+                float f = getPullProgress(i);
+                if ((double)f < 0.1) {
+                    return false;
+                } else {
+                    List<ItemStack> list = load(stack, itemStack, playerEntity);
+                    if (world instanceof ServerWorld serverWorld && !list.isEmpty()) {
+                        this.shootAll(serverWorld, playerEntity, playerEntity.getActiveHand(), stack, list, f * 3.5F /* In the BowItem class, this value is set to 3.0. Now it's 3.5, which increases the speed */, 1.0F, f == 1.0F, null);
+                    }
+
+                    world.playSound(
+                            null,
+                            playerEntity.getX(),
+                            playerEntity.getY(),
+                            playerEntity.getZ(),
+                            SoundEvents.ENTITY_ARROW_SHOOT,
+                            SoundCategory.PLAYERS,
+                            1.0F,
+                            1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F
+                    );
+                    playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
+                    return true;
+                }
             }
         }
-        world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
-        playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
     }
 
     @Override
