@@ -84,6 +84,7 @@
     "main.item.ChorusFruitItemMixin",
     "main.item.EnderPearlItemMixin",
     "main.item.FirechargeItemMixin",
+    "main.item.FoodComponentMixin",
     "main.item.FoodComponentsMixin",
     "main.item.ItemEntityMixin",
     "main.item.ItemMixin",

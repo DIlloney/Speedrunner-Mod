@@ -107,12 +107,12 @@ public class ModFoodComponents {
         POISONOUS_POTATO = new FoodComponent.Builder().nutrition(2).saturationModifier(0.7F).build();
         PORKCHOP = new FoodComponent.Builder().nutrition(4).saturationModifier(0.4F).build();
         POTATO = new FoodComponent.Builder().nutrition(1).saturationModifier(1.0F).build();
-        PUFFERFISH = new FoodComponent.Builder().nutrition(1).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 1200, 3), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 2), 1.0F).statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 300, 0), 1.0F).build();
+        PUFFERFISH = new FoodComponent.Builder().nutrition(1).saturationModifier(0.1F).build();
         PUMPKIN_PIE = new FoodComponent.Builder().nutrition(8).saturationModifier(0.9F).build();
         RABBIT = new FoodComponent.Builder().nutrition(3).saturationModifier(0.9F).build();
-        ROTTEN_FLESH = new FoodComponent.Builder().nutrition(4).saturationModifier(0.1F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 200, 0), 0.8F).build();
+        ROTTEN_FLESH = new FoodComponent.Builder().nutrition(4).saturationModifier(0.1F).build();
         SALMON = new FoodComponent.Builder().nutrition(2).saturationModifier(1.4F).build();
-        SPIDER_EYE = new FoodComponent.Builder().nutrition(2).saturationModifier(1.1F).statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0), 1.0F).build();
+        SPIDER_EYE = new FoodComponent.Builder().nutrition(2).saturationModifier(1.1F).build();
         SWEET_BERRIES = new FoodComponent.Builder().nutrition(4).saturationModifier(1.2F).build();
         GLOW_BERRIES = new FoodComponent.Builder().nutrition(2).saturationModifier(1.0F).build();
         TROPICAL_FISH = new FoodComponent.Builder().nutrition(2).saturationModifier(1.2F).build();

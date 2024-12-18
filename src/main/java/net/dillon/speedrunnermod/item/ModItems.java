@@ -3,6 +3,7 @@ package net.dillon.speedrunnermod.item;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.dillon.speedrunnermod.entity.ModBoats;
 import net.minecraft.item.*;
+import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -65,16 +66,16 @@ public class ModItems {
             .attributeModifiers(HoeItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 0, -0.5F)));
 
     public static final Item SPEEDRUNNER_HELMET = new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1).maxDamage(ArmorItem.Type.HELMET.getMaxDamage(30)));
+            ModArmorMaterials.SPEEDRUNNER, EquipmentType.HELMET, new Item.Settings().maxCount(1).maxDamage(EquipmentType.HELMET.getMaxDamage(30)));
 
     public static final Item SPEEDRUNNER_CHESTPLATE = new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxCount(1).maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(30)));
+            ModArmorMaterials.SPEEDRUNNER, EquipmentType.CHESTPLATE, new Item.Settings().maxCount(1).maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(30)));
 
     public static final Item SPEEDRUNNER_LEGGINGS = new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.LEGGINGS, new Item.Settings().maxCount(1).maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(30)));
+            ModArmorMaterials.SPEEDRUNNER, EquipmentType.LEGGINGS, new Item.Settings().maxCount(1).maxDamage(EquipmentType.LEGGINGS.getMaxDamage(30)));
 
     public static final Item SPEEDRUNNER_BOOTS = new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, ArmorItem.Type.BOOTS, new Item.Settings().maxCount(1).maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(30)));
+            ModArmorMaterials.SPEEDRUNNER, EquipmentType.BOOTS, new Item.Settings().maxCount(1).maxDamage(EquipmentType.BOOTS.getMaxDamage(30)));
 
     public static final Item SPEEDRUNNER_BOW = new SpeedrunnerBowItem(new Item.Settings());
 
@@ -115,16 +116,16 @@ public class ModItems {
             .attributeModifiers(HoeItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 0, -0.5F)));
 
     public static final Item GOLDEN_SPEEDRUNNER_HELMET = new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1).maxDamage(ArmorItem.Type.HELMET.getMaxDamage(11)));
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.HELMET, new Item.Settings().maxCount(1).maxDamage(EquipmentType.HELMET.getMaxDamage(11)));
 
     public static final Item GOLDEN_SPEEDRUNNER_CHESTPLATE = new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxCount(1).maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(11)));
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.CHESTPLATE, new Item.Settings().maxCount(1).maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(11)));
 
     public static final Item GOLDEN_SPEEDRUNNER_LEGGINGS = new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.LEGGINGS, new Item.Settings().maxCount(1).maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(11)));
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.LEGGINGS, new Item.Settings().maxCount(1).maxDamage(EquipmentType.LEGGINGS.getMaxDamage(11)));
 
     public static final Item GOLDEN_SPEEDRUNNER_BOOTS = new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, ArmorItem.Type.BOOTS, new Item.Settings().maxCount(1).maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(11)));
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.BOOTS, new Item.Settings().maxCount(1).maxDamage(EquipmentType.BOOTS.getMaxDamage(11)));
 
     public static final Item GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE = new SmithingTemplateItem(GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT, GOLDEN_SPEEDRUNNER_INGREDIENTS_TEXT, GOLDEN_SPEEDRUNNER_UPGRADE_TEXT, GOLDEN_SPEEDRUNNER_BASE_SLOT_DESCRIPTION_TEXT, GOLDEN_SPEEDRUNNER_ADDITIONS_SLOT_DESCRIPTION_TEXT, SmithingTemplateItem.getNetheriteUpgradeEmptyBaseSlotTextures(), SmithingTemplateItem.getNetheriteUpgradeEmptyAdditionsSlotTextures());
 

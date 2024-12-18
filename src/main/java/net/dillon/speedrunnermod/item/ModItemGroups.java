@@ -82,7 +82,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CRIMSON_CHEST_BOAT);
                         entries.add(ModItems.WARPED_BOAT);
                         entries.add(ModItems.WARPED_CHEST_BOAT);
-                        displayContext.lookup().getOptionalWrapper(RegistryKeys.ENCHANTMENT).ifPresent(registryWrapper -> {
+                        displayContext.lookup().getOptional(RegistryKeys.ENCHANTMENT).ifPresent(registryWrapper -> {
                             addAllLevelEnchantedBook(entries, registryWrapper, ModEnchantments.DASH);
                             addAllLevelEnchantedBook(entries, registryWrapper, ModEnchantments.COOLDOWN);
                         });

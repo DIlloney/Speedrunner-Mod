@@ -45,11 +45,4 @@ public class ModConsumableComponents {
                     )
             )
             .build();
-    public static final ConsumableComponent GOLDEN_CARROT = ConsumableComponents.food()
-            .consumeEffect(
-                        new ApplyEffectsConsumeEffect(
-                            new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1)
-                    )
-            )
-            .build();
 }
