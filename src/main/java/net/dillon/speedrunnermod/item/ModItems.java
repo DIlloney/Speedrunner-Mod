@@ -46,7 +46,7 @@ public class ModItems {
             new Item.Settings());
 
     public static final Item SPEEDRUNNER_SWORD = new SpeedrunnerSwordItem(
-            5, new Item.Settings());
+            5, false, new Item.Settings());
 
     public static final Item SPEEDRUNNER_SHOVEL = new ShovelItem(
             ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, new Item.Settings()
@@ -96,7 +96,7 @@ public class ModItems {
     };
 
     public static final Item GOLDEN_SPEEDRUNNER_SWORD = new SpeedrunnerSwordItem(
-            4, new Item.Settings());
+            4, true, new Item.Settings());
 
     public static final Item GOLDEN_SPEEDRUNNER_SHOVEL = new ShovelItem(
             ModToolMaterials.GOLDEN_SPEEDRUNNER, new Item.Settings()
