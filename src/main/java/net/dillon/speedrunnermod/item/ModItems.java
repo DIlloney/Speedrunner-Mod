@@ -50,20 +50,16 @@ public class ModItems {
             5, new Item.Settings());
 
     public static final Item SPEEDRUNNER_SHOVEL = new ShovelItem(
-            ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, new Item.Settings()
-            .attributeModifiers(ShovelItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 4, -3.0F)));
+            ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 4, -3.0F, new Item.Settings());
 
     public static final Item SPEEDRUNNER_PICKAXE = new PickaxeItem(
-            ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, new Item.Settings()
-            .attributeModifiers(PickaxeItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, 3, -2.8F)));
+            ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, 3, -2.8F, new Item.Settings());
 
     public static final Item SPEEDRUNNER_AXE = new AxeItem(
-            ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, new Item.Settings()
-            .attributeModifiers(AxeItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 8, -3.05F)));
+            ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 8, -3.05F, new Item.Settings());
 
     public static final Item SPEEDRUNNER_HOE = new HoeItem(
-            ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, new Item.Settings()
-            .attributeModifiers(HoeItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 0, -0.5F)));
+            ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 0, -0.5F, new Item.Settings());
 
     public static final Item SPEEDRUNNER_HELMET = new ArmorItem(
             ModArmorMaterials.SPEEDRUNNER, EquipmentType.HELMET, new Item.Settings().maxCount(1).maxDamage(EquipmentType.HELMET.getMaxDamage(30)));
@@ -100,20 +96,16 @@ public class ModItems {
             4, new Item.Settings());
 
     public static final Item GOLDEN_SPEEDRUNNER_SHOVEL = new ShovelItem(
-            ModToolMaterials.GOLDEN_SPEEDRUNNER, new Item.Settings()
-            .attributeModifiers(ShovelItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 2.5F, -3.0F)));
+            ModToolMaterials.GOLDEN_SPEEDRUNNER, 2.5F, -3.0F, new Item.Settings());
 
     public static final Item GOLDEN_SPEEDRUNNER_PICKAXE = new PickaxeItem(
-            ModToolMaterials.GOLDEN_SPEEDRUNNER, new Item.Settings()
-            .attributeModifiers(PickaxeItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, 2, -2.8F)));
+            ModToolMaterials.GOLDEN_SPEEDRUNNER, 2, -2.8F, new Item.Settings());
 
     public static final Item GOLDEN_SPEEDRUNNER_AXE = new AxeItem(
-            ModToolMaterials.GOLDEN_SPEEDRUNNER, new Item.Settings()
-            .attributeModifiers(AxeItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 7, -3.0F)));
+            ModToolMaterials.GOLDEN_SPEEDRUNNER, 7, -3.0F, new Item.Settings());
 
     public static final Item GOLDEN_SPEEDRUNNER_HOE = new HoeItem(
-            ModToolMaterials.GOLDEN_SPEEDRUNNER, new Item.Settings()
-            .attributeModifiers(HoeItem.createAttributeModifiers(ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 0, -0.5F)));
+            ModToolMaterials.GOLDEN_SPEEDRUNNER, 0, -0.5F, new Item.Settings());
 
     public static final Item GOLDEN_SPEEDRUNNER_HELMET = new ArmorItem(
             ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.HELMET, new Item.Settings().maxCount(1).maxDamage(EquipmentType.HELMET.getMaxDamage(11)));
@@ -127,7 +119,7 @@ public class ModItems {
     public static final Item GOLDEN_SPEEDRUNNER_BOOTS = new ArmorItem(
             ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.BOOTS, new Item.Settings().maxCount(1).maxDamage(EquipmentType.BOOTS.getMaxDamage(11)));
 
-    public static final Item GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE = new SmithingTemplateItem(GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT, GOLDEN_SPEEDRUNNER_INGREDIENTS_TEXT, GOLDEN_SPEEDRUNNER_UPGRADE_TEXT, GOLDEN_SPEEDRUNNER_BASE_SLOT_DESCRIPTION_TEXT, GOLDEN_SPEEDRUNNER_ADDITIONS_SLOT_DESCRIPTION_TEXT, SmithingTemplateItem.getNetheriteUpgradeEmptyBaseSlotTextures(), SmithingTemplateItem.getNetheriteUpgradeEmptyAdditionsSlotTextures());
+    public static final Item GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE = new SmithingTemplateItem(GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT, GOLDEN_SPEEDRUNNER_INGREDIENTS_TEXT, GOLDEN_SPEEDRUNNER_BASE_SLOT_DESCRIPTION_TEXT, GOLDEN_SPEEDRUNNER_ADDITIONS_SLOT_DESCRIPTION_TEXT, SmithingTemplateItem.getNetheriteUpgradeEmptyBaseSlotTextures(), SmithingTemplateItem.getNetheriteUpgradeEmptyAdditionsSlotTextures(), new Item.Settings());
 
     public static final Item SPEEDRUNNER_BULK = new Item(
             new Item.Settings().rarity(Rarity.RARE).food(ModFoodComponents.SPEEDRUNNER_BULK, ModConsumableComponents.SPEEDRUNNER_BULK)) {

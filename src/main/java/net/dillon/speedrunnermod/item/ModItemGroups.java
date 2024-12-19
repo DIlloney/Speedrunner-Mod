@@ -5,6 +5,7 @@ import net.dillon.speedrunnermod.util.ItemUtil;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
@@ -83,8 +84,8 @@ public class ModItemGroups {
                         entries.add(ModItems.WARPED_BOAT);
                         entries.add(ModItems.WARPED_CHEST_BOAT);
                         displayContext.lookup().getOptional(RegistryKeys.ENCHANTMENT).ifPresent(registryWrapper -> {
-                            addAllLevelEnchantedBook(entries, registryWrapper, ModEnchantments.DASH);
-                            addAllLevelEnchantedBook(entries, registryWrapper, ModEnchantments.COOLDOWN);
+                            addAllLevelEnchantedBook(entries, registryWrapper, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS, ModEnchantments.DASH);
+                            addAllLevelEnchantedBook(entries, registryWrapper, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS, ModEnchantments.COOLDOWN);
                         });
                         entries.add(ModItems.IGNEOUS_ROCK);
                         entries.add(ModBlockItems.IGNEOUS_ORE);
@@ -157,8 +158,8 @@ public class ModItemGroups {
     /**
      * Adds all the levels of the inputted enchanted book to the item group.
      */
-    private static void addAllLevelEnchantedBook(ItemGroup.Entries entries, RegistryWrapper<Enchantment> registryWrapper, RegistryKey<Enchantment> enchantment) {
-        registryWrapper.streamEntries().filter(enchantmentReference -> enchantmentReference.matchesKey(enchantment)).flatMap(enchantmentEntry -> IntStream.rangeClosed((enchantmentEntry.value()).getMinLevel(), enchantmentEntry.value().getMaxLevel()).mapToObj(level -> EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(enchantmentEntry, level)))).forEach(stack -> entries.add(stack, ItemGroup.StackVisibility.PARENT_TAB_ONLY));
+    private static void addAllLevelEnchantedBook(ItemGroup.Entries entries, RegistryWrapper<Enchantment> registryWrapper, ItemGroup.StackVisibility stackVisibility, RegistryKey<Enchantment> enchantment) {
+        registryWrapper.streamEntries().filter(enchantmentEntry -> enchantmentEntry.matchesKey(enchantment)).flatMap(enchantmentEntry -> IntStream.rangeClosed(enchantmentEntry.value().getMinLevel(), enchantmentEntry.value().getMaxLevel()).mapToObj(level -> EnchantmentHelper.getEnchantedBookWith(new EnchantmentLevelEntry(enchantmentEntry, level)))).forEach(stack -> entries.add(stack, stackVisibility));
     }
 
     /**
