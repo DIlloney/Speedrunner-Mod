@@ -1,14 +1,10 @@
 package net.dillon.speedrunnermod.entity;
 
-import com.terraformersmc.terraform.boat.api.TerraformBoatType;
-import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
-import net.dillon.speedrunnermod.block.ModBlocks;
-import net.dillon.speedrunnermod.item.ModItems;
 import net.dillon.speedrunnermod.tag.ModItemTags;
-import net.minecraft.block.Blocks;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
+import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
+
+import java.util.function.Supplier;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
 
@@ -17,53 +13,28 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
  * <p>See {@code directory} {@link net.dillon.speedrunnermod.mixin.main.entity.boat} for more.</p>
  */
 public class ModBoats {
-    public static final Identifier SPEEDRUNNER_BOAT_ID = ofSpeedrunnerMod("speedrunner_boat");
-    public static final Identifier SPEEDRUNNER_CHEST_BOAT_ID = ofSpeedrunnerMod("speedrunner_chest_boat");
-    public static final Identifier DEAD_SPEEDRUNNER_BOAT_ID = ofSpeedrunnerMod("dead_speedrunner_boat");
-    public static final Identifier DEAD_SPEEDRUNNER_CHEST_BOAT_ID = ofSpeedrunnerMod("dead_speedrunner_chest_boat");
-    public static final Identifier CRIMSON_BOAT_ID = ofSpeedrunnerMod("crimson_boat");
-    public static final Identifier CRIMSON_CHEST_BOAT_ID = ofSpeedrunnerMod("crimson_chest_boat");
-    public static final Identifier WARPED_BOAT_ID = ofSpeedrunnerMod("warped_boat");
-    public static final Identifier WARPED_CHEST_BOAT_ID = ofSpeedrunnerMod("warped_chest_boat");
-
-    public static final RegistryKey<TerraformBoatType> SPEEDRUNNER_BOAT_KEY = TerraformBoatTypeRegistry.createKey(SPEEDRUNNER_BOAT_ID);
-    public static final RegistryKey<TerraformBoatType> DEAD_SPEEDRUNNER_BOAT_KEY = TerraformBoatTypeRegistry.createKey(DEAD_SPEEDRUNNER_BOAT_ID);
-    public static final RegistryKey<TerraformBoatType> CRIMSON_BOAT_KEY = TerraformBoatTypeRegistry.createKey(CRIMSON_BOAT_ID);
-    public static final RegistryKey<TerraformBoatType> WARPED_BOAT_KEY = TerraformBoatTypeRegistry.createKey(WARPED_BOAT_ID);
-
-    public static final TerraformBoatType SPEEDRUNNER_BOAT = new TerraformBoatType.Builder().item(ModItems.SPEEDRUNNER_BOAT).chestItem(ModItems.SPEEDRUNNER_CHEST_BOAT).planks(ModBlocks.SPEEDRUNNER_PLANKS.asItem()).build();
-    public static final TerraformBoatType DEAD_SPEEDRUNNER_BOAT = new TerraformBoatType.Builder().item(ModItems.DEAD_SPEEDRUNNER_BOAT).chestItem(ModItems.DEAD_SPEEDRUNNER_CHEST_BOAT).planks(ModBlocks.DEAD_SPEEDRUNNER_PLANKS.asItem()).build();
-    public static final TerraformBoatType CRIMSON_BOAT = new TerraformBoatType.Builder().item(ModItems.CRIMSON_BOAT).chestItem(ModItems.CRIMSON_CHEST_BOAT).planks(Blocks.CRIMSON_PLANKS.asItem()).build();
-    public static final TerraformBoatType WARPED_BOAT = new TerraformBoatType.Builder().item(ModItems.WARPED_BOAT).chestItem(ModItems.WARPED_CHEST_BOAT).planks(Blocks.WARPED_PLANKS.asItem()).build();
+    public static final Identifier SPEEDRUNNER = ofSpeedrunnerMod("speedrunner");
+    public static final Identifier DEAD_SPEEDRUNNER = ofSpeedrunnerMod("dead_speedrunner");
+    public static final Identifier CRIMSON = ofSpeedrunnerMod("crimson");
+    public static final Identifier WARPED = ofSpeedrunnerMod("warped");
 
     /**
-     * Registers all speedrunner mod {@code boats.}
+     * Initializes all {@code Speedrunner Mod boats.}
      */
-    public static void registerBoats() {
-        registerBoat(SPEEDRUNNER_BOAT_KEY, SPEEDRUNNER_BOAT);
-        registerBoat(DEAD_SPEEDRUNNER_BOAT_KEY, DEAD_SPEEDRUNNER_BOAT);
-        registerBoat(CRIMSON_BOAT_KEY, CRIMSON_BOAT);
-        registerBoat(WARPED_BOAT_KEY, WARPED_BOAT);
-    }
-
-    /**
-     * Registers a {@code boat}.
-     */
-    private static void registerBoat(RegistryKey<TerraformBoatType> key, TerraformBoatType boat) {
-        Registry.register(TerraformBoatTypeRegistry.INSTANCE, key, boat);
+    public static void initializeBoats() {
     }
 
     /**
      * Determines {@code "fireproof"} boats.
      */
-    public static boolean isFireproofBoat(TerraformBoatType terraformBoatType) {
-        return terraformBoatType.getItem().getDefaultStack().isIn(ModItemTags.FIREPROOF_BOATS) || terraformBoatType.getChestItem().getDefaultStack().isIn(ModItemTags.FIREPROOF_CHEST_BOATS);
+    public static boolean isFireproofBoat(Supplier<Item> itemSupplier) {
+        return itemSupplier.get().getDefaultStack().isIn(ModItemTags.FIREPROOF_BOATS) || itemSupplier.get().getDefaultStack().isIn(ModItemTags.FIREPROOF_CHEST_BOATS);
     }
 
     /**
      * <p>Determines {@code "faster"} boats, boats that ride slightly faster than normal boats.
      */
-    public static boolean isFastBoat(TerraformBoatType terraformBoatType) {
-        return terraformBoatType.getItem().getDefaultStack().isIn(ModItemTags.FASTER_BOATS) || terraformBoatType.getChestItem().getDefaultStack().isIn(ModItemTags.FASTER_CHEST_BOATS);
+    public static boolean isFastBoat(Supplier<Item> itemSupplier) {
+        return itemSupplier.get().getDefaultStack().isIn(ModItemTags.FASTER_BOATS) || itemSupplier.get().getDefaultStack().isIn(ModItemTags.FASTER_CHEST_BOATS);
     }
 }

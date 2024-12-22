@@ -67,7 +67,7 @@ public abstract class RavagerEntityMixin extends RaiderEntity {
      * Inflicts players with {@code slowness} when attacking.
      */
     @Inject(method = "tryAttack", at = @At("RETURN"))
-    private void tryAttack(Entity target, CallbackInfoReturnable cir) {
+    private void tryAttack(ServerWorld world, Entity target, CallbackInfoReturnable<Boolean> cir) {
         if (DOOM_MODE && target instanceof PlayerEntity) {
             ((PlayerEntity)target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, TickCalculator.seconds(10), 0));
         }

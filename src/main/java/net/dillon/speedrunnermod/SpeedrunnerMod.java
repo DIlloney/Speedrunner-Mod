@@ -34,7 +34,7 @@ import static net.dillon.speedrunnermod.option.ModOptions.createStructureSpawnRa
  */
 public class SpeedrunnerMod implements ModInitializer {
     public static final String MOD_ID = "speedrunnermod";
-    public static final String MOD_VERSION = "v1.9.8.1";
+    public static final String MOD_VERSION = "v1.9.8.3";
     public static final String MC_VERSION = "1.21.x";
     public static final String VERSION = "Version: " + MOD_VERSION;
     public static final String THE_SPEEDRUNNER_MOD_STRING = "The Speedrunner Mod";
@@ -51,12 +51,12 @@ public class SpeedrunnerMod implements ModInitializer {
     public void onInitialize() {
         ModWorldGen.initializeWorldGenFeatures();
 
-        ModBoats.registerBoats();
+        ModBoats.initializeBoats();
 
-        ModBlocks.registerBlocks();
+        ModBlocks.initializeBlocks();
         ModBlockFamilies.initializeBlockFamilies();
-        ModBlockItems.registerBlockItems();
-        ModItems.registerItems();
+        ModBlockItems.initializeBlockItems();
+        ModItems.initializeItems();
         ModItemGroups.registerModifiedItemGroups();
 
         ModBlockTags.initializeBlockTags();
@@ -227,6 +227,13 @@ public class SpeedrunnerMod implements ModInitializer {
      */
     public static Identifier ofSpeedrunnerMod(String path) {
         return Identifier.of(MOD_ID, path);
+    }
+
+    /**
+     * Returns the {@code "speedrunner"} namespace for speedrunner armor models.
+     */
+    public static Identifier ofSpeedrunnerModArmor() {
+        return Identifier.of(MOD_ID, "speedrunner");
     }
 
     /**

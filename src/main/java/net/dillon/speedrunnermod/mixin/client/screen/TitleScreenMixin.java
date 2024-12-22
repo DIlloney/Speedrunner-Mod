@@ -15,6 +15,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
@@ -54,7 +55,7 @@ public class TitleScreenMixin extends Screen {
 
         if (options().advanced.showResetButton) {
             this.createWorldButton = this.addDrawableChild(ButtonWidget.builder(ModTexts.BLANK, (buttonWidget) -> {
-                CreateWorldScreen.create(this.client, this);
+                CreateWorldScreen.show(this.client, this);
             }).dimensions(this.width / 2 - 124, this.height / 4 + 72, 20, 20).build());
             this.createWorldButton.active = options().client.fastWorldCreation;
         }
@@ -116,24 +117,24 @@ public class TitleScreenMixin extends Screen {
      */
     @Inject(method = "render", at = @At("TAIL"))
     private void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        context.drawTexture(ofSpeedrunnerMod("textures/item/golden_speedrunner_upgrade_smithing_template.png"), featuresButton.getX() + 2, this.featuresButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        context.drawTexture(RenderLayer::getGuiTextured, ofSpeedrunnerMod("textures/item/golden_speedrunner_upgrade_smithing_template.png"), featuresButton.getX() + 2, this.featuresButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
         if (options().advanced.showResetButton) {
-            context.drawTexture(ofSpeedrunnerMod("textures/item/speedrunner_boots.png"), createWorldButton.getX() + 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+            context.drawTexture(RenderLayer::getGuiTextured, ofSpeedrunnerMod("textures/item/speedrunner_boots.png"), createWorldButton.getX() + 2, createWorldButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
         }
 
-        context.drawTexture(ModIcons.SPEEDRUNNER_MOD_ICON, optionsButton.getX() + 1, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+        context.drawTexture(RenderLayer::getGuiTextured, ModIcons.SPEEDRUNNER_MOD_ICON, optionsButton.getX() + 1, optionsButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
         if (options().client.socialButtons) {
-            context.drawTexture(ModIcons.DILLON8775_ICON, dillon8775YouTubeButton.getX() + 1, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(RenderLayer::getGuiTextured, ModIcons.DILLON8775_ICON, dillon8775YouTubeButton.getX() + 1, dillon8775YouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-            context.drawTexture(ModIcons.NUZLAND_ICON, nuzlandYouTubeButton.getX() + 1, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(RenderLayer::getGuiTextured, ModIcons.NUZLAND_ICON, nuzlandYouTubeButton.getX() + 1, nuzlandYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
 
-            context.drawTexture(ModIcons.MANNYQUESO_ICON, mannyQuesoYouTubeButton.getX() + 1, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
+            context.drawTexture(RenderLayer::getGuiTextured, ModIcons.MANNYQUESO_ICON, mannyQuesoYouTubeButton.getX() + 1, mannyQuesoYouTubeButton.getY() + 1, 0.0F, 0.0F, 18, 18, 18, 18);
         }
 
-        context.drawTexture(ModIcons.DISCORD_ICON, discordButton.getX() + 2, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
-        context.drawTexture(ModIcons.WIKI_ICON, wikiButton.getX() + 2, wikiButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        context.drawTexture(RenderLayer::getGuiTextured, ModIcons.DISCORD_ICON, discordButton.getX() + 2, discordButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
+        context.drawTexture(RenderLayer::getGuiTextured, ModIcons.WIKI_ICON, wikiButton.getX() + 2, wikiButton.getY() + 2, 0.0F, 0.0F, 16, 16, 16, 16);
 
         this.renderTooltips(context, mouseX, mouseY);
 

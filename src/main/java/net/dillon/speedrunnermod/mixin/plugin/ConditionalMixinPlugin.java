@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.mixin.plugin;
 
+import net.dillon.speedrunnermod.mixin.client.BackgroundRendererMixin;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.dillon.speedrunnermod.util.Credit;
 import org.objectweb.asm.tree.ClassNode;
@@ -15,7 +16,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public class ConditionalMixinPlugin implements IMixinConfigPlugin {
 
     /**
-     * Disables the {@link net.dillon.speedrunnermod.mixin.client.Fog} mixin from loading if the {@code apply fog mixin} advanced option is disabled.
+     * Disables the {@link BackgroundRendererMixin} mixin from loading if the {@code apply fog mixin} advanced option is disabled.
      */
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {

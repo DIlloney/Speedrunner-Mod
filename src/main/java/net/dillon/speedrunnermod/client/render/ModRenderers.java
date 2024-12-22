@@ -85,10 +85,10 @@ public class ModRenderers {
      * Registers other types of renderers.
      */
     private static void initializeOtherRenderers() {
-        TerraformBoatClientHelper.registerModelLayers(ModBoats.SPEEDRUNNER_BOAT_ID, false);
-        TerraformBoatClientHelper.registerModelLayers(ModBoats.DEAD_SPEEDRUNNER_BOAT_ID, false);
-        TerraformBoatClientHelper.registerModelLayers(ModBoats.CRIMSON_BOAT_ID, false);
-        TerraformBoatClientHelper.registerModelLayers(ModBoats.WARPED_BOAT_ID, false);
+        TerraformBoatClientHelper.registerModelLayers(ModBoats.SPEEDRUNNER);
+        TerraformBoatClientHelper.registerModelLayers(ModBoats.DEAD_SPEEDRUNNER);
+        TerraformBoatClientHelper.registerModelLayers(ModBoats.CRIMSON);
+        TerraformBoatClientHelper.registerModelLayers(ModBoats.WARPED);
 
         info("Initialized custom renderers.");
     }

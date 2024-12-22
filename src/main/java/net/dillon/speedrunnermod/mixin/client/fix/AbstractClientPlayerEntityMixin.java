@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 
 @Environment(EnvType.CLIENT)
 @Mixin(AbstractClientPlayerEntity.class)
@@ -26,6 +27,7 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity {
      * @author Dillon8775
      * @reason Fixes the speedrunner bow not working with the FOV multiplier, and also changes it because it pulls faster.
      */
+    @Overwrite
     public float getFovMultiplier(boolean firstPerson, float fovEffectScale) {
         float f = 1.0F;
         if (this.getAbilities().flying) {

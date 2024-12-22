@@ -74,7 +74,7 @@ public abstract class Keybindings {
                     assert this.world != null;
                     this.world.disconnect();
                     this.disconnect(new MessageScreen(Text.translatable("speedrunnermod.menu.generating_new_world")));
-                    CreateWorldScreen.create(MinecraftClient.getInstance(), null);
+                    CreateWorldScreen.show(MinecraftClient.getInstance(), null);
                 } else {
                     debugWarn("\"Fast World Creation\" is OFF, please enable to use this feature.");
                 }

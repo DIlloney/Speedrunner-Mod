@@ -9,7 +9,10 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 import net.minecraft.data.client.TexturedModel;
-import net.minecraft.item.ArmorItem;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.equipment.EquipmentModel;
+
+import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerModArmor;
 
 /**
  * Used to create the blockstate and model JSON files from scratch using code.
@@ -91,14 +94,22 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_SPEEDRUNNER, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPEEDRUNNER_NUGGET, Models.GENERATED);
 
-        itemModelGenerator.registerArmor((ArmorItem)ModItems.SPEEDRUNNER_HELMET);
-        itemModelGenerator.registerArmor((ArmorItem)ModItems.SPEEDRUNNER_CHESTPLATE);
-        itemModelGenerator.registerArmor((ArmorItem)ModItems.SPEEDRUNNER_LEGGINGS);
-        itemModelGenerator.registerArmor((ArmorItem)ModItems.SPEEDRUNNER_BOOTS);
-        itemModelGenerator.registerArmor((ArmorItem)ModItems.GOLDEN_SPEEDRUNNER_HELMET);
-        itemModelGenerator.registerArmor((ArmorItem)ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE);
-        itemModelGenerator.registerArmor((ArmorItem)ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS);
-        itemModelGenerator.registerArmor((ArmorItem)ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
+        itemModelGenerator.registerArmor(ModItems.SPEEDRUNNER_HELMET, ofSpeedrunnerModArmor(),
+                EquipmentModel.builder().addHumanoidLayers(ofSpeedrunnerModArmor()).build(), EquipmentSlot.HEAD);
+        itemModelGenerator.registerArmor(ModItems.SPEEDRUNNER_CHESTPLATE, ofSpeedrunnerModArmor(),
+                EquipmentModel.builder().addHumanoidLayers(ofSpeedrunnerModArmor()).build(), EquipmentSlot.CHEST);
+        itemModelGenerator.registerArmor(ModItems.SPEEDRUNNER_LEGGINGS, ofSpeedrunnerModArmor(),
+                EquipmentModel.builder().addHumanoidLayers(ofSpeedrunnerModArmor()).build(), EquipmentSlot.LEGS);
+        itemModelGenerator.registerArmor(ModItems.SPEEDRUNNER_BOOTS, ofSpeedrunnerModArmor(),
+                EquipmentModel.builder().addHumanoidLayers(ofSpeedrunnerModArmor()).build(), EquipmentSlot.FEET);
+        itemModelGenerator.registerArmor(ModItems.GOLDEN_SPEEDRUNNER_HELMET, ofSpeedrunnerModArmor(),
+                EquipmentModel.builder().addHumanoidLayers(ofSpeedrunnerModArmor()).build(), EquipmentSlot.HEAD);
+        itemModelGenerator.registerArmor(ModItems.GOLDEN_SPEEDRUNNER_CHESTPLATE, ofSpeedrunnerModArmor(),
+                EquipmentModel.builder().addHumanoidLayers(ofSpeedrunnerModArmor()).build(), EquipmentSlot.CHEST);
+        itemModelGenerator.registerArmor(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS, ofSpeedrunnerModArmor(),
+                EquipmentModel.builder().addHumanoidLayers(ofSpeedrunnerModArmor()).build(), EquipmentSlot.LEGS);
+        itemModelGenerator.registerArmor(ModItems.GOLDEN_SPEEDRUNNER_BOOTS, ofSpeedrunnerModArmor(),
+                EquipmentModel.builder().addHumanoidLayers(ofSpeedrunnerModArmor()).build(), EquipmentSlot.FEET);
 
         itemModelGenerator.register(ModItems.SPEEDRUNNER_SHEARS, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPEEDRUNNER_FLINT_AND_STEEL, Models.GENERATED);

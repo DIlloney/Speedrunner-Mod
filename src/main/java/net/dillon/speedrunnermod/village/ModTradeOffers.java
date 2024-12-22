@@ -168,7 +168,7 @@ public class ModTradeOffers {
         public TradeOffer create(Entity entity, Random random) {
             int l;
             ItemStack itemStack;
-            Optional<RegistryEntry<Enchantment>> optional = entity.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).getRandomEntry(this.possibleEnchantments, random);
+            Optional<RegistryEntry<Enchantment>> optional = entity.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getRandomEntry(this.possibleEnchantments, random);
             if (!optional.isEmpty()) {
                 RegistryEntry<Enchantment> registryEntry = optional.get();
                 Enchantment enchantment = registryEntry.value();
@@ -211,7 +211,7 @@ public class ModTradeOffers {
         public TradeOffer create(Entity entity, Random random) {
             int i = random.nextInt(4) + 30;
             DynamicRegistryManager dynamicRegistryManager = entity.getWorld().getRegistryManager();
-            Optional<RegistryEntryList.Named<Enchantment>> optional = dynamicRegistryManager.get(RegistryKeys.ENCHANTMENT).getEntryList(this.possibleEnchantments);
+            Optional<RegistryEntryList.Named<Enchantment>> optional = dynamicRegistryManager.getOrThrow(RegistryKeys.ENCHANTMENT).getOptional(this.possibleEnchantments);
             ItemStack itemStack = EnchantmentHelper.enchant(random, new ItemStack(this.tool.getItem()), i, dynamicRegistryManager, optional);
             return new TradeOffer(new TradedItem(Items.EMERALD, this.price), itemStack, this.maxUses, this.experience, this.multiplier);
         }

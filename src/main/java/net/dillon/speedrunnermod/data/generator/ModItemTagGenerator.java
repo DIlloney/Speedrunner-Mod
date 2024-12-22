@@ -60,6 +60,9 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModItemTags.DOOM_STONE_SAFE_TOOLS)
                 .forceAddTag(ModItemTags.SPEEDRUNNER_TOOLS);
 
+        getOrCreateTagBuilder(ModItemTags.DRAGON_TOOL_MATERIALS)
+                .add(ModItems.DRAGONS_PEARL);
+
         getOrCreateTagBuilder(ModItemTags.FASTER_BOATS)
                 .add(ModItems.SPEEDRUNNER_BOAT)
                 .add(ModItems.DEAD_SPEEDRUNNER_BOAT);
@@ -102,6 +105,9 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.GOLDEN_BREAD)
                 .add(ModItems.GOLDEN_POTATO)
                 .add(ModItems.GOLDEN_BEETROOT);
+
+        getOrCreateTagBuilder(ModItemTags.GOLDEN_SPEEDRUNNER_TOOL_MATERIALS)
+                .add(Items.GOLD_INGOT);
 
         getOrCreateTagBuilder(ModItemTags.IGNITABLES)
                 .forceAddTag(ModItemTags.FLINT_AND_STEELS)
@@ -146,9 +152,12 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.GOLDEN_SPEEDRUNNER_LEGGINGS)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
 
-        getOrCreateTagBuilder(ModItemTags.STICKS)
-                .add(Items.STICK)
-                .add(ModItems.SPEEDRUNNER_STICK);
+        getOrCreateTagBuilder(ModItemTags.SPEEDRUNNER_SHIELD_REPAIRABLE)
+                .forceAddTag(ItemTags.PLANKS)
+                .add(ModItems.SPEEDRUNNER_INGOT);
+
+        getOrCreateTagBuilder(ModItemTags.SPEEDRUNNER_TOOL_MATERIALS)
+                .add(ModItems.SPEEDRUNNER_INGOT);
 
         getOrCreateTagBuilder(ModItemTags.STATE_OF_THE_ART_ITEMS)
                 .add(ModItems.ANNUL_EYE)
@@ -158,6 +167,13 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.ENDER_THRUSTER)
                 .add(ModItems.PIGLIN_AWAKENER)
                 .add(ModItems.RAID_ERADICATOR);
+
+        getOrCreateTagBuilder(ModItemTags.STICKS)
+                .add(Items.STICK)
+                .add(ModItems.SPEEDRUNNER_STICK);
+
+        getOrCreateTagBuilder(ModItemTags.WITHER_TOOL_MATERIALS)
+                .add(ModItems.WITHER_BONE);
 
         getOrCreateTagBuilder(ModItemTags.Block.DOOM_LOGS)
                 .add(ModBlockItems.DOOM_LOG)

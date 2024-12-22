@@ -1,10 +1,7 @@
 package net.dillon.speedrunnermod.item;
 
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ItemStack;
+import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.minecraft.item.ShieldItem;
-import net.minecraft.registry.tag.ItemTags;
 
 /**
  * <p>A shield which has a faster cooldown, and more durability.</p>
@@ -13,12 +10,6 @@ import net.minecraft.registry.tag.ItemTags;
 public class SpeedrunnerShieldItem extends ShieldItem {
 
     public SpeedrunnerShieldItem(Settings settings) {
-        super(settings.maxCount(1).maxDamage(672));
-        DispenserBlock.registerBehavior(this, ArmorItem.DISPENSER_BEHAVIOR);
-    }
-
-    @Override
-    public boolean canRepair(ItemStack stack, ItemStack ingredient) {
-        return ingredient.isOf(ModItems.SPEEDRUNNER_INGOT) || ingredient.isIn(ItemTags.PLANKS) || super.canRepair(stack, ingredient);
+        super(settings.maxCount(1).maxDamage(672).repairable(ModItemTags.SPEEDRUNNER_SHIELD_REPAIRABLE));
     }
 }

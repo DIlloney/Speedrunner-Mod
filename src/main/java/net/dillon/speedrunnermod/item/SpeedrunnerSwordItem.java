@@ -21,8 +21,8 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public class SpeedrunnerSwordItem extends SwordItem {
     private static int attackDamage;
 
-    public SpeedrunnerSwordItem(int attackDamage, Settings settings) {
-        super(ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE, attackDamage, -2.4F, settings);
+    public SpeedrunnerSwordItem(int attackDamage, boolean golden, Settings settings) {
+        super(!golden ? ModToolMaterials.SPEEDRUNNER_SWORD_PICKAXE : ModToolMaterials.GOLDEN_SPEEDRUNNER, attackDamage, -2.4F, settings);
         SpeedrunnerSwordItem.attackDamage = attackDamage;
     }
 

@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.mixin.main.entity.boat;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
+import net.dillon.speedrunnermod.entity.ModBoats;
 import net.dillon.speedrunnermod.sound.ModSoundEvents;
 import net.dillon.speedrunnermod.tag.ModFluidTags;
 import net.dillon.speedrunnermod.util.Author;
@@ -11,11 +12,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.AbstractBoatEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.item.Item;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,6 +27,8 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.function.Supplier;
 
 import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
@@ -36,6 +41,8 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public abstract class BoatEntityMixin extends Entity {
     @Shadow
     public abstract ActionResult interact(PlayerEntity player, Hand hand);
+    @Shadow @Final
+    private Supplier<Item> itemSupplier;
 
     public BoatEntityMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -51,6 +58,10 @@ public abstract class BoatEntityMixin extends Entity {
         if (boat.isInLava()) {
             boat.setVelocity(boat.getVelocity().multiply(SpeedrunnerMod.getBoatInLavaVelocityMultiplier()));
         }
+
+        if (ModBoats.isFastBoat(this.itemSupplier)) {
+            boat.setVelocity(boat.getVelocity().multiply(SpeedrunnerMod.getSpeedrunnerBoatVelocityMultiplier()));
+        }
     }
 
     /**
@@ -63,15 +74,27 @@ public abstract class BoatEntityMixin extends Entity {
         }
     }
 
+//    /**
+//     * Lowers the fall damage when landing on a boat.
+//     */
+//    @Redirect(method = "fall", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/vehicle/AbstractBoatEntity;fallDistance:F"))
+//    private void lowerFallDamage(AbstractBoatEntity boat) {
+//        if (!options().main.fallDamage) {
+//            boat.fallDistance = 0.0F;
+//        } else {
+//            boat.fallDistance = DOOM_MODE ? 1.0F : 0.7F;
+//        }
+//    }
+
     /**
-     * Lowers the fall damage when landing on a boat.
+     * Makes fireproof boats fire immune.
      */
-    @ModifyArg(method = "fall", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/vehicle/BoatEntity;handleFallDamage(FFLnet/minecraft/entity/damage/DamageSource;)Z"), index = 1)
-    private float lowerFallDamage(float par1) {
-        if (!options().main.fallDamage) {
-            return 0.0F;
+    @Override
+    public boolean isFireImmune() {
+        if (options().main.lavaBoats) {
+            return ModBoats.isFireproofBoat(this.itemSupplier) || super.isFireImmune();
         } else {
-            return DOOM_MODE ? 1.0F : 0.7F;
+            return super.isFireImmune();
         }
     }
 

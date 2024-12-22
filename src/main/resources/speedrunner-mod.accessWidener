@@ -1,5 +1,7 @@
 accessWidener v1 named
 
+accessible class net/minecraft/client/render/BackgroundRenderer$FogData
+accessible class net/minecraft/client/render/BackgroundRenderer$StatusEffectFogModifier
 accessible class net/minecraft/structure/NetherFortressGenerator$Piece
 accessible class net/minecraft/structure/NetherFortressGenerator$PieceData
 accessible class net/minecraft/structure/StrongholdGenerator$Piece
@@ -45,8 +47,10 @@ accessible method net/minecraft/block/Blocks never (Lnet/minecraft/block/BlockSt
 accessible method net/minecraft/block/Blocks never (Lnet/minecraft/block/BlockState;Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Z
 accessible method net/minecraft/loot/LootTables register (Ljava/lang/String;)Lnet/minecraft/registry/RegistryKey;
 accessible method net/minecraft/village/TradeOffers copyToFastUtilMap (Lcom/google/common/collect/ImmutableMap;)Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
+accessible method net/minecraft/client/render/BackgroundRenderer getFogModifier (Lnet/minecraft/entity/Entity;F)Lnet/minecraft/client/render/BackgroundRenderer$StatusEffectFogModifier;
 
 accessible field net/minecraft/world/biome/OverworldBiomeCreator DEFAULT_MUSIC Lnet/minecraft/sound/MusicSound;
+accessible field net/minecraft/entity/vehicle/AbstractBoatEntity itemSupplier Ljava/util/function/Supplier;
 accessible field net/minecraft/entity/mob/MobEntity armorItems Lnet/minecraft/util/collection/DefaultedList;
 accessible field net/minecraft/entity/mob/MobEntity handItems Lnet/minecraft/util/collection/DefaultedList;
 accessible field net/minecraft/entity/mob/BlazeEntity$ShootFireballGoal fireballCooldown I

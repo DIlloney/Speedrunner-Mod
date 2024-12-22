@@ -14,6 +14,7 @@ public class ModItemTags {
     public static TagKey<Item> COOLDOWN_ENCHANTMENT_ITEMS = of("cooldown_enchantment_items");
     public static TagKey<Item> CROSSBOWS = of("crossbows");
     public static TagKey<Item> DOOM_STONE_SAFE_TOOLS = of("doom_stone_safe_tools");
+    public static TagKey<Item> DRAGON_TOOL_MATERIALS = of("dragon_tool_materials");
     public static TagKey<Item> FASTER_BOATS = of("faster_boats");
     public static TagKey<Item> FASTER_CHEST_BOATS = of("faster_chest_boats");
     public static TagKey<Item> FIREPROOF_BOATS = of("fireproof_boats");
@@ -21,6 +22,7 @@ public class ModItemTags {
     public static TagKey<Item> FIREPROOF_ITEMS = of("fireproof_items");
     public static TagKey<Item> FLINT_AND_STEELS = of("flint_and_steels");
     public static TagKey<Item> GOLDEN_FOOD_ITEMS = of("golden_food_items");
+    public static TagKey<Item> GOLDEN_SPEEDRUNNER_TOOL_MATERIALS = of("golden_speedrunner_tool_materials");
     public static TagKey<Item> IGNITABLES = of("ignitables");
     public static TagKey<Item> IRON_INGOTS = of("iron_ingots");
     public static TagKey<Item> IRON_NUGGETS = of("iron_nuggets");
@@ -30,9 +32,12 @@ public class ModItemTags {
     public static TagKey<Item> SHEARS = of("shears");
     public static TagKey<Item> SPEED_BOOTS = of("speed_boots");
     public static TagKey<Item> SPEEDRUNNER_ARMOR = of("speedrunner_armor");
+    public static TagKey<Item> SPEEDRUNNER_SHIELD_REPAIRABLE = of("speedrunner_shield_repairable");
+    public static TagKey<Item> SPEEDRUNNER_TOOL_MATERIALS = of("speedrunner_tool_materials");
     public static TagKey<Item> SPEEDRUNNER_TOOLS = of("speedrunner_tools");
     public static TagKey<Item> STATE_OF_THE_ART_ITEMS = of("state_of_the_art_items");
     public static TagKey<Item> STICKS = of("sticks");
+    public static TagKey<Item> WITHER_TOOL_MATERIALS = of("wither_tool_materials");
 
     /**
      * Item tags that also have a block tag.
