@@ -1,6 +1,6 @@
 package net.dillon.speedrunnermod.mixin.main.fix;
 
-import net.dillon.speedrunnermod.tag.ModItemTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.BeehiveBlock;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,6 +16,6 @@ public class BeehiveBlockMixin {
      */
     @Redirect(method = "onUseWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 0))
     private boolean onUse(ItemStack stack, Item item) {
-        return stack.isIn(ModItemTags.SHEARS);
+        return stack.isIn(ConventionalItemTags.SHEAR_TOOLS);
     }
 }

@@ -1,6 +1,6 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
-import net.dillon.speedrunnermod.tag.ModItemTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.SheepEntity;
@@ -32,6 +32,6 @@ public abstract class SheepEntityMixin extends AnimalEntity {
      */
     @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean interactMob(ItemStack stack, Item item) {
-        return stack.isIn(ModItemTags.SHEARS);
+        return stack.isIn(ConventionalItemTags.SHEAR_TOOLS);
     }
 }

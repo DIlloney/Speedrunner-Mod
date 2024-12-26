@@ -6,6 +6,7 @@
     "speedrunnermod:speedrunner_block",
     "speedrunnermod:raw_speedrunner_block",
     "speedrunnermod:speedrunner_door",
-    "speedrunnermod:doom_stone"
+    "speedrunnermod:doom_stone",
+    "speedrunnermod:speedrunner_weighted_pressure_plate"
   ]
 }

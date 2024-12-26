@@ -2,9 +2,9 @@ package net.dillon.speedrunnermod.mixin.client.fix;
 
 import com.mojang.authlib.GameProfile;
 import net.dillon.speedrunnermod.item.ModItems;
-import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -39,7 +39,7 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity {
         }
         ItemStack itemStack = this.getActiveItem();
         if (this.isUsingItem()) {
-            if (itemStack.isIn(ModItemTags.BOWS)) {
+            if (itemStack.isIn(ConventionalItemTags.BOW_TOOLS)) {
                 int i = getItemUseTime();
                 float g;
                 float dividedBy = itemStack.isOf(ModItems.SPEEDRUNNER_BOW) ? 15.0F : 20.0F; // Speedrunner Bow pull time is faster

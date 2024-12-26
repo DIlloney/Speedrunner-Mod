@@ -1,7 +1,7 @@
 package net.dillon.speedrunnermod.mixin.main.entity;
 
-import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.dillon.speedrunnermod.util.ItemUtil;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
@@ -59,7 +59,7 @@ public abstract class CreeperEntityMixin extends HostileEntity implements SkinOv
      */
     @Redirect(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean creeperIgnitions(ItemStack itemStack, Item item) {
-        return itemStack.isIn(ModItemTags.FLINT_AND_STEELS);
+        return itemStack.isIn(ConventionalItemTags.IGNITER_TOOLS);
     }
 
     /**
