@@ -29,6 +29,10 @@ public class BackgroundRendererMixin {
     @Shadow
     private static boolean fogEnabled;
 
+    /**
+     * @author Dillon8775
+     * @reason applies the fog setting to the game.
+     */
     @Overwrite
     public static Fog applyFog(Camera camera, BackgroundRenderer.FogType fogType, Vector4f color, float viewDistance, boolean thickenFog, float tickDelta) {
         if (!fogEnabled) {

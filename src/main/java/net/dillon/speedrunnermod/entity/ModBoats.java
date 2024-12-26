@@ -19,12 +19,6 @@ public class ModBoats {
     public static final Identifier WARPED = ofSpeedrunnerMod("warped");
 
     /**
-     * Initializes all {@code Speedrunner Mod boats.}
-     */
-    public static void initializeBoats() {
-    }
-
-    /**
      * Determines {@code "fireproof"} boats.
      */
     public static boolean isFireproofBoat(Supplier<Item> itemSupplier) {
@@ -36,5 +30,11 @@ public class ModBoats {
      */
     public static boolean isFastBoat(Supplier<Item> itemSupplier) {
         return itemSupplier.get().getDefaultStack().isIn(ModItemTags.FASTER_BOATS) || itemSupplier.get().getDefaultStack().isIn(ModItemTags.FASTER_CHEST_BOATS);
+    }
+
+    /**
+     * Initializes all {@code Speedrunner Mod boats.}
+     */
+    public static void initializeBoats() {
     }
 }

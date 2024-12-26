@@ -6,7 +6,7 @@ import net.dillon.speedrunnermod.util.Author;
 import net.dillon.speedrunnermod.util.Authors;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSources;
-import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.entity.vehicle.AbstractBoatEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -56,7 +56,7 @@ public abstract class EntityMixin {
     private void setOnFireFromLava(CallbackInfo ci) {
         Entity vehicle = getVehicle();
         if (options().main.lavaBoats && this.getWorld() instanceof ServerWorld serverWorld) {
-            if (vehicle instanceof BoatEntity boat && ModBoats.isFireproofBoat(boat.itemSupplier)) {
+            if (vehicle instanceof AbstractBoatEntity abstractBoat && ModBoats.isFireproofBoat(abstractBoat.itemSupplier)) {
                 if (fireTicks > 0 && fireTicks % 20 == 0) {
                     ((Entity)(Object)this).damage(serverWorld, this.getDamageSources().onFire(), 1.0F);
                 }

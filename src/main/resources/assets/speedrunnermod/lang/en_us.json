@@ -55,7 +55,6 @@
   "item.speedrunnermod.golden_speedrunner_chestplate": "Golden Speedrunner Chestplate",
   "item.speedrunnermod.golden_speedrunner_leggings": "Golden Speedrunner Leggings",
   "item.speedrunnermod.golden_speedrunner_boots": "Golden Speedrunner Boots",
-  "upgrade.speedrunnermod.golden_speedrunner_upgrade": "Golden Speedrunner Upgrade",
   "item.speedrunnermod.golden_speedrunner_upgrade_smithing_template": "Smithing Template",
   "item.speedrunnermod.smithing_template.golden_speedrunner_upgrade.additions_slot_description": "Add Speedrunner Ingot",
   "item.speedrunnermod.smithing_template.golden_speedrunner_upgrade.applies_to": "Golden Equipment",
@@ -306,6 +305,10 @@
   "advancements.speedrunnermod.quicker_pick.description": "Obtain a Speedrunner Pickaxe",
 
   "entity.minecraft.villager.retired_speedrunner": "Retired Speedrunner",
+  "entity.speedrunnermod.speedrunner_chest_boat": "Speedrunner Boat with Chest",
+  "entity.speedrunnermod.dead_speedrunner_chest_boat": "Dead Speedrunner Boat with Chest",
+  "entity.speedrunnermod.crimson_chest_boat": "Crimson Boat with Chest",
+  "entity.speedrunnermod.warped_chest_boat": "Warped Boat with Chest",
 
   "speedrunnermod.title": "Speedrunner Mod",
 
@@ -601,7 +604,7 @@
   "speedrunnermod.menu.options.structure_spawn_rates_needs_custom.tooltip": "Set \"Structure Spawn Rates\" to §e§lCustom§r in order to set your own structure spawn rate values.",
   "speedrunnermod.menu.options.structure_spawn_rates.ssr_custom_required": "Please set the §l\"Structure Spawn Rates\"§r option to §b\"Custom\"§r in order to open these set of options.",
   "speedrunnermod.title.options.structure_spawn_rates": "Structure Spawn Rates",
-  "speedrunnermod.options.structure_spawn_rates_description.tooltip": "Changes the structure §lspacing§r and §lseparation§r value.\n\nThe §ofirst§r number is the §bspacing§r value,\nthe §osecond§r number is the §bseparation§r value.",
+  "speedrunnermod.options.structure_spawn_rates_description.tooltip": "Changes the structure §lspacing§r and §lseparation§r value.\n\nThe §ofirst§r number is the §bspacing§r value,\nthe §osecond§r number is the §bseparation§r value.\n\n§e§lRequires world reload.",
   "speedrunnermod.options.structure_spawn_rates.village": "Villages",
   "speedrunnermod.options.structure_spawn_rates.ancient_city": "Ancient Cities",
   "speedrunnermod.options.structure_spawn_rates.desert_pyramid": "Desert Pyramids",

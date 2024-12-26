@@ -22,7 +22,7 @@ public abstract class ConsumableComponentsMixin {
                 )
                 .consumeEffect(
                         new ApplyEffectsConsumeEffect(
-                                new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1)
+                                new StatusEffectInstance(StatusEffects.REGENERATION, 100, 0)
                         )
                 )
 
@@ -31,7 +31,7 @@ public abstract class ConsumableComponentsMixin {
                 .consumeEffect(
                         new ApplyEffectsConsumeEffect(
                                 List.of(
-                                        new StatusEffectInstance(StatusEffects.REGENERATION, 600, 1),
+                                        new StatusEffectInstance(StatusEffects.REGENERATION, 600, 2),
                                         new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0),
                                         new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0),
                                         new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3)
@@ -43,7 +43,7 @@ public abstract class ConsumableComponentsMixin {
                 .consumeEffect(
                         new ApplyEffectsConsumeEffect(
                                 List.of(
-                                        new StatusEffectInstance(StatusEffects.REGENERATION, 200, 2),
+                                        new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1),
                                         new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 0)
                                 )
                         )

@@ -23,10 +23,6 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
-        getOrCreateTagBuilder(ModItemTags.BOWS)
-                .add(Items.BOW)
-                .add(ModItems.SPEEDRUNNER_BOW);
-
         getOrCreateTagBuilder(ModItemTags.SPEED_BOOTS)
                 .add(ModItems.SPEEDRUNNER_BOOTS)
                 .add(ModItems.GOLDEN_SPEEDRUNNER_BOOTS);
@@ -40,10 +36,6 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(Items.ENDER_PEARL)
                 .add(ModItems.INFINI_PEARL)
                 .add(Items.CHORUS_FRUIT);
-
-        getOrCreateTagBuilder(ModItemTags.CROSSBOWS)
-                .add(Items.CROSSBOW)
-                .add(ModItems.SPEEDRUNNER_CROSSBOW);
 
         getOrCreateTagBuilder(ModItemTags.SPEEDRUNNER_TOOLS)
                 .add(ModItems.SPEEDRUNNER_SWORD)
@@ -252,6 +244,15 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModItemTags.Block.TEXTURE_CREATOR_KREVIKUS)
                 .forceAddTag(ModItemTags.Block.EXPERIENCE_ORES);
 
+        getOrCreateTagBuilder(ConventionalItemTags.BOW_TOOLS)
+                .add(ModItems.SPEEDRUNNER_BOW);
+
+        getOrCreateTagBuilder(ConventionalItemTags.CROSSBOW_TOOLS)
+                .add(ModItems.SPEEDRUNNER_CROSSBOW);
+
+        getOrCreateTagBuilder(ConventionalItemTags.SHEAR_TOOLS)
+                .add(ModItems.SPEEDRUNNER_SHEARS);
+
         getOrCreateTagBuilder(ItemTags.BOATS)
                 .add(ModItems.SPEEDRUNNER_BOAT)
                 .add(ModItems.DEAD_SPEEDRUNNER_BOAT)
@@ -263,6 +264,9 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.DEAD_SPEEDRUNNER_CHEST_BOAT)
                 .add(ModItems.CRIMSON_CHEST_BOAT)
                 .add(ModItems.WARPED_CHEST_BOAT);
+
+        getOrCreateTagBuilder(ItemTags.CREEPER_IGNITERS)
+                .add(ModItems.SPEEDRUNNER_FLINT_AND_STEEL);
 
         getOrCreateTagBuilder(ItemTags.DOORS)
                 .add(ModBlockItems.SPEEDRUNNER_DOOR);
@@ -349,9 +353,6 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.SWORD_ENCHANTABLE)
                 .forceAddTag(ItemTags.AXES);
-
-        getOrCreateTagBuilder(ConventionalItemTags.SHEAR_TOOLS)
-                .add(ModItems.SPEEDRUNNER_SHEARS);
 
         getOrCreateTagBuilder(ItemTags.MINING_ENCHANTABLE)
                 .add(ModItems.SPEEDRUNNER_SHEARS);

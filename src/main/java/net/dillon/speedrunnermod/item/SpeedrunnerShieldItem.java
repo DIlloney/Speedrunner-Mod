@@ -1,6 +1,7 @@
 package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.tag.ModItemTags;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ShieldItem;
 
 /**
@@ -10,6 +11,6 @@ import net.minecraft.item.ShieldItem;
 public class SpeedrunnerShieldItem extends ShieldItem {
 
     public SpeedrunnerShieldItem(Settings settings) {
-        super(settings.maxCount(1).maxDamage(672).repairable(ModItemTags.SPEEDRUNNER_SHIELD_REPAIRABLE));
+        super(settings.maxCount(1).maxDamage(672).repairable(ModItemTags.SPEEDRUNNER_SHIELD_REPAIRABLE).equippableUnswappable(EquipmentSlot.OFFHAND));
     }
 }

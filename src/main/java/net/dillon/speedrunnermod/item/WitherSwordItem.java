@@ -28,8 +28,8 @@ public class WitherSwordItem extends SwordItem {
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (target instanceof WitherSkeletonEntity witherSkeleton) {
-            witherSkeleton.dropItem(null, Items.WITHER_SKELETON_SKULL);
-            witherSkeleton.kill(null);
+            witherSkeleton.dropItem(witherSkeleton.getServer().getWorld(witherSkeleton.getEntityWorld().getRegistryKey()), Items.WITHER_SKELETON_SKULL);
+            witherSkeleton.kill(witherSkeleton.getServer().getWorld(witherSkeleton.getEntityWorld().getRegistryKey()));
         }
         return super.postHit(stack, target, attacker);
     }

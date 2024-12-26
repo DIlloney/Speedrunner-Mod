@@ -59,12 +59,12 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON);
         addDrop(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_BUTTON);
 
-//        addDrop(ModBlocks.SPEEDRUNNERS_WORKBENCH);
+        addDrop(ModBlocks.SPEEDRUNNERS_WORKBENCH);
 
         addDrop(ModBlocks.WOODEN_SPEEDRUNNER_DOOR, this::doorDrops);
         addDrop(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_DOOR, this::doorDrops);
         addDrop(ModBlocks.WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
-//        addDrop(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
+        addDrop(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_PRESSURE_PLATE);
         addDrop(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR);
         addDrop(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR);
 
@@ -78,7 +78,7 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
     }
 
     private void addOreDrops() {
-//        addDrop(ModBlocks.SPEEDRUNNER_ORE, (Block block) -> oreDrops(block, ModItems.SPEEDRUNNER_INGOT));
+        addDrop(ModBlocks.SPEEDRUNNER_ORE, (Block block) -> oreDrops(block, ModItems.SPEEDRUNNER_INGOT));
         addDrop(ModBlocks.DEEPSLATE_SPEEDRUNNER_ORE, (Block block) -> oreDrops(block, ModItems.SPEEDRUNNER_INGOT));
         addDrop(ModBlocks.NETHER_SPEEDRUNNER_ORE, (Block block) -> dropsWithSilkTouch(block, this.applyExplosionDecay(block, ItemEntry.builder(ModItems.SPEEDRUNNER_NUGGET).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2, 6)))).apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))));
 

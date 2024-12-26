@@ -230,13 +230,6 @@ public class SpeedrunnerMod implements ModInitializer {
     }
 
     /**
-     * Returns the {@code "speedrunner"} namespace for speedrunner armor models.
-     */
-    public static Identifier ofSpeedrunnerModArmor() {
-        return Identifier.of(MOD_ID, "speedrunner");
-    }
-
-    /**
      * Returns the player's death coordinates.
      */
     public static Text deathCords(double x, double y, double z) {

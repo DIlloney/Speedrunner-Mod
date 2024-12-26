@@ -94,7 +94,7 @@ public class ModBlockItems {
 
     public static final Item DEAD_SPEEDRUNNER_BUSH = Items.register(ModBlocks.DEAD_SPEEDRUNNER_BUSH);
 
-    public static final Item SPEEDRUNNERS_WORKBENCH = Items.register(ModBlocks.SPEEDRUNNERS_WORKBENCH, (block, settings) -> new Item(
+    public static final Item SPEEDRUNNERS_WORKBENCH = Items.register(ModBlocks.SPEEDRUNNERS_WORKBENCH, (block, settings) -> new BlockItem(ModBlocks.SPEEDRUNNERS_WORKBENCH,
             settings) {
 
         @Override

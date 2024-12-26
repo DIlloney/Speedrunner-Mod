@@ -4,11 +4,11 @@ import com.mojang.authlib.GameProfile;
 import net.dillon.speedrunnermod.item.ModItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -42,7 +42,7 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity {
 
         if (this.isUsingItem()) {
             ItemStack itemStack = this.getActiveItem();
-            if (itemStack.isOf(Items.BOW)) {
+            if (itemStack.isIn(ConventionalItemTags.BOW_TOOLS)) {
                 float dividedBy = itemStack.isOf(ModItems.SPEEDRUNNER_BOW) ? 15.0F : 20.0F;
                 float h = Math.min((float)this.getItemUseTime() / dividedBy, 1.0F);
                 f *= 1.0F - MathHelper.square(h) * 0.15F;

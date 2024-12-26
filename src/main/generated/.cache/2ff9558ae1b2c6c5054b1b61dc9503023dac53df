@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-22T16:34:09.4230303	Speedrunner Mod/Tags for minecraft:block
+// 1.21.3	2024-12-25T21:46:24.7889243	Speedrunner Mod/Tags for minecraft:block
 5cb4e6d2ce4a6c05f88731fbefdc26720eb0a618 data\minecraft\tags\block\leaves.json
 b3c894c868d480afaa768255eeec5cf305aec96a data\minecraft\tags\block\saplings.json
 ebcb6df97718314913387058d6107ba954896c77 data\minecraft\tags\block\wooden_fences.json
@@ -27,7 +27,7 @@ be89e38c14619d40d4e51dc0413f97f2e5174307 data\speedrunnermod\tags\block\smithing
 9187fb1009577435394cd600603d264ffa8310cd data\minecraft\tags\block\standing_signs.json
 9cfd5f89b1a72d6ac40f07ffc4e3a76eb78ec2e3 data\minecraft\tags\block\ceiling_hanging_signs.json
 2138ea53b231930d90cc8c2bc0fd00c0fe4a682c data\speedrunnermod\tags\block\speedrunner_sapling_placeables.json
-7bd67c69eb5c672dc65a9c1460fde04eb26fcfe8 data\minecraft\tags\block\mineable\pickaxe.json
+d48c170e632c5a36d4fb0c3b04adba9be410dd9d data\minecraft\tags\block\mineable\pickaxe.json
 29e9b4051601ff7423239232d99802f3fe71597f data\minecraft\tags\block\fence_gates.json
 9b8659a58755e66085327b87e2ffada4a287d51b data\minecraft\tags\block\wall_signs.json
 8778674db62d9285c4a8da3b67f026abcd2d48f4 data\minecraft\tags\block\wooden_stairs.json

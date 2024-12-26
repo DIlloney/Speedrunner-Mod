@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-22T16:34:09.4295438	Speedrunner Mod/Tags for minecraft:item
+// 1.21.3	2024-12-25T21:46:24.8127182	Speedrunner Mod/Tags for minecraft:item
 553d2cf245adbea7c18a43bd70a6423f7bf1c8a1 data\speedrunnermod\tags\item\doom_stone_safe_tools.json
 a1a439e4b7dde8962382d6b643658545ae59e5c5 data\speedrunnermod\tags\item\doom_logs.json
 b3c894c868d480afaa768255eeec5cf305aec96a data\minecraft\tags\item\saplings.json
@@ -7,7 +7,6 @@ b3c894c868d480afaa768255eeec5cf305aec96a data\minecraft\tags\item\saplings.json
 74a24da4555d2f344b6355f1aa3ced5be049f537 data\speedrunnermod\tags\item\speedrunner_planks.json
 116f5595c353a1c4b8d23fed77c184a578776ee5 data\speedrunnermod\tags\item\ignitables.json
 6a35e28f3c01ba2bc12985687a3cb20b4adc1311 data\minecraft\tags\item\chest_armor.json
-80c1abce2f4c95e3580f015f12a0f4a18d20cbc9 data\speedrunnermod\tags\item\bows.json
 ebbf35d069ad35927f68e9f33099a5784dba6b79 data\speedrunnermod\tags\item\shields.json
 e689a33ee565587933dee07e6b1be818dbbd4372 data\minecraft\tags\item\trimmable_armor.json
 d6c2d1a59d65ac95cc14b04181f6808311bd15f3 data\speedrunnermod\tags\item\shears.json
@@ -15,7 +14,8 @@ ebc36b1c05ff64e351b5b86768c79c72ab7253a7 data\minecraft\tags\item\logs.json
 f2aa87f54e7951ea0cf81ac252c2abe279b0c936 data\speedrunnermod\tags\item\golden_speedrunner_tool_materials.json
 dd1832a693dcff850456528821c8acea7e5909aa data\speedrunnermod\tags\item\flint_and_steels.json
 ba9125aa546790a0582445879c658b228dbb763c data\minecraft\tags\item\enchantable\sword.json
-5bbdfcf4f5ced23e8c7d6af59f7891ed0618c543 data\speedrunnermod\tags\item\cooldown_enchantment_items.json
+e39ac6ffb6af974addd599ea1dfef968053522ad data\c\tags\item\tools\bow.json
+918c5da3ef89b884aa5e8736db624be00255b95c data\speedrunnermod\tags\item\cooldown_enchantment_items.json
 35dbdd5b07ec26f99db2410ac17f1ae92714ec5a data\minecraft\tags\item\axes.json
 858b4736f63a64046a40e9dbd025c709c79d7cb2 data\speedrunnermod\tags\item\nether_portal_base_blocks.json
 8778674db62d9285c4a8da3b67f026abcd2d48f4 data\minecraft\tags\item\wooden_stairs.json
@@ -47,10 +47,11 @@ c58e3225175a76b75403bee9b45252138ae96abc data\minecraft\tags\item\boats.json
 8391dba5d8b1dcc3fab62d9e7793451247a6deff data\speedrunnermod\tags\item\speedrunner_signs.json
 5cb4e6d2ce4a6c05f88731fbefdc26720eb0a618 data\minecraft\tags\item\leaves.json
 673791220c22c286b011a6e244a959a605b3260b data\speedrunnermod\tags\item\iron_blocks.json
-a3c4b760d6f2ffde09df06bc1e5f1f48c134a1e5 data\speedrunnermod\tags\item\wither_tool_materials.json
+575e1b53c7c0aad11b3915c2eead3f072a259de6 data\speedrunnermod\tags\item\wither_tool_materials.json
 9db4a56bd43c9e8101a19cd6dd62e5c06b9b1b12 data\speedrunnermod\tags\item\texture_creator_mannyqueso.json
 7c28bc1c74491957939c885e65547be2fe978222 data\speedrunnermod\tags\item\texture_creator_krevikus.json
 1c3b8c585e3cacca9f2b413b9bc82f02d25bd043 data\speedrunnermod\tags\item\speedrunner_shield_repairable.json
+eda7dbbdacb3b7dde786ad7f02df7264022a6ee9 data\minecraft\tags\item\creeper_igniters.json
 ebcb6df97718314913387058d6107ba954896c77 data\minecraft\tags\item\wooden_fences.json
 2e2c7fb742e372e4064d9b66d474b226f1831c5a data\minecraft\tags\item\chest_boats.json
 5f67935348f54fd170b6b7e72e9c23b3b9197e05 data\speedrunnermod\tags\item\golden_food_items.json
@@ -64,13 +65,13 @@ f835774514532d85f95cc176011fd40ae642771d data\speedrunnermod\tags\item\speedrunn
 50dc01c9422eef727a266135f78c34ab4d090a86 data\speedrunnermod\tags\item\fireproof_chest_boats.json
 3be005000fb6b4ccc4c025d191d9411cb9a2476e data\minecraft\tags\item\foot_armor.json
 268c523b14b6ad0547968e6153c4ecf6da4a14d9 data\speedrunnermod\tags\item\state_of_the_art_items.json
-3ca288c634432f203098d4a6a9ae59a8169e3195 data\speedrunnermod\tags\item\crossbows.json
 5a9b7731f1e6b334d9b878de3dc890b1ac920fc2 data\minecraft\tags\item\enchantable\durability.json
 6474924b7fda310dae7af0c9f3fbffaef31cb49d data\minecraft\tags\item\head_armor.json
 986504d53c29cdf82d3995494666ca4c18f17799 data\minecraft\tags\item\doors.json
 e37604f1f71f0a86b1b39b01b7f6b5e7bc5a2402 data\minecraft\tags\item\stone_crafting_materials.json
 e39ac6ffb6af974addd599ea1dfef968053522ad data\minecraft\tags\item\enchantable\bow.json
 d3e5eadca807cb0af3f7d58d3164cdb8d83c86e6 data\minecraft\tags\item\wooden_trapdoors.json
+362b26547b99707c8fde2e335bfd18110e4f7fc2 data\c\tags\item\tools\crossbow.json
 3be005000fb6b4ccc4c025d191d9411cb9a2476e data\speedrunnermod\tags\item\sculk_sensor_safe_boots.json
 add9a036d8373ea3a2cf51ab3db3f45caddd6e26 data\minecraft\tags\item\leg_armor.json
 fef7cca5162f7a2c51e7425d157a367e87012df2 data\speedrunnermod\tags\item\faster_chest_boats.json

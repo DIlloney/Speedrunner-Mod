@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.AbstractBoatEntity;
-import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.registry.tag.TagKey;
@@ -23,14 +22,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.Supplier;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.DOOM_MODE;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 /**
@@ -38,13 +35,13 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
  */
 @Author(Authors.ANXIETIE)
 @Mixin(AbstractBoatEntity.class)
-public abstract class BoatEntityMixin extends Entity {
+public abstract class AbstractBoatEntityMixin extends Entity {
     @Shadow
     public abstract ActionResult interact(PlayerEntity player, Hand hand);
     @Shadow @Final
     private Supplier<Item> itemSupplier;
 
-    public BoatEntityMixin(EntityType<?> type, World world) {
+    public AbstractBoatEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
 
@@ -53,14 +50,14 @@ public abstract class BoatEntityMixin extends Entity {
      */
     @Inject(method = "tick", at = @At("HEAD"))
     private void slowDownBoats(CallbackInfo ci) {
-        BoatEntity boat = (BoatEntity)(Object)this;
+        AbstractBoatEntity abstractBoat = (AbstractBoatEntity)(Object)this;
 
-        if (boat.isInLava()) {
-            boat.setVelocity(boat.getVelocity().multiply(SpeedrunnerMod.getBoatInLavaVelocityMultiplier()));
+        if (abstractBoat.isInLava()) {
+            abstractBoat.setVelocity(abstractBoat.getVelocity().multiply(SpeedrunnerMod.getBoatInLavaVelocityMultiplier()));
         }
 
         if (ModBoats.isFastBoat(this.itemSupplier)) {
-            boat.setVelocity(boat.getVelocity().multiply(SpeedrunnerMod.getSpeedrunnerBoatVelocityMultiplier()));
+            abstractBoat.setVelocity(abstractBoat.getVelocity().multiply(SpeedrunnerMod.getSpeedrunnerBoatVelocityMultiplier()));
         }
     }
 
@@ -73,18 +70,6 @@ public abstract class BoatEntityMixin extends Entity {
             cir.setReturnValue(ModSoundEvents.ENTITY_BOAT_PADDLE_LAVA);
         }
     }
-
-//    /**
-//     * Lowers the fall damage when landing on a boat.
-//     */
-//    @Redirect(method = "fall", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/vehicle/AbstractBoatEntity;fallDistance:F"))
-//    private void lowerFallDamage(AbstractBoatEntity boat) {
-//        if (!options().main.fallDamage) {
-//            boat.fallDistance = 0.0F;
-//        } else {
-//            boat.fallDistance = DOOM_MODE ? 1.0F : 0.7F;
-//        }
-//    }
 
     /**
      * Makes fireproof boats fire immune.

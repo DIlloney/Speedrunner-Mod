@@ -141,6 +141,7 @@ public class ModBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.SPEEDRUNNER_BLOCK)
                 .add(ModBlocks.RAW_SPEEDRUNNER_BLOCK)
                 .add(ModBlocks.SPEEDRUNNER_DOOR)
+                .add(ModBlocks.SPEEDRUNNER_WEIGHTED_PRESSURE_PLATE)
                 .add(ModBlocks.DOOM_STONE);
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)

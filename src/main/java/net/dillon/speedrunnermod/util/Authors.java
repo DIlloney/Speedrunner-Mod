@@ -11,5 +11,6 @@ public enum Authors {
     KURAION,
     KWPUGH,
     TURTYWURTY,
+    CECH12,
     UNKNOWN
 }

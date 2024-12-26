@@ -9,13 +9,13 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.Util;
 
 import java.util.List;
 
-import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
-import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
+import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
 
 /**
  * All Speedrunner Mod {@code items.}
@@ -23,9 +23,10 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public class ModItems {
     private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", ofSpeedrunnerMod("smithing_template.golden_speedrunner_upgrade.applies_to"))).formatted(Formatting.GOLD);
     private static final Text GOLDEN_SPEEDRUNNER_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", ofSpeedrunnerMod("smithing_template.golden_speedrunner_upgrade.ingredients"))).formatted(Formatting.AQUA);
-    private static final Text GOLDEN_SPEEDRUNNER_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", ofSpeedrunnerMod("golden_speedrunner_upgrade"))).formatted(Formatting.GRAY);
     private static final Text GOLDEN_SPEEDRUNNER_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", ofSpeedrunnerMod("smithing_template.golden_speedrunner_upgrade.base_slot_description")));
     private static final Text GOLDEN_SPEEDRUNNER_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", ofSpeedrunnerMod("smithing_template.golden_speedrunner_upgrade.additions_slot_description")));
+    public static final Identifier SPEEDRUNNER_ARMOR_PATH = Identifier.of(MOD_ID, "speedrunner");
+    public static final Identifier GOLDEN_SPEEDRUNNER_ARMOR_PATH = Identifier.of(MOD_ID, "golden_speedrunner");
 
     public static final Item SPEEDRUNNER_INGOT = Items.register(of("speedrunner_ingot"), settings -> new Item(
             settings) {
@@ -60,16 +61,20 @@ public class ModItems {
             ModToolMaterials.SPEEDRUNNER_SHOVEL_AXE_HOE, 0, -0.5F, settings));
 
     public static final Item SPEEDRUNNER_HELMET = Items.register(of("speedrunner_helmet"), settings -> new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, EquipmentType.HELMET, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.HELMET.getMaxDamage(30)));
+            ModArmorMaterials.SPEEDRUNNER, EquipmentType.HELMET, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.HELMET.getMaxDamage(30))
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, SPEEDRUNNER_ARMOR_PATH)));
 
     public static final Item SPEEDRUNNER_CHESTPLATE = Items.register(of("speedrunner_chestplate"), settings -> new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, EquipmentType.CHESTPLATE, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(30)));
+            ModArmorMaterials.SPEEDRUNNER, EquipmentType.CHESTPLATE, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(30))
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, SPEEDRUNNER_ARMOR_PATH)));
 
     public static final Item SPEEDRUNNER_LEGGINGS = Items.register(of("speedrunner_leggings"), settings -> new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, EquipmentType.LEGGINGS, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.LEGGINGS.getMaxDamage(30)));
+            ModArmorMaterials.SPEEDRUNNER, EquipmentType.LEGGINGS, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.LEGGINGS.getMaxDamage(30))
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, SPEEDRUNNER_ARMOR_PATH)));
 
     public static final Item SPEEDRUNNER_BOOTS = Items.register(of("speedrunner_boots"), settings -> new ArmorItem(
-            ModArmorMaterials.SPEEDRUNNER, EquipmentType.BOOTS, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.BOOTS.getMaxDamage(30)));
+            ModArmorMaterials.SPEEDRUNNER, EquipmentType.BOOTS, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.BOOTS.getMaxDamage(30))
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, SPEEDRUNNER_ARMOR_PATH)));
 
     public static final Item SPEEDRUNNER_BOW = Items.register(of("speedrunner_bow"), SpeedrunnerBowItem::new);
 
@@ -106,16 +111,20 @@ public class ModItems {
             ModToolMaterials.GOLDEN_SPEEDRUNNER, 0, -0.5F, settings));
 
     public static final Item GOLDEN_SPEEDRUNNER_HELMET = Items.register(of("golden_speedrunner_helmet"), settings -> new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.HELMET, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.HELMET.getMaxDamage(11)));
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.HELMET, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.HELMET.getMaxDamage(11))
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, GOLDEN_SPEEDRUNNER_ARMOR_PATH)));
 
     public static final Item GOLDEN_SPEEDRUNNER_CHESTPLATE = Items.register(of("golden_speedrunner_chestplate"), settings -> new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.CHESTPLATE, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(11)));
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.CHESTPLATE, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(11))
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, GOLDEN_SPEEDRUNNER_ARMOR_PATH)));
 
     public static final Item GOLDEN_SPEEDRUNNER_LEGGINGS = Items.register(of("golden_speedrunner_leggings"), settings -> new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.LEGGINGS, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.LEGGINGS.getMaxDamage(11)));
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.LEGGINGS, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.LEGGINGS.getMaxDamage(11))
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, GOLDEN_SPEEDRUNNER_ARMOR_PATH)));
 
     public static final Item GOLDEN_SPEEDRUNNER_BOOTS = Items.register(of("golden_speedrunner_boots"), settings -> new ArmorItem(
-            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.BOOTS, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.BOOTS.getMaxDamage(11)));
+            ModArmorMaterials.GOLDEN_SPEEDRUNNER, EquipmentType.BOOTS, settings), new Item.Settings().maxCount(1).maxDamage(EquipmentType.BOOTS.getMaxDamage(11))
+            .registryKey(RegistryKey.of(RegistryKeys.ITEM, GOLDEN_SPEEDRUNNER_ARMOR_PATH)));
 
     public static final Item GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE = Items.register(of("golden_speedrunner_upgrade_smithing_template"), settings -> new SmithingTemplateItem(
             GOLDEN_SPEEDRUNNER_UPGRADE_APPLIES_TO_TEXT,
@@ -227,18 +236,18 @@ public class ModItems {
     public static final Item ENDER_THRUSTER = Items.register(of("ender_thruster"), EnderThrusterItem::new);
     public static final Item DRAGONS_SWORD = Items.register(of("dragons_sword"), DragonsSwordItem::new);
     public static final Item DRAGONS_PEARL = Items.register(of("dragons_pearl"), DragonsPearlItem::new);
-    public static final Item INFINI_PEARL = Items.register(of("infini_pear"), InfiniPearlItem::new);
-
-    /**
-     * Initializes all Speedrunner Mod {@code items.}
-     */
-    public static void initializeItems() {
-    }
+    public static final Item INFINI_PEARL = Items.register(of("infini_pearl"), InfiniPearlItem::new);
 
     /**
      * Creates and registers an {@code item.}
      */
     private static RegistryKey<Item> of(String id) {
         return RegistryKey.of(RegistryKeys.ITEM, ofSpeedrunnerMod(id));
+    }
+
+    /**
+     * Initializes all Speedrunner Mod {@code items.}
+     */
+    public static void initializeItems() {
     }
 }

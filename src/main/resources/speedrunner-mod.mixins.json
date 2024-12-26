@@ -18,7 +18,7 @@
     "main.enchantment.AnvilScreenHandlerMixin",
 
     "main.entity.basic.EntityMixin",
-    "main.entity.boat.BoatEntityMixin",
+    "main.entity.boat.AbstractBoatEntityMixin",
     "main.entity.giant.GiantEntityMixin",
     "main.entity.living.LivingEntityMixin",
     "main.entity.player.PlayerEntityMixin",
@@ -72,11 +72,11 @@
 
     "main.fix.BeehiveBlockMixin",
     "main.fix.BlockEntityTypeMixin",
-    "main.fix.ItemPredicateMixin",
-    "main.fix.PumpkinBlockMixin",
+    "main.fix.BlockFixMixin",
+    "main.fix.MatchToolLootConditionMixin",
+    "main.fix.RegistryEntryListDirectAccessor",
     "main.fix.SnowGolemEntityMixin",
     "main.fix.SpawnRestrictionMixin",
-    "main.fix.TntBlockMixin",
     "main.fix.TripwireBlockMixin",
 
     "main.item.ConsumableComponentsMixin",

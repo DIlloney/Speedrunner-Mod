@@ -10,9 +10,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.ofSpeedrunnerMod;
  * All Speedrunner Mod {@code item tags.}
  */
 public class ModItemTags {
-    public static TagKey<Item> BOWS = of("bows");
     public static TagKey<Item> COOLDOWN_ENCHANTMENT_ITEMS = of("cooldown_enchantment_items");
-    public static TagKey<Item> CROSSBOWS = of("crossbows");
     public static TagKey<Item> DOOM_STONE_SAFE_TOOLS = of("doom_stone_safe_tools");
     public static TagKey<Item> DRAGON_TOOL_MATERIALS = of("dragon_tool_materials");
     public static TagKey<Item> FASTER_BOATS = of("faster_boats");
