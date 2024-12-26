@@ -6,7 +6,7 @@
   ],
   "key": {
     "I": {
-      "tag": "speedrunnermod:iron_ingots"
+      "tag": "c:ingots/iron"
     },
     "#": {
       "item": "minecraft:stone"

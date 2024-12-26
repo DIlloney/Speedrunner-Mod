@@ -13,7 +13,7 @@
       "item": "minecraft:stick"
     },
     "X": {
-      "tag": "speedrunnermod:iron_ingots"
+      "tag": "c:ingots/iron"
     }
   },
   "result": {

@@ -7,10 +7,10 @@
   ],
   "key": {
     "I": {
-      "tag": "speedrunnermod:iron_ingots"
+      "tag": "c:ingots/iron"
     },
     "N": {
-      "tag": "speedrunnermod:iron_nuggets"
+      "tag": "c:nuggets/iron"
     }
   },
   "result": {
