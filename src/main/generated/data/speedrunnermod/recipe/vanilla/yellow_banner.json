@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "banner",
   "key": {
-    "#": "minecraft:black_wool",
+    "#": "minecraft:yellow_wool",
     "|": "#speedrunnermod:sticks"
   },
   "pattern": [
@@ -13,6 +13,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "minecraft:black_banner"
+    "id": "minecraft:yellow_banner"
   }
 }
