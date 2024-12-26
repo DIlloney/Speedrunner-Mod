@@ -1,19 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "#c:ingots/iron",
+    "X": "minecraft:redstone"
+  },
   "pattern": [
     " # ",
     "#X#",
     " # "
   ],
-  "key": {
-    "#": {
-      "tag": "speedrunnermod:iron_ingots"
-    },
-    "X": {
-      "item": "minecraft:redstone"
-    }
-  },
   "result": {
+    "count": 1,
     "id": "minecraft:compass"
   }
 }

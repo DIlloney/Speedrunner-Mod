@@ -1,20 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "banner",
+  "key": {
+    "#": "minecraft:brown_wool",
+    "|": "#speedrunnermod:sticks"
+  },
   "pattern": [
     "###",
     "###",
     " | "
   ],
-  "key": {
-    "#": {
-      "item": "minecraft:brown_wool"
-    },
-    "|": {
-      "tag": "speedrunnermod:sticks"
-    }
-  },
   "result": {
+    "count": 1,
     "id": "minecraft:brown_banner"
   }
 }

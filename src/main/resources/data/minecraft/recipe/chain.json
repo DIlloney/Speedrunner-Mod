@@ -1,19 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": "#c:ingots/iron",
+    "N": "#c:nuggets/iron"
+  },
   "pattern": [
     "N",
     "I",
     "N"
   ],
-  "key": {
-    "I": {
-      "tag": "speedrunnermod:iron_ingots"
-    },
-    "N": {
-      "tag": "speedrunnermod:iron_nuggets"
-    }
-  },
   "result": {
+    "count": 1,
     "id": "minecraft:chain"
   }
 }

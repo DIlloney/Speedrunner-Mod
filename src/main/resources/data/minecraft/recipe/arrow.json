@@ -1,23 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "#speedrunnermod:sticks",
+    "X": "minecraft:flint",
+    "Y": "minecraft:feather"
+  },
   "pattern": [
     "X",
     "#",
     "Y"
   ],
-  "key": {
-    "#": {
-      "tag": "speedrunnermod:sticks"
-    },
-    "X": {
-      "item": "minecraft:flint"
-    },
-    "Y": {
-      "item": "minecraft:feather"
-    }
-  },
   "result": {
-    "id": "minecraft:arrow",
-    "count": 4
+    "count": 4,
+    "id": "minecraft:arrow"
   }
 }

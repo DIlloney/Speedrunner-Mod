@@ -1,11 +1,10 @@
 {
   "type": "minecraft:smoking",
-  "ingredient": {
-    "item": "minecraft:potato"
-  },
+  "category": "food",
+  "cookingtime": 20,
+  "experience": 0.35,
+  "ingredient": "minecraft:potato",
   "result": {
     "id": "minecraft:baked_potato"
-  },
-  "experience": 0.35,
-  "cookingtime": 20
+  }
 }

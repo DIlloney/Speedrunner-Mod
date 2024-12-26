@@ -1,12 +1,11 @@
 {
   "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 20,
+  "experience": 300,
   "group": "emerald",
-  "ingredient": {
-    "item": "minecraft:deepslate_emerald_ore"
-  },
+  "ingredient": "minecraft:deepslate_emerald_ore",
   "result": {
     "id": "minecraft:emerald"
-  },
-  "experience": 300,
-  "cookingtime": 20
+  }
 }

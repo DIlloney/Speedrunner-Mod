@@ -1,22 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:smooth_stone",
+    "I": "#c:ingots/iron",
+    "X": "minecraft:furnace"
+  },
   "pattern": [
     "III",
     "IXI",
     "###"
   ],
-  "key": {
-    "#": {
-      "item": "minecraft:smooth_stone"
-    },
-    "X": {
-      "item": "minecraft:furnace"
-    },
-    "I": {
-      "tag": "speedrunnermod:iron_ingots"
-    }
-  },
   "result": {
+    "count": 1,
     "id": "minecraft:blast_furnace"
   }
 }

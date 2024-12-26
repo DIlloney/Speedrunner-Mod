@@ -1,23 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:redstone_torch",
+    "S": "minecraft:stick",
+    "X": "#c:ingots/iron"
+  },
   "pattern": [
     "XSX",
     "X#X",
     "XSX"
   ],
-  "key": {
-    "#": {
-      "item": "minecraft:redstone_torch"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    },
-    "X": {
-      "tag": "speedrunnermod:iron_ingots"
-    }
-  },
   "result": {
-    "id": "minecraft:activator_rail",
-    "count": 6
+    "count": 6,
+    "id": "minecraft:activator_rail"
   }
 }

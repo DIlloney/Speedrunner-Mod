@@ -1,23 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:stone_pressure_plate",
+    "R": "minecraft:redstone",
+    "X": "#c:ingots/iron"
+  },
   "pattern": [
     "X X",
     "X#X",
     "XRX"
   ],
-  "key": {
-    "R": {
-      "item": "minecraft:redstone"
-    },
-    "#": {
-      "item": "minecraft:stone_pressure_plate"
-    },
-    "X": {
-      "tag": "speedrunnermod:iron_ingots"
-    }
-  },
   "result": {
-    "id": "minecraft:detector_rail",
-    "count": 6
+    "count": 6,
+    "id": "minecraft:detector_rail"
   }
 }

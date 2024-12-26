@@ -1,11 +1,10 @@
 {
   "type": "minecraft:smoking",
-  "ingredient": {
-    "item": "minecraft:chicken"
-  },
+  "category": "food",
+  "cookingtime": 20,
+  "experience": 0.35,
+  "ingredient": "minecraft:chicken",
   "result": {
     "id": "minecraft:cooked_chicken"
-  },
-  "experience": 0.35,
-  "cookingtime": 20
+  }
 }

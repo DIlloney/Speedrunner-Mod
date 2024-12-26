@@ -1,19 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "/": "#speedrunnermod:sticks",
+    "_": "minecraft:smooth_stone_slab"
+  },
   "pattern": [
     "///",
     " / ",
     "/_/"
   ],
-  "key": {
-    "/": {
-      "tag": "speedrunnermod:sticks"
-    },
-    "_": {
-      "item": "minecraft:smooth_stone_slab"
-    }
-  },
   "result": {
+    "count": 1,
     "id": "minecraft:armor_stand"
   }
 }
