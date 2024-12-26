@@ -18,16 +18,11 @@ public class ModItemTags {
     public static TagKey<Item> FIREPROOF_BOATS = of("fireproof_boats");
     public static TagKey<Item> FIREPROOF_CHEST_BOATS = of("fireproof_chest_boats");
     public static TagKey<Item> FIREPROOF_ITEMS = of("fireproof_items");
-    public static TagKey<Item> FLINT_AND_STEELS = of("flint_and_steels");
     public static TagKey<Item> GOLDEN_FOOD_ITEMS = of("golden_food_items");
     public static TagKey<Item> GOLDEN_SPEEDRUNNER_TOOL_MATERIALS = of("golden_speedrunner_tool_materials");
     public static TagKey<Item> IGNITABLES = of("ignitables");
-    public static TagKey<Item> IRON_INGOTS = of("iron_ingots");
-    public static TagKey<Item> IRON_NUGGETS = of("iron_nuggets");
     public static TagKey<Item> PIGLIN_AWAKENER_CRAFTABLES = of("piglin_awakener_craftables");
     public static TagKey<Item> SCULK_SENSOR_SAFE_BOOTS = of("sculk_sensor_safe_boots");
-    public static TagKey<Item> SHIELDS = of("shields");
-    public static TagKey<Item> SHEARS = of("shears");
     public static TagKey<Item> SPEED_BOOTS = of("speed_boots");
     public static TagKey<Item> SPEEDRUNNER_ARMOR = of("speedrunner_armor");
     public static TagKey<Item> SPEEDRUNNER_SHIELD_REPAIRABLE = of("speedrunner_shield_repairable");

@@ -3,8 +3,8 @@ package net.dillon.speedrunnermod.mixin.main.entity.player;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
 import net.dillon.speedrunnermod.enchantment.ModEnchantments;
 import net.dillon.speedrunnermod.item.ModItems;
-import net.dillon.speedrunnermod.tag.ModItemTags;
 import net.dillon.speedrunnermod.util.ItemUtil;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -69,7 +69,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
      */
     @Redirect(method = "damageShield", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private boolean damageShield(ItemStack stack, Item item) {
-        return stack.isIn(ModItemTags.SHIELDS);
+        return stack.isIn(ConventionalItemTags.SHIELD_TOOLS);
     }
 
     /**
