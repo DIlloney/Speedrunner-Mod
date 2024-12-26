@@ -28,6 +28,7 @@ public class SpeedrunnerModDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModEnchantmentTagGenerator::new);
         pack.addProvider(ModItemTagGenerator::new);
         pack.addProvider(ModFluidTagGenerator::new);
+        pack.addProvider(ModRecipeGenerator::new);
         pack.addProvider(ModModelGenerator::new);
 
         SpeedrunnerMod.info("Finished running through data generator.");

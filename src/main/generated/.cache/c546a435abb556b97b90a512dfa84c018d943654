@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-26T00:14:00.2199959	Speedrunner Mod/Tags for minecraft:item
+// 1.21.3	2024-12-26T17:00:12.8633335	Speedrunner Mod/Tags for minecraft:item
 553d2cf245adbea7c18a43bd70a6423f7bf1c8a1 data\speedrunnermod\tags\item\doom_stone_safe_tools.json
 a1a439e4b7dde8962382d6b643658545ae59e5c5 data\speedrunnermod\tags\item\doom_logs.json
 55a14f2855efc563470730747a0b80e668282d9e data\c\tags\item\nuggets\iron.json
@@ -58,8 +58,8 @@ ebcb6df97718314913387058d6107ba954896c77 data\minecraft\tags\item\wooden_fences.
 0bfbff94bd17424bae1c0c9dc2ec2fd4c65674eb data\speedrunnermod\tags\item\experience_ores.json
 dde4291f68e6e38fb3dac8cf938875b6009c4907 data\minecraft\tags\item\shovels.json
 7b7239fc32b072669d54f58da7bf598b2509271f data\minecraft\tags\item\wooden_buttons.json
-d588162c1e1f815ec52ad1f40c807b1048342c0e data\speedrunnermod\tags\item\fireproof_items.json
 d16aab9c71d0193eea96b9407227a18a8cee23e2 data\speedrunnermod\tags\item\fireproof_boats.json
+d588162c1e1f815ec52ad1f40c807b1048342c0e data\speedrunnermod\tags\item\fireproof_items.json
 f835774514532d85f95cc176011fd40ae642771d data\speedrunnermod\tags\item\speedrunner_logs.json
 50dc01c9422eef727a266135f78c34ab4d090a86 data\speedrunnermod\tags\item\fireproof_chest_boats.json
 3be005000fb6b4ccc4c025d191d9411cb9a2476e data\minecraft\tags\item\foot_armor.json
