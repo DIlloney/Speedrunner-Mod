@@ -72,11 +72,12 @@
 
     "main.fix.BeehiveBlockMixin",
     "main.fix.BlockEntityTypeMixin",
-    "main.fix.BlockFixMixin",
     "main.fix.MatchToolLootConditionMixin",
+    "main.fix.PumpkinBlockMixin",
     "main.fix.RegistryEntryListDirectAccessor",
     "main.fix.SnowGolemEntityMixin",
     "main.fix.SpawnRestrictionMixin",
+    "main.fix.TntBlockMixin",
     "main.fix.TripwireBlockMixin",
 
     "main.item.ConsumableComponentsMixin",
