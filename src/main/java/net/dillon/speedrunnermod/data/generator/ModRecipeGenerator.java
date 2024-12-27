@@ -473,7 +473,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .offerTo(this.exporter, helper.vanilla("shears"));
 
                 this.createShaped(RecipeCategory.COMBAT, Items.SHIELD)
-                        .input('W', ItemTags.WOODEN_TOOL_MATERIALS)
+                        .input('W', ItemTags.PLANKS)
                         .input('o', Items.IRON_INGOT)
                         .pattern("WoW")
                         .pattern("WWW")
@@ -903,7 +903,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .offerTo(this.exporter);
 
                 this.createShaped(RecipeCategory.COMBAT, ModItems.SPEEDRUNNER_SHIELD)
-                        .input('W', ModBlocks.SPEEDRUNNER_PLANKS)
+                        .input('W', ItemTags.PLANKS)
                         .input('o', ModItems.SPEEDRUNNER_INGOT)
                         .pattern("WoW")
                         .pattern("WWW")
