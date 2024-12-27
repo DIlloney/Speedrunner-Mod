@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#speedrunnermod:golden_speedrunner_tool_materials",
+  "base": "minecraft:golden_axe",
+  "result": {
+    "count": 1,
+    "id": "speedrunnermod:golden_speedrunner_axe"
+  },
+  "template": "speedrunnermod:golden_speedrunner_upgrade_smithing_template"
+}
