@@ -33,6 +33,17 @@ public class ModItemTags {
     public static TagKey<Item> WITHER_TOOL_MATERIALS = of("wither_tool_materials");
 
     /**
+     * Item tags specifically for advancement criterions.
+     */
+    public static class AdvancementCriterions {
+        public static TagKey<Item> EYE_OF_ANNUL = ofAdvancement("eye_of_annul");
+        public static TagKey<Item> DRAGONS_PEARL = ofAdvancement("dragons_pearl");
+        public static TagKey<Item> DRAGONS_SWORD = ofAdvancement("dragons_sword");
+        public static TagKey<Item> ENDER_THRUSTER = ofAdvancement("ender_thruster");
+        public static TagKey<Item> INFERNO_EYE = ofAdvancement("inferno_eye");
+    }
+
+    /**
      * Item tags that also have a block tag.
      */
     public static class Block {
@@ -58,6 +69,13 @@ public class ModItemTags {
      */
     private static TagKey<Item> of(String path) {
         return TagKey.of(RegistryKeys.ITEM, ofSpeedrunnerMod(path));
+    }
+
+    /**
+     * Registers an {@code item tag,} specifically for advancement unlocks.
+     */
+    private static TagKey<Item> ofAdvancement(String path) {
+        return TagKey.of(RegistryKeys.ITEM, ofSpeedrunnerMod("advancement_criterions/"+path));
     }
 
     /**

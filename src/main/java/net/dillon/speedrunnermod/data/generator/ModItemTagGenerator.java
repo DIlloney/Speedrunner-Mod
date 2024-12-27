@@ -164,6 +164,29 @@ public class ModItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModItemTags.WITHER_TOOL_MATERIALS)
                 .add(ModItems.WITHER_BONE);
 
+        getOrCreateTagBuilder(ModItemTags.AdvancementCriterions.EYE_OF_ANNUL)
+                .add(Items.ENDER_PEARL)
+                .add(Items.FIRE_CHARGE)
+                .add(Items.BLAZE_POWDER);
+
+        getOrCreateTagBuilder(ModItemTags.AdvancementCriterions.DRAGONS_PEARL)
+                .add(Items.ENDER_PEARL)
+                .add(Items.BLAZE_POWDER)
+                .add(Items.FIRE_CHARGE)
+                .add(ModItems.SPEEDRUNNERS_EYE);
+
+        getOrCreateTagBuilder(ModItemTags.AdvancementCriterions.DRAGONS_SWORD)
+                .add(ModItems.SPEEDRUNNER_SWORD)
+                .add(ModItems.DRAGONS_PEARL);
+
+        getOrCreateTagBuilder(ModItemTags.AdvancementCriterions.ENDER_THRUSTER)
+                .add(Items.ENDER_PEARL)
+                .add(ModItems.SPEEDRUNNERS_EYE);
+
+        getOrCreateTagBuilder(ModItemTags.AdvancementCriterions.INFERNO_EYE)
+                .add(Items.ENDER_PEARL)
+                .add(Items.BLAZE_POWDER);
+
         getOrCreateTagBuilder(ModItemTags.Block.DOOM_LOGS)
                 .add(ModBlockItems.DOOM_LOG)
                 .add(ModBlockItems.STRIPPED_DOOM_LOG);
