@@ -38,3 +38,12 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+src/main/generated/.cache/197eadd3ac59ab90fb87d5e86f2ba163e25bd5c6
+src/main/generated/.cache/2ff9558ae1b2c6c5054b1b61dc9503023dac53df
+src/main/generated/.cache/33820599c90a9c0b9bd1004b571cf867facb1953
+src/main/generated/.cache/47a9bffa4f8544e3ad05f8e721114f1fdbefd8a0
+src/main/generated/.cache/6592662adfb7d1758c8976e30df7f2d9bffb4d65
+src/main/generated/.cache/6af412a2b5f6d447c7369e1a02f925f0a308183c
+src/main/generated/.cache/969769dcc26418176b6934e3af3cc995b9ef4b14
+src/main/generated/.cache/96cbc113189c057e6ac0c64d4af6501c216c1c44
+src/main/generated/.cache/c546a435abb556b97b90a512dfa84c018d943654

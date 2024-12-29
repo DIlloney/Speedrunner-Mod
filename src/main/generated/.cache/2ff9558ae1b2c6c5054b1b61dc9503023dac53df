@@ -1,4 +1,3 @@
-// 1.21.3	2024-12-27T13:29:56.1765221	Speedrunner Mod/Tags for minecraft:block
 5cb4e6d2ce4a6c05f88731fbefdc26720eb0a618 data\minecraft\tags\block\leaves.json
 b3c894c868d480afaa768255eeec5cf305aec96a data\minecraft\tags\block\saplings.json
 ebcb6df97718314913387058d6107ba954896c77 data\minecraft\tags\block\wooden_fences.json
@@ -14,7 +13,6 @@ ccac9c96189386e48ab1cb1a3e96a7f5ff7b52be data\speedrunnermod\tags\block\igneous_
 f835774514532d85f95cc176011fd40ae642771d data\speedrunnermod\tags\block\speedrunner_logs.json
 5cb4e6d2ce4a6c05f88731fbefdc26720eb0a618 data\minecraft\tags\block\mineable\hoe.json
 9db4a56bd43c9e8101a19cd6dd62e5c06b9b1b12 data\minecraft\tags\block\mineable\shovel.json
-d9d027d6dffe4c8a075345c59e9d09bea46914ef data\minecraft\tags\block\mineable\axe.json
 7c7170cc938f0292a03b08e7bb2d1c94e4f1807f data\speedrunnermod\tags\block\speedrunner_ores.json
 4259aa86b55f0f410c2aff0ec2f277f563a43317 data\minecraft\tags\block\logs.json
 be89e38c14619d40d4e51dc0413f97f2e5174307 data\speedrunnermod\tags\block\smithing_tables.json
@@ -24,11 +22,9 @@ be89e38c14619d40d4e51dc0413f97f2e5174307 data\speedrunnermod\tags\block\smithing
 161e2d7cc4ef6158026f8488f679d126c64839cd data\speedrunnermod\tags\block\dead_speedrunner_logs.json
 7b7239fc32b072669d54f58da7bf598b2509271f data\minecraft\tags\block\wooden_buttons.json
 4ad20a543959bb6899c4afd33a85af2ebc4d6173 data\speedrunnermod\tags\block\texture_creator_mannyqueso.json
-9cfd5f89b1a72d6ac40f07ffc4e3a76eb78ec2e3 data\minecraft\tags\block\ceiling_hanging_signs.json
 9187fb1009577435394cd600603d264ffa8310cd data\minecraft\tags\block\standing_signs.json
 2138ea53b231930d90cc8c2bc0fd00c0fe4a682c data\speedrunnermod\tags\block\speedrunner_sapling_placeables.json
 29e9b4051601ff7423239232d99802f3fe71597f data\minecraft\tags\block\fence_gates.json
-d48c170e632c5a36d4fb0c3b04adba9be410dd9d data\minecraft\tags\block\mineable\pickaxe.json
 9b8659a58755e66085327b87e2ffada4a287d51b data\minecraft\tags\block\wall_signs.json
 8778674db62d9285c4a8da3b67f026abcd2d48f4 data\minecraft\tags\block\wooden_stairs.json
 7baf11f597d8969aeaf531213bab677b8cdcb299 data\minecraft\tags\block\needs_stone_tool.json
