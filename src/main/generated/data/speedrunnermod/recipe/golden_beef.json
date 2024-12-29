@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "#c:nuggets/gold",
+    "i": "minecraft:cooked_beef"
+  },
+  "pattern": [
+    "###",
+    "#i#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "speedrunnermod:golden_beef"
+  }
+}
