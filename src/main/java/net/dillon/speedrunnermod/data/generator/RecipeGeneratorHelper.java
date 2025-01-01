@@ -323,7 +323,7 @@ public class RecipeGeneratorHelper extends RecipeGenerator {
         this.createShaped(RecipeCategory.COMBAT, output)
                 .input('X', input)
                 .pattern("X X")
-                .pattern("XXX")
+                .pattern("X X")
                 .criterion("has_item", this.conditionsFromItem(input))
                 .offerTo(this.exporter);
     }
