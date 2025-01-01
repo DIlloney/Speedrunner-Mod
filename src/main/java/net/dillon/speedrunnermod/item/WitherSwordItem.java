@@ -1,5 +1,6 @@
 package net.dillon.speedrunnermod.item;
 
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.WitherSkeletonEntity;
 import net.minecraft.item.ItemStack;
@@ -28,7 +29,10 @@ public class WitherSwordItem extends SwordItem {
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (target instanceof WitherSkeletonEntity witherSkeleton) {
-            witherSkeleton.dropItem(witherSkeleton.getServer().getWorld(witherSkeleton.getEntityWorld().getRegistryKey()), Items.WITHER_SKELETON_SKULL);
+            if (witherSkeleton.getRandom().nextInt(100) < 45) {
+                witherSkeleton.dropItem(witherSkeleton.getServer().getWorld(witherSkeleton.getEntityWorld().getRegistryKey()), Items.WITHER_SKELETON_SKULL);
+                stack.damage(ModToolMaterials.WITHER_SWORD.durability(), attacker, EquipmentSlot.MAINHAND);
+            }
             witherSkeleton.kill(witherSkeleton.getServer().getWorld(witherSkeleton.getEntityWorld().getRegistryKey()));
         }
         return super.postHit(stack, target, attacker);

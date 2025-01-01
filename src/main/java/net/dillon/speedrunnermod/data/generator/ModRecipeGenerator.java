@@ -23,7 +23,7 @@ import net.minecraft.registry.tag.ItemTags;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Used to modify {@code vanilla recipes.}
+ * Used to modify {@code vanilla recipes} and create {@code Speedrunner Mod} recipes.
  */
 public class ModRecipeGenerator extends FabricRecipeProvider {
     private static final ImmutableList<ItemConvertible> DIAMOND_ORES = ImmutableList.of(Items.DIAMOND_ORE, Items.DEEPSLATE_DIAMOND_ORE);
@@ -159,11 +159,25 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 helper.offerBannerRecipe(Items.WHITE_BANNER, Blocks.WHITE_WOOL);
                 helper.offerBannerRecipe(Items.YELLOW_BANNER, Blocks.YELLOW_WOOL);
 
-                this.offerReversibleCompactingRecipesWithReverseRecipeGroup(
-                        RecipeCategory.MISC, ModItems.SPEEDRUNNER_INGOT, RecipeCategory.BUILDING_BLOCKS, ModBlocks.SPEEDRUNNER_BLOCK, "speedrunner_ingot_from_speedrunner_block", "speedrunner_ingot"
+                helper.offerModdedReversibleCompactingRecipes(
+                        RecipeCategory.MISC,
+                        ModItems.SPEEDRUNNER_INGOT,
+                        RecipeCategory.BUILDING_BLOCKS,
+                        ModBlocks.SPEEDRUNNER_BLOCK,
+                        "speedrunner_block_from_speedrunner_ingot",
+                        null,
+                        "speedrunner_ingot_from_speedrunner_block",
+                        null
                 );
-                this.offerReversibleCompactingRecipesWithCompactingRecipeGroup(
-                        RecipeCategory.MISC, ModItems.SPEEDRUNNER_NUGGET, RecipeCategory.MISC, ModItems.SPEEDRUNNER_INGOT, "speedrunner_ingot_from_nuggets", "speedrunner_ingot"
+                helper.offerModdedReversibleCompactingRecipes(
+                        RecipeCategory.MISC,
+                        ModItems.SPEEDRUNNER_NUGGET,
+                        RecipeCategory.MISC,
+                        ModItems.SPEEDRUNNER_INGOT,
+                        "speedrunner_ingot_from_speedrunner_nuggets",
+                        null,
+                        "speedrunner_nuggets_from_speedrunner_ingot",
+                        null
                 );
 
                 // VANILLA
@@ -175,7 +189,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("X#X")
                         .pattern("XSX")
                         .criterion("has_rail", this.conditionsFromItem(Blocks.RAIL))
-                        .offerTo(this.exporter, helper.vanilla("activator_rail"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("activator_rail"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.ANVIL)
                         .input('I', ModItemTags.Block.IRON_BLOCKS)
@@ -184,7 +198,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern(" i ")
                         .pattern("iii")
                         .criterion("has_iron_block", this.conditionsFromTag(ModItemTags.Block.IRON_BLOCKS))
-                        .offerTo(this.exporter, helper.vanilla("anvil"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("anvil"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Items.ARMOR_STAND)
                         .input('/', ModItemTags.STICKS)
@@ -193,7 +207,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern(" / ")
                         .pattern("/_/")
                         .criterion("has_stone_slab", this.conditionsFromItem(Blocks.SMOOTH_STONE_SLAB))
-                        .offerTo(this.exporter, helper.vanilla("armor_stand"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("armor_stand"));
 
                 this.createShaped(RecipeCategory.COMBAT, Items.ARROW, 4)
                         .input('#', ModItemTags.STICKS)
@@ -204,7 +218,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("Y")
                         .criterion("has_feather", this.conditionsFromItem(Items.FEATHER))
                         .criterion("has_flint", this.conditionsFromItem(Items.FLINT))
-                        .offerTo(this.exporter, helper.vanilla("arrow"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("arrow"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.BLAST_FURNACE)
                         .input('#', Blocks.SMOOTH_STONE)
@@ -214,7 +228,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("IXI")
                         .pattern("###")
                         .criterion("has_smooth_stone", this.conditionsFromItem(Blocks.SMOOTH_STONE))
-                        .offerTo(this.exporter, helper.vanilla("blast_furnace"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("blast_furnace"));
 
                 this.createShaped(RecipeCategory.COMBAT, Items.BOW)
                         .input('#', ModItemTags.STICKS)
@@ -223,14 +237,14 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("# X")
                         .pattern(" #X")
                         .criterion("has_string", this.conditionsFromItem(Items.STRING))
-                        .offerTo(this.exporter, helper.vanilla("bow"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("bow"));
 
                 this.createShaped(RecipeCategory.MISC, Items.BUCKET)
                         .input('#', ConventionalItemTags.IRON_INGOTS)
                         .pattern("# #")
                         .pattern(" # ")
                         .criterion("has_ingot", this.conditionsFromTag(ConventionalItemTags.IRON_INGOTS))
-                        .offerTo(this.exporter, helper.vanilla("bucket"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("bucket"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.CAMPFIRE)
                         .input('L', ItemTags.LOGS)
@@ -241,7 +255,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("LLL")
                         .criterion("has_stick", this.conditionsFromTag(ModItemTags.STICKS))
                         .criterion("has_coal", this.conditionsFromTag(ItemTags.COALS))
-                        .offerTo(this.exporter, helper.vanilla("campfire"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("campfire"));
 
                 this.createShaped(RecipeCategory.BREWING, Blocks.CAULDRON)
                         .input('#', ConventionalItemTags.IRON_INGOTS)
@@ -249,7 +263,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("# #")
                         .pattern("###")
                         .criterion("has_water_bucket", this.conditionsFromItem(Items.WATER_BUCKET))
-                        .offerTo(this.exporter, helper.vanilla("cauldron"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("cauldron"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.CHAIN)
                         .input('I', ConventionalItemTags.IRON_INGOTS)
@@ -259,7 +273,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("N")
                         .criterion("has_iron_nugget", this.conditionsFromTag(ConventionalItemTags.IRON_NUGGETS))
                         .criterion("has_iron_ingot", this.conditionsFromTag(ConventionalItemTags.IRON_INGOTS))
-                        .offerTo(this.exporter, helper.vanilla("chain"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("chain"));
 
                 this.createShaped(RecipeCategory.TOOLS, Items.COMPASS)
                         .input('#', ConventionalItemTags.IRON_INGOTS)
@@ -268,7 +282,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("#X#")
                         .pattern(" # ")
                         .criterion("has_redstone", this.conditionsFromItem(Items.REDSTONE))
-                        .offerTo(this.exporter, helper.vanilla("compass"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("compass"));
 
                 this.createShaped(RecipeCategory.COMBAT, Items.CROSSBOW)
                         .input('~', Items.STRING)
@@ -282,7 +296,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .criterion("has_iron_ingot", this.conditionsFromItem(Items.IRON_INGOT))
                         .criterion("has_tripwire_hook", this.conditionsFromItem(Blocks.TRIPWIRE_HOOK))
                         .group("crossbows")
-                        .offerTo(this.exporter, helper.vanilla("crossbow"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("crossbow"));
 
                 this.createShaped(RecipeCategory.TRANSPORTATION, Blocks.DETECTOR_RAIL, 6)
                         .input('R', Items.REDSTONE)
@@ -292,7 +306,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("X#X")
                         .pattern("XRX")
                         .criterion("has_rail", this.conditionsFromItem(Blocks.RAIL))
-                        .offerTo(this.exporter, helper.vanilla("detector_rail"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("detector_rail"));
 
                 this.createShaped(RecipeCategory.REDSTONE, Blocks.DISPENSER)
                         .input('R', Items.REDSTONE)
@@ -302,7 +316,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("#X#")
                         .pattern("#R#")
                         .criterion("has_bow", this.conditionsFromItem(Items.BOW))
-                        .offerTo(this.exporter, helper.vanilla("dispenser"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("dispenser"));
 
                 this.createShaped(RecipeCategory.REDSTONE, Blocks.DROPPER)
                         .input('R', Items.REDSTONE)
@@ -311,7 +325,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("# #")
                         .pattern("#R#")
                         .criterion("has_redstone", this.conditionsFromItem(Items.REDSTONE))
-                        .offerTo(this.exporter, helper.vanilla("dropper"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("dropper"));
 
                 this.createShaped(RecipeCategory.TOOLS, Items.FISHING_ROD)
                         .input('#', ModItemTags.STICKS)
@@ -320,7 +334,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern(" #X")
                         .pattern("# X")
                         .criterion("has_string", this.conditionsFromItem(Items.STRING))
-                        .offerTo(this.exporter, helper.vanilla("fishing_rod"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("fishing_rod"));
 
                 this.createShapeless(RecipeCategory.TOOLS, Items.FLINT_AND_STEEL)
                         .input(Items.IRON_INGOT)
@@ -328,7 +342,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .criterion("has_flint", this.conditionsFromItem(Items.FLINT))
                         .criterion("has_obsidian", this.conditionsFromItem(Blocks.OBSIDIAN))
                         .group("flint_and_steels")
-                        .offerTo(this.exporter, helper.vanilla("flint_and_steel"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("flint_and_steel"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.GRINDSTONE)
                         .input('I', ModItemTags.STICKS)
@@ -337,7 +351,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("I-I")
                         .pattern("# #")
                         .criterion("has_stone_slab", this.conditionsFromItem(Blocks.STONE_SLAB))
-                        .offerTo(this.exporter, helper.vanilla("grindstone"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("grindstone"));
 
                 this.createShaped(RecipeCategory.REDSTONE, Blocks.HOPPER)
                         .input('C', Blocks.CHEST)
@@ -346,14 +360,14 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("ICI")
                         .pattern(" I ")
                         .criterion("has_iron_ingot", this.conditionsFromTag(ConventionalItemTags.IRON_INGOTS))
-                        .offerTo(this.exporter, helper.vanilla("hopper"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("hopper"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.IRON_BARS, 16)
                         .input('#', ConventionalItemTags.IRON_INGOTS)
                         .pattern("###")
                         .pattern("###")
                         .criterion("has_iron_ingot", this.conditionsFromTag(ConventionalItemTags.IRON_INGOTS))
-                        .offerTo(this.exporter, helper.vanilla("iron_bars"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("iron_bars"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Items.ITEM_FRAME)
                         .input('#', ModItemTags.STICKS)
@@ -362,7 +376,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("#X#")
                         .pattern("###")
                         .criterion("has_leather", this.conditionsFromItem(Items.LEATHER))
-                        .offerTo(this.exporter, helper.vanilla("item_frame"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("item_frame"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.LADDER, 3)
                         .input('#', ModItemTags.STICKS)
@@ -370,7 +384,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("###")
                         .pattern("# #")
                         .criterion("has_stick", this.conditionsFromItem(Items.STICK))
-                        .offerTo(this.exporter, helper.vanilla("ladder"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("ladder"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.LANTERN)
                         .input('#', Items.TORCH)
@@ -380,7 +394,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("XXX")
                         .criterion("has_nugget", this.conditionsFromTag(ConventionalItemTags.IRON_NUGGETS))
                         .criterion("has_ingot", this.conditionsFromTag(ConventionalItemTags.IRON_INGOTS))
-                        .offerTo(this.exporter, helper.vanilla("lantern"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("lantern"));
 
                 this.createShaped(RecipeCategory.REDSTONE, Blocks.LEVER)
                         .input('#', ItemTags.STONE_CRAFTING_MATERIALS)
@@ -388,14 +402,14 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("X")
                         .pattern("#")
                         .criterion("has_cobblestone", this.conditionsFromTag(ItemTags.STONE_CRAFTING_MATERIALS))
-                        .offerTo(this.exporter, helper.vanilla("lever"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("lever"));
 
                 this.createShaped(RecipeCategory.TRANSPORTATION, Items.MINECART)
                         .input('#', ConventionalItemTags.IRON_INGOTS)
                         .pattern("# #")
                         .pattern("###")
                         .criterion("has_iron_ingot", this.conditionsFromTag(ConventionalItemTags.IRON_INGOTS))
-                        .offerTo(this.exporter, helper.vanilla("minecart"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("minecart"));
 
                 this.createShaped(RecipeCategory.REDSTONE, Blocks.OBSERVER)
                         .input('Q', Items.QUARTZ)
@@ -405,7 +419,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("RRQ")
                         .pattern("###")
                         .criterion("has_quartz", this.conditionsFromItem(Items.QUARTZ))
-                        .offerTo(this.exporter, helper.vanilla("observer"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("observer"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Items.PAINTING)
                         .input('#', ModItemTags.STICKS)
@@ -414,7 +428,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("#X#")
                         .pattern("###")
                         .criterion("has_wool", this.conditionsFromTag(ItemTags.WOOL))
-                        .offerTo(this.exporter, helper.vanilla("painting"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("painting"));
 
                 this.createShaped(RecipeCategory.REDSTONE, Blocks.PISTON)
                         .input('R', Items.REDSTONE)
@@ -425,7 +439,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("#X#")
                         .pattern("#R#")
                         .criterion("has_redstone", this.conditionsFromItem(Items.REDSTONE))
-                        .offerTo(this.exporter, helper.vanilla("piston"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("piston"));
 
                 this.createShaped(RecipeCategory.TRANSPORTATION, Blocks.POWERED_RAIL, 6)
                         .input('R', Items.REDSTONE)
@@ -435,7 +449,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("X#X")
                         .pattern("XRX")
                         .criterion("has_rail", this.conditionsFromItem(Blocks.RAIL))
-                        .offerTo(this.exporter, helper.vanilla("powered_rail"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("powered_rail"));
 
                 this.createShaped(RecipeCategory.TRANSPORTATION, Blocks.RAIL, 16)
                         .input('#', ModItemTags.STICKS)
@@ -444,7 +458,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("X#X")
                         .pattern("X X")
                         .criterion("has_minecart", this.conditionsFromItem(Items.MINECART))
-                        .offerTo(this.exporter, helper.vanilla("rail"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("rail"));
 
                 this.createShaped(RecipeCategory.BUILDING_BLOCKS, Blocks.RAW_IRON_BLOCK)
                         .input('#', Items.RAW_IRON)
@@ -453,7 +467,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("###")
                         .criterion("has_raw_iron", this.conditionsFromItem(Items.RAW_IRON))
                         .group("raw_iron_blocks")
-                        .offerTo(this.exporter, helper.vanilla("raw_iron_block"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("raw_iron_block"));
 
                 this.createShaped(RecipeCategory.REDSTONE, Blocks.REDSTONE_TORCH)
                         .input('#', ModItemTags.STICKS)
@@ -462,7 +476,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("#")
                         .criterion("has_redstone", this.conditionsFromItem(Items.REDSTONE))
                         .group("torches")
-                        .offerTo(this.exporter, helper.vanilla("redstone_torch"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("redstone_torch"));
 
                 this.createShaped(RecipeCategory.TOOLS, Items.SHEARS)
                         .input('#', Items.IRON_INGOT)
@@ -470,7 +484,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("# ")
                         .criterion("has_iron_ingot", this.conditionsFromItem(Items.IRON_INGOT))
                         .group("shears")
-                        .offerTo(this.exporter, helper.vanilla("shears"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("shears"));
 
                 this.createShaped(RecipeCategory.COMBAT, Items.SHIELD)
                         .input('W', ItemTags.PLANKS)
@@ -480,7 +494,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern(" W ")
                         .criterion("has_iron_ingot", this.conditionsFromItem(Items.IRON_INGOT))
                         .group("shields")
-                        .offerTo(this.exporter, helper.vanilla("shield"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("shield"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.SOUL_CAMPFIRE)
                         .input('L', ItemTags.LOGS)
@@ -490,7 +504,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("S#S")
                         .pattern("LLL")
                         .criterion("has_soul_sand", this.conditionsFromTag(ItemTags.SOUL_FIRE_BASE_BLOCKS))
-                        .offerTo(this.exporter, helper.vanilla("soul_campfire"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("soul_campfire"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.SOUL_LANTERN)
                         .input('#', Items.SOUL_TORCH)
@@ -499,7 +513,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("X#X")
                         .pattern("XXX")
                         .criterion("has_soul_torch", this.conditionsFromItem(Items.SOUL_TORCH))
-                        .offerTo(this.exporter, helper.vanilla("soul_lantern"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("soul_lantern"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.SOUL_TORCH, 4)
                         .input('X', Ingredient.ofItems(Items.COAL, Items.CHARCOAL))
@@ -510,7 +524,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("S")
                         .criterion("has_soul_sand", this.conditionsFromTag(ItemTags.SOUL_FIRE_BASE_BLOCKS))
                         .group("torches")
-                        .offerTo(this.exporter, helper.vanilla("soul_torch"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("soul_torch"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.STONECUTTER)
                         .input('I', ConventionalItemTags.IRON_INGOTS)
@@ -518,7 +532,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern(" I ")
                         .pattern("###")
                         .criterion("has_stone", this.conditionsFromItem(Blocks.STONE))
-                        .offerTo(this.exporter, helper.vanilla("stonecutter"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("stonecutter"));
 
                 this.createShaped(RecipeCategory.DECORATIONS, Blocks.TORCH, 4)
                         .input('#', ModItemTags.STICKS)
@@ -527,7 +541,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("#")
                         .criterion("has_stone_pickaxe", this.conditionsFromItem(Items.STONE_PICKAXE))
                         .group("torches")
-                        .offerTo(this.exporter, helper.vanilla("torch"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("torch"));
 
                 this.createShaped(RecipeCategory.REDSTONE, Blocks.TRIPWIRE_HOOK, 2)
                         .input('#', ItemTags.PLANKS)
@@ -537,7 +551,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("S")
                         .pattern("#")
                         .criterion("has_string", this.conditionsFromItem(Items.STRING))
-                        .offerTo(this.exporter, helper.vanilla("tripwire_hook"));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe("tripwire_hook"));
 
                 CookingRecipeJsonBuilder.createSmelting(
                                 Ingredient.ofItems(
@@ -575,7 +589,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .criterion("has_chainmail_chestplate", this.conditionsFromItem(Items.CHAINMAIL_CHESTPLATE))
                         .criterion("has_chainmail_leggings", this.conditionsFromItem(Items.CHAINMAIL_LEGGINGS))
                         .criterion("has_chainmail_boots", this.conditionsFromItem(Items.CHAINMAIL_BOOTS))
-                        .offerTo(this.exporter, helper.vanilla(getSmeltingItemPath(Items.IRON_NUGGET)));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe(getSmeltingItemPath(Items.IRON_NUGGET)));
 
                 CookingRecipeJsonBuilder.createBlasting(
                                 Ingredient.ofItems(
@@ -613,7 +627,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .criterion("has_chainmail_chestplate", this.conditionsFromItem(Items.CHAINMAIL_CHESTPLATE))
                         .criterion("has_chainmail_leggings", this.conditionsFromItem(Items.CHAINMAIL_LEGGINGS))
                         .criterion("has_chainmail_boots", this.conditionsFromItem(Items.CHAINMAIL_BOOTS))
-                        .offerTo(this.exporter, helper.vanilla(getBlastingItemPath(Items.IRON_NUGGET)));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe(getBlastingItemPath(Items.IRON_NUGGET)));
 
                 CookingRecipeJsonBuilder.createSmelting(
                                 Ingredient.ofItems(
@@ -643,7 +657,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .criterion("has_golden_leggings", this.conditionsFromItem(Items.GOLDEN_LEGGINGS))
                         .criterion("has_golden_boots", this.conditionsFromItem(Items.GOLDEN_BOOTS))
                         .criterion("has_golden_horse_armor", this.conditionsFromItem(Items.GOLDEN_HORSE_ARMOR))
-                        .offerTo(this.exporter, helper.vanilla(getSmeltingItemPath(Items.GOLD_NUGGET)));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe(getSmeltingItemPath(Items.GOLD_NUGGET)));
 
                 CookingRecipeJsonBuilder.createSmelting(
                                 Ingredient.ofItems(
@@ -673,7 +687,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .criterion("has_golden_leggings", this.conditionsFromItem(Items.GOLDEN_LEGGINGS))
                         .criterion("has_golden_boots", this.conditionsFromItem(Items.GOLDEN_BOOTS))
                         .criterion("has_golden_horse_armor", this.conditionsFromItem(Items.GOLDEN_HORSE_ARMOR))
-                        .offerTo(this.exporter, helper.vanilla(getBlastingItemPath(Items.GOLD_NUGGET)));
+                        .offerTo(this.exporter, helper.speedrunnerModOfVanillaRecipe(getBlastingItemPath(Items.GOLD_NUGGET)));
 
                 // MODDED
                 helper.createModdedFenceRecipe(ModBlocks.DEAD_SPEEDRUNNER_FENCE, ModBlocks.DEAD_SPEEDRUNNER_PLANKS);
@@ -685,19 +699,37 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 helper.createSign(ModBlocks.DEAD_SPEEDRUNNER_SIGN, ModBlocks.DEAD_SPEEDRUNNER_PLANKS);
                 helper.createSign(ModBlocks.SPEEDRUNNER_SIGN, ModBlocks.SPEEDRUNNER_PLANKS);
 
-                this.createDoorRecipe(ModBlocks.SPEEDRUNNER_DOOR, Ingredient.ofItem(ModItems.SPEEDRUNNER_INGOT));
-                this.createDoorRecipe(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_DOOR, Ingredient.ofItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS));
-                this.createDoorRecipe(ModBlocks.WOODEN_SPEEDRUNNER_DOOR, Ingredient.ofItem(ModBlocks.SPEEDRUNNER_PLANKS));
+                this.createDoorRecipe(ModBlocks.SPEEDRUNNER_DOOR, Ingredient.ofItem(ModItems.SPEEDRUNNER_INGOT))
+                        .criterion(hasItem(ModItems.SPEEDRUNNER_INGOT), this.conditionsFromItem(ModItems.SPEEDRUNNER_INGOT))
+                        .offerTo(this.exporter);
+                this.createDoorRecipe(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_DOOR, Ingredient.ofItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS))
+                        .criterion(hasItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS), this.conditionsFromItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS))
+                        .offerTo(this.exporter);
+                this.createDoorRecipe(ModBlocks.WOODEN_SPEEDRUNNER_DOOR, Ingredient.ofItem(ModBlocks.SPEEDRUNNER_PLANKS))
+                        .criterion(hasItem(ModBlocks.SPEEDRUNNER_PLANKS), this.conditionsFromItem(ModBlocks.SPEEDRUNNER_PLANKS))
+                        .offerTo(this.exporter);
 
                 this.offer2x2CompactingRecipe(RecipeCategory.REDSTONE, ModBlocks.SPEEDRUNNER_TRAPDOOR, ModItems.SPEEDRUNNER_INGOT);
-                this.createTrapdoorRecipe(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR, Ingredient.ofItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS));
-                this.createTrapdoorRecipe(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR, Ingredient.ofItem(ModBlocks.SPEEDRUNNER_PLANKS));
+                this.createTrapdoorRecipe(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_TRAPDOOR, Ingredient.ofItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS))
+                        .criterion(hasItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS), this.conditionsFromItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS))
+                        .offerTo(this.exporter);
+                this.createTrapdoorRecipe(ModBlocks.WOODEN_SPEEDRUNNER_TRAPDOOR, Ingredient.ofItem(ModBlocks.SPEEDRUNNER_PLANKS))
+                        .criterion(hasItem(ModBlocks.SPEEDRUNNER_PLANKS), this.conditionsFromItem(ModBlocks.SPEEDRUNNER_PLANKS))
+                        .offerTo(this.exporter);
 
-                this.createButtonRecipe(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_BUTTON, Ingredient.ofItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS));
-                this.createButtonRecipe(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON, Ingredient.ofItem(ModBlocks.SPEEDRUNNER_PLANKS));
+                this.createButtonRecipe(ModBlocks.DEAD_WOODEN_SPEEDRUNNER_BUTTON, Ingredient.ofItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS))
+                        .criterion(hasItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS), this.conditionsFromItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS))
+                        .offerTo(this.exporter);
+                this.createButtonRecipe(ModBlocks.WOODEN_SPEEDRUNNER_BUTTON, Ingredient.ofItem(ModBlocks.SPEEDRUNNER_PLANKS))
+                        .criterion(hasItem(ModBlocks.SPEEDRUNNER_PLANKS), this.conditionsFromItem(ModBlocks.SPEEDRUNNER_PLANKS))
+                        .offerTo(this.exporter);
 
-                this.createStairsRecipe(ModBlocks.DEAD_SPEEDRUNNER_STAIRS, Ingredient.ofItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS));
-                this.createStairsRecipe(ModBlocks.SPEEDRUNNER_STAIRS, Ingredient.ofItem(ModBlocks.SPEEDRUNNER_PLANKS));
+                this.createStairsRecipe(ModBlocks.DEAD_SPEEDRUNNER_STAIRS, Ingredient.ofItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS))
+                        .criterion(hasItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS), this.conditionsFromItem(ModBlocks.DEAD_SPEEDRUNNER_PLANKS))
+                        .offerTo(this.exporter);
+                this.createStairsRecipe(ModBlocks.SPEEDRUNNER_STAIRS, Ingredient.ofItem(ModBlocks.SPEEDRUNNER_PLANKS))
+                        .criterion(hasItem(ModBlocks.SPEEDRUNNER_PLANKS), this.conditionsFromItem(ModBlocks.SPEEDRUNNER_PLANKS))
+                        .offerTo(this.exporter);
 
                 this.offerSlabRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DEAD_SPEEDRUNNER_SLAB, ModBlocks.DEAD_SPEEDRUNNER_PLANKS);
                 this.offerSlabRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SPEEDRUNNER_SLAB, ModBlocks.SPEEDRUNNER_PLANKS);
@@ -927,7 +959,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("//")
                         .pattern("//")
                         .criterion("has_sticks", this.conditionsFromItem(ModItems.SPEEDRUNNER_STICK))
-                        .offerTo(this.exporter, "speedrunner_planks_from_speedrunner_sticks");
+                        .offerTo(this.exporter, helper.speedrunnerModRecipe("speedrunner_planks_from_speedrunner_stick"));
 
                 this.createShaped(RecipeCategory.MISC, ModItems.WITHER_BONE)
                         .input('B', Items.BONE)
@@ -951,7 +983,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("//")
                         .pattern("//")
                         .criterion("has_stick", this.conditionsFromItem(Items.STICK))
-                        .offerTo(this.exporter, "oak_planks_from_sticks");
+                        .offerTo(this.exporter, helper.speedrunnerModRecipe("oak_planks_from_sticks"));
 
                 this.createShaped(RecipeCategory.MISC, Blocks.OBSIDIAN)
                         .input('#', ModItems.IGNEOUS_ROCK)
@@ -959,12 +991,12 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .pattern("###")
                         .pattern("###")
                         .criterion("has_igneous_rock", this.conditionsFromItem(ModItems.IGNEOUS_ROCK))
-                        .offerTo(this.exporter, "obsidian_from_igneous_rocks");
+                        .offerTo(this.exporter, helper.speedrunnerModRecipe("obsidian_from_igneous_rocks"));
 
                 this.createShapeless(RecipeCategory.MISC, Items.STRING)
                         .input(ItemTags.WOOL)
                         .criterion("has_string", this.conditionsFromItem(Items.STRING))
-                        .offerTo(this.exporter, "string_from_wool");
+                        .offerTo(this.exporter, helper.speedrunnerModRecipe("string_from_wool"));
             }
         };
     }
