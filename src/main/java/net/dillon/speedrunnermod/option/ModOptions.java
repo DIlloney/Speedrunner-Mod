@@ -1162,7 +1162,7 @@ public class ModOptions {
     /**
      * Returns the Speedrunner Mod configuration file.
      */
-    private static File getConfigFile() {
+    public static File getConfigFile() {
         if (file == null) {
             file = new File(FabricLoader.getInstance().getConfigDir().toFile(), CONFIG);
         }
