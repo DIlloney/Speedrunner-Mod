@@ -218,6 +218,7 @@ public class GiantEntityMixin extends HostileEntity implements Giant {
 
             if (this.getHealth() <= 150 && entity instanceof ProjectileEntity projectile) {
                 if (projectile.getOwner() != null) {
+                    this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 5.0F, 1.0F);
                     projectile.getOwner().damage(world, projectile.getOwner().getDamageSources().generic(), MathUtil.randomFloat(1.0F, 3.0F));
                 }
                 return false;

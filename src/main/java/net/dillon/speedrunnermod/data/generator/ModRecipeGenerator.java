@@ -993,7 +993,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .criterion("has_igneous_rock", this.conditionsFromItem(ModItems.IGNEOUS_ROCK))
                         .offerTo(this.exporter, helper.speedrunnerModRecipe("obsidian_from_igneous_rocks"));
 
-                this.createShapeless(RecipeCategory.MISC, Items.STRING)
+                this.createShapeless(RecipeCategory.MISC, Items.STRING, 4)
                         .input(ItemTags.WOOL)
                         .criterion("has_string", this.conditionsFromItem(Items.STRING))
                         .offerTo(this.exporter, helper.speedrunnerModRecipe("string_from_wool"));
