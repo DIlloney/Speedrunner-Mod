@@ -1,0 +1,32 @@
+{
+  "parent": "speedrunnermod:items/the_end_is_near",
+  "display": {
+    "icon": {
+      "id": "minecraft:dragon_head"
+    },
+    "title": {
+      "translate": "advancements.speedrunnermod.yes_the_end.title"
+    },
+    "description": {
+      "translate": "advancements.speedrunnermod.yes_the_end.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "yes_the_end": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "from": "minecraft:the_end",
+        "to": "minecraft:overworld"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "yes_the_end"
+    ]
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "speedrunnermod",
+  "version": "1.9.8.5+mc1.21.4x",
+  "name": "Speedrunner Mod",
+  "description": "A mod that makes speedrunning, easier.",
+  "accessWidener": "speedrunner-mod.accessWidener",
+  "authors": [
+    "Dillon8775",
+    "MannyQUESO"
+  ],
+  "contact": {
+    "homepage": "https://sites.google.com/view/dillon8775/the-speedrunner-mod",
+    "sources": "https://github.com/Dillon8775/Speedrunner-Mod"
+  },
+  "license": "All Rights Reserved.",
+  "icon": "assets/speedrunnermod/textures/gui/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.dillon.speedrunnermod.SpeedrunnerMod"
+    ],
+    "client": [
+      "net.dillon.speedrunnermod.SpeedrunnerModClient"
+    ],
+    "fabric-datagen": [
+      "net.dillon.speedrunnermod.data.generator.SpeedrunnerModDataGenerator"
+    ],
+    "terrablender": [
+      "net.dillon.speedrunnermod.world.api.ModTerraBlenderAPI"
+    ],
+    "modmenu": [
+      "net.dillon.speedrunnermod.client.impl.ModMenuImpl"
+    ]
+  },
+  "mixins": [
+    "speedrunner-mod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "fabric": "*",
+    "minecraft": ">=1.21",
+    "java": ">=21"
+  }
+}
