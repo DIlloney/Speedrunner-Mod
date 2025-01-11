@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ChatGPT;
 import net.dillon.speedrunnermod.util.Credit;
 import net.dillon.speedrunnermod.util.ItemUtil;
@@ -64,7 +63,7 @@ public class AnnulEyeItem extends Item {
 
                         int structureDistance = MathHelper.floor(ItemUtil.getDistance(playerpos.getX(), playerpos.getZ(), blockPos.getX(), blockPos.getZ()));
                         String structureType = "Stronghold";
-                        player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.blocks_away", structureType, structureDistance).formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                        player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.blocks_away", structureType, structureDistance).formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), options().client.itemMessages.isActionbar());
 
                         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.HOSTILE, 0.5F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
                         world.syncWorldEvent(null, 1003, player.getBlockPos(), 0);
@@ -97,7 +96,7 @@ public class AnnulEyeItem extends Item {
                             if (endPortalFrameBlock != null) {
                                 if (confirm) {
                                     player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.found_portal_room").formatted(Formatting.GREEN), false);
-                                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.teleporting").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.teleporting").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                                     player.teleport(endPortalFrameBlock.getX() + 0.5F, endPortalFrameBlock.getY() + 1.0F, endPortalFrameBlock.getZ() + 0.5F, true);
                                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.HOSTILE, 1.0F, 1.0F);
                                     player.getItemCooldownManager().set(this.getDefaultStack(), TickCalculator.seconds(60));
@@ -119,7 +118,7 @@ public class AnnulEyeItem extends Item {
                                         }
                                     }
                                 } else {
-                                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.found_portal_room").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                    player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.found_portal_room").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                                     player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.confirm"), false);
                                 }
 
@@ -132,25 +131,25 @@ public class AnnulEyeItem extends Item {
                                 player.swingHand(hand, true);
                                 return ActionResult.SUCCESS;
                             } else {
-                                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.couldnt_find_portal_room").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.couldnt_find_portal_room").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                             }
                         } else {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 5.0F);
                             player.swingHand(hand, true);
                             if (!hasEnderEye && !hasEnderPearl) {
-                                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.has_none").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.has_none").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                             } else if (!hasEnderEye) {
-                                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.no_ender_eye").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.no_ender_eye").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                             } else {
-                                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.no_ender_pearl").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.no_ender_pearl").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                             }
                         }
                     } else {
-                        player.sendMessage(Text.translatable("item.speedrunnermod.function_disabled").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                        player.sendMessage(Text.translatable("item.speedrunnermod.function_disabled").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                     }
                 }
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                player.sendMessage(Text.translatable("item.speedrunnermod.eye_of_annul.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.GREEN, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             }
         }
 

@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.block.ModBlocks;
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.MathUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
@@ -79,13 +78,13 @@ public class EnderThrusterItem extends Item {
                         player.swingHand(hand, true);
                         return ActionResult.SUCCESS;
                     } else {
-                        player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.couldnt_teleport"), ModOptions.ItemMessages.isActionbar());
+                        player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.couldnt_teleport"), options().client.itemMessages.isActionbar());
                     }
                 } else {
-                    player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.ender_thruster.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                 }
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.BLUE, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.BLUE, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             }
         }
 

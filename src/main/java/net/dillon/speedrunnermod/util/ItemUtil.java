@@ -108,6 +108,6 @@ public class ItemUtil {
      * Returns a specific type of formatting.
      */
     public static Formatting toFormatting(Formatting actionbarOn, Formatting actionbarOff) {
-        return ModOptions.ItemMessages.isActionbar() ? actionbarOn : actionbarOff;
+        return options().client.itemMessages.isActionbar() ? actionbarOn : actionbarOff;
     }
 }

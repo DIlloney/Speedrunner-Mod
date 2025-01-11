@@ -19,6 +19,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -50,7 +51,7 @@ public class ExperienceDroppingBlockMixin extends Block {
             if (player instanceof ServerPlayerEntity) {
                 ((ServerPlayerEntity)player).networkHandler.sendPacket(new PlaySoundS2CPacket(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, SoundCategory.BLOCKS, pos.getX(), pos.getY(), pos.getZ(), 1.0F, 1.0F, world.getRandom().nextLong()));
             }
-            player.sendMessage(Text.translatable("speedrunnermod.removed_silk_touch"), false);
+            player.sendMessage(Text.translatable("speedrunnermod.removed_silk_touch").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             player.setStackInHand(hand, itemStack);
             return ActionResult.SUCCESS;
         } else {

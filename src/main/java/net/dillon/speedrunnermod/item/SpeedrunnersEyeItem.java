@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.tag.ModStructureTags;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.minecraft.entity.player.PlayerEntity;
@@ -88,7 +87,7 @@ public class SpeedrunnersEyeItem extends Item {
                         }
                     }
 
-                    player.sendMessage(Text.translatable("item.speedrunnermod.speedrunners_eye.looking_for", structureType).formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.speedrunners_eye.looking_for", structureType).formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                 } else {
                     ServerWorld serverWorld = (ServerWorld)world;
                     ItemUtil.findStructureAndShoot(world, player, itemStack, type);
@@ -96,7 +95,7 @@ public class SpeedrunnersEyeItem extends Item {
                     BlockPos blockPos = serverWorld.locateStructure(type, playerpos, 100, false);
                     int structureDistance = MathHelper.floor(ItemUtil.getDistance(playerpos.getX(), playerpos.getZ(), blockPos.getX(), blockPos.getZ()));
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
-                    player.sendMessage(Text.translatable("item.speedrunnermod.speedrunners_eye.blocks_away", structureType, structureDistance).formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.speedrunners_eye.blocks_away", structureType, structureDistance).formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), options().client.itemMessages.isActionbar());
 
                     if (!player.getAbilities().creativeMode) {
                         itemStack.decrement(1);
@@ -107,7 +106,7 @@ public class SpeedrunnersEyeItem extends Item {
                 player.swingHand(hand, true);
                 return ActionResult.SUCCESS;
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.speedrunners_eye.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                player.sendMessage(Text.translatable("item.speedrunnermod.speedrunners_eye.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.AQUA, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             }
         }
 

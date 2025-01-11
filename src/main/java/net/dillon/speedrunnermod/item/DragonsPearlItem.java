@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.dillon.speedrunnermod.util.TimeCalculator;
@@ -61,26 +60,26 @@ public class DragonsPearlItem extends Item {
                         } else {
                             if (!isDragonDead(enderDragon)) {
                                 if (isDragonSitting(enderDragon)) {
-                                    player.sendMessage(Text.translatable("item.speedrunnermod.dragons_pearl.already_perched").formatted(Formatting.LIGHT_PURPLE), ModOptions.ItemMessages.isActionbar());
+                                    player.sendMessage(Text.translatable("item.speedrunnermod.dragons_pearl.already_perched").formatted(Formatting.LIGHT_PURPLE), options().client.itemMessages.isActionbar());
                                 } else {
-                                    player.sendMessage(Text.translatable("item.speedrunnermod.dragons_pearl.already_perching").formatted(Formatting.LIGHT_PURPLE), ModOptions.ItemMessages.isActionbar());
+                                    player.sendMessage(Text.translatable("item.speedrunnermod.dragons_pearl.already_perching").formatted(Formatting.LIGHT_PURPLE), options().client.itemMessages.isActionbar());
                                 }
                             } else {
-                                player.sendMessage(Text.translatable("item.speedrunnermod.dragons_pearl.dragon_dead").formatted(Formatting.LIGHT_PURPLE), ModOptions.ItemMessages.isActionbar());
+                                player.sendMessage(Text.translatable("item.speedrunnermod.dragons_pearl.dragon_dead").formatted(Formatting.LIGHT_PURPLE), options().client.itemMessages.isActionbar());
                             }
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 5.0F);
                         }
                     } else {
                         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 3.0F);
-                        player.sendMessage(Text.translatable("item.speedrunnermod.dragons_pearl.cannot_find_dragon").formatted(Formatting.LIGHT_PURPLE), ModOptions.ItemMessages.isActionbar());
+                        player.sendMessage(Text.translatable("item.speedrunnermod.dragons_pearl.cannot_find_dragon").formatted(Formatting.LIGHT_PURPLE), options().client.itemMessages.isActionbar());
                     }
                 } else {
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 5.0F);
-                    player.sendMessage(Text.translatable("item.speedrunnermod.dragons_pearl.wrong_dimension").formatted(Formatting.LIGHT_PURPLE), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.dragons_pearl.wrong_dimension").formatted(Formatting.LIGHT_PURPLE), options().client.itemMessages.isActionbar());
                 }
                 player.swingHand(hand, true);
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.LIGHT_PURPLE, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.LIGHT_PURPLE, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             }
         }
 

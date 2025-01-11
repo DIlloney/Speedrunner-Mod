@@ -1095,7 +1095,7 @@ public class ModOptions {
         /**
          * Returns true if the {@code Item Messages} option is set to actionbar.
          */
-        public static boolean isActionbar() {
+        public boolean isActionbar() {
             return options().client.itemMessages.equals(ACTIONBAR);
         }
     }

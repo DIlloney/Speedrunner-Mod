@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.item;
 
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.dillon.speedrunnermod.util.TimeCalculator;
@@ -93,7 +92,7 @@ public class PiglinAwakenerItem extends Item {
                                     }, TimeCalculator.secondsToMilliseconds(2));
                                 } else {
                                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PIGLIN_AMBIENT, SoundCategory.HOSTILE, 3.0F, 1.0F);
-                                    player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.got_piglins").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                    player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.got_piglins").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                                     player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.confirm"), false);
                                 }
                                 if (options().client.confirmMessages) {
@@ -103,20 +102,20 @@ public class PiglinAwakenerItem extends Item {
                                 return ActionResult.SUCCESS;
                             } else {
                                 world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PIGLIN_AMBIENT, SoundCategory.NEUTRAL, 3.0F, 1.0F);
-                                player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.no_gold_ingot").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                                player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.no_gold_ingot").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                             }
                         } else {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PIGLIN_AMBIENT, SoundCategory.NEUTRAL, 1.5F, 1.0F);
-                            player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.unsafe").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                            player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.unsafe").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                         }
                     } else {
-                        player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.couldnt_find_piglins").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                        player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.couldnt_find_piglins").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                     }
                 } else {
-                    player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.piglin_awakener.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.RED, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                 }
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             }
         }
 

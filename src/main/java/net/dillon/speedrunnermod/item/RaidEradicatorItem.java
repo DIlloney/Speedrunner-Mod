@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.item;
 
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.dillon.speedrunnermod.util.ItemUtil;
 import net.dillon.speedrunnermod.util.TickCalculator;
 import net.dillon.speedrunnermod.util.TimeCalculator;
@@ -81,7 +80,7 @@ public class RaidEradicatorItem extends Item {
                             }, TimeCalculator.secondsToMilliseconds(3));
                         } else {
                             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_VINDICATOR_AMBIENT, SoundCategory.HOSTILE, 3.0F, 1.0F);
-                            player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.found_raiders").formatted(ItemUtil.toFormatting(Formatting.YELLOW, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                            player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.found_raiders").formatted(ItemUtil.toFormatting(Formatting.YELLOW, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                             player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.confirm"), false);
                         }
                         if (options().client.confirmMessages) {
@@ -91,13 +90,13 @@ public class RaidEradicatorItem extends Item {
                         return ActionResult.SUCCESS;
                     } else {
                         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_WITCH_AMBIENT, SoundCategory.NEUTRAL, 3.0F, 1.0F);
-                        player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.no_totem").formatted(Formatting.YELLOW), ModOptions.ItemMessages.isActionbar());
+                        player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.no_totem").formatted(Formatting.YELLOW), options().client.itemMessages.isActionbar());
                     }
                 } else {
-                    player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.couldnt_find_raiders"), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.raid_eradicator.couldnt_find_raiders"), options().client.itemMessages.isActionbar());
                 }
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GRAY, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GRAY, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             }
         }
 

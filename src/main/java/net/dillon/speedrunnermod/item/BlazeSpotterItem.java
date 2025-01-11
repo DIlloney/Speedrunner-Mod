@@ -58,7 +58,7 @@ public class BlazeSpotterItem extends Item {
                                 itemStack.decrement(1);
                             }
                         } else {
-                            player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.found_blaze_spawner").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                            player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.found_blaze_spawner").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                             player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.confirm"), false);
                         }
                         if (options().client.confirmMessages) {
@@ -68,14 +68,14 @@ public class BlazeSpotterItem extends Item {
                         return ActionResult.SUCCESS;
                     } else {
                         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 3.0F);
-                        player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.couldnt_find_spawner").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                        player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.couldnt_find_spawner").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                     }
                 } else {
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 1.0F, 5.0F);
-                    player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                    player.sendMessage(Text.translatable("item.speedrunnermod.blaze_spotter.wrong_dimension").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), options().client.itemMessages.isActionbar());
                 }
             } else {
-                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), ModOptions.ItemMessages.isActionbar());
+                player.sendMessage(Text.translatable("item.speedrunnermod.item_disabled").formatted(ItemUtil.toFormatting(Formatting.GOLD, Formatting.WHITE)), options().client.itemMessages.isActionbar());
             }
         }
 
