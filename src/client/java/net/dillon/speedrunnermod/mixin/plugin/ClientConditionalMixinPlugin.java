@@ -12,7 +12,7 @@ import java.util.Set;
 import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 
 @ChatGPT(Credit.FULL_CREDIT)
-public class ConditionalMixinPlugin implements IMixinConfigPlugin {
+public class ClientConditionalMixinPlugin implements IMixinConfigPlugin {
 
     /**
      * Disables certain client-side mixins from loading if the {@code apply fog mixin} advanced option is disabled.
