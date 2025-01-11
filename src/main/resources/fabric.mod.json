@@ -4,7 +4,7 @@
   "version": "1.9.8.5+mc1.21.4x",
   "name": "Speedrunner Mod",
   "description": "A mod that makes speedrunning, easier.",
-  "accessWidener": "speedrunner-mod.accessWidener",
+  "accessWidener": "speedrunnermod.accessWidener",
   "authors": [
     "Dillon8775",
     "MannyQUESO"
@@ -34,7 +34,11 @@
     ]
   },
   "mixins": [
-    "speedrunner-mod.mixins.json"
+    "speedrunnermod.mixins.json",
+    {
+      "config": "speedrunnermod.client.mixins.json",
+      "environment": "client"
+    }
   ],
   "depends": {
     "fabricloader": ">=0.15.11",

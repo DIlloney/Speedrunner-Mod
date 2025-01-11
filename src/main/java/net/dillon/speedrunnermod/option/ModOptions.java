@@ -4,7 +4,6 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.dillon.speedrunnermod.SpeedrunnerMod;
-import net.dillon.speedrunnermod.client.screen.SafeBootScreen;
 import net.dillon.speedrunnermod.util.TimeCalculator;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.TranslatableOption;
@@ -22,10 +21,10 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.*;
 /**
  * All Speedrunner Mod {@code options.}
  * <p>When adding new options...</p>
- * <p>- Must add a check for restart required in {@link net.dillon.speedrunnermod.client.screen.RestartRequiredScreen}, only if necessary,</p>
+ * <p>- Must add a check for restart required in restart required screen, only if necessary,</p>
  * <p>- Determine if it is leaderboard-eligible, and then implement into {@link Leaderboards}.</p>
- * <p>- An {@code "isBroken"} check {@link SafeBootScreen} and in {@link ModOptions#safeCheck()}</p>
- * <p>- A {@link ModListOptions},</p>
+ * <p>- An {@code "isBroken"} check safe boot screen and in {@link ModOptions#safeCheck()}</p>
+ * <p>- A ModListOption,</p>
  * <p>- A reset option in {@link SpeedrunnerMod#resetOptions()}.</p>
  */
 public class ModOptions {
@@ -811,7 +810,7 @@ public class ModOptions {
         }
 
         /**
-         * Not sure what this does to be honest, but it's used in {@link ModListOptions}.
+         * Not sure what this does to be honest, but it's used in ModListOptions.
          */
         public static StructureSpawnRate byId(int id) {
             return VALUES[MathHelper.floorMod(id, VALUES.length)];
@@ -938,7 +937,7 @@ public class ModOptions {
         }
 
         /**
-         * Not sure what this does to be honest, but it's used in {@link ModListOptions}.
+         * Not sure what this does to be honest, but it's used in ModListOptions.
          */
         public static MobSpawningRate byId(int id) {
             return VALUES[MathHelper.floorMod(id, VALUES.length)];
@@ -980,7 +979,7 @@ public class ModOptions {
         }
 
         /**
-         * Not sure what this does to be honest, but it's used in {@link ModListOptions}.
+         * Not sure what this does to be honest, but it's used in ModListOptions.
          */
         public static GameMode byId(int id) {
             return VALUES[MathHelper.floorMod(id, VALUES.length)];
@@ -1032,7 +1031,7 @@ public class ModOptions {
         }
 
         /**
-         * Not sure what this does to be honest, but it's used in {@link ModListOptions}.
+         * Not sure what this does to be honest, but it's used in ModListOptions.
          */
         public static Difficulty byId(int id) {
             return VALUES[MathHelper.floorMod(id, VALUES.length)];
@@ -1079,7 +1078,7 @@ public class ModOptions {
         }
 
         /**
-         * Not sure what this does to be honest, but it's used in {@link ModListOptions}.
+         * Not sure what this does to be honest, but it's used in ModListOptions.
          */
         public static ItemMessages byId(int id) {
             return VALUES[MathHelper.floorMod(id, VALUES.length)];
@@ -1178,7 +1177,7 @@ public class ModOptions {
 
     /**
      * Preforms a {@code "safe check"} on all the Speedrunner Mod options, and makes sure that they are valid and safe to run in-game.
-     * <p>If an option is broken or invalid, and it is not recommended to run, the user will automatically boot into the {@link SafeBootScreen}.</p>
+     * <p>If an option is broken or invalid, and it is not recommended to run, the user will automatically boot into the Safe boot screen.</p>
      */
     private static void safeCheck() {
         final String space = " ";

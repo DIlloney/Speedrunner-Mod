@@ -1,7 +1,6 @@
 package net.dillon.speedrunnermod.world.feature;
 
 import net.dillon.speedrunnermod.block.ModBlocks;
-import net.dillon.speedrunnermod.data.generator.ModWorldGenerator;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -29,7 +28,7 @@ public class WastelandConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_DIAMOND_BURIED = ModConfiguredFeatures.of("speedrunnermod:wasteland_ore_diamond_buried");
 
     /**
-     * See {@link ModWorldGenerator} for more.
+     * See ModWorldGenerator for more.
      */
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         List<OreFeatureConfig.Target> speedrunnerOres = List.of(

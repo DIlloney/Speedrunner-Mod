@@ -12,5 +12,6 @@ public enum Authors {
     KWPUGH,
     TURTYWURTY,
     CECH12,
+    BLOCKLEGEND001,
     UNKNOWN
 }

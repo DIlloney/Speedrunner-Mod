@@ -53,7 +53,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 helper.createAxe(ItemTags.IRON_TOOL_MATERIALS, Items.IRON_AXE, true);
                 helper.createAxe(ItemTags.STONE_TOOL_MATERIALS, Items.STONE_AXE, true);
                 helper.createAxe(ItemTags.WOODEN_TOOL_MATERIALS, Items.WOODEN_AXE, true);
-                helper.createAxe(ModItemTags.GOLDEN_SPEEDRUNNER_TOOL_MATERIALS, ModItems.GOLDEN_SPEEDRUNNER_AXE, false);
                 helper.createAxe(ModItemTags.SPEEDRUNNER_TOOL_MATERIALS, ModItems.SPEEDRUNNER_AXE, false);
 
                 helper.createHoe(ItemTags.DIAMOND_TOOL_MATERIALS, Items.DIAMOND_HOE, true);
@@ -61,7 +60,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 helper.createHoe(ItemTags.IRON_TOOL_MATERIALS, Items.IRON_HOE, true);
                 helper.createHoe(ItemTags.STONE_TOOL_MATERIALS, Items.STONE_HOE, true);
                 helper.createHoe(ItemTags.WOODEN_TOOL_MATERIALS, Items.WOODEN_HOE, true);
-                helper.createHoe(ModItemTags.GOLDEN_SPEEDRUNNER_TOOL_MATERIALS, ModItems.GOLDEN_SPEEDRUNNER_HOE, false);
                 helper.createHoe(ModItemTags.SPEEDRUNNER_TOOL_MATERIALS, ModItems.SPEEDRUNNER_HOE, false);
 
                 helper.createPickaxe(ItemTags.DIAMOND_TOOL_MATERIALS, Items.DIAMOND_PICKAXE, true);
@@ -69,7 +67,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 helper.createPickaxe(ItemTags.IRON_TOOL_MATERIALS, Items.IRON_PICKAXE, true);
                 helper.createPickaxe(ItemTags.STONE_TOOL_MATERIALS, Items.STONE_PICKAXE, true);
                 helper.createPickaxe(ItemTags.WOODEN_TOOL_MATERIALS, Items.WOODEN_PICKAXE, true);
-                helper.createPickaxe(ModItemTags.GOLDEN_SPEEDRUNNER_TOOL_MATERIALS, ModItems.GOLDEN_SPEEDRUNNER_PICKAXE, false);
                 helper.createPickaxe(ModItemTags.SPEEDRUNNER_TOOL_MATERIALS, ModItems.SPEEDRUNNER_PICKAXE, false);
 
                 helper.createShovel(ItemTags.DIAMOND_TOOL_MATERIALS, Items.DIAMOND_SHOVEL, true);
@@ -77,7 +74,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 helper.createShovel(ItemTags.IRON_TOOL_MATERIALS, Items.IRON_SHOVEL, true);
                 helper.createShovel(ItemTags.STONE_TOOL_MATERIALS, Items.STONE_SHOVEL, true);
                 helper.createShovel(ItemTags.WOODEN_TOOL_MATERIALS, Items.WOODEN_SHOVEL, true);
-                helper.createShovel(ModItemTags.GOLDEN_SPEEDRUNNER_TOOL_MATERIALS, ModItems.GOLDEN_SPEEDRUNNER_SHOVEL, false);
                 helper.createShovel(ModItemTags.SPEEDRUNNER_TOOL_MATERIALS, ModItems.SPEEDRUNNER_SHOVEL, false);
 
                 helper.createSword(ItemTags.DIAMOND_TOOL_MATERIALS, Items.DIAMOND_SWORD, true);
@@ -85,7 +81,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 helper.createSword(ItemTags.IRON_TOOL_MATERIALS, Items.IRON_SWORD, true);
                 helper.createSword(ItemTags.STONE_TOOL_MATERIALS, Items.STONE_SWORD, true);
                 helper.createSword(ItemTags.WOODEN_TOOL_MATERIALS, Items.WOODEN_SWORD, true);
-                helper.createSword(ModItemTags.GOLDEN_SPEEDRUNNER_TOOL_MATERIALS, ModItems.GOLDEN_SPEEDRUNNER_SWORD, false);
                 helper.createSword(ModItemTags.SPEEDRUNNER_TOOL_MATERIALS, ModItems.SPEEDRUNNER_SWORD, false);
 
                 helper.createHelmet(ModItems.SPEEDRUNNER_INGOT, ModItems.SPEEDRUNNER_HELMET);

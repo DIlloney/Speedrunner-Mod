@@ -29,7 +29,7 @@ loom {
 		}
 	}
 
-	accessWidenerPath = file("src/main/resources/speedrunner-mod.accessWidener")
+	accessWidenerPath = file("src/main/resources/speedrunnermod.accessWidener")
 }
 
 fabricApi {

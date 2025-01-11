@@ -15,7 +15,7 @@ import static net.dillon.speedrunnermod.SpeedrunnerMod.options;
 public class ConditionalMixinPlugin implements IMixinConfigPlugin {
 
     /**
-     * Disables certain mixins from loading if the {@code apply fog mixin} advanced option is disabled.
+     * Disables certain client-side mixins from loading if the {@code apply fog mixin} advanced option is disabled.
      */
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
@@ -51,9 +51,12 @@ public class ConditionalMixinPlugin implements IMixinConfigPlugin {
     }
 
     /**
-     * Returns mixins that should not apply based on certain conditions.
+     * Returns client-side mixins that should not apply based on certain conditions.
      */
     private boolean shouldNotApply(String mixinClassName) {
-        return !options().mixins.terraBlenderSurfaceRuleDataMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.main.world.TBSurfaceRuleDataMixin");
+        return !options().mixins.backgroundRendererMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.Fog") ||
+                !options().mixins.simpleOptionMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.IncreasedBrightness") ||
+                !options().mixins.logoDrawerMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.screen.LogoDrawerMixin") ||
+                !options().mixins.renderLayersMixin && mixinClassName.equals("net.dillon.speedrunnermod.mixin.client.fix.RenderLayersMixin");
     }
 }

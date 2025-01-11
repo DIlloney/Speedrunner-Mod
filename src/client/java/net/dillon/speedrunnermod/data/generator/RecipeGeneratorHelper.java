@@ -63,11 +63,11 @@ public class RecipeGeneratorHelper extends RecipeGenerator {
         SmithingTransformRecipeJsonBuilder.create(
                         Ingredient.ofItem(ModItems.GOLDEN_SPEEDRUNNER_UPGRADE_SMITHING_TEMPLATE),
                         Ingredient.ofItem(input),
-                        this.ingredientFromTag(ModItemTags.GOLDEN_SPEEDRUNNER_TOOL_MATERIALS),
+                        this.ingredientFromTag(ModItemTags.SPEEDRUNNER_TOOL_MATERIALS),
                         category,
                         result
                 )
-                .criterion("has_speedrunner_ingot", this.conditionsFromTag(ModItemTags.GOLDEN_SPEEDRUNNER_TOOL_MATERIALS))
+                .criterion("has_speedrunner_ingot", this.conditionsFromTag(ModItemTags.SPEEDRUNNER_TOOL_MATERIALS))
                 .offerTo(this.exporter, result+"_smithing");
     }
 

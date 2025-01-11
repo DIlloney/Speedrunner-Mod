@@ -8,6 +8,7 @@ import net.dillon.speedrunnermod.world.feature.WastelandConfiguredFeatures;
 import net.dillon.speedrunnermod.world.feature.WastelandPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 
@@ -30,6 +31,9 @@ public class SpeedrunnerModDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModFluidTagGenerator::new);
         pack.addProvider(ModRecipeGenerator::new);
         pack.addProvider(ModModelGenerator::new);
+
+        DataGenerator.Pack secondPack = fabricDataGenerator.createPack();
+        secondPack.addProvider(ModEquipmentAssetProvider::new);
 
         SpeedrunnerMod.info("Finished running through data generator.");
     }

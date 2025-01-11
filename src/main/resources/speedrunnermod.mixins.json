@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "main.better_loot.OreDropsMixin",
-
     "main.block.AbstractBlockStateMixin",
     "main.block.BedBlockMixin",
     "main.block.BlockMixin",
@@ -14,20 +13,12 @@
     "main.block.MobSpawnerLogicMixin",
     "main.block.RedstoneOreBlockMixin",
     "main.block.SpawnerBlockMixin",
-
     "main.enchantment.AnvilScreenHandlerMixin",
-
-    "main.entity.basic.EntityMixin",
-    "main.entity.boat.AbstractBoatEntityMixin",
-    "main.entity.giant.GiantEntityMixin",
-    "main.entity.living.LivingEntityMixin",
-    "main.entity.player.PlayerEntityMixin",
-    "main.entity.player.ServerPlayerEntityMixin",
     "main.entity.AbstractSkeletonEntityMixin",
     "main.entity.ArrowEntitiesMixin",
     "main.entity.BlazeEntityMixin",
-    "main.entity.BreezeEntityMixin",
     "main.entity.BlazeEntityShootFireballGoalMixin",
+    "main.entity.BreezeEntityMixin",
     "main.entity.CaveSpiderEntityMixin",
     "main.entity.CreeperEntityMixin",
     "main.entity.DolphinEntityMixin",
@@ -69,7 +60,12 @@
     "main.entity.ZoglinEntityMixin",
     "main.entity.ZombieEntityMixin",
     "main.entity.ZombifiedPiglinEntityMixin",
-
+    "main.entity.basic.EntityMixin",
+    "main.entity.boat.AbstractBoatEntityMixin",
+    "main.entity.giant.GiantEntityMixin",
+    "main.entity.living.LivingEntityMixin",
+    "main.entity.player.PlayerEntityMixin",
+    "main.entity.player.ServerPlayerEntityMixin",
     "main.fix.BeehiveBlockMixin",
     "main.fix.BlockEntityTypeMixin",
     "main.fix.MatchToolLootConditionMixin",
@@ -80,7 +76,6 @@
     "main.fix.SpawnRestrictionMixin",
     "main.fix.TntBlockMixin",
     "main.fix.TripwireBlockMixin",
-
     "main.item.ConsumableComponentsMixin",
     "main.item.EnderPearlItemMixin",
     "main.item.FirechargeItemMixin",
@@ -89,16 +84,13 @@
     "main.item.ItemEntityMixin",
     "main.item.ItemMixin",
     "main.item.UseCooldownComponent",
+    "main.nether.DimensionTypeMixin",
     "main.nether.portal.AbstractFireBlockMixin",
     "main.nether.portal.NetherPortalBlockMixin",
     "main.nether.portal.NetherPortalMixin",
-    "main.nether.DimensionTypeMixin",
-
     "main.registry.RegistryLoaderMixin",
-
     "main.trades.SellEnchantedToolFactoryMixin",
     "main.trades.TradeOffersMixin",
-
     "main.world.EndGatewayBlockEntityMixin",
     "main.world.EndIslandFeatureMixin",
     "main.world.EndPortalFeatureMixin",
@@ -111,31 +103,6 @@
     "main.world.TBSurfaceRuleDataMixin",
     "main.world.VanillaBiomeParametersMixin",
     "main.world.VibrationsCallbackMixin"
-  ],
-  "client": [
-    "client.enchantment.RemoveTooExpensiveText",
-
-    "client.fix.AbstractClientPlayerEntityMixin",
-    "client.fix.HeldItemRendererMixin",
-    "client.fix.PlayerEntityRendererMixin",
-    "client.fix.RenderLayersMixin",
-    "client.fix.SmithingScreenHandlersMixin",
-
-    "client.hud.DebugModText",
-
-    "client.render.CustomWorldEvents",
-
-    "client.screen.CreateWorldScreenMixin",
-    "client.screen.DeathScreenMixin",
-    "client.screen.GameMenuScreenMixin",
-    "client.screen.LogoDrawerMixin",
-    "client.screen.MinecraftClientMixin",
-    "client.screen.OptionsScreenMixin",
-    "client.screen.ScreenMixin",
-    "client.screen.TitleScreenMixin",
-    "client.BackgroundRendererMixin",
-    "client.IncreasedBrightness",
-    "client.Keybindings"
   ],
   "server": [
   ],
