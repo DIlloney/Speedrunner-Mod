@@ -1,6 +1,5 @@
 package net.dillon.speedrunnermod.util;
 
-import net.dillon.speedrunnermod.option.ModOptions;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FireworksComponent;
