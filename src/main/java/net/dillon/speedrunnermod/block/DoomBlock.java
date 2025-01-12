@@ -115,7 +115,7 @@ public class DoomBlock {
             } else if (world.random.nextFloat() < 0.10F) {
                 stack = new ItemStack(Items.GOLDEN_APPLE, world.random.nextInt(3) + 1);
             } else if (world.random.nextInt() < 0.03F) {
-                stack = new ItemStack(Items.STICK);
+                stack = new ItemStack(ModItems.KNOCKBACK_STICK);
                 stack.addEnchantment(ItemUtil.enchantment(player, Enchantments.KNOCKBACK), 10);
             } else {
                 stack = new ItemStack(ModItems.DRAGONS_PEARL);

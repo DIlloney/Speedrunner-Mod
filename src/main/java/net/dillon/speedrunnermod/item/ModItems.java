@@ -231,13 +231,14 @@ public class ModItems {
     public static final Item ANNUL_EYE = Items.register(of("annul_eye"), AnnulEyeItem::new);
     public static final Item SPEEDRUNNERS_EYE = Items.register(of("speedrunners_eye"), SpeedrunnersEyeItem::new);
     public static final Item INFERNO_EYE = Items.register(of("inferno_eye"), InfernoEyeItem::new);
+    public static final Item INFINI_PEARL = Items.register(of("infini_pearl"), InfiniPearlItem::new);
+    public static final Item KNOCKBACK_STICK = Items.register(of("knockback_stick"), KnockbackStickItem::new);
     public static final Item PIGLIN_AWAKENER = Items.register(of("piglin_awakener"), PiglinAwakenerItem::new);
     public static final Item BLAZE_SPOTTER = Items.register(of("blaze_spotter"), BlazeSpotterItem::new);
     public static final Item RAID_ERADICATOR = Items.register(of("raid_eradicator"), RaidEradicatorItem::new);
     public static final Item ENDER_THRUSTER = Items.register(of("ender_thruster"), EnderThrusterItem::new);
     public static final Item DRAGONS_SWORD = Items.register(of("dragons_sword"), DragonsSwordItem::new);
     public static final Item DRAGONS_PEARL = Items.register(of("dragons_pearl"), DragonsPearlItem::new);
-    public static final Item INFINI_PEARL = Items.register(of("infini_pearl"), InfiniPearlItem::new);
 
     /**
      * Creates and registers an {@code item.}

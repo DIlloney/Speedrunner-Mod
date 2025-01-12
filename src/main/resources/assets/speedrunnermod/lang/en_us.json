@@ -1000,8 +1000,6 @@
   "speedrunnermod.help_button.tooltip": "Help...",
   "speedrunnermod.directory_button.tooltip": "Open config directory...",
   "speedrunnermod.player_death_cords": "You died at X: %.2f, Y = %.2f, Z = %.2f",
-  "speedrunnermod.transfer_options_to_player": "Transfer Options to Player...",
-  "speedrunnermod.transfer_options_to_player.tooltip": "This feature is a W.I.P and is currently not available. This may be removed at any time.",
 
   "speedrunnermod.fog.mixin_disabled": "Fog mixin has been disabled. Re-enable it in the advanced Speedrunner Mod options to use this feature.",
 

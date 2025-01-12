@@ -78,10 +78,6 @@ public class ModTexts {
     public static final Text ENABLE_DOOM_MODE = Text.translatable("speedrunnermod.doom_mode.enable").formatted(Formatting.RED);
     public static final Text MENU_DOOM_MODE = Text.translatable("speedrunnermod.menu.doom_mode");
     public static final Text TITLE_DOOM_MODE = Text.translatable("speedrunnermod.title.doom_mode");
-    public static final Text TITLE_TRANSFER_OPTIONS_TO_PLAYER = Text.translatable("speedrunnermod.title.transfer_options_to_player");
-    public static final Text TRANSFER_OPTIONS_TO_PLAYER = Text.translatable("speedrunnermod.transfer_options_to_player");
-    public static final Text TRANSFER_OPTIONS_TO_PLAYER_TOOLTIP = Text.translatable("speedrunnermod.transfer_options_to_player.tooltip");
-    public static final Text FIND_AND_SEND = Text.translatable("speedrunnermod.find_and_send");
 
     public static final Text EASIER_SPEEDRUNNING_MOD = Text.translatable("speedrunnermod.the_easier_speedrunning_mod");
     public static final Text EASIER_SPEEDRUNNING_MOD_TOOLTIP = Text.translatable("speedrunnermod.the_easier_speedrunning_mod.tooltip");
