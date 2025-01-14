@@ -5,9 +5,11 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FireworksComponent;
 import net.minecraft.component.type.UnbreakableComponent;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EyeOfEnderEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
@@ -90,6 +92,15 @@ public class ItemUtil {
         ItemStack fireworks = new ItemStack(Items.FIREWORK_ROCKET, count);
         fireworks.set(DataComponentTypes.FIREWORKS, new FireworksComponent(3, List.of()));
         return fireworks;
+    }
+
+    /**
+     * Creates a new {@link ItemStack} with an enchantment.
+     */
+    public static ItemStack itemWithEnchantment(ItemConvertible item, EnchantmentLevelEntry entry) {
+        ItemStack itemStack = new ItemStack(item);
+        itemStack.addEnchantment(entry.enchantment, entry.level);
+        return itemStack;
     }
 
     /**

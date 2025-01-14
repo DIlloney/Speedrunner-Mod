@@ -230,6 +230,7 @@ public class ModItems {
     public static final Item WITHER_SWORD = Items.register(of("wither_sword"), WitherSwordItem::new);
     public static final Item ANNUL_EYE = Items.register(of("annul_eye"), AnnulEyeItem::new);
     public static final Item SPEEDRUNNERS_EYE = Items.register(of("speedrunners_eye"), SpeedrunnersEyeItem::new);
+    public static final Item SPEEDRUNNERS_TOTEM = Items.register(of("speedrunners_totem"), SpeedrunnersTotemItem::new);
     public static final Item INFERNO_EYE = Items.register(of("inferno_eye"), InfernoEyeItem::new);
     public static final Item INFINI_PEARL = Items.register(of("infini_pearl"), InfiniPearlItem::new);
     public static final Item KNOCKBACK_STICK = Items.register(of("knockback_stick"), KnockbackStickItem::new);

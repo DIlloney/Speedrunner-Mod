@@ -62,6 +62,7 @@ public class ModItemGroups {
                         entries.add(ModItems.SPEEDRUNNER_SHEARS);
                         entries.add(ModItems.SPEEDRUNNER_FLINT_AND_STEEL);
                         entries.add(ModItems.SPEEDRUNNER_SHIELD);
+                        entries.add(ModItems.SPEEDRUNNERS_TOTEM);
                         entries.add(ModBlockItems.SPEEDRUNNERS_WORKBENCH);
                         entries.add(ModItems.SPEEDRUNNERS_EYE);
                         entries.add(ModItems.ENDER_THRUSTER);
@@ -78,6 +79,7 @@ public class ModItemGroups {
                         entries.add(ModItems.DRAGONS_SWORD);
                         entries.add(ModItems.WITHER_SWORD);
                         entries.add(ModItems.WITHER_BONE);
+                        entries.add(ModItems.KNOCKBACK_STICK);
                         entries.add(ModItems.SPEEDRUNNER_BOAT);
                         entries.add(ModItems.SPEEDRUNNER_CHEST_BOAT);
                         entries.add(ModItems.DEAD_SPEEDRUNNER_BOAT);
@@ -193,6 +195,8 @@ public class ModItemGroups {
         addToItemGroup(ItemGroups.TOOLS, ModItems.SPEEDRUNNER_SHEARS);
         addToItemGroup(ItemGroups.TOOLS, ModItems.SPEEDRUNNER_FLINT_AND_STEEL);
         addToItemGroup(ItemGroups.COMBAT, ModItems.SPEEDRUNNER_SHIELD);
+        addToItemGroup(ItemGroups.COMBAT, ModItems.KNOCKBACK_STICK);
+        addToItemGroup(ItemGroups.COMBAT, ModItems.SPEEDRUNNERS_TOTEM);
         addToItemGroup(ItemGroups.COMBAT, ModItems.GOLDEN_SPEEDRUNNER_SWORD);
         addToItemGroup(ItemGroups.TOOLS, ModItems.GOLDEN_SPEEDRUNNER_SHOVEL);
         addToItemGroup(ItemGroups.TOOLS, ModItems.GOLDEN_SPEEDRUNNER_PICKAXE);

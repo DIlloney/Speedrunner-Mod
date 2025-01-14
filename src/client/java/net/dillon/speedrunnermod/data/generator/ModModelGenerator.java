@@ -134,6 +134,7 @@ public class ModModelGenerator extends FabricModelProvider {
         itemModelGenerator.register(ModItems.CRIMSON_CHEST_BOAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.WARPED_BOAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.WARPED_CHEST_BOAT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SPEEDRUNNERS_TOTEM, Models.GENERATED);
         itemModelGenerator.register(ModItems.ANNUL_EYE, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPEEDRUNNERS_EYE, Models.GENERATED);
         itemModelGenerator.register(ModItems.INFERNO_EYE, Models.GENERATED);
